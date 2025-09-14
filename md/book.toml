@@ -1,0 +1,14 @@
+[book]
+language = "en"
+multilingual = false
+src = "src"
+title = "Foundations of Lean"
+authors = ["Eric Klavins"]
+description = "A light introduction to the foundations of mathematics and proof checking with Lean"
+
+[output.html]
+mathjax-support = true
+git-repository-url = "https://github.com/klavins/LeanBook"
+git-repository-icon = "fa-github"
+additional-js = ["highlight.js","lean-book.js"]
+additional-css = ["lean-book.css"]

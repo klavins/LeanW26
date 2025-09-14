@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Graph - Foundations of Lean</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="A light introduction to the foundations of mathematics and proof checking with Lean">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../lean-book.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Foundations of Lean</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/klavins/LeanBook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div style='display:none'>
+--  Copyright (C) 2025  Eric Klavins
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.   
+</div>
+<p><span style='color: orange'><em><strong>UNDER CONSTRUCTION</strong></em></span><br>
+<span style='color: lightgray; font-size: 10pt'><a href='https://github.com/klavins/LeanBook/blob/main/main/../LeanW26/Categories/Graph.lean'>Code</a> for this chapter</span></p>
+<h2 id="example-graphs"><a class="header" href="#example-graphs">Example: Graphs</a></h2>
+<p>Graphs form a category, and they have products (the so-called Tensor Products).
+First we define a simple directed graph class.</p>
+<pre><code class="language-lean">class Graph.{u} where
+  V : Type u
+  E : V → V → Prop
+
+namespace Graph
+</code></pre>
+<p>A morphism related two graphs G and G is required to preserve the edge relationship.
+With the notion of a Graph morphism defined, we can instantiate the quiver class, which
+allows us to write G ⟶ H for our morphisms, and is also required to make a category.</p>
+<pre><code class="language-lean">@[ext]
+structure Hom (G H : Graph) where
+  f : G.V → H.V
+  pe: ∀ x y, G.E x y → H.E (f x) (f y)
+
+instance inst_quiver : Quiver Graph := ⟨
+  fun G H =&gt; Hom G H
+⟩
+</code></pre>
+<p>As an example, here are two graphs:</p>
+<pre><code>--&gt;
+</code></pre>
+<p>0     1       0 --+
+&lt;--          &lt;--+</p>
+<p>The function λ v =&gt; 0 maps 0 and 1 in the first graph to 0 in the second. This satisfies
+the homomorphism condition</p>
+<p>0 --&gt; 1            implies      0 --&gt; 0
+1 --&gt; 0            implies      0 --&gt; 0
+0 --&gt; 0 = False
+1 --&gt; 1 = False</p>
+<pre><code class="language-lean">def G1 : Graph := ⟨ Fin 2, fun x y =&gt; x = y+1 ∨ y = x+1 ⟩
+def G2 : Graph := ⟨ Fin 1, fun _ _ =&gt; True ⟩
+
+def f : G1 ⟶ G2 := ⟨ fun v =&gt; ⟨ 0, Nat.one_pos ⟩, by
+    intro x y h
+    simp_all
+    simp_all[G1,G2]
+  ⟩
+</code></pre>
+<p>To instantiate Graph as a Category, we need and id morphism, and composition.</p>
+<pre><code class="language-lean">def id_hom (G : Graph) : Hom G G :=
+  ⟨
+    fun x =&gt; x,
+    by
+      intro x y h
+      exact h
+  ⟩
+
+def comp_hom {G H I : Graph} (φ : G ⟶ H) (ψ : H ⟶ I) : Hom G I :=
+  ⟨
+    ψ.f ∘ φ.f,
+    by
+      intro x y h
+      have h1 := φ.pe
+      have h2 := ψ.pe
+      exact h2 (φ.f x) (φ.f y) (h1 x y h)
+  ⟩
+</code></pre>
+<p>And showing graphs are a category is now easy.</p>
+<pre><code class="language-lean">instance inst_category : Category Graph := {
+  id := id_hom,
+  comp := comp_hom,
+  id_comp := by aesop,
+  comp_id := by aesop,
+  assoc := by aesop
+}
+</code></pre>
+<p>Now we can compose graph homomorphisms. Here f ≫ g means apply f, then apply g.
+That is, it is notation for comp g f.</p>
+<pre><code class="language-lean">#check f ≫ (id_hom G2)
+#check (id_hom G1) ≫ f
+#check (id_hom G1) ≫ f ≫ (id_hom G2)
+
+example : (id_hom G1) ≫ f = f := by rfl
+example : f ≫ (id_hom G2) = f := by rfl
+example : ((id_hom G1) ≫ f) ≫ (id_hom G2) = (id_hom G1) ≫ (f ≫ (id_hom G2)) := by rfl
+
+end Graph
+</code></pre>
+<h1 id="graphs-have-products"><a class="header" href="#graphs-have-products">Graphs Have Products</a></h1>
+<p>Graphs have products called TensorProducts, which we can use to instantiate the <code>HasProduct</code> class.</p>
+<pre><code class="language-lean">def TensorProd (G H : Graph) : Graph := {
+  V := G.V × H.V,
+  E := fun (g1,h1) (g2,h2) =&gt; G.E g1 g2 ∧ H.E h1 h2
+}
+
+namespace TensorProd
+
+theorem left {G H : Graph} :
+  ∀ x y, (TensorProd G H).E x y → G.E x.1 y.1 := by
+  intro x y h
+  exact h.left
+
+theorem right {G H : Graph} :
+  ∀ x y, (TensorProd G H).E x y → H.E x.2 y.2 := by
+  intro x y h
+  exact h.right
+
+end TensorProd
+
+instance Graph.inst_has_product : HasProduct Graph := {
+  prod := TensorProd,
+  π₁ := fun {X₁ X₂ : Graph} =&gt; ⟨ Prod.fst, TensorProd.left ⟩,
+  π₂ := fun {X₁ X₂ : Graph} =&gt; ⟨ Prod.snd, TensorProd.right⟩,
+  pair := fun {X Y Z} f₁ f₂ =&gt; ⟨ fun z =&gt; ( f₁.f z, f₂.f z ), by
+      intro x y h
+      exact ⟨ f₁.pe x y h, f₂.pe x y h ⟩
+    ⟩
+  pair₁ := by intros; rfl
+  pair₂ := by intros; rfl
+  pair_unique := by
+    intro _ _ _ _ _ _ h1 h2
+    rw[← h1, ← h2]
+    rfl
+
+}
+
+end LeanW26
+</code></pre>
+<div style='height=50px'>&nbsp;</div><hr>
+Copyright © 2025 Eric Klavins
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../Categories/CartesianClosed.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../Categories/ReflexiveGraph.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../Categories/CartesianClosed.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../Categories/ReflexiveGraph.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../highlight.js"></script>
+        <script src="../lean-book.js"></script>
+
+
+    </div>
+    </body>
+</html>

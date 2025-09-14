@@ -1,0 +1,7 @@
+{
+    "slide_decks": [
+        { "path": "http://localhost:8000/src/Categories/CartesianClosed.md", "title": "Cartesian Closed Categories" },
+        { "path": "http://localhost:8000/src/Categories/Graph.md", "title": "Graphs" },
+        { "path": "http://localhost:8000/src/Categories/ReflexiveGraph.md", "title": "Reflexive Graphs" }
+    ]
+}

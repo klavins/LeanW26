@@ -1,0 +1,150 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-image: linear-gradient(to left,#eeeeff, white);
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#main {
+    outline: none;
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.slider-container {
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.sidebar {
+    width: 10%;
+    height: 100vh;
+    float: left;
+    padding: 5px;
+    margin: 30px 0 0 0;
+    overflow-y: scroll;
+}
+
+.slides-container {
+    margin-left: 0 0 0 10%;
+    border: none;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.slide {
+    padding: 10px;
+    margin: 20px;
+    display: none;
+}
+
+.active-slide {
+    display: block;
+}
+
+.active-title {
+    border: 1pt solid black !important;
+    color: black !important;
+    background-image: linear-gradient(to top,#eeeeff, white) !important;;
+}
+
+#forward-button {
+    height: 24px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+#reverse-button {
+    height: 24px;    
+    position: fixed;
+    right: 50px;
+    bottom: 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+#expand-button {
+    height: 24px;    
+    position: fixed;
+    right: 80px;
+    bottom: 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+#sidebar-button {
+    height: 24px;    
+    position: fixed;
+    right: 110px;
+    bottom: 20px;
+    cursor: pointer;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #888;
+}
+
+#sidebar-title:hover {
+    color:#555;
+}
+
+.title {
+    font-size: 6pt;
+    /* border: 1pt solid #ddd;*/
+    margin: 4px;
+    border-radius: 3px;
+    padding: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    /*background-image: linear-gradient(to top ,#eee, white); */
+    color: #aaa;
+    cursor: pointer;
+    text-align: left;
+}
+
+.title:hover {
+    color: #444;
+    /* border: 1pt solid #888; */
+}
+
+.title:last-child {
+    margin-bottom: 15px;
+}
+
+.deck {
+    font-size: 8pt;
+    margin: 5px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    text-align: left;
+}
+
+.active-deck {
+    font-weight: bold;
+}
+
+table, tr, td, img {
+  background-color: rgba(0,0,0,0) !important;
+  border: none !important;
+}
+
+td {
+    padding: 10px !important;
+}
+
+blockquote {
+    margin-left: 50px !important;
+    margin-right: 150px !important;
+}

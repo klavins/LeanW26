@@ -1,0 +1,25 @@
+{
+  "name": "slider",
+  "version": "1.0.0",
+  "description": "Shows markdown files as slides for presentations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Eric Klavins",
+  "license": "University of Washington",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-app": "^9.1.0",
+    "github-markdown-css": "^3.0.1",
+    "highlight.js": "^9.17.1",
+    "js-cookie": "^2.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "showdown": "^1.9.1"
+  }
+}

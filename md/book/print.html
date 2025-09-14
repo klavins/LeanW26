@@ -1,0 +1,580 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Foundations of Lean</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="A light introduction to the foundations of mathematics and proof checking with Lean">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="lean-book.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Foundations of Lean</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/klavins/LeanBook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div style='display:none'>
+--  Copyright (C) 2025  Eric Klavins
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.   
+</div>
+<p><span style='color: orange'><em><strong>UNDER CONSTRUCTION</strong></em></span><br>
+<span style='color: lightgray; font-size: 10pt'><a href='https://github.com/klavins/LeanBook/blob/main/main/../LeanW26/Basic.lean'>Code</a> for this chapter</span></p>
+<div style='height=50px'>&nbsp;</div><hr>
+Copyright © 2025 Eric Klavins
+<div style="break-before: page; page-break-before: always;"></div><div style='display:none'>
+--  Copyright (C) 2025  Eric Klavins
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.   
+</div>
+<p><span style='color: orange'><em><strong>UNDER CONSTRUCTION</strong></em></span><br>
+<span style='color: lightgray; font-size: 10pt'><a href='https://github.com/klavins/LeanBook/blob/main/main/../LeanW26/Categories/CartesianClosed.lean'>Code</a> for this chapter</span></p>
+<h1 id="cartesian-closed-categories"><a class="header" href="#cartesian-closed-categories">Cartesian Closed Categories</a></h1>
+<p>Cartesian Closed Categories (CCCs) are categories with binary products, exponentials,
+and a terminal object. Although Lean seems to define something like this, I don't really
+get it. So I'm defining CCCs myself from scratch to learn how it's done.</p>
+<h1 id="binary-products"><a class="header" href="#binary-products">Binary Products</a></h1>
+<p>A binary product of two objects X₁ and X₂ in a category is an object called X₁ × X₂ with
+projections and a universal property: For every object Y and morphisms f₁ : Y ⟶ X₁
+and f₂ : Y ⟶ X₂ there is a unique morphism f : Y ⟶ X₁ × X₂ such that
+f ≫ π₁ = f₁ and f ≫ π₂ = f₂. This basically says that f is the shortest
+way to make a pair.</p>
+<p>To encode this in Lean, we make a typeclass requiring the instantiator to say what
+this unique morphism is, and call it <code>pair</code>. The properties <code>pairᵢ</code> record the
+above universal property, and the <code>unique_pair</code> property records the requirement
+the morphism is unique.</p>
+<pre><code class="language-lean">@[ext]
+class HasProduct.{u} (C : Type u) [Category C] where
+
+  prod : C → C → C
+  π₁ {X₁ X₂ : C} : (prod X₁ X₂) ⟶ X₁
+  π₂ {X₁ X₂ : C} : (prod X₁ X₂) ⟶ X₂
+
+  pair {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) : Y ⟶ (prod X₁ X₂)
+
+  pair₁ {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) : pair f₁ f₂ ≫ π₁ = f₁
+  pair₂ {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) : pair f₁ f₂ ≫ π₂ = f₂
+
+  pair_unique {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) (h : Y ⟶ prod X₁ X₂)
+    (h_comm₁ : h ≫ π₁ = f₁) (h_comm₂ : h ≫ π₂ = f₂) : h = pair f₁ f₂
+
+namespace HasProduct
+</code></pre>
+<h1 id="pairs"><a class="header" href="#pairs">Pairs</a></h1>
+<p>Pair only describes how to take the product of morphisms with the same domain.
+The following method, which builds on <code>pair</code>, allows products of arbitary morphisms,
+which will be useful in defining exponentials later.</p>
+<pre><code class="language-lean">def prod_map.{u} {C : Type u} [Category C] [HasProduct C]
+             {X₁ Y₁ X₂ Y₂ : C} (f₁ : Y₁ ⟶ X₁) (f₂ : Y₂ ⟶ X₂)
+  : (prod Y₁ Y₂) ⟶ (prod X₁ X₂) :=
+  let P := prod Y₁ Y₂
+  let g₁ : P ⟶ X₁ := π₁ ≫ f₁
+  let g₂ : P ⟶ X₂ := π₂ ≫ f₂
+  pair g₁ g₂
+
+end HasProduct
+</code></pre>
+<h1 id="exponentials"><a class="header" href="#exponentials">Exponentials</a></h1>
+<p>The Exponential Object Z^Y in many cases can be thought of all functions from
+Y into Z. We need an evaluation function</p>
+<p>eval : Z^Y × Y → Z</p>
+<p>which takes a function in Z^Y and applies it to Y to get an element of Z.</p>
+<p>We also need a univeral property, which states that for any X and morphism
+g : X × Y → Z there is a unique morphism λg : X → Z^Y so that (λg × (𝟙 Y)) ≫ eval = g.</p>
+<p>X × Y -- λg×(𝟙 Y) --&gt; Z^Y × Y  --eval--&gt; Z
+|                                      ∧
+|                                      |
++-------------------g------------------+</p>
+<p>This basically says that any morphism from X × Y to Z has the form
+(λg × (𝟙 Y)) ≫ eval. There isn't a simpler way to say it.</p>
+<p>Typically, one defines a curry function so that</p>
+<p>X × Y ⟶ Z  ---curry---&gt; X ⟶ Z^Y</p>
+<p>so that λg = curry g × 𝟙 Y.</p>
+<h1 id="hasexp"><a class="header" href="#hasexp">HasExp</a></h1>
+<p>Here's the implementation</p>
+<pre><code class="language-lean">open HasProduct in
+class HasExp.{u,v} (C : Type u) [Category.{v} C] [HasProduct.{u} C] where
+
+  exp : C → C → C
+  eval {Z Y : C} : (prod (exp Z Y) Y) ⟶ Z
+  curry {X Y Z : C} (g : (prod X Y) ⟶ Z) : X ⟶ (exp Z Y)
+
+  curry_eval {X Y Z : C} (g : prod X Y ⟶ Z)
+    : prod_map (curry g) (𝟙 Y) ≫ eval = g
+
+  curry_unique {X Y Z : C} (g : X ⟶ exp Z Y) (h : prod X Y ⟶ Z)
+    (comm : prod_map g (𝟙 Y) ≫ eval = h)
+    : curry h = g
+
+end LeanW26
+</code></pre>
+<div style='height=50px'>&nbsp;</div><hr>
+Copyright © 2025 Eric Klavins
+<div style="break-before: page; page-break-before: always;"></div><div style='display:none'>
+--  Copyright (C) 2025  Eric Klavins
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.   
+</div>
+<p><span style='color: orange'><em><strong>UNDER CONSTRUCTION</strong></em></span><br>
+<span style='color: lightgray; font-size: 10pt'><a href='https://github.com/klavins/LeanBook/blob/main/main/../LeanW26/Categories/Graph.lean'>Code</a> for this chapter</span></p>
+<h2 id="example-graphs"><a class="header" href="#example-graphs">Example: Graphs</a></h2>
+<p>Graphs form a category, and they have products (the so-called Tensor Products).
+First we define a simple directed graph class.</p>
+<pre><code class="language-lean">class Graph.{u} where
+  V : Type u
+  E : V → V → Prop
+
+namespace Graph
+</code></pre>
+<p>A morphism related two graphs G and G is required to preserve the edge relationship.
+With the notion of a Graph morphism defined, we can instantiate the quiver class, which
+allows us to write G ⟶ H for our morphisms, and is also required to make a category.</p>
+<pre><code class="language-lean">@[ext]
+structure Hom (G H : Graph) where
+  f : G.V → H.V
+  pe: ∀ x y, G.E x y → H.E (f x) (f y)
+
+instance inst_quiver : Quiver Graph := ⟨
+  fun G H =&gt; Hom G H
+⟩
+</code></pre>
+<p>As an example, here are two graphs:</p>
+<pre><code>--&gt;
+</code></pre>
+<p>0     1       0 --+
+&lt;--          &lt;--+</p>
+<p>The function λ v =&gt; 0 maps 0 and 1 in the first graph to 0 in the second. This satisfies
+the homomorphism condition</p>
+<p>0 --&gt; 1            implies      0 --&gt; 0
+1 --&gt; 0            implies      0 --&gt; 0
+0 --&gt; 0 = False
+1 --&gt; 1 = False</p>
+<pre><code class="language-lean">def G1 : Graph := ⟨ Fin 2, fun x y =&gt; x = y+1 ∨ y = x+1 ⟩
+def G2 : Graph := ⟨ Fin 1, fun _ _ =&gt; True ⟩
+
+def f : G1 ⟶ G2 := ⟨ fun v =&gt; ⟨ 0, Nat.one_pos ⟩, by
+    intro x y h
+    simp_all
+    simp_all[G1,G2]
+  ⟩
+</code></pre>
+<p>To instantiate Graph as a Category, we need and id morphism, and composition.</p>
+<pre><code class="language-lean">def id_hom (G : Graph) : Hom G G :=
+  ⟨
+    fun x =&gt; x,
+    by
+      intro x y h
+      exact h
+  ⟩
+
+def comp_hom {G H I : Graph} (φ : G ⟶ H) (ψ : H ⟶ I) : Hom G I :=
+  ⟨
+    ψ.f ∘ φ.f,
+    by
+      intro x y h
+      have h1 := φ.pe
+      have h2 := ψ.pe
+      exact h2 (φ.f x) (φ.f y) (h1 x y h)
+  ⟩
+</code></pre>
+<p>And showing graphs are a category is now easy.</p>
+<pre><code class="language-lean">instance inst_category : Category Graph := {
+  id := id_hom,
+  comp := comp_hom,
+  id_comp := by aesop,
+  comp_id := by aesop,
+  assoc := by aesop
+}
+</code></pre>
+<p>Now we can compose graph homomorphisms. Here f ≫ g means apply f, then apply g.
+That is, it is notation for comp g f.</p>
+<pre><code class="language-lean">#check f ≫ (id_hom G2)
+#check (id_hom G1) ≫ f
+#check (id_hom G1) ≫ f ≫ (id_hom G2)
+
+example : (id_hom G1) ≫ f = f := by rfl
+example : f ≫ (id_hom G2) = f := by rfl
+example : ((id_hom G1) ≫ f) ≫ (id_hom G2) = (id_hom G1) ≫ (f ≫ (id_hom G2)) := by rfl
+
+end Graph
+</code></pre>
+<h1 id="graphs-have-products"><a class="header" href="#graphs-have-products">Graphs Have Products</a></h1>
+<p>Graphs have products called TensorProducts, which we can use to instantiate the <code>HasProduct</code> class.</p>
+<pre><code class="language-lean">def TensorProd (G H : Graph) : Graph := {
+  V := G.V × H.V,
+  E := fun (g1,h1) (g2,h2) =&gt; G.E g1 g2 ∧ H.E h1 h2
+}
+
+namespace TensorProd
+
+theorem left {G H : Graph} :
+  ∀ x y, (TensorProd G H).E x y → G.E x.1 y.1 := by
+  intro x y h
+  exact h.left
+
+theorem right {G H : Graph} :
+  ∀ x y, (TensorProd G H).E x y → H.E x.2 y.2 := by
+  intro x y h
+  exact h.right
+
+end TensorProd
+
+instance Graph.inst_has_product : HasProduct Graph := {
+  prod := TensorProd,
+  π₁ := fun {X₁ X₂ : Graph} =&gt; ⟨ Prod.fst, TensorProd.left ⟩,
+  π₂ := fun {X₁ X₂ : Graph} =&gt; ⟨ Prod.snd, TensorProd.right⟩,
+  pair := fun {X Y Z} f₁ f₂ =&gt; ⟨ fun z =&gt; ( f₁.f z, f₂.f z ), by
+      intro x y h
+      exact ⟨ f₁.pe x y h, f₂.pe x y h ⟩
+    ⟩
+  pair₁ := by intros; rfl
+  pair₂ := by intros; rfl
+  pair_unique := by
+    intro _ _ _ _ _ _ h1 h2
+    rw[← h1, ← h2]
+    rfl
+
+}
+
+end LeanW26
+</code></pre>
+<div style='height=50px'>&nbsp;</div><hr>
+Copyright © 2025 Eric Klavins
+<div style="break-before: page; page-break-before: always;"></div><div style='display:none'>
+--  Copyright (C) 2025  Eric Klavins
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.   
+</div>
+<p><span style='color: orange'><em><strong>UNDER CONSTRUCTION</strong></em></span><br>
+<span style='color: lightgray; font-size: 10pt'><a href='https://github.com/klavins/LeanBook/blob/main/main/../LeanW26/Categories/ReflexiveGraph.lean'>Code</a> for this chapter</span></p>
+<h1 id="reflexive-graphs-a-subcategory-of-graphs"><a class="header" href="#reflexive-graphs-a-subcategory-of-graphs">Reflexive Graphs: A Subcategory of Graphs</a></h1>
+<p>To show an example of exponentials, we can't use simple graphs, as we need self-loops.
+We can build a subcategory of Graph called ReflexiveGraph that does this using
+Mathlib's <code>FullSubcategory</code> helper.</p>
+<pre><code class="language-lean">def ReflexiveGraph.{u} : Type (u+1) :=
+  ObjectProperty.FullSubcategory (fun G : Graph.{u} =&gt; ∀ v, G.E v v)
+
+namespace ReflexiveGraph
+</code></pre>
+<p>We can then show ReflexiveGraph is also a category and that it has products.</p>
+<pre><code class="language-lean">instance inst_category.{u} : Category ReflexiveGraph.{u} :=
+  ObjectProperty.FullSubcategory.category _
+</code></pre>
+<p>For the product instance, it would be nice if there were a way to just use the
+fact that Graphs have products. Or at least use some of that proof. But I could not
+figure that out so this is mostly just repetetive at this point.</p>
+<pre><code class="language-lean">instance inst_has_product.{u} : HasProduct.{u+1} ReflexiveGraph.{u} := {
+
+  prod := fun G H =&gt; ⟨ TensorProd G.1 H.1, fun v =&gt; ⟨ G.property v.1, H.property v.2 ⟩ ⟩,
+  π₁ := fun {X₁ X₂ : ReflexiveGraph} =&gt; Graph.inst_has_product.π₁,
+  π₂ := fun {X₁ X₂ : ReflexiveGraph} =&gt; Graph.inst_has_product.π₂,
+
+  pair := fun {X₁ X₂ Y : ReflexiveGraph} =&gt; fun f₁ f₂ =&gt; ⟨ fun y =&gt; ( f₁.f y, f₂.f y ), by
+    intro x y h
+    exact ⟨ f₁.pe x y h, f₂.pe x y h ⟩
+  ⟩,
+
+  pair₁ := by intros; rfl,
+
+  pair₂ := by intros; rfl,
+
+  pair_unique {X₁ X₂ Y} := by
+    intro _ _ _ h1 h2
+    simp[←h1,←h2]
+    rfl
+
+}
+</code></pre>
+<h1 id="reflexive-graphs-have-exponentials"><a class="header" href="#reflexive-graphs-have-exponentials">Reflexive Graphs Have Exponentials</a></h1>
+<p>Here's a paper with something like this construction:</p>
+<p>https://arxiv.org/pdf/1807.09345</p>
+<p>The exponential G^H is the graph in which the vertices are morphisms from H to G,
+and the edges are the "natural transformations". The transformation maps vertices
+and edges of G to those of H in a way that commutes.</p>
+<p>First we define the exponential object of two Reflexive Graphs. Note the universe
+condition. We need to have the exponential object like in a higher universe
+otherwise we get Russel's paradox issues.</p>
+<pre><code class="language-lean">def exp.{u} (G H : ReflexiveGraph.{u}) : ReflexiveGraph.{u} := {
+  obj := {
+    V := ULift.{u} (H ⟶ G),
+    E := fun F₁ F₂ =&gt;
+      let f₁ := ULift.down F₁
+      let f₂ := ULift.down F₂
+      ∀ u v : H.obj.V, H.obj.E u v → G.obj.E (f₁.f u) (f₂.f v)
+  },
+  property := by
+    intro morphism u v h
+    exact morphism.down.pe u v h
+}
+</code></pre>
+<p>The eval function is straighforward.</p>
+<pre><code class="language-lean">def eval (H G : ReflexiveGraph) : HasProduct.prod (exp H G) G ⟶ H := {
+    f := fun ⟨ ⟨ f, h ⟩, v  ⟩ =&gt; f v,
+    pe := by
+      intro ⟨ ⟨ fg, hfg ⟩, vG ⟩ ⟨ ⟨ fh, hfh ⟩, fH ⟩ ⟨ h1, h2 ⟩
+      simp_all only[exp]
+}
+</code></pre>
+<p>And now we can instantiate HasExp.</p>
+<pre><code class="language-lean">instance inst_has_exp : HasExp ReflexiveGraph := {
+
+  exp := exp,
+
+  eval := fun {G H} =&gt; eval G H,
+
+  curry := fun {X Y Z} =&gt; fun ⟨ f, h ⟩ =&gt; ⟨ fun x =&gt; ⟨ fun y =&gt; f (x,y), by
+      intro _ _ e
+      apply h
+      exact ⟨ X.property x, e ⟩
+     ⟩, by
+        intros _ _ ex _ _ ey
+        apply h
+        exact ⟨ex, ey⟩
+    ⟩
+
+  curry_eval := by
+    intros
+    rfl,
+
+  curry_unique := by
+    intro _ _ _ _ _ comm
+    rw[←comm]
+    rfl
+
+}
+</code></pre>
+<p>Hooray!</p>
+<pre><code class="language-lean">#check CategoryTheory.Limits.hasTerminal_of_unique
+
+end ReflexiveGraph
+
+end LeanW26
+</code></pre>
+<div style='height=50px'>&nbsp;</div><hr>
+Copyright © 2025 Eric Klavins
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="highlight.js"></script>
+        <script src="lean-book.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
