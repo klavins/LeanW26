@@ -11,8 +11,9 @@
 
 # Categories
 
-- [CartesianClosed](./Categories/CartesianClosed.md)
-- [Graph](./Categories/Graph.md)
-- [ReflexiveGraph](./Categories/ReflexiveGraph.md)
+- [Categories](./Categories/Category.md)
+- [Binary Products](./Categories/BinaryProduct.md)
+- [Exponentials](./Categories/Exponential.md)
+- [Cartesian Closed](./Categories/CartesianClosed.md)
 
 -/

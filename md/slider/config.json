@@ -1,7 +1,8 @@
 {
     "slide_decks": [
-        { "path": "http://localhost:8000/src/Categories/CartesianClosed.md", "title": "Cartesian Closed Categories" },
-        { "path": "http://localhost:8000/src/Categories/Graph.md", "title": "Graphs" },
-        { "path": "http://localhost:8000/src/Categories/ReflexiveGraph.md", "title": "Reflexive Graphs" }
+        { "path": "http://localhost:8000/src/Categories/Category.md", "title": "Categories" },
+        { "path": "http://localhost:8000/src/Categories/BinaryProduct.md", "title": "Binary Products" },
+        { "path": "http://localhost:8000/src/Categories/Exponential.md", "title": "Exponentials" },
+        { "path": "http://localhost:8000/src/Categories/CartesianClosed.md", "title": "Cartesian Closed Categories" }
     ]
 }

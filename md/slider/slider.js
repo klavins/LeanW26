@@ -205,14 +205,14 @@ class Slider extends React.Component {
         { id: 'forward-button',
           onClick: this.forward,
           disabled: this.state.slide == this.state.slides.length - 1 },
-        '\u23F4'
+        '\u23F5'
       ),
       React.createElement(
         'button',
         { id: 'reverse-button',
           onClick: this.reverse,
           disabled: this.state.slide == 0 },
-        '\u23F5'
+        '\u23F4'
       ),
       React.createElement(
         'button',
@@ -255,6 +255,11 @@ class Slider extends React.Component {
         React.createElement(
           'div',
           { className: 'sidebar' },
+          React.createElement(
+              'div',
+              { style: { display: this.state.sidebar == "slides" ? 'block' : 'none'}, className: "deck-title" },
+              (this.state.deck+1) + ". " + this.config.slide_decks[this.state.deck].title
+            ),
           React.createElement(
             'div',
             { style: { display: this.state.sidebar == "slides" ? 'block' : 'none' } },
