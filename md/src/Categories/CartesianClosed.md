@@ -1,12 +1,14 @@
 
-Cartesian Closed Categories
+TODO
 ===
 
-- Binary Products
-- Exponentials
-- Terminal Objects
 
 
+```lean
+--hide
+end LeanW26
+--unhide
+```
 
 License
 ===

@@ -2,8 +2,19 @@
 Category Theory: Binary Products
 ===
 
-A binary product of two objects `X₁` and `X₂` in a category is an object called `X₁ × X₂`. We need
-projections and a universal property:
+A `binary product` of two objects `X₁` and `X₂` in a category is an object called `X₁ × X₂`.
+
+A `projection` of a binary product throws away one of the parts:
+
+```lean
+   π₁ (X₁ × X₂) = X₁
+   π₂ (X₁ × X₂) = X₂
+```
+
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vRcGx-5-JPZkvvFdkf8-u-L67BcyFh-GzLcfgk4NBjPaLivE2nSPQIdrbg5y4AQMIysqqMWeXd3kg1y/pub?w=576&amp;h=315" height=40%>
+
+Universal Property for Binary Products
+===
 
 > For every object `Y` and morphisms `f₁ : Y ⟶ X₁`
 > and `f₂ : Y ⟶ X₂` there is a unique morphism `f : Y ⟶ X₁ × X₂` such that
@@ -11,12 +22,22 @@ projections and a universal property:
 
 <img src="https://docs.google.com/drawings/d/e/2PACX-1vQPk2cl9FCCrOcGcwbIJtqL_-lP-d20u6wWSJEZhAsc6EwopVkNBU2sjAmJJZwkj7nXZb8RU4cQoc4H/pub?w=960&amp;h=720" height=50%>
 
+
+The `pair` function
+===
+
+We call the unique morphism in the universal property for binary products `pair`. In Lean
+it has type
+
+```lean
+pair {X₁ X₂ Y : C} (_ : Y ⟶ X₁) (_ : Y ⟶ X₂) : Y ⟶ (prod X₁ X₂)
+```
+
 Binary Products in Lean
 ===
 
-We call the unique morphism `pair`. The properties `pairᵢ` record the
-above universal property, and the `unique_pair` property records the requirement
-the morphism is unique. 
+The properties `pairᵢ` record the universal property, and the `unique_pair`
+property records the requirement the morphism is unique. 
 ```lean
 @[ext]
 class HasProduct.{u} (C : Type u) [Category C] where
@@ -24,18 +45,23 @@ class HasProduct.{u} (C : Type u) [Category C] where
   prod : C → C → C
   π₁ {X₁ X₂ : C} : (prod X₁ X₂) ⟶ X₁
   π₂ {X₁ X₂ : C} : (prod X₁ X₂) ⟶ X₂
-
   pair {X₁ X₂ Y : C} (_ : Y ⟶ X₁) (_ : Y ⟶ X₂) : Y ⟶ (prod X₁ X₂)
+
   pair₁ {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) : pair f₁ f₂ ≫ π₁ = f₁
   pair₂ {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) : pair f₁ f₂ ≫ π₂ = f₂
   pair_unique {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) (h : Y ⟶ prod X₁ X₂)
     (h_comm₁ : h ≫ π₁ = f₁) (h_comm₂ : h ≫ π₂ = f₂) : h = pair f₁ f₂
 
+--hide
 namespace HasProduct
+--unhide
 ```
 
 Product Notation
 ===
+
+Instead of writing `prod A B` we would rather write `A * B`. So we instantiate the notation
+classes for `*`:
 
 ```lean
 instance inst_hmul {C : Type*} [Category C] [HasProduct C] : HMul C C C where
@@ -43,7 +69,9 @@ instance inst_hmul {C : Type*} [Category C] [HasProduct C] : HMul C C C where
 
 instance inst_mul {C : Type*} [Category C] [HasProduct C] : Mul C where
   mul := prod
-
+```
+ For example 
+```lean
 example {C : Type*} [Category C] [HasProduct C] (A B : C) : A*B = A*B := by rfl
 ```
 
@@ -71,6 +99,9 @@ def prod_map.{u} {C : Type u} [Category C] [HasProduct C]
 
 Notation for Pairs of Morphisms
 ===
+
+When `f` and `g` are morphisms, we want to write `f*g` for their prodict, so
+we instantiate the notation class for `*` for morphisms as well.
 
 
 ```lean
@@ -101,14 +132,16 @@ def TensorProd (G H : Graph) : Graph := {
   E := fun (u1,v1) (u2,v2) => G.E u1 u2 ∧ H.E v1 v2
 }
 
+--hide
 namespace TensorProd
+--unhide
 ```
 
 Example: Tensor Product Properties
 ===
 
-To form an insstance of a `HasProduct` It will be convenient to have the following
-properties defined as theorems.
+To form an instance of a `HasProduct` It will be convenient to have the following
+properties defined as theorems, which state that products preserve edges.
 
 
 ```lean
@@ -122,7 +155,9 @@ theorem right {G H : Graph} :
   intro x y h
   exact h.right
 
+--hide
 end TensorProd
+--unhide
 ```
 
 Example: Graphs Have Products
@@ -146,12 +181,12 @@ instance Graph.inst_has_product : HasProduct Graph := {
     intro _ _ _ _ _ _ h1 h2
     rw[←h1,←h2]
     rfl
-
 }
 
+--hide
 end HasProduct
-
 end LeanW26
+--unhide
 ```
 
 License

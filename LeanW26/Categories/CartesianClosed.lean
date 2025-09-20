@@ -5,11 +5,12 @@ namespace LeanW26
 open CategoryTheory
 
 /-
-Cartesian Closed Categories
+TODO
 ===
 
-- Binary Products
-- Exponentials
-- Terminal Objects
 
 -/
+
+--hide
+end LeanW26
+--unhide

@@ -71,23 +71,23 @@ class HasExp.{u,v} (C : Type u) [Category.{v} C] [HasProduct.{u} C] where
     (comm : prod_map g (𝟙 Y) ≫ eval = h)
     : curry h = g
 
-namespace HasExp
 
 /-
 Notation Class Instances
 ===
 -/
 
-instance inst_hpow.{u, v} {C : Type u} [Category.{v} C]
+instance HasExp.inst_hpow.{u, v} {C : Type u} [Category.{v} C]
          [HasProduct.{u} C] [HasExp.{u, v} C]
   : HPow C C C where
   hPow := exp
 
-instance inst_pow.{u, v} {C : Type u} [Category.{v} C]
+instance HasExp.inst_pow.{u, v} {C : Type u} [Category.{v} C]
          [HasProduct.{u} C] [HasExp.{u, v} C] : Pow C C where
   pow := exp
 
 /- Now we can write: -/
+
 
 namespace Temp
 
@@ -105,12 +105,13 @@ To show an example of exponentials, we can't use simple graphs, as we need self-
 We can build a subcategory of Graph called ReflexiveGraph that does this using
 Mathlib's `FullSubcategory` helper. -/
 
-open HasProduct
 
 def ReflexiveGraph.{u} : Type (u+1) :=
   ObjectProperty.FullSubcategory (fun G : Graph.{u} => ∀ v, G.E v v)
 
+--hide
 namespace ReflexiveGraph
+--unhide
 
 /- We can then show ReflexiveGraph is also a category and that it has products. -/
 
@@ -124,6 +125,10 @@ Products in Reflexive Graphs
 For the product instance, it would be nice if there were a way to just use the
 fact that Graphs have products. Or at least use some of that proof. But I could not
 figure that out so this is mostly just repetetive at this point. -/
+
+--hide
+open HasProduct
+--unhide
 
 instance inst_has_product.{u} : HasProduct.{u+1} ReflexiveGraph.{u} := {
 
@@ -232,7 +237,9 @@ instance inst_has_exp : HasExp ReflexiveGraph := {
 
 /- Hooray! -/
 
+--hide
 end ReflexiveGraph
+--unhide
 
 
 /-
@@ -240,7 +247,7 @@ Uncurrying
 ===
 -/
 
-def uncurry.{u,v} {C : Type u} [Category.{v} C] [HasProduct.{u} C]
+def HasExp.uncurry.{u,v} {C : Type u} [Category.{v} C] [HasProduct.{u} C]
     (A B Z : C) [HasExp.{u, v} C] (g : Z ⟶ B ^ A) : Z*A ⟶ B := (g * (𝟙 A)) ≫ eval
 
 -- theorem t.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u} C]
@@ -261,11 +268,6 @@ An Example Theorem
 
 --     sorry
 
-/-
-Cleanup
-===
--/
-
-end HasExp
-
+--hide
 end LeanW26
+--unhide

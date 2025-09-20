@@ -5,7 +5,7 @@ MD_DIR := src
 NAMES :=  Basic SUMMARY
 MD_FILES := $(foreach item,$(NAMES), $(MD_DIR)/$(item).md)
 
-CAT_NAMES := CartesianClosed Category BinaryProduct Exponential
+CAT_NAMES := CartesianClosed Category BinaryProduct Exponential TerminalObject
 CAT_FILES := $(foreach item,$(CAT_NAMES), $(MD_DIR)/Categories/$(item).md)
 
 all: $(MD_FILES) $(CAT_FILES) 

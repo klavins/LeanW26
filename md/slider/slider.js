@@ -136,7 +136,9 @@ class Slider extends React.Component {
   }
 
   parse(text) {
-    let lines = text.split("\n");
+    let text1 = text.replace(/--hide[\s\S]*?--unhide/g, '');
+    let text2 = text1.replace(/--brief[\s\S]*?--unbrief/g, '    ...');
+    let lines = text2.split("\n");
     let sections = [];
     let i = 1;
     let section = "";
@@ -257,7 +259,14 @@ class Slider extends React.Component {
           { className: 'sidebar' },
           React.createElement(
               'div',
-              { style: { display: this.state.sidebar == "slides" ? 'block' : 'none'}, className: "deck-title" },
+              { style: { 
+                display: this.state.sidebar == "slides" ? 'block' : 'none'}, 
+                className: "deck-title",
+                onClick: () => {
+                  let sb = this.state.sidebar == "decks" ? "slides" : "decks";
+                 this.setState({ sidebar: sb });
+                 Cookies.set("sidebar", sb);
+              } },
               (this.state.deck+1) + ". " + this.config.slide_decks[this.state.deck].title
             ),
           React.createElement(

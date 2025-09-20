@@ -64,8 +64,9 @@ class Graph.{u} where
   V : Type u
   E : V → V → Prop
 
+--hide
 namespace Graph
-
+--unhide
 
 /-
 
@@ -165,7 +166,9 @@ example : (𝟙 G) ≫ f = f := by rfl
 example : f ≫ (𝟙 H) = f := by rfl
 example : ((𝟙 G) ≫ f) ≫ (𝟙 H) = (𝟙 G) ≫ (f ≫ (𝟙 H)) := by rfl
 
+--hide
 end Graph
+--unhide
 
 /-
 Exercises
@@ -178,9 +181,6 @@ Exercises
 
 -/
 
-/-
-Cleanup
-===
--/
-
+--hide
 end LeanW26
+--unhide
