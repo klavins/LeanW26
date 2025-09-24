@@ -47,7 +47,7 @@ The properties `pairᵢ` record the universal property, and the `unique_pair`
 property records the requirement the morphism is unique. -/
 
 @[ext]
-class HasProduct.{u} (C : Type u) [Category C] where
+class HasProduct.{u,v} (C : Type u) [Category.{v} C] where
 
   prod : C → C → C
   π₁ {X₁ X₂ : C} : (prod X₁ X₂) ⟶ X₁
@@ -88,7 +88,88 @@ Annoyingly, there does not seem to be a notation class for × in Mathlib, perhap
 because the powers that be want to use that symbol exlusively for cartesian products
 of types.
 
+Products are Associative
+===
+-/
 
+@[simp, reassoc]
+lemma pair_comp_π₁.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
+  {X Y Z : C} {f : Z ⟶ X} {g : Z ⟶ Y} :
+  pair f g ≫ π₁ = f := pair₁ f g
+
+@[simp, reassoc]
+lemma pair_comp_π₂.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
+  {X Y Z : C} {f : Z ⟶ X} {g : Z ⟶ Y} :
+  pair f g ≫ π₂ = g := pair₂ f g
+
+-- Uniqueness of pair morphism (implication form)
+-- lemma pair_eq_of_commutes.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
+--   {X Y Z : C} {h : Z ⟶ X * Y} {f : Z ⟶ X} {g : Z ⟶ Y}
+--   {h₁ : h ≫ π₁ = f} {h₂ : h ≫ π₂ = g} :
+--   h = pair f g := pair_unique f g h h₁ h₂
+
+-- Pair congruence
+--@[simp, reassoc]
+-- lemma pair_congr.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
+--   {X Y Z : C} {f₁ f₁' : Z ⟶ X} {f₂ f₂' : Z ⟶ Y}
+--   {h₁ : f₁ = f₁'} {h₂ : f₂ = f₂'} :
+--   pair f₁ f₂ = pair f₁' f₂' := by rw [h₁, h₂]
+
+@[simp, reassoc]
+theorem pair_id.{u,v} {C : Type u} [Category.{v} C] [HasProduct C] {X Y : C} :
+    pair (π₁ : X*Y ⟶ X) (π₂ : X*Y ⟶ Y) = 𝟙 (X*Y) := by
+    apply Eq.symm
+    apply pair_unique _ _ (𝟙 (X*Y))
+    · apply Category.id_comp
+    · apply Category.id_comp
+
+@[simp]
+lemma prod_id_unique.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
+  {X Y : C} (f : X * Y ⟶ X * Y) (h₁ : f ≫ π₁ = π₁) (h₂ : f ≫ π₂ = π₂)
+  : f = 𝟙 (X*Y) := by
+    rw[pair_unique π₁ π₂ f h₁ h₂]
+    apply pair_id
+
+@[simp, reassoc]
+lemma comp_pair.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
+  {W X Y Z : C} {h : W ⟶ X} {f : X ⟶ Y} {g : X ⟶ Z} :
+  h ≫ pair f g = pair (h ≫ f) (h ≫ g) := by
+  apply pair_unique
+  · simp [Category.assoc]
+  · simp [Category.assoc]
+
+lemma pair_eta.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
+ {W X Y : C} {h : W ⟶ X * Y} :
+  pair (h ≫ (π₁ : X*Y ⟶ X)) (h ≫ (π₂ : X*Y ⟶ Y)) = h := by
+  exact (pair_unique _ _ _ (by simp) (by simp)).symm
+
+@[simp]
+def prod_assoc.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C] {X Y Z : C}
+  : (X*Y)*Z ≅ X*(Y*Z) :=
+
+    let f₁ := π₁ ≫ π₁
+    let f₂ := pair (π₁ ≫ π₂) π₂
+    let f := pair f₁ f₂
+    let g₁ := pair π₁ (π₂ ≫ π₁)
+    let g₂ := π₂ ≫ π₂
+    let g := pair g₁ g₂
+
+    {
+      hom := f,
+      inv := g,
+      hom_inv_id := by
+        apply prod_id_unique
+        · simp?[f,g,f₁,f₂,g₁,g₂,←Category.assoc]
+          apply pair_eta
+        · simp[f,g,f₁,f₂,g₁,g₂,←Category.assoc],
+      inv_hom_id := by
+         apply prod_id_unique
+         · simp[f,g,f₁,f₂,g₁,g₂,←Category.assoc]
+         · simp[f,g,f₁,f₂,g₁,g₂,←Category.assoc]
+           apply pair_eta
+    }
+
+/-
 Pairs of Morphisms
 ===
 
@@ -190,6 +271,9 @@ instance Graph.inst_has_product : HasProduct Graph := {
     rw[←h1,←h2]
     rfl
 }
+
+
+
 
 --hide
 end HasProduct

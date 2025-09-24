@@ -233,25 +233,39 @@ Uncurrying
 ===
 
 ```lean
-def HasExp.uncurry.{u,v} {C : Type u} [Category.{v} C] [HasProduct.{u} C]
-    (A B Z : C) [HasExp.{u, v} C] (g : Z ⟶ B ^ A) : Z*A ⟶ B := (g * (𝟙 A)) ≫ eval
+def HasExp.uncurry.{u,v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
+  {X Y Z : C} (g : X ⟶ Z ^ Y) : X * Y ⟶ Z := (g * (𝟙 Y)) ≫ eval
 
--- theorem t.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u} C]
---   [HasExp C] (X Y Z : C) (g : prod X Y ⟶ Z)
---   : uncurry (curry g) = prod X Y → Z := sorry
+open HasProduct HasExp in
+theorem curry_uncurry.{u, v} {C : Type u}
+   [Category.{v} C] [HP : HasProduct.{u, v} C] [HE : HasExp.{u, v} C]
+   (X Y Z : C) (g : X * Y ⟶ Z)
+  : uncurry (curry g) = g := by
+    unfold uncurry
+    apply curry_eval
 ```
 
 An Example Theorem
 ===
 
 ```lean
--- def thing.{u,v} (C : Type u) [Category.{v} C] [HasProduct.{u} C]
---        [HasExp.{u,v} C] (X Y Z : C)
---        : Iso ((X^Y)^Z) (X^(Y*Z)) := by
---     let f1 := 𝟙 ((X^Y)^Z)
---     let f2 := uncurry f1
+#check Iso
+```
 
---     sorry
+ - prod_map (f₁ : Y₁ ⟶ X₁) (f₂ : Y₂ ⟶ X₂) : (prod Y₁ Y₂) ⟶ (prod X₁ X₂)
+ - curry (g : (prod X Y) ⟶ Z) : X ⟶ (exp Z Y)
+ - uncurry (g : X ⟶ Z ^ Y) : X * Y ⟶ Z
+
+```lean
+open HasProduct HasExp in
+theorem exp_prod.{u, v} (C : Type u) [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
+    (X Y Z : C) : ∃ f : Iso ((X^Y)^Z) (X^(Y*Z)), True := by
+    let f1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := sorry
+    let f2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := sorry
+    use ⟨
+      f1, f2, sorry, sorry
+    ⟩
+
 
 --hide
 end LeanW26

@@ -3,7 +3,8 @@
         { "path": "http://localhost:8000/src/Categories/Category.md", "title": "Categories" },
         { "path": "http://localhost:8000/src/Categories/BinaryProduct.md", "title": "Binary Products" },
         { "path": "http://localhost:8000/src/Categories/Exponential.md", "title": "Exponentials" },
-        { "path": "http://localhost:8000/src/Categories/TerminalObject.md", "title": "Terminal Objects" },        
-        { "path": "http://localhost:8000/src/Categories/CartesianClosed.md", "title": "Cartesian Closed Categories" }
+        { "path": "http://localhost:8000/src/Categories/TerminalObject.md", "title": "Terminal Objects" },                
+        { "path": "http://localhost:8000/src/Categories/CartesianClosed.md", "title": "Cartesian Closed Categories" },
+        { "path": "http://localhost:8000/src/Categories/Syntactic.md", "title": "Syntactic Categories" }        
     ]
 }

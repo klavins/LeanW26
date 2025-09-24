@@ -247,26 +247,81 @@ Uncurrying
 ===
 -/
 
-def HasExp.uncurry.{u,v} {C : Type u} [Category.{v} C] [HasProduct.{u} C]
-    (A B Z : C) [HasExp.{u, v} C] (g : Z ⟶ B ^ A) : Z*A ⟶ B := (g * (𝟙 A)) ≫ eval
+def HasExp.uncurry.{u,v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
+  {X Y Z : C} (g : X ⟶ Z ^ Y) : X * Y ⟶ Z := (g * (𝟙 Y)) ≫ eval
 
--- theorem t.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u} C]
---   [HasExp C] (X Y Z : C) (g : prod X Y ⟶ Z)
---   : uncurry (curry g) = prod X Y → Z := sorry
-
+open HasProduct HasExp in
+theorem curry_uncurry.{u, v} {C : Type u}
+   [Category.{v} C] [HP : HasProduct.{u, v} C] [HE : HasExp.{u, v} C]
+   (X Y Z : C) (g : X * Y ⟶ Z)
+  : uncurry (curry g) = g := by
+    unfold uncurry
+    apply curry_eval
 
 /-
 An Example Theorem
 ===
 -/
 
--- def thing.{u,v} (C : Type u) [Category.{v} C] [HasProduct.{u} C]
---        [HasExp.{u,v} C] (X Y Z : C)
---        : Iso ((X^Y)^Z) (X^(Y*Z)) := by
---     let f1 := 𝟙 ((X^Y)^Z)
---     let f2 := uncurry f1
+/-
+ - prod_map (f₁ : Y₁ ⟶ X₁) (f₂ : Y₂ ⟶ X₂) : (prod Y₁ Y₂) ⟶ (prod X₁ X₂)
+ - curry (g : (prod X Y) ⟶ Z) : X ⟶ (exp Z Y)
+ - uncurry (g : X ⟶ Z ^ Y) : X * Y ⟶ Z
+-/
 
---     sorry
+open HasProduct in
+@[simp]
+def prod_swap.{u, v} {C : Type u} (X Y : C) [Category.{v} C] [HasProduct.{u, v} C]
+   : X * Y ⟶ Y * X := pair π₂ π₁
+
+
+open HasProduct HasExp in
+theorem exp_prod.{u, v} (C : Type u) [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
+    (X Y Z : C) : ∃ f : Iso ((X^Y)^Z) (X^(Y*Z)), True := by
+
+    let f1 : (X^Y)^Z ⟶ X^(Y*Z) :=
+        curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ eval) (π₂ ≫ π₁) ≫ eval)
+
+    let f2 : X^(Y*Z) ⟶ (X^Y)^Z :=
+        curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ eval))
+
+    use ⟨
+      f1,
+      f2,
+      by
+        unfold f1 f2
+        simp[prod_map,Category.comp_id]
+
+        sorry,
+      by
+        unfold f1
+        unfold f2
+
+        sorry
+    ⟩
+
+
+    -- let f1' : (X^Y)^Z ⟶ X^(Y*Z) :=
+    --    let E := (X^Y)^Z
+    --    let ev1 : E * Z ⟶ X ^ Y := eval (Z := exp X Y) (Y := Z)
+    --    let evXY :  (X^Y) * Y ⟶ X := eval (Z := X) (Y := Y)
+    --    let projZ_from_pair : E* (Y * Z) ⟶ E * Z := prod_map (𝟙 E) (π₂ : Y * Z ⟶ Z)
+    --    let to_expX_Y : E * (Y * Z) ⟶ X ^ Y :=  projZ_from_pair ≫ ev1
+    --    let projY_from_pair : E * (Y * Z) ⟶ Y :=
+    --        (π₂ : E * (Y * Z) ⟶ Y * Z) ≫ (π₁ : Y * Z ⟶ Y)
+    --    let body : E * (Y * Z) ⟶ X := pair to_expX_Y projY_from_pair ≫ evXY
+    --    curry body
+
+
+    -- let f2' : X^(Y*Z) ⟶ (X^Y)^Z :=
+    --     let E := X ^ (Y * Z)
+    --     let evYZ : E * (Y * Z) ⟶ X := eval (Z := X) (Y := Y * Z)
+    --     let projE : (E * Z) * Y ⟶ E := π₁ ≫ π₁
+    --     let projZ : (E * Z) * Y ⟶ Z := π₁ ≫ π₂
+    --     let projY : (E * Z) * Y ⟶ Y :=  π₂
+    --     let yz : (E * Z) * Y ⟶ Y * Z := pair projY projZ
+    --     let body : (E * Z) * Y ⟶ X := pair (projE) (yz) ≫ evYZ
+    --     curry (curry body)
 
 --hide
 end LeanW26

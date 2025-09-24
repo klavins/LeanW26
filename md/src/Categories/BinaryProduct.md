@@ -40,7 +40,7 @@ The properties `pairᵢ` record the universal property, and the `unique_pair`
 property records the requirement the morphism is unique. 
 ```lean
 @[ext]
-class HasProduct.{u} (C : Type u) [Category C] where
+class HasProduct.{u,v} (C : Type u) [Category.{v} C] where
 
   prod : C → C → C
   π₁ {X₁ X₂ : C} : (prod X₁ X₂) ⟶ X₁
