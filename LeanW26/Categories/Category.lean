@@ -8,6 +8,8 @@ open CategoryTheory
 Why Category Theory?
 ===
 
+~e^{π i} = 1~
+
 **Q**: What do the following mathematical topics all have in common?
 
 ```hs

@@ -59,6 +59,8 @@ class HasProduct.{u,v} (C : Type u) [Category.{v} C] where
   pair_unique {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) (h : Y ⟶ prod X₁ X₂)
     (h_comm₁ : h ≫ π₁ = f₁) (h_comm₂ : h ≫ π₂ = f₂) : h = pair f₁ f₂
 
+attribute [simp, reassoc] HasProduct.pair₁ HasProduct.pair₂
+
 --hide
 namespace HasProduct
 --unhide
@@ -88,84 +90,122 @@ Annoyingly, there does not seem to be a notation class for × in Mathlib, perhap
 because the powers that be want to use that symbol exlusively for cartesian products
 of types.
 
-Products are Associative
+Theorems
 ===
+
+Next we'll prove some theorems about Products, eventually getting to
+the nice result that products are associative `(X*Y)*Z = X*(Y*Z)`.
+
+We'll use the following variables repeatedly, so it is worth specifing them
+globally in the rest of the file for this code.
+
+-/
+
+universe u v
+variable {C : Type u} [Category.{v} C] [HasProduct C] {W X Y Z : C}
+
+/-
+Pairs of Projections
+===
+
+The first theorem states that when you take a pair of projections, you
+get the identity map.
+
+<!-- https://q.uiver.app/#q=WzAsMyxbMSwwLCJYKlkiXSxbMiwwLCJZIl0sWzAsMCwiWCJdLFswLDIsIlxccGlfMSIsMl0sWzAsMSwiXFxwaV8yIl0sWzAsMCwiMV97WCpZfSJdXQ== -->
+<iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsMyxbMSwwLCJYKlkiXSxbMiwwLCJZIl0sWzAsMCwiWCJdLFswLDIsIlxccGlfMSIsMl0sWzAsMSwiXFxwaV8yIl0sWzAsMCwiMV97WCpZfSJdXQ==&embed" width="351" height="220" style="border-radius: 8px; border: none;"></iframe>
+
+
+
 -/
 
 @[simp, reassoc]
-lemma pair_comp_π₁.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
-  {X Y Z : C} {f : Z ⟶ X} {g : Z ⟶ Y} :
-  pair f g ≫ π₁ = f := pair₁ f g
-
-@[simp, reassoc]
-lemma pair_comp_π₂.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
-  {X Y Z : C} {f : Z ⟶ X} {g : Z ⟶ Y} :
-  pair f g ≫ π₂ = g := pair₂ f g
-
--- Uniqueness of pair morphism (implication form)
--- lemma pair_eq_of_commutes.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
---   {X Y Z : C} {h : Z ⟶ X * Y} {f : Z ⟶ X} {g : Z ⟶ Y}
---   {h₁ : h ≫ π₁ = f} {h₂ : h ≫ π₂ = g} :
---   h = pair f g := pair_unique f g h h₁ h₂
-
--- Pair congruence
---@[simp, reassoc]
--- lemma pair_congr.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
---   {X Y Z : C} {f₁ f₁' : Z ⟶ X} {f₂ f₂' : Z ⟶ Y}
---   {h₁ : f₁ = f₁'} {h₂ : f₂ = f₂'} :
---   pair f₁ f₂ = pair f₁' f₂' := by rw [h₁, h₂]
-
-@[simp, reassoc]
-theorem pair_id.{u,v} {C : Type u} [Category.{v} C] [HasProduct C] {X Y : C} :
-    pair (π₁ : X*Y ⟶ X) (π₂ : X*Y ⟶ Y) = 𝟙 (X*Y) := by
+theorem pair_id : pair (π₁ : X*Y ⟶ X) (π₂ : X*Y ⟶ Y) = 𝟙 (X*Y) := by
     apply Eq.symm
     apply pair_unique _ _ (𝟙 (X*Y))
     · apply Category.id_comp
     · apply Category.id_comp
 
+
+/-
+Conditions for a map to be the Identity
+===
+
+The next theorem describes when `f : X * Y ⟶ X * Y` is the identity on
+`X * Y`.
+-/
+
 @[simp]
-lemma prod_id_unique.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
-  {X Y : C} (f : X * Y ⟶ X * Y) (h₁ : f ≫ π₁ = π₁) (h₂ : f ≫ π₂ = π₂)
+lemma prod_id_unique (f : X * Y ⟶ X * Y) (h₁ : f ≫ π₁ = π₁) (h₂ : f ≫ π₂ = π₂)
   : f = 𝟙 (X*Y) := by
     rw[pair_unique π₁ π₂ f h₁ h₂]
     apply pair_id
 
+/-
+Composing Pairs
+===
+
+This theorem shows how to compose pairs.
+-/
+
 @[simp, reassoc]
-lemma comp_pair.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
-  {W X Y Z : C} {h : W ⟶ X} {f : X ⟶ Y} {g : X ⟶ Z} :
+lemma comp_pair {h : W ⟶ X} {f : X ⟶ Y} {g : X ⟶ Z} :
   h ≫ pair f g = pair (h ≫ f) (h ≫ g) := by
   apply pair_unique
   · simp [Category.assoc]
   · simp [Category.assoc]
 
-lemma pair_eta.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C]
- {W X Y : C} {h : W ⟶ X * Y} :
+/-
+Composing with Projections
+===
+
+This statement covers conposition of a morphism with the projections.
+-/
+
+lemma pair_eta {h : W ⟶ X * Y} :
   pair (h ≫ (π₁ : X*Y ⟶ X)) (h ≫ (π₂ : X*Y ⟶ Y)) = h := by
   exact (pair_unique _ _ _ (by simp) (by simp)).symm
 
+/-
+
+<!-- https://q.uiver.app/#q=WzAsNCxbMCwxLCJXIl0sWzIsMSwiWCpZIl0sWzMsMCwiWCJdLFszLDIsIlkiXSxbMCwxLCJoIiwwLHsiY3VydmUiOi0zfV0sWzEsMywiXFxwaV8yIiwyXSxbMSwyLCJcXHBpXzEiXSxbMCwxLCJwYWlyIFxcOyAoaCBcXGdnIFxccGlfMSkgKGggXFxnZyBcXHBpXzIpIiwyLHsib2Zmc2V0IjotMywiY3VydmUiOjMsInNob3J0ZW4iOnsidGFyZ2V0IjoxMH19XV0= -->
+<iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsNCxbMCwxLCJXIl0sWzIsMSwiWCpZIl0sWzMsMCwiWCJdLFszLDIsIlkiXSxbMCwxLCJoIiwwLHsiY3VydmUiOi0zfV0sWzEsMywiXFxwaV8yIiwyXSxbMSwyLCJcXHBpXzEiXSxbMCwxLCJwYWlyIFxcOyAoaCBcXGdnIFxccGlfMSkgKGggXFxnZyBcXHBpXzIpIiwyLHsib2Zmc2V0IjotMywiY3VydmUiOjMsInNob3J0ZW4iOnsidGFyZ2V0IjoxMH19XV0=&embed" width="320" height="280" style="border-radius: 8px; border: none;"></iframe>
+
+-/
+
+/-
+Associativity Diagram
+===
+
+Using all of the above, we can prove the main result of this section,
+that products are associative.
+
+<!-- https://q.uiver.app/#q=WzAsNyxbMSwwLCIoWCpZKSpaIl0sWzAsMSwiWCpZIl0sWzIsMSwiWiJdLFsxLDIsIlkiXSxbMCwzLCJYIl0sWzIsMywiWSpaIl0sWzEsNCwiWCooWSpaKSJdLFswLDEsIlxccGlfMSIsMl0sWzAsMiwiXFxwaV8yIl0sWzEsNCwiXFxwaV8xIiwyXSxbMSwzLCJcXHBpXzIiXSxbNSwzLCJcXHBpXzEiXSxbNiw1LCJcXHBpXzIiXSxbNiw0LCJcXHBpXzEiXSxbNSwyLCJcXHBpXzIiLDJdXQ== -->
+<iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsNyxbMSwwLCIoWCpZKSpaIl0sWzAsMSwiWCpZIl0sWzIsMSwiWiJdLFsxLDIsIlkiXSxbMCwzLCJYIl0sWzIsMywiWSpaIl0sWzEsNCwiWCooWSpaKSJdLFswLDEsIlxccGlfMSIsMl0sWzAsMiwiXFxwaV8yIl0sWzEsNCwiXFxwaV8xIiwyXSxbMSwzLCJcXHBpXzIiXSxbNSwzLCJcXHBpXzEiXSxbNiw1LCJcXHBpXzIiXSxbNiw0LCJcXHBpXzEiXSxbNSwyLCJcXHBpXzIiLDJdXQ==&embed" width="300" height="350" style="border-radius: 8px; border: none;"></iframe>
+
+```lean
+      hom := pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂),
+      inv := pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂),
+```
+
+Proof of Associativity
+===
+
+-/
+
 @[simp]
-def prod_assoc.{u, v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C] {X Y Z : C}
-  : (X*Y)*Z ≅ X*(Y*Z) :=
-
-    let f₁ := π₁ ≫ π₁
-    let f₂ := pair (π₁ ≫ π₂) π₂
-    let f := pair f₁ f₂
-    let g₁ := pair π₁ (π₂ ≫ π₁)
-    let g₂ := π₂ ≫ π₂
-    let g := pair g₁ g₂
-
+def prod_assoc : (X*Y)*Z ≅ X*(Y*Z) :=
     {
-      hom := f,
-      inv := g,
+      hom := pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂),
+      inv := pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂),
       hom_inv_id := by
         apply prod_id_unique
-        · simp?[f,g,f₁,f₂,g₁,g₂,←Category.assoc]
+        · simp[←Category.assoc]
           apply pair_eta
-        · simp[f,g,f₁,f₂,g₁,g₂,←Category.assoc],
+        · simp[←Category.assoc],
       inv_hom_id := by
          apply prod_id_unique
-         · simp[f,g,f₁,f₂,g₁,g₂,←Category.assoc]
-         · simp[f,g,f₁,f₂,g₁,g₂,←Category.assoc]
+         · simp[←Category.assoc]
+         · simp[←Category.assoc]
            apply pair_eta
     }
 
@@ -177,8 +217,7 @@ Pair only describes how to take the product of morphisms with the same domain.
 The following method, which builds on `pair`, allows products of arbitary morphisms,
 which will be useful in defining exponentials later.  -/
 
-def prod_map.{u} {C : Type u} [Category C] [HasProduct C]
-             {X₁ Y₁ X₂ Y₂ : C} (f₁ : Y₁ ⟶ X₁) (f₂ : Y₂ ⟶ X₂)
+def prod_map {X₁ Y₁ X₂ Y₂ : C} (f₁ : Y₁ ⟶ X₁) (f₂ : Y₂ ⟶ X₂)
   : (prod Y₁ Y₂) ⟶ (prod X₁ X₂) :=
   let P := prod Y₁ Y₂
   let g₁ : P ⟶ X₁ := π₁ ≫ f₁

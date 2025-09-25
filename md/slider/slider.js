@@ -1,7 +1,10 @@
 'use strict';
 
+// const converter = new showdown.Converter({
+//     tables: true
+// });
+
 const e = React.createElement;
-const converter = new showdown.Converter({tables: true});
 
 class Thumbnail extends React.PureComponent {
 
@@ -43,7 +46,7 @@ class Slide extends React.PureComponent {
       classes += " active-slide";
     }
     return React.createElement('div', { className: classes,
-      dangerouslySetInnerHTML: { __html: converter.makeHtml(this.props.content) } });
+      dangerouslySetInnerHTML: { __html: this.props.converter.makeHtml(this.props.content) } });
   }
 
 }
@@ -113,9 +116,23 @@ class Slider extends React.Component {
     this.fullscreen = this.fullscreen.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.scroll_animation = null;
+
   }
 
   componentDidMount() {
+
+    this.converter = new showdown.Converter({
+        tables: true,
+        extensions: [ showdownKatex({
+          throwOnError: true,
+          displayMode: false,
+          errorColor: '#1500ff',
+          delimiters: [
+            { left: "$", right: "$", display: false, latex: true }
+          ]          
+        })]
+    });
+
     fetch("/slider/config.json").then(result => result.json()).then(config => {
       this.config = config;
       return fetch(config.slide_decks[this.state.deck].path);
@@ -287,7 +304,7 @@ class Slider extends React.Component {
         React.createElement(
           'div',
           { className: 'slides-container' },
-          slides.flatMap((s, i) => React.createElement(Slide, { key: i, id: i, content: s, 'switch': this.switch_deck,
+          slides.flatMap((s, i) => React.createElement(Slide, { converter: this.converter, key: i, id: i, content: s, 'switch': this.switch_deck,
             active: this.state.slide == i })),
           this.buttons()
         )
@@ -334,4 +351,6 @@ class Slider extends React.Component {
 }
 
 const main = document.querySelector('#main');
+
 ReactDOM.render(e(Slider), main);
+
