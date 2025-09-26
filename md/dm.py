@@ -6,7 +6,7 @@ import re
 # 
 # Usage:
 #  
-#   python3 dm.py my_lean_file.ean > my_lean_file.md
+#   python3 dm.py my_lean_file.lean > my_lean_file.md
 #
 # The resulting markdown file can be viewed with your favorite viewer.
 #

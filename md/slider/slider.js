@@ -1,10 +1,16 @@
 'use strict';
 
-// const converter = new showdown.Converter({
-//     tables: true
-// });
-
 const e = React.createElement;
+
+function proofstateExtension() {
+  return [{
+    type: 'lang',
+    regex: /<proofstate>(.*?)<\/proofstate>/g,
+    replace: (_, tooltip) => {
+      return `<span class="hoverable" data-tooltip="${tooltip}"></span>`;
+    }
+  }];
+};
 
 class Thumbnail extends React.PureComponent {
 
@@ -45,8 +51,15 @@ class Slide extends React.PureComponent {
     if (this.props.active) {
       classes += " active-slide";
     }
-    return React.createElement('div', { className: classes,
-      dangerouslySetInnerHTML: { __html: this.props.converter.makeHtml(this.props.content) } });
+    let html = this.props.converter.makeHtml(this.props.content)
+    html = html.replace(/&lt;proofstate&gt;(.*?)&lt;\/proofstate&gt;/g, function (_, tooltip) {
+      return `<span class="hoverable" onclick="infoview(${tooltip})" data-tooltip="show proof state"></span>`;
+    });
+
+    return React.createElement('div', { 
+      className: classes,
+      dangerouslySetInnerHTML: { __html: html } 
+    });
   }
 
 }
@@ -81,6 +94,76 @@ class Deck extends React.PureComponent {
         this.props.title
       )
     );
+  }
+
+}
+
+function infoview(goals) {  
+
+  let html = "";
+
+  if ( goals.length == 0 ) {
+    html = "no goals";
+  }
+
+  for (let i=0;i<goals.length;i++) {
+    let state = goals[i].split("\n");
+    let turnstile = false;
+    for (let j=0; j<state.length; j++) {
+      if ( state[j][0] == "⊢" ) turnstile = true;
+      if ( ! turnstile ) {
+        state[j] = state[j].replace(/^(?!.*✝)([^:\n]+):/gm, '<span class="variable-name">$1</span>:');
+        state[j] = state[j].replace(/^([^:\n]*✝[^:\n]*):/gm, '<span class="hidden-var">$1</span>:');    
+      }
+      state[j] = state[j].replace(/⊢/g, '<span class="turnstile">⊢</span>');
+      state[j] = state[j].replace(/^case.*$/gm, (match) => `<span class="case">${match}</span>`);      
+    }
+    let goal = state.join("<br>");
+    console.log(goal);
+    html += goal + "<br><br>"
+  }
+
+  let iv = document.getElementById('infoview');
+  iv.innerHTML = html;
+
+}
+
+class Infoview extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: true,
+    };
+    this.clearPopup = this.clearPopup.bind(this);
+  }
+
+  clearPopup() {
+    let iv = document.getElementById('infoview');
+    iv.innerHTML = "";
+  }
+
+  render() {
+
+    let button = React.createElement(
+      'button',
+      { onClick: this.clearPopup, className : "infoview-button" },
+      "×"
+
+    );
+
+    const popup = React.createElement(
+          'div',
+          { id: 'infoview-container' },
+          button,
+          React.createElement(
+            'div',
+             { id: 'infoview' },
+             null
+          ),
+        )
+
+
+    return React.createElement('div', null, popup);
   }
 
 }
@@ -123,14 +206,18 @@ class Slider extends React.Component {
 
     this.converter = new showdown.Converter({
         tables: true,
-        extensions: [ showdownKatex({
-          throwOnError: true,
-          displayMode: false,
-          errorColor: '#1500ff',
-          delimiters: [
-            { left: "$", right: "$", display: false, latex: true }
-          ]          
-        })]
+        backslashEscapesHTMLTags: false,
+        sanitize: false,
+        extensions: [ 
+          showdownKatex({
+            throwOnError: true,
+            displayMode: false,
+            errorColor: '#1500ff',
+            delimiters: [
+              { left: "$", right: "$", display: false, latex: true }
+            ],
+          })
+        ]
     });
 
     fetch("/slider/config.json").then(result => result.json()).then(config => {
@@ -307,6 +394,11 @@ class Slider extends React.Component {
           slides.flatMap((s, i) => React.createElement(Slide, { converter: this.converter, key: i, id: i, content: s, 'switch': this.switch_deck,
             active: this.state.slide == i })),
           this.buttons()
+        ),
+        React.createElement(
+          'div',
+          { className: 'infoview' },
+          React.createElement(Infoview)
         )
       );
     }
@@ -317,6 +409,12 @@ class Slider extends React.Component {
     document.querySelectorAll('pre code').forEach(block => {
       hljs.highlightBlock(block);
     });
+
+
+    // document.querySelectorAll('pre code').forEach(block => {
+    //     Prism.highlightElement(block);
+    // });
+
 
     if (this.state.sidebar == "slides") {
 

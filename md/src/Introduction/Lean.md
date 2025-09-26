@@ -1,18 +1,9 @@
 
-<div style='display:none'>
---  Copyright (C) 2025  Eric Klavins
---
---  This program is free software: you can redistribute it and/or modify
---  it under the terms of the GNU General Public License as published by
---  the Free Software Foundation, either version 3 of the License, or
---  (at your option) any later version.   
-</div>
+A Tour of Lean 4
+===
 
-<span style='color: orange'>***UNDER CONSTRUCTION***</span><br>
-<span style='color: lightgray; font-size: 10pt'><a href='https://github.com/klavins/LeanBook/blob/main/main/../LeanBook/Chapters/Lean.lean'>Code</a> for this chapter</span>
- # A Tour of Lean 4
-
-## Installing Lean
+Installing Lean
+===
 
 The easiest way to install Lean is to follow the quickstart guide at
 - [Lean Quickstart](https://lean-lang.org/lean4/doc/quickstart.html)
@@ -25,7 +16,8 @@ Then go to `View > Extensions` and search for "Lean 4" and install it.
 
 This will put a `∀` in the upper right menu bar of VS Code. From there, you can create a new project, which should install Lean and all of the associated tools.
 
-## Lean "Project" Types
+Lean "Project" Types
+===
 
 With the VS Code Extension, you can install two types of projects:
 
@@ -40,7 +32,8 @@ Notes:
   - I don't like the option where it creates a new workspace
   - Don't make a new project every time you want to try something out. You will use up all the space on your hard drive. Instead, create a single monolithic project and mkae subdirectores for ideas you want to explore.
 
-## Directory Structure
+Directory Structure
+===
 
 If you create a new project called `MyProject`, you will get a whole directory of stuff:
 
@@ -60,7 +53,8 @@ If you create a new project called `MyProject`, you will get a whole directory o
 
 For now, you mainly need to know that the subdirectory with the same name as your project is where you can put your .lean files. It has one in it already, called `Basic.lean`. Open this and you can start playing with Lean.
 
-## Testing an Installation
+Testing an Installation
+===
 
 Try replacing the code in `Basic.lean` with the following: 
 ```lean
@@ -80,7 +74,8 @@ example (x y z : ℚ)
 - Put your cursor just before `by` you will get some goals.
 - Rut it after `linarith` you will see "No Goals", since the theorem is proved.
 
-## Fancy Characters
+Fancy Characters
+===
 
 You can enter fancy characters in Lean using escape sequences
 
@@ -101,7 +96,8 @@ Go to
 
 for a complete list.
 
-## Type Checking
+Type Checking
+===
 
 Lean is based on type theory. This means that every term has a very well defined type. To find the type of an expression, use #check. The result will show up in the Infoview.  
 ```lean
@@ -113,7 +109,9 @@ Lean is based on type theory. This means that every term has a very well defined
 #check ℕ × ℕ
 #check Type
 ```
- ## Evaluation
+
+Evaluation
+===
 
 You can use Lean to evaluate expressions using the #eval command. The result will show up in the Infoview. 
 ```lean
@@ -122,7 +120,9 @@ You can use Lean to evaluate expressions using the #eval command. The result wil
 #eval if 2 > 2 then "the universe has a problem" else "everything is ok"
 #eval Nat.Prime 741013183
 ```
- ## Proofs
+
+Proofs
+===
 
 We will go into proofs in great detail next week. For now, know that you can state theorems using the `theorem` keyword. 
 ```lean
@@ -154,7 +154,9 @@ example (p : Prop) : p → p :=
 example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) :=
   λ ⟨ hpq, hqr ⟩ hp => hqr (hpq hp)
 ```
- ## The Tactic Language and `sorry`
+
+The Tactic Language and `sorry`
+===
 
 The examples above use fairly low level Lean expressions to prove statements. Lean provides a very powerful, higher level DSL (domain specific language) for proving. You enter the Tactic DSL using `by`.
 
@@ -177,7 +179,8 @@ example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
 ```
  Don't worry if none of this makes sense. We'll go into all the gory details later.
 
-## Programming
+Programming
+===
 
 Lean is also a full-fledged functional programming language. For example, much of Lean is programmed in Lean (and then compiled). That said, the Lean Programming Language is not really general purpose: You would probably lose your mind trying to build an operating system with Lean. Rather, Lean is a programming language designed first for programming Lean itself, and second for build mathematical data structures and algorithms.
 
@@ -195,7 +198,8 @@ def remove_zeros (L : List ℕ) : List ℕ := match L with
 ```
  Note the similarity between `def` and `theorem`. The latter is simply a special kind of definition.
 
-## Documentation
+Documentation
+===
 
 - [Loogle](https://loogle.lean-lang.org/) - Google for Lean
 
@@ -215,5 +219,13 @@ def remove_zeros (L : List ℕ) : List ℕ := match L with
 
 
 
-<div style='height=50px'>&nbsp;</div><hr>
-Copyright © 2025 Eric Klavins
+License
+===
+
+Copyright (C) 2025  Eric Klavins
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.   
+

@@ -1,5 +1,11 @@
-def hello := "world"
+theorem t1 {p q : Prop} : (p → q) → (p → q) := by
+  intro h1
+  intro h2
+  have := h1 h2
+  exact this
 
-def identity {α : Type} (x : α) : α := x
--- The type of `identity` is `∀ α : Type, α → α`
-#check identity
+theorem t2 {p q : Prop} : p ∧ q → p ∧ q := by
+  intro h
+  apply And.intro
+  . exact h.left
+  . exact h.right

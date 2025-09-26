@@ -3,6 +3,7 @@ body {
     padding: 0px;
     height: 100vh;
     overflow-y: hidden;
+    zoom: 180%;
 }
 
 ::-webkit-scrollbar {
@@ -26,11 +27,11 @@ body {
 }
 
 .sidebar {
-    width: 15%;
+    width: 10%;
     height: 100vh;
     float: left;
     padding: 5px;
-    margin: 30px 0 0 0;
+    margin: 20px 0 0 0;
     overflow-y: scroll;
 }
 
@@ -100,7 +101,7 @@ body {
 }
 
 .title {
-    font-size: 6pt;
+    font-size: 4pt;
     /* border: 1pt solid #ddd;*/
     margin: 4px;
     border-radius: 3px;
@@ -159,7 +160,7 @@ pre {
 }
 
 .deck-title {
-    font-size: 9pt;
+    font-size: 8pt;
     font-weight: bold;
     margin: 0px;
     padding: 5px;
@@ -167,4 +168,108 @@ pre {
     cursor: pointer;
     text-align: left;    
     color: #777;
+}
+
+
+
+.hoverable {
+  display: inline-block;
+  background-color: #eee;
+  color: #333;
+  padding: 4px 4px;
+  border-radius: 1px;
+  font-family: monospace;
+  font-size: 4pt;
+  position: relative;
+  cursor: pointer;
+  margin: 0 2px;
+}
+
+
+.hoverable::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 4pt;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease-in-out;
+  z-index: 100;
+}
+
+.hoverable:hover::after {
+  opacity: 1;
+}
+
+#infoview {
+
+}
+
+.turnstile {
+    color: blue;
+    font-weight: bold;
+}
+
+.variable-name {
+    color: #ec0;
+    font-weight: bold;
+}
+
+.hidden-var {
+    color: #aaa;
+    /*font-weight: bold;*/
+}
+
+.case {
+    color: green;
+    font-weight: bold;
+}
+
+.infoview-title {
+    color: #aaa;    
+}
+
+.infoview-button {
+    color: #aaa;    
+    border: none;
+    background: none;
+    font-size: 6pt;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+
+#infoview-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-size: 8pt;
+    color: #444;
+    width: 25%;
+}
+
+.infoview-clear {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  /* z-index: 1001; */
 }

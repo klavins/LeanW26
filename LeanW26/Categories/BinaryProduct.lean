@@ -18,7 +18,7 @@ A `projection` of a binary product throws away one of the parts:
    π₂ (X₁ × X₂) = X₂
 ```
 
-<img src="https://docs.google.com/drawings/d/e/2PACX-1vRcGx-5-JPZkvvFdkf8-u-L67BcyFh-GzLcfgk4NBjPaLivE2nSPQIdrbg5y4AQMIysqqMWeXd3kg1y/pub?w=576&amp;h=315" height=40%>
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vRcGx-5-JPZkvvFdkf8-u-L67BcyFh-GzLcfgk4NBjPaLivE2nSPQIdrbg5y4AQMIysqqMWeXd3kg1y/pub?w=576&amp;h=315" width=40%>
 
 Universal Property for Binary Products
 ===
@@ -27,7 +27,7 @@ Universal Property for Binary Products
 > and `f₂ : Y ⟶ X₂` there is a unique morphism `f : Y ⟶ X₁ × X₂` such that
 > `f ≫ π₁ = f₁` and `f ≫ π₂ = f₂`.
 
-<img src="https://docs.google.com/drawings/d/e/2PACX-1vQPk2cl9FCCrOcGcwbIJtqL_-lP-d20u6wWSJEZhAsc6EwopVkNBU2sjAmJJZwkj7nXZb8RU4cQoc4H/pub?w=960&amp;h=720" height=50%>
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vQPk2cl9FCCrOcGcwbIJtqL_-lP-d20u6wWSJEZhAsc6EwopVkNBU2sjAmJJZwkj7nXZb8RU4cQoc4H/pub?w=960&amp;h=720" width=60%>
 
 
 The `pair` function
@@ -115,7 +115,6 @@ get the identity map.
 <iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsMyxbMSwwLCJYKlkiXSxbMiwwLCJZIl0sWzAsMCwiWCJdLFswLDIsIlxccGlfMSIsMl0sWzAsMSwiXFxwaV8yIl0sWzAsMCwiMV97WCpZfSJdXQ==&embed" width="351" height="220" style="border-radius: 8px; border: none;"></iframe>
 
 
-
 -/
 
 @[simp, reassoc]
@@ -176,16 +175,25 @@ lemma pair_eta {h : W ⟶ X * Y} :
 Associativity Diagram
 ===
 
-Using all of the above, we can prove the main result of this section,
-that products are associative.
+<table><tr>
 
+<td>
 <!-- https://q.uiver.app/#q=WzAsNyxbMSwwLCIoWCpZKSpaIl0sWzAsMSwiWCpZIl0sWzIsMSwiWiJdLFsxLDIsIlkiXSxbMCwzLCJYIl0sWzIsMywiWSpaIl0sWzEsNCwiWCooWSpaKSJdLFswLDEsIlxccGlfMSIsMl0sWzAsMiwiXFxwaV8yIl0sWzEsNCwiXFxwaV8xIiwyXSxbMSwzLCJcXHBpXzIiXSxbNSwzLCJcXHBpXzEiXSxbNiw1LCJcXHBpXzIiXSxbNiw0LCJcXHBpXzEiXSxbNSwyLCJcXHBpXzIiLDJdXQ== -->
 <iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsNyxbMSwwLCIoWCpZKSpaIl0sWzAsMSwiWCpZIl0sWzIsMSwiWiJdLFsxLDIsIlkiXSxbMCwzLCJYIl0sWzIsMywiWSpaIl0sWzEsNCwiWCooWSpaKSJdLFswLDEsIlxccGlfMSIsMl0sWzAsMiwiXFxwaV8yIl0sWzEsNCwiXFxwaV8xIiwyXSxbMSwzLCJcXHBpXzIiXSxbNSwzLCJcXHBpXzEiXSxbNiw1LCJcXHBpXzIiXSxbNiw0LCJcXHBpXzEiXSxbNSwyLCJcXHBpXzIiLDJdXQ==&embed" width="300" height="350" style="border-radius: 8px; border: none;"></iframe>
+</td>
 
-```lean
-      hom := pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂),
-      inv := pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂),
-```
+<td>
+π₁ ≫ π₂ : (X×Y)×Z ⟶ Y<br>
+π₂ : (X×Y)×Z ⟶ Z<br>
+π₁ ≫ π₁ : (X×Y)×Z ⟶ X<br>
+⟹<br>
+pair (π₁ ≫ π₂) π₂ : (X×Y)×Z ⟶ Y×Z<br>
+pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂) : (X×Y)×Z  ⟶ X×(Y×Z)<br>
+<br>
+Similarly,<br>
+pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂) : X×(Y×Z) ⟶ (X×Y)×Z<br>
+</td>
+</tr></table>
 
 Proof of Associativity
 ===
@@ -251,7 +259,7 @@ Example: Graphs Have Products
 
 Graphs have products called Tensor Products, which we can use to instantiate the `HasProduct` class.
 
-<img src="https://docs.google.com/drawings/d/e/2PACX-1vS8m1ASMsZn0P7p6k0rOGj-8KKBhahoNL7SvrASBquIOwZdxX3_t_49JfFJ7WtowCD-AvSfSe1vkldt/pub?w=814&amp;h=368" height=30% \>
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vS8m1ASMsZn0P7p6k0rOGj-8KKBhahoNL7SvrASBquIOwZdxX3_t_49JfFJ7WtowCD-AvSfSe1vkldt/pub?w=814&amp;h=368" width=50% \>
 
 -/
 
@@ -276,6 +284,7 @@ properties defined as theorems, which state that products preserve edges.
 theorem left {G H : Graph} :
   ∀ x y, (TensorProd G H).E x y → G.E x.1 y.1 := by
   intro x y h
+  trace_state
   exact h.left
 
 theorem right {G H : Graph} :
