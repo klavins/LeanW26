@@ -74,7 +74,7 @@ import Mathlib.Tactic.Linarith
 example (x y z : ℚ)
         (h1 : 2*x < 3*y)
         (h2 : -4*x + 2*z < 0)
-        (h3 : 12*y - 4* z < 0) : False := by
+        (h3 : 12*y - 4* z < 0) : False := by <proofstate>['x y z : ℚ\nh1 : 2 * x < 3 * y\nh2 : -4 * x + 2 * z < 0\nh3 : 12 * y - 4 * z < 0\n⊢ False']</proofstate>
   linarith
 
 /- If it is not open already, open `Lean infoview` via the ∀ menu.
@@ -175,19 +175,19 @@ The examples above use fairly low level Lean expressions to prove statements. Le
 
 Proving results uses the super `sorry` keyword. Here is an example of Tactics and sorry. -/
 
-example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
-  intro h hp
-  have hpq := h.left
-  have hqr := h.right
+example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by <proofstate>['p q r : Prop\n⊢ (p → q) ∧ (q → r) → p → r']</proofstate>
+  intro h hp <proofstate>['p q r : Prop\nh : (p → q) ∧ (q → r)\nhp : p\n⊢ r']</proofstate>
+  have hpq := h.left <proofstate>['p q r : Prop\nh : (p → q) ∧ (q → r)\nhp : p\nhpq : p → q\n⊢ r']</proofstate>
+  have hqr := h.right <proofstate>['p q r : Prop\nh : (p → q) ∧ (q → r)\nhp : p\nhpq : p → q\nhqr : q → r\n⊢ r']</proofstate>
   exact hqr (hpq hp)
 
 /- which can be built up part by part into -/
 
-example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
-  intro ⟨ hpq, hqr ⟩
-  intro hp
-  have hq : q := hpq hp
-  have hr : r := hqr hq
+example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by <proofstate>['p q r : Prop\n⊢ (p → q) ∧ (q → r) → p → r']</proofstate>
+  intro ⟨ hpq, hqr ⟩ <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\n⊢ p → r']</proofstate>
+  intro hp <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\nhp : p\n⊢ r']</proofstate>
+  have hq : q := hpq hp <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\nhp : p\nhq : q\n⊢ r']</proofstate>
+  have hr : r := hqr hq <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\nhp : p\nhq : q\nhr : r\n⊢ r']</proofstate>
   exact hr
 
 /- Don't worry if none of this makes sense. We'll go into all the gory details later.
@@ -231,3 +231,4 @@ Documentation
 - [The Standard Library](https://github.com/leanprover/lean4/blob/ffac974dba799956a97d63ffcb13a774f700149c/src/Init/Prelude.lean)
 
 -/
+

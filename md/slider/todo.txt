@@ -1,0 +1,5 @@
+* Split slider.js up into files, one for each class
+* Make proof state handle multiple files with only on client
+* Make a infoview object for each line and in general more idomatically React
+
+- Make sections in the TOC and config.js

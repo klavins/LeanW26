@@ -2,172 +2,6 @@
 
 const e = React.createElement;
 
-function proofstateExtension() {
-  return [{
-    type: 'lang',
-    regex: /<proofstate>(.*?)<\/proofstate>/g,
-    replace: (_, tooltip) => {
-      return `<span class="hoverable" data-tooltip="${tooltip}"></span>`;
-    }
-  }];
-};
-
-class Thumbnail extends React.PureComponent {
-
-  constructor(props) {
-    super(props);
-    this.go = this.go.bind(this);
-  }
-
-  go() {
-    if (typeof this.props.go === 'function') {
-      this.props.go(this.props.id);
-    }
-  }
-
-  render() {
-    let classes = "title";
-    if (this.props.active) {
-      classes += " active-title";
-    }
-    return React.createElement(
-      'div',
-      { onClick: this.go,
-        className: classes },
-      this.props.title
-    );
-  }
-
-}
-
-class Slide extends React.PureComponent {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let classes = "markdown-body slide";
-    if (this.props.active) {
-      classes += " active-slide";
-    }
-    let html = this.props.converter.makeHtml(this.props.content)
-    html = html.replace(/&lt;proofstate&gt;(.*?)&lt;\/proofstate&gt;/g, function (_, tooltip) {
-      return `<span class="hoverable" onclick="infoview(${tooltip})" data-tooltip="show proof state"></span>`;
-    });
-
-    return React.createElement('div', { 
-      className: classes,
-      dangerouslySetInnerHTML: { __html: html } 
-    });
-  }
-
-}
-
-class Deck extends React.PureComponent {
-
-  constructor(props) {
-    super(props);
-    this.switch = this.switch.bind(this);
-  }
-
-  switch() {
-    if (typeof this.props.switch === 'function') {
-      this.props.switch(this.props.id);
-    }
-  }
-
-  render() {
-    let classes = "deck";
-    if (this.props.active) {
-      classes += " active-deck";
-    }
-    return React.createElement(
-      'div',
-      { onClick: this.switch,
-        className: classes },
-      React.createElement(
-        'span',
-        null,
-        this.props.id + 1,
-        ': ',
-        this.props.title
-      )
-    );
-  }
-
-}
-
-function infoview(goals) {  
-
-  let html = "";
-
-  if ( goals.length == 0 ) {
-    html = "no goals";
-  }
-
-  for (let i=0;i<goals.length;i++) {
-    let state = goals[i].split("\n");
-    let turnstile = false;
-    for (let j=0; j<state.length; j++) {
-      if ( state[j][0] == "⊢" ) turnstile = true;
-      if ( ! turnstile ) {
-        state[j] = state[j].replace(/^(?!.*✝)([^:\n]+):/gm, '<span class="variable-name">$1</span>:');
-        state[j] = state[j].replace(/^([^:\n]*✝[^:\n]*):/gm, '<span class="hidden-var">$1</span>:');    
-      }
-      state[j] = state[j].replace(/⊢/g, '<span class="turnstile">⊢</span>');
-      state[j] = state[j].replace(/^case.*$/gm, (match) => `<span class="case">${match}</span>`);      
-    }
-    let goal = state.join("<br>");
-    console.log(goal);
-    html += goal + "<br><br>"
-  }
-
-  let iv = document.getElementById('infoview');
-  iv.innerHTML = html;
-
-}
-
-class Infoview extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: true,
-    };
-    this.clearPopup = this.clearPopup.bind(this);
-  }
-
-  clearPopup() {
-    let iv = document.getElementById('infoview');
-    iv.innerHTML = "";
-  }
-
-  render() {
-
-    let button = React.createElement(
-      'button',
-      { onClick: this.clearPopup, className : "infoview-button" },
-      "×"
-
-    );
-
-    const popup = React.createElement(
-          'div',
-          { id: 'infoview-container' },
-          button,
-          React.createElement(
-            'div',
-             { id: 'infoview' },
-             null
-          ),
-        )
-
-
-    return React.createElement('div', null, popup);
-  }
-
-}
-
 class Slider extends React.Component {
 
   constructor(props) {
@@ -376,7 +210,10 @@ class Slider extends React.Component {
           React.createElement(
             'div',
             { style: { display: this.state.sidebar == "slides" ? 'block' : 'none' } },
-            titles.flatMap((t, i) => React.createElement(Thumbnail, { key: i, id: i, title: t,
+            titles.flatMap((t, i) => React.createElement(Thumbnail, { 
+              key: i, 
+              id: i, 
+              title: t,
               active: this.state.slide == i,
               go: this.go }))
           ),
@@ -394,11 +231,6 @@ class Slider extends React.Component {
           slides.flatMap((s, i) => React.createElement(Slide, { converter: this.converter, key: i, id: i, content: s, 'switch': this.switch_deck,
             active: this.state.slide == i })),
           this.buttons()
-        ),
-        React.createElement(
-          'div',
-          { className: 'infoview' },
-          React.createElement(Infoview)
         )
       );
     }

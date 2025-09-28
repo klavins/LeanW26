@@ -1,8 +1,9 @@
 import leanclient as lc
 
-def log_proof_states(project_path: str, infile: str, outfile: str ):
+def log_proof_states(client, infile: str, outfile: str ):
+
+    print(f". {infile}")
     
-    client = lc.LeanLSPClient(project_path)
     sfc = client.create_file_client(infile)
     sfc.open_file()
     file_content = sfc.get_file_content()
@@ -20,12 +21,15 @@ def log_proof_states(project_path: str, infile: str, outfile: str ):
             except Exception as e:
                 f.write(f"{line}\n")
 
-
     sfc.close_file()
-    client.close()
 
-# Usage
-# log_proof_states("path/to/your/file.lean", "proof_log.txt")
+print("Starting Client")
+client = lc.LeanLSPClient("/Users/ericklavins/Courses/LeanW26")
 
-log_proof_states( "/Users/ericklavins/Courses/LeanW26",  "LeanW26/Categories/BinaryProduct.lean", "bp.lean")
-log_proof_states( "/Users/ericklavins/Courses/LeanW26",  "LeanW26/Categories/Exponential.lean", "exp.lean")
+print("Processing Files")
+log_proof_states( client,  "LeanW26/Categories/BinaryProduct.lean", "bp.lean")
+log_proof_states( client,  "LeanW26/Categories/Exponential.lean", "exp.lean")
+log_proof_states( client,  "LeanW26/Introduction/Lean.lean", "lean.lean")
+
+print("Closing client")
+client.close()
