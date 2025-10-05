@@ -10,6 +10,11 @@ body {
     display: none;
 }
 
+.markdown-body h1 {
+    margin-top: -10px;
+    padding-top: -5px;
+}
+
 #main {
     outline: none;
     margin: 0px;
@@ -30,13 +35,13 @@ body {
     width: 10%;
     height: 100vh;
     float: left;
-    padding: 5px;
+    padding: 5px 5px 5px 10px;
     margin: 20px 0 0 0;
     overflow-y: scroll;
 }
 
 .slides-container {
-    margin-left: 0 0 0 10%;
+    margin-left: 0 0 0 5%;
     border: none;
     overflow-y: scroll;
     height: 100vh;
@@ -101,9 +106,9 @@ body {
 }
 
 .title {
-    font-size: 4pt;
+    font-size: 6pt;
     /* border: 1pt solid #ddd;*/
-    margin: 4px;
+    margin: 2px 0 2px 0;
     border-radius: 3px;
     padding: 2px;
     font-family: Arial, Helvetica, sans-serif;
@@ -123,9 +128,9 @@ body {
 }
 
 .deck {
-    font-size: 8pt;
-    margin: 5px;
-    padding: 5px;
+    font-size: 6pt;
+    margin: 2px 2px 2px 6px;
+    padding: 2px;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
     text-align: left;
@@ -163,14 +168,12 @@ pre {
     font-size: 8pt;
     font-weight: bold;
     margin: 0px;
-    padding: 5px;
+    padding: 2px 0 2px 0;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
     text-align: left;    
     color: #777;
 }
-
-
 
 .hoverable {
   display: inline-block;
@@ -276,4 +279,13 @@ pre {
   border: 1px solid #ccc;
   cursor: pointer;
   /* z-index: 1001; */
+}
+
+.section {
+    font-size: 6pt;
+    margin: 2px;
+    padding: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    text-align: left;    
 }

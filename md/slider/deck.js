@@ -8,7 +8,8 @@ class Deck extends React.PureComponent {
 
   switch() {
     if (typeof this.props.switch === 'function') {
-      this.props.switch(this.props.id);
+      console.log("this.props = ", this.props)
+      this.props.switch(this.props.section, this.props.id);
     }
   }
 
@@ -24,7 +25,7 @@ class Deck extends React.PureComponent {
       React.createElement(
         'span',
         null,
-        this.props.id + 1,
+        (this.props.section+1) + "." + (this.props.id + 1),
         ': ',
         this.props.title
       )

@@ -49,8 +49,8 @@ class HasProduct.{u,v} (C : Type u) [Category.{v} C] where
 
   pair₁ {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) : pair f₁ f₂ ≫ π₁ = f₁
   pair₂ {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) : pair f₁ f₂ ≫ π₂ = f₂
-  pair_unique {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) (h : Y ⟶ prod X₁ X₂)
-    (h_comm₁ : h ≫ π₁ = f₁) (h_comm₂ : h ≫ π₂ = f₂) : h = pair f₁ f₂
+  pair_unique {X₁ X₂ Y : C} {h : Y ⟶ prod X₁ X₂}
+    : h = pair (h ≫ π₁) (h ≫ π₂)
 
 attribute [simp, reassoc] HasProduct.pair₁ HasProduct.pair₂
 
@@ -82,39 +82,48 @@ Annoyingly, there does not seem to be a notation class for × in Mathlib, perhap
 because the powers that be want to use that symbol exlusively for cartesian products
 of types.
 
-Theorems
+Simplifications
 ===
 
-Next we'll prove some theorems about Products, eventually getting to
-the nice result that products are associative `(X*Y)*Z = X*(Y*Z)`.
-
-We'll use the following variables repeatedly, so it is worth specifing them
-globally in the rest of the file for this code.
-
+You can't label a class property with `@[simp]`, so we restate them as theorems.
 
 ```lean
 universe u v
-variable {C : Type u} [Category.{v} C] [HasProduct C] {W X Y Z : C}
+variable {C : Type u} [Category.{v} C] [HasProduct C] {A B U V W X X₁ X₂ Y Y₁ Y₂ Z : C}
+
+@[simp]
+theorem pair_simp_1 {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂} : pair f₁ f₂ ≫ π₁ = f₁ := by
+  exact pair₁ f₁ f₂
+
+@[simp]
+theorem pair_simp_2 {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂} : pair f₁ f₂ ≫ π₂ = f₂ := by
+  exact pair₂ f₁ f₂
+
+theorem pair_unique_simp {h : Y ⟶ prod X₁ X₂} : h = pair (h ≫ π₁) (h ≫ π₂) := by
+  exact pair_unique
+
+theorem pair_unique_simp_2 {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂} {h : Y ⟶ prod X₁ X₂}
+    {h₁ : h ≫ π₁ = f₁} {h₂ : h ≫ π₂ = f₂} : h = pair f₁ f₂ := by
+    rw[←h₁,←h₂]
+    exact pair_unique
 ```
 
 Pairs of Projections
 ===
 
-The first theorem states that when you take a pair of projections, you
+This theorem states that when you take a pair of projections, you
 get the identity map.
 
 <!-- https://q.uiver.app/#q=WzAsMyxbMSwwLCJYKlkiXSxbMiwwLCJZIl0sWzAsMCwiWCJdLFswLDIsIlxccGlfMSIsMl0sWzAsMSwiXFxwaV8yIl0sWzAsMCwiMV97WCpZfSJdXQ== -->
 <iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsMyxbMSwwLCJYKlkiXSxbMiwwLCJZIl0sWzAsMCwiWCJdLFswLDIsIlxccGlfMSIsMl0sWzAsMSwiXFxwaV8yIl0sWzAsMCwiMV97WCpZfSJdXQ==&embed" width="351" height="220" style="border-radius: 8px; border: none;"></iframe>
 
 
-
 ```lean
 @[simp, reassoc]
-theorem pair_id : pair (π₁ : X*Y ⟶ X) (π₂ : X*Y ⟶ Y) = 𝟙 (X*Y) := by <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nX Y : C\n⊢ pair π₁ π₂ = 𝟙 (X * Y)']</proofstate>
-    apply Eq.symm <proofstate>['case h\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nX Y : C\n⊢ 𝟙 (X * Y) = pair π₁ π₂']</proofstate>
-    apply pair_unique _ _ (𝟙 (X*Y)) <proofstate>['case h.h_comm₁\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nX Y : C\n⊢ 𝟙 (X * Y) ≫ π₁ = π₁', 'case h.h_comm₂\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nX Y : C\n⊢ 𝟙 (X * Y) ≫ π₂ = π₂']</proofstate>
-    · apply Category.id_comp
-    · apply Category.id_comp
+theorem pair_id : pair (π₁ : X*Y ⟶ X) (π₂ : X*Y ⟶ Y) = 𝟙 (X*Y) := by
+    apply Eq.symm
+    rw[←Category.id_comp π₁, ←Category.id_comp π₂]
+    apply pair_unique
 ```
 
 Conditions for a map to be the Identity
@@ -125,10 +134,10 @@ The next theorem describes when `f : X * Y ⟶ X * Y` is the identity on
 
 ```lean
 @[simp]
-lemma prod_id_unique (f : X * Y ⟶ X * Y) (h₁ : f ≫ π₁ = π₁) (h₂ : f ≫ π₂ = π₂)
-  : f = 𝟙 (X*Y) := by <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nX Y : C\nf : X * Y ⟶ X * Y\nh₁ : f ≫ π₁ = π₁\nh₂ : f ≫ π₂ = π₂\n⊢ f = 𝟙 (X * Y)']</proofstate>
-    rw[pair_unique π₁ π₂ f h₁ h₂] <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nX Y : C\nf : X * Y ⟶ X * Y\nh₁ : f ≫ π₁ = π₁\nh₂ : f ≫ π₂ = π₂\n⊢ pair π₁ π₂ = 𝟙 (X * Y)']</proofstate>
-    apply pair_id
+lemma prod_id_unique {f : X * Y ⟶ X * Y} {h₁ : f ≫ π₁ = π₁} {h₂ : f ≫ π₂ = π₂}
+  : f = 𝟙 (X*Y) := by
+    rw[←pair_id,←h₁,←h₂]
+    apply pair_unique
 ```
 
 Composing Pairs
@@ -139,28 +148,10 @@ This theorem shows how to compose pairs.
 ```lean
 @[simp, reassoc]
 lemma comp_pair {h : W ⟶ X} {f : X ⟶ Y} {g : X ⟶ Z} :
-  h ≫ pair f g = pair (h ≫ f) (h ≫ g) := by <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\nh : W ⟶ X\nf : X ⟶ Y\ng : X ⟶ Z\n⊢ h ≫ pair f g = pair (h ≫ f) (h ≫ g)']</proofstate>
-  apply pair_unique <proofstate>['case h_comm₁\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\nh : W ⟶ X\nf : X ⟶ Y\ng : X ⟶ Z\n⊢ (h ≫ pair f g) ≫ π₁ = h ≫ f', 'case h_comm₂\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\nh : W ⟶ X\nf : X ⟶ Y\ng : X ⟶ Z\n⊢ (h ≫ pair f g) ≫ π₂ = h ≫ g']</proofstate>
-  · simp [Category.assoc]
-  · simp [Category.assoc]
+  h ≫ pair f g = pair (h ≫ f) (h ≫ g) := by
+  rw[pair_unique (h := h ≫ pair f g )]
+  simp
 ```
-
-Composing with Projections
-===
-
-This statement covers conposition of a morphism with the projections.
-
-```lean
-lemma pair_eta {h : W ⟶ X * Y} :
-  pair (h ≫ (π₁ : X*Y ⟶ X)) (h ≫ (π₂ : X*Y ⟶ Y)) = h := by <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y : C\nh : W ⟶ X * Y\n⊢ pair (h ≫ π₁) (h ≫ π₂) = h']</proofstate>
-  exact (pair_unique _ _ _ (by simp) (by simp)).symm
-```
-
-
-<!-- https://q.uiver.app/#q=WzAsNCxbMCwxLCJXIl0sWzIsMSwiWCpZIl0sWzMsMCwiWCJdLFszLDIsIlkiXSxbMCwxLCJoIiwwLHsiY3VydmUiOi0zfV0sWzEsMywiXFxwaV8yIiwyXSxbMSwyLCJcXHBpXzEiXSxbMCwxLCJwYWlyIFxcOyAoaCBcXGdnIFxccGlfMSkgKGggXFxnZyBcXHBpXzIpIiwyLHsib2Zmc2V0IjotMywiY3VydmUiOjMsInNob3J0ZW4iOnsidGFyZ2V0IjoxMH19XV0= -->
-<iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsNCxbMCwxLCJXIl0sWzIsMSwiWCpZIl0sWzMsMCwiWCJdLFszLDIsIlkiXSxbMCwxLCJoIiwwLHsiY3VydmUiOi0zfV0sWzEsMywiXFxwaV8yIiwyXSxbMSwyLCJcXHBpXzEiXSxbMCwxLCJwYWlyIFxcOyAoaCBcXGdnIFxccGlfMSkgKGggXFxnZyBcXHBpXzIpIiwyLHsib2Zmc2V0IjotMywiY3VydmUiOjMsInNob3J0ZW4iOnsidGFyZ2V0IjoxMH19XV0=&embed" width="320" height="280" style="border-radius: 8px; border: none;"></iframe>
-
-
 
 Associativity Diagram
 ===
@@ -195,17 +186,34 @@ def prod_assoc : (X*Y)*Z ≅ X*(Y*Z) :=
     {
       hom := pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂),
       inv := pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂),
-      hom_inv_id := by <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\n⊢ pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂) ≫ pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂) = 𝟙 (X * Y * Z)']</proofstate>
-        apply prod_id_unique <proofstate>['case h₁\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\n⊢ (pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂) ≫ pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂)) ≫ π₁ = π₁', 'case h₂\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\n⊢ (pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂) ≫ pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂)) ≫ π₂ = π₂']</proofstate>
-        · simp[←Category.assoc] <proofstate>['case h₁\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\n⊢ pair (π₁ ≫ π₁) (π₁ ≫ π₂) = π₁']</proofstate>
-          apply pair_eta
+      hom_inv_id := by
+        apply prod_id_unique
+        · simp[←Category.assoc]
+          rw[←pair_unique_simp]
         · simp[←Category.assoc],
-      inv_hom_id := by <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\n⊢ pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂) ≫ pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂) = 𝟙 (X * (Y * Z))']</proofstate>
-         apply prod_id_unique <proofstate>['case h₁\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\n⊢ (pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂) ≫ pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂)) ≫ π₁ = π₁', 'case h₂\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\n⊢ (pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂) ≫ pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂)) ≫ π₂ = π₂']</proofstate>
+      inv_hom_id := by
+         apply prod_id_unique
          · simp[←Category.assoc]
-         · simp[←Category.assoc] <proofstate>['case h₂\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\n⊢ pair (π₂ ≫ π₁) (π₂ ≫ π₂) = π₂']</proofstate>
-           apply pair_eta
+         · simp[←Category.assoc]
+           rw[←pair_unique_simp]
     }
+```
+
+A Condition for Equality of two Morphisms
+===
+
+```lean
+theorem hom_ext {A B : C} {f g : X ⟶ A * B}
+  : f = g ↔ f ≫ π₁ = g ≫ π₁ ∧ f ≫ π₂ = g ≫ π₂ := by
+  constructor
+  · intro h
+    constructor
+    · exact congrFun (congrArg CategoryStruct.comp h) π₁
+    · exact congrFun (congrArg CategoryStruct.comp h) π₂
+  · intro ⟨ h1, h2 ⟩
+    rw[pair_unique (h := f)]
+    rw[pair_unique (h := g)]
+    rw[h1,h2]
 ```
 
 Pairs of Morphisms
@@ -216,11 +224,7 @@ The following method, which builds on `pair`, allows products of arbitary morphi
 which will be useful in defining exponentials later.  
 ```lean
 def prod_map {X₁ Y₁ X₂ Y₂ : C} (f₁ : Y₁ ⟶ X₁) (f₂ : Y₂ ⟶ X₂)
-  : (prod Y₁ Y₂) ⟶ (prod X₁ X₂) :=
-  let P := prod Y₁ Y₂
-  let g₁ : P ⟶ X₁ := π₁ ≫ f₁
-  let g₂ : P ⟶ X₂ := π₂ ≫ f₂
-  pair g₁ g₂
+  : Y₁ * Y₂ ⟶ X₁ * X₂ := pair (π₁ ≫ f₁) (π₂ ≫ f₂)
 ```
 
 Notation for Pairs of Morphisms
@@ -229,19 +233,70 @@ Notation for Pairs of Morphisms
 When `f` and `g` are morphisms, we want to write `f*g` for their prodict, so
 we instantiate the notation class for `*` for morphisms as well.
 
+  ‹ is typed \f<
+  › is typed \f>
+
 
 ```lean
-instance inst_hmul_morph {C : Type*} [Category C] [HasProduct C] {Y₁ X₁ Y₂ X₂ : C} :
-         HMul (Y₁ ⟶ X₁) (Y₂ ⟶ X₂) ((prod Y₁ Y₂) ⟶ (prod X₁ X₂)) where
-  hMul := prod_map
+notation "‹" f₁ ", " f₂ "›" => prod_map f₁ f₂
 
 namespace Temp
 
 variable (C : Type*) [Category C] [HasProduct C] (X Y : C) (f g : X ⟶ Y)
-#check f * g
-#check π₁ ≫ f * g ≫ 𝟙 Y
+#check ‹f,g›
+#check ‹ π₁ ≫ f, g ≫ 𝟙 Y ›
 
 end Temp
+```
+
+Simplifiers for Products
+===
+
+```lean
+@[simp]
+theorem prod_to_pair {f₁ : Y₁ ⟶ X₁} {f₂ : Y₂ ⟶ X₂}
+   : ‹ f₁, f₂ › = pair (π₁ ≫ f₁) (π₂ ≫ f₂) := by rfl
+
+@[simp]
+theorem prod_notation_to_pair {f₁ : Y₁ ⟶ X₁} {f₂ : Y₂ ⟶ X₂}
+   : ‹ f₁, f₂ › = pair (π₁ ≫ f₁) (π₂ ≫ f₂) := by rfl
+```
+
+Theorems About Morphism Products
+===
+
+```lean
+@[simp]
+lemma prod_map_comp {f₁ : X ⟶ Y} {f₂ : Y ⟶ Z} {g₁ : U ⟶ V} {g₂ : V ⟶ W}
+  : ‹ f₁ ≫ f₂, g₁ ≫ g₂ › = ‹ f₁, g₁ › ≫ ‹f₂, g₂› := by simp[←Category.assoc]
+
+@[simp]
+lemma prod_map_spec {X₁ Y₁ X₂ Y₂ : C} {f₁ : Y₁ ⟶ X₁} {f₂ : Y₂ ⟶ X₂} :
+  ‹ f₁, f₂ › ≫ π₁ = π₁ ≫ f₁ ∧ ‹ f₁, f₂ › ≫ π₂ = π₂ ≫ f₂ := by simp
+
+lemma prod_map_unique {Z X₁ X₂ : C} {g₁ : Z ⟶ X₁} {g₂ : Z ⟶ X₂}
+  {h : Z ⟶ prod X₁ X₂} {h₁ : h ≫ π₁ = g₁} {h₂ : h ≫ π₂ = g₂} :
+  h = pair g₁ g₂ := by
+    rw[←h₁,←h₂]
+    exact pair_unique
+```
+
+More Theorems About Morphism Products
+===
+
+```lean
+theorem prod_univ {X₁ X₂ Y₁ Y₂ : C} (f₁ : Y₁ ⟶ X₁) (f₂ : Y₂ ⟶ X₂) :
+  ‹ f₁, f₂ › ≫ π₁ = π₁ ≫ f₁ ∧ ‹ f₁, f₂ › ≫ π₂ = π₂ ≫ f₂ := by simp
+
+lemma prod_map_fst {f : A ⟶ X} {g : B ⟶ Y} :
+    ‹f,g› ≫ π₁ = π₁ ≫ f := by simp
+
+lemma prod_map_snd {f : A ⟶ X} {g : B ⟶ Y} :
+    ‹f,g› ≫ π₂ = π₂ ≫ g := by simp
+
+lemma fst_fst : (π₁ : (X*Y)*Z ⟶ X*Y) ≫ (π₁ : X*Y ⟶ X) = prod_assoc.hom ≫ π₁ := by simp
+
+lemma snd_snd : (π₂ : X*(Y*Z) ⟶ Y*Z) ≫ π₂ = prod_assoc.inv ≫ π₂ := by simp
 ```
 
 Example: Graphs Have Products
@@ -272,14 +327,13 @@ properties defined as theorems, which state that products preserve edges.
 
 ```lean
 theorem left {G H : Graph} :
-  ∀ x y, (TensorProd G H).E x y → G.E x.1 y.1 := by <proofstate>['G : Graph\nH : Graph\n⊢ ∀ (x y : Graph.V), Graph.E x y → Graph.E x.1 y.1']</proofstate>
-  intro x y h <proofstate>['G : Graph\nH : Graph\nx y : Graph.V\nh : Graph.E x y\n⊢ Graph.E x.1 y.1']</proofstate>
-  trace_state <proofstate>['G : Graph\nH : Graph\nx y : Graph.V\nh : Graph.E x y\n⊢ Graph.E x.1 y.1']</proofstate>
+  ∀ x y, (TensorProd G H).E x y → G.E x.1 y.1 := by
+  intro x y h
   exact h.left
 
 theorem right {G H : Graph} :
-  ∀ x y, (TensorProd G H).E x y → H.E x.2 y.2 := by <proofstate>['G : Graph\nH : Graph\n⊢ ∀ (x y : Graph.V), Graph.E x y → Graph.E x.2 y.2']</proofstate>
-  intro x y h <proofstate>['G : Graph\nH : Graph\nx y : Graph.V\nh : Graph.E x y\n⊢ Graph.E x.2 y.2']</proofstate>
+  ∀ x y, (TensorProd G H).E x y → H.E x.2 y.2 := by
+  intro x y h
   exact h.right
 
 --hide
@@ -290,28 +344,22 @@ end TensorProd
 Example: Graphs Have Products
 ===
 
-Now we can instantiate the `HasProduct` class for graphs.
-
-
+Now we can instantiate the `HasProduct` class for graphs. 
 ```lean
 instance Graph.inst_has_product : HasProduct Graph := {
   prod := TensorProd,
   π₁ := fun {X₁ X₂ : Graph} => ⟨ Prod.fst, TensorProd.left ⟩,
   π₂ := fun {X₁ X₂ : Graph} => ⟨ Prod.snd, TensorProd.right⟩,
-  pair := fun {X Y Z} f₁ f₂ => ⟨ fun z => ( f₁.f z, f₂.f z ), by <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X✝ Y✝ Z✝ : C\nX Y Z : Graph\nf₁ : Z ⟶ X\nf₂ : Z ⟶ Y\n⊢ ∀ (x y : Graph.V), Graph.E x y → Graph.E ((fun z ↦ (f₁.f z, f₂.f z)) x) ((fun z ↦ (f₁.f z, f₂.f z)) y)']</proofstate>
-      intro x y h <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X✝ Y✝ Z✝ : C\nX Y Z : Graph\nf₁ : Z ⟶ X\nf₂ : Z ⟶ Y\nx y : Graph.V\nh : Graph.E x y\n⊢ Graph.E ((fun z ↦ (f₁.f z, f₂.f z)) x) ((fun z ↦ (f₁.f z, f₂.f z)) y)']</proofstate>
+  pair := fun {X Y Z} f₁ f₂ => ⟨ fun z => ( f₁.f z, f₂.f z ), by
+      intro x y h
       exact ⟨ f₁.pe x y h, f₂.pe x y h ⟩
     ⟩
   pair₁ := by intros; rfl
   pair₂ := by intros; rfl
-  pair_unique := by <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\n⊢ ∀ {X₁ X₂ Y : Graph} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) (h : Y ⟶ TensorProd X₁ X₂),\n    h ≫ { f := Prod.fst, pe := ⋯ } = f₁ →\n      h ≫ { f := Prod.snd, pe := ⋯ } = f₂ → h = { f := fun z ↦ (f₁.f z, f₂.f z), pe := ⋯ }']</proofstate>
-    intro _ _ _ _ _ _ h1 h2 <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\nX₁✝ X₂✝ Y✝ : Graph\nf₁✝ : Y✝ ⟶ X₁✝\nf₂✝ : Y✝ ⟶ X₂✝\nh✝ : Y✝ ⟶ TensorProd X₁✝ X₂✝\nh1 : h✝ ≫ { f := Prod.fst, pe := ⋯ } = f₁✝\nh2 : h✝ ≫ { f := Prod.snd, pe := ⋯ } = f₂✝\n⊢ h✝ = { f := fun z ↦ (f₁✝.f z, f₂✝.f z), pe := ⋯ }']</proofstate>
-    rw[←h1,←h2] <proofstate>['C : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : HasProduct C\nW X Y Z : C\nX₁✝ X₂✝ Y✝ : Graph\nf₁✝ : Y✝ ⟶ X₁✝\nf₂✝ : Y✝ ⟶ X₂✝\nh✝ : Y✝ ⟶ TensorProd X₁✝ X₂✝\nh1 : h✝ ≫ { f := Prod.fst, pe := ⋯ } = f₁✝\nh2 : h✝ ≫ { f := Prod.snd, pe := ⋯ } = f₂✝\n⊢ h✝ = { f := fun z ↦ ((h✝ ≫ { f := Prod.fst, pe := ⋯ }).f z, (h✝ ≫ { f := Prod.snd, pe := ⋯ }).f z), pe := ⋯ }']</proofstate>
-    rfl
+  pair_unique := by
+    intro X₁ X₂ Y h
+    exact rfl
 }
-
-
-
 
 --hide
 end HasProduct

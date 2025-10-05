@@ -23,12 +23,25 @@ arguments and combine it into two functions of one argument.
 
 For example suppose `f = fun x y => x+y`. Then `f x = fun y => x+y`.
 
+Here `f : X*Y → Z` and `f x : Y → Z`. The operation that does this is called `curry`,
+which is an operation on functions:
+
+```
+    curry : (X*Y → Z) → (X → (Y → Z))
+```
+
+or in the notation of Category theory
+
+```
+    curry : (X*Y ⟶ Z) → (X ⟶ Z^Y)
+```
+
 Currying in a Category
 ===
 
 <img src="https://docs.google.com/drawings/d/e/2PACX-1vRE5Mmfx10f5A0c9oc94fXmYx0f5sEf4U-wh0c_esWBV02gyE0rMPcf1BBaZ5aoARFXBpSNp-S2uWh1/pub?w=1440&amp;h=1080" width=60%>
 
-We define `curry` to have type:
+So `curry` to has type:
 
 ```lean
 curry : (X × Y ⟶ Z) → (X ⟶ Z^Y)
@@ -56,11 +69,10 @@ class HasExp.{u,v} (C : Type u) [Category.{v} C] [HasProduct.{u} C] where
   curry {X Y Z : C} (g : (prod X Y) ⟶ Z) : X ⟶ (exp Z Y)
 
   curry_eval {X Y Z : C} (g : prod X Y ⟶ Z)
-    : prod_map (curry g) (𝟙 Y) ≫ eval = g
+    : ‹curry g, 𝟙 Y› ≫ eval = g
 
-  curry_unique {X Y Z : C} (g : X ⟶ exp Z Y) (h : prod X Y ⟶ Z)
-    (comm : prod_map g (𝟙 Y) ≫ eval = h)
-    : curry h = g
+  curry_unique {X Y Z : C} (g : X ⟶ exp Z Y)
+    : curry ( ‹g, 𝟙 Y› ≫ eval) = g
 ```
 
 Notation Class Instances
@@ -78,22 +90,155 @@ instance HasExp.inst_pow.{u, v} {C : Type u} [Category.{v} C]
 ```
  Now we can write: 
 ```lean
-namespace Temp
+universe u v
+variable {C : Type u} [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
+variable {X Y Z S A V : C}
 
-variable (C : Type*) [Category C] [HasProduct C] [HasExp C] (X Y Z : C)
 #check (X^Y)*Z
-
-end Temp
 ```
 
-Reflexive Graphs: A Subcategory of Graphs
+Beta Reduction = `curry_eval`
+===
+Rewrite HasExp properties so they can be used with simp. 
+```lean
+open HasProduct HasExp in
+@[simp, reassoc]
+theorem beta {f : X * Y ⟶ Z}
+  : ‹curry f, 𝟙 Y› ≫ eval = f := by
+    apply curry_eval
+
+open HasProduct HasExp in
+@[simp, reassoc]
+theorem beta_alt {f : X * Y ⟶ Z}
+  : (pair (π₁ ≫ curry f) (π₂ ≫ (𝟙 Y))) ≫ eval = f := by
+    apply curry_eval
+```
+
+Eta Reduction = `curry_unique`
+===
+
+```lean
+open HasProduct HasExp in
+@[simp, reassoc]
+theorem eta {g : X ⟶ exp Z Y}
+  : curry ( ‹g, 𝟙 Y› ≫ eval ) = g := by
+    apply curry_unique
+
+open HasProduct HasExp in
+@[simp, reassoc]
+theorem eta_alt {g : X ⟶ exp Z Y}
+  : curry ( pair (π₁ ≫ g) (π₂ ≫ (𝟙 Y)) ≫ eval ) = g := by
+    apply curry_unique
+```
+
+Extensionality
+===
+
+These theorems state that if two functions evaluate to the same thing on their arguments,
+then they are the same.
+
+```lean
+open HasProduct HasExp in
+lemma exp_ext {f g : X ⟶ (Z ^ Y)} :
+  ‹f,  𝟙 Y› ≫ eval = ‹g,  𝟙 Y› ≫ eval → f = g := by
+    intro hyp
+    apply congrArg curry at hyp
+    rw[eta,eta] at hyp
+    exact hyp
+
+open HasProduct HasExp in
+lemma exp_ext_alt {f g : X ⟶ (Z ^ Y)} :
+  pair (π₁ ≫ f) (π₂ ≫ 𝟙 Y) ≫ eval = pair (π₁ ≫ g) (π₂ ≫ 𝟙 Y) ≫ eval → f = g := by
+    intro hyp
+    apply congrArg curry at hyp
+    rw[eta_alt,eta_alt] at hyp
+    exact hyp
+```
+
+Uncurrying
+===
+
+```lean
+def HasExp.uncurry (g : X ⟶ Z ^ Y) : X * Y ⟶ Z :=   ‹g, 𝟙 Y›  ≫ HasExp.eval
+
+open HasProduct HasExp in
+theorem curry_uncurry (g : X * Y ⟶ Z)
+  : uncurry (curry g) = g := by apply curry_eval
+
+open HasProduct HasExp in
+theorem uncurry_curry (g : X ⟶ Z ^ Y)
+  : curry (uncurry g) = g := by apply curry_unique
+
+open HasProduct HasExp in
+theorem uncurry_both_sides {f g : X ⟶ Z ^ Y}
+  : f = g ↔ (uncurry f = uncurry g) := by
+  constructor
+  · intro h
+    rw[h]
+  · intro h
+    apply congrArg curry at h
+    simp[uncurry_curry] at h
+    exact h
+```
+
+Sliding
+===
+
+```lean
+open HasProduct HasExp in
+@[simp, reassoc]
+theorem sliding {m : S ⟶ A} {n : X ⟶ V} {h : A * V ⟶ X}
+    : ‹m ≫ curry h, n› ≫ eval =  ‹m, n› ≫ h := by
+    have : n = n ≫ (𝟙 V) := Eq.symm (Category.comp_id n)
+    rw[this]
+    rw[prod_map_comp]
+    rw[Category.assoc]
+    rw[←this]
+    have : ‹curry h, 𝟙 V› ≫ HasExp.eval = h := by
+      apply curry_eval
+    rw[this]
+```
+
+Associativity
+===
+
+```lean
+open HasProduct HasExp in
+theorem exp_prod : ∃ f : Iso ((X^Y)^Z) (X^(Y*Z)), True := by
+
+    let F : ((X^Y)^Z)*(Y*Z) ⟶ X :=
+        pair (‹ 𝟙 ((X ^ Y) ^ Z), π₂ › ≫ eval) (π₂ ≫ π₁) ≫ eval
+
+    let f : (X^Y)^Z ⟶ X^(Y*Z) :=
+        curry F
+
+    let G : (X^(Y*Z)*Z)*Y ⟶ X :=
+        pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ eval
+
+    let g : X^(Y*Z) ⟶ (X^Y)^Z :=
+        curry (curry G)
+
+    use ⟨
+      f,
+      g,
+      by
+        simp[f,g]
+
+        sorry,
+      by
+        simp[f,g]
+        sorry
+    ⟩
+```
+
+Example: Reflexive Graphs: A Subcategory of Graphs
 ===
 
 To show an example of exponentials, we can't use simple graphs, as we need self-loops (Why?)
 We can build a subcategory of Graph called ReflexiveGraph that does this using
 Mathlib's `FullSubcategory` helper. 
 ```lean
-def ReflexiveGraph.{u} : Type (u+1) :=
+def ReflexiveGraph : Type (u+1) :=
   ObjectProperty.FullSubcategory (fun G : Graph.{u} => ∀ v, G.E v v)
 
 --hide
@@ -102,7 +247,7 @@ namespace ReflexiveGraph
 ```
  We can then show ReflexiveGraph is also a category and that it has products. 
 ```lean
-instance inst_category.{u} : Category ReflexiveGraph.{u} :=
+instance inst_category : Category ReflexiveGraph.{u} :=
   ObjectProperty.FullSubcategory.category _
 ```
 
@@ -113,18 +258,15 @@ For the product instance, it would be nice if there were a way to just use the
 fact that Graphs have products. Or at least use some of that proof. But I could not
 figure that out so this is mostly just repetetive at this point. 
 ```lean
---hide
-open HasProduct
---unhide
-
-instance inst_has_product.{u} : HasProduct.{u+1} ReflexiveGraph.{u} := {
+open HasProduct in
+instance inst_has_product : HasProduct.{u+1} ReflexiveGraph.{u} := {
 
   prod := fun G H => ⟨ TensorProd G.1 H.1, fun v => ⟨ G.property v.1, H.property v.2 ⟩ ⟩,
   π₁ := fun {X₁ X₂ : ReflexiveGraph} => Graph.inst_has_product.π₁,
   π₂ := fun {X₁ X₂ : ReflexiveGraph} => Graph.inst_has_product.π₂,
 
-  pair := fun {X₁ X₂ Y : ReflexiveGraph} => fun f₁ f₂ => ⟨ fun y => ( f₁.f y, f₂.f y ), by <proofstate>['X₁ X₂ Y : ReflexiveGraph\nf₁ : Y ⟶ X₁\nf₂ : Y ⟶ X₂\n⊢ ∀ (x y : Graph.V), Graph.E x y → Graph.E ((fun y ↦ (f₁.f y, f₂.f y)) x) ((fun y ↦ (f₁.f y, f₂.f y)) y)']</proofstate>
-    intro x y h <proofstate>['X₁ X₂ Y : ReflexiveGraph\nf₁ : Y ⟶ X₁\nf₂ : Y ⟶ X₂\nx y : Graph.V\nh : Graph.E x y\n⊢ Graph.E ((fun y ↦ (f₁.f y, f₂.f y)) x) ((fun y ↦ (f₁.f y, f₂.f y)) y)']</proofstate>
+  pair := fun {X₁ X₂ Y : ReflexiveGraph} => fun f₁ f₂ => ⟨ fun y => ( f₁.f y, f₂.f y ), by
+    intro x y h
     exact ⟨ f₁.pe x y h, f₂.pe x y h ⟩
   ⟩,
 
@@ -132,9 +274,8 @@ instance inst_has_product.{u} : HasProduct.{u+1} ReflexiveGraph.{u} := {
 
   pair₂ := by intros; rfl,
 
-  pair_unique {X₁ X₂ Y} := by <proofstate>['X₁ X₂ Y : ReflexiveGraph\n⊢ ∀ (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) (h : Y ⟶ { obj := TensorProd X₁.obj X₂.obj, property := ⋯ }),\n    h ≫ π₁ = f₁ → h ≫ π₂ = f₂ → h = { f := fun y ↦ (f₁.f y, f₂.f y), pe := ⋯ }']</proofstate>
-    intro _ _ _ h1 h2 <proofstate>['X₁ X₂ Y : ReflexiveGraph\nf₁✝ : Y ⟶ X₁\nf₂✝ : Y ⟶ X₂\nh✝ : Y ⟶ { obj := TensorProd X₁.obj X₂.obj, property := ⋯ }\nh1 : h✝ ≫ π₁ = f₁✝\nh2 : h✝ ≫ π₂ = f₂✝\n⊢ h✝ = { f := fun y ↦ (f₁✝.f y, f₂✝.f y), pe := ⋯ }']</proofstate>
-    simp[←h1,←h2] <proofstate>['X₁ X₂ Y : ReflexiveGraph\nf₁✝ : Y ⟶ X₁\nf₂✝ : Y ⟶ X₂\nh✝ : Y ⟶ { obj := TensorProd X₁.obj X₂.obj, property := ⋯ }\nh1 : h✝ ≫ π₁ = f₁✝\nh2 : h✝ ≫ π₂ = f₂✝\n⊢ h✝ = { f := fun y ↦ ((h✝ ≫ π₁).f y, (h✝ ≫ π₂).f y), pe := ⋯ }']</proofstate>
+  pair_unique {X₁ X₂ Y} := by
+    intro h
     rfl
 
 }
@@ -165,7 +306,7 @@ F₁ to F₂ if for all edges x y in H there is an edge from F₁(x) to F₂(x) 
 
 
 ```lean
-def exp.{u} (G H : ReflexiveGraph.{u}) : ReflexiveGraph.{u} := {
+def exp (G H : ReflexiveGraph.{u}) : ReflexiveGraph.{u} := {
   obj := {
     V := ULift.{u} (H ⟶ G),
     E := fun F₁ F₂ =>
@@ -175,8 +316,8 @@ def exp.{u} (G H : ReflexiveGraph.{u}) : ReflexiveGraph.{u} := {
       let ⟨ ⟨ _, gE ⟩, _ ⟩ := G      -- edges of G
       ∀ x y : hV, hE x y → gE (f₁ x) (f₂ y)
   },
-  property := by <proofstate>['G H : ReflexiveGraph\n⊢ ∀ (v : Graph.V), Graph.E v v']</proofstate>
-    intro morphism u v h <proofstate>['G H : ReflexiveGraph\nmorphism : Graph.V\nu v : Graph.V\nh : Graph.E u v\n⊢ Graph.E (morphism.1.f u) (morphism.1.f v)']</proofstate>
+  property := by
+    intro morphism u v h
     exact morphism.down.pe u v h
 }
 ```
@@ -187,9 +328,9 @@ The eval Function is straighforward
 ```lean
 def eval (H G : ReflexiveGraph) : HasProduct.prod (exp H G) G ⟶ H := {
     f := fun ⟨ ⟨ f, h ⟩, v  ⟩ => f v,
-    pe := by <proofstate>['H G : ReflexiveGraph\n⊢ ∀ (x y : Graph.V),\n    Graph.E x y →\n      Graph.E\n        (match x with\n        | ({ down := { f := f, pe := h } }, v) => f v)\n        (match y with\n        | ({ down := { f := f, pe := h } }, v) => f v)']</proofstate>
-      intro ⟨ ⟨ fg, hfg ⟩, vG ⟩ ⟨ ⟨ fh, hfh ⟩, fH ⟩ ⟨ h1, h2 ⟩ <proofstate>['H G : ReflexiveGraph\nfg : Graph.V → Graph.V\nhfg : ∀ (x y : Graph.V), Graph.E x y → Graph.E (fg x) (fg y)\nvG : Graph.V\nfh : Graph.V → Graph.V\nhfh : ∀ (x y : Graph.V), Graph.E x y → Graph.E (fh x) (fh y)\nfH : Graph.V\nh1 : Graph.E { down := { f := fg, pe := hfg } } { down := { f := fh, pe := hfh } }\nh2 : Graph.E vG fH\n⊢ Graph.E\n    (match ({ down := { f := fg, pe := hfg } }, vG) with\n    | ({ down := { f := f, pe := h } }, v) => f v)\n    (match ({ down := { f := fh, pe := hfh } }, fH) with\n    | ({ down := { f := f, pe := h } }, v) => f v)']</proofstate>
-      simp_all only[exp] <proofstate>['H G : ReflexiveGraph\nfg : Graph.V → Graph.V\nhfg : ∀ (x y : Graph.V), Graph.E x y → Graph.E (fg x) (fg y)\nvG : Graph.V\nfh : Graph.V → Graph.V\nhfh : ∀ (x y : Graph.V), Graph.E x y → Graph.E (fh x) (fh y)\nfH : Graph.V\nh1 :\n  match G, { down := { f := fg, pe := hfg } }, { down := { f := fh, pe := hfh } }, fg, ⋯, fh, ⋯ with\n  | { obj := { V := hV, E := hE }, property := property }, F₁, F₂, f₁, pe, f₂, pe_1 =>\n    match H, F₁, F₂, f₁, pe, f₂, pe_1 with\n    | { obj := { V := V, E := gE }, property := property_1 }, F₁, F₂, f₁, pe, f₂, pe_2 =>\n      ∀ (x y : hV), hE x y → gE (f₁ x) (f₂ y)\nh2 : Graph.E vG fH\n⊢ Graph.E (fg vG) (fh fH)']</proofstate>
+    pe := by
+      intro ⟨ ⟨ fg, hfg ⟩, vG ⟩ ⟨ ⟨ fh, hfh ⟩, fH ⟩ ⟨ h1, h2 ⟩
+      simp_all only[exp]
       exact h1 vG fH h2
 }
 ```
@@ -203,21 +344,20 @@ instance inst_has_exp : HasExp ReflexiveGraph := {
   exp := exp,
   eval := fun {G H} => eval G H,
 
-  curry := fun {X Y Z} => fun ⟨ f, h ⟩ => ⟨ fun x => ⟨ fun y => f (x,y), by <proofstate>['X Y Z : ReflexiveGraph\nx✝ : HasProduct.prod X Y ⟶ Z\nf : Graph.V → Graph.V\nh : ∀ (x y : Graph.V), Graph.E x y → Graph.E (f x) (f y)\nx : Graph.V\n⊢ ∀ (x_1 y : Graph.V), Graph.E x_1 y → Graph.E ((fun y ↦ f (x, y)) x_1) ((fun y ↦ f (x, y)) y)']</proofstate>
-      intro _ _ e <proofstate>['X Y Z : ReflexiveGraph\nx✝¹ : HasProduct.prod X Y ⟶ Z\nf : Graph.V → Graph.V\nh : ∀ (x y : Graph.V), Graph.E x y → Graph.E (f x) (f y)\nx : Graph.V\nx✝ y✝ : Graph.V\ne : Graph.E x✝ y✝\n⊢ Graph.E ((fun y ↦ f (x, y)) x✝) ((fun y ↦ f (x, y)) y✝)']</proofstate>
-      apply h <proofstate>['case a\nX Y Z : ReflexiveGraph\nx✝¹ : HasProduct.prod X Y ⟶ Z\nf : Graph.V → Graph.V\nh : ∀ (x y : Graph.V), Graph.E x y → Graph.E (f x) (f y)\nx : Graph.V\nx✝ y✝ : Graph.V\ne : Graph.E x✝ y✝\n⊢ Graph.E (x, x✝) (x, y✝)']</proofstate>
+  curry := fun {X Y Z} => fun ⟨ f, h ⟩ => ⟨ fun x => ⟨ fun y => f (x,y), by
+      intro _ _ e
+      apply h
       exact ⟨ X.property x, e ⟩
-     ⟩, by <proofstate>['X Y Z : ReflexiveGraph\nx✝ : HasProduct.prod X Y ⟶ Z\nf : Graph.V → Graph.V\nh : ∀ (x y : Graph.V), Graph.E x y → Graph.E (f x) (f y)\n⊢ ∀ (x y : Graph.V),\n    Graph.E x y →\n      Graph.E ((fun x ↦ { down := { f := fun y ↦ f (x, y), pe := ⋯ } }) x)\n        ((fun x ↦ { down := { f := fun y ↦ f (x, y), pe := ⋯ } }) y)']</proofstate>
-        intros _ _ ex _ _ ey <proofstate>['X Y Z : ReflexiveGraph\nx✝² : HasProduct.prod X Y ⟶ Z\nf : Graph.V → Graph.V\nh : ∀ (x y : Graph.V), Graph.E x y → Graph.E (f x) (f y)\nx✝¹ y✝¹ : Graph.V\nex : Graph.E x✝¹ y✝¹\nx✝ y✝ : Graph.V\ney : Graph.E x✝ y✝\n⊢ Graph.E ((fun y ↦ f (x✝¹, y)) x✝) ((fun y ↦ f (y✝¹, y)) y✝)']</proofstate>
-        apply h <proofstate>['case a\nX Y Z : ReflexiveGraph\nx✝² : HasProduct.prod X Y ⟶ Z\nf : Graph.V → Graph.V\nh : ∀ (x y : Graph.V), Graph.E x y → Graph.E (f x) (f y)\nx✝¹ y✝¹ : Graph.V\nex : Graph.E x✝¹ y✝¹\nx✝ y✝ : Graph.V\ney : Graph.E x✝ y✝\n⊢ Graph.E (x✝¹, x✝) (y✝¹, y✝)']</proofstate>
+     ⟩, by
+        intros _ _ ex _ _ ey
+        apply h
         exact ⟨ex, ey⟩
     ⟩
 
   curry_eval := by intros; rfl,
 
-  curry_unique := by <proofstate>['⊢ ∀ {X Y Z : ReflexiveGraph} (g : X ⟶ Z.exp Y) (h : HasProduct.prod X Y ⟶ Z),\n    prod_map g (𝟙 Y) ≫ Z.eval Y = h →\n      (match h with\n        | { f := f, pe := h } => { f := fun x ↦ { down := { f := fun y ↦ f (x, y), pe := ⋯ } }, pe := ⋯ }) =\n        g']</proofstate>
-    intro _ _ _ _ _ comm <proofstate>['X✝ Y✝ Z✝ : ReflexiveGraph\ng✝ : X✝ ⟶ Z✝.exp Y✝\nh✝ : HasProduct.prod X✝ Y✝ ⟶ Z✝\ncomm : prod_map g✝ (𝟙 Y✝) ≫ Z✝.eval Y✝ = h✝\n⊢ (match h✝ with\n    | { f := f, pe := h } => { f := fun x ↦ { down := { f := fun y ↦ f (x, y), pe := ⋯ } }, pe := ⋯ }) =\n    g✝']</proofstate>
-    rw[←comm] <proofstate>['X✝ Y✝ Z✝ : ReflexiveGraph\ng✝ : X✝ ⟶ Z✝.exp Y✝\nh✝ : HasProduct.prod X✝ Y✝ ⟶ Z✝\ncomm : prod_map g✝ (𝟙 Y✝) ≫ Z✝.eval Y✝ = h✝\n⊢ (match prod_map g✝ (𝟙 Y✝) ≫ Z✝.eval Y✝ with\n    | { f := f, pe := h } => { f := fun x ↦ { down := { f := fun y ↦ f (x, y), pe := ⋯ } }, pe := ⋯ }) =\n    g✝']</proofstate>
+  curry_unique := by
+    intro X Y A g
     rfl
 
 }
@@ -227,86 +367,6 @@ instance inst_has_exp : HasExp ReflexiveGraph := {
 --hide
 end ReflexiveGraph
 --unhide
-```
-
-Uncurrying
-===
-
-```lean
-def HasExp.uncurry.{u,v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
-  {X Y Z : C} (g : X ⟶ Z ^ Y) : X * Y ⟶ Z := (g * (𝟙 Y)) ≫ eval
-
-open HasProduct HasExp in
-theorem curry_uncurry.{u, v} {C : Type u}
-   [Category.{v} C] [HP : HasProduct.{u, v} C] [HE : HasExp.{u, v} C]
-   (X Y Z : C) (g : X * Y ⟶ Z)
-  : uncurry (curry g) = g := by <proofstate>['C : Type u\ninst✝ : Category.{v, u} C\nHP : HasProduct C\nHE : HasExp C\nX Y Z : C\ng : X * Y ⟶ Z\n⊢ uncurry (curry g) = g']</proofstate>
-    unfold uncurry <proofstate>['C : Type u\ninst✝ : Category.{v, u} C\nHP : HasProduct C\nHE : HasExp C\nX Y Z : C\ng : X * Y ⟶ Z\n⊢ (curry g * 𝟙 Y) ≫ HasExp.eval = g']</proofstate>
-    apply curry_eval
-```
-
-An Example Theorem
-===
-
-
- - prod_map (f₁ : Y₁ ⟶ X₁) (f₂ : Y₂ ⟶ X₂) : (prod Y₁ Y₂) ⟶ (prod X₁ X₂)
- - curry (g : (prod X Y) ⟶ Z) : X ⟶ (exp Z Y)
- - uncurry (g : X ⟶ Z ^ Y) : X * Y ⟶ Z
-
-```lean
-open HasProduct in
-@[simp]
-def prod_swap.{u, v} {C : Type u} (X Y : C) [Category.{v} C] [HasProduct.{u, v} C]
-   : X * Y ⟶ Y * X := pair π₂ π₁
-
-
-open HasProduct HasExp in
-theorem exp_prod.{u, v} (C : Type u) [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
-    (X Y Z : C) : ∃ f : Iso ((X^Y)^Z) (X^(Y*Z)), True := by <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\n⊢ ∃ f, True']</proofstate>
- <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\n⊢ ∃ f, True']</proofstate>
-    let f1 : (X^Y)^Z ⟶ X^(Y*Z) := <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\n⊢ ∃ f, True']</proofstate>
-        curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ eval) (π₂ ≫ π₁) ≫ eval) <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\n⊢ ∃ f, True']</proofstate>
- <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\n⊢ ∃ f, True']</proofstate>
-    let f2 : X^(Y*Z) ⟶ (X^Y)^Z := <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ ∃ f, True']</proofstate>
-        curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ eval)) <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ ∃ f, True']</proofstate>
- <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ ∃ f, True']</proofstate>
-    use ⟨
-      f1,
-      f2,
-      by <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ f1 ≫ f2 = 𝟙 ((X ^ Y) ^ Z)']</proofstate>
-        unfold f1 f2 <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval) ≫\n      curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval)) =\n    𝟙 ((X ^ Y) ^ Z)']</proofstate>
-        simp[prod_map,Category.comp_id] <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ curry (pair (pair π₁ (π₂ ≫ π₂) ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval) ≫\n      curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval)) =\n    𝟙 ((X ^ Y) ^ Z)']</proofstate>
- <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ curry (pair (pair π₁ (π₂ ≫ π₂) ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval) ≫\n      curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval)) =\n    𝟙 ((X ^ Y) ^ Z)']</proofstate>
-        sorry,
-      by <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ f2 ≫ f1 = 𝟙 (X ^ (Y * Z))']</proofstate>
-        unfold f1 <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ f2 ≫ curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval) = 𝟙 (X ^ (Y * Z))']</proofstate>
-        unfold f2 <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval)) ≫\n      curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval) =\n    𝟙 (X ^ (Y * Z))']</proofstate>
- <proofstate>['C : Type u\ninst✝² : Category.{v, u} C\ninst✝¹ : HasProduct C\ninst✝ : HasExp C\nX Y Z : C\nf1 : (X ^ Y) ^ Z ⟶ X ^ (Y * Z) := curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval)\nf2 : X ^ (Y * Z) ⟶ (X ^ Y) ^ Z := curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval))\n⊢ curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ HasExp.eval)) ≫\n      curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ HasExp.eval) (π₂ ≫ π₁) ≫ HasExp.eval) =\n    𝟙 (X ^ (Y * Z))']</proofstate>
-        sorry
-    ⟩
-
-
-    -- let f1' : (X^Y)^Z ⟶ X^(Y*Z) :=
-    --    let E := (X^Y)^Z
-    --    let ev1 : E * Z ⟶ X ^ Y := eval (Z := exp X Y) (Y := Z)
-    --    let evXY :  (X^Y) * Y ⟶ X := eval (Z := X) (Y := Y)
-    --    let projZ_from_pair : E* (Y * Z) ⟶ E * Z := prod_map (𝟙 E) (π₂ : Y * Z ⟶ Z)
-    --    let to_expX_Y : E * (Y * Z) ⟶ X ^ Y :=  projZ_from_pair ≫ ev1
-    --    let projY_from_pair : E * (Y * Z) ⟶ Y :=
-    --        (π₂ : E * (Y * Z) ⟶ Y * Z) ≫ (π₁ : Y * Z ⟶ Y)
-    --    let body : E * (Y * Z) ⟶ X := pair to_expX_Y projY_from_pair ≫ evXY
-    --    curry body
-
-
-    -- let f2' : X^(Y*Z) ⟶ (X^Y)^Z :=
-    --     let E := X ^ (Y * Z)
-    --     let evYZ : E * (Y * Z) ⟶ X := eval (Z := X) (Y := Y * Z)
-    --     let projE : (E * Z) * Y ⟶ E := π₁ ≫ π₁
-    --     let projZ : (E * Z) * Y ⟶ Z := π₁ ≫ π₂
-    --     let projY : (E * Z) * Y ⟶ Y :=  π₂
-    --     let yz : (E * Z) * Y ⟶ Y * Z := pair projY projZ
-    --     let body : (E * Z) * Y ⟶ X := pair (projE) (yz) ≫ evYZ
-    --     curry (curry body)
 
 --hide
 end LeanW26

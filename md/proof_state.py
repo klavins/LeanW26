@@ -1,3 +1,7 @@
+#
+# source /Users/ericklavins/Courses/LeanW26/.venv/bin/activate
+# python proof_state.py
+
 import leanclient as lc
 
 def log_proof_states(client, infile: str, outfile: str ):

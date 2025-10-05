@@ -1,12 +1,27 @@
 {
-    "slide_decks": [
-        { "path": "http://localhost:8000/src/Introduction/Lean.md", "title": "Introduction" },
-        { "path": "http://localhost:8000/src/Categories/Category.md", "title": "Categories" },
-        { "path": "http://localhost:8000/src/Categories/BinaryProduct.md", "title": "Binary Products" },
-        { "path": "http://localhost:8000/src/Categories/Exponential.md", "title": "Exponentials" },
-        { "path": "http://localhost:8000/src/Categories/TerminalObject.md", "title": "Terminal Objects" },                
-        { "path": "http://localhost:8000/src/Categories/CartesianClosed.md", "title": "Cartesian Closed Categories" },
-        { "path": "http://localhost:8000/src/Categories/Syntactic.md", "title": "Syntactic Categories" },
-        { "path": "http://localhost:8000/src/Appendix/Latex.md", "title": "Latex" }            
+    "sections": [
+        { 
+            "name": "Introducton", 
+            "decks": [
+                { "path": "src/Introduction/Lean.md", "title": "Introduction" }
+            ]
+        },
+        {
+            "name": "Category Theory",
+            "decks" : [
+                { "path": "src/Categories/Category.md", "title": "Categories" },
+                { "path": "src/Categories/BinaryProduct.md", "title": "Binary Products" },
+                { "path": "src/Categories/Exponential.md", "title": "Exponentials" },
+                { "path": "src/Categories/TerminalObject.md", "title": "Terminal Objects" },                
+                { "path": "src/Categories/CartesianClosed.md", "title": "Cartesian Closed Categories" },
+                { "path": "src/Categories/Syntactic.md", "title": "Syntactic Categories" }
+            ]
+        },
+        {
+            "name": "Appendix",
+            "decks": [      
+                { "path": "src/Appendix/Latex.md", "title": "Latex" }
+            ]
+        }
     ]
 }
