@@ -78,8 +78,8 @@ relating two graphs `G` and `H` is required to preserve the edge relationship.
 ```lean
 @[ext]
 structure Hom (G H : Graph) where
-  f : G.V → H.V
-  pe: ∀ x y, G.E x y → H.E (f x) (f y)
+  map : G.V → H.V
+  pe: ∀ x y, G.E x y → H.E (map x) (map y)
 ```
 
 Example: Graph Quivers
@@ -93,7 +93,7 @@ instance inst_quiver : Quiver Graph := ⟨
 ⟩
 
 @[ext]
-lemma Hom.ext_helper {G H : Graph} (f g : G ⟶ H) (h : f.f = g.f) : f = g := by
+lemma Hom.ext_helper {G H : Graph} (f g : G ⟶ H) (h : f.map = g.map) : f = g := by
   simp[Graph.inst_quiver] at f g
   cases f; cases g
   simp_all
@@ -117,13 +117,15 @@ Example: A Graph Morphism in Lean
 ===
 
 ```lean
-def G : Graph := ⟨ Fin 2, fun x y => x = y+1 ∨ y = x+1 ⟩
-def H : Graph := ⟨ Fin 1, fun _ _ => True ⟩
+def G : Graph := { V := Fin 2, E := fun x y => x = y+1 ∨ y = x+1 }
+def H : Graph := { V := Fin 1, E := fun _ _ => True }
 
-def f : G ⟶ H := ⟨ fun v => ⟨ 0, Nat.one_pos ⟩, by
+def f : G ⟶ H := {
+   map := fun v => ⟨ 0, Nat.one_pos ⟩,
+   pe := by
     intro x y h
     simp_all[G,H]
-  ⟩
+}
 ```
 
 Example: Identity and Composition
@@ -131,15 +133,18 @@ Example: Identity and Composition
 
 To instantiate Graph as a Category, we need and id morphism, and composition. 
 ```lean
-def id_hom (G : Graph) : G ⟶ G := ⟨ fun x => x, fun _ _ h => h ⟩
+def id_hom (G : Graph) : G ⟶ G := {
+  map := fun x => x,
+  pe := fun _ _ h => h
+}
 
-def comp_hom {G H I : Graph} (φ : G ⟶ H) (ψ : H ⟶ I) : G ⟶ I :=
-  ⟨
-    ψ.f ∘ φ.f,
-    by
+def comp_hom {G H I : Graph} (f : G ⟶ H) (g : H ⟶ I) : G ⟶ I :=
+  {
+  map := g.map ∘ f.map,
+    pe := by
       intro x y h
-      exact ψ.pe (φ.f x) (φ.f y) (φ.pe x y h)
-  ⟩
+      exact g.pe (f.map x) (f.map y) (f.pe x y h)
+  }
 ```
 
 Example: Graphs Form a Category
@@ -180,10 +185,10 @@ a morphism `g : B ⟶ A` with `f ≫ g = 𝟙 A`. In the category Graph, a simpl
 is a function that relabels vertices.
 
 ```lean
-def relabel (G : Graph) (r : G.V ≃ G.V) : Graph := ⟨
-  G.V,
-  fun x y => G.E (r.symm x) (r.symm y)
-⟩
+def relabel (G : Graph) (r : G.V ≃ G.V) : Graph := {
+  V := G.V,
+  E := fun x y => G.E (r.symm x) (r.symm y)
+}
 ```
  Here,
 - `≃` means bijection
@@ -195,16 +200,18 @@ Example: The `relabel` isomorphism
 We can define an Isomorphism from `relabel` as follows: 
 ```lean
 def relabel_iso (G : Graph) (r : G.V ≃ G.V)
-  : Iso G (relabel G r) := ⟨
-    ⟨ r.toFun, by intro x y he
-                  simp[relabel,he] ⟩,
-    ⟨ r.invFun, by intro x y he
-                   exact he ⟩,
-    by ext
-       simp[Graph.inst_category,Graph.comp_hom,Graph.id_hom],
-    by ext
-       simp[Graph.inst_category,Graph.comp_hom,Graph.id_hom]
-  ⟩
+  : Iso G (relabel G r) := {
+    hom := { map := r.toFun,
+             pe := by intro x y he
+                      simp[relabel,he] },
+    inv := { map := r.invFun,
+             pe := by intro x y he
+                      exact he },
+    hom_inv_id := by ext
+                     simp[Graph.inst_category,Graph.comp_hom,Graph.id_hom],
+    inv_hom_id := by ext
+                     simp[Graph.inst_category,Graph.comp_hom,Graph.id_hom]
+  }
 ```
 
 Functors
@@ -228,7 +235,7 @@ instantiated as a Category in Mathlib.
 ```lean
 def V : Graph ⥤ Type := {
   obj G := G.V,
-  map {G H} f := f.f
+  map {G H} f := f.map
 }
 ```
  Note that the fields `map_id` and `map_comp` are discharged by the default proof
@@ -255,7 +262,7 @@ Adding all self loops to a graph is an endofunctor on Graph.
 ```lean
 def Graph.add_loops : Graph ⥤ Graph := {
   obj G := ⟨ G.V, fun x y => x = x ∨ G.E x x ⟩,
-  map {F G} f := ⟨ f.f, by simp ⟩
+  map {F G} f := ⟨ f.map, by simp ⟩
 }
 ```
 
@@ -270,17 +277,19 @@ the relabeling `r` to be consistent across morphisms.
 structure VertexRelabeling where
   r : ∀ G : Graph, G.V ≃ G.V
   natural : ∀ {G H : Graph} (f : G ⟶ H),
-            ∀ x, (r H).symm (f.f x) = f.f ((r G).symm x)
+            ∀ x, (r H).symm (f.map x) = f.map ((r G).symm x)
 
 def ReLabel (r : VertexRelabeling) : Graph ⥤ Graph := {
   obj X := relabel X (r.r X),
-  map {X Y} f := ⟨ f.f, by
-    intro x y he
-    simp_all[relabel]
-    rw[r.natural f y, r.natural f x]
-    apply f.pe
-    exact he
-   ⟩
+  map {X Y} f := {
+    map := f.map,
+    pe := by
+      intro x y he
+      simp_all[relabel]
+      rw[r.natural f y, r.natural f x]
+      apply f.pe
+      exact he
+  }
 }
 ```
 
@@ -330,7 +339,7 @@ Example: Relabeling is Natural
 ```lean
 def relabel_nat (r : VertexRelabeling) : 𝟭 Graph ⟶ (ReLabel r) := {
   app := fun G =>
-    { f := r.r G,
+    { map := r.r G,
       pe := by
         intros x y hxy
         dsimp[ReLabel,relabel]
@@ -340,24 +349,34 @@ def relabel_nat (r : VertexRelabeling) : 𝟭 Graph ⟶ (ReLabel r) := {
     intro X Y f
     ext x
     apply Equiv.injective (r.r Y)
-    change (r.r Y) ((r.r Y ∘ f.f) x) = (r.r Y) (f.f ((r.r X) x))
+    change (r.r Y) ((r.r Y ∘ f.map) x) = (r.r Y) (f.map ((r.r X) x))
     dsimp [Functor.id, ReLabel, relabel, Functor.comp]
     aesop_cat_nonterminal
     apply (Equiv.apply_eq_iff_eq_symm_apply (r.r Y)).mpr
     simp[r.natural]
 }
-
-#check relabel_nat
 ```
+
+All the Arrows
+===
+
+| Object | Arrow | Requirements|
+|-------|-------|--------------|
+| Graph Vertex | Edge | — |
+| Graph | Morphism | Edge Preserving |
+| General Object | Morphism | id, comp |
+| Category | Functor | 𝟙 , ≫ |
+| Functor | Natural Transormation | Commutivity |
+
+
+
 
 Exercises
 ===
-
 1. Define an inductive type `BinTree` to represent binary trees.
 1. Show that `BinTree` forms a Category, using the same notion of morphism as we used for `Graph`.
 1. Redo the above using Mathlib's `Fullsubcatgory` definition to define a new type `BinTree'`
    as a subcategory of `Graph`.
-
 
 ```lean
 --hide

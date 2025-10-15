@@ -378,6 +378,21 @@ def relabel_nat (r : VertexRelabeling) : 𝟭 Graph ⟶ (ReLabel r) := {
 }
 
 /-
+All the Arrows
+===
+
+| Object | Arrow | Requirements|
+|-------|-------|--------------|
+| Graph Vertex | Edge | — |
+| Graph | Morphism | Edge Preserving |
+| General Object | Morphism | id, comp |
+| Category | Functor | 𝟙 , ≫ |
+| Functor | Natural Transormation | Commutivity |
+
+
+-/
+
+/-
 Exercises
 ===
 1. Define an inductive type `BinTree` to represent binary trees.

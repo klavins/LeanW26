@@ -130,6 +130,28 @@ theorem prod_to_pair {f₁ : Y₁ ⟶ X₁} {f₂ : Y₂ ⟶ X₂}
 theorem prod_map_comp {f₁ : X ⟶ Y} {f₂ : Y ⟶ Z} {g₁ : U ⟶ V} {g₂ : V ⟶ W}
   : ‹ f₁ ≫ f₂, g₁ ≫ g₂ › = ‹ f₁, g₁ › ≫ ‹f₂, g₂› := by
   simp[←Category.assoc] -- uses comp_pair and prod_to_pair
+
+theorem pair_unique_simp {h : Y ⟶ prod X₁ X₂} : pair (h ≫ π₁) (h ≫ π₂) = h := by
+  apply Eq.symm
+  exact pair_unique
+
+theorem pair_unique_simp2 {f : W ⟶ X * Y * Z}
+  : pair (f ≫ π₁ ≫ π₁) (f ≫ π₁ ≫ π₂) = f ≫ π₁ := by
+  simp[←Category.assoc]
+  apply pair_unique_simp
+
+theorem pair_unique_simp3 {f : W ⟶ X * (Y * Z)}
+  : pair (f ≫ π₂ ≫ π₁) (f ≫ π₂ ≫ π₂) = f ≫ π₂ := by
+  simp[←Category.assoc]
+  apply pair_unique_simp
+
+
+@[simp]
+theorem hom_ext {A B : C} {f g : X ⟶ A * B} {h₁ : f ≫ π₁ = g ≫ π₁} {h₂ : f ≫ π₂ = g ≫ π₂}
+  : f = g := by
+    rw[pair_unique (h := f)]
+    rw[pair_unique (h := g)]
+    rw[h₁,h₂]
 ```
 
 Projection Functors
@@ -163,6 +185,66 @@ def ProdBifunctor : (C × C) ⥤ C where
 Naturality
 ===
 
+```lean
+def π₁_nat : ProdBifunctor ⟶ Fst (C:=C) where
+  app XY := π₁
+  naturality {XY XY'} (h : XY ⟶ XY') := by
+    simp[ProdBifunctor,Fst]
+
+def π₂_nat : ProdBifunctor ⟶ Snd (C:=C) where
+  app XY := π₂
+  naturality {XY XY'} (h : XY ⟶ XY') := by
+    simp[ProdBifunctor,Snd]
+```
+
+Proving Associativity
+===
+Yoneda says to show X ≅ Y we need to show Z ⟶ X ≅ Z ⟶ Y.
+
+So to show (A*B)*C ≅ A*(B*C) it suffices to show
+Z ⟶ (A*B)*C ≅ Z ⟶ A*(B*C).
+
+By the universal property:
+- Z ⟶ (A*B)*C ≅ (Z ⟶ A ⨯ Z ⟶ B) × (Z ⟶ C)
+- Z ⟶ A*(B*C) ≅ (Z ⟶ A) ⨯ (Z ⟶ B × Z ⟶ C)
+
+Via associativity of × in the category Set,
+(Z ⟶ A ⨯ Z ⟶ B) × (Z ⟶ C) ≅ (Z ⟶ A) ⨯ (Z ⟶ B × Z ⟶ C)
+
+
+```lean
+def t1 : (W ⟶ (X*Y)*Z) ≃ ((W ⟶ X) × (W ⟶ Y)) × (W ⟶ Z) := {
+      toFun f := ( ( f ≫ π₁ ≫ π₁ , f ≫ π₁ ≫ π₂ ), f ≫ π₂ ),
+      invFun := fun ⟨ ⟨ f1, f2 ⟩, f3 ⟩  => pair (pair f1 f2) f3,
+      left_inv := by
+        intro f
+        simp[pair_unique_simp2,pair_unique_simp],
+      right_inv := by
+        intro f
+        simp[←Category.assoc]
+  }
+
+def t2 : (W ⟶ X*(Y*Z)) ≃ (W ⟶ X) × ((W ⟶ Y) × (W ⟶ Z)) := {
+      toFun f := ( f ≫ π₁, ( f ≫ π₂ ≫ π₁ , f ≫ π₂ ≫ π₂ ) ),
+      invFun := fun ⟨ f1, ⟨ f2, f3 ⟩ ⟩  => pair f1 (pair f2 f3),
+      left_inv := by
+        intro f
+        simp[pair_unique_simp3,pair_unique_simp],
+      right_inv := by
+        intro f
+        simp[←Category.assoc]
+  }
+
+def t3 : ((W ⟶ X) × (W ⟶ Y)) × (W ⟶ Z) ≃ (W ⟶ X) × ((W ⟶ Y) × (W ⟶ Z)) := {
+  toFun f := (f.1.1,(f.1.2,f.2)),
+  invFun f := ((f.1,f.2.1),f.2.2),
+  left_inv := by exact congrFun rfl,
+  right_inv := by exact congrFun rfl
+}
+
+def homAssocEquiv (W : C) : (W ⟶ (X * Y) * Z) ≃ (W ⟶ X * (Y * Z)) :=
+  t1.trans (t3.trans t2.symm)
+```
 
 
 Simplifications
@@ -179,8 +261,7 @@ theorem pair_simp_1 {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂} : pair f₁ f₂ ≫
 theorem pair_simp_2 {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂} : pair f₁ f₂ ≫ π₂ = f₂ := by
   exact pair₂ f₁ f₂
 
-theorem pair_unique_simp {h : Y ⟶ prod X₁ X₂} : h = pair (h ≫ π₁) (h ≫ π₂) := by
-  exact pair_unique
+
 
 theorem pair_unique_simp_2 {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂} {h : Y ⟶ prod X₁ X₂}
     {h₁ : h ≫ π₁ = f₁} {h₂ : h ≫ π₂ = f₂} : h = pair f₁ f₂ := by
@@ -214,19 +295,6 @@ lemma prod_id_unique {f : X * Y ⟶ X * Y} {h₁ : f ≫ π₁ = π₁} {h₂ : 
   : f = 𝟙 (X*Y) := by
     rw[←pair_id,←h₁,←h₂]
     apply pair_unique
-```
-
-Composing Pairs
-===
-
-This theorem shows how to compose pairs.
-
-```lean
-@[simp, reassoc]
-lemma comp_pair {h : W ⟶ X} {f : X ⟶ Y} {g : X ⟶ Z} :
-  h ≫ pair f g = pair (h ≫ f) (h ≫ g) := by
-  rw[pair_unique (h := h ≫ pair f g )]
-  simp
 ```
 
 Associativity Diagram
@@ -279,26 +347,10 @@ def prod_assoc : (X*Y)*Z ≅ X*(Y*Z) :=
     }
 ```
 
-A Condition for Equality of two Morphisms
-===
-
-```lean
-@[simp]
-theorem hom_ext {A B : C} {f g : X ⟶ A * B} {h₁ : f ≫ π₁ = g ≫ π₁} {h₂ : f ≫ π₂ = g ≫ π₂}
-  : f = g := by
-    rw[pair_unique (h := f)]
-    rw[pair_unique (h := g)]
-    rw[h₁,h₂]
-```
-
 Simplifiers for Products
 ===
 
 ```lean
-@[simp]
-theorem prod_to_pair {f₁ : Y₁ ⟶ X₁} {f₂ : Y₂ ⟶ X₂}
-   : ‹f₁,f₂› = pair (π₁ ≫ f₁) (π₂ ≫ f₂) := by rfl
-
 @[simp]
 theorem prod_notation_to_pair {f₁ : Y₁ ⟶ X₁} {f₂ : Y₂ ⟶ X₂}
    : ‹f₁,f₂› = pair (π₁ ≫ f₁) (π₂ ≫ f₂) := by rfl
@@ -310,7 +362,7 @@ Theorems About Morphism Products
 ```lean
 @[simp]
 theorem prod_map_compf {f₁ : X ⟶ Y} {f₂ : Y ⟶ Z} {g₁ : U ⟶ V} {g₂ : V ⟶ W}
-  : ‹ f₁ ≫ f₂, g₁ ≫ g₂ › = ‹ f₁, g₁ › ≫ ‹f₂, g₂› := by simp?[←Category.assoc]
+  : ‹ f₁ ≫ f₂, g₁ ≫ g₂ › = ‹ f₁, g₁ › ≫ ‹f₂, g₂› := by simp[←Category.assoc]
 
 
 theorem prod_map_unique {Z X₁ X₂ : C} {g₁ : Z ⟶ X₁} {g₂ : Z ⟶ X₂}
@@ -422,7 +474,7 @@ instance Graph.inst_has_product : HasProduct Graph := {
   prod := TensorProd,
   π₁ := fun {X₁ X₂ : Graph} => ⟨ Prod.fst, TensorProd.left ⟩,
   π₂ := fun {X₁ X₂ : Graph} => ⟨ Prod.snd, TensorProd.right⟩,
-  pair := fun {X Y Z} f₁ f₂ => ⟨ fun z => ( f₁.f z, f₂.f z ), by
+  pair := fun {X Y Z} f₁ f₂ => ⟨ fun z => ( f₁.map z, f₂.map z ), by
       intro x y h
       exact ⟨ f₁.pe x y h, f₂.pe x y h ⟩
     ⟩

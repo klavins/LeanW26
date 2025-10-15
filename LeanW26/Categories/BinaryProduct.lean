@@ -62,7 +62,7 @@ attribute [simp, reassoc] HasProduct.pair₁ HasProduct.pair₂
 namespace HasProduct
 
 universe u v
-variable {C : Type u} [Category.{v} C] [HasProduct C] {A B U V W X X₁ X₂ Y Y₁ Y₂ Z : C}
+variable {C : Type u} [Category.{v} C] [HasProduct C] {A B U V W W' X X₁ X₂ Y Y₁ Y₂ Z : C}
 
 --unhide
 
@@ -255,123 +255,48 @@ def t3 : ((W ⟶ X) × (W ⟶ Y)) × (W ⟶ Z) ≃ (W ⟶ X) × ((W ⟶ Y) × (W
   right_inv := by exact congrFun rfl
 }
 
-def homAssocEquiv (W : C) : (W ⟶ (X * Y) * Z) ≃ (W ⟶ X * (Y * Z)) :=
+def homAssocEquiv : (W ⟶ (X * Y) * Z) ≃ (W ⟶ X * (Y * Z)) :=
   t1.trans (t3.trans t2.symm)
 
+@[simp, reassoc]
+lemma homAssocEquiv_natural (k : W' ⟶ W) (f : W ⟶ (X * Y) * Z)
+  : homAssocEquiv (W:=W') (k ≫ f) = k ≫ homAssocEquiv (W:=W) f := by
+    simp[homAssocEquiv,t1,t2,t3]
 
+def homAssocNatIso {X Y Z : C} : yoneda.obj (((X * Y) * Z)) ≅ yoneda.obj (X * (Y * Z)) :=
+  NatIso.ofComponents (fun W => {
+    hom := fun f => (homAssocEquiv (W := Opposite.unop W)) f,
+    inv := fun g => (homAssocEquiv (W := Opposite.unop W)).symm g,
+    hom_inv_id := by
+      funext f
+      simp,
+    inv_hom_id := by
+      funext f
+      simp
+  })
 
+def assocIso (X Y Z : C) : ((X * Y) * Z) ≅ (X * (Y * Z)) :=
+  (Yoneda.fullyFaithful).preimageIso homAssocNatIso
 
-/-
+#check (assocIso X Y Z).hom
+#check (assocIso X Y Z).inv
 
-Simplifications
-===
-
-You can't label a class property with `@[simp]`, so we restate them as theorems.
--/
-
-
-
-@[simp]
-theorem pair_simp_1 {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂} : pair f₁ f₂ ≫ π₁ = f₁ := by
-  exact pair₁ f₁ f₂
-
-@[simp]
-theorem pair_simp_2 {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂} : pair f₁ f₂ ≫ π₂ = f₂ := by
-  exact pair₂ f₁ f₂
-
-
-
-theorem pair_unique_simp_2 {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂} {h : Y ⟶ prod X₁ X₂}
-    {h₁ : h ≫ π₁ = f₁} {h₂ : h ≫ π₂ = f₂} : h = pair f₁ f₂ := by
-    rw[←h₁,←h₂]
-    exact pair_unique
-
-
-
-/-
-Pairs of Projections
-===
-
-This theorem states that when you take a pair of projections, you
-get the identity map.
-
-<iframe class="quiver-embed"
-        src="https://q.uiver.app/#q=WzAsMyxbMSwwLCJYKlkiXSxbMiwwLCJZIl0sWzAsMCwiWCJdLFswLDIsIlxccGlfMSIsMl0sWzAsMSwiXFxwaV8yIl0sWzAsMCwiMV97WCpZfSJdXQ==&embed"
-        width="351"
-        height="220"
-        style="border-radius: 8px; border: none;">
-</iframe>
--/
-
-
+theorem prod_associator : (assocIso X Y Z).hom = pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂) := by
+  simp[assocIso,homAssocNatIso,homAssocEquiv,t1,t2,t3]
+  simp[NatIso.ofComponents,Yoneda.fullyFaithful]
 
 /-
 Conditions for a map to be the Identity
 ===
 
-The next theorem describes when `f : X * Y ⟶ X * Y` is the identity on
-`X * Y`.
+The next theorem describes when `f : X * Y ⟶ X * Y` is the identity on `X * Y`.
 -/
 
-
-
-@[simp]
-lemma prod_id_unique {f : X * Y ⟶ X * Y} {h₁ : f ≫ π₁ = π₁} {h₂ : f ≫ π₂ = π₂}
-  : f = 𝟙 (X*Y) := by
-    rw[←pair_id,←h₁,←h₂]
-    apply pair_unique
-
-/-
-Associativity Diagram
-===
-
-<table><tr>
-
-<td>
-<iframe class="quiver-embed"
-        src="https://q.uiver.app/#q=WzAsNyxbMSwwLCIoWCpZKSpaIl0sWzAsMSwiWCpZIl0sWzIsMSwiWiJdLFsxLDIsIlkiXSxbMCwzLCJYIl0sWzIsMywiWSpaIl0sWzEsNCwiWCooWSpaKSJdLFswLDEsIlxccGlfMSIsMl0sWzAsMiwiXFxwaV8yIl0sWzEsNCwiXFxwaV8xIiwyXSxbMSwzLCJcXHBpXzIiXSxbNSwzLCJcXHBpXzEiXSxbNiw1LCJcXHBpXzIiXSxbNiw0LCJcXHBpXzEiXSxbNSwyLCJcXHBpXzIiLDJdXQ==&embed"
-        width="300"
-        height="350"
-        style="border-radius: 8px; border: none;">
-</iframe>
-</td>
-
-<td>
-π₁ ≫ π₂ : (X×Y)×Z ⟶ Y<br>
-π₂ : (X×Y)×Z ⟶ Z<br>
-π₁ ≫ π₁ : (X×Y)×Z ⟶ X<br>
-⟹<br>
-pair (π₁ ≫ π₂) π₂ : (X×Y)×Z ⟶ Y×Z<br>
-pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂) : (X×Y)×Z  ⟶ X×(Y×Z)<br>
-<br>
-Similarly,<br>
-pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂) : X×(Y×Z) ⟶ (X×Y)×Z<br>
-</td>
-</tr></table>
-
-Proof of Associativity
-===
-
--/
-
-@[simp]
-def prod_assoc : (X*Y)*Z ≅ X*(Y*Z) :=
-    {
-      hom := pair (π₁ ≫ π₁) (pair (π₁ ≫ π₂) π₂),
-      inv := pair (pair π₁ (π₂ ≫ π₁)) (π₂ ≫ π₂),
-      hom_inv_id := by
-        apply prod_id_unique
-        · simp[←Category.assoc]
-          rw[←pair_unique_simp]
-        · simp?[←Category.assoc],
-      inv_hom_id := by
-         apply prod_id_unique
-         · simp?[←Category.assoc]
-         · simp[←Category.assoc]
-           rw[←pair_unique_simp]
-    }
-
-
+-- @[simp]
+-- lemma prod_id_unique {f : X * Y ⟶ X * Y} {h₁ : f ≫ π₁ = π₁} {h₂ : f ≫ π₂ = π₂}
+--   : f = 𝟙 (X*Y) := by
+--     rw[←pair_id,←h₁,←h₂]
+--     apply pair_unique
 
 
 /-
@@ -379,34 +304,33 @@ Simplifiers for Products
 ===
 -/
 
-@[simp]
-theorem prod_notation_to_pair {f₁ : Y₁ ⟶ X₁} {f₂ : Y₂ ⟶ X₂}
-   : ‹f₁,f₂› = pair (π₁ ≫ f₁) (π₂ ≫ f₂) := by rfl
+-- @[simp]
+-- theorem prod_notation_to_pair {f₁ : Y₁ ⟶ X₁} {f₂ : Y₂ ⟶ X₂}
+--    : ‹f₁,f₂› = pair (π₁ ≫ f₁) (π₂ ≫ f₂) := by rfl
 
 /-
 Theorems About Morphism Products
 ===
 -/
 
-@[simp]
-theorem prod_map_compf {f₁ : X ⟶ Y} {f₂ : Y ⟶ Z} {g₁ : U ⟶ V} {g₂ : V ⟶ W}
-  : ‹ f₁ ≫ f₂, g₁ ≫ g₂ › = ‹ f₁, g₁ › ≫ ‹f₂, g₂› := by simp[←Category.assoc]
+-- @[simp]
+-- theorem prod_map_compf {f₁ : X ⟶ Y} {f₂ : Y ⟶ Z} {g₁ : U ⟶ V} {g₂ : V ⟶ W}
+--   : ‹ f₁ ≫ f₂, g₁ ≫ g₂ › = ‹ f₁, g₁ › ≫ ‹f₂, g₂› := by simp[←Category.assoc]
 
 
-theorem prod_map_unique {Z X₁ X₂ : C} {g₁ : Z ⟶ X₁} {g₂ : Z ⟶ X₂}
-  {h : Z ⟶ prod X₁ X₂} {h₁ : h ≫ π₁ = g₁} {h₂ : h ≫ π₂ = g₂} :
-  h = pair g₁ g₂ := by
-    rw[←h₁,←h₂]
-    exact pair_unique
+-- theorem prod_map_unique {Z X₁ X₂ : C} {g₁ : Z ⟶ X₁} {g₂ : Z ⟶ X₂}
+--   {h : Z ⟶ prod X₁ X₂} {h₁ : h ≫ π₁ = g₁} {h₂ : h ≫ π₂ = g₂} :
+--   h = pair g₁ g₂ := by
+--     rw[←h₁,←h₂]
+--     exact pair_unique
 
 
-@[simp]
-theorem prod_map_id (X Y : C) :
-  (‹𝟙 X, 𝟙 Y› : (X * Y) ⟶ (X * Y)) = 𝟙 (X * Y) := by
-  apply hom_ext
-  · simp
-  · simp
-
+-- @[simp]
+-- theorem prod_map_id (X Y : C) :
+--   (‹𝟙 X, 𝟙 Y› : (X * Y) ⟶ (X * Y)) = 𝟙 (X * Y) := by
+--   apply hom_ext
+--   · simp
+--   · simp
 
 /-
 More Theorems About Morphism Products
@@ -421,35 +345,13 @@ lemma prod_map_fst {f : A ⟶ X} {g : B ⟶ Y} :
 lemma prod_map_snd {f : A ⟶ X} {g : B ⟶ Y} :
     ‹f,g› ≫ π₂ = π₂ ≫ g := by simp
 
-lemma fst_fst : (π₁ : (X*Y)*Z ⟶ X*Y) ≫ (π₁ : X*Y ⟶ X) = prod_assoc.hom ≫ π₁ := by simp
+lemma fst_fst : (π₁ : (X*Y)*Z ⟶ X*Y) ≫ (π₁ : X*Y ⟶ X) = (assocIso X Y Z).hom ≫ π₁ := by
+  simp[assocIso,homAssocNatIso,homAssocEquiv,t1,t2,t3]
+  simp[NatIso.ofComponents,Yoneda.fullyFaithful]
 
-lemma snd_snd : (π₂ : X*(Y*Z) ⟶ Y*Z) ≫ π₂ = prod_assoc.inv ≫ π₂ := by simp
-
-/-
-The Associator
-===
--/
-
-def associator : (X*Y)*Z ⟶ X*(Y*Z) :=
-  let f : (X*Y)*Z ⟶ X := π₁ ≫ π₁
-  let g : (X*Y)*Z ⟶ Y*Z := ‹ π₂, 𝟙 Z ›
-  pair f g
-
-def associator_inv : X*(Y*Z) ⟶ (X*Y)*Z:=
-  let f : X*(Y*Z) ⟶ (X*Y) := ‹ 𝟙 X, π₁ ›
-  let g : X*(Y*Z) ⟶ Z := π₂ ≫ π₂
-  pair f g
-
-
-/-
-Functors
-===
--/
-
-@[simp] lemma prod_map_comp₁ (f : X ⟶ Y) (g : Y ⟶ Z) :
-    ‹f ≫ g, 𝟙 Y›  = ‹f, 𝟙 Y› ≫ ‹g, 𝟙 Y› := by
-    simp[prod_map,←Category.assoc]
-
+lemma snd_snd : (π₂ : X*(Y*Z) ⟶ Y*Z) ≫ π₂ = (assocIso X Y Z).inv ≫ π₂ := by
+  simp[assocIso,homAssocNatIso,homAssocEquiv,t1,t2,t3]
+  simp[NatIso.ofComponents,Yoneda.fullyFaithful]
 
 /-
 Example: Graphs Have Products
