@@ -32,7 +32,7 @@ body {
 }
 
 .sidebar {
-    width: 10%;
+    width: 12%;
     height: 100vh;
     float: left;
     padding: 5px 5px 5px 10px;
@@ -55,12 +55,6 @@ body {
 
 .active-slide {
     display: block;
-}
-
-.active-title {
-    border: 1pt solid black !important;
-    color: black !important;
-    background-image: linear-gradient(to top,#eeeeff, white) !important;;
 }
 
 #forward-button {
@@ -107,15 +101,20 @@ body {
 
 .title {
     font-size: 6pt;
-    /* border: 1pt solid #ddd;*/
-    margin: 2px 0 2px 0;
+    border: 1pt solid #fff;
+    margin: 0; 
     border-radius: 3px;
-    padding: 2px;
+    padding: 1px 1px 1px 0;
     font-family: Arial, Helvetica, sans-serif;
     /*background-image: linear-gradient(to top ,#eee, white); */
     color: #aaa;
     cursor: pointer;
     text-align: left;
+}
+
+.active-title {
+    border: 1pt solid #eee !important;
+    color: black !important;
 }
 
 .title:hover {
@@ -129,8 +128,8 @@ body {
 
 .deck {
     font-size: 6pt;
-    margin: 2px 2px 2px 6px;
-    padding: 2px;
+    margin: 0px 2px 0px 6px;
+    padding: 1px 2px 0 2px;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
     text-align: left;
@@ -138,6 +137,9 @@ body {
 
 .active-deck {
     font-weight: bold;
+    border: 1pt solid #eee !important;
+    color: black !important;
+    border-radius: 4px;
 }
 
 table, tr, td, img {
@@ -168,7 +170,7 @@ pre {
     font-size: 8pt;
     font-weight: bold;
     margin: 0px;
-    padding: 2px 0 2px 0;
+    padding: 2px 0 8px 0;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
     text-align: left;    
@@ -283,9 +285,13 @@ pre {
 
 .section {
     font-size: 6pt;
-    margin: 2px;
+    margin: 2px 2px 0 2px;
     padding: 2px;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
     text-align: left;    
+}
+
+.toc-section-title {
+    font-weight: bold;
 }

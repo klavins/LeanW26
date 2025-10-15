@@ -1,35 +1,27 @@
 CHAPTER_DIR := ../LeanW26
-
 MD_DIR := src
 
-NAMES :=  Basic SUMMARY
-MD_FILES := $(foreach item,$(NAMES), $(MD_DIR)/$(item).md)
+LEAN_DIRS := $(wildcard $(CHAPTER_DIR)/*)
+MD_DIRS :=  $(patsubst $(CHAPTER_DIR)/%,$(MD_DIR)/%,$(LEAN_DIRS))
 
-INTRO_NAMES := Lean
-INTRO_FILES := $(foreach item,$(INTRO_NAMES), $(MD_DIR)/Introduction/$(item).md)
+LEAN_FILES := $(wildcard $(CHAPTER_DIR)/*/*.lean)
+MD_FILES := $(patsubst $(CHAPTER_DIR)/%.lean,$(MD_DIR)/%.md,$(LEAN_FILES))
 
-CAT_NAMES := CartesianClosed Category BinaryProduct Exponential TerminalObject Syntactic Latex
-CAT_FILES := $(foreach item,$(CAT_NAMES), $(MD_DIR)/Categories/$(item).md)
-
-all: $(MD_FILES) $(CAT_FILES)  $(INTRO_FILES) 
+all: dirs $(MD_FILES)
 
 $(MD_DIR)/%.md: $(CHAPTER_DIR)/%.lean 
-	python3 dm.py $(CHAPTER_DIR)/$*.lean > $@
+	python3 dm.py $(CHAPTER_DIR)/$*.lean > $@	
 
-$(MD_DIR)/Introduction/%.md: $(CHAPTER_DIR)/Introduction/%.lean 
-	python3 dm.py $(CHAPTER_DIR)/Introduction/$*.lean > $@	
+dirs: $(MD_DIRS)
 
-$(MD_DIR)/Categories/%.md: $(CHAPTER_DIR)/Categories/%.lean 
-	python3 dm.py $(CHAPTER_DIR)/Categories/$*.lean > $@	
+$(MD_DIRS):
+	echo $@
+	mkdir -p $@
 
-deploy:
-	rm -rf ../docs
-	cp -r book ../docs
+show: 
+	echo $(MD_DIRS)
+	echo $(MD_FILES)
 
 clean:
-	rm -f $(MD_DIR)/*.md \
-	      $(MD_DIR)/Categories/*.md \
-		  $(MD_DIR)/Introduction/*.md \
-
-
+	rm -r $(MD_DIR)/*
 

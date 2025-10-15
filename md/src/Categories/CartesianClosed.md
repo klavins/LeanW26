@@ -11,6 +11,10 @@ class CartesianClosed.{u} (C : Type u) (terminal : C) extends
 
 instance inst_ccc : CartesianClosed ReflexiveGraph terminus' := {}
 
+-- Do the Category of Equilogical Spaces
+--  Obects: (X,~) where X is a topological space and ~ is an equivaence relation
+--  Morphisms: Continuous Maps that preserve equivalences
+
 --hide
 end ReflexiveGraph
 end LeanW26

@@ -3,9 +3,54 @@
         { 
             "name": "Introducton", 
             "decks": [
-                { "path": "src/Introduction/Lean.md", "title": "Introduction" }
+                { "path": "src/Introduction/Motivation.md", "title": "Motivation" },
+                { "path": "src/Introduction/Lean.md", "title": "Lean" },
+                { "path": "src/Introduction/Programming.md", "title": "Programming" },
+                { "path": "src/Introduction/Proving.md", "title": "Proving" }
             ]
         },
+        { 
+            "name": "Type Theory", 
+            "decks": [
+                { "path": "src/TypeTheory/Overview.md", "title": "Overview" },
+                { "path": "src/TypeTheory/LambdaCalculus.md", "title": "The Lambda Calculus" },
+                { "path": "src/TypeTheory/Simple.md", "title": "Simple Types" },
+                { "path": "src/TypeTheory/Inductive.md", "title": "Inductive Types" },                
+                { "path": "src/TypeTheory/Polymorphic.md", "title": "Polymorphism" },
+                { "path": "src/TypeTheory/Dependent.md", "title": "Dependent Types" },
+                { "path": "src/TypeTheory/TypesOnTypes.md", "title": "Type Constructors" },
+                { "path": "src/TypeTheory/Universes.md", "title": "Universes" }             
+            ]
+        },
+        { 
+            "name": "Logic", 
+            "decks": [
+                { "path": "src/Logic/Implication.md", "title": "Implication" },
+                { "path": "src/Logic/Propositional.md", "title": "Propositional Logic" },
+                { "path": "src/Logic/Equality.md", "title": "Equality" },
+                { "path": "src/Logic/FirstOrder.md", "title": "First Order Logic" }
+            ]
+        },
+        { 
+            "name": "Numbers", 
+            "decks": [
+                { "path": "src/Numbers/Nats.md", "title": "Naturals" },
+                { "path": "src/Numbers/Induction.md", "title": "Induction" },
+                { "path": "src/Numbers/Ints.md", "title": "Integers" },
+                { "path": "src/Numbers/Rats.md", "title": "Rationals" }
+            ]
+        },      
+        { 
+            "name": "Relations", 
+            "decks": [
+                { "path": "src/Relations/Sets.md", "title": "Sets" },
+                { "path": "src/Relations/Relations.md", "title": "Relations" },
+                { "path": "src/Relations/Ordering.md", "title": "Ordering" },
+                { "path": "src/Relations/Equivalence.md", "title": "Equivalence" },
+                { "path": "src/Relations/Quotients.md", "title": "Quotients" },
+                { "path": "src/Relations/Integers.md", "title": "Integers Revisited" }
+            ]
+        },              
         {
             "name": "Category Theory",
             "decks" : [

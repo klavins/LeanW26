@@ -1,15 +1,16 @@
 
-
-[Basic](./Basic.md)
-
-# Categories
-
-- [Categories](./Categories/Category.md)
-- [Binary Products](./Categories/BinaryProduct.md)
-- [Exponentials](./Categories/Exponential.md)
-- [Cartesian Closed](./Categories/CartesianClosed.md)
+Todo
+===
+- Copy from previous course
+- Discuss Proof irrelevance (Eq works on Terms, but with Prop it just says all proofs are equal)
 
 
+Todo
+===
+
+```lean
+end LeanW26
+```
 
 License
 ===

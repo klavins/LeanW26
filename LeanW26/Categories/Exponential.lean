@@ -32,12 +32,25 @@ arguments and combine it into two functions of one argument.
 
 For example suppose `f = fun x y => x+y`. Then `f x = fun y => x+y`.
 
+Here `f : X*Y → Z` and `f x : Y → Z`. The operation that does this is called `curry`,
+which is an operation on functions:
+
+```
+    curry : (X*Y → Z) → (X → (Y → Z))
+```
+
+or in the notation of Category theory
+
+```
+    curry : (X*Y ⟶ Z) → (X ⟶ Z^Y)
+```
+
 Currying in a Category
 ===
 
 <img src="https://docs.google.com/drawings/d/e/2PACX-1vRE5Mmfx10f5A0c9oc94fXmYx0f5sEf4U-wh0c_esWBV02gyE0rMPcf1BBaZ5aoARFXBpSNp-S2uWh1/pub?w=1440&amp;h=1080" width=60%>
 
-We define `curry` to have type:
+So `curry` to has type:
 
 ```lean
 curry : (X × Y ⟶ Z) → (X ⟶ Z^Y)
@@ -57,20 +70,20 @@ HasExp
 Here's the implementation
 -/
 
+#check map
+
 open HasProduct in
 class HasExp.{u,v} (C : Type u) [Category.{v} C] [HasProduct.{u} C] where
 
   exp : C → C → C
-  eval {Z Y : C} : (prod (exp Z Y) Y) ⟶ Z
-  curry {X Y Z : C} (g : (prod X Y) ⟶ Z) : X ⟶ (exp Z Y)
+  eval {Z Y : C} : (exp Z Y) * Y ⟶ Z
+  curry {X Y Z : C} (g : X * Y ⟶ Z) : X ⟶ (exp Z Y)
 
   curry_eval {X Y Z : C} (g : prod X Y ⟶ Z)
-    : prod_map (curry g) (𝟙 Y) ≫ eval = g
+    : ‹curry g, 𝟙 Y› ≫ eval = g
 
-  curry_unique {X Y Z : C} (g : X ⟶ exp Z Y) (h : prod X Y ⟶ Z)
-    (comm : prod_map g (𝟙 Y) ≫ eval = h)
-    : curry h = g
-
+  curry_unique {X Y Z : C} (g : X ⟶ exp Z Y)
+    : curry ( ‹g, 𝟙 Y› ≫ eval) = g
 
 /-
 Notation Class Instances
@@ -88,17 +101,342 @@ instance HasExp.inst_pow.{u, v} {C : Type u} [Category.{v} C]
 
 /- Now we can write: -/
 
+universe u v
+variable {C : Type u} [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
+variable {W X Y Z S A V : C}
 
-namespace Temp
-
-variable (C : Type*) [Category C] [HasProduct C] [HasExp C] (X Y Z : C)
 #check (X^Y)*Z
 
-end Temp
+/-
+Beta Reduction = `curry_eval`
+===
+Rewrite HasExp properties so they can be used with simp. -/
+
+open HasProduct HasExp in
+@[simp, reassoc]
+theorem beta {f : X * Y ⟶ Z}
+  : ‹curry f, 𝟙 Y› ≫ eval = f := by
+    apply curry_eval
+
+open HasProduct HasExp in
+@[simp, reassoc]
+theorem beta_alt {f : X * Y ⟶ Z}
+  : (pair (π₁ ≫ curry f) (π₂ ≫ (𝟙 Y))) ≫ eval = f := by
+    apply curry_eval
+
+/-
+Eta Reduction = `curry_unique`
+===
+-/
+
+open HasProduct HasExp in
+@[simp, reassoc]
+theorem eta {g : X ⟶ exp Z Y}
+  : curry ( ‹g, 𝟙 Y› ≫ eval ) = g := by
+    apply curry_unique
+
+open HasProduct HasExp in
+@[simp, reassoc]
+theorem eta_alt {g : X ⟶ exp Z Y}
+  : curry ( pair (π₁ ≫ g) (π₂ ≫ (𝟙 Y)) ≫ eval ) = g := by
+    apply curry_unique
+
+/-
+Extensionality
+===
+
+These theorems state that if two functions evaluate to the same thing on their arguments,
+then they are the same.
+-/
+
+open HasProduct HasExp in
+lemma exp_ext {f g : X ⟶ (Z ^ Y)} :
+  ‹f,  𝟙 Y› ≫ eval = ‹g,  𝟙 Y› ≫ eval → f = g := by
+    intro hyp
+    apply congrArg curry at hyp
+    rw[eta,eta] at hyp
+    exact hyp
+
+open HasProduct HasExp in
+lemma exp_ext_alt {f g : X ⟶ (Z ^ Y)} :
+  pair (π₁ ≫ f) (π₂ ≫ 𝟙 Y) ≫ eval = pair (π₁ ≫ g) (π₂ ≫ 𝟙 Y) ≫ eval → f = g := by
+    intro hyp
+    apply congrArg curry at hyp
+    rw[eta_alt,eta_alt] at hyp
+    exact hyp
+
+
 
 
 /-
-Reflexive Graphs: A Subcategory of Graphs
+Uncurrying
+===
+-/
+
+def HasExp.uncurry (g : X ⟶ Z ^ Y) : X * Y ⟶ Z :=   ‹g, 𝟙 Y›  ≫ HasExp.eval
+
+open HasProduct HasExp in
+theorem curry_uncurry (g : X * Y ⟶ Z)
+  : uncurry (curry g) = g := by apply curry_eval
+
+open HasProduct HasExp in
+theorem uncurry_curry (g : X ⟶ Z ^ Y)
+  : curry (uncurry g) = g := by apply curry_unique
+
+open HasProduct HasExp in
+theorem uncurry_both_sides {f g : X ⟶ Z ^ Y}
+  : f = g ↔ (uncurry f = uncurry g) := by
+  constructor
+  · intro h
+    rw[h]
+  · intro h
+    apply congrArg curry at h
+    simp[uncurry_curry] at h
+    exact h
+
+
+/-
+Sandbox
+===
+
+We can package these two theorems into a isomorphsm between Hom sets as follows.
+
+-/
+
+open HasProduct HasExp in
+def hom_curry_uncurry_eq : (X * Y ⟶ Z) ≅ (X ⟶ Z^Y) := by
+  exact ⟨
+    curry,
+    uncurry,
+    by
+      funext A
+      exact curry_uncurry A,
+    by
+      funext A
+      exact uncurry_curry A
+  ⟩
+
+
+open HasProduct HasExp in
+def f1 : (W ⟶ (X^Y)^Z) ≅ (W * Z ⟶ X^Y) :=
+  ⟨
+     uncurry,
+     curry,
+     by
+       funext A
+       exact uncurry_curry A,
+     by
+       funext A
+       exact curry_uncurry A
+  ⟩
+
+open HasProduct HasExp in
+def F1R (X Y Z : C): Cᵒᵖ ⥤ Type _ :=
+{ obj := fun W => (W.unop * Z ⟶ X^Y),
+  map := fun t g => (prod_map t.unop (𝟙 Z)) ≫ g,
+  map_id := by intro W; funext g; simp,
+  map_comp := by
+    intro W W' W'' t t'
+    funext g
+    simp [←Category.assoc]
+  }
+
+open HasProduct HasExp in
+@[simp]
+theorem curry_comp {A B X D : C} (f : A ⟶ B) (g : B * X ⟶ D) :
+  curry ((prod_map f (𝟙 X)) ≫ g) = f ≫ curry g := by
+  --simp[prod_map]
+  rw[uncurry_both_sides,curry_uncurry,uncurry]
+  --simp[←Category.assoc]
+  apply?
+  sorry
+
+
+-- curry(h∘(id×f))=f∘curry(h).
+
+open HasProduct HasExp in
+def f1_natIso :
+  yoneda.obj ((X^Y)^Z) ≅ F1R (C:=C) X Y Z :=
+{ hom :=
+  { app := fun W f => uncurry f,
+    naturality := by
+      intro W W' t
+      funext f
+      simp [F1R, ←Category.assoc,uncurry]
+  },
+  inv :=
+  { app := fun W g => curry g,
+    naturality := by
+      intro W W' t
+      funext g
+      unfold F1R
+      simp[prod_map]
+      apply curry_unique
+      sorry
+  },
+  hom_inv_id := sorry -- by ext W f; simp
+  inv_hom_id := sorry
+ }
+
+
+
+-- Hom(W×Z,XY)≅Hom((W×Z)×Y,X).
+
+open HasProduct HasExp in
+def f2 : (W*Z ⟶ X^Y) ≅ ((W * Z)*Y ⟶ X) :=
+  ⟨
+     uncurry,
+     curry,
+     by
+       funext A
+       exact uncurry_curry A,
+     by
+       funext A
+       exact curry_uncurry A
+  ⟩
+
+open HasProduct HasExp in
+def f3 : ((W * Z)*Y ⟶ X) ≅ (W*(Z*Y) ⟶ X) :=
+  ⟨
+     fun f => HasProduct.associator_inv ≫ f,
+     fun f => HasProduct.associator ≫ f,
+     by
+       funext A
+       have : HasProduct.associator ≫ associator_inv = 𝟙 (W*Z*Y) := by
+         unfold HasProduct.associator associator_inv
+         apply prod_id_unique
+         · simp[←Category.assoc]
+           rw[←pair_unique_simp]
+         · simp only [comp_pair, prod_map, ← Category.assoc, pair₂, Category.comp_id]
+       simp[←Category.assoc, this],
+     by
+       funext A
+       simp
+       have :  associator_inv  ≫ HasProduct.associator = 𝟙 (W*(Z*Y)) := by
+         unfold HasProduct.associator associator_inv prod_map
+         apply prod_id_unique
+         · simp only [comp_pair, ← Category.assoc, pair₁, Category.comp_id]
+         · simp only [comp_pair, ← Category.assoc, pair₁, pair₂, Category.comp_id]
+           rw[←pair_unique_simp]
+       simp[←Category.assoc, this]
+  ⟩
+
+def HasProduct.swap {X Y : C} : X*Y ⟶ Y*X := pair π₂ π₁  -- todo, express as a hom iso
+
+open HasProduct in
+omit [HasExp C] in
+theorem HasProduct.swap_swap
+  : HasProduct.swap ≫ HasProduct.swap = 𝟙 (X*Y) := by
+  simp[swap]
+
+open HasProduct HasExp in
+def f4 : (W * (Z*Y) ⟶ X) ≅ (W ⟶ X^(Y*Z)) :=
+  ⟨
+    fun f => curry (‹𝟙 W, swap›  ≫ f),
+    fun f => ‹𝟙 W, swap› ≫ (uncurry f),
+    by
+      funext A
+      simp[curry_uncurry,←Category.assoc]
+      rw[Category.assoc,swap_swap]
+      simp,
+    by
+      funext A
+      simp only [prod_map, Category.comp_id, types_comp_apply, types_id_apply,←Category.assoc]
+      have : pair π₁ (π₂ ≫ swap) ≫ pair π₁ (π₂ ≫ swap) = 𝟙 (W*(Y*Z)) := by
+        simp only[←Category.assoc, pair₁, pair₂,comp_pair]
+        rw[Category.assoc,swap_swap]
+        simp
+      rw[this,Category.id_comp,uncurry_curry]
+  ⟩
+
+open HasProduct HasExp in
+def f_assoc : (W ⟶ (X^Y)^Z) ≅ (W ⟶ X^(Y*Z)) := f1 ≪≫ f2 ≪≫ f3 ≪≫ f4
+
+open HasProduct HasExp in
+def fAssoc_natIso : yoneda.obj ((X^Y)^Z) ≅ yoneda.obj (X^(Y*Z)) := NatIso.ofComponents
+  (fun W => (f_assoc (W:=W.unop)))     -- your iso at each W
+  (by
+    -- naturality (usually one line): ext and `simp` do it
+    intro W W' t
+    ext g
+    simp [←Category.assoc,f_assoc,f1,f2,f3,f4]
+    unfold associator_inv
+    rw[prod_map]
+    sorry
+  )
+
+
+-- def fAssoc_natIso : yoneda.obj ((X^Y)^Z) ≅ yoneda.obj (X^(Y*Z)) := by
+--   apply Yoneda.ext
+--   intro Z1 f
+--   sorry
+
+def exp_assoc : (X^Y)^Z ≅ X^(Y*Z) :=
+  (Yoneda.fullyFaithful (C:=C)).preimageIso (fAssoc_natIso (X:=X) (Y:=Y) (Z:=Z))
+
+#check 1
+
+
+/-
+It is interesting that the subgoals turn into `curry ≫ uncurry = 𝟙` for example. Lean is framing
+the isomorphism in the category of Types in which each morphism is an object and the morhisms are
+functions between morphisms. In this case, `curry ≫ uncurry = uncurry ∘ curry`, which is just normal
+function composition.
+-/
+
+/-
+Sliding
+===
+-/
+
+open HasProduct HasExp in
+@[simp, reassoc]
+theorem sliding {m : S ⟶ A} {n : X ⟶ V} {h : A * V ⟶ X}
+    : ‹m ≫ curry h, n› ≫ eval =  ‹m, n› ≫ h := by
+    have : n = n ≫ (𝟙 V) := Eq.symm (Category.comp_id n)
+    rw[this]
+    rw[prod_map_comp]
+    rw[Category.assoc]
+    rw[←this]
+    have : ‹curry h, 𝟙 V› ≫ HasExp.eval = h := by
+      apply curry_eval
+    rw[this]
+
+
+
+
+
+/-
+Associativity
+===
+-/
+
+open HasProduct HasExp in
+def exp_prod : Iso ((X^Y)^Z) (X^(Y*Z)) :=
+
+    let F : ((X^Y)^Z)*(Y*Z) ⟶ X :=
+        pair (‹ 𝟙 ((X ^ Y) ^ Z), π₂ › ≫ eval) (π₂ ≫ π₁) ≫ eval
+
+    let f : (X^Y)^Z ⟶ X^(Y*Z) := curry F
+
+    let G : (X^(Y*Z)*Z)*Y ⟶ X :=
+        pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ eval
+
+    let g : X^(Y*Z) ⟶ (X^Y)^Z := curry (curry G)
+
+
+    ⟨
+      f,
+      g,
+      by
+        sorry,
+      by
+        sorry
+    ⟩
+
+
+/-
+Example: Reflexive Graphs: A Subcategory of Graphs
 ===
 
 To show an example of exponentials, we can't use simple graphs, as we need self-loops (Why?)
@@ -106,7 +444,7 @@ We can build a subcategory of Graph called ReflexiveGraph that does this using
 Mathlib's `FullSubcategory` helper. -/
 
 
-def ReflexiveGraph.{u} : Type (u+1) :=
+def ReflexiveGraph : Type (u+1) :=
   ObjectProperty.FullSubcategory (fun G : Graph.{u} => ∀ v, G.E v v)
 
 --hide
@@ -115,7 +453,7 @@ namespace ReflexiveGraph
 
 /- We can then show ReflexiveGraph is also a category and that it has products. -/
 
-instance inst_category.{u} : Category ReflexiveGraph.{u} :=
+instance inst_category : Category ReflexiveGraph.{u} :=
   ObjectProperty.FullSubcategory.category _
 
 /-
@@ -126,11 +464,8 @@ For the product instance, it would be nice if there were a way to just use the
 fact that Graphs have products. Or at least use some of that proof. But I could not
 figure that out so this is mostly just repetetive at this point. -/
 
---hide
-open HasProduct
---unhide
-
-instance inst_has_product.{u} : HasProduct.{u+1} ReflexiveGraph.{u} := {
+open HasProduct in
+instance inst_has_product : HasProduct.{u+1} ReflexiveGraph.{u} := {
 
   prod := fun G H => ⟨ TensorProd G.1 H.1, fun v => ⟨ G.property v.1, H.property v.2 ⟩ ⟩,
   π₁ := fun {X₁ X₂ : ReflexiveGraph} => Graph.inst_has_product.π₁,
@@ -146,8 +481,7 @@ instance inst_has_product.{u} : HasProduct.{u+1} ReflexiveGraph.{u} := {
   pair₂ := by intros; rfl,
 
   pair_unique {X₁ X₂ Y} := by
-    intro _ _ _ h1 h2
-    simp[←h1,←h2]
+    intro h
     rfl
 
 }
@@ -178,7 +512,7 @@ F₁ to F₂ if for all edges x y in H there is an edge from F₁(x) to F₂(x) 
 
 -/
 
-def exp.{u} (G H : ReflexiveGraph.{u}) : ReflexiveGraph.{u} := {
+def exp (G H : ReflexiveGraph.{u}) : ReflexiveGraph.{u} := {
   obj := {
     V := ULift.{u} (H ⟶ G),
     E := fun F₁ F₂ =>
@@ -192,6 +526,7 @@ def exp.{u} (G H : ReflexiveGraph.{u}) : ReflexiveGraph.{u} := {
     intro morphism u v h
     exact morphism.down.pe u v h
 }
+
 
 /-
 The eval Function is straighforward
@@ -226,12 +561,9 @@ instance inst_has_exp : HasExp ReflexiveGraph := {
         exact ⟨ex, ey⟩
     ⟩
 
-  curry_eval := by intros; rfl,
+  curry_eval := by aesop_cat
 
-  curry_unique := by
-    intro _ _ _ _ _ comm
-    rw[←comm]
-    rfl
+  curry_unique := by aesop_cat
 
 }
 
@@ -240,88 +572,6 @@ instance inst_has_exp : HasExp ReflexiveGraph := {
 --hide
 end ReflexiveGraph
 --unhide
-
-
-/-
-Uncurrying
-===
--/
-
-def HasExp.uncurry.{u,v} {C : Type u} [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
-  {X Y Z : C} (g : X ⟶ Z ^ Y) : X * Y ⟶ Z := (g * (𝟙 Y)) ≫ eval
-
-open HasProduct HasExp in
-theorem curry_uncurry.{u, v} {C : Type u}
-   [Category.{v} C] [HP : HasProduct.{u, v} C] [HE : HasExp.{u, v} C]
-   (X Y Z : C) (g : X * Y ⟶ Z)
-  : uncurry (curry g) = g := by
-    unfold uncurry
-    apply curry_eval
-
-/-
-An Example Theorem
-===
--/
-
-/-
- - prod_map (f₁ : Y₁ ⟶ X₁) (f₂ : Y₂ ⟶ X₂) : (prod Y₁ Y₂) ⟶ (prod X₁ X₂)
- - curry (g : (prod X Y) ⟶ Z) : X ⟶ (exp Z Y)
- - uncurry (g : X ⟶ Z ^ Y) : X * Y ⟶ Z
--/
-
-open HasProduct in
-@[simp]
-def prod_swap.{u, v} {C : Type u} (X Y : C) [Category.{v} C] [HasProduct.{u, v} C]
-   : X * Y ⟶ Y * X := pair π₂ π₁
-
-
-open HasProduct HasExp in
-theorem exp_prod.{u, v} (C : Type u) [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
-    (X Y Z : C) : ∃ f : Iso ((X^Y)^Z) (X^(Y*Z)), True := by
-
-    let f1 : (X^Y)^Z ⟶ X^(Y*Z) :=
-        curry (pair (prod_map (𝟙 ((X ^ Y) ^ Z)) π₂ ≫ eval) (π₂ ≫ π₁) ≫ eval)
-
-    let f2 : X^(Y*Z) ⟶ (X^Y)^Z :=
-        curry (curry (pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ eval))
-
-    use ⟨
-      f1,
-      f2,
-      by
-        unfold f1 f2
-        simp[prod_map,Category.comp_id]
-
-        sorry,
-      by
-        unfold f1
-        unfold f2
-
-        sorry
-    ⟩
-
-
-    -- let f1' : (X^Y)^Z ⟶ X^(Y*Z) :=
-    --    let E := (X^Y)^Z
-    --    let ev1 : E * Z ⟶ X ^ Y := eval (Z := exp X Y) (Y := Z)
-    --    let evXY :  (X^Y) * Y ⟶ X := eval (Z := X) (Y := Y)
-    --    let projZ_from_pair : E* (Y * Z) ⟶ E * Z := prod_map (𝟙 E) (π₂ : Y * Z ⟶ Z)
-    --    let to_expX_Y : E * (Y * Z) ⟶ X ^ Y :=  projZ_from_pair ≫ ev1
-    --    let projY_from_pair : E * (Y * Z) ⟶ Y :=
-    --        (π₂ : E * (Y * Z) ⟶ Y * Z) ≫ (π₁ : Y * Z ⟶ Y)
-    --    let body : E * (Y * Z) ⟶ X := pair to_expX_Y projY_from_pair ≫ evXY
-    --    curry body
-
-
-    -- let f2' : X^(Y*Z) ⟶ (X^Y)^Z :=
-    --     let E := X ^ (Y * Z)
-    --     let evYZ : E * (Y * Z) ⟶ X := eval (Z := X) (Y := Y * Z)
-    --     let projE : (E * Z) * Y ⟶ E := π₁ ≫ π₁
-    --     let projZ : (E * Z) * Y ⟶ Z := π₁ ≫ π₂
-    --     let projY : (E * Z) * Y ⟶ Y :=  π₂
-    --     let yz : (E * Z) * Y ⟶ Y * Z := pair projY projZ
-    --     let body : (E * Z) * Y ⟶ X := pair (projE) (yz) ≫ evYZ
-    --     curry (curry body)
 
 --hide
 end LeanW26

@@ -22,13 +22,8 @@ class Deck extends React.PureComponent {
       'div',
       { onClick: this.switch,
         className: classes },
-      React.createElement(
-        'span',
-        null,
-        (this.props.section+1) + "." + (this.props.id + 1),
-        ': ',
-        this.props.title
-      )
+      (this.props.id + 1) +  '. ' + this.props.title
+      //(this.props.section+1) + "." + (this.props.id + 1) +  ': ' + this.props.title
     );
   }
 

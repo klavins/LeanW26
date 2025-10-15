@@ -2,6 +2,8 @@
 
 const e = React.createElement;
 
+const roman = [ "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV" ]
+
 class Slider extends React.Component {
 
   constructor(props) {
@@ -64,6 +66,7 @@ class Slider extends React.Component {
       console.log("state", this.state)
       return fetch(this.config.sections[this.state.section].decks[this.state.deck].path);
     }).then(res => res.text()).then(result => {
+      console.log("result", result)
       let slides = this.parse(result);
       let titles = slides.map(s => s.split("===")[0]);
       this.setState({
@@ -194,7 +197,10 @@ class Slider extends React.Component {
           this.setState({ sidebar: sb });
           Cookies.set("sidebar", sb);
       } },
-      (this.state.section + 1) + "." + (this.state.deck+1) + ". " + this.config.sections[this.state.section].decks[this.state.deck].title
+      roman[this.state.section + 1] + "-" +  (this.state.deck+1),      
+      React.createElement('br', {}),
+      React.createElement('br', {}),
+      this.config.sections[this.state.section].decks[this.state.deck].title
     )
   }
 
@@ -220,7 +226,11 @@ class Slider extends React.Component {
        this.config.sections.flatMap((sec,j) => React.createElement(
          'div',
          { className: "section"},
-         (j+1) + ". " + sec.name,
+         React.createElement(
+           'div',
+           {className: 'toc-section-title'},
+           roman[j+1] + ". " + sec.name
+         ),
          sec.decks.flatMap((d,i) => React.createElement(
             Deck,
             { key: i, id: i, title: d.title, 
@@ -283,7 +293,7 @@ class Slider extends React.Component {
       let sidebar = document.querySelectorAll('.sidebar')[0];
       let active_thumb = document.querySelectorAll('.active-title')[0];
       let initial = sidebar.scrollTop;
-      let target = Math.max(active_thumb.offsetTop - sidebar.clientHeight / 2, 0);
+      let target = 0; // Math.max(active_thumb.offsetTop - sidebar.clientHeight / 2, 0);
       let current = initial;
       let t = 0,
           T = 1 * Math.abs(target - initial);

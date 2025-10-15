@@ -61,12 +61,14 @@ HasExp
 Here's the implementation
 
 ```lean
+#check map
+
 open HasProduct in
 class HasExp.{u,v} (C : Type u) [Category.{v} C] [HasProduct.{u} C] where
 
   exp : C → C → C
-  eval {Z Y : C} : (prod (exp Z Y) Y) ⟶ Z
-  curry {X Y Z : C} (g : (prod X Y) ⟶ Z) : X ⟶ (exp Z Y)
+  eval {Z Y : C} : (exp Z Y) * Y ⟶ Z
+  curry {X Y Z : C} (g : X * Y ⟶ Z) : X ⟶ (exp Z Y)
 
   curry_eval {X Y Z : C} (g : prod X Y ⟶ Z)
     : ‹curry g, 𝟙 Y› ≫ eval = g
@@ -92,7 +94,7 @@ instance HasExp.inst_pow.{u, v} {C : Type u} [Category.{v} C]
 ```lean
 universe u v
 variable {C : Type u} [Category.{v} C] [HasProduct.{u, v} C] [HasExp.{u, v} C]
-variable {X Y Z S A V : C}
+variable {W X Y Z S A V : C}
 
 #check (X^Y)*Z
 ```
@@ -181,6 +183,193 @@ theorem uncurry_both_sides {f g : X ⟶ Z ^ Y}
     exact h
 ```
 
+Sandbox
+===
+
+We can package these two theorems into a isomorphsm between Hom sets as follows.
+
+
+```lean
+open HasProduct HasExp in
+def hom_curry_uncurry_eq : (X * Y ⟶ Z) ≅ (X ⟶ Z^Y) := by
+  exact ⟨
+    curry,
+    uncurry,
+    by
+      funext A
+      exact curry_uncurry A,
+    by
+      funext A
+      exact uncurry_curry A
+  ⟩
+
+
+open HasProduct HasExp in
+def f1 : (W ⟶ (X^Y)^Z) ≅ (W * Z ⟶ X^Y) :=
+  ⟨
+     uncurry,
+     curry,
+     by
+       funext A
+       exact uncurry_curry A,
+     by
+       funext A
+       exact curry_uncurry A
+  ⟩
+
+open HasProduct HasExp in
+def F1R (X Y Z : C): Cᵒᵖ ⥤ Type _ :=
+{ obj := fun W => (W.unop * Z ⟶ X^Y),
+  map := fun t g => (prod_map t.unop (𝟙 Z)) ≫ g,
+  map_id := by intro W; funext g; simp,
+  map_comp := by
+    intro W W' W'' t t'
+    funext g
+    simp [←Category.assoc]
+  }
+
+open HasProduct HasExp in
+@[simp]
+theorem curry_comp {A B X D : C} (f : A ⟶ B) (g : B * X ⟶ D) :
+  curry ((prod_map f (𝟙 X)) ≫ g) = f ≫ curry g := by
+  --simp[prod_map]
+  rw[uncurry_both_sides,curry_uncurry,uncurry]
+  --simp[←Category.assoc]
+  apply?
+  sorry
+
+
+-- curry(h∘(id×f))=f∘curry(h).
+
+open HasProduct HasExp in
+def f1_natIso :
+  yoneda.obj ((X^Y)^Z) ≅ F1R (C:=C) X Y Z :=
+{ hom :=
+  { app := fun W f => uncurry f,
+    naturality := by
+      intro W W' t
+      funext f
+      simp [F1R, ←Category.assoc,uncurry]
+  },
+  inv :=
+  { app := fun W g => curry g,
+    naturality := by
+      intro W W' t
+      funext g
+      unfold F1R
+      simp[prod_map]
+      apply curry_unique
+      sorry
+  },
+  hom_inv_id := sorry -- by ext W f; simp
+  inv_hom_id := sorry
+ }
+
+
+
+-- Hom(W×Z,XY)≅Hom((W×Z)×Y,X).
+
+open HasProduct HasExp in
+def f2 : (W*Z ⟶ X^Y) ≅ ((W * Z)*Y ⟶ X) :=
+  ⟨
+     uncurry,
+     curry,
+     by
+       funext A
+       exact uncurry_curry A,
+     by
+       funext A
+       exact curry_uncurry A
+  ⟩
+
+open HasProduct HasExp in
+def f3 : ((W * Z)*Y ⟶ X) ≅ (W*(Z*Y) ⟶ X) :=
+  ⟨
+     fun f => HasProduct.associator_inv ≫ f,
+     fun f => HasProduct.associator ≫ f,
+     by
+       funext A
+       have : HasProduct.associator ≫ associator_inv = 𝟙 (W*Z*Y) := by
+         unfold HasProduct.associator associator_inv
+         apply prod_id_unique
+         · simp[←Category.assoc]
+           rw[←pair_unique_simp]
+         · simp only [comp_pair, prod_map, ← Category.assoc, pair₂, Category.comp_id]
+       simp[←Category.assoc, this],
+     by
+       funext A
+       simp
+       have :  associator_inv  ≫ HasProduct.associator = 𝟙 (W*(Z*Y)) := by
+         unfold HasProduct.associator associator_inv prod_map
+         apply prod_id_unique
+         · simp only [comp_pair, ← Category.assoc, pair₁, Category.comp_id]
+         · simp only [comp_pair, ← Category.assoc, pair₁, pair₂, Category.comp_id]
+           rw[←pair_unique_simp]
+       simp[←Category.assoc, this]
+  ⟩
+
+def HasProduct.swap {X Y : C} : X*Y ⟶ Y*X := pair π₂ π₁  -- todo, express as a hom iso
+
+open HasProduct in
+omit [HasExp C] in
+theorem HasProduct.swap_swap
+  : HasProduct.swap ≫ HasProduct.swap = 𝟙 (X*Y) := by
+  simp[swap]
+
+open HasProduct HasExp in
+def f4 : (W * (Z*Y) ⟶ X) ≅ (W ⟶ X^(Y*Z)) :=
+  ⟨
+    fun f => curry (‹𝟙 W, swap›  ≫ f),
+    fun f => ‹𝟙 W, swap› ≫ (uncurry f),
+    by
+      funext A
+      simp[curry_uncurry,←Category.assoc]
+      rw[Category.assoc,swap_swap]
+      simp,
+    by
+      funext A
+      simp only [prod_map, Category.comp_id, types_comp_apply, types_id_apply,←Category.assoc]
+      have : pair π₁ (π₂ ≫ swap) ≫ pair π₁ (π₂ ≫ swap) = 𝟙 (W*(Y*Z)) := by
+        simp only[←Category.assoc, pair₁, pair₂,comp_pair]
+        rw[Category.assoc,swap_swap]
+        simp
+      rw[this,Category.id_comp,uncurry_curry]
+  ⟩
+
+open HasProduct HasExp in
+def f_assoc : (W ⟶ (X^Y)^Z) ≅ (W ⟶ X^(Y*Z)) := f1 ≪≫ f2 ≪≫ f3 ≪≫ f4
+
+open HasProduct HasExp in
+def fAssoc_natIso : yoneda.obj ((X^Y)^Z) ≅ yoneda.obj (X^(Y*Z)) := NatIso.ofComponents
+  (fun W => (f_assoc (W:=W.unop)))     -- your iso at each W
+  (by
+    -- naturality (usually one line): ext and `simp` do it
+    intro W W' t
+    ext g
+    simp [←Category.assoc,f_assoc,f1,f2,f3,f4]
+    unfold associator_inv
+    rw[prod_map]
+    sorry
+  )
+
+
+-- def fAssoc_natIso : yoneda.obj ((X^Y)^Z) ≅ yoneda.obj (X^(Y*Z)) := by
+--   apply Yoneda.ext
+--   intro Z1 f
+--   sorry
+
+def exp_assoc : (X^Y)^Z ≅ X^(Y*Z) :=
+  (Yoneda.fullyFaithful (C:=C)).preimageIso (fAssoc_natIso (X:=X) (Y:=Y) (Z:=Z))
+
+#check 1
+```
+
+It is interesting that the subgoals turn into `curry ≫ uncurry = 𝟙` for example. Lean is framing
+the isomorphism in the category of Types in which each morphism is an object and the morhisms are
+functions between morphisms. In this case, `curry ≫ uncurry = uncurry ∘ curry`, which is just normal
+function composition.
+
+
 Sliding
 ===
 
@@ -204,29 +393,25 @@ Associativity
 
 ```lean
 open HasProduct HasExp in
-theorem exp_prod : ∃ f : Iso ((X^Y)^Z) (X^(Y*Z)), True := by
+def exp_prod : Iso ((X^Y)^Z) (X^(Y*Z)) :=
 
     let F : ((X^Y)^Z)*(Y*Z) ⟶ X :=
         pair (‹ 𝟙 ((X ^ Y) ^ Z), π₂ › ≫ eval) (π₂ ≫ π₁) ≫ eval
 
-    let f : (X^Y)^Z ⟶ X^(Y*Z) :=
-        curry F
+    let f : (X^Y)^Z ⟶ X^(Y*Z) := curry F
 
     let G : (X^(Y*Z)*Z)*Y ⟶ X :=
         pair (π₁ ≫ π₁) (pair π₂ (π₁ ≫ π₂)) ≫ eval
 
-    let g : X^(Y*Z) ⟶ (X^Y)^Z :=
-        curry (curry G)
+    let g : X^(Y*Z) ⟶ (X^Y)^Z := curry (curry G)
 
-    use ⟨
+
+    ⟨
       f,
       g,
       by
-        simp[f,g]
-
         sorry,
       by
-        simp[f,g]
         sorry
     ⟩
 ```
@@ -354,11 +539,9 @@ instance inst_has_exp : HasExp ReflexiveGraph := {
         exact ⟨ex, ey⟩
     ⟩
 
-  curry_eval := by intros; rfl,
+  curry_eval := by aesop_cat
 
-  curry_unique := by
-    intro X Y A g
-    rfl
+  curry_unique := by aesop_cat
 
 }
 ```
