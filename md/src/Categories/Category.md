@@ -177,6 +177,15 @@ end Graph
 --unhide
 ```
 
+Todo: Epimorphisms and Monomorphisms
+===
+
+```lean
+#check Epi
+#check Mono
+#check Iso
+```
+
 Isomorphisms
 ===
 

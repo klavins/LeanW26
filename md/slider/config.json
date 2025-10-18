@@ -55,6 +55,7 @@
             "name": "Category Theory",
             "decks" : [
                 { "path": "src/Categories/Category.md", "title": "Categories" },
+                { "path": "src/Categories/Yoneda.md", "title": "Yoneda's Lemma" },
                 { "path": "src/Categories/BinaryProduct.md", "title": "Binary Products" },
                 { "path": "src/Categories/Exponential.md", "title": "Exponentials" },
                 { "path": "src/Categories/TerminalObject.md", "title": "Terminal Objects" },                
