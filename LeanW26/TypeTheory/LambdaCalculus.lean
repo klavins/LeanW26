@@ -123,6 +123,11 @@ Church's paper on the subject is quite complicated, elucidating ideas that were 
 
 Church is my great, great grand co-advisor (Church > Scott > Rounds > Klavins).
 
+    - β reduction
+    - η-conversion
+    - δ-reduction
+    - ι-reduction
+
 -/
 
 --hide

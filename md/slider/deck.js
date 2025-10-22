@@ -8,7 +8,6 @@ class Deck extends React.PureComponent {
 
   switch() {
     if (typeof this.props.switch === 'function') {
-      console.log("this.props = ", this.props)
       this.props.switch(this.props.section, this.props.id);
     }
   }

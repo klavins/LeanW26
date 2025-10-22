@@ -88,9 +88,7 @@ Example: Graph Quivers
 With the notion of a `Graph` morphism defined, we can instantiate
 the `quiver` class, which allows us to write `G ⟶ H` for our morphisms. 
 ```lean
-instance inst_quiver : Quiver Graph := ⟨
-  fun G H => Hom G H
-⟩
+instance inst_quiver : Quiver Graph := ⟨ Hom ⟩
 
 @[ext]
 lemma Hom.ext_helper {G H : Graph} (f g : G ⟶ H) (h : f.map = g.map) : f = g := by

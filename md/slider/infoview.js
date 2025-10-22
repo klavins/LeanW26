@@ -50,7 +50,6 @@ class Infoview extends React.Component {
     let classes = "infoview-container"
 
     if (this.props.active) {
-        console.log("I'm active", this.props.id)
         classes += " active-infoview";
     }
 

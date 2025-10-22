@@ -16,7 +16,7 @@ class Slider extends React.Component {
     let sb = Cookies.get("sidebar");
 
     slide = slide ? slide : 0;
-    deck = deck ? 0 : 0;
+    deck = deck ? deck : 0;
     sb = sb ? sb : "decks";
     section = section ? section : 0;
 
@@ -31,7 +31,7 @@ class Slider extends React.Component {
       sidebar: sb
     };
 
-    console.log("constructor", this.state)
+    console.log(this.state)
 
     this.forward = this.forward.bind(this);
     this.reverse = this.reverse.bind(this);
@@ -63,10 +63,8 @@ class Slider extends React.Component {
 
     fetch("/slider/config.json").then(result => result.json()).then(config => {
       this.config = config;
-      console.log("state", this.state)
       return fetch(this.config.sections[this.state.section].decks[this.state.deck].path);
     }).then(res => res.text()).then(result => {
-      console.log("result", result)
       let slides = this.parse(result);
       let titles = slides.map(s => s.split("===")[0]);
       this.setState({
@@ -186,7 +184,6 @@ class Slider extends React.Component {
   }
 
   deck_title() {
-    console.log(this.state)
     return React.createElement(
       'div',
       { style: { 

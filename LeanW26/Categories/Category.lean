@@ -96,9 +96,7 @@ Example: Graph Quivers
 With the notion of a `Graph` morphism defined, we can instantiate
 the `quiver` class, which allows us to write `G ⟶ H` for our morphisms. -/
 
-instance inst_quiver : Quiver Graph := ⟨
-  fun G H => Hom G H
-⟩
+instance inst_quiver : Quiver Graph := ⟨ Hom ⟩
 
 @[ext]
 lemma Hom.ext_helper {G H : Graph} (f g : G ⟶ H) (h : f.map = g.map) : f = g := by
@@ -185,6 +183,15 @@ end Graph
 --unhide
 
 /-
+Todo: Epimorphisms and Monomorphisms
+===
+-/
+
+#check Epi
+#check Mono
+#check Iso
+
+/-
 Isomorphisms
 ===
 
@@ -201,6 +208,7 @@ def relabel (G : Graph) (r : G.V ≃ G.V) : Graph := {
 /- Here,
 - `≃` means bijection
 - `r.symm` is the inverse of r (technicly an `Equiv`).  -/
+
 
 /-
 Example: The `relabel` isomorphism
@@ -308,7 +316,6 @@ def ReLabel (r : VertexRelabeling) : Graph ⥤ Graph := {
       exact he
   }
 }
-
 
 /-
 Natural Transformations

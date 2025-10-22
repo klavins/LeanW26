@@ -1,122 +1,155 @@
+import Mathlib
+
 /-
-Overview of Type Theory
+Foundations of Mathematics
 ===
 
-Proof assistants require computer-interpretable definitions of
-everything in mathematics, from sets to numbers to topology, algebra and geometry.
+**Goal**: A small set of axioms from which all of mathematics can be derived.
 
-All such definitions have to be built from simpler definitions, all the way down to
-some kind of axiomatic foundation.
+**Should explain:**
+- What is a number (natural, integer, real, complex, ...)
+- What is a logical statement
+- What is a proof
+- Etc.
 
-Even prior to proof assistants, mathematicians were concerned with providing
-a foundation for mathematics.
-- Euclid for example was the first to axiomize Geometry.
-- Later Cantor introduce Set Theory as a way to build modern mathematics.
+**Should be**:
+- Sound (everything provable from the axioms is actually true)
 
-Type theory was introduced as a foundation for computation and reasoning, and eventually
+**Should Avoid:**
+- Paradoxes (e.g. does the set of all sets contain itself?)
+
+Cracks in the Edifice of Mathematics
+===
+
+**Russell's Paradox (1901)**
+- Define R = { x | x ∉ x }
+- Is R ∈ R? If yes, then R ∉ R. If no, then R ∈ R.
+
+**Gödel’s Incompleteness Theorem (1930)**
+- Any sufficiently expressive formal system is incomplete
+- E.g. The *Continuum Hypothesis* is neither provable nor unprovable from the axioms of set theory.
+
+**Uncomputability (Turning, 1936, numbers) (Church, 1936, Logic)**
+- Some problems are uncomputable: No algorithm exists to decide all possible instances
+
+**Take-aways**
+- All mathematical results are relative to a set of axioms
+- Automated mathematics tends to be conservative, and constructive
+
+
+Zermelo Fraenkel Set Theory
+===
+
+ZFC is a one-sorted theory in first-order logic.
+
+**Axioms**
+- Extensionality – Sets with the same elements are equal.
+- Empty Set – There exists a set with no elements.
+- Pairing – For any two sets, there is a set containing exactly those two sets.
+- Union – For any set of sets, there is a set containing all their elements.
+- Power Set – For any set, there is a set of all its subsets.
+- Infinity – There exists an infinite set
+- Separation – Subsets can be formed by properties
+- Replacement – Images of sets under definable functions are sets.
+- Foundation – No infinite descending inclusion-chains (x₀ ∋ x₁ ∋ x₂ ∋ ...)
+
+**Optional**
+- Axiom of Choice (ZFC = ZF + AC)
+
+Building Math from Sets
+===
+
+- Natural Numbers:
+    - 0 := ∅, 1 := {∅}, 2  := {∅,{∅}}, …
+- Ordered pairs:
+    - (a,b) := {{a},{a,b}}
+- Functions and relations:
+    - Sets of ordered pairs
+- Etc.
+    - Arithmetic, Analysis, Topology, can all be constructed within ZF
+
+Proof Assistants
+- *Mizar* uses a version of ZFC
+- *Isabelle/ZF* uses ZF, but most people use *Isabelle/HOL*
+- *Lean/Mathlib's* `Set` is consistent with ZF
+
+
+Problems with ZF
+===
+
+- You can write x ∈ x and have to prove it does not follow from the axioms
+- Proofs exist outside of ZF
+- It is not *constructive*, so hard to encode algorithmically
+- Not amenable to computation (no data structures, not modular, ...)
+
+
+Type Theory
+===
+
+Introduced as a foundation for computation and reasoning, and eventually
 served as the basis of proof assistants like Coq, Rocq, Agda, Lean, and others.
 - Alonzo Church : The simply typed λ-Calculus (1940)
 - Per Martin-Löf : Intuitionistic type theory (1972)
 - Thierry Coqrand : Calculus of Constructions and Coq (1988)
 
-Foundations
-===
+The Curry Howard Isomorphism Says
+- Logical Statements are Types
+- Proofs are programs
 
-Two main foundations exist for mathematics.
+There are many flavors of type type theory: Simple, Dependent, Homotopy, Cubical
 
-- ***Set Theory***
-    - Everything is a set.
-    - For example, 0, 1, 2, ... = {}, {{}}, {{{}}}, ...
-    - Many flavors
-    - Not always constructive
+Some are easy to automate, and some are not.
 
-- ***Type Theory***
-    - Objects are types or terms that have types
-    - Is generalluy constructive
-    - Many flavors: COC, CIC, HOTT, Cubical, ...
 
 Lean's Type Theory
 ===
 
-Lean's Type theory consists of:
-
+The *Calculus of Inductive Constructions*
 - Typed Lambda Calculus / Arrow Types
 - Dependent types
-  - Π x : T, M x
-  - ∀ x : T, P x
-  - Arrow types are actually a special case of dependent types
-  - Gives you parametric polymoprhism
-- Type universes
-  - Prop   := Sort 0
-  - Type u := Sort (u+1)
-  - Prop : Type 0 : Type 1 : Type 2 : ...
-  - Allows Types do depend on Types
-  - Can have type and univerrse polymorphism
-- Prop
-  - Impredicative:
-    ```∀ P : Prop, P → P``` ok. So you can define And (p : Prop) (q: Prop) : Prop
-    ```∀ T : Type u, T → T : Type (u + 1)``` requires universe levels
-  - Proof irrelevant: if hp : p and hq : p then hp = hq (And would be possible but awkward without impredicativity)
-- Inductive Types (natural deduction-style presentation)
-  - Formation
-  - Introduction
-  - Elimination
-  - Computation
-  - Strict positivity
-- Conversion and reduction
-  - β reduction
-  - η-conversion
-  - δ-reduction
-  - ι-reduction
+- Type universes, with `Prop` as an impredicative Type
+- Inductive Types
 - Definitional Equality
-  - If the above conversions and reductions result in the same thing for two terms, then the terms are equal
-  - Complicated Prop valued types may be propositionally equal (not definitionally equal) and require proofs
 - Type checking and inference
-  - Holes / sorrys
-  - Implicit and explicity paramters
 - Quotients
-- A sophisticaed elaborator
-  - User defined syntax and macros
-  - Typeclasses and instances
+
+Additionally:
+- Type classes (organizational but powerful)
+- A sophisticaed elaborator / syntax creator
+- Easy extend to classical logic
 
 -/
 
 /-
-Example of Dependent Types
+Beyond CIC
 ===
 
+Lean's Type Theory does not have native support for:
+- **Higher inductive types**. For example, defining homotopy is clunkiny in Lean.
+- **Univalence**: Isomorphic structures are not equal, making many natural arguments clunky.
+- **Coinduction**: Coinductive definitions that result in infinite objects are not allowed.
 
+
+Exercises
+===
+
+1. (Advanced) Mathlib defines sets as
+
+```lean
+def Set.{u} (α : Type u) : Type u := α → Prop
+```
+Show that this definition is consistent with the axioms of ZF.
+
+2. (Advanced) Consider
+
+```lean
+inductive MyStream (A : Type) : Type where
+| Cons : A → MyStream A → MyStream A
+
+def ones : MyStream Nat := MyStream.Cons 1 ones
+```
+
+Explain why Lean gives the error: `failed to show termination` and
+devise a workaround that enables some kind of coinductive reasoning.
 
 -/
-
-
-
--- A type-level function that is universe polymorphic
-def Pair.{u, v} (α : Type u) (β : Type v) : Type (max u v) :=
-  Prod α β
-
-#check Pair Nat Bool          -- Type
-#check List Nat
-#check Pair (List Nat) Nat      -- Type 1
-
-
-
-def Compose.{u, v, w}
-    (F : Type v → Type w) (G : Type u → Type v) : Type u → Type w :=
-  fun α => F (G α)
-
-#check Compose Option List Nat  -- Option (List Nat)
-
-
-def Arrow.{u, v} (α : Type u) (β : Type v) : Type (max u v) :=
-  α → β
-
-#check Arrow Nat Bool        -- Nat → Bool : Type
-#check Arrow (List Nat) Nat    -- (Type 0) → Nat : Type 1
-
-
-def Compose2.{u, v, w}
-    (F : Type v → Type w) (G : Type u → Type v) : Type u → Type w :=
-  fun α => F (G α)
-
-#check Compose2 Option List Nat  -- Option (List Nat)

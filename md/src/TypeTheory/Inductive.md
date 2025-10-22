@@ -2,6 +2,12 @@
 Todo
 ===
 
+    - Formation
+    - Introduction
+    - Elimination
+    - Computation
+    - Strict positivity
+
 Todo
 ===
 

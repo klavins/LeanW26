@@ -1,11 +1,24 @@
 
-A Tour of Lean 4
+A Tour of L∃∀N 4
 ===
 
-Installing Lean
+L∃∀N is a programming language and proof assistant.
+
+It is an implementation of the *Calculus of Inductive Constructions*, a type
+theoretic foundation for mathematics.
+
+You can use it to
+- state almost any mathematical definition or theorem
+- write formal proofs of your theorems
+- check that your proofs are correct
+
+While L∃∀N will not prove all of your theorems for you, it does provide an increasing amount of
+automation making it easier than ever to use a proof assistant.
+
+Installing L∃∀N
 ===
 
-The easiest way to install Lean is to follow the quickstart guide at
+The easiest way to install L∃∀N is to follow the quickstart guide at
 - [Lean Quickstart](https://lean-lang.org/lean4/doc/quickstart.html)
 
 You will need first install VS Code:
@@ -14,49 +27,60 @@ You will need first install VS Code:
 
 Then go to `View > Extensions` and search for "Lean 4" and install it.
 
-This will put a `∀` in the upper right menu bar of VS Code. From there, you can create a new project, which should install Lean and all of the associated tools.
+This will put a `∀` in the upper right menu bar of VS Code. From there, you can
+create a new project, which should install Lean and all of the associated tools.
 
-Lean "Project" Types
+L∃∀N "Project" Types
 ===
 
 With the VS Code Extension, you can install two types of projects:
 
 - **Standalone** project. Just the basics.
 
-- **Mathlib** project. Includes a *huge* library of most basic and several advanced areas of mathematics. Choose this if in particular if you want to use real numbers, algebra, sets, matrices, etc.
+- **Mathlib** project. Includes a *huge* library of most basic and several advanced
+areas of mathematics. Choose this if in particular if you want to use real numbers,
+algebra, sets, matrices, etc.
 
-Despite its size, I recommend starting a *Mathlib* based project. You never know when you might need something from Mathlib.
+Despite its size, I recommend starting a *Mathlib* based project. You never know
+when you might need something from Mathlib.
 
 Notes:
   - Wait for the tool to completely finish before opening or changing anything.
   - I don't like the option where it creates a new workspace
-  - Don't make a new project every time you want to try something out. You will use up all the space on your hard drive. Instead, create a single monolithic project and mkae subdirectores for ideas you want to explore.
+  - Don't make a new project every time you want to try something out. You will use
+  up all the space on your hard drive. Instead, create a single monolithic project
+  and make subdirectores for ideas you want to explore.
 
 Directory Structure
 ===
 
-If you create a new project called `MyProject`, you will get a whole directory of stuff:
+If you create a new project called `EE598_Turing`, you will get a whole directory of stuff:
 
 ```
-   MyProject
+   EE598_Turing
      .github/
      .lake/
      MyProject/                    <-- put your code here
        Basic.lean
      .gitignore
-     MyProject.lean
+     EE598_Turing.lean
      lake-manifest.json
      lakefile.toml
      lean-toolchain
      README.md
 ```
 
-For now, you mainly need to know that the subdirectory with the same name as your project is where you can put your .lean files. It has one in it already, called `Basic.lean`. Open this and you can start playing with Lean.
+For now, you mainly need to know that the subdirectory with the same name as your
+project is where you can put your .lean files. It has one in it already, called `Basic.lean`.
+Open this and you can start playing with Lean.
 
-Testing an Installation
+Exercise 1 : Make a Project
 ===
 
-Try replacing the code in `Basic.lean` with the following: 
+a. Create a Mathlib-based project using `EE598_Lastname` as the project name.
+E.g, if your last name is Turing, name your project `EE598_Turing`.
+
+b. Edit the file `Basic.lean` so that it has the code 
 ```lean
 import Mathlib.Tactic.Linarith
 
@@ -68,13 +92,11 @@ example (x y z : ℚ)
         (h3 : 12*y - 4* z < 0) : False := by
   linarith
 ```
- If it is not open already, open `Lean infoview` via the ∀ menu.
 
-- Put your curor over `1+2`. You should see 3 in the messages.
-- Put your cursor just before `by` you will get some goals.
-- Rut it after `linarith` you will see "No Goals", since the theorem is proved.
 
-Fancy Characters
+Make sure it works.
+
+Exercise 2: Fancy Characters
 ===
 
 You can enter fancy characters in Lean using escape sequences
@@ -88,32 +110,37 @@ You can enter fancy characters in Lean using escape sequences
   xᵢ                  x\_i
 ```
 
-Go to
+Go to `∀ > Documentation > ... Unicode ...` for a complete list.
 
+**TODO** Figure out how to encode this statement: 
+```lean
+theorem T₁ : ∀ x : ℝ, 0 ≤ x^2 := by
+  apply sq_nonneg
 ```
-  ∀ > Documentation > ... Unicode ...
-```
 
-for a complete list.
 
-Type Checking
+Exercise 3: Type Checking
 ===
 
-Lean is based on type theory. This means that every term has a very well defined type. To find the type of an expression, use #check. The result will show up in the Infoview.  
+L∃∀N is based on type theory. This means that every term has a very well defined type.
+To find the type of an expression, use #check. The result will show up in the Infoview.  
 ```lean
 #check 1
 #check "1"
 #check ∃ (x : Nat) , x > 0
-#check λ x => x+1
+#check fun x => x+1
 #check (4,5)
 #check ℕ × ℕ
 #check Type
 ```
 
+**TODO**: What is are the types of (4,5), ℕ × ℕ, and Type?
+
 Evaluation
 ===
 
-You can use Lean to evaluate expressions using the #eval command. The result will show up in the Infoview. 
+You can use Lean to evaluate expressions using the `#eval` command. The result
+will show up in the Infoview. 
 ```lean
 #eval 1+1
 #eval "hello".append " world"
@@ -124,10 +151,11 @@ You can use Lean to evaluate expressions using the #eval command. The result wil
 Proofs
 ===
 
-We will go into proofs in great detail next week. For now, know that you can state theorems using the `theorem` keyword. 
+We will go into proofs in great detail next week. For now, know that you can
+state theorems using the `theorem` keyword. 
 ```lean
 theorem my_amazing_result (p : Prop) : p → p :=
-  λ h => h
+  fun h => h
 ```
  In this expression,
 
@@ -161,15 +189,14 @@ example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) :=
 The Tactic Language and `sorry`
 ===
 
-The examples above use fairly low level Lean expressions to prove statements. Lean provides a very powerful, higher level DSL (domain specific language) for proving. You enter the Tactic DSL using `by`.
+The examples above use fairly low level Lean expressions to prove statements. Lean
+provides a very powerful, higher level DSL (domain specific language) for proving.
+You enter the Tactic DSL using `by`.
 
 Proving results uses the super `sorry` keyword. Here is an example of Tactics and sorry. 
 ```lean
 example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
-  intro h hp
-  have hpq := h.left
-  have hqr := h.right
-  exact hqr (hpq hp)
+  sorry
 ```
  which can be built up part by part into 
 ```lean
@@ -185,9 +212,14 @@ example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
 Programming
 ===
 
-Lean is also a full-fledged functional programming language. For example, much of Lean is programmed in Lean (and then compiled). That said, the Lean Programming Language is not really general purpose: You would probably lose your mind trying to build an operating system with Lean. Rather, Lean is a programming language designed first for programming Lean itself, and second for build mathematical data structures and algorithms.
+L∃∀N is also a full-fledged functional programming language. For example, much of
+L∃∀N is programmed in L∃∀N (and then compiled). That said, the L∃∀N Programming
+Language is not really general purpose: You would probably lose your mind trying
+to build an operating system with L∃∀N. Rather, L∃∀N is a programming language
+designed first for programming L∃∀N itself, and second for build mathematical
+data structures and algorithms.
 
-If you are not familiar with functional programming: you will be by then end of this book.
+If you are not familiar with functional programming: you will be by then end of this course.
 
 Here is an example program: 
 ```lean
@@ -199,26 +231,69 @@ def remove_zeros (L : List ℕ) : List ℕ := match L with
 
 #eval remove_zeros [1,2,3,0,5,0,0]
 ```
- Note the similarity between `def` and `theorem`. The latter is simply a special kind of definition.
+ Note the similarity between `def` and `theorem`. The latter is simply a special
+kind of definition.
 
-Documentation
+Documentation and Resources
 ===
 
-- [Loogle](https://loogle.lean-lang.org/) - Google for Lean
+- <a href="https://lean-lang.org/theorem_proving_in_lean4/" target="other">
+  Theorem Proving in Lean
+  </a>
 
-- [Zulip Chat](https://leanprover.zulipchat.com/)
+- <a href="https://lean-lang.org/functional_programming_in_lean/" target="other">
+  L∃∀N Programming Book
+  </a>
 
-- [Lean Theorem Proving Book](https://lean-lang.org/theorem_proving_in_lean4/title_page.html)
+- <a href="https://leanprover-community.github.io/lean4-metaprogramming-book/" target="other">
+  L∃∀N Metaprogramming
+  </a>
 
-- [Lean Functional Programming Book](https://lean-lang.org/functional_programming_in_lean/title.html)
+- <a href="https://leanprover-community.github.io/mathematics_in_lean" target="other">
+  Mathematics in L∃∀N
+  </a>
 
-- [Lean Metaprogramming](https://leanprover-community.github.io/lean4-metaprogramming-book/) -- Advanced!
+- <a href="https://github.com/leanprover/lean4/blob/ffac974dba799956a97d63ffcb13a774f700149c/src/Init/Prelude.lean" target="other">
+  The Standard Library
+  </a>
 
-- [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean)
+- <a href="https://loogle.lean-lang.org/" target="other">
+ Loogle
+ </a> — Google for L∃∀N
 
-- [Tactics](https://github.com/haruhisa-enomoto/mathlib4-all-tactics/blob/main/all-tactics.md)
+- <a href="https://leanprover.zulipchat.com/" target="other">
+  Zulip Chat
+  </a> — Discussion groups
 
-- [The Standard Library](https://github.com/leanprover/lean4/blob/ffac974dba799956a97d63ffcb13a774f700149c/src/Init/Prelude.lean)
+
+
+Exercise 4 : Homework and Github
+===
+
+a. Create a file called `HW1.lean` in the same directory as `Basic.lean`.
+
+b. Make a github repo for you project using the same name. You will use this
+repo to turn in your homework. Make the repo `private` and share it with
+`klavins` so I can access it. I will do
+
+```bash
+git clone https://github.com/turing/EE546_Turing.git
+```
+
+supposing your git username is `turing` to get your code. I will pull subsequent
+changes using:
+
+```bash
+git pull origin master
+```
+
+from within that directory. Homework files should restate each problem
+(just copy and paste the problem statement. Textual answers should be written
+as comments. Lean code should be executable assuming Mathlib is installed and
+produce no errors. If you are stuck on part of a theorem, use `sorry` for
+partial credit.
+
+c. Email `klavins@uw.edu` with a link to your repository.
 
 
 

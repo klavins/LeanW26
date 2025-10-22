@@ -45,10 +45,12 @@ class HasProduct.{u,v} (C : Type u) [Category.{v} C] where
   π₂ {X₁ X₂ : C} : (prod X₁ X₂) ⟶ X₂
   pair {X₁ X₂ Y : C} (_ : Y ⟶ X₁) (_ : Y ⟶ X₂) : Y ⟶ (prod X₁ X₂)
 
-  pair₁ {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) : pair f₁ f₂ ≫ π₁ = f₁
-  pair₂ {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂) : pair f₁ f₂ ≫ π₂ = f₂
+  pair₁ {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂)
+    : pair f₁ f₂ ≫ π₁ = f₁ := by aesop_cat
+  pair₂ {X₁ X₂ Y : C} (f₁ : Y ⟶ X₁) (f₂ : Y ⟶ X₂)
+    : pair f₁ f₂ ≫ π₂ = f₂ := by aesop_cat
   pair_unique {X₁ X₂ Y : C} {h : Y ⟶ prod X₁ X₂}
-    : h = pair (h ≫ π₁) (h ≫ π₂)
+    : h = pair (h ≫ π₁) (h ≫ π₂) := by aesop_cat
 
 --hide
 attribute [simp, reassoc] HasProduct.pair₁ HasProduct.pair₂
