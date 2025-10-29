@@ -6,6 +6,7 @@
                 { "path": "src/Introduction/Motivation.md", "title": "Motivation" },
                 { "path": "src/Introduction/Lean.md", "title": "Lean" },
                 { "path": "src/Introduction/Programming.md", "title": "Programming" },
+                { "path": "src/Introduction/Datatypes.md", "title": "Datatypes" },
                 { "path": "src/Introduction/Proving.md", "title": "Proving" }
             ]
         },
@@ -28,7 +29,8 @@
                 { "path": "src/Logic/Implication.md", "title": "Implication" },
                 { "path": "src/Logic/Propositional.md", "title": "Propositional Logic" },
                 { "path": "src/Logic/Equality.md", "title": "Equality" },
-                { "path": "src/Logic/FirstOrder.md", "title": "First Order Logic" }
+                { "path": "src/Logic/FirstOrder.md", "title": "First Order Logic" },
+                { "path": "src/Logic/Ontology.md", "title": "Ontology" }
             ]
         },
         { 

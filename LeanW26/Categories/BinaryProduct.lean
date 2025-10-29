@@ -9,7 +9,7 @@ open CategoryTheory
 Category Theory: Binary Products
 ===
 
-A ***binary product*** of two objects `X₁` and `X₂` in a category is an object called `X₁ × X₂`.
+A ***binary product*** of two objects `X₁` and `X₂` in a category, if it exists, is an object called `X₁ × X₂`.
 
 A ***projection*** of a binary product throws away one of the parts:
 

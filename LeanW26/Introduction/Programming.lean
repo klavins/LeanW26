@@ -11,37 +11,104 @@ Lean is a full fledged programming language.
 Even though people have implemented a web server or robot control code in Lean,
 it's intended use is to build proof tools.
 
+In this module we will describe the basics of the language via several examples.
+
+Later, we will show how the language implements the formal mathematics of type theory.
+
 -/
 
--- functions and variables
+/-
+Functions and Variables
+===
+
+Here is an example function.
+-/
+
 def f1 (x : Nat) : Nat := x+1
+
+/- It is called `f1`. It takes one *variable* x.
+
+The type of `x` is `Nat` which is Leans *Natural Number Type*. It can take
+values 0, 1, 2, 3, ...
+
+The return type of the function is also `Nat`.
+
+You can (usually) evaluate a function using `#eval`. For example,  -/
+
 #eval f1 4
 
--- if expressions
+/-
+If Expressions
+===
+
+You can define a new expression using `if`, `then`, and `else`.
+
+-/
+
 def f2 (x : Nat) : Nat :=
   if x < 10
   then 0
   else 1
 
+/- For example: -/
+
 #eval f2 4
 
--- let
+/- ***Important***: Lean is *not* a procedural language. The above is not interpreted
+as telling the CPU which branch to take in some assembly language.
+
+Rather, an if statement is a first class expression. For example, we can write:
+-/
+
+#eval (if 3 < 4 then 1 else 2)^2 + (if Even 9 then 3 else 4) -- 5
+
+/-
+Let Expressions
+===
+
+Let expressions allow you to define a *bound* variable with a specific value in the
+rest of an expression.
+-/
+
 def f3 (x : Nat) : Nat :=
   let y := x*x
   y+1
 
 #eval f3 4
 
--- match
+/- Similarly, this is not a control flow sitation. For example, you can write: -/
+
+#eval (let x := 5; x*2) + (let x := 3; x-1) -- 12
+
+/-
+Constructors
+===
+
+Many types in Lean are defined *inductively* with *constructors*. For example, there are two
+ways to make a `Nat`. -/
 
 #print Nat -- constructors:
            -- Nat.zero : ℕ
            -- Nat.succ : ℕ → ℕ
 
-def f4 (x : Nat) : Nat :=
+/- You can use the keyword `match` to check how a value was constructed. -/
+
+def nonzero (x : Nat) : Bool :=
   match x with
-  | Nat.zero => 1
-  | Nat.succ k => 0
+  | Nat.zero => false
+  | Nat.succ k => true
+
+#eval nonzero 0
+#eval nonzero 1234
+
+/-
+Lists
+===
+Another example of an inductively defined type is `List`.
+
+Lists are either empty or made by pushing a value onto the
+front of some other list.
+-/
 
 #print List -- constructors:
             -- List.nil : {α : Type u} → List α
@@ -52,66 +119,137 @@ def f5 (L : List Nat) : Nat :=
   | List.nil => 0
   | List.cons x M => x
 
+/- For example: -/
+
 #eval f5 [1,2,3]
 #eval f5 []
 
--- recursion
+/-
+Recursion
+===
+A recursive function is one that calls itself. This is incredibly powerful.
+To define a recursive function that eventually stops, you have to
+call it on a smaller (in some sense) argument each time.
 
-def fib (n : Nat) : Nat :=
+Here is a standard example with `Nat`:
+
+-/
+
+def fct (n : Nat) : Nat :=
   match n with
   | 0 => 1
-  | Nat.succ k => n * (fib k)
+  | Nat.succ k => n * (fct k)
+
+/- And here's another example with `List`: -/
 
 def add_one (L : List Nat) :=
   match L with
   | List.nil => List.nil
   | List.cons x M => List.cons (x+1) (add_one M)
 
--- functions of functions
+/-
+When Recusion Doesn't Work
+===
+
+Recursion has to be well founded, otherwise you may get an infinite loop,
+which Lean does not allow:
+-/
+
+def not_ok (x : Nat) : Nat := not_ok x
+
+/- Which results in the error:
+
+> fail to show termination for
+  LeanW26.not_ok
+> with errors
+> failed to infer structural recursion:
+> Not considering parameter x of LeanW26.not\_ok:
+>   it is unchanged in the recursive calls
+> no parameters suitable for structural recursion
+
+> well-founded recursion cannot be used, 'LeanW26.not_ok' does not take any (non-fixed) arguments
+```
+
+In other situations, you might define a function that does eventually stop but Lean
+may not be able to figure it out, requiring you to also supply a proof
+of termination.
+
+Functions that Operate on Functions
+===
+
+Functions are objects just like anything else. You can pass them as arguments
+and return them.
+
+For example:
+
+-/
 
 def do_twice (f : Nat → Nat) (x : Nat) := f (f x)
 
-#eval do_twice fib 3
+#eval do_twice fct 3
+
+/- And here's another example: -/
 
 def map_list (f : Nat → Nat) (L : List Nat) :=
   match L with
   | List.nil => List.nil
   | List.cons x M => List.cons (f x) (map_list f M)
 
-#eval map_list fib [1,2,3,4,5,6]
+#eval map_list fct [1,2,3,4,5,6]   -- [1, 2, 6, 24, 120, 720]
 
 def alter (f : Nat → Nat) := fun x => f x + 1
 
-#eval (alter fib) 5
+#eval (alter fct) 5        -- 121
 
--- Head vs tail recursion
--- This is head recursive
--- fct 4 = 4 * (fct 3) = ... = 4*(3*(2*(1*1)))
--- All the fcts have to be resolved before the multiplications
--- leading to a large intermediate expression in the kernel that takes up a lot of space
-def fct (n : Nat) : Nat :=
-  match n with
-  | 0 => 1
-  | k+1 => n * (fct k)
 
--- Here's a head recursive version
--- factAux 4 1 = factAux 3 (acc*4)  = factAux 3 4
---             = factAux 2 (4*3)    = factAux 2 12
---             = factAux 1 (12*2)   = factAux 1 * 24
---             = factAux 0 24       = 24
--- No big intermediate expression
--- But factAux has the wrong signature
+
+/-
+Tail Recursion
+===
+
+They way we wrote `fct` it is *tail recursive*. The expression evaluated
+by growing it and then reducing it.
+
+```lean
+fct 4 = 4 * (fct 3) = ... = 4*(3*(2*(1*1)))
+```
+
+All the fcts have to be resolved before the multiplications
+leading to a large intermediate expression in the kernel that takes up a lot of space.
+
+Head Recursion
+===
+-/
+
 def factAux (n acc : Nat) : Nat :=
   match n with
   | 0     => acc
   | k+1   => factAux k (acc * (k + 1))
 
--- So we wrap it
+/-
+The evaluation order is different now because both arguments to
+`factAux` have to be evaluated before calling `factAux` again.
+
+```lean
+factAux 4 1 = factAux 3 (acc*4)  = factAux 3 4
+            = factAux 2 (4*3)    = factAux 2 12
+            = factAux 1 (12*2)   = factAux 1 * 24
+            = factAux 0 24       = 24
+```
+But factAux has the wrong signature, so we wrap it
+
+-/
+
 def fact (n : Nat) : Nat :=
   factAux n 1
 
--- Using let rec we can declare a local function aux
--- to avoid polluting the namespace
+/-
+Local Functions
+===
+
+Using `let rec` we can declare a local function aux
+to avoid polluting the namespace -/
+
 def fact2 (n : Nat) : Nat :=
   let rec aux (n acc : Nat) : Nat :=
     match n with
@@ -119,7 +257,15 @@ def fact2 (n : Nat) : Nat :=
     | k+1   => aux k (acc * (k + 1))
   aux n 1
 
-lemma t (n acc : Nat) : factAux n acc = acc * fct n := by
+/-
+A Look Ahead
+===
+
+What's cool, is that we can write a proof that these two definitions
+yield the same function!
+-/
+
+lemma helper (n acc : Nat) : factAux n acc = acc * fct n := by
   induction n generalizing acc with
   | zero => simp [factAux, fct]
   | succ k ih =>
@@ -127,12 +273,14 @@ lemma t (n acc : Nat) : factAux n acc = acc * fct n := by
     rw[ih (acc*(k+1))]
     apply Nat.mul_assoc
 
-example : fact = fct := by
+theorem fct_fact : fact = fct := by
   funext n
   unfold fact
-  simp[t n 1]
+  simp[helper n 1]
 
-/- Booelans vs Propositions
+/-
+Booelans vs Propositions
+===
 
 The type `Bool` has possible values true and false.-/
 
@@ -154,14 +302,41 @@ theorem my_theorem : my_prop := my_proof
 #check my_proof
 #check my_theorem
 
-/- In particular, True and False are not atomic objects, but inductively
+/-
+True and False
+===
+
+In particular, `True` and `False` are not atomic objects, but inductively
 defined types of type Prop. -/
 
-#check True
-#check False
+#print True
+
+/-
+> inductive True : Prop <br>
+> number of parameters: 0 <br>
+> constructors: <br>
+> True.intro : True
+-/
+
+#print False
+
+/-
+> inductive False : Prop <br>
+> number of parameters: 0 <br>
+> constructors:
+
+We will have *much* to say about the type `Prop` later in this course.
+
+Like, *a lot* to say.
+
+Really.
 
 
--- Number Types
+Number Types
+===
+
+Lean provides a bunch of different types of numbers.
+-/
 
 #check ℕ       -- Nat
 #check ℤ       -- Int
@@ -171,21 +346,37 @@ defined types of type Prop. -/
 #check Float
 #check Float32
 
+/- Each one has a set of operations on it. For example, you can get the
+numerator and denominator of a rational number. -/
+
 def invert_rat (x : ℚ) : ℚ := x.den / x.num
 #eval invert_rat (2/4)
 
+
+/-
+Real Numbers
+===
+
+Real numbers are a bit different. They are not floating point numbers. They are an
+actual mathematical representations of real numbers (as limits of Cauchy sequences,
+if you must know).
+
+Therefore, we can't run  `#eval` on functions involving reals.
+
+-/
 noncomputable
 def invert_real (x : ℝ) : ℝ := 1/x
 
-example : invert_real ∘ invert_real = id := by
+/- But we can prove theorems about them! -/
+
+theorem invert_invert : invert_real ∘ invert_real = id := by
   funext x
   simp[invert_real]
 
-#print Nat
-#print Rat
-#print Real
-
--- Coercion
+/-
+Coercion
+===
+-/
 
 #check 1
 #check (1:ℚ)
@@ -193,24 +384,10 @@ example : invert_real ∘ invert_real = id := by
 def toRat (x : ℤ) : ℚ := ↑x
 def toRat' (x : ℤ) : ℚ := x
 
--- Lists
-
-#eval [1,2,3]
-#eval List.cons 1 (List.cons 2 (List.cons 3 List.nil))
-#eval (([].cons 3).cons 2).cons 1
-#eval 1 :: 2 :: 3 :: []
-
-def map (f : Nat → Nat) (L : List Nat) :=
-  match L with
-  | List.nil => []
-  | List.cons x M => (f x) :: M
-
-def map' (f : Nat → Nat) (L : List Nat) :=
-  match L with
-  | [] => []
-  | x :: M => (f x) :: M
-
--- Characters and Strings
+/-
+Characters and Strings
+===
+-/
 
 #check 'u'
 #eval 'u'.toNat
@@ -227,15 +404,62 @@ def map' (f : Nat → Nat) (L : List Nat) :=
 #eval "uw" ≤ "uwece"
 
 
+/-
+More about Lists
+===
 
--- Exercise : Write a function takes a character and captializes it if
--- it is a lowercase character
--- leaving non lowercase letters as they are.
+Lists come with various convenient notation.
+-/
 
--- Polymorphism
+#eval [1,2,3]
+#eval List.cons 1 (List.cons 2 (List.cons 3 List.nil))
+#eval (([].cons 3).cons 2).cons 1
+#eval 1 :: 2 :: 3 :: []
+
+/- For example, here are two ways to write the function `map` which
+applies a function to evey element in a list.  -/
+
+def map (f : Nat → Nat) (L : List Nat) :=
+  match L with
+  | List.nil => []
+  | List.cons x M => (f x) :: map f M
+
+def map' (f : Nat → Nat) (L : List Nat) :=
+  match L with
+  | [] => []
+  | x :: M => (f x) ::map f M
+
+/-
+Polymorphism
+===
+-/
+
+def map_poly {A : Type} {B : Type} (f : A → B) (L : List A) : List B :=
+  match L with
+  | List.nil => []
+  | List.cons x M => (f x) :: map_poly f M
+
+#eval String.mk (map_poly Char.toUpper ['u','w'])
+
+-- Note A and B above are implicit variables. Lean can infer what they
+-- are from the type of f and L. So we put them in curly braces so we don't
+-- have to write
+
+def map_poly_explicit (A : Type) (B : Type) (f : A → B) (L : List A) : List B :=
+  match L with
+  | List.nil => []
+  | List.cons x M => (f x) :: map_poly_explicit A B f M
+
+-- and
+
+#eval String.mk (map_poly_explicit Char Char Char.toUpper ['u','w'])
 
 -- Defining your own types : E.g. Binary Trees
 
 -- Defining your own notation
+
+-- Exercise : Write a function takes a character and captializes it if
+-- it is a lowercase character
+-- leaving non lowercase letters as they are.
 
 end LeanW26
