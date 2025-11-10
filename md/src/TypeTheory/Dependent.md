@@ -10,7 +10,30 @@ Todo
 Todo
 ===
 
+
+Sigma Types
+===
+
 ```lean
+#print _root_.Sigma
+
+structure Sigma.{u,v} {A : Type u} {B : A → Type v} where
+  fst : A
+  snd : B fst
+
+def exampleSigma : Σ n : _root_.Nat, Fin n.succ :=
+  ⟨3, ⟨2, by exact Nat.lt_of_sub_eq_succ rfl⟩⟩
+
+def sig1 : @Sigma _root_.Nat (fun n => Fin (n+1)):=
+  ⟨3, ⟨2, by exact Nat.lt_of_sub_eq_succ rfl⟩⟩
+
+def sig2 : @Sigma _root_.Nat (fun n => Fin (n+1)):=
+  ⟨3, ⟨2, by exact Nat.lt_of_sub_eq_succ rfl⟩⟩
+
+def defaultValue : Σ α : Type, α := ⟨String, "default"⟩
+
+def default : @Sigma Type (fun a => a)  := ⟨ String, "default" ⟩
+
 -- A type-level function that is universe polymorphic
 def Pair.{u, v} (α : Type u) (β : Type v) : Type (max u v) :=
   Prod α β

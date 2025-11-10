@@ -6,8 +6,7 @@
                 { "path": "src/Introduction/Motivation.md", "title": "Motivation" },
                 { "path": "src/Introduction/Lean.md", "title": "Lean" },
                 { "path": "src/Introduction/Programming.md", "title": "Programming" },
-                { "path": "src/Introduction/Datatypes.md", "title": "Datatypes" },
-                { "path": "src/Introduction/Proving.md", "title": "Proving" }
+                { "path": "src/Introduction/Datatypes.md", "title": "Datatypes" }
             ]
         },
         { 

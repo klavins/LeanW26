@@ -16,11 +16,20 @@ class Thumbnail extends React.PureComponent {
     if (this.props.active) {
       classes += " active-title";
     }
+
+    let t = this.props.title.length > 20 
+          ? this.props.title.slice(0,17) + "..."
+          : this.props.title;
+
+    if (this.props.title.includes("Exercise")) {
+      classes += " exercise";
+    }
+    
     return React.createElement(
       'div',
       { onClick: this.go,
         className: classes },
-      this.props.title
+      t
     );
   }
 
