@@ -120,13 +120,13 @@ def h3 (_ : Nat) := 1
 Exercises
 ===
 
-1. Define a function `abs_diff` that takes two natural numbers and returns the absolute
+<ex/> Define a function `abs_diff` that takes two natural numbers and returns the absolute
 value of their difference. Use only the contructs defined so far. Evaluate
 ```lean
 #eval abs_diff 23 89
 #eval abs_diff 101 89
 ```
-2. Define a function `apply_twice_when_even` that takes a function `f` and a natural number `x`
+<ex/> Define a function `apply_twice_when_even` that takes a function `f` and a natural number `x`
 and returns a function that applies `f` twice if `x` is even, and once otherwise.
 ```lean
 #eval apply_twice_when_even (abs_diff 10) 8
@@ -325,8 +325,9 @@ Recall the Fibonacci sequence is defined by
   fib n = f (n-1) + f (n-2)
 ```
 
-1. Define `fib` using head recursion. Test it with a few examples.
-2. Define `fib` using tail recursion. Test it with a few examples.
+<ex/> Define `fib` using head recursion. Test it with a few examples.
+
+<ex/> Define `fib` using tail recursion. Test it with a few examples.
 
 Hint: For the tail recursive version, define a helper function that takes
 three arguments: `n`, `a` and `b` where `a` and `b` are the previous
@@ -489,10 +490,10 @@ Characters are unicode values with a way to write them as characters under the h
 Exercises
 ===
 
-1. Define a function `my_sum (x y : Rat)` that evalutes to the sum of `a` and `b`. Use the
+<ex/> Define a function `my_sum (x y : Rat)` that evalutes to the sum of `a` and `b`. Use the
 numerator and denominator of `a` and `b`.
 
-2. Define a function `rep (c : Char) (n : Nat)` that evaluates to the string consisting
+<ex/> Define a function `rep (c : Char) (n : Nat)` that evaluates to the string consisting
 of `n` copies of `c`.
 
 
@@ -605,9 +606,9 @@ polymorphic in some way: -/
 Exercises
 ===
 
-1. Define a function `rev_list` that reverses a list of any type.
+<ex/> Define a function `rev_list` that reverses a list of any type.
 
-2. Here is a simple sorting algorithm called *insertion sort*. Make a version of this
+<ex/> Here is a simple sorting algorithm called *insertion sort*. Make a version of this
 algorithm that works on any type `α` as long as a comparison function of the form
 `lt (x y α) : Bool` is provided as an argument. -/
 
@@ -620,7 +621,7 @@ def insertionSort :  List Nat → List Nat
 | x :: xs => insert x (insertionSort xs)
 
 /-
-3. Test your code on the type `String` with the alphabetical ordering defined by
+<ex/> Test your code on the type `String` with the alphabetical ordering defined by
 -/
 
 def str_cmp (a b : String) : Bool := decide (a ≤ b)

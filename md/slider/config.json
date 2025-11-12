@@ -14,12 +14,12 @@
             "decks": [
                 { "path": "src/TypeTheory/Overview.md", "title": "Overview" },
                 { "path": "src/TypeTheory/LambdaCalculus.md", "title": "The Lambda Calculus" },
+                { "path": "src/TypeTheory/Universes.md", "title": "Universes" },
                 { "path": "src/TypeTheory/Simple.md", "title": "Simple Types" },
                 { "path": "src/TypeTheory/Inductive.md", "title": "Inductive Types" },                
                 { "path": "src/TypeTheory/Polymorphic.md", "title": "Polymorphism" },
                 { "path": "src/TypeTheory/Dependent.md", "title": "Dependent Types" },
-                { "path": "src/TypeTheory/TypesOnTypes.md", "title": "Type Constructors" },
-                { "path": "src/TypeTheory/Universes.md", "title": "Universes" }             
+                { "path": "src/TypeTheory/TypesOnTypes.md", "title": "Type Constructors" }
             ]
         },
         { 

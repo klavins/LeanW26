@@ -48,6 +48,7 @@ class Slide extends React.PureComponent {
 
     let that = this;
     let i = 0;
+
     html = html.replace(/&lt;proofstate&gt;(.*?)&lt;\/proofstate&gt;/g, function (_, tooltip) {
         that.infoview_list.push({data: tooltip, index: i});
         i++;

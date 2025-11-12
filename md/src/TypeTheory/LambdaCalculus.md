@@ -45,18 +45,19 @@ def g := λ x ↦ λ y ↦ 2*x-y
 #reduce g 2
 #reduce g 2 3
 ```
- Note: The Lean Powers have recently decreed that λ and ↦ should be written as fun and =>.
+ Note: The Lean Powers have recently decreed that `λ` and `↦` should be written as `fun` and `=>`.
 So, we'll use syntax like: 
 ```lean
 def f' := fun x => x+1
 def g' := fun x y => 2*x-y
 ```
 
-Exercise
+Exercises
 ===
 
-Define a lambda called `h` that returns the square of its argument.
-Then evaluate `h (h (h 2))`.
+<ex/> Define a lambda called `h` that returns the square of its argument.
+
+<ex/> Evaluate `h (h (h 2))`.
 
 
 
@@ -91,6 +92,12 @@ and consider `Ω` applied to itself `Ω`:
 ```
 producing an infinite loop.
 
+Exercises
+===
+
+<ex/> Define omega in Lean and explain what happens.
+
+
 Curry's Paradox
 ===
 
@@ -116,19 +123,7 @@ Thus was born the _simply-typed λ-calculus_. Eventually, more complicated types
 
 Church's paper on the subject is quite complicated, elucidating ideas that were fairly novel at the time. Since then, comptuer scientists have refined the ideas into a very simple framework, which is presented here, and which can be found in numerous textbooks.
 
-Church is my great, great grand co-advisor (Church > Scott > Rounds > Klavins).
 
-    - β reduction
-    - η-conversion
-    - δ-reduction
-    - ι-reduction
-
-
-```lean
---hide
-end LeanW26
---unhide
-```
 
 License
 ===

@@ -83,13 +83,13 @@ For now, you mainly need to know that the subdirectory with the same name as you
 project is where you can put your .lean files. It has one in it already, called `Basic.lean`.
 Open this and you can start playing with Lean.
 
-Exercise 1 : Make a Project
+Exercises
 ===
 
-a. Create a Mathlib-based project using `EE598_Lastname` as the project name.
+<ex/> Create a Mathlib-based project using `EE598_Lastname` as the project name.
 E.g, if your last name is Turing, name your project `EE598_Turing`.
 
-b. Edit the file `Basic.lean` so that it has the code -/
+<ex/> Edit the file `Basic.lean` so that it has the code -/
 
 import Mathlib.Tactic.Linarith
 
@@ -103,9 +103,9 @@ example (x y z : ℚ)
 
 /-
 
-Make sure it works.
+Open the Lean Infoview (∀ menu) and check the results.
 
-Exercise 2: Fancy Characters
+Fancy Characters
 ===
 
 You can enter fancy characters in Lean using escape sequences
@@ -121,14 +121,17 @@ You can enter fancy characters in Lean using escape sequences
 
 Go to `∀ > Documentation > ... Unicode ...` for a complete list.
 
-**TODO** Figure out how to encode this statement: -/
 
-theorem T₁ : ∀ x : ℝ, 0 ≤ x^2 := by
-  apply sq_nonneg
+Exercises
+===
 
-/-
+<ex/> Figure out how to encode this statement:
 
-Exercise 3: Type Checking
+&nbsp; &nbsp;  &nbsp;  &nbsp; $\mathtt{theorem} \;\mathtt{T}_1 \; : \; \forall \mathtt{x} : \mathbb{R}, \; \mathtt{0} \leq \mathtt{x}^2 := \mathtt{sorry}$
+
+
+
+Type Checking
 ===
 
 L∃∀N is based on type theory. This means that every term has a very well defined type.
@@ -143,7 +146,10 @@ To find the type of an expression, use #check. The result will show up in the In
 #check Type
 
 /-
-**TODO**: What is are the types of (4,5), ℕ × ℕ, and Type?
+Exercises
+===
+
+<ex/> What is are the types of (4,5), ℕ × ℕ, and Type?
 
 Evaluation
 ===
@@ -222,12 +228,8 @@ example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
 Programming
 ===
 
-L∃∀N is also a full-fledged functional programming language. For example, much of
-L∃∀N is programmed in L∃∀N (and then compiled). That said, the L∃∀N Programming
-Language is not really general purpose: You would probably lose your mind trying
-to build an operating system with L∃∀N. Rather, L∃∀N is a programming language
-designed first for programming L∃∀N itself, and second for build mathematical
-data structures and algorithms.
+L∃∀N is also a full-fledged functional programming language. Much of
+L∃∀N is programmed in L∃∀N (and then compiled).
 
 If you are not familiar with functional programming: you will be by then end of this course.
 
@@ -242,8 +244,42 @@ def remove_zeros (L : List ℕ) : List ℕ := match L with
 #eval remove_zeros [1,2,3,0,5,0,0]
 
 /- Note the similarity between `def` and `theorem`. The latter is simply a special
-kind of definition.
+kind of definition. -/
 
+/-
+Exercises
+===
+
+<ex/> Create a file called `HW1.lean` in the same directory as `Basic.lean`.
+
+<ex/> Make a github repo for you project using the same name. You will use this
+repo to turn in your homework. Make the repo `private` and share it with
+`klavins` so I can access it. I will do
+
+```bash
+git clone https://github.com/turing/EE546_Turing.git
+```
+
+supposing your git username is `turing` to get your code. I will pull subsequent
+changes using:
+
+```bash
+git pull origin master
+```
+
+from within that directory. Homework files should restate each problem
+(just copy and paste the problem statement. Textual answers should be written
+as comments. Lean code should be executable assuming Mathlib is installed and
+produce no errors. If you are stuck on part of a theorem, use `sorry` for
+partial credit.
+
+<ex/> Email `klavins@uw.edu` with a link to your repository.
+
+-/
+
+
+
+/-
 Documentation and Resources
 ===
 
@@ -274,35 +310,5 @@ Documentation and Resources
 - <a href="https://leanprover.zulipchat.com/" target="other">
   Zulip Chat
   </a> — Discussion groups
-
-
-
-Exercise 4 : Homework and Github
-===
-
-a. Create a file called `HW1.lean` in the same directory as `Basic.lean`.
-
-b. Make a github repo for you project using the same name. You will use this
-repo to turn in your homework. Make the repo `private` and share it with
-`klavins` so I can access it. I will do
-
-```bash
-git clone https://github.com/turing/EE546_Turing.git
-```
-
-supposing your git username is `turing` to get your code. I will pull subsequent
-changes using:
-
-```bash
-git pull origin master
-```
-
-from within that directory. Homework files should restate each problem
-(just copy and paste the problem statement. Textual answers should be written
-as comments. Lean code should be executable assuming Mathlib is installed and
-produce no errors. If you are stuck on part of a theorem, use `sorry` for
-partial credit.
-
-c. Email `klavins@uw.edu` with a link to your repository.
 
 -/

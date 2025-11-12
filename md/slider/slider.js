@@ -31,8 +31,6 @@ class Slider extends React.Component {
       sidebar: sb
     };
 
-    console.log(this.state)
-
     this.forward = this.forward.bind(this);
     this.reverse = this.reverse.bind(this);
     this.go = this.go.bind(this);
@@ -82,9 +80,14 @@ class Slider extends React.Component {
   }
 
   parse(text) {
-    let text1 = text.replace(/--hide[\s\S]*?--unhide/g, '');
+
+    let exercise_count = 0;
+    let text0 = text.replace(/<ex\s*\/>/g, () => `<span class='exercise-num'>${++exercise_count}.</span> `);
+
+    let text1 = text0.replace(/--hide[\s\S]*?--unhide/g, '');
     let text2 = text1.replace(/--brief[\s\S]*?--unbrief/g, '    ...');
     let lines = text2.split("\n");
+
     let sections = [];
     let i = 1;
     let section = "";

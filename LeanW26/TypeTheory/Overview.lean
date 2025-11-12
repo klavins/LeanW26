@@ -133,23 +133,11 @@ Lean's Type Theory does not have native support for:
 Exercises
 ===
 
-1. (Advanced) Mathlib defines sets as
+<ex/> (Advanced, Optional) Mathlib defines sets as
 
 ```lean
 def Set.{u} (α : Type u) : Type u := α → Prop
 ```
 Show that this definition is consistent with the axioms of ZF.
-
-2. (Advanced) Consider
-
-```lean
-inductive MyStream (A : Type) : Type where
-| Cons : A → MyStream A → MyStream A
-
-def ones : MyStream Nat := MyStream.Cons 1 ones
-```
-
-Explain why Lean gives the error: `failed to show termination` and
-devise a workaround that enables some kind of coinductive reasoning.
 
 -/

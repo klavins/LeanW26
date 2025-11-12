@@ -311,3 +311,13 @@ pre {
 .toc-section-title {
     font-weight: bold;
 }
+
+ol {
+    padding-left: 16px !important;
+}
+
+.exercise-num {
+    color: black;
+    background: yellow;
+    padding: 2px;
+}

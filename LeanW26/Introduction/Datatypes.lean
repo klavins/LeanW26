@@ -16,24 +16,17 @@ are *inductively defined*. That means, they are defined by
 We'll have more to say about the theory of inductive types later.
 For now we'll describe them via examples.
 
-We will redefine some types that Lean defines, so we'll use
-a a temporary namespace to avoid collisions:-/
-
-namespace Temp
-
-/-
-
 Natural Numbers
 ===
 -/
 
-inductive Nat where
-  | zero : Nat               -- base case
-  | succ : Nat → Nat         -- recursive constructor
+inductive MyNat where
+  | zero : MyNat               -- base case
+  | succ : MyNat → MyNat         -- recursive constructor
 
-#check Nat                   -- Type
+#check MyNat                   -- Type
 
-open Nat
+open MyNat
 
 #check zero                  -- all Nat
 #check succ zero             -- 1
@@ -44,31 +37,31 @@ open Nat
 /- This is how you build the natural numbers in Lean. The numerals 0, 1, 2, etc.
 are just "syntactic sugar". -/
 
-#eval _root_.Nat.zero == 0
-#eval _root_.Nat.zero.succ.succ.succ == 3
+#eval Nat.zero == 0
+#eval Nat.zero.succ.succ.succ == 3
 
 /-
 Complex Numbers
 ===
 
-All sorts of types are inductive. For example, here is a complex number:
+Many types are inductive. For example, here is a complex number:
 -/
 
-inductive Complex where
-  | mk : Real → Real → Complex
+inductive MyComplex where
+  | mk : Real → Real → MyComplex
 
-def Complex.re (x : Complex) : Real :=
+def MyComplex.re (x : MyComplex) : Real :=
   match x with
   | mk a _ => a
 
-def Complex.im (x : Complex) : Real :=
+def MyComplex.im (x : MyComplex) : Real :=
   match x with
   | mk _ b => b
 
-#check Complex.mk 1 2
+#check MyComplex.mk 1 2
 
 noncomputable
-def Complex.abs (x : Complex) : Real := Real.sqrt (x.re^2 + x.im^2)
+def MyComplex.abs (x : MyComplex) : Real := Real.sqrt (x.re^2 + x.im^2)
 
 /-
 Three Valued Logic
@@ -99,9 +92,10 @@ def and (A B : TriBool) :=
 Exercises
 ===
 
-1. Define an alternative complex number in terms of its magnitude and argument.
+<ex/> Define an alternative complex number in terms of its magnitude and argument.
 Note that the type of non-negative reals is defined as `NNReal`.
-2. Define `or` for `TriBool`.
+
+<ex/> Define `or` for `TriBool`.
 
 -/
 
@@ -202,7 +196,7 @@ def bt_map {A B : Type} (f : A → B) (T : BTree A) : BTree B :=
 Exercises
 ===
 
-1. Define a function `swap` that takes a `BTree` and swaps the order of the
+<ex/> Define a function `swap` that takes a `BTree` and swaps the order of the
 children in all nodes. You should get, for example:
 
 ```lean
@@ -285,9 +279,11 @@ def negate4 (x : Komplex) : Komplex := ⟨ -x.1, -x.2 ⟩
 Exercises
 ===
 
-1. Define a structure `3DVector`.
-2. Define a cross product function of two `3DVectors`.
-3. Test on examples.
+<ex/> Define a structure `3DVector`.
+
+<ex/> Define a cross product function of two `3DVectors`.
+
+<ex/> Test on examples.
 
 -/
 
@@ -296,11 +292,11 @@ Products
 ===
 -/
 
-structure Prod (A B : Type) where
+structure MyProd (A B : Type) where
   fst : A
   snd : B
 
-def p : Prod Rat String := ⟨ 0, "zero" ⟩
+def p : MyProd Rat String := ⟨ 0, "zero" ⟩
 
 #eval p.fst
 #eval p.snd
@@ -314,14 +310,14 @@ Sums
 ===
 -/
 
-inductive Sum (A B : Type) where
-  | inl : A → Sum A B
-  | inr : B → Sum A B
+inductive MySum (A B : Type) where
+  | inl : A → MySum A B
+  | inr : B → MySum A B
 
-def s1 : Sum Rat String := .inl 0
-def s2 : Sum Rat String := .inr "zero"
+def s1 : MySum Rat String := .inl 0
+def s2 : MySum Rat String := .inr "zero"
 
-def swap (s : Sum Rat String) : Sum String Rat :=
+def swap (s : MySum Rat String) : MySum String Rat :=
   match s with
   | .inl x => .inr x
   | .inr x => .inl x
@@ -329,10 +325,7 @@ def swap (s : Sum Rat String) : Sum String Rat :=
 /- Lean's Sum uses `⊕`: -/
 
 def s : Rat ⊕ String := .inl 1
-#check s
 
-/- Note: In this example `.inr` and `.inl` refer to `Sum.inr` and `Sum.inl`.
-Lean figures out what you mean from the type context. This works for any inductive type. -/
 
 /-
 Option
@@ -342,19 +335,23 @@ The `Option` type is useful in situations where a value might not be available.
 
 -/
 
-inductive Option (A : Type)
-  | none : Option A
-  | some : A → Option A
+inductive MyOption (A : Type)
+  | none : MyOption A
+  | some : A → MyOption A
 
-def first {A : Type} (L : List A) : Option A :=
+def first {A : Type} (L : List A) : MyOption A :=
   match L with
   | [] => .none
   | x :: _ => .some x
 
-#eval first [1,2,3]             -- Option 1
+#eval first [1,2,3]             -- MyOption 1
 #eval first ([]:List Int)       -- none
 
-/- You can use match to get the value of an `Option`, if it exists. -/
+/-
+Using Option
+===
+
+You can use match to get the value of an `Option`, if it exists. -/
 
 def my_func (L : List ℕ) : List ℕ :=
   let x := first L
@@ -370,14 +367,14 @@ Lean uses notation extensively to make code look more like math.
 That's where most symbols come from, in fact. For example, all
 operators in the natural numbers are defined as syntax. -/
 
-def my_add (x y : Nat) :=
+def MyNat.add (x y : MyNat) :=
   match x with
   | .zero => y
-  | .succ k => .succ (my_add k y)
+  | .succ k => .succ (MyNat.add k y)
 
-infix:65 " + " => my_add
+infix:65 " + " => MyNat.add
 
-#eval zero.succ + zero.succ.succ
+#eval MyNat.zero.succ + MyNat.zero.succ.succ
 
 
 /- The ways in which you can define your own syntax in are many and varied.
@@ -391,62 +388,25 @@ See the [Lean Language Reference](https://lean-lang.org/doc/reference/latest/Not
 Exercises
 ===
 
-1. Define a tree type `MyTree` where every node may have any number of children.
+<ex/> Define a tree type `MyTree` where every node may have any number of children.
 Define an instance of `Repr` for it so you can print it nicely.
 Define a method that maps a function onto the tree.
 Create a function that converts a `BTree` to a `MyTree`.
 Test on examples.
 
-2. Consider the *Dyadic Rationals*, which consist of fractions who's denominators
+<ex/> Consider the *Dyadic Rationals*, which consist of fractions who's denominators
 are powers of two defined inductively as follows:
 -/
-
 inductive Dyadic where
-  | zero : Dyadic
+  | zero    : Dyadic
   | add_one : Dyadic → Dyadic  -- x ↦ x + 1
   | half    : Dyadic → Dyadic  -- x ↦ x / 2
   | neg     : Dyadic → Dyadic  -- x ↦ -x
-
 /-
-&nbsp;&nbsp;&nbsp;&nbsp; a. Define `Dyadic.double` that doubles a `Dyadic`.<br>
-&nbsp;&nbsp;&nbsp;&nbsp; b. Define `Dyadic.add` that adds two `Dyadic` values.<br>
-&nbsp;&nbsp;&nbsp;&nbsp; c. Define a function `Dyadic.to_rat` that converts a `Dyadic` to a `Rat`.<br>
-&nbsp;&nbsp;&nbsp;&nbsp; d. Define the Dyadics `5/8` and `-7/32` and test your methods on these values.
+a. Define `Dyadic.double` that doubles a `Dyadic`.<br>
+b. Define `Dyadic.add` that adds two `Dyadic` values.<br>
+c. Define `Dyadic.mul` that multiplies two `Dyadic` values.<br>
+d. Define a function `Dyadic.to_rat` that converts a `Dyadic` to a `Rat`.<br>
+e. Define the Dyadics `5/8` and `-7/32` and test your methods on these values.<br>
+f. Are Dyadics as defined here unique? Why or why not?
 -/
-
-/-
-Solutions
-===
--/
-
-open Dyadic
-
-def to_rat (x : Dyadic) : Rat := match x with
-  | Dyadic.zero =>  0
-  | add_one x => to_rat x + 1
-  | half x => (to_rat x) / 2
-  | neg  x  => -to_rat x
-
-def w := Dyadic.zero.add_one.half.half
-
-#eval to_rat w
-
-def Dyadic.double (x : Dyadic) : Dyadic := match x with
-  | Dyadic.zero =>  Dyadic.zero
-  | add_one x => add_one (add_one (double x))   -- 2(x+1) = 2x+2
-  | half x =>  x                                -- 2(x/2) = x
-  | neg  x  => neg (double x)
-
-#eval to_rat (double w)
-
-def Dyadic.dadd (x y : Dyadic) : Dyadic := match x with
-  | Dyadic.zero => y
-  | add_one z =>  (dadd z y).add_one  -- (z+1) + y = z+y + 1
-  | half z => (dadd z y.double).half  -- z/2 + x = (z+2y)/2
-  | neg z => (dadd z y.neg).neg       -- (-z)+y = -(z+(-y))
-
-#eval to_rat (dadd w w.double)
-
---hide
-end Temp
---unhide
