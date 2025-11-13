@@ -321,3 +321,8 @@ ol {
     background: yellow;
     padding: 2px;
 }
+
+
+pre:has(> code:empty) {
+  display: none;
+}

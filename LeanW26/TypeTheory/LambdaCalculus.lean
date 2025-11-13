@@ -7,7 +7,7 @@ Background
 
 The **λ-calculus** was introduced in the 1930s by Alonzo Church as a way to represent how functions on natural numbers are calculated using symbols. The goal was to determine whether every function on the natural numbers had an effective means of being calculated.
 
-Said differently, the question is: Does every function have an algorithm? Astonishingly, Church showed that the answer is "no". In fact, there are functions on the natural numbers for which there is no effective algorithm. Church's 1935 paper "An unsolvable problem in elementary number theory" proved this result.
+Said differently, the question is: Does every function have an algorithm? Church showed that the answer is "no". In fact, there are functions on the natural numbers for which there is no effective algorithm. Church's 1935 paper "An unsolvable problem in elementary number theory" proved this result.
 
 The reasoning, roughly, is this:
 
@@ -37,21 +37,21 @@ In Lean you can write lambda calculus statements and reduce them, for example:
 
 -/
 
-def f := λ x ↦ x+1
+def f1 := λ x ↦ x+1
 
-#print f
-#reduce f
+#print f1
+#reduce f1
 
-def g := λ x ↦ λ y ↦ 2*x-y
+def g1 := λ x ↦ λ y ↦ 2*x-y
 
-#reduce g 2
-#reduce g 2 3
+#reduce g1 2
+#reduce g1 2 3
 
 /- Note: The Lean Powers have recently decreed that `λ` and `↦` should be written as `fun` and `=>`.
 So, we'll use syntax like: -/
 
-def f' := fun x => x+1
-def g' := fun x y => 2*x-y
+def f2 := fun x => x+1
+def g2 := fun x y => 2*x-y
 
 /-
 Exercises
@@ -72,24 +72,35 @@ A specific problem that Church showed to be unsolvable is:
 
 > Given λ-calculus terms M and N, show there does not exist a λ-calculus function that can determine whether M can be rewritten as N.
 
-Those who have studied theoretical computer science, may be familiar with Alan Turing's similar result which shows there is no Turing Machine that can determine whether a given Turing Machine eventually terminates. In fact, the λ-calculus can simulate Turing Machines and vice verse.
+This argument is similar to Alan Turing's similar result which shows there is no Turing Machine that can determine whether a given Turing Machine eventually terminates.
 
-The Church-Turing Thesis is the observation that _all_ formalizations of computation are in fact equivalent to the λ-calculus or, equivalently, Turing Machines. The former is more convenient for symbolic reasoning, while the latter is more akin to how electromechanical computers actually work.
+The *Church-Turing Thesis* is the observation that _all_ formalizations of computation are equivalent to the λ-calculus or, equivalently, Turing Machines.
+
+The former is more convenient for symbolic reasoning, while the latter is more akin to how electromechanical computers actually work.
 
 Programming Languages
 ===
 
-Thus, the λ-calclus and the formal notion of computation has its roots in the foundations of mathematics. Later, around the 1960s, linguists and computer scientists realized that the λ-calculus was an useful framework for the theory and design of programming languages.
+Thus, the λ-calclus and the formal notion of computation has its roots in the foundations of mathematics.
 
-Simultaenously, logicians were becoming frustrated with Set Theory as a foundation for mathematics and started exploring Type Theory as an alternative. Around the 1990s many of these ideas came together, especially through the work of Thierry Coquand on the Calculus of Constructions. It was observed that typed programming languages were not only an ideal foundation for all of mathematics, they could be used to develop computational proof assistants and theoerm provers.
+In the 1960s, linguists and computer scientists realized that the λ-calculus was an useful framework for the theory and design of programming languages.
+
+Simultaenously, logicians were becoming frustrated with Set Theory as a foundation for mathematics and started exploring Type Theory as an alternative. In 1990s many of these ideas came together, especially through the work of Thierry Coquand on the *Calculus of Constructions*.
+
+It was observed that typed programming languages were not only an ideal foundation for all of mathematics, they could be used to develop computational proof assistants and theoerm provers.
+
 
 Infinite Loops
 ===
-Define the term
+
+Central to Church's (and Turing's) argument is that some evaluations go on infinitely,
+some do not, and it is not always easy to tell the difference.
+
+Here is an easy example of infinite behavior. Define
 ```
 Ω := λ x => x x
 ```
-and consider `Ω` applied to itself `Ω`:
+Consider `Ω` applied to itself `Ω`:
 ```
 (λ x => x x) (λ x => x x)       —β—>       (λ x => x x) (λ x => x x)
 ```
@@ -106,12 +117,14 @@ Curry's Paradox
 
 Infinite Loops made the λ-calculus expressive enough for Church to prove his undecidability results, but it caused other problems when logicians wished to use formalisms like the λ-calculus as systems of logic.
 
+The problem is *unrestricted self-reference*.
+
 Haskel Curry discovered that one could encode the following paradox:
 
   - Consider the self-referential statement X = X → Y where Y is _any_ statement.
   - Certainly X → X is true for any statement X.
   - Substituting X → Y for the second X gives X → (X → Y)
-  - This statement is equivalent to X → Y, which is the same as X
+  - This statement is equivalent to X → Y, which is X by assumption.
   - Thus X is true
   - So Y is true since X → Y
 
@@ -120,10 +133,32 @@ For example, X → Y could mean "If this sentence is true, then 1 > 0." Any fram
 Types
 ===
 
-The solution was to assign _types_ to all terms in the λ-calculus. We will see that certain self referential programs are impossible to assign types to. At the same time, infinite loops are no longer allowed, making the formalism not as powerful from a computational point of view.
+The solution was to assign _types_ to all terms in the λ-calculus.
+- Self referential programs are impossible to assign types to.
+- Infinite loops are no longer allowed (less powerful computationally).
 
-Thus was born the _simply-typed λ-calculus_. Eventually, more complicated types were added, in which type definitions could depend on other types or on even terms. Most modern programming languages and some logical frameworks have these properties.
+Thus was born the _simply-typed λ-calculus_. Eventually, more complicated types were added, in which type definitions could depend on other types or on even terms.
 
-Church's paper on the subject is quite complicated, elucidating ideas that were fairly novel at the time. Since then, comptuer scientists have refined the ideas into a very simple framework, which is presented here, and which can be found in numerous textbooks.
+Most modern programming languages and some logical frameworks have these properties.
 
+The Simply-Typed Lambda Calculus
+===
+
+In the expressions we wrote above, the types were inferred, but we can write them out.
+-/
+
+def f3 : Nat → Nat := fun (x : Nat) => x+1
+def g3 : Nat → Nat → Nat := fun (x y : Nat) => 2*x-y
+
+/-
+However, `Nat` is not a *simple* type (it is an *inductive* type).
+
+An example of simply typed expression is:
+-/
+
+def f4 : fun (h: Type → Type → Type) => fun (x : Type) h x x
+
+/-
+In the next section we'll look at what exactly is `Type` and come back to
+the lambda calculus in the following section.
 -/

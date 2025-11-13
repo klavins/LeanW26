@@ -47,7 +47,7 @@ ZFC is a one-sorted theory in first-order logic.
 - Union – For any set of sets, there is a set containing all their elements.
 - Power Set – For any set, there is a set of all its subsets.
 - Infinity – There exists an infinite set
-- Separation – Subsets can be formed by properties
+- Separation – Subsets can be formed by properties that refer to existing sets
 - Replacement – Images of sets under definable functions are sets.
 - Foundation – No infinite descending inclusion-chains (x₀ ∋ x₁ ∋ x₂ ∋ ...)
 
@@ -75,8 +75,7 @@ Proof Assistants
 Problems with ZF
 ===
 
-- You can write x ∈ x and have to prove it does not follow from the axioms
-- Proofs exist outside of ZF
+- You can write `x ∈ x` and have to prove it does not follow from the axioms
 - It is not *constructive*, so hard to encode algorithmically
 - Not amenable to computation (no data structures, not modular, ...)
 

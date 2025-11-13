@@ -84,9 +84,14 @@ class Slider extends React.Component {
     let exercise_count = 0;
     let text0 = text.replace(/<ex\s*\/>/g, () => `<span class='exercise-num'>${++exercise_count}.</span> `);
 
-    let text1 = text0.replace(/--hide[\s\S]*?--unhide/g, '');
+    let text1 = text0.replace(/--hide[\s\S\n]*?--unhide/g, '');
     let text2 = text1.replace(/--brief[\s\S]*?--unbrief/g, '    ...');
-    let lines = text2.split("\n");
+    let text3 = text2.replace(
+      /(^|\n)```[^\n]*\n[\t \r]*\n?```(?=\s|$)/g,
+      (_m, lead) => lead || ''
+    );
+    
+    let lines = text3.split("\n");
 
     let sections = [];
     let i = 1;
@@ -96,11 +101,13 @@ class Slider extends React.Component {
         if (section != "") {
           sections.push(section);
         }
+            console.log(section)
         section = "";
       }
       section += lines[i] + "\n";
       i++;
     }
+
     sections.push(section);
     return sections;
   }
