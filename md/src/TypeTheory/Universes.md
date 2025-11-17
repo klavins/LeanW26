@@ -41,7 +41,7 @@ All types have types:
     - Prop : Sort 0          (read: Prop "has type" Sort 0)
     - Type u : Type u+1
 
-Now expressions don't quantifying over all types,
+Now expressions don't quantify over all types,
 they quantify over types in lower universe levels.
 
 Types in Lean
@@ -137,6 +137,7 @@ You can
 #check Prod             -- Type u → Type v → Type (max u v)
 #check Type u × Type v  --  Type (max (u + 1) (v + 1))
 ```
+ ***TODO***: `imax` 
 
 Prop is Impredicative
 ===

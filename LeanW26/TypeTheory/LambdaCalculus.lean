@@ -5,11 +5,11 @@ import Mathlib
 Background
 ===
 
-The **λ-calculus** was introduced in the 1930s by Alonzo Church as a way to represent how functions on natural numbers are calculated using symbols. The goal was to determine whether every function on the natural numbers had an effective means of being calculated.
+The **λ-calculus** was introduced in the 1930s by Alonzo Church as a way to represent how functions on natural numbers are calculated using symbols.
 
-Said differently, the question is: Does every function have an algorithm? Church showed that the answer is "no". In fact, there are functions on the natural numbers for which there is no effective algorithm. Church's 1935 paper "An unsolvable problem in elementary number theory" proved this result.
+Church asked: Does every function have an algorithm?
 
-The reasoning, roughly, is this:
+Church showed that the answer is "no". The reasoning, roughly, is this:
 
   - Devise a simple programming language, the λ-calculus
   - Define computation as rewriting operations on λ-calculus terms
@@ -38,14 +38,10 @@ In Lean you can write lambda calculus statements and reduce them, for example:
 -/
 
 def f1 := λ x ↦ x+1
-
-#print f1
-#reduce f1
-
 def g1 := λ x ↦ λ y ↦ 2*x-y
 
-#reduce g1 2
-#reduce g1 2 3
+#reduce f1 2         -- 3
+#reduce g1 2 3       -- 1
 
 /- Note: The Lean Powers have recently decreed that `λ` and `↦` should be written as `fun` and `=>`.
 So, we'll use syntax like: -/
@@ -115,20 +111,19 @@ Exercises
 Curry's Paradox
 ===
 
-Infinite Loops made the λ-calculus expressive enough for Church to prove his undecidability results, but it caused other problems when logicians wished to use formalisms like the λ-calculus as systems of logic.
+Infinite Loops made the λ-calculus expressive enough for Church
+to prove his undecidability results, but it caused other problems.
 
-The problem is *unrestricted self-reference*.
+Haskel Curry discovered that one could encode the following paradox in logical systems built from the λ-calculus.
 
-Haskel Curry discovered that one could encode the following paradox:
-
-  - Consider the self-referential statement X = X → Y where Y is _any_ statement.
+  - Suppose X = X → Y where Y is _any_ statement.
   - Certainly X → X is true for any statement X.
   - Substituting X → Y for the second X gives X → (X → Y)
   - This statement is equivalent to X → Y, which is X by assumption.
   - Thus X is true
   - So Y is true since X → Y
 
-For example, X → Y could mean "If this sentence is true, then 1 > 0." Any framework in which you can make this argument allows you to prove any statement Y, and so the framework is useless logically.
+For example, X → Y could mean "If this sentence is true, then 1 < 0."
 
 Types
 ===
@@ -137,7 +132,9 @@ The solution was to assign _types_ to all terms in the λ-calculus.
 - Self referential programs are impossible to assign types to.
 - Infinite loops are no longer allowed (less powerful computationally).
 
-Thus was born the _simply-typed λ-calculus_. Eventually, more complicated types were added, in which type definitions could depend on other types or on even terms.
+Thus was born the _simply-typed λ-calculus_.
+
+Eventually, more complicated types were added, in which type definitions could depend on other types or on even terms.
 
 Most modern programming languages and some logical frameworks have these properties.
 
