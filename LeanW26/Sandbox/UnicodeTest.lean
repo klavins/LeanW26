@@ -1,11 +1,7 @@
-
 universe u
 
--- Unicode Π
-def idPi : (α : Type u) → α → α := fun _ x => x
+def idPi : Π (α : Type u), α → α := fun _ x => x
 
--- Unicode ∀
 def idForall : ∀ (α : Type u), α → α := fun _ x => x
 
--- ASCII keyword
 def idAscii : forall (α : Type u), α → α := fun _ x => x

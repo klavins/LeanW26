@@ -13,7 +13,15 @@ Todo
 
 Todo
 ===
+
+-- Dependent : Can quantify over types
+#check (x:Int) → x > 1
+#check Π (x:Int), x > 1
+#check ∀ (x:Int), x > 2
+#check Σ (x:Nat), Fin (x+2)
 -/
+
+
 
 /-
 Sigma Types

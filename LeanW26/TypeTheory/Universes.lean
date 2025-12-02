@@ -26,7 +26,7 @@ themselves), you end up with a paradox.
 
 Allowing quantification over the thing being defined is called *Impredicativity*.
 
-Most type theories disallow this for general types, but does allow it for a
+Most type theories disallow impredicativity for general types, but does allow it for a
 special type `Prop`, as we shall see.
 
 -/
@@ -86,7 +86,8 @@ The function is then *universe polymorphic*
 
 #check f2                         -- Type v → Type v
 #check f2 Nat                     -- Type (since Nat : Type)
-#check f2 (Type 2 → Type 2)       -- Type 3 (since Type 2 → Type 2 : Type 3)
+#check f2 (List (Type 0))         -- Type 1, since Lists of type can't have their
+                                  -- own types as elements
 
 /-
 Self Application Does not Work
@@ -127,6 +128,12 @@ Since `Type → Type` is a type, it must have a type. -/
 #check Type → Type       -- Type 1
 
 /-
+If the type of `Type → Type` were `Type`, then `Type` would contain a function
+whose domain and codomain are both `Type`, meaning it would contain an element
+that refers to itself.
+-/
+
+/-
 Type Arithmetic
 ===
 
@@ -144,7 +151,14 @@ You can
 #check Prod             -- Type u → Type v → Type (max u v)
 #check Type u × Type v  --  Type (max (u + 1) (v + 1))
 
-/- ***TODO***: `imax` -/
+/- There is also:
+```lean
+imax u v := if u = 0 then 0 else max u v
+```
+-/
+
+#check Type (imax 1 0)   -- 0
+#check Type (imax 0 1)   -- 1
 
 /-
 Prop is Impredicative
@@ -186,11 +200,37 @@ and so lack the expressive power to encode Girard's paradox.
 Exercises
 ===
 
-<ex/> One
+<ex/> What is the type of `Type u × Type v`?
 
-<ex/> Two
+<ex/> Define
+```lean
+def TypeList := List Type
+```
+Which of the following are ok in Lean? Why?
+```
+def A : TypeList := []
+def A : TypeList := [ℕ,ℚ]
+def A : TypeList := [ℕ,List ℕ]
+def A : TypeList := [ℕ,A]
+```
 
-<ex/> Three
+<ex/> Why doesn't this function type check?
+```lean
+def f (n : ℕ) := if n = 0 then Type 0 else Type 1
+```
+
+-/
+
+/-
+References
+===
+
+Universe hierarchies appear to have been introduced by Per Martin-Löf in
+
+Per Martin-Löf, An Intuitionistic Theory of Types: Predicative Part,
+*Studies in Logic and the Foundations of Mathematics*, Volume 80, 1975, Pages 73-118.
+
+https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0049237X08719451
 
 -/
 

@@ -455,7 +455,7 @@ Characters are unicode values with a way to write them as characters under the h
 ```
  Strings are lists of characters. 
 ```lean
-#eval String.mk ['u','w']
+#eval String.ofList ['u','w']
 #check "u"
 #eval "uw"
 #eval "u" ++ "w"
@@ -494,7 +494,7 @@ front of some other list.
 def f5 (L : List Nat) : Nat :=
   match L with
   | List.nil => 0
-  | List.cons x M => x
+  | List.cons x _M => x
 ```
  For example: 
 ```lean
@@ -539,8 +539,14 @@ def map_poly {A : Type} {B : Type} (f : A → B) (L : List A) : List B :=
   | List.nil => []
   | List.cons x M => (f x) :: map_poly f M
 
-#eval String.mk (map_poly Char.toUpper ['u','w'])
+#eval String.ofList (map_poly Char.toUpper ['u','w'])
 ```
+
+
+Here, `map_poly` is a **polymorphic** function and `List A` is a **parameterized** type.
+
+Implicit vs Explicity Variables
+===
 
 Note `A` and `B` above are implicit variables. Lean can infer what they
 are from the type of `f` and `L`. So we put them in curly braces so we don't
@@ -552,10 +558,11 @@ def map_poly_explicit (A : Type) (B : Type) (f : A → B) (L : List A) : List B 
   | List.nil => []
   | List.cons x M => (f x) :: map_poly_explicit A B f M
 
-#eval String.mk (map_poly_explicit Char Char Char.toUpper ['u','w'])
+#eval String.ofList (map_poly_explicit
+                     Char Char Char.toUpper ['u','w'])
 ```
 
-Other Polymorphic Data Types
+Other Data Types
 ===
 
 ```lean
@@ -573,7 +580,7 @@ def S3 : List (Set Char) := [ {'a','b'} ]
 def S4 : Array (Set Char) := #[ {'a','b'} ]
 ```
  Later, we'll get to various mathematical types, which are almost always
-polymorphic in some way: 
+parameterized in some way: 
 ```lean
 #check Group      -- Type → Type
 #check add_comm   -- ∀ {G : Type u_1} [inst : AddCommMagma G] (a b : G),

@@ -3,7 +3,8 @@
 Background
 ===
 
-The **λ-calculus** was introduced in the 1930s by Alonzo Church as a way to represent how functions on natural numbers are calculated using symbols.
+The **λ-calculus** was introduced in the 1930s by Alonzo Church as a way to represent
+how functions on natural numbers are calculated using symbols.
 
 Church asked: Does every function have an algorithm?
 
@@ -63,24 +64,35 @@ Unsolvable Problems
 
 A specific problem that Church showed to be unsolvable is:
 
-> Given λ-calculus terms M and N, show there does not exist a λ-calculus function that can determine whether M can be rewritten as N.
+> Given λ-calculus terms M and N, show there does not exist a λ-calculus function
+that can determine whether M can be rewritten as N.
 
-This argument is similar to Alan Turing's similar result which shows there is no Turing Machine that can determine whether a given Turing Machine eventually terminates.
+This argument is similar to Alan Turing's similar result which shows there is no
+Turing Machine that can determine whether a given Turing Machine eventually terminates.
 
-The *Church-Turing Thesis* is the observation that _all_ formalizations of computation are equivalent to the λ-calculus or, equivalently, Turing Machines.
+The *Church-Turing Thesis* is the observation that _all_ formalizations of
+computation are equivalent to the λ-calculus or, equivalently, Turing Machines.
 
-The former is more convenient for symbolic reasoning, while the latter is more akin to how electromechanical computers actually work.
+The former is more convenient for symbolic reasoning, while the latter is more
+akin to how electromechanical computers actually work.
 
 Programming Languages
 ===
 
-Thus, the λ-calclus and the formal notion of computation has its roots in the foundations of mathematics.
+Thus, the λ-calclus and the formal notion of computation has its roots in the
+foundations of mathematics.
 
-In the 1960s, linguists and computer scientists realized that the λ-calculus was an useful framework for the theory and design of programming languages.
+In the 1960s, linguists and computer scientists realized that the λ-calculus
+was an useful framework for the theory and design of programming languages.
 
-Simultaenously, logicians were becoming frustrated with Set Theory as a foundation for mathematics and started exploring Type Theory as an alternative. In 1990s many of these ideas came together, especially through the work of Thierry Coquand on the *Calculus of Constructions*.
+Simultaenously, logicians were becoming frustrated with Set Theory as a foundation
+for mathematics and started exploring Type Theory as an alternative. In 1990s many
+of these ideas came together, especially through the work of Thierry Coquand on
+the *Calculus of Constructions*.
 
-It was observed that typed programming languages were not only an ideal foundation for all of mathematics, they could be used to develop computational proof assistants and theoerm provers.
+It was observed that typed programming languages were not only an ideal foundation
+for all of mathematics, they could be used to develop computational proof assistants
+and theoerm provers.
 
 
 Infinite Loops
@@ -102,7 +114,7 @@ producing an infinite loop.
 Exercises
 ===
 
-<ex/> Define omega in Lean and explain what happens.
+<ex/> Define `Ω` in Lean and explain what happens.
 
 
 Curry's Paradox
@@ -111,7 +123,8 @@ Curry's Paradox
 Infinite Loops made the λ-calculus expressive enough for Church
 to prove his undecidability results, but it caused other problems.
 
-Haskel Curry discovered that one could encode the following paradox in logical systems built from the λ-calculus.
+Haskel Curry discovered that one could encode the following paradox in logical
+systems built from the λ-calculus.
 
   - Suppose X = X → Y where Y is _any_ statement.
   - Certainly X → X is true for any statement X.
@@ -131,7 +144,8 @@ The solution was to assign _types_ to all terms in the λ-calculus.
 
 Thus was born the _simply-typed λ-calculus_.
 
-Eventually, more complicated types were added, in which type definitions could depend on other types or on even terms.
+Eventually, more complicated types were added, in which type definitions could
+depend on other types or on even terms.
 
 Most modern programming languages and some logical frameworks have these properties.
 
