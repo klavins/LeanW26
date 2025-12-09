@@ -1,0 +1,2 @@
+#search-wrapper .search-result.const :first-child { font-family: var(--verso-code-font-family); }
+#search-wrapper .search-result.module :first-child { font-family: var(--verso-code-font-family); }

@@ -379,7 +379,10 @@ Test on examples.
 <ex/> Consider the *Dyadic Rationals*, which consist of fractions who's denominators
 are powers of two defined inductively as follows:
 
+
 ```lean
+namespace Temp
+
 inductive Dyadic where
   | zero    : Dyadic
   | add_one : Dyadic → Dyadic  -- x ↦ x + 1
@@ -394,6 +397,9 @@ d. Define a function `Dyadic.to_rat` that converts a `Dyadic` to a `Rat`.<br>
 e. Define the Dyadics `5/8` and `-7/32` and test your methods on these values.<br>
 f. Are Dyadics as defined here unique? Why or why not?
 
+```lean
+end Temp
+```
 
 License
 ===

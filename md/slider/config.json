@@ -17,6 +17,7 @@
                 { "path": "src/TypeTheory/Universes.md", "title": "Universes" },
                 { "path": "src/TypeTheory/Simple.md", "title": "Simple Types" },
                 { "path": "src/TypeTheory/NonSimpleTypes.md", "title": "Non Simple Types" },
+                { "path": "src/TypeTheory/TypeQuestions.md", "title": "Type Questions" },
                 { "path": "src/TypeTheory/Inductive.md", "title": "Inductive Types" }                
             ]
         },
@@ -49,7 +50,19 @@
                 { "path": "src/Relations/Quotients.md", "title": "Quotients" },
                 { "path": "src/Relations/Integers.md", "title": "Integers Revisited" }
             ]
-        },              
+        },       
+        { 
+            "name": "DSL", 
+            "decks": [
+                { "path": "src/DSL/dsl.md", "title": "Domain Specific Languages" }
+            ]
+        },                   
+        { 
+            "name": "Metaprogramming", 
+            "decks": [
+                { "path": "src/Meta/monads.md", "title": "Monads" }
+            ]
+        },               
         {
             "name": "Appendix",
             "decks": [      

@@ -113,7 +113,7 @@ Functions have type `Type u → Type v` for some universe levels `u` and `v`.
 def my_id (x : Type u) := x
 
 #check my_id             -- Type → Type
-#check my_id "uw"        -- Type → Type
+#check my_id String      -- Type → Type
 ```
 
 Since `Type → Type` is a type, it must have a type. 
@@ -224,7 +224,7 @@ https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0049237X087194
 
 ```lean
 --hide
-end LeanW26
+end LeanW26.Universes
 --unhide
 ```
 

@@ -1,5 +1,7 @@
 import Mathlib
 
+namespace LeanW26.LambdaCalculus
+
 /-
 
 Background
@@ -164,12 +166,8 @@ def g3 : Nat → Nat → Nat := fun (x y : Nat) => 2*x-y
 /-
 However, `Nat` is not a *simple* type (it is an *inductive* type).
 
-An example of simply typed expression is:
--/
-
-def f4 : fun (h: Type → Type → Type) => fun (x : Type) h x x
-
-/-
 In the next section we'll look at what exactly is `Type` and come back to
 the lambda calculus in the following section.
 -/
+
+end LeanW26.LambdaCalculus

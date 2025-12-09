@@ -496,7 +496,7 @@ Exercises
 
 ```lean
 --hide
-end LeanW26
+end LeanW26.Simple
 --unhide
 ```
 

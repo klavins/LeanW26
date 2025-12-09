@@ -1,6 +1,6 @@
 import Mathlib
 
-namespace LeanW26
+namespace LeanW26.Simple
 
 /-
 The Simply Typed Lambda Calculus
@@ -599,5 +599,5 @@ Exercises
 
 
 --hide
-end LeanW26
+end LeanW26.Simple
 --unhide

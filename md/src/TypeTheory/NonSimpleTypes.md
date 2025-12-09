@@ -140,7 +140,7 @@ def chooseType : Bool → Type
 Sigma Types
 ===
 
-A Sigma type is an example that is,
+A Sigma type is
 parameterized (by `α` and `β`), polymorphic (via the type of `β`),
 and dependent (via the constructor for `snd`). In Lean, Sigma is defined by
 ```lean
@@ -167,6 +167,8 @@ def Vec.default (n : Nat) : Σ (n:Nat), Vec Nat n := match n with
   | 0 => Sigma.mk 0 Vec.nil
   | n+1 => let v := (Vec.default n)
            Sigma.mk (v.fst+1) (v.snd.cons 0)
+
+#check Vec.default 3 --- (n : ℕ) × Vec ℕ n
 ```
 
 Exercises
@@ -181,7 +183,7 @@ and returns the vector turned into a list.
 
 
 
-Other Type Theory Issues
+Various Advanced Types (Not in Lean)
 ===
 
 **Univalence**: In mathematics, we often reason about objects *up to isomorphism*.
@@ -207,30 +209,6 @@ type checking decidable.
 
 
 
-Type Theory Questions
-===
-
-**TYPE CHECKING**: In a given context, does a term M have a given type σ?
-```lean
-Γ ⊢ M : σ
-```
-
-**WELL TYPEDNESS**: Does there exist a context in which a type be assigned to a
-term M? Another way of saying this is "is M a legal term?"
-```lean
-? ⊢ M : ?
-```
-
-**TYPE INFERENCE**: Can M be assigned a type consistent with a given context?
-```lean
-Γ ⊢ M : ?
-```
-
-**INHABITATION**: Does there exist a term of a given type? If σ is a logical
-statement, then this is the question of whether σ has a proof.
-```lean
-Γ ⊢ ? : σ
-```
 
 
 References
@@ -240,6 +218,9 @@ References
 Vol. 76, Issue 2, pp. 95–120, 1988.
 - Thierry Coquand and Christine Paulin, Inductively Defined Types, in COLOG-88: International
 Conference on Computer Logic, *Lecture Notes in Computer Science*, vol. 417, Springer, 1988. 
+```lean
+end LeanW26.NonSimpleTypes
+```
 
 License
 ===

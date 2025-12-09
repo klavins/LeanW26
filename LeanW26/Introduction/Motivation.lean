@@ -2,6 +2,8 @@ import Mathlib
 
 namespace LeanW26
 
+#check 0
+
 /-
 Todo
 ===
