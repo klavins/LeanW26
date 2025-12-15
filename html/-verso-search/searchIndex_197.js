@@ -1,0 +1,1 @@
+window.docContents[197].resolve({"/DemoTextbook/ListSet/#mod-doc-DemoTextbook___ListSet-13-0":{"contents":"The Quotient\n\n\n\nQuotienting List α by SameContents results in actual finite sets, because ordering\nand repetition can no longer be observed.\n\n\n","context":"","header":"DemoTextbook.ListSet","id":"/DemoTextbook/ListSet/#mod-doc-DemoTextbook___ListSet-13-0"}});

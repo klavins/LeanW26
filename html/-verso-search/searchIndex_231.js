@@ -1,0 +1,1 @@
+window.docContents[231].resolve({"/DemoTextbook/ListSet/#SameContents___refl":{"contents":"Every list has the same contents as itself. That is, SameContents is reflexive.\n\n\n","context":"","header":"SameContents.refl","id":"/DemoTextbook/ListSet/#SameContents___refl"}});

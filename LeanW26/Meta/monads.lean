@@ -5,8 +5,20 @@ namespace LeanW26.Monads
 universe u v w
 
 /-
-Monads Defined
+Monads
 ===
+Monads are
+- a data type that allows for sequencing, side effects, and off-path
+information.
+- a way to make functional programming look like procedural programming
+- supported by deep math, especially category theory
+
+Lean implements Monads extensively in its metaprogramming framework.
+
+Other languages that use Monads are: Haskell, Agda, F#, OCaml.
+Languages with Monad like libraries include: Scala, Rust, Javascript (promises),
+
+
 -/
 
 /-
@@ -283,80 +295,11 @@ def prods : List Nat := do
 #eval prods
 
 
-/-
-Combining Monads
-===
-What does “combine monads” mean?
-You have two monads, say:
-
-M₁ for effect E₁ (e.g., nondeterminism via List)
-M₂ for effect E₂ (e.g., failure via Option)
-
-You want a single monad that supports both effects in one do block, so you can write:
-Leando  let x ← chooseFromList  let y ← maybeFail  ...Show more lines
-without manually nesting bind calls or writing boilerplate.
-
-Why is this hard?
-Monads don’t generally compose automatically. If you have M₁ and M₂, the type M₁ (M₂ α) is not itself a monad unless you define a custom bind that knows how to thread both effects. For example:
-
-List (Option α) is not a monad by default.
-You need a bind that:
-
-iterates over the list,
-propagates none failures,
-and combines results correctly.
-
-
-
-
-Standard solution: Monad Transformers
-A monad transformer wraps one monad inside another and provides a combined Monad instance. Examples in Lean/mathlib:
-
-OptionT m α = m (Option α)
-ExceptT ε m α = m (Except ε α)
-StateT σ m α = σ → m (α × σ)
-
-Transformers define:
-
-pure and bind for the combined effect,
-lifting operations from the inner monad.
-
-So OptionT List α gives you:
-
-nondeterministic choice from List,
-short-circuit failure from Option,
-all in one do block.
-
-
-General pattern
-To combine monads:
-
-Pick a base monad (often the outer one).
-Wrap the other effect using a transformer.
-Use lift or specialized helpers to access inner effects.
-
-Example:
-LeanShow more lines
-Now M α = List (Option α) with a Monad instance that handles both effects.
-
-Why not just nest monads?
-You can write List (Option α) manually, but then:
-
-do-notation doesn’t work out of the box.
-You must explicitly handle none in every branch.
-Transformers automate this.
-
--/
-
-
-/-
-Combining Monads
-===
-
--/
 
 /- Cool example from wikipedia -/
 
 /- A second situation where List shines is composing multivalued functions. For instance, the nth complex root of a number should yield n distinct complex numbers, but if another mth root is then taken of those results, the final m•n values should be identical to the output of the m•nth root. List completely automates this issue away, condensing the results from each step into a flat, mathematically correct list.[29] -/
 
+--hide
 end LeanW26.Monads
+--unhid

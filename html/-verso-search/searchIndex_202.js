@@ -1,0 +1,1 @@
+window.docContents[202].resolve({"/DemoTextbook/ListSet/#mod-doc-DemoTextbook___ListSet-36-0":{"contents":"Subtraction and Intersection\n\nBoth operations are implemented using List.filter.\n\n\n","context":"","header":"DemoTextbook.ListSet","id":"/DemoTextbook/ListSet/#mod-doc-DemoTextbook___ListSet-36-0"}});

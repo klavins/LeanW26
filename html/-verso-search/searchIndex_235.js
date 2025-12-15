@@ -1,0 +1,1 @@
+window.docContents[235].resolve({"/DemoTextbook/ListSet/#SameContents___append_eq":{"contents":"If lists have the same contents, then so do the results of appending them.\n\n\n","context":"","header":"SameContents.append_eq","id":"/DemoTextbook/ListSet/#SameContents___append_eq"}});

@@ -204,7 +204,7 @@ class Slider extends React.Component {
           this.setState({ sidebar: sb });
           Cookies.set("sidebar", sb);
       } },
-      React.createElement('span', {}, roman[this.state.section + 1] + "." +  (this.state.deck+1)),
+      React.createElement('span', {}, roman[this.state.section] + "." +  (this.state.deck+1)),
       // React.createElement('br', {}),
       React.createElement('span', {}, " " + this.config.sections[this.state.section].decks[this.state.deck].title)
     )

@@ -5,7 +5,6 @@
 --  the Free Software Foundation, either version 3 of the License, or
 --  (at your option) any later version.
 
-import mathlib
 
 /-
 A Tour of L∃∀N 4
@@ -46,19 +45,16 @@ With the VS Code Extension, you can install two types of projects:
 
 - **Standalone** project. Just the basics.
 
-- **Mathlib** project. Includes a *huge* library of most basic and several advanced
-areas of mathematics. Choose this if in particular if you want to use real numbers,
-algebra, sets, matrices, etc.
+- **Mathlib** project. Includes a *huge* library of most basic and several advanced areas of mathematics. Choose this if in particular if you want to use real numbers, algebra, sets, matrices, etc.
 
 Despite its size, I recommend starting a *Mathlib* based project. You never know
 when you might need something from Mathlib.
 
 Notes:
   - Wait for the tool to completely finish before opening or changing anything.
-  - I don't like the option where it creates a new workspace
-  - Don't make a new project every time you want to try something out. You will use
-  up all the space on your hard drive. Instead, create a single monolithic project
-  and make subdirectores for ideas you want to explore.
+  - I don't like the option where it creates a new workspace.
+  - Don't make a new project every time you want to try something out.
+  You will use up all the space on your hard drive. Instead, create a single monolithic project and make subdirectores for ideas you want to explore.
 
 Directory Structure
 ===
@@ -69,8 +65,9 @@ If you create a new project called `EE598_Turing`, you will get a whole director
    EE598_Turing
      .github/
      .lake/
-     MyProject/                    <-- put your code here
+     EE598_Turing/                 <-- put your code here
        Basic.lean
+       HW_I_2.lean                 <-- Today's HW file
      .gitignore
      EE598_Turing.lean
      lake-manifest.json
@@ -89,9 +86,13 @@ Exercises
 <ex/> Create a Mathlib-based project using `EE598_Lastname` as the project name.
 E.g, if your last name is Turing, name your project `EE598_Turing`.
 
-<ex/> Edit the file `Basic.lean` so that it has the code -/
+<ex/> Create a new file `HW_I_2.lean` so that it has the code:
 
-import Mathlib.Tactic.Linarith
+-/
+
+import mathlib
+
+-- Problem 1 : Test basic functionality.
 
 #eval 1+2
 
@@ -104,6 +105,23 @@ example (x y z : ℚ)
 /-
 
 Open the Lean Infoview (∀ menu) and check the results.
+
+Course Notes
+===
+
+The course notes I am presenting are on under construction Github at
+> [https://github.com/klavins/LeanW26](https://github.com/klavins/LeanW26)
+
+The source code for every slide deck is in an executable `.lean` file.
+
+Feel free to clone this repo as well, but note I will make updaes constant
+changes. So periodically do
+
+```bash
+git update
+```
+
+to make sure you have the latest version.
 
 Fancy Characters
 ===
@@ -134,7 +152,7 @@ Exercises
 Type Checking
 ===
 
-L∃∀N is based on type theory. This means that every term has a very well defined type.
+L∃∀N is based on type theory. This means that every term has a very well-defined type.
 To find the type of an expression, use #check. The result will show up in the Infoview.  -/
 
 #check 1
@@ -149,7 +167,7 @@ To find the type of an expression, use #check. The result will show up in the In
 Exercises
 ===
 
-<ex/> What is are the types of (4,5), ℕ × ℕ, and Type?
+<ex/> Use `#check` to determine the types of `(4,5)`, `ℕ × ℕ`, and `Type`?
 
 Evaluation
 ===
@@ -166,7 +184,7 @@ will show up in the Infoview. -/
 Proofs
 ===
 
-We will go into proofs in great detail next week. For now, know that you can
+We will go into proofs in great detail later. For now, know that you can
 state theorems using the `theorem` keyword. -/
 
 theorem my_amazing_result (p : Prop) : p → p :=
@@ -174,25 +192,27 @@ theorem my_amazing_result (p : Prop) : p → p :=
 
 /- In this expression,
 
+```text
   my_amazing_result is the name of the theorem
   (p : Prop)        is an assumption that p is a proposition
                     (true or false statement)
-  p → p             is the actual theory
+  p → p             is the actual theorem
   :=                delinates the statement of the theorem
                     from the proof
   λ h => h          (the identity function) is the proof
+```
 
 You can use your theorems to prove other theorems: -/
 
-theorem a_less_amazing_result : True → True :=
-  my_amazing_result True
+theorem a_less_amazing_result : True → True := by
+  apply my_amazing_result
 
 /-
 Examples vs Proofs
 ===
 
-Results don't have to be named, which is useful for trying things out or when you don't
-need the result again. -/
+Results don't have to be named, which is useful for trying things
+out or when you don't need the result again. -/
 
 example (p : Prop) : p → p :=
   fun h => h
@@ -205,11 +225,9 @@ example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) :=
 The Tactic Language and `sorry`
 ===
 
-The examples above use fairly low level Lean expressions to prove statements. Lean
-provides a very powerful, higher level DSL (domain specific language) for proving.
-You enter the Tactic DSL using `by`.
-
-Proving results uses the super `sorry` keyword. Here is an example of Tactics and sorry. -/
+The examples above use fairly low level Lean expressions to prove statements.
+Lean provides a higher level DSL (domain specific language) for proving.
+You enter the Tactic DSL using `by`. -/
 
 example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
   sorry
@@ -225,10 +243,20 @@ example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
 
 /- Don't worry if none of this makes sense. We'll go into all the gory details later.
 
+Exercises
+===
+
+<ex /> Lean provides a powerful tactic called `aesop`. Redo the proof
+of the previous example replacing the prooof with the single line `aesop`.
+-/
+
+
+
+/-
 Programming
 ===
 
-L∃∀N is also a full-fledged functional programming language. Much of
+L∃∀N is a full-fledged functional programming language. Much of
 L∃∀N is programmed in L∃∀N (and then compiled).
 
 If you are not familiar with functional programming: you will be by then end of this course.
@@ -241,43 +269,20 @@ def remove_zeros (L : List ℕ) : List ℕ := match L with
 
 #check remove_zeros
 
-#eval remove_zeros [1,2,3,0,5,0,0]
+#eval remove_zeros [1,2,3,0,5,0,0]     -- [1,2,3,5]
 
-/- Note the similarity between `def` and `theorem`. The latter is simply a special
-kind of definition. -/
+/- Note the similarity between `def` and `theorem`. The latter is
+simply a special kind of definition. -/
 
 /-
 Exercises
 ===
 
-<ex/> Create a file called `HW1.lean` in the same directory as `Basic.lean`.
-
-<ex/> Make a github repo for you project using the same name. You will use this
-repo to turn in your homework. Make the repo `private` and share it with
-`klavins` so I can access it. I will do
-
-```bash
-git clone https://github.com/turing/EE546_Turing.git
-```
-
-supposing your git username is `turing` to get your code. I will pull subsequent
-changes using:
-
-```bash
-git pull origin master
-```
-
-from within that directory. Homework files should restate each problem
-(just copy and paste the problem statement. Textual answers should be written
-as comments. Lean code should be executable assuming Mathlib is installed and
-produce no errors. If you are stuck on part of a theorem, use `sorry` for
-partial credit.
-
-<ex/> Email `klavins@uw.edu` with a link to your repository.
+<ex /> Write a function `square` that squares every number in a list
+of natural numbers. Use `remove_zeros` as a template. Test your
+code using `#eval`.
 
 -/
-
-
 
 /-
 Documentation and Resources
@@ -310,5 +315,48 @@ Documentation and Resources
 - <a href="https://leanprover.zulipchat.com/" target="other">
   Zulip Chat
   </a> — Discussion groups
+
+
+Exercises
+===
+
+<ex /> Go to Loogle and look up `List.find?`. There should be two examples
+of how to use this function. Try them in your `HW1.lean` file.
+
+Homework Routine
+===
+
+Each slide deck contains
+- Warm up exercises interspersed with the slides
+- A final set of exercises that can be done on your own
+
+When we finish a slide deck, **all** solutions should be put
+into a file with the same name in your project directory. This
+is primarily a way to backup your code.
+
+To turn in a solution set, submit a standalone file to Canvas.
+
+I will download all solution sets into a Lean project and
+execute your code to grade them.
+
+
+Exercises
+===
+
+<ex/> If you have not done so already, create a file called `HW_I_2.lean`
+in the same directory as `Basic.lean`.
+Put your solutions to the exercises in this slide deck in this file.
+- Homework files should restate each problem.
+- Textual answers should be written as comments.
+- Lean code should be executable assuming Mathlib is installed and
+should produce no errors.
+- If you are stuck on part of a theorem, use `sorry` for
+partial credit and move on with your life.
+
+<ex/> Make a github repo for your homework using the same as your project
+(e.g. `EE598_Turing`). You will use this repo to save your homework. Make the repo `private`.
+
+<ex/> Once you are satisfied with your work, submit the `HW1.lean` file
+to Canvas as Assignment 1.
 
 -/

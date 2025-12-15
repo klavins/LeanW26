@@ -1,0 +1,1 @@
+window.docContents[33].resolve({"/DemoTextbook/ListSet/#SameContents":{"contents":"Two lists xs and ys have the same contents iff any element of one is also an element\nof the other.\n\n\n","context":"","header":"SameContents","id":"/DemoTextbook/ListSet/#SameContents"}});

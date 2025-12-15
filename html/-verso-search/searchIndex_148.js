@@ -1,0 +1,1 @@
+window.docContents[148].resolve({"/DemoTextbook/ListSet/#mod-doc-DemoTextbook___ListSet-3-0":{"contents":"The Equivalence Relation\n\n","context":"","header":"DemoTextbook.ListSet","id":"/DemoTextbook/ListSet/#mod-doc-DemoTextbook___ListSet-3-0"}});

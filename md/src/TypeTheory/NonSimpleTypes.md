@@ -183,6 +183,24 @@ and returns the vector turned into a list.
 
 
 
+Inductive Types
+===
+
+
+
+    - Formation
+    - Introduction
+    - Elimination
+    - Computation
+    - Strict positivity
+
+- Recursors
+- Match
+- Nomatch
+- Noconfusion
+
+
+
 Various Advanced Types (Not in Lean)
 ===
 

@@ -1,0 +1,1 @@
+window.docContents[186].resolve({"/LeanW26/Introduction/Datatypes/#mod-doc-LeanW26___Introduction___Datatypes-34-0":{"contents":"## Representing Values\n\nWhen we define a tree and evaluate it, we get a cumbersome representation:","context":"","header":"LeanW26.Introduction.Datatypes","id":"/LeanW26/Introduction/Datatypes/#mod-doc-LeanW26___Introduction___Datatypes-34-0"}});

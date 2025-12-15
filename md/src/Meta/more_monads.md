@@ -61,7 +61,7 @@ instance : LawfulMonad Maybe :=
       rcases m <;> rfl
   ⟩
 
-end LeanW2.Monads
+end LeanW26.Monads
 ```
 
 License

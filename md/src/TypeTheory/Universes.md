@@ -187,6 +187,16 @@ and so lack the expressive power to encode Girard's paradox.
 
 
 
+References
+===
+
+Universe hierarchies appear to have been introduced by Per Martin-Löf in
+
+> Per Martin-Löf, An Intuitionistic Theory of Types: Predicative Part,
+*Studies in Logic and the Foundations of Mathematics*, Volume 80, 1975, Pages 73-118. [Link](https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0049237X08719451)
+
+
+
 Exercises
 ===
 
@@ -208,18 +218,6 @@ def A : TypeList := [ℕ,A]
 ```lean
 def f (n : ℕ) := if n = 0 then Type 0 else Type 1
 ```
-
-
-
-References
-===
-
-Universe hierarchies appear to have been introduced by Per Martin-Löf in
-
-Per Martin-Löf, An Intuitionistic Theory of Types: Predicative Part,
-*Studies in Logic and the Foundations of Mathematics*, Volume 80, 1975, Pages 73-118.
-
-https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0049237X08719451
 
 
 ```lean

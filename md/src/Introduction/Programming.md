@@ -6,7 +6,7 @@ Programming in Lean
     - People have implemented web servers, robot controllers, etc. code in Lean.
     - But it's intended use is to build proof tools.
 
-- C, Python, Java are *immperative and procedural*
+- C, Python, Java are *imperative and procedural*
     - Programs describe *how* to do something
     - For loops, sequences of statements, symbol tables
 

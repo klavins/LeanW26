@@ -1,0 +1,1 @@
+window.docContents[109].resolve({"/DemoTextbook/ListSet/#SameContents___empty":{"contents":"If xs has the same elements as the empty list, then xs is itself empty.\n\n\n","context":"","header":"SameContents.empty","id":"/DemoTextbook/ListSet/#SameContents___empty"}});

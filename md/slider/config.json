@@ -17,8 +17,7 @@
                 { "path": "src/TypeTheory/Universes.md", "title": "Universes" },
                 { "path": "src/TypeTheory/Simple.md", "title": "Simple Types" },
                 { "path": "src/TypeTheory/NonSimpleTypes.md", "title": "Non Simple Types" },
-                { "path": "src/TypeTheory/TypeQuestions.md", "title": "Type Questions" },
-                { "path": "src/TypeTheory/Inductive.md", "title": "Inductive Types" }                
+                { "path": "src/TypeTheory/TypeQuestions.md", "title": "Type Questions" }            
             ]
         },
         { 
@@ -54,13 +53,15 @@
         { 
             "name": "DSL", 
             "decks": [
-                { "path": "src/DSL/dsl.md", "title": "Domain Specific Languages" }
+                { "path": "src/DSL/dsl.md", "title": "Domain Specific Languages" },
+                { "path": "src/DSL/fol.md", "title": "First Order Logic" }
             ]
         },                   
         { 
             "name": "Metaprogramming", 
             "decks": [
-                { "path": "src/Meta/monads.md", "title": "Monads" }
+                { "path": "src/Meta/monads.md", "title": "Monads" },
+                { "path": "src/Meta/do.md", "title": "Do" }
             ]
         },               
         {

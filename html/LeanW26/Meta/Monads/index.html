@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../../../"><title>LeanW26.Meta.Monads</title><link rel="icon" href="data:,">
+    <script src="popper.js"></script>
+    <script src="tippy.js"></script>
+    <script>
+      
+window.onload = () => {
+
+    // Don't show hovers inside of closed tactic states
+    function blockedByTactic(elem) {
+      let parent = elem.parentNode;
+      while (parent && "classList" in parent) {
+        if (parent.classList.contains("tactic")) {
+          const toggle = parent.querySelector("input.tactic-toggle");
+          if (toggle) {
+            return !toggle.checked;
+          }
+        }
+        parent = parent.parentNode;
+      }
+      return false;
+    }
+
+    function blockedByTippy(elem) {
+      // Don't show a new hover until the old ones are all closed.
+      // Scoped to the nearest "top-level block" to avoid being O(n) in the size of the document.
+      var block = elem;
+      const topLevel = new Set(["section", "body", "html", "nav", "header"]);
+      while (block.parentNode && !topLevel.has(block.parentNode.nodeName.toLowerCase())) {
+        block = block.parentNode;
+      }
+      for (const child of block.querySelectorAll(".token, .has-info")) {
+        if (child._tippy && child._tippy.state.isVisible) { return true };
+      }
+      return false;
+    }
+
+    for (const c of document.querySelectorAll(".hl.lean .token")) {
+        if (c.dataset.binding != "") {
+            c.addEventListener("mouseover", (event) => {
+                if (blockedByTactic(c)) {return;}
+                const context = c.closest(".hl.lean").dataset.leanContext;
+                for (const example of document.querySelectorAll(".hl.lean")) {
+                    if (example.dataset.leanContext == context) {
+                        for (const tok of example.querySelectorAll(".token")) {
+                            if (c.dataset.binding == tok.dataset.binding) {
+                                tok.classList.add("binding-hl");
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        c.addEventListener("mouseout", (event) => {
+            for (const tok of document.querySelectorAll(".hl.lean .token")) {
+                tok.classList.remove("binding-hl");
+            }
+        });
+    }
+    /* Render docstrings */
+    if ('undefined' !== typeof marked) {
+        for (const d of document.querySelectorAll("code.docstring, pre.docstring")) {
+            const str = d.innerText;
+            const html = marked.parse(str);
+            const rendered = document.createElement("div");
+            rendered.classList.add("docstring");
+            rendered.innerHTML = html;
+            d.parentNode.replaceChild(rendered, d);
+        }
+    }
+    // Add hovers
+    let docsJson = "-verso-docs.json";
+    fetch(docsJson).then((resp) => resp.json()).then((versoDocData) => {
+
+      function hideParentTooltips(element) {
+        let parent = element.parentElement;
+        while (parent) {
+          const tippyInstance = parent._tippy;
+          if (tippyInstance) {
+            tippyInstance.hide();
+          }
+          parent = parent.parentElement;
+        }
+      }
+
+
+
+      const defaultTippyProps = {
+        /* DEBUG -- remove the space: * /
+        onHide(any) { return false; },
+        trigger: "click",
+        // */
+        /* theme: "lean", */
+        maxWidth: "none",
+        appendTo: () => document.body,
+        interactive: true,
+        delay: [100, null],
+        /* ignoreAttributes: true, */
+        followCursor: 'initial',
+        onShow(inst) {
+          if (inst.reference.className == 'tactic') {
+
+            const toggle = inst.reference.querySelector("input.tactic-toggle");
+            if (toggle && toggle.checked) {
+              return false;
+            }
+            hideParentTooltips(inst.reference);
+            //if (blockedByTippy(inst.reference)) { return false; }
+
+          } else if (inst.reference.querySelector(".hover-info") || "versoHover" in inst.reference.dataset) {
+            if (blockedByTactic(inst.reference)) { return false };
+            if (blockedByTippy(inst.reference)) { return false; }
+          } else { // Nothing to show here!
+            return false;
+          }
+        },
+        content (tgt) {
+          const content = document.createElement("span");
+          if (tgt.className == 'tactic') {
+            const state = tgt.querySelector(".tactic-state").cloneNode(true);
+            state.style.display = "block";
+            content.appendChild(state);
+            content.style.display = "block";
+            content.className = "hl lean popup";
+          } else {
+            content.className = "hl lean";
+            content.style.display = "block";
+            content.style.maxHeight = "300px";
+            content.style.overflowY = "auto";
+            content.style.overflowX = "hidden";
+            const hoverId = tgt.dataset.versoHover;
+            const hoverInfo = tgt.querySelector(".hover-info");
+            if (hoverId) { // Docstrings from the table
+              // TODO stop doing an implicit conversion from string to number here
+              let data = versoDocData[hoverId];
+              if (data) {
+                const info = document.createElement("span");
+                info.className = "hover-info";
+                info.style.display = "block";
+                info.innerHTML = data;
+                content.appendChild(info);
+                /* Render docstrings - TODO server-side */
+                if ('undefined' !== typeof marked) {
+                    for (const d of content.querySelectorAll("code.docstring, pre.docstring")) {
+                        const str = d.innerText;
+                        const html = marked.parse(str);
+                        const rendered = document.createElement("div");
+                        rendered.classList.add("docstring");
+                        rendered.innerHTML = html;
+                        d.parentNode.replaceChild(rendered, d);
+                    }
+                }
+              } else {
+                content.innerHTML = "Failed to load doc ID: " + hoverId;
+              }
+            } else if (hoverInfo) { // The inline info, still used for compiler messages
+              content.appendChild(hoverInfo.cloneNode(true));
+            }
+            const extraLinks = tgt.parentElement.dataset['versoLinks'];
+            if (extraLinks) {
+              try {
+                const extras = JSON.parse(extraLinks);
+                const links = document.createElement('ul');
+                links.className = 'extra-doc-links';
+                extras.forEach((l) => {
+                  const li = document.createElement('li');
+                  li.innerHTML = "<a href=\"" + l['href'] + "\" title=\"" + l.long + "\">" + l.short + "</a>";
+                  links.appendChild(li);
+                });
+                content.appendChild(links);
+              } catch (error) {
+                console.error(error);
+              }
+            }
+          }
+          return content;
+        }
+      };
+
+
+      document.querySelectorAll('.hl.lean .const.token, .hl.lean .keyword.token, .hl.lean .literal.token, .hl.lean .option.token, .hl.lean .var.token, .hl.lean .typed.token, .hl.lean .level-var, .hl.lean .level-const, .hl.lean .level-op, .hl.lean .sort').forEach(element => {
+        element.setAttribute('data-tippy-theme', 'lean');
+      });
+      document.querySelectorAll('.hl.lean .has-info.warning').forEach(element => {
+        element.setAttribute('data-tippy-theme', 'warning message');
+      });
+      document.querySelectorAll('.hl.lean .has-info.information').forEach(element => {
+        element.setAttribute('data-tippy-theme', 'info message');
+      });
+      document.querySelectorAll('.hl.lean .has-info.error').forEach(element => {
+        element.setAttribute('data-tippy-theme', 'error message');
+      });
+      document.querySelectorAll('.hl.lean .tactic').forEach(element => {
+        element.setAttribute('data-tippy-theme', 'tactic');
+      });
+      let insts = tippy('.hl.lean .const.token, .hl.lean .keyword.token, .hl.lean .literal.token, .hl.lean .option.token, .hl.lean .var.token, .hl.lean .typed.token, .hl.lean .has-info, .hl.lean .tactic, .hl.lean .level-var, .hl.lean .level-const, .hl.lean .level-op, .hl.lean .sort', defaultTippyProps);
+  });
+}
+</script>
+    <style>
+
+.hl.lean {
+  white-space: pre;
+  font-weight: normal;
+  font-style: normal;
+  font-size: inherit;
+}
+
+.hl.lean .keyword {
+  color: var(--verso-code-keyword-color,);
+  font-weight: var(--verso-code-keyword-weight, bold);
+  font-style: var(--verso-code-keyword-style, normal);
+  font-family: var(--verso-code-keyword-font-family,);
+}
+
+.hl.lean .const {
+  color: var(--verso-code-const-color,);
+  font-weight: var(--verso-code-const-weight, normal);
+  font-style: var(--verso-code-const-style, normal);
+  font-family: var(--verso-code-const-font-family,);
+}
+
+.hl.lean .var {
+  color: var(--verso-code-var-color,);
+  font-weight: var(--verso-code-var-weight, normal);
+  font-style: var(--verso-code-var-style, italic);
+  font-family: var(--verso-code-var-font-family,);
+
+  position: relative;
+}
+
+.hl.lean .literal, .hl.lean .unknown {
+  color: var(--verso-code-color,);
+  font-weight: normal;
+  font-style: normal;
+  font-family: var(--verso-code-font-family,);
+}
+
+.hover-container {
+  width: 0;
+  height: 0;
+  position: relative;
+  display: inline;
+}
+
+.hl.lean a {
+  color: inherit;
+  text-decoration: currentcolor underline dotted;
+}
+
+.hl.lean a:hover {
+  text-decoration: currentcolor underline solid;
+}
+
+.hl.lean .hover-info {
+  white-space: normal;
+}
+
+.hl.lean .token .hover-info {
+  display: none;
+  position: absolute;
+  background-color: #e5e5e5;
+  border: 1px solid black;
+  padding: 0.5rem;
+  z-index: 300;
+}
+
+.hl.lean .hover-info.messages {
+  max-height: 10rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+  padding: 0 0.5rem 0 0;
+  display: block;
+}
+
+.hl.lean .hover-info code {
+  white-space: pre-wrap;
+  background: none;
+  color: black;
+}
+
+.hl.lean .hover-info.messages > code {
+  padding: 0.5rem;
+  display: block;
+  width: fit-content;
+}
+
+.hl.lean .hover-info.messages > code:only-child {
+  margin: 0;
+}
+
+.hl.lean .hover-info.messages > code {
+  margin: 0.1rem;
+}
+
+.hl.lean .hover-info.messages > code:not(:first-child) {
+  margin-top: 0rem;
+}
+
+.hl.lean {
+}
+
+.hl.lean.block {
+  display: block;
+}
+
+.hl.lean.inline {
+  display: inline;
+  white-space: pre-wrap;
+}
+
+.hl.lean * {
+}
+
+.hl.lean .token {
+  transition: all 0.25s; /* Slight fade for highlights */
+}
+
+@media (hover: hover) {
+  .hl.lean .token.binding-hl, .hl.lean .literal.string:hover, .hl.lean .token.typed:hover {
+    background-color: #eee;
+    border-radius: 2px;
+    transition: none;
+  }
+}
+
+
+.hl.lean .has-info .token:not(.tactic-state):not(.tactic-state *), .hl.lean .has-info .inter-text:not(.tactic-state):not(.tactic-state *) {
+  text-decoration-style: wavy;
+  text-decoration-line: underline;
+  text-decoration-thickness: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.hl.lean .has-info .hover-info {
+  display: none;
+  position: absolute;
+  transform: translate(0.25rem, 0.3rem);
+  border: 1px solid black;
+  padding: 0.5rem;
+  z-index: 400;
+  text-align: left;
+}
+
+.hl.lean .has-info.error :not(.tactic-state):not(.tactic-state *){
+  text-decoration-color: red;
+}
+
+@media (hover: hover) {
+  .hl.lean .has-info.error:hover {
+    background-color: #ffb3b3;
+  }
+}
+
+.hl.lean .hover-info.messages > code.error {
+  background-color: #e5e5e5;
+  border-left: 0.2rem solid #ffb3b3;
+}
+
+.tippy-box[data-theme~='error'] .hl.lean .hover-info.messages > code.error {
+  background: none;
+  border: none;
+}
+
+.error .verso-message, .error .verso-message .token, .error .verso-message label {
+  color: var(--verso-error-color);
+}
+
+.error .verso-message .case-label:has(input[type="checkbox"])::before {
+  background-color: var(--verso-error-color) !important;
+}
+
+.hl.lean .has-info.warning :not(.tactic-state):not(.tactic-state *) {
+  text-decoration-color: var(--verso-warning-indicator-color);
+}
+
+@media (hover: hover) {
+  .hl.lean .has-info.warning:hover {
+    background-color:var(--verso-warning-color);
+  }
+}
+
+.hl.lean .hover-info.messages > code.warning {
+  background-color: var(--verso-warning-color);
+}
+
+.lean-output {
+  border-left: 0.2em solid transparent;
+  padding: 0 0 0 0.5em;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.lean-output.error {
+  border-color: var(--verso-error-indicator-color);
+}
+
+.lean-output.information {
+  border-color: var(--verso-info-indicator-color);
+}
+
+.lean-output.warning {
+  border-color: var(--verso-warning-indicator-color);
+}
+
+.hl.lean .hover-info.messages > code.error {
+  background-color: #e5e5e5;
+  border-left: 0.2rem solid var(--verso-warning-color);
+}
+
+.tippy-box[data-theme~='warning'] .hl.lean .hover-info.messages > code.warning {
+  background: none;
+  border: none;
+}
+
+
+.hl.lean .has-info.information :not(.tactic-state):not(.tactic-state *) {
+  text-decoration-color: var(--verso-info-indicator-color, blue);
+}
+
+@media (hover: hover) {
+  .hl.lean .has-info.information:hover {
+    background-color: #4777ff;
+  }
+}
+
+
+.hl.lean .hover-info.messages > code.information {
+  background-color: #e5e5e5;
+  border-left: 0.2rem solid #4777ff;
+}
+
+.tippy-box[data-theme~='info'] .hl.lean .hover-info.messages > code.information {
+  background: none;
+  border: none;
+}
+
+.hl.lean div.docstring {
+  font-family: var(--verso-text-font-family, sans-serif);
+  white-space: normal;
+  max-width: calc(min(40rem, 90vw));
+  width: max-content;
+}
+
+.hl.lean div.docstring > :last-child {
+  margin-bottom: 0;
+}
+
+.hl.lean div.docstring > :first-child {
+  margin-top: 0;
+}
+
+.hl.lean .hover-info .sep {
+  display: block;
+  width: auto;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  height: 1px;
+  border-top: 1px solid #ccc;
+}
+
+.hl.lean code {
+  font-family: var(--verso-code-font-family);
+}
+
+.hl.lean .tactic-state {
+  display: none;
+  position: relative;
+  width: fit-content;
+  border: 1px solid #888888;
+  border-radius: 0.1rem;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  background-color: #ffffff;
+}
+
+.hl.lean.popup .tactic-state {
+  position: static;
+  display: block;
+  width: auto;
+  border: none;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  background-color: #ffffff;
+}
+
+
+.hl.lean .tactic {
+  position: relative;
+  display: inline;
+  vertical-align: top;
+  /* Without these, mobile Safari will start making font sizes inconsistent when its text size adjustment feature is triggered.*/
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.hl.lean .tactic:has(.tactic-toggle:checked) {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+}
+
+.hl.lean .tactic-toggle:checked ~ .tactic-state {
+  display: inline-block;
+  vertical-align: top;
+  grid-row: 2;
+  justify-self: start;
+}
+
+.hl.lean .tactic > label {
+  position: relative;
+  grid-row: 1;
+  display: inline;
+}
+
+@media (hover: hover) {
+  .hl.lean .tactic:has(.tactic-toggle:not(:checked)) > label:hover {
+    background-color: #eeeeee;
+  }
+}
+
+.hl.lean .tactic-toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  z-index: -10;
+}
+
+.hl.lean .tactic > label::after {
+  content: "";
+  border: 1px solid #bbbbbb;
+  /* These need to be em, not rem, to scale with the font */
+  border-radius: 1em;
+  height: 0.25em;
+  vertical-align: middle;
+  width: 0.6em;
+  margin-left: 0.1em;
+  margin-right: 0.1em;
+  display: inline-block;
+  transition: all 0.5s;
+}
+
+/*
+@media (hover: hover) {
+  .hl.lean .tactic > label:hover::after {
+    border: 1px solid #aaaaaa;
+    background-color: #aaaaaa;
+    transition: all 0.5s;
+  }
+}
+*/
+
+.hl.lean .tactic > label:has(+ .tactic-toggle:checked)::after {
+  border: 1px solid #999999;
+  background-color: #999999;
+  transition: all 0.5s;
+}
+
+.hl.lean .tactic-state .goal + .goal {
+  margin-top: 1.5em;
+}
+
+/*
+Some CSS frameworks customize details/summary in ways not compatible with Verso's output.
+*/
+
+.hl.lean details {
+  display: block !important;
+  margin: 0;
+}
+
+.hl.lean details summary {
+  display: list-item !important;
+  margin: 0;
+}
+
+.hl.lean details summary:focus {
+  outline: none;
+  outline-offset: none;
+  color: inherit;
+}
+
+.hl.lean ul > li {
+  margin-bottom: 0;
+}
+
+.hl.lean details summary::marker {
+  display: inline !important;
+}
+
+.hl.lean details > summary:first-of-type {
+  list-style-type: disclosure-closed;
+  list-style-position: inside;
+}
+
+.hl.lean details[open] > summary:first-of-type {
+  list-style-type: disclosure-open;
+}
+
+.hl.lean details summary::before, .hl.lean details summary::after {
+  content: "" !important;
+  background: none;
+  display: none;
+}
+
+.hl.lean .tactic-state summary {
+  /* These need to be em, not rem, to scale with the font */
+  margin-left: -0.5em;
+}
+
+.hl.lean .tactic-state details {
+  /* These need to be em, not rem, to scale with the font */
+  padding-left: 0.5em;
+}
+
+.hl.lean .case-label {
+  display: block;
+  position: relative;
+}
+
+.hl.lean .case-label input[type="checkbox"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  z-index: -10;
+}
+
+.hl.lean .case-label:has(input[type="checkbox"])::before {
+  display: inline-block;
+  background-color: black;
+  content: ' ';
+  transition: ease 0.2s;
+  margin-right: 0.7em;
+  clip-path: polygon(100% 0, 0 0, 50% 100%);
+  width: 0.6em;
+  height: 0.6em;
+  vertical-align: middle;
+}
+
+.hl.lean .case-label:has(input[type="checkbox"]:not(:checked))::before {
+  transform: rotate(-90deg);
+}
+
+.hl.lean .case-label:has(input[type="checkbox"]) {
+
+}
+
+.hl.lean .case-label:has(input[type="checkbox"]:checked) {
+
+}
+
+
+.hl.lean .labeled-case > :not(:first-child) {
+  max-height: 0px;
+  display: block;
+  overflow: hidden;
+  transition: max-height 0.1s ease-in;
+  /* These need to be em, not rem, to scale with the font */
+  margin-left: 0.5em;
+  margin-top: 0.1em;
+}
+
+.hl.lean .labeled-case:has(.case-label input[type="checkbox"]:checked) > :not(:first-child) {
+  max-height: 100%;
+}
+
+
+.hl.lean .goal-name::before {
+  font-style: normal;
+  content: "case ";
+}
+
+.hl.lean .goal-name {
+  font-style: italic;
+  font-family: var(--verso-code-font-family);
+  color: inherit;
+}
+
+.hl.lean .hypotheses {
+  display: table;
+}
+
+.hl.lean .hypothesis {
+  display: table-row;
+}
+
+.hl.lean .hypothesis > * {
+  display: table-cell;
+}
+
+
+.hl.lean .hypotheses .colon {
+  text-align: center;
+  /* This needs to be em, not rem, to scale with the font */
+  min-width: 1em;
+}
+
+.hl.lean .hypotheses .name {
+  text-align: right;
+}
+
+.hl.lean .hypotheses .name,
+.hl.lean .hypotheses .type,
+.hl.lean .conclusion .type {
+  font-family: var(--verso-code-font-family);
+}
+
+.tippy-box {
+  /* Without these, mobile Safari will start making font sizes inconsistent when its text size adjustment feature is triggered.*/
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+}
+
+.tippy-box[data-theme~='lean'] {
+  background-color: #e5e5e5;
+  color: black;
+  border: 1px solid black;
+}
+.tippy-box[data-theme~='lean'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: #e5e5e5;
+}
+.tippy-box[data-theme~='lean'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: #e5e5e5;
+}
+.tippy-box[data-theme~='lean'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: #e5e5e5;
+}
+.tippy-box[data-theme~='lean'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: #e5e5e5;
+}
+
+.tippy-box[data-theme~='message'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: #e5e5e5;
+  border-width: 11px 11px 0;
+}
+.tippy-box[data-theme~='message'][data-placement^='top'] > .tippy-arrow::after {
+  bottom: -11px;
+  border-width: 11px 11px 0;
+}
+.tippy-box[data-theme~='message'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-width: 0 11px 11px;
+}
+.tippy-box[data-theme~='message'][data-placement^='bottom'] > .tippy-arrow::after {
+  top: -11px;
+  border-width: 0 11px 11px;
+}
+.tippy-box[data-theme~='message'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: #e5e5e5;
+  border-width: 11px 0 11px 11px;
+}
+.tippy-box[data-theme~='message'][data-placement^='left'] > .tippy-arrow::after {
+  right: -11px;
+  border-width: 11px 0 11px 11px;
+}
+
+.tippy-box[data-theme~='message'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: #e5e5e5;
+  border-width: 11px 11px 11px 0;
+}
+.tippy-box[data-theme~='message'][data-placement^='right'] > .tippy-arrow::after {
+  left: -11px;
+  border-width: 11px 11px 11px 0;
+}
+
+
+
+.tippy-box[data-theme~='warning'] {
+  background-color: #e5e5e5;
+  color: black;
+  border: 3px solid var(--verso-warning-color);
+}
+
+.tippy-box[data-theme~='error'] {
+  background-color: #e5e5e5;
+  color: black;
+  border: 3px solid #f7a7af;
+}
+
+.tippy-box[data-theme~='info'] {
+  background-color: #e5e5e5;
+  color: black;
+  border: 3px solid #99b3c2;
+}
+
+.tippy-box[data-theme~='tactic'] {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+.tippy-box[data-theme~='tactic'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: white;
+}
+.tippy-box[data-theme~='tactic'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: white;
+}
+.tippy-box[data-theme~='tactic'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: white;
+}
+.tippy-box[data-theme~='tactic'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: white;
+}
+
+.extra-doc-links {
+  list-style-type: none;
+  margin-left: 0;
+  padding: 0;
+}
+
+.extra-doc-links > li {
+  display: inline-block;
+}
+
+.extra-doc-links > li:not(:last-child)::after {
+  content: '|';
+  display: inline-block;
+  margin: 0 0.25em;
+}
+
+.verso-message .trace {
+  display: block;
+}
+
+.verso-message .trace > summary::marker {
+  color: var(--verso-text-color);
+}
+
+.verso-message .trace-children {
+  margin: 0;
+  padding: 0;
+}
+
+.verso-message .trace-children > li {
+  list-style-type: none;
+  margin-left: 1.5em;
+}
+
+.verso-message .trace-children > li:not(:has(.trace)) {
+  margin-left: 0;
+}
+
+.verso-message .trace-class {
+  color: color-mix(in srgb, currentColor 70%, transparent);
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.verso-message .text {
+  white-space: pre-wrap;
+}
+
+</style><link rel="stylesheet" href="tippy-border.css">
+    <link rel="stylesheet" href="code.css">
+    <script src="-verso-search/elasticlunr.min.js"></script>
+    <script src="-verso-search/fuzzysort.js"></script>
+    <script src="-verso-search/searchIndex.js"></script>
+    <script type="module" src="-verso-search/search-init.js"></script>
+    <script src="-verso-search/domain-mappers.js" defer="defer"></script>
+    <link rel="stylesheet" href="-verso-search/search-box.css">
+    <link rel="stylesheet" href="-verso-search/search-highlight.css">
+    <link rel="stylesheet" href="-verso-search/domain-display.css">
+    <script src="-verso-search/search-highlight.js" defer="defer"></script>
+    </head>
+  <body>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle"><label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label><div class="layout">
+      <aside class="sidebar"><div class="sidebar-content">
+          <nav class="module-tree">
+            <details><summary>DemoTextbook</summary><div class="leaf">
+                <a href="DemoTextbook/ListSet/" title="DemoTextbook.ListSet">ListSet</a></div>
+              </details><details open=""><summary><a href="LeanW26/" title="LeanW26">LeanW26</a></summary><details><summary>Introduction</summary><div class="leaf">
+                  <a href="LeanW26/Introduction/Datatypes/" title="LeanW26.Introduction.Datatypes">Datatypes</a></div>
+                <div class="leaf">
+                  <a href="LeanW26/Introduction/Lean/" title="LeanW26.Introduction.Lean">Lean</a></div>
+                <div class="leaf">
+                  <a href="LeanW26/Introduction/Motivation/" title="LeanW26.Introduction.Motivation">Motivation</a></div>
+                <div class="leaf">
+                  <a href="LeanW26/Introduction/Programming/" title="LeanW26.Introduction.Programming">Programming</a></div>
+                </details><details open=""><summary>Meta</summary><div class="leaf current">
+                  <a href="LeanW26/Meta/Monads/" title="LeanW26.Meta.Monads">Monads</a></div>
+                </details><details><summary>TypeTheory</summary><div class="leaf">
+                  <a href="LeanW26/TypeTheory/LambdaCalculus/" title="LeanW26.TypeTheory.LambdaCalculus">LambdaCalculus</a></div>
+                <div class="leaf">
+                  <a href="LeanW26/TypeTheory/NonSimpleTypes/" title="LeanW26.TypeTheory.NonSimpleTypes">NonSimpleTypes</a></div>
+                <div class="leaf">
+                  <a href="LeanW26/TypeTheory/Overview/" title="LeanW26.TypeTheory.Overview">Overview</a></div>
+                <div class="leaf">
+                  <a href="LeanW26/TypeTheory/Simple/" title="LeanW26.TypeTheory.Simple">Simple</a></div>
+                <div class="leaf">
+                  <a href="LeanW26/TypeTheory/TypeQuestions/" title="LeanW26.TypeTheory.TypeQuestions">TypeQuestions</a></div>
+                <div class="leaf">
+                  <a href="LeanW26/TypeTheory/Universes/" title="LeanW26.TypeTheory.Universes">Universes</a></div>
+                </details></details></nav>
+          </div>
+        </aside><main class="main-area"><header class="title-bar">
+          <ol class="breadcrumbs">
+            <li>
+              <a href="LeanW26"><code>LeanW26</code></a></li>
+            <li>
+              <a href="LeanW26/Meta"><code>Meta</code></a></li>
+            <li>
+              <span class="current">Monads</span></li>
+            </ol>
+          </header>
+        <section class="code-content" id="LeanW26___Meta___Monads">
+          <code class="hl lean block" data-lean-context="lean"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Module.import-0">import</span><span class="inter-text"> </span><span class="module-name token" data-binding="module-name-mathlib">mathlib</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.namespace-16" data-verso-hover="0">namespace</span><span class="inter-text"> </span><span class="unknown token" data-binding="">LeanW26.Monads</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.universe-42" data-verso-hover="6">universe</span><span class="inter-text"> </span><span class="unknown token" data-binding="">u</span><span class="inter-text"> </span><span class="unknown token" data-binding="">v</span><span class="inter-text"> </span><span class="unknown token" data-binding="">w</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/-
+Monads Defined
+===
+-/
+
+/-
+Example Monad : Maybe
+===
+In Lean this monad is called `Option`. We'll rebuild it here and call it `Maybe` instead.
+The idea is to provide a `none` value when the result of an operation is undefined.
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.inductive-291" data-verso-hover="71">inductive</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99" id="LeanW26___Monads___Maybe">Maybe</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="8">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="sort token" data-binding="sort-7243200735919010059" data-verso-hover="2">Type</span><span class="inter-text"> </span><span class="level-var token" data-binding="level-var-u" data-verso-hover="9">u</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-null-321">where</span><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.Maybe.none" data-verso-hover="100" id="LeanW26___Monads___Maybe___none">none</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="8">α</span><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101" id="LeanW26___Monads___Maybe___some">some</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="8">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">→</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="8">α</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.open-375" data-verso-hover="102">open</span><span class="inter-text"> </span><span class="unknown token" data-binding="">Maybe</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/- For example, you might ask for the first value of an empty list. -/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-459">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103" id="LeanW26___Monads___first">first</span><span class="inter-text"> </span><span class="unknown token" data-binding="">{</span><span class="var token" data-binding="var-_uniq.786" data-verso-hover="8">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="sort token" data-binding="sort-7243200735919010059" data-verso-hover="2">Type</span><span class="inter-text"> </span><span class="level-var token" data-binding="level-var-u" data-verso-hover="9">u</span><span class="unknown token" data-binding="">}</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.789" data-verso-hover="104">L</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.786" data-verso-hover="8">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.786" data-verso-hover="8">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-511" data-verso-hover="81">match</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.789" data-verso-hover="104">L</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-511" data-verso-hover="81">with</span><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">]</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___none" title="Definition of `LeanW26.Monads.Maybe.none`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.none" data-verso-hover="100">none</span></a><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.1614" data-verso-hover="45">x</span><span class="unknown token" data-binding="">::</span><span class="unknown token" data-binding="">_</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___some" title="Definition of `LeanW26.Monads.Maybe.some`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101">some</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.1614" data-verso-hover="45">x</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Maybe.none</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-559" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">]</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="13">Nat</span><span class="unknown token" data-binding="">)</span></code><code class="hl lean block" data-lean-context="lean"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Maybe.none</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-586" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">]</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="13">Nat</span><span class="unknown token" data-binding="">)</span></code><code class="hl lean block" data-lean-context="lean"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Maybe.some 1</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-614" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">1</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">2</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">3</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/-
+Maybe is Polymorphic
+===
+Or you might ask for the first character in a string.
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-721">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.first_char" data-verso-hover="105" id="LeanW26___Monads___first_char">first_char</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.15471" data-verso-hover="106">s</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-String" data-verso-hover="16">String</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="const token" data-binding="const-Char" data-verso-hover="107">Char</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-termDepIfThenElse-767" data-verso-hover="108">if</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.15524" data-verso-hover="109">h</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.15471" data-verso-hover="106">s</span><span class="unknown token" data-binding="">.</span><span class="const token" data-binding="const-String.length" data-verso-hover="110">length</span><span class="inter-text"> </span><span class="unknown token" data-binding="">&gt;</span><span class="inter-text"> </span><span class="typed token" data-binding="" data-verso-hover="33">0</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-termDepIfThenElse-767" data-verso-hover="108">then</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___some" title="Definition of `LeanW26.Monads.Maybe.some`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101">some</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.15471" data-verso-hover="106">s</span><span class="unknown token" data-binding="">.</span><span class="has-info warning"><span class="hover-container"><span class="hover-info messages"><code class="verso-message warning"><span class="text"></span><span class="text">`</span><span class="highlighted"><span class="inter-text"></span><span class="const token" data-binding="const-String.data" data-verso-hover="111">String.data</span><span class="inter-text"></span></span><span class="text">` has been deprecated</span><span class="text">: Use `</span><span class="highlighted"><span class="inter-text"></span><span class="const token" data-binding="const-String.toList" data-verso-hover="112">String.toList</span><span class="inter-text"></span></span><span class="text">` instead</span></code></span></span><span class="const token" data-binding="const-String.data" data-verso-hover="111">data</span></span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">0</span><span class="unknown token" data-binding="">]</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-termDepIfThenElse-767" data-verso-hover="108">else</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___none" title="Definition of `LeanW26.Monads.Maybe.none`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.none" data-verso-hover="100">none</span></a></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Maybe.some 'R'</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-818" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first_char" title="Definition of `LeanW26.Monads.first_char`"><span class="const token" data-binding="const-LeanW26.Monads.first_char" data-verso-hover="105">first_char</span></a><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="113">"Romeo, Romeo, wherefore art thou Romeo?"</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+
+/-
+Example Monod: Oops
+===
+
+Lean does not have a built-in exception handler. But it does have
+an `Except` monad. We rebuild it here, but call it `Oops`.
+
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.inductive-1037" data-verso-hover="71">inductive</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.Oops" data-verso-hover="114" id="LeanW26___Monads___Oops">Oops</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.21625" data-verso-hover="8">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="sort token" data-binding="sort-7243200735919010059" data-verso-hover="2">Type</span><span class="inter-text"> </span><span class="level-var token" data-binding="level-var-u" data-verso-hover="9">u</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-null-1066">where</span><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.Oops.except" data-verso-hover="115" id="LeanW26___Monads___Oops___except">except</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-String" data-verso-hover="16">String</span><span class="inter-text"> </span><span class="unknown token" data-binding="">→</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Oops" title="Definition of `LeanW26.Monads.Oops`"><span class="const token" data-binding="const-LeanW26.Monads.Oops" data-verso-hover="114">Oops</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.21625" data-verso-hover="8">α</span><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.Oops.ok" data-verso-hover="116" id="LeanW26___Monads___Oops___ok">ok</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.21625" data-verso-hover="8">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">→</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Oops" title="Definition of `LeanW26.Monads.Oops`"><span class="const token" data-binding="const-LeanW26.Monads.Oops" data-verso-hover="114">Oops</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.21625" data-verso-hover="8">α</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.open-1129" data-verso-hover="102">open</span><span class="inter-text"> </span><span class="unknown token" data-binding="">Oops</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-1140">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.first'" data-verso-hover="117" id="LeanW26___Monads___first___">first'</span><span class="inter-text"> </span><span class="unknown token" data-binding="">{</span><span class="var token" data-binding="var-_uniq.22621" data-verso-hover="8">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="sort token" data-binding="sort-7243200735919010059" data-verso-hover="2">Type</span><span class="inter-text"> </span><span class="level-var token" data-binding="level-var-u" data-verso-hover="9">u</span><span class="unknown token" data-binding="">}</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.22624" data-verso-hover="104">L</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.22621" data-verso-hover="8">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Oops" title="Definition of `LeanW26.Monads.Oops`"><span class="const token" data-binding="const-LeanW26.Monads.Oops" data-verso-hover="114">Oops</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.22621" data-verso-hover="8">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-1192" data-verso-hover="81">match</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.22624" data-verso-hover="104">L</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-1192" data-verso-hover="81">with</span><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">]</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Oops___except" title="Definition of `LeanW26.Monads.Oops.except`"><span class="const token" data-binding="const-LeanW26.Monads.Oops.except" data-verso-hover="115">except</span></a><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="118">"Tried to get the first value of an empty list"</span><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.22660" data-verso-hover="45">x</span><span class="unknown token" data-binding="">::</span><span class="unknown token" data-binding="">_</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Oops___ok" title="Definition of `LeanW26.Monads.Oops.ok`"><span class="const token" data-binding="const-LeanW26.Monads.Oops.ok" data-verso-hover="116">ok</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.22660" data-verso-hover="45">x</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Oops.except "Tried to get the first value of an empty list"</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-1288" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first___" title="Definition of `LeanW26.Monads.first'`"><span class="const token" data-binding="const-LeanW26.Monads.first'" data-verso-hover="117">first'</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">]</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="13">Nat</span><span class="unknown token" data-binding="">)</span></code><code class="hl lean block" data-lean-context="lean"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Oops.except "Tried to get the first value of an empty list"</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-1316" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first___" title="Definition of `LeanW26.Monads.first'`"><span class="const token" data-binding="const-LeanW26.Monads.first'" data-verso-hover="117">first'</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">]</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="13">Nat</span><span class="unknown token" data-binding="">)</span></code><code class="hl lean block" data-lean-context="lean"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Oops.ok 1</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-1345" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first___" title="Definition of `LeanW26.Monads.first'`"><span class="const token" data-binding="const-LeanW26.Monads.first'" data-verso-hover="117">first'</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">1</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">2</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">3</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+
+
+/-
+Non Idomatic Use of Monads
+===
+Suppose you want to get the first two elements of a list. One thing you could
+do is.
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.variable-1492" data-verso-hover="29">variable</span><span class="inter-text"> </span><span class="unknown token" data-binding="">{</span><span class="var token" data-binding="var-_uniq.92261" data-verso-hover="8">σ</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="sort token" data-binding="sort-7243200735919010059" data-verso-hover="2">Type</span><span class="inter-text"> </span><span class="level-var token" data-binding="level-var-u" data-verso-hover="9">u</span><span class="unknown token" data-binding="">}</span><span class="inter-text"> </span><span class="unknown token" data-binding="">{</span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="sort token" data-binding="sort-7243200735919010059" data-verso-hover="2">Type</span><span class="inter-text"> </span><span class="level-var token" data-binding="level-var-v" data-verso-hover="19">v</span><span class="unknown token" data-binding="">}</span><span class="inter-text"> </span><span class="unknown token" data-binding="">{</span><span class="var token" data-binding="var-_uniq.92265" data-verso-hover="11">β</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="sort token" data-binding="sort-7243200735919010059" data-verso-hover="2">Type</span><span class="inter-text"> </span><span class="level-var token" data-binding="level-var-w" data-verso-hover="12">w</span><span class="unknown token" data-binding="">}</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-1544">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.first_two'" data-verso-hover="119" id="LeanW26___Monads___first_two___">first_two'</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.36097" data-verso-hover="104">L</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-1594" data-verso-hover="81">match</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.36097" data-verso-hover="104">L</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-1594" data-verso-hover="81">with</span><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">]</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___none" title="Definition of `LeanW26.Monads.Maybe.none`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.none" data-verso-hover="100">none</span></a><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.36969" data-verso-hover="45">x</span><span class="unknown token" data-binding="">::</span><span class="var token" data-binding="var-_uniq.36970" data-verso-hover="104">M</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-1634" data-verso-hover="81">match</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.36970" data-verso-hover="104">M</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-1634" data-verso-hover="81">with</span><span class="inter-text">
+    </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">]</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___none" title="Definition of `LeanW26.Monads.Maybe.none`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.none" data-verso-hover="100">none</span></a><span class="inter-text">
+    </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.37822" data-verso-hover="45">y</span><span class="unknown token" data-binding="">::</span><span class="unknown token" data-binding="">_</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___some" title="Definition of `LeanW26.Monads.Maybe.some`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101">some</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="var token" data-binding="var-_uniq.36969" data-verso-hover="45">x</span><span class="unknown token" data-binding="">,</span><span class="var token" data-binding="var-_uniq.37822" data-verso-hover="45">y</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/- But this does not really use the power of Monads. -/
+
+/-
+Chaining Monads
+===
+Alternatively, you could define a chaining operator `andThen`: -/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-1837">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.andThen" data-verso-hover="120" id="LeanW26___Monads___andThen">andThen</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.38943" data-verso-hover="121">maybe</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.38948" data-verso-hover="122">next</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="inter-text"> </span><span class="unknown token" data-binding="">→</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92265" data-verso-hover="11">β</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92265" data-verso-hover="11">β</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-1909" data-verso-hover="81">match</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.38943" data-verso-hover="121">maybe</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-1909" data-verso-hover="81">with</span><span class="inter-text">
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___none" title="Definition of `LeanW26.Monads.Maybe.none`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.none" data-verso-hover="100">Maybe.none</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___none" title="Definition of `LeanW26.Monads.Maybe.none`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.none" data-verso-hover="100">none</span></a><span class="inter-text">         -- stop here
+  </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___some" title="Definition of `LeanW26.Monads.Maybe.some`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101">Maybe.some</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.39767" data-verso-hover="45">x</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.38948" data-verso-hover="122">next</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.39767" data-verso-hover="45">x</span><span class="inter-text">     -- keep goin</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/- Now we can write: -/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-2041">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.first_two" data-verso-hover="123" id="LeanW26___Monads___first_two">first_two</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.39938" data-verso-hover="104">L</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text">
+  </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___andThen" title="Definition of `LeanW26.Monads.andThen`"><span class="const token" data-binding="const-LeanW26.Monads.andThen" data-verso-hover="120">andThen</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.39938" data-verso-hover="104">L</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.fun-2111">fun</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.39954" data-verso-hover="45">x</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text">
+  </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___andThen" title="Definition of `LeanW26.Monads.andThen`"><span class="const token" data-binding="const-LeanW26.Monads.andThen" data-verso-hover="120">andThen</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.39938" data-verso-hover="104">L</span><span class="unknown token" data-binding="">.</span><span class="const token" data-binding="const-List.tail" data-verso-hover="124">tail</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.fun-2146">fun</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.39969" data-verso-hover="45">y</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text">
+  </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___some" title="Definition of `LeanW26.Monads.Maybe.some`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101">some</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="var token" data-binding="var-_uniq.39954" data-verso-hover="45">x</span><span class="unknown token" data-binding="">,</span><span class="var token" data-binding="var-_uniq.39969" data-verso-hover="45">y</span><span class="unknown token" data-binding="">]</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">)</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Maybe.none</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-2171" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first_two" title="Definition of `LeanW26.Monads.first_two`"><span class="const token" data-binding="const-LeanW26.Monads.first_two" data-verso-hover="123">first_two</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">]</span><span class="unknown token" data-binding="">:</span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="13">Nat</span><span class="unknown token" data-binding="">)</span></code><code class="hl lean block" data-lean-context="lean"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Maybe.none</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-2201" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first_two" title="Definition of `LeanW26.Monads.first_two`"><span class="const token" data-binding="const-LeanW26.Monads.first_two" data-verso-hover="123">first_two</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">10</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Maybe.some [10, 20]</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-2222" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first_two" title="Definition of `LeanW26.Monads.first_two`"><span class="const token" data-binding="const-LeanW26.Monads.first_two" data-verso-hover="123">first_two</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">10</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">20</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Maybe.some [10, 20]</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-2246" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first_two" title="Definition of `LeanW26.Monads.first_two`"><span class="const token" data-binding="const-LeanW26.Monads.first_two" data-verso-hover="123">first_two</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">10</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">20</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">30</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">40</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/-
+Adding Syntax for Chaining
+===
+
+We can define notation for chainging to make this even more clear:
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.infixl-2383" data-verso-hover="125">infixl</span><span class="unknown token" data-binding="">:</span><span class="unknown token" data-binding="">55</span><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="126">" ~~&gt; "</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___andThen" title="Definition of `LeanW26.Monads.andThen`"><span class="const token" data-binding="const-LeanW26.Monads.andThen" data-verso-hover="120">andThen</span></a></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/-
+Now we can see the structure of what we've built more clearly.
+-/
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-2482">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.first_two''" data-verso-hover="127" id="LeanW26___Monads___first_two______">first_two''</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.64290" data-verso-hover="104">L</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text">
+  </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.64290" data-verso-hover="104">L</span><span class="inter-text">      </span><span class="unknown token" data-binding="">~~&gt;</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.fun-2552">fun</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.64306" data-verso-hover="45">x</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text">
+  </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.64290" data-verso-hover="104">L</span><span class="unknown token" data-binding="">.</span><span class="const token" data-binding="const-List.tail" data-verso-hover="124">tail</span><span class="inter-text"> </span><span class="unknown token" data-binding="">~~&gt;</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.fun-2580">fun</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.64321" data-verso-hover="45">y</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text">
+  </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___some" title="Definition of `LeanW26.Monads.Maybe.some`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101">some</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="var token" data-binding="var-_uniq.64306" data-verso-hover="45">x</span><span class="unknown token" data-binding="">,</span><span class="var token" data-binding="var-_uniq.64321" data-verso-hover="45">y</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+
+/-
+Exercises
+===
+
+&lt;ex/&gt; Define a function `add_firsts` that returns the sum of the first two elements of a list
+of natural numbers, if they exist. Use `first_two`, chaining and `List.reverse`.
+
+&lt;ex/&gt; Make another version of this function, but instead of returning `Maybe (List Nat)`,
+return an `Oops (List Nat)`.
+
+-/
+
+
+
+/-
+Registering Maybe as a Monad
+===
+
+Our types `Maybe` and `Oops` are not monads yet. We need to instantiate
+Lean's `Monad` class first.
+
+Lean's `Monad` class usually just needs two fields instantiated:
+
+- `pure` Takes a value and puts it into the monadic context.
+It’s the way to lift a plain value into the monad without adding any effects.
+
+- `bind` Sequences computations. It takes a monadic value and a
+function that returns another monadic value, and combines them so that the second computation can depend on the result of the first.
+
+For `Maybe` this works out to:
+
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.instance-3504">instance</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-Monad" data-verso-hover="128">Monad</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.whereStructInst-3527">where</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-Pure.pure" data-verso-hover="129">pure</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.65441" data-verso-hover="66">x</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___some" title="Definition of `LeanW26.Monads.Maybe.some`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101">some</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.65441" data-verso-hover="66">x</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-Bind.bind" data-verso-hover="130">bind</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.66393" data-verso-hover="131">m</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.66396" data-verso-hover="132">next</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-3569" data-verso-hover="81">match</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.66393" data-verso-hover="131">m</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.match-3569" data-verso-hover="81">with</span><span class="inter-text">
+    </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___none" title="Definition of `LeanW26.Monads.Maybe.none`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.none" data-verso-hover="100">Maybe.none</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___none" title="Definition of `LeanW26.Monads.Maybe.none`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.none" data-verso-hover="100">none</span></a><span class="inter-text">
+    </span><span class="unknown token" data-binding="">|</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___some" title="Definition of `LeanW26.Monads.Maybe.some`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101">Maybe.some</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.67195" data-verso-hover="66">y</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.66396" data-verso-hover="132">next</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.67195" data-verso-hover="66">y</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/-
+Lean's Monad Notation
+===
+
+Once registered, you can use Lean's `&gt;&gt;=` syntax, which is like our `~~&gt;` syntax.
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-3753">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.first_two_m" data-verso-hover="133" id="LeanW26___Monads___first_two_m">first_two_m</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.68406" data-verso-hover="104">L</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text">
+  </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.68406" data-verso-hover="104">L</span><span class="inter-text">      </span><span class="unknown token" data-binding="">&gt;&gt;=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.fun-3823">fun</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.68431" data-verso-hover="45">x</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text">
+  </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.68406" data-verso-hover="104">L</span><span class="unknown token" data-binding="">.</span><span class="const token" data-binding="const-List.tail" data-verso-hover="124">tail</span><span class="inter-text"> </span><span class="unknown token" data-binding="">&gt;&gt;=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.fun-3851">fun</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.68455" data-verso-hover="45">y</span><span class="inter-text"> </span><span class="unknown token" data-binding="">=&gt;</span><span class="inter-text">
+  </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___some" title="Definition of `LeanW26.Monads.Maybe.some`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101">some</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="var token" data-binding="var-_uniq.68431" data-verso-hover="45">x</span><span class="unknown token" data-binding="">,</span><span class="var token" data-binding="var-_uniq.68455" data-verso-hover="45">y</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/-
+Do and let
+===
+You can also use Lean's `do`, which makes the example even
+more concise.
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-3969">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.first_two_do" data-verso-hover="134" id="LeanW26___Monads___first_two_do">first_two_do</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.69489" data-verso-hover="104">L</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe" title="Definition of `LeanW26.Monads.Maybe`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe" data-verso-hover="99">Maybe</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92263" data-verso-hover="20">α</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.do-4021">do</span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.doLetArrow-4026">let</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.69530" data-verso-hover="45">x</span><span class="inter-text"> </span><span class="unknown token" data-binding="">←</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.69489" data-verso-hover="104">L</span><span class="inter-text">               -- This is different than let :=
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.doLetArrow-4093">let</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.69556" data-verso-hover="45">y</span><span class="inter-text"> </span><span class="unknown token" data-binding="">←</span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first" title="Definition of `LeanW26.Monads.first`"><span class="const token" data-binding="const-LeanW26.Monads.first" data-verso-hover="103">first</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.69489" data-verso-hover="104">L</span><span class="unknown token" data-binding="">.</span><span class="const token" data-binding="const-List.tail" data-verso-hover="124">tail</span><span class="inter-text">
+  </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___Maybe___some" title="Definition of `LeanW26.Monads.Maybe.some`"><span class="const token" data-binding="const-LeanW26.Monads.Maybe.some" data-verso-hover="101">some</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="var token" data-binding="var-_uniq.69530" data-verso-hover="45">x</span><span class="unknown token" data-binding="">,</span><span class="var token" data-binding="var-_uniq.69556" data-verso-hover="45">y</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Maybe.none</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-4130" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first_two_do" title="Definition of `LeanW26.Monads.first_two_do`"><span class="const token" data-binding="const-LeanW26.Monads.first_two_do" data-verso-hover="134">first_two_do</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">10</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">LeanW26.Monads.Maybe.some [10, 20]</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-4154" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___first_two_do" title="Definition of `LeanW26.Monads.first_two_do`"><span class="const token" data-binding="const-LeanW26.Monads.first_two_do" data-verso-hover="134">first_two_do</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">10</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">20</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">30</span><span class="unknown token" data-binding="">]</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/-
+It is tempting to think of this as procedural code. But
+it is not. It is just syntax for:
+
+```lean
+def first_two (L : List α) : Maybe (List α) :=
+  andThen (first L) (fun x =&gt;
+  andThen (first L.tail) (fun y =&gt;
+  some [x,y]))
+```
+-/
+
+
+/-
+Exercises
+===
+
+&lt;ex/&gt; Retwrite `add_firsts` using `first`, `do` and `let`.
+
+&lt;ex/&gt; Instantiave `Oops` as a monad.
+
+-/
+
+
+
+/-
+Lean/Mathlib Monads
+===
+
+`Option` What we've been calling `Maybe`
+`Except` What we've been calling `Oops`.
+`Id` The identity monad. Just returns its value.
+
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-4711">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.doubleM" data-verso-hover="135" id="LeanW26___Monads___doubleM">doubleM</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.79230" data-verso-hover="37">m</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="sort token" data-binding="sort-7243200735919010059" data-verso-hover="2">Type</span><span class="inter-text"> </span><span class="unknown token" data-binding="">→</span><span class="inter-text"> </span><span class="sort token" data-binding="sort-7243200735919010059" data-verso-hover="2">Type</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="const token" data-binding="const-Monad" data-verso-hover="128">Monad</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.79230" data-verso-hover="37">m</span><span class="unknown token" data-binding="">]</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.79239" data-verso-hover="33">x</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="13">Nat</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.79230" data-verso-hover="37">m</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="13">Nat</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.do-4774">do</span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.doLet-4779">let</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.79328" data-verso-hover="33">y</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.79239" data-verso-hover="33">x</span><span class="inter-text"> </span><span class="unknown token" data-binding="">*</span><span class="inter-text"> </span><span class="typed token" data-binding="" data-verso-hover="33">2</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-Pure.pure" data-verso-hover="136">pure</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.79328" data-verso-hover="33">y</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="highlighted"><span class="unknown token" data-binding="">Option.some</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span></span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-4804" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___doubleM" title="Definition of `LeanW26.Monads.doubleM`"><span class="const token" data-binding="const-LeanW26.Monads.doubleM" data-verso-hover="135">doubleM</span></a><span class="inter-text"> </span><span class="const token" data-binding="const-Option" data-verso-hover="137">Option</span><span class="inter-text"> </span><span class="typed token" data-binding="" data-verso-hover="33">1</span><span class="inter-text">               -- some </span></code><code class="hl lean block" data-lean-context="lean"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">Except.ok 2</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-4851" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___doubleM" title="Definition of `LeanW26.Monads.doubleM`"><span class="const token" data-binding="const-LeanW26.Monads.doubleM" data-verso-hover="135">doubleM</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="const token" data-binding="const-Except" data-verso-hover="138">Except</span><span class="inter-text"> </span><span class="const token" data-binding="const-String" data-verso-hover="16">String</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="typed token" data-binding="" data-verso-hover="33">1</span><span class="inter-text">      -- ok </span></code><code class="hl lean block" data-lean-context="lean"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="highlighted"><span class="inter-text"></span><span class="unknown token" data-binding="">2</span><span class="inter-text"></span></span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-4896" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___doubleM" title="Definition of `LeanW26.Monads.doubleM`"><span class="const token" data-binding="const-LeanW26.Monads.doubleM" data-verso-hover="135">doubleM</span></a><span class="inter-text"> </span><span class="const token" data-binding="const-Id" data-verso-hover="139">Id</span><span class="inter-text"> </span><span class="typed token" data-binding="" data-verso-hover="33">1</span><span class="inter-text">                   -- </span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/- Many more: `Reader`, `StateM`, `IO`, `RandomM`. -/
+
+/-
+The IO Monad
+===
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-5018">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.main" data-verso-hover="140" id="LeanW26___Monads___main">main</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-IO" data-verso-hover="141">IO</span><span class="inter-text"> </span><span class="const token" data-binding="const-Unit" data-verso-hover="142">Unit</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.do-5040">do</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-IO.println" data-verso-hover="143">IO.println</span><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="144">"Hello!"</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-IO.println" data-verso-hover="143">IO.println</span><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="145">"This is the IO Monad"</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-IO.println" data-verso-hover="143">IO.println</span><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="146">"If you run this code from the command line"</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-IO.println" data-verso-hover="143">IO.println</span><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="147">"you can use IO.getLine"</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-IO.println" data-verso-hover="143">IO.println</span><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="148">"You can examime the filesystem too."</span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.doLetArrow-5250">let</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.90604" data-verso-hover="149">d</span><span class="inter-text"> </span><span class="unknown token" data-binding="">←</span><span class="inter-text"> </span><span class="const token" data-binding="const-IO.currentDir" data-verso-hover="150">IO.currentDir</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-IO.println" data-verso-hover="143">IO.println</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-termS!_-5287">s!</span><span class="unknown token" data-binding="">"Current directory: {</span><span class="var token" data-binding="var-_uniq.90604" data-verso-hover="149">d</span><span class="unknown token" data-binding="">}"</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="text">Hello!
+This is the IO Monad
+If you run this code from the command line
+you can use IO.getLine
+You can examime the filesystem too.
+Current directory: /Users/ericklavins/Courses/LeanW26
+</span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-5315" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___main" title="Definition of `LeanW26.Monads.main`"><span class="const token" data-binding="const-LeanW26.Monads.main" data-verso-hover="140">main</span></a></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+/-
+The List Monad
+===
+Mathlib adds a Monad instance for lists that allows for nondeterminism.
+It is defined something like this
+
+```lean
+instance : Monad List where
+  pure x := [x]
+  bind xs f := xs.foldr (fun a acc =&gt; f a ++ acc) []
+```
+
+-/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-5570">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.pairs" data-verso-hover="151" id="LeanW26___Monads___pairs">pairs</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="const token" data-binding="const-Nat" data-verso-hover="13">Nat</span><span class="inter-text"> </span><span class="unknown token" data-binding="">×</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="13">Nat</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.do-5603">do</span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.doLetArrow-5608">let</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92333" data-verso-hover="33">a</span><span class="inter-text"> </span><span class="unknown token" data-binding="">←</span><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">1</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="typed token" data-binding="" data-verso-hover="33">2</span><span class="unknown token" data-binding="">]</span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.doLetArrow-5627">let</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92394" data-verso-hover="33">b</span><span class="inter-text"> </span><span class="unknown token" data-binding="">←</span><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">3</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">4</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">5</span><span class="unknown token" data-binding="">]</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-Pure.pure" data-verso-hover="136">pure</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.92333" data-verso-hover="33">a</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.92394" data-verso-hover="33">b</span><span class="unknown token" data-binding="">)</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="highlighted"><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">1</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">3</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">1</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">4</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">1</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">5</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">2</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">3</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">2</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">4</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">2</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">5</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">]</span></span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-5660" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><a href="LeanW26/Meta/Monads/#LeanW26___Monads___pairs" title="Definition of `LeanW26.Monads.pairs`"><span class="const token" data-binding="const-LeanW26.Monads.pairs" data-verso-hover="151">pairs</span></a></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-5673">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-LeanW26.Monads.prods" data-verso-hover="152" id="LeanW26___Monads___prods">prods</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-List" data-verso-hover="14">List</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="13">Nat</span><span class="inter-text"> </span><span class="unknown token" data-binding="">:=</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.do-5697">do</span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.doLetArrow-5702">let</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.96644" data-verso-hover="33">a</span><span class="inter-text"> </span><span class="unknown token" data-binding="">←</span><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">1</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="typed token" data-binding="" data-verso-hover="33">2</span><span class="unknown token" data-binding="">]</span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.doLetArrow-5721">let</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.96705" data-verso-hover="33">b</span><span class="inter-text"> </span><span class="unknown token" data-binding="">←</span><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">3</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">4</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">5</span><span class="unknown token" data-binding="">]</span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.doLetArrow-5741">let</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.96753" data-verso-hover="33">c</span><span class="inter-text"> </span><span class="unknown token" data-binding="">←</span><span class="inter-text"> </span><span class="unknown token" data-binding="">[</span><span class="typed token" data-binding="" data-verso-hover="33">6</span><span class="unknown token" data-binding="">,</span><span class="typed token" data-binding="" data-verso-hover="33">7</span><span class="unknown token" data-binding="">]</span><span class="inter-text">
+  </span><span class="const token" data-binding="const-Pure.pure" data-verso-hover="136">pure</span><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="var token" data-binding="var-_uniq.96644" data-verso-hover="33">a</span><span class="unknown token" data-binding="">*</span><span class="var token" data-binding="var-_uniq.96705" data-verso-hover="33">b</span><span class="unknown token" data-binding="">*</span><span class="var token" data-binding="var-_uniq.96753" data-verso-hover="33">c</span><span class="unknown token" data-binding="">)</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+</span><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="highlighted"><span class="unknown token" data-binding="">[</span><span class="unknown token" data-binding="">18</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">21</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">24</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">28</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">30</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">35</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">36</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">42</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">48</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">56</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">60</span><span class="unknown token" data-binding="">,</span><span class="inter-text"> </span><span class="unknown token" data-binding="">70</span><span class="unknown token" data-binding="">]</span></span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-5773" data-verso-hover="35">#eval</span></span><span class="inter-text"> </span><span class="unknown token" data-binding="">prods</span></code><code class="hl lean block" data-lean-context="lean"><span class="inter-text">
+
+/-
+Combining Monads
+===
+What does “combine monads” mean?
+You have two monads, say:
+
+M₁ for effect E₁ (e.g., nondeterminism via List)
+M₂ for effect E₂ (e.g., failure via Option)
+
+You want a single monad that supports both effects in one do block, so you can write:
+Leando  let x ← chooseFromList  let y ← maybeFail  ...Show more lines
+without manually nesting bind calls or writing boilerplate.
+
+Why is this hard?
+Monads don’t generally compose automatically. If you have M₁ and M₂, the type M₁ (M₂ α) is not itself a monad unless you define a custom bind that knows how to thread both effects. For example:
+
+List (Option α) is not a monad by default.
+You need a bind that:
+
+iterates over the list,
+propagates none failures,
+and combines results correctly.
+
+
+
+
+Standard solution: Monad Transformers
+A monad transformer wraps one monad inside another and provides a combined Monad instance. Examples in Lean/mathlib:
+
+OptionT m α = m (Option α)
+ExceptT ε m α = m (Except ε α)
+StateT σ m α = σ → m (α × σ)
+
+Transformers define:
+
+pure and bind for the combined effect,
+lifting operations from the inner monad.
+
+So OptionT List α gives you:
+
+nondeterministic choice from List,
+short-circuit failure from Option,
+all in one do block.
+
+
+General pattern
+To combine monads:
+
+Pick a base monad (often the outer one).
+Wrap the other effect using a transformer.
+Use lift or specialized helpers to access inner effects.
+
+Example:
+LeanShow more lines
+Now M α = List (Option α) with a Monad instance that handles both effects.
+
+Why not just nest monads?
+You can write List (Option α) manually, but then:
+
+do-notation doesn’t work out of the box.
+You must explicitly handle none in every branch.
+Transformers automate this.
+
+-/
+
+
+/-
+Combining Monads
+===
+
+-/
+
+/- Cool example from wikipedia -/
+
+/- A second situation where List shines is composing multivalued functions. For instance, the nth complex root of a number should yield n distinct complex numbers, but if another mth root is then taken of those results, the final m•n values should be identical to the output of the m•nth root. List completely automates this issue away, condensing the results from each step into a flat, mathematically correct list.[29] -/
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.end-8042" data-verso-hover="26">end</span><span class="inter-text"> </span><span class="unknown token" data-binding="">LeanW26.Monads</span></code><code class="hl lean block" data-lean-context="lean"><span class="unknown token" data-binding=""></span></code></section>
+        </main></div>
+    </body>
+  </html>

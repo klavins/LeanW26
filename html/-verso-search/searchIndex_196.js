@@ -1,0 +1,1 @@
+window.docContents[196].resolve({"/DemoTextbook/ListSet/#SameContents___filter":{"contents":"If two lists have the same contents, then removing the same elements results in them still having\nthe same contents.\n\n\n","context":"","header":"SameContents.filter","id":"/DemoTextbook/ListSet/#SameContents___filter"}});

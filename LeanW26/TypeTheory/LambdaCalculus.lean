@@ -170,4 +170,6 @@ In the next section we'll look at what exactly is `Type` and come back to
 the lambda calculus in the following section.
 -/
 
+--hide
 end LeanW26.LambdaCalculus
+--unhide

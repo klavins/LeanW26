@@ -1,0 +1,1 @@
+window.docContents[154].resolve({"/DemoTextbook/ListSet/#mod-doc-DemoTextbook___ListSet-9-0":{"contents":"List Operators and `SameContents`\n\nMost list operators still make sense if we ignore the order of elements.\n\n\n","context":"","header":"DemoTextbook.ListSet","id":"/DemoTextbook/ListSet/#mod-doc-DemoTextbook___ListSet-9-0"}});

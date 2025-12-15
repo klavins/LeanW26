@@ -1,0 +1,1 @@
+window.docContents[25].resolve({"/DemoTextbook/ListSet/#ListSet___union_contains":{"contents":"The following are equivalent:\n\n* x \\in A \\cup B* x \\in A \\vee x \\in B\n\n\n","context":"","header":"ListSet.union_contains","id":"/DemoTextbook/ListSet/#ListSet___union_contains"}});

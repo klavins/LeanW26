@@ -4,6 +4,7 @@ import Mathlib
 Introduction to Inductively Defined Types
 ===
 
+
 All the types we've been looking at
 ```lean
 ℕ, ℚ, ℝ, List,  ...
@@ -15,9 +16,12 @@ are *inductively defined*. That means, they are defined by
 
 We'll have more to say about the theory of inductive types later.
 For now we'll describe them via examples.
+-/
 
+/-
 Natural Numbers
 ===
+
 -/
 
 inductive MyNat where
@@ -34,13 +38,15 @@ open MyNat
 #check zero.succ
 #check zero.succ.succ
 
-/- This is how you build the natural numbers in Lean. The numerals 0, 1, 2, etc.
-are just "syntactic sugar". -/
+/-
+This is how you build the natural numbers in Lean. The numerals 0, 1, 2, etc.
+are just "syntactic sugar".
+ -/
 
 #eval Nat.zero == 0
 #eval Nat.zero.succ.succ.succ == 3
 
-/-
+/-!
 Complex Numbers
 ===
 
@@ -125,6 +131,7 @@ open BTree             -- Variables are now all BTree.*
 /-
 Defining a Binary Tree
 ===
+
 Here's an example tree.
 -/
 
@@ -170,7 +177,8 @@ instance {A : Type} [Repr A] [ToString A] : Repr (BTree A) := {
   reprPrec := fun T _ => to_str T
 }
 
-/- Now when we evaluate we get: -/
+/-
+Now when we evaluate we get: -/
 
 #eval my_tree             -- (1 2 (3 4 5))
 
@@ -388,11 +396,19 @@ See the [Lean Language Reference](https://lean-lang.org/doc/reference/latest/Not
 Exercises
 ===
 
-<ex/> Define a tree type `MyTree` where every node may have any number of children.
-Define an instance of `Repr` for it so you can print it nicely.
-Define a method that maps a function onto the tree.
-Create a function that converts a `BTree` to a `MyTree`.
+<ex/> Define a tree type `MyTree` where every node may have any number of
+children. Define an instance of `Repr` for it so you can print it nicely.
+Define a few example trees demonstrating the feature of your datatype.
+
+<ex/> Define a method that maps a function onto the tree. Demonstrate
+the method by mapping a function that squares it's argument onto
+a tree made of natural numbers.
+
+<ex/> Create a function that converts a `BTree` to a `MyTree`.
 Test on examples.
+
+Exercises
+===
 
 <ex/> Consider the *Dyadic Rationals*, which consist of fractions who's denominators
 are powers of two defined inductively as follows:
@@ -416,4 +432,6 @@ e. Define the Dyadics `5/8` and `-7/32` and test your methods on these values.<b
 f. Are Dyadics as defined here unique? Why or why not?
 -/
 
+--hide
 end Temp
+--unhide

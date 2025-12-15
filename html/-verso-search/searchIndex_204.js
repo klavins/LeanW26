@@ -1,0 +1,1 @@
+window.docContents[204].resolve({"/DemoTextbook/ListSet/#mod-doc-DemoTextbook___ListSet-29-0":{"contents":"Union\n\nUnion is implemented by concatenating the underlying lists. This is grossly inefficient, but easy to prove things about.\n\n\n","context":"","header":"DemoTextbook.ListSet","id":"/DemoTextbook/ListSet/#mod-doc-DemoTextbook___ListSet-29-0"}});

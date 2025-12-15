@@ -1,4 +1,20 @@
 
+Monads
+===
+Monads are
+- a data type that allows for sequencing, side effects, and off-path
+information.
+- a way to make functional programming look like procedural programming
+- supported by deep math, especially category theory
+
+Lean implements Monads extensively in its metaprogramming framework.
+
+Other languages that use Monads are: Haskell, Agda, F#, OCaml.
+Languages with Monad like libraries include: Scala, Rust, Javascript (promises),
+
+
+
+
 Example Monad : Maybe
 ===
 In Lean this monad is called `Option`. We'll rebuild it here and call it `Maybe` instead.
@@ -167,7 +183,7 @@ more concise.
 
 ```lean
 def first_two_do (L : List α) : Maybe (List α) := do
-  let x ← first L
+  let x ← first L               -- This is different than let :=
   let y ← first L.tail
   some [x,y]
 
@@ -186,7 +202,6 @@ def first_two (L : List α) : Maybe (List α) :=
 ```
 
 
-
 Exercises
 ===
 
@@ -195,82 +210,76 @@ Exercises
 <ex/> Instantiave `Oops` as a monad.
 
 
- Monads Defined 
- Another Example : State 
+
+Lean/Mathlib Monads
+===
+
+`Option` What we've been calling `Maybe`
+`Except` What we've been calling `Oops`.
+`Id` The identity monad. Just returns its value.
+
+
 ```lean
-def Accu (StateType : Type u) (ValueType : Type v) :=
-  StateType → StateType × ValueType
+def doubleM (m : Type → Type) [Monad m] (x : Nat) : m Nat := do
+  let y := x * 2
+  pure y
 
-namespace Accu
+#eval doubleM Option 1               -- some 2
+#eval doubleM (Except String) 1      -- ok 2
+#eval doubleM Id 1                   -- 2
+```
+ Many more: `Reader`, `StateM`, `IO`, `RandomM`. 
 
-def ok (x : α) : Accu σ α :=
-  fun s => (s, x)
+The IO Monad
+===
 
-def get : Accu σ σ :=
-  fun s => (s, s)
+```lean
+def main : IO Unit := do
+  IO.println "Hello!"
+  IO.println "This is the IO Monad"
+  IO.println "If you run this code from the command line"
+  IO.println "you can use IO.getLine"
+  IO.println "You can examime the filesystem too."
+  let d ← IO.currentDir
+  IO.println s!"Current directory: {d}"
 
-def set (s : σ) : Accu σ Unit :=
-  fun _ => (s, ())
+#eval main
+```
 
-def andThen (first : Accu σ α) (next : α → Accu σ β) : Accu σ β :=
-  fun s =>
-    let (s', x) := first s
-    next x s'
+The List Monad
+===
+Mathlib adds a Monad instance for lists that allows for nondeterminism.
+It is defined something like this
 
-infixl:55 " ~~> " => andThen
+```lean
+instance : Monad List where
+  pure x := [x]
+  bind xs f := xs.foldr (fun a acc => f a ++ acc) []
+```
 
-def sum_list (L : List Nat) : Nat :=
-  let rec aux : List Nat → Accu Nat (List Nat)
-    | [] => ok []
-    | x::M =>
-      aux M  ~~> fun _ =>
-      get       ~~> fun z =>
-      set (x+z) ~~> fun _ =>
-      ok M
-  (aux L 0).fst
 
-#eval sum_list [1,2,3,4,5,6]
+```lean
+def pairs : List (Nat × Nat) := do
+  let a ← [1, 2]
+  let b ← [3,4,5]
+  pure (a, b)
 
-instance : Monad (Accu α) where
-  pure := fun x => ok x
-  bind first next :=
-    fun s =>
-      let (s', x) := first s
-      next x s'
+#eval pairs
 
-def sum_list_do (L : List Nat) : Nat :=
-  let rec aux : List Nat → Accu Nat (List Nat)
-    | [] => ok []
-    | x::M => do
-      let _ ← aux M       -- side effect is to put sum of values in M in accumulator
-      let z ← get         -- assigns z the value of the accumulator, which is the sum of values in M
-      let _ ← set (x+z)   -- side effect sets the value of the accumulator to x+z
-      ok []               -- returns the accumulator with the empty list in it
-  (aux L 0).fst
+def prods : List Nat := do
+  let a ← [1, 2]
+  let b ← [3,4,5]
+  let c ← [6,7]
+  pure (a*b*c)
 
-#eval sum_list_do [1,2,3,4]
-
-def sum_list_for (L : List Nat) : Nat := Id.run do
-  let mut s := 0
-  for i in L do
-    s := s + i
-  return s
-
-#eval sum_list_for [1,2,3,4]
-
-def sum_list_simp (L : List Nat) : Nat :=
-  match L with
-  | [] => 0
-  | x::M => x + sum_list_simp M
-
-#eval sum_list_simp [1,2,3,4]
-
-end Accu
+#eval prods
 ```
  Cool example from wikipedia 
  A second situation where List shines is composing multivalued functions. For instance, the nth complex root of a number should yield n distinct complex numbers, but if another mth root is then taken of those results, the final m•n values should be identical to the output of the m•nth root. List completely automates this issue away, condensing the results from each step into a flat, mathematically correct list.[29] 
 ```lean
+--hide
 end LeanW26.Monads
+--unhid
 ```
 
 License
