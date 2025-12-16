@@ -183,22 +183,215 @@ and returns the vector turned into a list.
 
 
 
+Inductive Arguments
+===
+
+In the lambda calculus we encoded natural numbers using Church encodings.
+
+
+What if we wanted to do a proof by induction? We would have to do that
+*outside* the lambda calculus.
+
+In particular, we cannot expression the inductive principle:
+
+```lean
+∀ (P : ℕ → Prop), P 0 → (∀ n, P n → P (n+1)) → ∀ n, P n
+```
+
+because we don't have a definition of ℕ as a type with an inductive
+principle that goes with it.
+
 Inductive Types
 ===
 
+Formally, an **inductive type** is a type with
+
+- **A Formation Rule** declaring what type universe the elements live in
+- **Constructors** for making elements of the type
+- **An Elimination Rule** to define functions (and proofs) using the type
+- **Computation Rules** define how to reduce terms
+
+For example,
+
+```lean
+inductive Nat : Type where         -- Formation rule
+  | zero : Nat                     -- Constructor 1
+  | succ : Nat → Nat               -- Constructor 2
+```
 
 
-    - Formation
-    - Introduction
-    - Elimination
-    - Computation
-    - Strict positivity
+The Recursor
+===
 
-- Recursors
-- Match
-- Nomatch
-- Noconfusion
+Every time you define an inductive type, you get an inductive
+schema as a definition:
 
+```lean
+#check Nat.rec   -- {motive : Nat → Sort u} →
+                 -- motive Nat.nada →
+                 -- (∀ n : Nat, motive n → motive n.mas) →
+                 -- ∀ t : Nat, motive t
+```
+ You also get a way to show terms constructed differently are different. 
+```lean
+#check Nat.noConfusion -- {P : Sort u} →
+                      -- {x1 x2 : ℕ} →
+                      -- x1 = x2 →
+                      -- Nat.noConfusionType P x1 x2
+
+#check Nat.noConfusionType -- Sort u → ℕ → ℕ → Sort u
+```
+
+Derived Recursors
+===
+Lean also defines the following in terms of `.rec`.
+
+```lean
+#check Nat.recOn   -- {motive : Nat → Sort u} →
+                   -- ∀ t : Nat,
+                   --   motive Nat.nada →
+                   --   (∀ n : Nat, motive n → motive n.mas) →
+                   --   motive t
+
+#check Nat.casesOn -- {motive : Nat → Sort u} →
+                   -- ∀ t : Nat,
+                   --   motive Nat.nada →
+                   --   (∀ a : Nat, motive a.mas) →
+                   --   motive t
+```
+
+Another Example
+===
+
+```lean
+inductive ThreeVal where | one | two | three
+
+#check ThreeVal.rec  -- {motive : ThreeVal → Sort u} →
+                     -- motive ThreeVal.one →
+                     -- motive ThreeVal.two →
+                     -- motive ThreeVal.three →
+                     -- ∀ t : ThreeVal, motive t
+```
+
+Using the Recursor Definitions
+===
+
+The following are equivalent
+
+```lean
+def even1 (n : Nat) : Bool :=
+  Nat.recOn n true (fun k pk => ¬pk)
+
+def even2 (n : Nat) : Bool := match n with
+  | .zero => true
+  | .succ k => ¬ even2 k
+```
+
+Exercise
+===
+
+<ex /> Use List.rec to define a function that computes the
+length of a list. Use only List.rec, Nat.zero and Nat.succ.
+
+Start with
+```lean
+def length {α} (L : List α) : Nat :=
+  List.rec sorry sorry sorry sorry
+```
+
+
+Coming Soon: Using the Recursor in Proofs
+===
+
+You can use the recursor in proofs (we'll get to this later).
+
+```lean
+#check Nat.noConfusion
+
+open Nat in
+example : ∀ (n : Nat), n.succ ≠ zero :=
+  Nat.rec (Nat.noConfusion) (fun n hn => Nat.noConfusion)
+```
+ Which fortunately can also be written: 
+```lean
+example : ∀ (n : Nat), n.succ ≠ .zero := by
+  intro n
+  induction n with
+  | zero => exact Nat.noConfusion
+  | succ k ih => exact Nat.noConfusion
+```
+
+Type Classes
+===
+A **type class* is a way to associate data and methods with all
+type definitions that meet the class's specifications.
+
+For example,
+
+```lean
+class HasZero (α : Type) where
+  zero : α
+
+class HasAdd (α : Type) where
+  add : α → α → α
+```
+ Which can then be used in functions, as in the following, which
+allows you to addup a list of anything that has a `zero` and an `add` funciton. 
+```lean
+def sum {α : Type} (f : ℕ → α) (n : ℕ) [hz : HasZero α] [ha : HasAdd α] :=
+  match n with
+  | .zero => hz.zero
+  | .succ k => ha.add (f n) (sum f k)
+```
+
+Instances
+===
+You can instantiate a type class for a given type using the `instance` keyword.
+
+```lean
+instance : HasZero String where
+  zero := ""
+
+instance : HasAdd String where
+  add a b := b ++ a
+
+#eval sum (fun n => String.singleton (Char.ofNat (n+96))) 26
+```
+ or 
+```lean
+instance : HasZero Nat where
+  zero := .zero
+
+instance : HasAdd Nat where
+  add := .add
+
+#eval sum (fun n => n^2) 26
+```
+
+Lean/Mathlib Classes
+===
+
+There are a huge number of type classes in Lean and we will encounter many
+of them. For example: 
+```lean
+inductive Numero where
+  | nada : Numero
+  | mas : Numero → Numero
+
+def Numero.add (x y : Numero) := match x with
+  | nada => y
+  | mas z => mas (add z y)
+
+instance : One Numero := ⟨ .mas .nada ⟩
+instance : HAdd Numero Numero Numero := ⟨ Numero.add ⟩
+
+def f (x y : Numero) := x + y + 1
+```
+
+Later we will build algebraic structures for our datatypes. For example,
+```
+instance : Group ℤ := ...
+```
 
 
 Various Advanced Types (Not in Lean)
@@ -224,20 +417,43 @@ type checking decidable.
 
 
 
-
-
-
-
-
 References
 ===
 
 - Thierry Coquand and Gérard Huet, The Calculus of Constructions, *Information and Computation*,
 Vol. 76, Issue 2, pp. 95–120, 1988.
 - Thierry Coquand and Christine Paulin, Inductively Defined Types, in COLOG-88: International
-Conference on Computer Logic, *Lecture Notes in Computer Science*, vol. 417, Springer, 1988. 
+Conference on Computer Logic, *Lecture Notes in Computer Science*, vol. 417, Springer, 1988.
+- Homotopy Type Theory: Univalent Foundations of Mathematics
+The Univalent Foundations Program Institute for Advanced Study (https://homotopytypetheory.org/book/).
+
+
+
+
+Exercises
+===
+
+<ex /> Using the `Vec` class we made, define function that does scalar multiplication
+of a scalar and a vector to produce another vector. Test with examples.
+
+<ex /> Instantiate `HasZero` and `HasAdd` for `Vec` and show an example where the `sum`
+function we wrote works on vectors. Also show that you can sum a function of
+vectors of `Numero` values.
+
+<ex /> Define multiplication for `Numero`, instantiate `HMul` and `Mul` classes,
+and define a function for the sum of squares of two `Numero` values. Test with examples.
+
+<ex /> Write a function that converts a `Nat` into a `Numero`. Instantiate the class
+`OfNat` with `Numero` so that the following function type checks:
 ```lean
+def g (x : Numero) : Numero := x*x + 7
+```
+
+
+```lean
+--hide
 end LeanW26.NonSimpleTypes
+--unhide
 ```
 
 License
