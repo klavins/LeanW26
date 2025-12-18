@@ -38,8 +38,6 @@ Lean adds
 
 Agda is similar, but based on Martin-Löf type theory (MLTT).
 
-
-
 Review: Simple Types
 ===
 
@@ -253,6 +251,10 @@ schema as a definition:
 #check Nat.noConfusionType -- Sort u → ℕ → ℕ → Sort u
 
 /-
+We will later use `noConfusion` to prove statements like `m.succ ≠ m.succ.succ`.
+-/
+
+/-
 Derived Recursors
 ===
 Lean also defines the following in terms of `.rec`.
@@ -271,20 +273,35 @@ Lean also defines the following in terms of `.rec`.
                    --   motive t
 
 /-
-Another Example
+Nonrecursive Inductive Types
 ===
+
+When a type isn't recursive, as in:
+
 -/
 
 inductive ThreeVal where | one | two | three
 
-#check ThreeVal.rec  -- {motive : ThreeVal → Sort u} →
-                     -- motive ThreeVal.one →
-                     -- motive ThreeVal.two →
-                     -- motive ThreeVal.three →
-                     -- ∀ t : ThreeVal, motive t
+/-
+The `.casesOn` instance is particularly simple.
+-/
+
+#check ThreeVal.casesOn  -- {motive : ThreeVal → Sort u} →
+                         -- ∀ t : ThreeVal,
+                         -- motive ThreeVal.one →
+                         -- motive ThreeVal.two →
+                         -- motive ThreeVal.three →
+                         -- motive t
+
+/- For example: -/
+
+def ThreeVal.toNat (x : ThreeVal) : ℕ :=
+  ThreeVal.casesOn x 1 2 3
+
+#eval ThreeVal.one.toNat     -- 1
 
 /-
-Using the Recursor Definitions
+Recursors With Recursive Definitions
 ===
 
 The following are equivalent
@@ -296,6 +313,54 @@ def even1 (n : Nat) : Bool :=
 def even2 (n : Nat) : Bool := match n with
   | .zero => true
   | .succ k => ¬ even2 k
+
+
+/-
+Restrictions on Inductive Types
+===
+
+Consider:
+```lean
+inductive T where
+| mk : (T → Nat) → T
+```
+> (kernel) arg #1 of 'T.mk' has a non positive
+> occurrence of the datatypes being declared
+
+Lean determines that defining a function of type `T → Nat` would be
+self referential.
+```lean
+def loop (b : T) : Nat := match b with
+  | T.mk f => f b
+```
+which unrolls to
+```lean
+def loop (b : T) : Nat := match b with
+  | T.mk f => match b with
+    | T.mk f => f b --- etc.
+```
+An infinite loop.
+-/
+
+
+
+
+/-
+Positivity in Inductive Types
+===
+
+**Lean:** "Any argument to the constructor in which [the typed being defined]
+occurs is a dependent arrow type in which the inductive type under definition
+occurs only as the resulting type, where the indices are given in terms of
+constants and previous arguments." (https://lean-lang.org/theorem_proving_in_lean4/Inductive-Types/)
+
+**Agda:** Somewhat stronger requirement. The defined type "may only occur strictly positively in the types of their arguments."(https://agda.readthedocs.io/en/latest/language/data-types.html)
+
+**Roq:** Uses the CoInductive keyword.
+
+**Haskell**: Perfectly happy with nonterminating things.
+
+-/
 
 
 /-
@@ -341,7 +406,7 @@ example : ∀ (n : Nat), n.succ ≠ .zero := by
 /-
 Type Classes
 ===
-A **type class* is a way to associate data and methods with all
+A **type class** is a way to associate data and methods with all
 type definitions that meet the class's specifications.
 
 For example,
@@ -354,7 +419,7 @@ class HasAdd (α : Type) where
   add : α → α → α
 
 /- Which can then be used in functions, as in the following, which
-allows you to addup a list of anything that has a `zero` and an `add` funciton. -/
+allows you to sum a list of anything that has a `zero` and an `add` funciton. -/
 
 def sum {α : Type} (f : ℕ → α) (n : ℕ) [hz : HasZero α] [ha : HasAdd α] :=
   match n with
@@ -390,7 +455,7 @@ instance : HasAdd Nat where
 Lean/Mathlib Classes
 ===
 
-There are a huge number of type classes in Lean and we will encounter many
+There are a **huge** number of type classes in Lean and we will encounter many
 of them. For example: -/
 
 inductive Numero where
@@ -419,7 +484,7 @@ Various Advanced Types (Not in Lean)
 
 **Univalence**: In mathematics, we often reason about objects *up to isomorphism*.
 The *univalence axiom* says `A ≃ B → A = B`, meaning once you prove an isomorphism,
-you get equality. In lean, you do this in a clunk way with quotient.
+you get equality. In Lean, you do this in a clunk way with quotients.
 
 **Higher Inductive Types**: Point constructors and path constructors.
 
