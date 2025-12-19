@@ -3,7 +3,7 @@ body {
     padding: 0px;
     height: 100vh;
     overflow-y: hidden;
-    zoom: 210%;
+    zoom: 180%;
     font-family: "Open Sans", sans-serif;
 }
 
@@ -35,9 +35,9 @@ body {
 
 .sidebar {
     width: 12%;
-    height: 100vh;
+    height: 50vh;
     float: left;
-    padding: 5px 5px 5px 10px;
+    padding: 5px 0px 50px 10px;
     margin: 20px 0 0 0;
     overflow-y: scroll;
 }
@@ -50,7 +50,7 @@ body {
 }
 
 .slide {
-    padding: 10px;
+    padding: 10px 5px 10px 0px;
     margin: 20px;
     display: none;
     line-height: 1.25;
@@ -107,22 +107,23 @@ body {
     border: 1pt solid #fff;
     margin: 0; 
     border-radius: 3px;
-    padding: 1px 1px 1px 0;
+    padding: 1px 1px 0px 0;
     font-family: "Open Sans", sans-serif;
     /*background-image: linear-gradient(to top ,#eee, white); */
     color: #999;
     cursor: pointer;
-    text-align: right;
+    /*text-align: right;*/
 }
 
 .active-title {
-    border: 1pt solid #eee !important;
+    /* border: 1pt solid #eee !important;*/
     color: #555 !important;
-    font-weight: bold;
+    background: #eef;
+    /* font-weight: bold; */
 }
 
 .exercise {
-    color: #05f  !important;
+    color: #05a  !important;
 }
 
 .title:hover {
@@ -136,19 +137,18 @@ body {
 
 .deck {
     font-size: 6pt;
-    margin: 0px 2px 0px 6px;
-    padding: 1px 2px 0 2px;
+    margin: 0px 2px 0px 2px;
+    padding: 1px 2px 1px 2px;
     font-family: "Open Sans", sans-serif;
     cursor: pointer;
     text-align: left;
+    color: rgb(51,51,51)
     
 }
 
 .active-deck {
-    font-weight: bold;
-    border: 1pt solid #eee !important;
-    color: black !important;
-    border-radius: 4px;
+    color: #555 !important;
+    background: #eef;
 }
 
 table, tr, td, img {
@@ -176,15 +176,13 @@ pre {
 }
 
 .deck-title {
-    font-size: 8pt;
-    font-weight: bold;
-    margin: 0px;
-    padding: 2px 0 8px 0;
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 6pt;
+    margin: 0px 2px 0px 0px;
+    padding: 1px 2px 1px 2px;
+    font-family: "Open Sans", sans-serif;
     cursor: pointer;
-    text-align: right;    
-    color: #444;
+    text-align: left;
+    color: rgb(51,51,51)
 }
 
 .deck-number {
@@ -301,11 +299,16 @@ pre {
 
 .section {
     font-size: 6pt;
-    margin: 2px 2px 0 2px;
-    padding: 2px;
+    margin: 0px 0 5px 2px;
+    padding: 2px 0 2px 0;
     font-family: "Open Sans", sans-serif;
     cursor: pointer;
     text-align: left;    
+    overflow-x: hidden;
+}
+
+.none {
+    color : #259;
 }
 
 .toc-section-title {

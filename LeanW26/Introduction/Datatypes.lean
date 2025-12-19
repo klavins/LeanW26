@@ -407,7 +407,7 @@ a tree made of natural numbers.
 <ex/> Create a function that converts a `BTree` to a `MyTree`.
 Test on examples.
 
-Exercises
+More Exercises
 ===
 
 <ex/> Consider the *Dyadic Rationals*, which consist of fractions who's denominators

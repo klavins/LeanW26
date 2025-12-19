@@ -1,5 +1,7 @@
 import Mathlib
 
+namespace LeanW26.Inference
+
 /-
 Type Theory Questions
 ===
@@ -42,7 +44,6 @@ is a type. We say "`x` is of type `σ`".
 typing context, `M` is a simply typed λ-calculus statement, and `σ` is a
 type. When `Γ ⊢ M : σ` we say `Γ` allows us to conclude that `σ` has type `M`.
 
-
 For example, here is a judgment that states: "When `f` is a function
 from `α` to `β` and `x` is of type `α`, then `f x` is of type `β`. "
 ```none
@@ -68,14 +69,14 @@ Typing rules are written the same way as the inference rules in propositional lo
                    M N : τ
 ```
 
-**VAR**: If a context defines `x` to have type `τ` then (somewhat obviously)
-we can conclude `x` has type `τ`.
+**VAR**: If a context defines `x` to have type `τ` then
+`x` has type `τ`.
 
-**ABST**: If our context defines `x : σ` and allows us to conclude that
-`M : τ`, then we can form an abstraction from `x` and `M` that has type `σ` to `τ`.
+**ABST**: If our context defines `x : σ` and allows us to
+conclude that `M : τ`, the abstraction formed from `x` and `M`  has type `σ` to `τ`.
 
-**APPL**: If `Γ` allows us to conclude both that `M : σ→τ` and `N : σ`,
-then the application of `M` to `N` has type `τ`.
+**APPL**: If `Γ` allows us to conclude both that `M : σ→τ`
+and `N : σ`, then the application of `M` to `N` has type `τ`.
 
 Example
 ===
@@ -132,7 +133,7 @@ Derivation Tree
 ===
 
 Following the derivation above in reverse gives the following type inference proof tree:
-```
+```none
     ————————————————————————————— VAR    ————————————————————————————— VAR
      x : C → A, y : C  ⊢  x : C → A       x : C → A, y : C  ⊢  y : C
     ———————————————————————————————————————————————————————————————————— APPL
@@ -191,11 +192,154 @@ Consider
 
 How does Lean infer this type?
 
-
 - `fun n : ℕ => Vector n` is a type via `Π-Form`.
-
 - The abstraction `fun n : ℕ => Vector.replicate n 0` is a term of this type by `Π-Intro`.
-
 - The whole expression has the form type `Vector ℕ 3` by `Π-Elim`.
 
 -/
+
+/-
+Inductive Types
+===
+For each constructor of an inductive type you get an inference rule describing how
+to form new elements of the type. For example, with `Nat`:
+
+```none
+
+                                                   Γ ⊢ n : Nat
+  Nat-Intro₁  ——————————————       Nat-Intro₂   —————————————————
+              Γ ⊢ zero : Nat                     Γ ⊢ n.succ : Nat
+```
+
+We have already encounterd the elimination rule, which is  `.rec` For example, with
+`Nat` we can write `.rec` inference rule style as something like.
+
+```none
+            Γ ⊢ m : Nat → Sort u   Γ ⊢ m 0    Γ, Π n:Nat, Π m n, m n.succ
+ Nat-Elim   ———————————————————————————————————————————————————————————————
+                            Γ, t:Nat ⊢ motive t
+```
+
+What's cool is that you can basically program Lean's type inference engine
+(the kernel) with new inference rules by defining inductive types.
+
+-/
+
+
+/-
+Lean's Kernel
+===
+
+Lean's Kernel is C++ code the implements type inference and type checking.
+It follows essentially the procedure we outlined above. If you look in
+
+```none
+https://github.com/leanprover/lean4/blob/master/src/kernel/type_checker.cpp
+```
+
+for example, you will find methods named
+```none
+infer_fvar                infer_constant         infer_lambda
+infer_pi                  infer_app              infer_let
+infer_proj                infer_type_core        infer_type
+```
+All user defined types, syntax, macros, etc. are compiled into the term level
+before sending to the kernel. If the kernel gives an error, it could be your code
+or the higher level Lean code that produces the term level code.
+
+Lean's Kernel is small enough to be **auditable**, meaning you can try to model it
+in a proof assistant ... like lean.
+
+For example: [https://github.com/digama0/lean4lean](https://github.com/digama0/lean4lean).
+
+-/
+
+/-
+Type Inference and Well Typedness
+===
+
+The problems `Γ ⊢ M : ?` and `? ⊢ M : ?` can easily be managed
+by Lean's type checker.
+-/
+
+#check (fun x => x)   -- ?m.1 → ?m.1 Lean makes up a type for x so
+                      -- the whole expression has a type
+
+/- This is also happening when you make new definitions without
+providing types. -/
+
+def f (L : List ℕ) := L.reverse.cons 0
+
+#check f     -- List ℕ → List ℕ
+
+
+/-
+Type Checking
+===
+The problem `Γ ⊢ M : σ` amounts to making sure you didn't make a
+mistake in writing out the type of an expression.
+-/
+
+#check ((fun x : Nat => x) : Nat → Nat)  -- Lean checks whether the type
+                                         -- provided is legit.
+
+/- This is essentially what proof assistants do: Check your work. -/
+
+/-
+Inhabitation
+===
+The problem `Γ ⊢ ? : σ` amounts to *synthesizing* a term of a given type.
+It requires searching over *all* terms of which there are an infinite number.
+Thus, this problem is beyond intractable. It is *undecidable*.
+
+But Lean has some search algorithms for simple types.
+-/
+
+def thm (n : Nat) : n+1 > 0 :=     -- The aesop tactic finds a
+  by aesop                                -- term of the desired type
+
+#print thm
+
+/- This doesn't always work: -/
+
+def goldbach : ∀ n : ℕ, n > 2 ∧ Even n →
+               ∃ p q : ℕ, Nat.Prime p ∧
+                          Nat.Prime q ∧
+                          p + q = n :=
+  by aesop
+
+/-
+```none
+aesop: failed to prove the goal after exhaustive search
+```
+
+Keeping mathematicians in business (for now).
+-/
+
+
+/-
+Exercises
+===
+
+<ex /> Type Inference: Show that the expression `fun x => fun f => f x` has type `A → (A → B) → B` for some types `A` and `B` using a derivation tree like the one on slide 6 of this slide deck.
+
+<ex /> Inhabitation: Suppose
+-/
+
+inductive Vec (α : Type) : Nat → Type where
+  | nil  : Vec α 0
+  | cons {n} :  α → Vec α n → Vec α (n + 1)
+
+/- Construct a terms (function definitions) that type check
+to replace the `sorry` in each of the following definitions.
+-/
+
+def g1 : ℕ → Vec ℕ 0 := sorry
+def g2 : Σ n, Vec ℕ n := sorry
+def g3 : Π f : ℕ → ℕ, Σ n, Vec ℕ (f n) := sorry
+def g4 : Σ A, Π B, Vec A B := sorry
+
+
+--hide
+end LeanW26.Inference
+--unhide

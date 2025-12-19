@@ -286,12 +286,10 @@ inductive ThreeVal where | one | two | three
 The `.casesOn` instance is particularly simple.
 -/
 
-#check ThreeVal.casesOn  -- {motive : ThreeVal → Sort u} →
-                         -- ∀ t : ThreeVal,
-                         -- motive ThreeVal.one →
-                         -- motive ThreeVal.two →
-                         -- motive ThreeVal.three →
-                         -- motive t
+#check ThreeVal.casesOn
+  -- {motive : ThreeVal → Sort u} → ∀ t : ThreeVal,
+  -- motive ThreeVal.one → motive ThreeVal.two →
+  -- motive ThreeVal.three → motive t
 
 /- For example: -/
 
@@ -318,15 +316,10 @@ def even2 (n : Nat) : Bool := match n with
 /-
 Restrictions on Inductive Types
 ===
-
-Consider:
 ```lean
-inductive T where
-| mk : (T → Nat) → T
+inductive T where | mk : (T → Nat) → T
+> arg #1 of 'T.mk' has a non positive occurrence of the datatypes being declared
 ```
-> (kernel) arg #1 of 'T.mk' has a non positive
-> occurrence of the datatypes being declared
-
 Lean determines that defining a function of type `T → Nat` would be
 self referential.
 ```lean
@@ -349,16 +342,20 @@ An infinite loop.
 Positivity in Inductive Types
 ===
 
-**Lean:** "Any argument to the constructor in which [the typed being defined]
-occurs is a dependent arrow type in which the inductive type under definition
-occurs only as the resulting type, where the indices are given in terms of
-constants and previous arguments." (https://lean-lang.org/theorem_proving_in_lean4/Inductive-Types/)
+**Lean:** "Any argument to the constructor in which [the typed being
+defined] occurs is a dependent arrow type in which the inductive
+type under definition occurs only as the resulting type, where the
+indices are given in terms of constants and previous arguments." (TPIL)
 
-**Agda:** Somewhat stronger requirement. The defined type "may only occur strictly positively in the types of their arguments."(https://agda.readthedocs.io/en/latest/language/data-types.html)
+**Agda:** Somewhat stronger requirement. The defined type "may only
+occur strictly positively in the types of their arguments."(Agda Docs)
 
-**Roq:** Uses the CoInductive keyword.
+**Roq:** Allows coinductive types.
 
 **Haskell**: Perfectly happy with nonterminating things.
+
+Pragmatic approach: If you see the "positivity" error, try to understand
+how you could accidentally write a non-terminating function with your type. Then refactor.
 
 -/
 

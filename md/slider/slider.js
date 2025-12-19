@@ -37,7 +37,7 @@ class Slider extends React.Component {
     this.switch_deck = this.switch_deck.bind(this);
     this.fullscreen = this.fullscreen.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.scroll_animation = null;
+    //this.scroll_animation = null;
 
   }
 
@@ -198,15 +198,16 @@ class Slider extends React.Component {
       'div',
       { style: { 
         display: this.state.sidebar == "slides" ? 'block' : 'none'}, 
-        className: "deck-title",
+        className: "deck-title toc-section-title",
         onClick: () => {
           let sb = this.state.sidebar == "decks" ? "slides" : "decks";
           this.setState({ sidebar: sb });
           Cookies.set("sidebar", sb);
       } },
       React.createElement('span', {}, roman[this.state.section] + "." +  (this.state.deck+1)),
-      // React.createElement('br', {}),
-      React.createElement('span', {}, " " + this.config.sections[this.state.section].decks[this.state.deck].title)
+     
+      React.createElement('span', {}, " " + this.config.sections[this.state.section].decks[this.state.deck].title),
+      React.createElement('hr', {})
     )
   }
 
@@ -218,7 +219,7 @@ class Slider extends React.Component {
     titles.flatMap((t, i) => React.createElement(Thumbnail, { 
       key: i, 
       id: i, 
-      title: t,
+      title: "" + (i+1) + ". " + t,
       active: this.state.slide == i,
       go: this.go }))
     )
@@ -299,7 +300,7 @@ class Slider extends React.Component {
       let sidebar = document.querySelectorAll('.sidebar')[0];
       let active_thumb = document.querySelectorAll('.active-title')[0];
       let initial = sidebar.scrollTop;
-      let target = 0; // Math.max(active_thumb.offsetTop - sidebar.clientHeight / 2, 0);
+      let target = Math.max(active_thumb.offsetTop - sidebar.clientHeight / 2, 0);
       let current = initial;
       let t = 0,
           T = 1 * Math.abs(target - initial);

@@ -3,7 +3,6 @@ import Mathlib
 namespace LeanW26.LambdaCalculus
 
 /-
-
 Background
 ===
 

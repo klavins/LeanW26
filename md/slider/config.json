@@ -17,7 +17,7 @@
                 { "path": "src/TypeTheory/Universes.md", "title": "Universes" },
                 { "path": "src/TypeTheory/Simple.md", "title": "Simple Types" },
                 { "path": "src/TypeTheory/NonSimpleTypes.md", "title": "Non Simple Types" },
-                { "path": "src/TypeTheory/TypeQuestions.md", "title": "Type Questions" }            
+                { "path": "src/TypeTheory/Inference.md", "title": "Inference" }            
             ]
         },
         { 
