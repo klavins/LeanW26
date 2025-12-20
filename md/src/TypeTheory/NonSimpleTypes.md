@@ -488,21 +488,16 @@ The Univalent Foundations Program Institute for Advanced Study (https://homotopy
 Exercises
 ===
 
-<ex /> Using the `Vec` class we made, define function that does scalar multiplication
-of a scalar and a vector to produce another vector. Test with examples.
+<ex /> Recall the definition of `Dyadic` from Slide Deck II.4.
+- Instantiate `HasZero`and `HasAdd` for this type.
+- Use the `sum` function to compute $\sum_{n=1}^8 n\cdot2^{-n}$ and use
+your `.to_rat` function to check the answer.
 
-<ex /> Instantiate `HasZero` and `HasAdd` for `Vec` and show an example where the `sum`
-function we wrote works on vectors. Also show that you can sum a function of
-vectors of `Numero` values.
+<ex /> Define the type classes `HasOne`and `HasMult` and instantiate them
+for the `Dyadic` type.
 
-<ex /> Define multiplication for `Numero`, instantiate `HMul` and `Mul` classes,
-and define a function for the sum of squares of two `Numero` values. Test with examples.
-
-<ex /> Write a function that converts a `Nat` into a `Numero`. Instantiate the class
-`OfNat` with `Numero` so that the following function type checks:
-```lean
-def g (x : Numero) : Numero := x*x + 7
-```
+<ex /> Define `product` similarly to how we defined `sum`. Compute
+$\prod_{n=1}^8 n\cdot2^{-n}$ and use your `.to_rat` function to check the answer.
 
 
 ```lean

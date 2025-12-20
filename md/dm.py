@@ -17,6 +17,16 @@ data = f.read()
 
 comment = r'(?s:(/-.*?-/))'
 
+if "--notdone" in data:
+    data = """
+/-
+Under Construction
+===
+-/
+
+def SlideDeck := sorry
+"""
+
 for str in re.split(comment, data)[1:]:
     if len(str) > 1 and str[0] == '/' and str[1] == '-':
         markdown = str[2:len(str)-2]

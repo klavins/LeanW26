@@ -63,7 +63,7 @@ class Slider extends React.Component {
       this.config = config;
       return fetch(this.config.sections[this.state.section].decks[this.state.deck].path);
     }).then(res => res.text()).then(result => {
-      let slides = this.parse(result);
+      var slides = this.parse(result);
       let titles = slides.map(s => s.split("===")[0]);
       this.setState({
         isLoaded: true,
@@ -238,6 +238,7 @@ class Slider extends React.Component {
            {className: 'toc-section-title'},
            roman[j+1] + ". " + sec.name
          ),
+         React.createElement('hr', {}),
          sec.decks.flatMap((d,i) => React.createElement(
             Deck,
             { key: i, id: i, title: d.title, 
