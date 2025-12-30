@@ -44,15 +44,32 @@ class Slide extends React.PureComponent {
       classes += " active-slide";
     }
 
-    let html = this.props.converter.makeHtml(this.props.content);
 
+    let html = "";
+    if (this.props.id == 0) {
+        html = `<div class='first-slide'>
+          <div class='course'>EE 598 : Automated Mathematics : W26</div>
+          <div class='slide-title'>${this.props.content.split('\n')[0]}</div>
+          <div class='author'>
+            Prof. Eric Klavins</br>
+            Electrical and Computer Engineering</br>
+            University of Washington</br>
+            Seattle, WA</br>
+          </div>
+        </div> 
+        `
+    } 
+    else {
+        html = this.props.converter.makeHtml(this.props.content);
+    }
     let that = this;
     let i = 0;
 
     html = html.replace(/&lt;proofstate&gt;(.*?)&lt;\/proofstate&gt;/g, function (_, tooltip) {
         that.infoview_list.push({data: tooltip, index: i});
         i++;
-        return `<span class="hoverable" onclick="activate_infoview(${that.props.id},${i})" data-tooltip="show proof state"></span>`;
+        return `<span class="hoverable" onclick="activate_infoview(${that.props.id},${i})" 
+                      data-tooltip="show proof state"></span>`;
     });
 
     return React.createElement(

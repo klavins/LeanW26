@@ -4,6 +4,8 @@ namespace LeanW26
 
 /-
 Programming in Lean
+
+Lean
 ===
 
 - Lean is a programming language.

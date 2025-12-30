@@ -1,5 +1,7 @@
 
 Programming in Lean
+
+Lean
 ===
 
 - Lean is a programming language.

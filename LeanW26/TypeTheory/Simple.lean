@@ -3,6 +3,9 @@ import Mathlib
 namespace LeanW26.Simple
 
 /-
+Simple Types
+===
+
 The Simply Typed Lambda Calculus
 ===
 

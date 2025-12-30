@@ -3,6 +3,9 @@ import Mathlib
 namespace LeanW26.Inference
 
 /-
+Type Inference
+===
+
 Type Theory Questions
 ===
 

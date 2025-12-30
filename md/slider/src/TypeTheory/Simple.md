@@ -1,4 +1,7 @@
 
+Simple Types
+===
+
 The Simply Typed Lambda Calculus
 ===
 

@@ -2,6 +2,9 @@
 Beyond Simple Types
 ===
 
+The Lambda Cube
+===
+
 Is there a non-simply typed λ-calculus? Yes!
 
 - **Simple types** (λ→)Terms depend on terms.
