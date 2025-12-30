@@ -135,12 +135,12 @@ you need to know those tools
 Resources
 ===
 - Canvas
-- These slides : https://faculty.washington.edu/klavins/LeanW26/dist
-- Slides on github: https://github.com/klavins/LeanW26
+- These slides : [https://faculty.washington.edu/klavins/LeanW26/dist](https://faculty.washington.edu/klavins/LeanW26/dist)
+- Slides on github: [https://github.com/klavins/LeanW26](https://github.com/klavins/LeanW26)
 
 -/
 
 
 --hide
 end LeanW26
---nohide
+--unhide

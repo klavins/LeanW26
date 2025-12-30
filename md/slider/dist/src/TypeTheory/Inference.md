@@ -1,4 +1,7 @@
 
+Type Inference
+===
+
 Type Theory Questions
 ===
 

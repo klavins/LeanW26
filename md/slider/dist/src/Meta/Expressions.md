@@ -1,23 +1,4 @@
 
-EE598 : Automated Mathematics
-===
-
-Syllabus
-===
-
-Schedule
-===
-
-Homework
-===
-
-
-```lean
---hide
-end LeanW26
---nohide
-```
-
 License
 ===
 

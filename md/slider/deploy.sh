@@ -4,7 +4,7 @@ cp  *.html *.js *.css *.json dist
 cp -r src dist
 
 mkdir -p  dist/node_modules/github-markdown-css
-cp -v node_modules/github-markdown-css/github-markdown.css dist/node_modules/github-markdown-css
+cp node_modules/github-markdown-css/github-markdown.css dist/node_modules/github-markdown-css
 
 mkdir -p  dist/node_modules/js-cookie/
 mkdir -p  dist/node_modules/js-cookie/src/

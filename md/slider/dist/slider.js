@@ -97,19 +97,22 @@ class Slider extends React.Component {
     let i = 1;
     let section = "";
     while (i < lines.length) {
+
       if (i + 2 < lines.length && lines[i + 1] == "===") {
         if (section != "") {
           sections.push(section);
         }
-            console.log(section)
         section = "";
       }
       section += lines[i] + "\n";
       i++;
     }
 
+    console.log(sections[0])
+
     sections.push(section);
     return sections;
+
   }
 
   forward() {
@@ -188,7 +191,7 @@ class Slider extends React.Component {
             this.setState({ sidebar: sb });
             Cookies.set("sidebar", sb);
           } },
-        this.state.sidebar != "decks" ? "Chapters" : "Slides"
+        this.state.sidebar != "decks" ? "Decks" : "Slides"
       )
     );
   }
@@ -281,7 +284,12 @@ class Slider extends React.Component {
         React.createElement(
           'div',
           { className: 'slides-container' },
-          slides.flatMap((s, i) => React.createElement(Slide, { converter: this.converter, key: i, id: i, content: s, 'switch': this.switch_deck,
+          slides.flatMap((s, i) => React.createElement(Slide, { 
+            converter: this.converter, 
+            key: i, 
+            id: i, 
+            content: s, 
+            'switch': this.switch_deck,
             active: this.state.slide == i })),
           this.buttons()
         )

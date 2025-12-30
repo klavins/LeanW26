@@ -1,8 +1,14 @@
+import Mathlib
 
+namespace LeanW26
+
+
+/-
 Curry-Howard Isomorphism
 ===
+-/
 
-
+/-
 
 Curry-Howard Isomorphism Intuition
 ===
@@ -137,48 +143,50 @@ from which we may also conclude
 ```
 Δ ⊢ λ x : ρ => M : ρ →  ψ
 ```
+-/
 
 
+/-
 Propositions, Theorems, and Proofs in Lean
 ===
 
 The Curry-Howard approach is exactly how proofs of theorems are done in Lean. We show that the proposition to be proved is inhabited. In the examples below, we use the type Prop, from Lean's standard library.
 
-We will start by declaring two variables of type Prop. We use curly braces here instead of parentheses for reasons we will explain later. 
-```lean
+We will start by declaring two variables of type Prop. We use curly braces here instead of parentheses for reasons we will explain later. -/
+
 variable { A C : Prop }
-```
- To prove a proposition like A → A, we define the identity function from A into A, showing the proposition considered as a type is occupied. We have called the bound variable in the lambda expression _proof_, but you could call the bound variable anything you like. 
-```lean
+
+/- To prove a proposition like A → A, we define the identity function from A into A, showing the proposition considered as a type is occupied. We have called the bound variable in the lambda expression _proof_, but you could call the bound variable anything you like. -/
+
 def my_theorem : A → A :=
   λ proof : A => proof
-```
- Lean provides the keyword _theorem_ for definitions intended to be results, which is like def but does requires the type of the theorem being defined to be Prop. The theorem keyword also gives Lean and the user an indication of the intended use of the definition. 
-```lean
+
+/- Lean provides the keyword _theorem_ for definitions intended to be results, which is like def but does requires the type of the theorem being defined to be Prop. The theorem keyword also gives Lean and the user an indication of the intended use of the definition. -/
+
 theorem my_lean_theorem : A → A :=
   λ proof : A => proof
-```
 
+/-
 Applying Theorems to Prove Other Theorems
 ===
 
-As another example, we prove the other proposition we encountered above. Here we call the bound variables pca for "proof of c → a" and pc for "proof of c".  
-```lean
+As another example, we prove the other proposition we encountered above. Here we call the bound variables pca for "proof of c → a" and pc for "proof of c".  -/
+
 theorem another_theorem : (C → A) → C → A :=
   λ pca : C → A =>
   λ pc : C =>
   pca pc
-```
- Or even better, we can use our first theorem to prove the second theorem: 
-```lean
+
+/- Or even better, we can use our first theorem to prove the second theorem: -/
+
 theorem another_theorem_v2 : (C → A) → C → A :=
   λ h : C → A => my_lean_theorem h
-```
 
+/-
 More Examples
 ===
+-/
 
-```lean
 theorem t1 : A → C → A :=
   λ pa : A =>
   λ pc : C =>                                -- Notice that pc is not used
@@ -192,13 +200,13 @@ theorem t3 : A → C → A :=
 
 example : A → C → A :=                       -- We can state and prove an unnamed theorem
   λ pa _ => pa                               -- using the `example` keyword
-```
 
+/-
 Negation
 ===
 
-There are, of course, only so many theorems we can state using only implication. In the next chapter we will show how the λ-calculus can be extended to include `∧`, `∨`, and `False`. To give a sense of how this looks, here is an example using `¬p`, which as you will recall is the same as `p → False`. 
-```lean
+There are, of course, only so many theorems we can state using only implication. In the next chapter we will show how the λ-calculus can be extended to include `∧`, `∨`, and `False`. To give a sense of how this looks, here is an example using `¬p`, which as you will recall is the same as `p → False`. -/
+
 variable (p q: Prop)
 
 example : p → ¬p → q :=
@@ -206,8 +214,8 @@ example : p → ¬p → q :=
 
 example : (p → q) → (¬q → ¬p) :=
   fun hpq nq hp => absurd (hpq hp) nq
-```
- Here, absurd is a theorem from the Lean standard library that we will discuss when we get to Lean's `inductive type` system.
+
+/- Here, absurd is a theorem from the Lean standard library that we will discuss when we get to Lean's `inductive type` system.
 
 Variable Declarations
 ===
@@ -235,8 +243,9 @@ On the other hand, if we use curly braces in the variable declaration, as we did
 theorem my_lean_theorem {A : Prop} : A → A :=
   λ proof : A => proof
 ```
-so that the type of A is an implicit argument to my_lean_theorem. 
+so that the type of A is an implicit argument to my_lean_theorem. -/
 
+/-
 References
 ===
 
@@ -245,20 +254,10 @@ Morten Heine Sørensen, Pawel Urzyczyn
 Elsevier. 1st Edition, Volume 149 - July 4, 2006.
   - Chapter 4 describes Intuitionistic Propositional Logic
 
+-/
 
-```lean
+
+
 --hide
 end LeanW26
 --unhide
-```
-
-License
-===
-
-Copyright (C) 2025  Eric Klavins
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.   
-

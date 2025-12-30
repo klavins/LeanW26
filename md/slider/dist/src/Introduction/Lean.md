@@ -1,5 +1,8 @@
 
-A Tour of L∃∀N 4
+A Tour of L∃∀N
+===
+
+About Lean
 ===
 
 L∃∀N is a programming language and proof assistant.
@@ -15,10 +18,10 @@ You can use it to
 While L∃∀N will not prove all of your theorems for you, it does provide an increasing amount of
 automation making it easier than ever to use a proof assistant.
 
-Installing L∃∀N
+Installing Lean
 ===
 
-The easiest way to install L∃∀N is to follow the quickstart guide at
+The easiest way to install Lean is to follow the quickstart guide at
 - [Lean Quickstart](https://lean-lang.org/lean4/doc/quickstart.html)
 
 You will need first install VS Code:
@@ -30,7 +33,7 @@ Then go to `View > Extensions` and search for "Lean 4" and install it.
 This will put a `∀` in the upper right menu bar of VS Code. From there, you can
 create a new project, which should install Lean and all of the associated tools.
 
-L∃∀N "Project" Types
+Lean "Project" Types
 ===
 
 With the VS Code Extension, you can install two types of projects:

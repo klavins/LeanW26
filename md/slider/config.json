@@ -23,8 +23,9 @@
         { 
             "name": "Logic", 
             "decks": [
-                { "path": "src/Logic/Implication.md", "title": "Implication" },
-                { "path": "src/Logic/Propositional.md", "title": "Propositional Logic" },
+                { "path": "src/Logic/Propositional.md", "title": "Propositional Logic" }, 
+                { "path": "src/Logic/Curry-Howard.md", "title": "Curry-Howard" },                    
+                { "path": "src/Logic/Connectives.md", "title": "Connectives" },            
                 { "path": "src/Logic/Equality.md", "title": "Equality" },
                 { "path": "src/Logic/FirstOrder.md", "title": "First Order Logic" },
                 { "path": "src/Logic/FirstOrder.md", "title": "Tactics" },
