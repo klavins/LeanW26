@@ -1,22 +1,21 @@
-universe u
+/-
+Ontologies
+===
+-/
 
---notdone
+/-
+Definition
+===
 
-/- # REAL WORLD KNOWLEDGE
+Def: **Ontology** A set of concepts and categories in a subject area or domain that shows their properties and the relations between them.
 
-# ONTOLOGIES
+Concepts of interest: Events, Time, Physical Objects, Beliefs
 
-Def: Ontololgy. A set of concepts and categories in a subject area or domain that shows their properties and the relations between them.
 
-  Concepts of interest:
+For example, an ontology may be structured like this:
 
-  - Events
-  - Time
-  - Physical Objects
-  - Beliefs
-
-Example of a Extensible `Upper ontology` (RN p 315)
-
+<div style="font-size: 10pt">
+```none
                   ———————————————Anything————————————————
                 /                                         \
 AbstractObjects ——————                          ——————GeneralizedEvents
@@ -28,34 +27,34 @@ Categories             Times     Weights    Moments    Things   Stuff ———�
                                               Animals  Agents  Solid Liquid Gas
                                                   \     /
                                                   Humans
+```
+</div>
 
-Goal: Represent all of this with FOL, even though FOL is fairly limited for representing real world knowledge. For example,
+<div class='fn'>Russel and Norvig, Introduction to Artificial Intelligence 3rd Ed, p 315.</div>
 
-  ∀ x , Tomato(x) → Red(x)
 
-is not always true. Listing all the exceptions to a rule is challenging. For now, we'll gloss over this. Later we'll talk about how to represent `uncertainty`.
+Examples
+===
 
-`Special Purpose Ontology`: Covers a particular domain, like "automobiles" or "birds."
+- [Cyc](https://cyc.com/): Hand coded for deep logical reasoning. 40K predicates, 1.5M concepts, 25M axioms.
 
-`General Purpose Ontology`: Includes all of human knowledge. Has to not only contain all specialzed domains, it also needs to use a consistent language and representation across all domains so that inter-domain reasoning does not break down.
+- [Wikidata](https://query.wikidata.org/) : Try it!
 
-Examples:
 
-  `CYC` and `OPENCYC` are built bottom up by logicians.
+- [Google Knowledge Graph](https://developers.google.com/knowledge-graph):
+Automatically extracted from the web for search apps.
+54 billion entities, 1.6 trillion facts.
+Powers _Knowledge Panels_, for example.
 
-  `DBPedia` scrapes Wikipedia to generate an ontology.
+- [The Gene Ontology Resource](https://geneontology.org/) : Example of a domain specific ontology
 
-  `TextRunner` was built from scraping the web.
 
-  `OpenMind` built by untrained volunteers answering questions.
+Example GKG Query
+===
 
-Contemporary Example
-
-  `Google Knolwedge Graph` comes from Wikipedia and curated knowledge from the web.
-  https://developers.google.com/knowledge-graph
-
-You can go to the web page above and search for "Taylor Swift". Among other bits of information, Google will return
-
+You can go to the Google KG and search for "Taylor Swift". Among other bits of information, Google will return
+<div style="font-size: 10pt">
+```none
         ...
         "@id": "kg:/m/0dl567",
         "name": "Taylor Swift",
@@ -65,14 +64,32 @@ You can go to the web page above and search for "Taylor Swift". Among other bits
         ],
         "description": "Singer-songwriter",
         ...
+```
+</div>
 
 Good to know!
 
+Ontologies in FOL
+===
+
+Goal: Represent ontologies of this with FOL, even though FOL is fairly limited for representing real world knowledge. For example,
+```none
+  ∀ x , Tomato(x) → Red(x)
+```
+is not always true. Listing all the exceptions to a rule is an area of research.
 
 
-# CATEGORIES AND OBJECTS
+Categories and Objects
+===
 
-To reason about objects, doing so at the level of categories of objects is prefered. For example, we might want to state a property about all basketballs or all balls, rather than about each specific ball. Some basic definitions are in order. Note that these are inspired by Mathlib's Set library in which a Set is just a predicate. Here we'll use the word `category` to be consistent with Russel and Norvig. This use should not be confused with the mathematical notion of a category. -/
+To reason about objects, doing so at the level of categories of objects is preferred.
+For example, we might want to state a property about all basketballs or all balls,
+rather than about each specific ball.
+
+Here we'll use the word `category` to be consistent with Russel and Norvig,
+not be confused with the mathematical notion of a category. -/
+
+universe u
 
 def Category (α : Type u) := α → Prop
 
@@ -83,9 +100,13 @@ variable (base : Type u)
          (Basketball: Category base)
          (m1 : Basketball b)
 
-/- We can express what it means to be a sub-category. -/
+/-
+Sub-categories
+===
 
-def Subcategory {α : Type} (A : Category α) (B : Category α) :=
+We can express what it means to be a sub-category. -/
+
+def Subcategory {α : Type u} (A : Category α) (B : Category α) :=
   ∀ x : α , A x → B x
 
 /- Now we can do a simple example. -/
@@ -95,9 +116,11 @@ example (Object : Type) (b : Object) (Basketball Ball: Category Object) :
   intro ⟨ h1, h2 ⟩
   apply (h2 b) h1
 
-/- This is fine. But what happens when the amount of information in our knowledge base becomes large, with thousands of rules? To prove theorems we would need to state every single bit of information as a hypothesis.
+/-
+Numerical Functions
+===
 
-Lean provides a more scalable way to proceed by defining variables that form the context of every proof that comes after their declarations. Here is an initial attempt at doing so. All of these rule properties would go in a (large) file somewhere. The addition of the NumericalFunction type allows us to write all of the statements in the first section of Russel and Norvig's chapter on knowledge representation. -/
+This type allows us to write all of the statements in the first section of Russel and Norvig's chapter on knowledge representation. -/
 
 def NumericalFunction (α : Type u) := α → Float
 
@@ -106,24 +129,22 @@ variable (base : Type u)
          (Basketball Ball Spherical Orange Round: Category base)
          (Diameter : NumericalFunction base)
          (m1 : Basketball b)
+         (s3 : Subcategory Basketball Orange)
          (s1 : Subcategory Basketball Ball)
          (s2 : Subcategory Ball Spherical)
-         (s3 : Subcategory Basketball Orange)
          (f1 : ∀ x, Basketball x → Diameter x = 9.5)
          (r1 : ∀ x, Orange x ∧ Round x ∧ Diameter x = 9.5 ∧ Ball x → Basketball x)
-
-/- Now we do not have to list every but of knowledge when stating theorems. All variables are implicitly included as assumptions. Lean's "apply?" method can even figure out how to prove simple things. -/
 
 example : Ball b := s1 b m1
 example : Spherical b := s2 b (s1 b m1)
 example : Orange b := s3 b m1
 
 
+/-
+Categories of Categories
+===
 
-
-/- # CATEGORIES OF CATEGORIES
-
-Another relationship found in ontologies is the notion that an entire category can be a member of a sort of meta category. For example, -/
+An entire category can be a member of a sort of meta category. For example, -/
 
 def MetaCategory (α : Type u) := Category α → Prop
 
@@ -133,13 +154,17 @@ variable (DomesticatedSpecies Animals: MetaCategory base)
          (c2 : DomesticatedSpecies Cats)
          (s4 : Subcategory DomesticatedSpecies Animals)
 
-/- These types of relationships would allow you to reason at a meta level about categories. An infinite heirarchy of categories is essentially what Lean's type system allows, suggesting how this might be used. -/
+/- These types of relationships would allow you to reason at a meta level about categories.
+An infinite hierarchy of categories is essentially what Lean's universe and type system allows,
+suggesting how this might be used. -/
 
 
 
 
 
-/- # DISJOINT PAIR
+/-
+Disjoint Pairs
+===
 
 Knowledge bases often describe what objects are not. One way to do this is to add a requirement that two categories have no objects in common.
 
@@ -159,7 +184,9 @@ example (x : base) : Animal x → ¬ Vegetable x := by
 
 
 
-/- # DISJOINT LIST
+/-
+Disjoint Lists
+===
 
 You might describe a fully disjoint list of categories. Here, we use Lean's `List` type.
 
@@ -192,9 +219,12 @@ example : ∀ (x : base) , Animal x → ¬ Vegetable x ∧ ¬ Mineral x := by
 
 
 
-/- # EXHAUSTIVE CATEGORIES
+/-
+Exhaustive Categories
 
-Prescribing an exhastive set of categories disallows an object from not belonging to *some* category. The defintion does not require that an object is in only one category. In the example below, one might have a dual citizenship.
+Prescribing an exhaustive set of categories disallows an object from not belonging to *some* category.
+The definition does not require that an object is in only one category.
+In the example below, one might have a dual citizenship.
 
 -/
 
@@ -221,7 +251,9 @@ example (x : base) :   NorthAmerican x
 
 
 
-/- # PARTITIONS
+/-
+Partitions
+===
 
 A partition is a set of categories that is disjoint and exhaustive.
 
@@ -267,9 +299,12 @@ example (x : base) : PHD x → Student x := by
 
 
 
-/- # DEFINITIONS
+/-
+Definitions
+===
 
-One can simply state that an object is in a category, or one can define what the category is by relating it to other categories. Here's an example.
+One can simply state that an object is in a category, or one can define
+what the category is by relating it to other categories. Here's an example.
 
 -/
 
@@ -285,9 +320,10 @@ example : ∀ (x:base) , Bachelor x → Male x := by
 
 
 
-
-
-/- # PHYSICAL COMPOSITION -/
+/-
+Physical Composition
+===
+-/
 
 def Relation (α : Type u) := α → α → Prop
 def Reflexive (r : Relation α)  := ∀ a : α , r a a
@@ -313,7 +349,9 @@ example : PartOf Bucharest Earth := by
 
 
 
-/- # CHARACTERIZING OBJECTS BY HOW THEY ARE CONSTRUCTED
+/-
+Object Construction
+===
 
 Below we state that if an animal is a biped, then it has exactly two legs that are attached to its body.
 
@@ -331,12 +369,12 @@ variable (is_biped : ∀ a , Biped a →
               ∀ l₃ , Leg l₃ ∧ PartOf l₃ a → (l₃ = l₁ ∨ l₃ = l₂))
 
 
-/- # RELATED CONCEPTS
+/-
+Related Concepts
+===
 
 - The mass of a composite object is the sum of the masses of its parts
-- BunchOf : List Cateogory base → Category base, for example a bunch of apples
+- BunchOf : List Category base → Category base, for example a bunch of apples
 - ∀ x , S x → PartOf(s,BunchOf(S))
 
 -/
-
-/- # MEASUREMENTS -/

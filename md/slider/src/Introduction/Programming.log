@@ -107,7 +107,7 @@ def do_twice (f : Nat → Nat) (x : Nat) := f (f x)
 #eval do_twice (do_twice f1) 3
 
 /-
-Unnamed Variables
+Unamed Variables
 ===
 
 If a function does not use an argument, the Lean linter complains
@@ -643,3 +643,4 @@ def str_cmp (a b : String) : Bool := decide (a ≤ b)
 --hide
 end LeanW26
 --unhide
+

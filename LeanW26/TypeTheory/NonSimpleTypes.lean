@@ -16,7 +16,7 @@ Is there a non-simply typed λ-calculus? Yes!
 - **Parameterized types** (λ<u>ω</u>) Types can depend on types.
 - **Dependent types** (λP) Types can depend on terms.
 
-Putting all of these together you get the **CoC** the **Caclulus of Constructions** (λC),
+Putting all of these together you get the **CoC** the **Calculus of Constructions** (λC),
 part of a well-studied framework called the *Lambda Cube*.
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Lambda_Cube_img.svg/2560px-Lambda_Cube_img.svg.png" width=30%></img>
@@ -276,7 +276,7 @@ Lean also defines the following in terms of `.rec`.
                    --   motive t
 
 /-
-Nonrecursive Inductive Types
+Non-recursive Inductive Types
 ===
 
 When a type isn't recursive, as in:

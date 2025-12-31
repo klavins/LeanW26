@@ -17,7 +17,7 @@ scope = "leanprover-community"
 [[lean_lib]]
 name = "LeanW26"
 
-[[require]]
-name = "verso"
-git = "https://github.com/leanprover/verso.git"
-rev = "latest"
+# [[require]]
+# name = "verso"
+# git = "https://github.com/leanprover/verso.git"
+# rev = "v4.26.0"

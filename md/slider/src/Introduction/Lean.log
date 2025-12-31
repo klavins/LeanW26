@@ -1,4 +1,12 @@
+--  Copyright (C) 2025  Eric Klavins
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.
 
+
+/-
 A Tour of L∃∀N
 ===
 
@@ -83,8 +91,8 @@ E.g, if your last name is Turing, name your project `EE598_Turing`.
 
 <ex/> Create a new file `HW_I_2.lean` so that it has the code:
 
+-/
 
-```lean
 import Mathlib.Tactic.Linarith
 
 -- Problem 1 : Test basic functionality.
@@ -96,8 +104,8 @@ example (x y z : ℚ)
         (h2 : -4*x + 2*z < 0)
         (h3 : 12*y - 4* z < 0) : False := by <proofstate>['x y z : ℚ\nh1 : 2 * x < 3 * y\nh2 : -4 * x + 2 * z < 0\nh3 : 12 * y - 4 * z < 0\n⊢ False']</proofstate>
   linarith
-```
 
+/-
 
 Open the Lean Infoview (∀ menu) and check the results.
 
@@ -148,8 +156,8 @@ Type Checking
 ===
 
 L∃∀N is based on type theory. This means that every term has a very well-defined type.
-To find the type of an expression, use #check. The result will show up in the Infoview.  
-```lean
+To find the type of an expression, use #check. The result will show up in the Infoview.  -/
+
 #check 1
 #check "1"
 #check ∃ (x : Nat), x > 0
@@ -157,8 +165,8 @@ To find the type of an expression, use #check. The result will show up in the In
 #check (4,5)
 #check ℕ × ℕ
 #check Type
-```
 
+/-
 Exercises
 ===
 
@@ -168,24 +176,24 @@ Evaluation
 ===
 
 You can use Lean to evaluate expressions using the `#eval` command. The result
-will show up in the Infoview. 
-```lean
+will show up in the Infoview. -/
+
 #eval 1+1
 #eval "hello".append " world"
 #eval if 2 > 2 then "the universe has a problem" else "everything is ok"
 #eval Nat.Prime 741013183
-```
 
+/-
 Proofs
 ===
 
 We will go into proofs in great detail later. For now, know that you can
-state theorems using the `theorem` keyword. 
-```lean
+state theorems using the `theorem` keyword. -/
+
 theorem my_amazing_result (p : Prop) : p → p :=
   fun h => h
-```
- In this expression,
+
+/- In this expression,
 
 ```text
   my_amazing_result is the name of the theorem
@@ -197,54 +205,58 @@ theorem my_amazing_result (p : Prop) : p → p :=
   λ h => h          (the identity function) is the proof
 ```
 
-You can use your theorems to prove other theorems: 
-```lean
+You can use your theorems to prove other theorems: -/
+
 theorem a_less_amazing_result : True → True := by <proofstate>['⊢ True → True']</proofstate>
   apply my_amazing_result
-```
 
+/-
 Examples vs Proofs
 ===
 
 Results don't have to be named, which is useful for trying things
-out or when you don't need the result again. 
-```lean
+out or when you don't need the result again. -/
+
 example (p : Prop) : p → p :=
   fun h => h
 
 example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) :=
   fun ⟨ hpq, hqr ⟩ hp
     => hqr (hpq hp)
-```
 
+
+/-
 The Tactic Language and `sorry`
 ===
 
 The examples above use fairly low level Lean expressions to prove statements.
 Lean provides a higher level DSL (domain specific language) for proving.
-You enter the Tactic DSL using `by`. 
-```lean
+You enter the Tactic DSL using `by`. -/
+
 example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by <proofstate>['p q r : Prop\n⊢ (p → q) ∧ (q → r) → p → r']</proofstate>
   sorry
-```
- which can be built up part by part into 
-```lean
+
+/- which can be built up part by part into -/
+
 example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by <proofstate>['p q r : Prop\n⊢ (p → q) ∧ (q → r) → p → r']</proofstate>
   intro ⟨ hpq, hqr ⟩ <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\n⊢ p → r']</proofstate>
   intro hp <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\nhp : p\n⊢ r']</proofstate>
   have hq : q := hpq hp <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\nhp : p\nhq : q\n⊢ r']</proofstate>
   have hr : r := hqr hq <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\nhp : p\nhq : q\nhr : r\n⊢ r']</proofstate>
   exact hr
-```
- Don't worry if none of this makes sense. We'll go into all the gory details later.
+
+/- Don't worry if none of this makes sense. We'll go into all the gory details later.
 
 Exercises
 ===
 
 <ex /> Lean provides a powerful tactic called `aesop`. Redo the proof
 of the previous example replacing the prooof with the single line `aesop`.
+-/
 
 
+
+/-
 Programming
 ===
 
@@ -253,8 +265,8 @@ L∃∀N is programmed in L∃∀N (and then compiled).
 
 If you are not familiar with functional programming: you will be by then end of this course.
 
-Here is an example program: 
-```lean
+Here is an example program: -/
+
 def remove_zeros (L : List ℕ) : List ℕ := match L with
   | [] => List.nil
   | x::Q => if x = 0 then remove_zeros Q else x::(remove_zeros Q)
@@ -262,10 +274,11 @@ def remove_zeros (L : List ℕ) : List ℕ := match L with
 #check remove_zeros
 
 #eval remove_zeros [1,2,3,0,5,0,0]     -- [1,2,3,5]
-```
- Note the similarity between `def` and `theorem`. The latter is
-simply a special kind of definition. 
 
+/- Note the similarity between `def` and `theorem`. The latter is
+simply a special kind of definition. -/
+
+/-
 Exercises
 ===
 
@@ -273,8 +286,9 @@ Exercises
 of natural numbers. Use `remove_zeros` as a template. Test your
 code using `#eval`.
 
+-/
 
-
+/-
 Documentation and Resources
 ===
 
@@ -349,15 +363,5 @@ partial credit and move on with your life.
 <ex/> Once you are satisfied with your work, submit the `HW1.lean` file
 to Canvas as Assignment 1.
 
-
-
-License
-===
-
-Copyright (C) 2025  Eric Klavins
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.   
+-/
 

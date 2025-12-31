@@ -1,4 +1,8 @@
+import Mathlib
 
+namespace LeanW26.LambdaCalculus
+
+/-
 The Lambda Calculus
 ===
 
@@ -37,21 +41,21 @@ The λ-Calculus in Lean
 
 In Lean you can write lambda calculus statements and reduce them, for example:
 
+-/
 
-```lean
 def f1 := λ x ↦ x+1
 def g1 := λ x ↦ λ y ↦ 2*x-y
 
 #reduce f1 2         -- 3
 #reduce g1 2 3       -- 1
-```
- Note: The Lean Powers have recently decreed that `λ` and `↦` should be written as `fun` and `=>`.
-So, we'll use syntax like: 
-```lean
+
+/- Note: The Lean Powers have recently decreed that `λ` and `↦` should be written as `fun` and `=>`.
+So, we'll use syntax like: -/
+
 def f2 := fun x => x+1
 def g2 := fun x y => 2*x-y
-```
 
+/-
 Exercises
 ===
 
@@ -59,8 +63,9 @@ Exercises
 
 <ex/> Evaluate `h (h (h 2))`.
 
+-/
 
-
+/-
 
 Unsolvable Problems
 ===
@@ -156,30 +161,19 @@ The Simply-Typed Lambda Calculus
 ===
 
 In the expressions we wrote above, the types were inferred, but we can write them out.
+-/
 
-```lean
 def f3 : Nat → Nat := fun (x : Nat) => x+1
 def g3 : Nat → Nat → Nat := fun (x y : Nat) => 2*x-y
-```
 
+/-
 However, `Nat` is not a *simple* type (it is an *inductive* type).
 
 In the next section we'll look at what exactly is `Type` and come back to
 the lambda calculus in the following section.
+-/
 
-```lean
 --hide
 end LeanW26.LambdaCalculus
 --unhide
-```
-
-License
-===
-
-Copyright (C) 2025  Eric Klavins
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.   
 

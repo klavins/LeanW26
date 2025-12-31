@@ -93,7 +93,7 @@ E.g, if your last name is Turing, name your project `EE598_Turing`.
 
 -/
 
-import mathlib
+import Mathlib.Tactic.Linarith
 
 -- Problem 1 : Test basic functionality.
 
@@ -160,7 +160,7 @@ To find the type of an expression, use #check. The result will show up in the In
 
 #check 1
 #check "1"
-#check ∃ (x : Nat) , x > 0
+#check ∃ (x : Nat), x > 0
 #check fun x => x+1
 #check (4,5)
 #check ℕ × ℕ
@@ -221,7 +221,8 @@ example (p : Prop) : p → p :=
   fun h => h
 
 example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) :=
-  fun ⟨ hpq, hqr ⟩ hp => hqr (hpq hp)
+  fun ⟨ hpq, hqr ⟩ hp
+    => hqr (hpq hp)
 
 
 /-

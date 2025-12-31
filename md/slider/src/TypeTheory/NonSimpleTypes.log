@@ -1,4 +1,8 @@
+import Mathlib
 
+namespace LeanW26.NonSimpleTypes
+
+/-
 Beyond Simple Types
 ===
 
@@ -12,7 +16,7 @@ Is there a non-simply typed λ-calculus? Yes!
 - **Parameterized types** (λ<u>ω</u>) Types can depend on types.
 - **Dependent types** (λP) Types can depend on terms.
 
-Putting all of these together you get the **CoC** the **Calculus of Constructions** (λC),
+Putting all of these together you get the **CoC** the **Caclulus of Constructions** (λC),
 part of a well-studied framework called the *Lambda Cube*.
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Lambda_Cube_img.svg/2560px-Lambda_Cube_img.svg.png" width=30%></img>
@@ -57,8 +61,8 @@ Polymorphism
 
 **Polymorphism** in Lean is handled the `Π` type formation operator, which
 quantifies over types, like `λ` quantifies over terms. For example,
+-/
 
-```lean
 universe u
 
 def id1 : Π (α : Type u), α → α := fun _ x => x
@@ -66,59 +70,63 @@ def id2 : Π {α : Type u}, α → α := fun x => x
 def id3 {α : Type u} := fun (x : α) => x
 def id4 : (α : Type u) → α → α := fun (_ : Type u) => fun x => x
 def id5 : ∀ α, α → α := fun _ => fun x => x
-```
 
+/-
 Notes:
 - `Π` and `∀` are defined as syntactic sugar for `forall`
 - `Π` requires Mathlib.
 - Regular function types are a special case of Π types.
 - The above functions are also **universe polymorphic**
+-/
 
-
+/-
 Parameterized types
 ===
 
 A **parameterized** type has a constructor taking another type as a paramter.
 
 The standard example is List.
+-/
 
-```lean
 inductive MyList {α : Type} where
   | nil : MyList
   | cons : α → MyList → MyList
-```
 
+/-
 Note that the constructor for MyList is polymorphic, as one would expect:
+-/
 
-```lean
 #check MyList.cons    -- {α : Type} → α → MyList → MyList
-```
 
+
+/-
 Dependent types
 ===
 
 A **dependent** type depends on a term. A vector of a given length
-is an example. 
-```lean
+is an example. -/
+
 inductive Vec (α : Type u) : Nat → Type u where
   | nil  : Vec α 0
   | cons {n} :  α → Vec α n → Vec α (n + 1)
-```
 
+/-
 Here is a polymorphic function that adds two vectors together.
+-/
 
-```lean
 def Vec.add {α : Type u} [Add α] {n : Nat} (x y : Vec α n)
   : Vec α n :=
   match x, y with
   | nil, nil => nil
   | cons a w, cons b z => cons (a+b) (Vec.add w z)
-```
- The notation [Add α] ensures that α is a type that has addition (See Typeclasses)
-```lean
-#check_failure Vec.add (Vec.nil.cons 1) ((Vec.nil.cons 1).cons 2)
-```
 
+
+/- The notation [Add α] ensures that α is a type that has addition (See Typeclasses)-/
+
+#check_failure Vec.add (Vec.nil.cons 1) ((Vec.nil.cons 1).cons 2)
+
+
+/-
 Exercises
 ===
 
@@ -130,14 +138,17 @@ it's type?
 
 <ex/> Consider the dependent type
 
+-/
 
-```lean
 def chooseType : Bool → Type
 | true  => Nat
 | false => String
-```
- Create a function `f : Bool → chooseType Bool`. 
 
+/- Create a function `f : Bool → chooseType Bool`. -/
+
+
+
+/-
 Sigma Types
 ===
 
@@ -152,26 +163,25 @@ structure Sigma {α : Type u} (β : α → Type v) where
 For example, to carry around a length and a default vector of that
 length, we could do:
 
-
-```lean
+-/
 #check Sigma.mk 0 Vec.nil
 #check Sigma.mk 1 (Vec.nil.cons 0)
-```
 
+/-
 A Function on Sigma Types
 ===
 
 Lean provides the notation `Σ` for Sigma types.
+-/
 
-```lean
 def Vec.default (n : Nat) : Σ (n:Nat), Vec Nat n := match n with
   | 0 => Sigma.mk 0 Vec.nil
   | n+1 => let v := (Vec.default n)
            Sigma.mk (v.fst+1) (v.snd.cons 0)
 
 #check Vec.default 3 --- (n : ℕ) × Vec ℕ n
-```
 
+/-
 Exercises
 ===
 
@@ -182,8 +192,9 @@ forget : Σ (n:Nat), Vec Nat n → List Nat
 that takes a Sigma value representing a length and a vector of that length
 and returns the vector turned into a list.
 
+-/
 
-
+/-
 Inductive Arguments
 ===
 
@@ -226,31 +237,32 @@ The Recursor
 
 Every time you define an inductive type, you get an inductive
 schema as a definition:
+-/
 
-```lean
 #check Nat.rec   -- {motive : Nat → Sort u} →
                  -- motive Nat.nada →
                  -- (∀ n : Nat, motive n → motive n.mas) →
                  -- ∀ t : Nat, motive t
-```
- You also get a way to show terms constructed differently are different. 
-```lean
+
+/- You also get a way to show terms constructed differently are different. -/
+
 #check Nat.noConfusion -- {P : Sort u} →
                       -- {x1 x2 : ℕ} →
                       -- x1 = x2 →
                       -- Nat.noConfusionType P x1 x2
 
 #check Nat.noConfusionType -- Sort u → ℕ → ℕ → Sort u
-```
 
+/-
 We will later use `noConfusion` to prove statements like `m.succ ≠ m.succ.succ`.
+-/
 
-
+/-
 Derived Recursors
 ===
 Lean also defines the following in terms of `.rec`.
+-/
 
-```lean
 #check Nat.recOn   -- {motive : Nat → Sort u} →
                    -- ∀ t : Nat,
                    --   motive Nat.nada →
@@ -262,48 +274,49 @@ Lean also defines the following in terms of `.rec`.
                    --   motive Nat.nada →
                    --   (∀ a : Nat, motive a.mas) →
                    --   motive t
-```
 
-Non-recursive Inductive Types
+/-
+Nonrecursive Inductive Types
 ===
 
 When a type isn't recursive, as in:
 
+-/
 
-```lean
 inductive ThreeVal where | one | two | three
-```
 
+/-
 The `.casesOn` instance is particularly simple.
+-/
 
-```lean
 #check ThreeVal.casesOn
   -- {motive : ThreeVal → Sort u} → ∀ t : ThreeVal,
   -- motive ThreeVal.one → motive ThreeVal.two →
   -- motive ThreeVal.three → motive t
-```
- For example: 
-```lean
+
+/- For example: -/
+
 def ThreeVal.toNat (x : ThreeVal) : ℕ :=
   ThreeVal.casesOn x 1 2 3
 
 #eval ThreeVal.one.toNat     -- 1
-```
 
+/-
 Recursors With Recursive Definitions
 ===
 
 The following are equivalent
+-/
 
-```lean
 def even1 (n : Nat) : Bool :=
   Nat.recOn n true (fun k pk => ¬pk)
 
 def even2 (n : Nat) : Bool := match n with
   | .zero => true
   | .succ k => ¬ even2 k
-```
 
+
+/-
 Restrictions on Inductive Types
 ===
 ```lean
@@ -323,8 +336,12 @@ def loop (b : T) : Nat := match b with
     | T.mk f => f b --- etc.
 ```
 An infinite loop.
+-/
 
 
+
+
+/-
 Positivity in Inductive Types
 ===
 
@@ -343,8 +360,10 @@ occur strictly positively in the types of their arguments."(Agda Docs)
 Pragmatic approach: If you see the "positivity" error, try to understand
 how you could accidentally write a non-terminating function with your type. Then refactor.
 
+-/
 
 
+/-
 Exercise
 ===
 
@@ -356,57 +375,63 @@ Start with
 def length {α} (L : List α) : Nat :=
   List.rec sorry sorry sorry sorry
 ```
+-/
 
 
+
+
+
+
+/-
 Coming Soon: Using the Recursor in Proofs
 ===
 
 You can use the recursor in proofs (we'll get to this later).
+-/
 
-```lean
 #check Nat.noConfusion
 
 open Nat in
 example : ∀ (n : Nat), n.succ ≠ zero :=
   Nat.rec (Nat.noConfusion) (fun n hn => Nat.noConfusion)
-```
- Which fortunately can also be written: 
-```lean
+
+/- Which fortunately can also be written: -/
 example : ∀ (n : Nat), n.succ ≠ .zero := by
   intro n
   induction n with
   | zero => exact Nat.noConfusion
   | succ k ih => exact Nat.noConfusion
-```
 
+
+/-
 Type Classes
 ===
 A **type class** is a way to associate data and methods with all
 type definitions that meet the class's specifications.
 
 For example,
+-/
 
-```lean
 class HasZero (α : Type) where
   zero : α
 
 class HasAdd (α : Type) where
   add : α → α → α
-```
- Which can then be used in functions, as in the following, which
-allows you to sum a list of anything that has a `zero` and an `add` funciton. 
-```lean
+
+/- Which can then be used in functions, as in the following, which
+allows you to sum a list of anything that has a `zero` and an `add` funciton. -/
+
 def sum {α : Type} (f : ℕ → α) (n : ℕ) [hz : HasZero α] [ha : HasAdd α] :=
   match n with
   | .zero => hz.zero
   | .succ k => ha.add (f n) (sum f k)
-```
 
+/-
 Instances
 ===
 You can instantiate a type class for a given type using the `instance` keyword.
+-/
 
-```lean
 instance : HasZero String where
   zero := ""
 
@@ -414,9 +439,9 @@ instance : HasAdd String where
   add a b := b ++ a
 
 #eval sum (fun n => String.singleton (Char.ofNat (n+96))) 26
-```
- or 
-```lean
+
+/- or -/
+
 instance : HasZero Nat where
   zero := .zero
 
@@ -424,14 +449,15 @@ instance : HasAdd Nat where
   add := .add
 
 #eval sum (fun n => n^2) 26
-```
 
+
+/-
 Lean/Mathlib Classes
 ===
 
 There are a **huge** number of type classes in Lean and we will encounter many
-of them. For example: 
-```lean
+of them. For example: -/
+
 inductive Numero where
   | nada : Numero
   | mas : Numero → Numero
@@ -444,14 +470,15 @@ instance : One Numero := ⟨ .mas .nada ⟩
 instance : HAdd Numero Numero Numero := ⟨ Numero.add ⟩
 
 def f (x y : Numero) := x + y + 1
-```
 
+/-
 Later we will build algebraic structures for our datatypes. For example,
 ```
 instance : Group ℤ := ...
 ```
+-/
 
-
+/-
 Various Advanced Types (Not in Lean)
 ===
 
@@ -486,8 +513,10 @@ Conference on Computer Logic, *Lecture Notes in Computer Science*, vol. 417, Spr
 The Univalent Foundations Program Institute for Advanced Study (https://homotopytypetheory.org/book/).
 
 
+-/
 
 
+/-
 Exercises
 ===
 
@@ -502,20 +531,9 @@ for the `Dyadic` type.
 <ex /> Define `product` similarly to how we defined `sum`. Compute
 $\prod_{n=1}^8 n\cdot2^{-n}$ and use your `.to_rat` function to check the answer.
 
+-/
 
-```lean
 --hide
 end LeanW26.NonSimpleTypes
 --unhide
-```
-
-License
-===
-
-Copyright (C) 2025  Eric Klavins
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.   
 
