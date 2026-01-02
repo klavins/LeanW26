@@ -64,8 +64,8 @@ body {
     font-size: 6pt;
     height: 14px;
     position: fixed;
-    right: 20px;
-    bottom: 20px;
+    right: 5px;
+    top: 5px;
     cursor: pointer;
     outline: none;
 }
@@ -74,8 +74,8 @@ body {
     font-size: 6pt;    
     height: 14px;    
     position: fixed;
-    right: 50px;
-    bottom: 20px;
+    right: 30px;
+    top: 5px;
     cursor: pointer;
     outline: none;
 }
@@ -84,8 +84,8 @@ body {
     font-size: 6pt;    
     height: 14px;    
     position: fixed;
-    right: 80px;
-    bottom: 20px;
+    right: 55px;
+    top: 5px;
     cursor: pointer;
     outline: none;
 }
@@ -94,8 +94,8 @@ body {
     font-size: 6pt;    
     height: 14px;    
     position: fixed;
-    right: 110px;
-    bottom: 20px;
+    right: 81px;
+    top: 5px;
     cursor: pointer;
     outline: none;
     font-family: "Open Sans", sans-serif;

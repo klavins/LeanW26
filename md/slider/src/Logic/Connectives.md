@@ -15,8 +15,83 @@ To avoid naming conflicts with Lean's standard library, we open a namespace.
 
 ```lean
 namespace Temp
+
+variable (p q r: Prop)
 ```
- We'll now defined `Temp.And`, `Temp.Or`, etc. 
+
+The Axiom Rule
+===
+
+Not to be confused with Lean's `axiom` keyword.
+
+As discussed in the slide deck on Propositional Logic, the Axiom Rule is
+
+```none
+  AX  ——————————
+       Γ,φ ⊢ φ
+```
+Here is a simple proof that `{hp:p} ⊢ p` in Lean using the Axiom rule: 
+```lean
+example (hp : p) : p :=  hp
+```
+ Putting your cursor at the beginning of the second like, you will see
+```
+hp : p
+⊢ p
+```
+Which says, give we have a proof `hp` of `p`, we need show `p`.
+This is easy, we just use `hp` itself.
+
+
+Aside: def, theorem, example, lemma
+===
+
+By the CHI, note that `def` and `theorem`
+are essentially the same from a type theory point of few. And `example` is
+just a theorem without a name.
+
+So in the above we could write:
+
+
+```lean
+def prop_id (hp : p) := hp
+
+theorem prop_id_thm (hp : p) : p := hp
+
+example (hp : p) : p := hp
+```
+ Also, `prop_id` is really just a special case of the identity function. 
+```lean
+def my_id.{u} {α : Sort u} (x : α) : α := x
+
+example (hp : p) : p := my_id hp
+```
+ So if you can write code in Lean you can prove theorems! 
+
+Implication in Lean
+===
+
+**`→-Intro` is lambda abstraction:** Whenever you see a goal of the form `A → B`, you
+write a lambda to get a simpler goal.
+
+```lean
+example (hp : p) : q → p :=
+  fun hq => sorry
+
+example (hp : p) : q → p :=
+  fun hq => hp
+```
+
+**`→-Elim` is lambda application:** When you see function (with type `A → B`) in a context
+you can apply it to get a simpler goal.
+
+```lean
+example (hpq : p → q) (hp : p) : q :=
+  hpq sorry
+
+example (hpq : p → q) (hp : p) : q :=
+  hpq hp
+```
 
 And is an Inductive Type
 ===
@@ -280,9 +355,9 @@ Define these in Lean. Here is a start:
 inductive Nor (p q : Prop) : Prop where
   | intro : ¬p → ¬q → Nor p q
 
-def Nor.elim_left {p q : Prop} (hnpq : Nor p q) := sorry
+def Nor.elim_left {p q : Prop} (hnpq : Nor p q) : Prop := sorry
 
-def Nor.elim_right {p q : Prop} (hnpq : Nor p q) := sorry
+def Nor.elim_right {p q : Prop} (hnpq : Nor p q) : Prop := sorry
 ```
  <span></span> 3) Use the above Nor inference rules, and the regular inference rules from Lean's propopsitional logic, to prove the following examples. Note, *do not* use the Classical logic option for these. It isn't needed.  
 ```lean

@@ -139,7 +139,6 @@ example : Ball b := s1 b m1
 example : Spherical b := s2 b (s1 b m1)
 example : Orange b := s3 b m1
 
-
 /-
 Categories of Categories
 ===
@@ -159,14 +158,12 @@ An infinite hierarchy of categories is essentially what Lean's universe and type
 suggesting how this might be used. -/
 
 
-
-
-
 /-
 Disjoint Pairs
 ===
 
-Knowledge bases often describe what objects are not. One way to do this is to add a requirement that two categories have no objects in common.
+Knowledge bases often describe what objects are not.
+One way to do this is to add a requirement that two categories have no objects in common.
 
 -/
 

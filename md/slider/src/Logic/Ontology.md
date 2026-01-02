@@ -159,7 +159,8 @@ suggesting how this might be used.
 Disjoint Pairs
 ===
 
-Knowledge bases often describe what objects are not. One way to do this is to add a requirement that two categories have no objects in common.
+Knowledge bases often describe what objects are not.
+One way to do this is to add a requirement that two categories have no objects in common.
 
 
 ```lean

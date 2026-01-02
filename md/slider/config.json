@@ -35,8 +35,8 @@
         { 
             "name": "Numbers", 
             "decks": [
+                { "path": "src/Numbers/Nats.md", "title": "Algebra" },
                 { "path": "src/Numbers/Nats.md", "title": "Naturals" },
-                { "path": "src/Numbers/Induction.md", "title": "Induction" },
                 { "path": "src/Numbers/Ints.md", "title": "Integers" },
                 { "path": "src/Numbers/Rats.md", "title": "Rationals" },
                 { "path": "src/Numbers/Matrices.md", "title": "Matrices" }
