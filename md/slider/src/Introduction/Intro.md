@@ -72,7 +72,12 @@ Control                 Lean                    RepresentationTheory
 </pre>
 </small></div>
 
-<div class='fn'>https://github.com/leanprover-community/mathlib4</div>
+Seems like a lot, but _Web of Knowledge_ lists a total of 1,342,406 mathematics papers since 1900.
+
+<div class='fn'>
+https://github.com/leanprover-community/mathlib4<br>
+https://strathmaths.wordpress.com/2013/04/17/how-much-mathematics-is-there
+</div>
 
 
 
@@ -83,9 +88,12 @@ LLMs
 - Great at generating text, images, and designs.
 - Not grounded in reality or logic.
 
+<img src='img/brain.jpg' class='img-up-right' width=40%></img>
+
 Integration
-- However if you put Lean and an LLM into a feedback loop, you get a sort of
-left-brain / right-brain system, which is increasingly powerful.
+- However if you put Lean and an LLM into a feedback<br>
+loop, you get a sort of left-brain / right-brain system, <br>
+which is increasingly powerful.
 
 As a learning tool
 - The combination of LLMs and Lean, even without integration, will make
@@ -102,7 +110,7 @@ Math and AI Companies
 - [Axiom](https://axiommath.ai/)
 - [Math, Inc](https://www.math.inc/)
 - [DeepSeek Prover](https://prover-v2.com/)
-- And many more ...
+- And more ...
 
 
 
@@ -142,15 +150,33 @@ Homework: 60%
 Project: 40%
 - Formalize an interesting (to you) area of mathematics in Lean
 
+Lean W26 Slides
+===
 
+These slides are under construction
+- Some topics I am converting from last year's format
+- Some I have written all the code for, but not made into slides
+- Semi-functional Lean Infoview
+
+What you are seeing is directly from Lean code using my own custom slide
+environment called `Slider`. This tool is not ready for production, so it may
+not work on every browser, etc. I use Chrome.
+
+The slides are on the web at:
+- [https://faculty.washington.edu/klavins/LeanW26/dist](https://faculty.washington.edu/klavins/LeanW26/dist)
+
+The source code to the slides are at:
+- [https://github.com/klavins/LeanW26](https://github.com/klavins/LeanW26)
+- Clone this repo and following along in class
+
+If you find errors, please submit an issue at
+- [https://github.com/klavins/LeanW26/issues](https://github.com/klavins/LeanW26/issues)
 
 Resources
 ===
 
 Course Materials
 - Canvas
-- These slides : [https://faculty.washington.edu/klavins/LeanW26/dist](https://faculty.washington.edu/klavins/LeanW26/dist)
-- Slides on github: [https://github.com/klavins/LeanW26](https://github.com/klavins/LeanW26)
 
 Supplementary Texts
 - Morten Heine Sørensen, Pawel Urzyczyn.

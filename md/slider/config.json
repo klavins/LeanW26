@@ -35,7 +35,7 @@
         { 
             "name": "Numbers", 
             "decks": [
-                { "path": "src/Numbers/Nats.md", "title": "Algebra" },
+                { "path": "src/Numbers/Algebra.md", "title": "Algebra" },
                 { "path": "src/Numbers/Nats.md", "title": "Naturals" },
                 { "path": "src/Numbers/Ints.md", "title": "Integers" },
                 { "path": "src/Numbers/Rats.md", "title": "Rationals" },
@@ -71,7 +71,13 @@
                 { "path": "src/Meta/Tactics.md", "title": "Tactics" }
                 
             ]
-        },               
+        },         
+        {
+            "name": "Category Theory",
+            "decks": [
+                { "path": "src/CategoryTheory/CategoryTheory.md", "title": "Category Theory" }
+            ]
+        },
         {
             "name": "Appendix",
             "decks": [      

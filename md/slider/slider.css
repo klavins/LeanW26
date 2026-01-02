@@ -377,3 +377,10 @@ pre:has(> code:empty) {
     color: #888;
     margin-top: 10px;
 }
+
+.img-up-right {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    mix-blend-mode: multiply;
+}

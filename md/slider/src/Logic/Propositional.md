@@ -111,28 +111,6 @@ In particular, to prove
 - `¬p`, supply a method to convert a proof of `p` to a proof of `⊥`
 
 
---hide
-Example: A Constructive Proof in Lean
-===
-
-```lean
-example (p q r : Prop) : p ∧ (q ∨ r) ↔ (p ∧ q) ∨ (p ∧ r) :=
-  Iff.intro
-    (fun h : p ∧ (q ∨ r) =>
-      have hp : p := h.left
-      have hqr : q ∨ r := h.right
-      Or.elim hqr
-        (fun hq : q => Or.inl (And.intro hp hq))
-        (fun hr : r => Or.inr (And.intro hp hr))
-    )
-    (fun h : (p ∧ q) ∨ (p ∧ r) =>
-      Or.elim h
-        (fun hpq : p ∧ q => And.intro hpq.left (Or.inl hpq.right))
-        (fun hpr : p ∧ r => And.intro hpr.left (Or.inr hpr.right))
-    )
-```
- Don't worry if this doesn't make sense right now. It will soon.
---unhide
 
 Comparison to Classical Logic
 ===
@@ -493,11 +471,16 @@ Or the continuum hypothesis, once ZF is encoded in Lean. </div>
 Exercises
 ===
 
-<ex /> Prove both directions of or distributing over and.
+<ex /> Prove the statement `¬¬p↔p`. One direction requires classical logic. For that direction,
+formally state the law of the excluded middle as
+an inference rule and use the rule in your proof.
+
+<ex /> Prove both directions of or distributing over and
 - `⊢ p ∨ (q∧r) → (p∨q) ∧ (p∨r)`
 - ⊢ (p∨q) ∧ (p∨r) → p ∨ (q∧r)`
-For the direction requiring classical logic, formally state the law of the excluded middle as
-an inference rule and use the rule in your proof.
+using your excluded middle inference rule where needed.
+
+
 
 
 References

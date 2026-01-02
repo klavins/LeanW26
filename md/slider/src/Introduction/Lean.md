@@ -49,7 +49,9 @@ Notes:
   - Wait for the tool to completely finish before opening or changing anything.
   - I don't like the option where it creates a new workspace.
   - Don't make a new project every time you want to try something out.
-  You will use up all the space on your hard drive. Instead, create a single monolithic project and make subdirectores for ideas you want to explore.
+      - Each project is about 6GB to start with
+      - You will use up all the space on your hard drive
+      - Instead, create a single monolithic project and make sub-directories for ideas you want to explore.
 
 Directory Structure
 ===
@@ -94,12 +96,16 @@ import Mathlib.Tactic.Linarith
 example (x y z : ℚ)
         (h1 : 2*x < 3*y)
         (h2 : -4*x + 2*z < 0)
-        (h3 : 12*y - 4* z < 0) : False := by <proofstate>['x y z : ℚ\nh1 : 2 * x < 3 * y\nh2 : -4 * x + 2 * z < 0\nh3 : 12 * y - 4 * z < 0\n⊢ False']</proofstate>
+        (h3 : 12*y - 4* z < 0) : False := by
   linarith
 ```
 
 
-Open the Lean Infoview (∀ menu) and check the results.
+Open the Lean Infoview (`∀` menu) and check the results.
+
+**Note:** If you do `import Mathlib`, VS Code will launch a process to compile *everything* in
+Mathlib, which can take an hour or so. At some point this week, do this so that you don't
+constantly need to hunt for the exact `Mathlib` directory you need.
 
 Course Notes
 ===
@@ -199,7 +205,7 @@ theorem my_amazing_result (p : Prop) : p → p :=
 
 You can use your theorems to prove other theorems: 
 ```lean
-theorem a_less_amazing_result : True → True := by <proofstate>['⊢ True → True']</proofstate>
+theorem a_less_amazing_result : True → True := by
   apply my_amazing_result
 ```
 
@@ -224,16 +230,16 @@ The examples above use fairly low level Lean expressions to prove statements.
 Lean provides a higher level DSL (domain specific language) for proving.
 You enter the Tactic DSL using `by`. 
 ```lean
-example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by <proofstate>['p q r : Prop\n⊢ (p → q) ∧ (q → r) → p → r']</proofstate>
+example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
   sorry
 ```
  which can be built up part by part into 
 ```lean
-example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by <proofstate>['p q r : Prop\n⊢ (p → q) ∧ (q → r) → p → r']</proofstate>
-  intro ⟨ hpq, hqr ⟩ <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\n⊢ p → r']</proofstate>
-  intro hp <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\nhp : p\n⊢ r']</proofstate>
-  have hq : q := hpq hp <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\nhp : p\nhq : q\n⊢ r']</proofstate>
-  have hr : r := hqr hq <proofstate>['p q r : Prop\nhpq : p → q\nhqr : q → r\nhp : p\nhq : q\nhr : r\n⊢ r']</proofstate>
+example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
+  intro ⟨ hpq, hqr ⟩
+  intro hp
+  have hq : q := hpq hp
+  have hr : r := hqr hq
   exact hr
 ```
  Don't worry if none of this makes sense. We'll go into all the gory details later.
