@@ -98,19 +98,17 @@ which is increasingly powerful.
 As a learning tool
 - The combination of LLMs and Lean, even without integration, will make
 advanced mathematics more accessible than ever.
-- Use wisely : [AI in Papers](https://ai-math.zulipchat.com/#narrow/channel/539992-Web-public-channel---AI-Math/topic/Best.20practices.20for.20incorporating.20AI.20etc.2E.20in.20papers/near/546518354)
+- Use wisely : [AI in Papers](https://ai-math.zulipchat.com/#narrow/channel/539992-Web-public-channel---AI-Math/topic/Best.20practices.20for.20incorporating.20AI.20etc.2E.20in.20papers/near/546518354), [AI Generated Papers](https://categorytheory.zulipchat.com/#narrow/channel/229111-community.3A-general/topic/AI-generated.20papers/near/546399334)
+
+AI Companies
+- [DeepMind / AlphaProof](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/),
+[Aristotle] (https://aristotle.harmonic.fun/),
+[Axiom](https://axiommath.ai/),
+[Math, Inc](https://www.math.inc/),
+[DeepSeek Prover](https://prover-v2.com/),
+...
 
 
-
-Math and AI Companies
-===
-
-- [DeepMind / AlphaProof](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/)
-- [Aristotle] (https://aristotle.harmonic.fun/)
-- [Axiom](https://axiommath.ai/)
-- [Math, Inc](https://www.math.inc/)
-- [DeepSeek Prover](https://prover-v2.com/)
-- And more ...
 
 
 
@@ -168,6 +166,7 @@ The slides are on the web at:
 The source code to the slides are at:
 - [https://github.com/klavins/LeanW26](https://github.com/klavins/LeanW26)
 - Clone this repo and following along in class
+- Do `git update` *before* each class meeting
 
 If you find errors, please submit an issue at
 - [https://github.com/klavins/LeanW26/issues](https://github.com/klavins/LeanW26/issues)
@@ -206,6 +205,16 @@ Lean
 - <a href="https://leanprover.zulipchat.com/" target="other">
   Zulip Chat
   </a> — Discussion groups
+
+
+
+Acknowledgements
+===
+
+I would like to acknowledge the students who took my special topics course offered the
+Winter of 2025 at the University of Washington. We all learned Lean together. At first,
+I was a few weeks ahead, and by the end of the course I was a few weeks behind.
+ Much of the material here was developed in response to their questions and ideas.
 
 
 ```lean
