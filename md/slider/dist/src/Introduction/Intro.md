@@ -160,6 +160,7 @@ Please
 - Respect each other
 - Ask questions
 - Make space for others
+- Don't spray beta
 
 
 Lean W26 Slides

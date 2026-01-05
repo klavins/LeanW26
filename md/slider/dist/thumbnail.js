@@ -24,6 +24,10 @@ class Thumbnail extends React.PureComponent {
     if (this.props.title.includes("Exercise")) {
       classes += " exercise";
     }
+
+    if (this.props.title.includes("div")) {
+      t = "1. Under Construction";
+    }    
     
     return React.createElement(
       'div',

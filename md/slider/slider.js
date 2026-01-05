@@ -208,7 +208,6 @@ class Slider extends React.Component {
           Cookies.set("sidebar", sb);
       } },
       React.createElement('span', {}, roman[this.state.section] + "." +  (this.state.deck+1)),
-     
       React.createElement('span', {}, " " + this.config.sections[this.state.section].decks[this.state.deck].title),
       React.createElement('hr', {})
     )
@@ -239,7 +238,7 @@ class Slider extends React.Component {
          React.createElement(
            'div',
            {className: 'toc-section-title'},
-           roman[j+1] + ". " + sec.name
+           roman[j] + ". " + sec.name
          ),
          React.createElement('hr', {}),
          sec.decks.flatMap((d,i) => React.createElement(
