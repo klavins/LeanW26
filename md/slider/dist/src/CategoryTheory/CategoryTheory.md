@@ -1,10 +1,17 @@
 
-Under Construction
+Category Theory
 ===
 
-```lean
-def SlideDeck := sorry
-```
+Topics
+===
+
+Under construction!
+
+These section will consist of several slide decks introducing Category Theory
+via Mathlib's framework.
+
+
+
 
 License
 ===

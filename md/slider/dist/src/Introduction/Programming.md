@@ -15,7 +15,7 @@ Lean
 - Lean is declarative and functional
     - Programs define what you want
     - Computation corresponds to the evaluation of functions
-    - Recursion instead of procedues
+    - Recursion instead of procedures
 
 - In this module we will describe the basics of the language via several examples.
 - Later, we show how the language implements the formal mathematics of type theory.
@@ -64,7 +64,7 @@ as telling the CPU which branch to take in some assembly language.
 Rather, an `if` statement is a first class expression. For example, we can write:
 
 ```lean
-#eval (if 3 < 4 then 1 else 2)^2 + (if Even 9 then 3 else 4) -- 5
+#eval (if 3 < 4 then 1 else 2)^2 + (if Even 9 then 3 else 4)
 ```
 
 Let Expressions
@@ -80,7 +80,7 @@ def f3 (x : Nat) : Nat :=
 
 #eval f3 4
 ```
- Similarly, this is not a control flow sitation. For example, you can write: 
+ Similarly, this is not a control flow situation. For example, you can write: 
 ```lean
 #eval (let x := 5; x*2) + (let x := 3; x-1) -- 12
 ```
@@ -97,12 +97,12 @@ For example:
 ```lean
 def do_twice (f : Nat → Nat) (x : Nat) := f (f x)
 
-#check do_twice f1                  -- ℕ → ℕ
-#eval do_twice f1 3                 -- 5
-#eval do_twice (do_twice f1) 3      -- 7
+#check do_twice f1
+#eval do_twice f1 3
+#eval do_twice (do_twice f1) 3
 ```
 
-Unamed Variables
+Unnamed Variables
 ===
 
 If a function does not use an argument, the Lean linter complains
@@ -117,7 +117,7 @@ Exercises
 ===
 
 <ex/> Define a function `abs_diff` that takes two natural numbers and returns the absolute
-value of their difference. Use only the contructs defined so far. Evaluate
+value of their difference. Use only the constructs defined so far. Evaluate
 ```lean
 #eval abs_diff 23 89
 #eval abs_diff 101 89
@@ -130,17 +130,20 @@ and returns a function that applies `f` twice if `x` is even, and once otherwise
 ```
 
 
+
 Constructors
 ===
 
 Many types in Lean are defined *inductively* with *constructors*. For example, there are two
-ways to make a `Nat`. 
+ways to make a `Nat`.
+
 ```lean
 #print Nat -- constructors:
            -- Nat.zero : ℕ
            -- Nat.succ : ℕ → ℕ
 ```
- You can use the keyword `match` to check how a value was constructed. 
+ You can use the keyword `match` to check how a value was constructed.
+
 ```lean
 def nonzero (x : Nat) : Bool :=
   match x with

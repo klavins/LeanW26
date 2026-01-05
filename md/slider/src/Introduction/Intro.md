@@ -147,18 +147,33 @@ Homework: 60%
 
 Project: 40%
 - Formalize an interesting (to you) area of mathematics in Lean
+- Rubric TBA
+
+Classroom Etiquette
+===
+
+We have undergraduate and graduate students from four different departments!
+
+Some students are new to this area, others have been actively working in it.
+
+Please
+- Respect each other
+- Ask questions
+- Make space for others
+- Don't spray beta
+
 
 Lean W26 Slides
 ===
 
-These slides are under construction
-- Some topics I am converting from last year's format
-- Some I have written all the code for, but not made into slides
-- Semi-functional Lean Infoview
-
-What you are seeing is directly from Lean code using my own custom slide
+What you are seeing is compiled from Lean code using my own custom slide
 environment called `Slider`. This tool is not ready for production, so it may
 not work on every browser, etc. I use Chrome.
+
+Slides are under construction
+- Some topics I am converting from last year's format
+- Some I have written all the code for, but not made into slides
+- All slides will be marked as _under construction_ until a few days before we cover them
 
 The slides are on the web at:
 - [https://faculty.washington.edu/klavins/LeanW26/dist](https://faculty.washington.edu/klavins/LeanW26/dist)

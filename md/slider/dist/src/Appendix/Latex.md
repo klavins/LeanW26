@@ -2,7 +2,7 @@
 LaTeX Support in these Slides
 ===
 
-These slides use the `showdown` cmarkdown overter with the `katex` extension to render Latex in html.
+These slides use the `showdown` markdown converter with the `katex` extension to render Latex in html.
 
 You can put code in a ````latex` block
 
@@ -26,10 +26,10 @@ So you can't just include the tikz package like you would in a native latex envi
 
 A path to `tikz` would be to
 
-- Embped tikz in your lean file with a special delimiter like ````tikz`
+- Embed tikz in your lean file with a special delimiter like ````tikz`
 - Covert the lean file to markdown using dm.py
 - Extract all tikz blocks from the resulting markdown file and compile them using pdflatex or similar
-- Relace the tikz blocks with \<img\> tags or \<svg\> tags
+- Replace the tikz blocks with \<img\> tags or \<svg\> tags
 
 
 

@@ -23,19 +23,20 @@
         { 
             "name": "Logic", 
             "decks": [
-                { "path": "src/Logic/Implication.md", "title": "Implication" },
-                { "path": "src/Logic/Propositional.md", "title": "Propositional Logic" },
+                { "path": "src/Logic/Propositional.md", "title": "Propositional Logic" }, 
+                { "path": "src/Logic/Curry-Howard.md", "title": "Curry-Howard" },                    
+                { "path": "src/Logic/Connectives.md", "title": "Connectives" },            
                 { "path": "src/Logic/Equality.md", "title": "Equality" },
                 { "path": "src/Logic/FirstOrder.md", "title": "First Order Logic" },
-                { "path": "src/Logic/FirstOrder.md", "title": "Tactics" },
-                { "path": "src/Logic/Ontology.md", "title": "Ontology" }
+                { "path": "src/Logic/Tactics.md", "title": "Tactics" },
+                { "path": "src/Logic/Ontology.md", "title": "Ontologies" }
             ]
         },
         { 
             "name": "Numbers", 
             "decks": [
+                { "path": "src/Numbers/Algebra.md", "title": "Algebra" },
                 { "path": "src/Numbers/Nats.md", "title": "Naturals" },
-                { "path": "src/Numbers/Induction.md", "title": "Induction" },
                 { "path": "src/Numbers/Ints.md", "title": "Integers" },
                 { "path": "src/Numbers/Rats.md", "title": "Rationals" },
                 { "path": "src/Numbers/Matrices.md", "title": "Matrices" }
@@ -49,7 +50,8 @@
                 { "path": "src/Relations/Ordering.md", "title": "Ordering" },
                 { "path": "src/Relations/Equivalence.md", "title": "Equivalence" },
                 { "path": "src/Relations/Quotients.md", "title": "Quotients" },
-                { "path": "src/Relations/Integers.md", "title": "Integers Revisited" }
+                { "path": "src/Relations/Integers.md", "title": "Integers Revisited" },
+                { "path": "src/Relations/Reals.md", "title": "Reals" }
             ]
         },       
         { 
@@ -66,11 +68,29 @@
             "decks": [
                 { "path": "src/Meta/Expressions.md", "title": "Expressions" },
                 { "path": "src/Meta/Monads.md", "title": "Monads" },
-                { "path": "src/Meta/MetaMonads.md", "title": "Meta Monads" },
-                { "path": "src/Meta/Tactics.md", "title": "Tactics" }
+                { "path": "src/Meta/MetaMonads.md", "title": "The Meta Monads" },
+                { "path": "src/Meta/Tactics.md", "title": "Custom Tactics" }
                 
             ]
-        },               
+        },         
+        {
+            "name": "Category Theory",
+            "decks": [
+                { "path": "src/CategoryTheory/Definitions.md", "title": "Definitions" },
+                { "path": "src/CategoryTheory/Examples.md", "title": "Examples" },
+                { "path": "src/CategoryTheory/Products.md", "title": "Products" },
+                { "path": "src/CategoryTheory/Exponentials.md", "title": "Exponentials" },
+                { "path": "src/CategoryTheory/Syntactic.md", "title": "Syntactic Categories" }
+            ]
+        },
+        {
+            "name": "Tools",
+            "decks": [
+                { "path": "src/Tools/LeanClient.md", "title": "Lean Client" },
+                { "path": "src/Tools/LeanDojo.md", "title": "Lean Dojo" },
+                { "path": "src/Tools/OpenAIAPI.md", "title": "Open AI API" }
+            ]
+        },        
         {
             "name": "Appendix",
             "decks": [      

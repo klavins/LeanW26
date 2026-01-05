@@ -384,3 +384,35 @@ pre:has(> code:empty) {
     right: 10px;
     mix-blend-mode: multiply;
 }
+
+.uc {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 20pt;
+    margin-top: 10px;
+}
+
+.uc {
+    font-family: monospace;
+    font-weight: normal;
+    font-size: 20pt;
+    margin-top: 10px;    
+}
+
+.uc .def {
+    color: #00c;
+}
+
+.uc .slidedeck {
+    color: black;
+    text-decoration: underline #c22 wavy;  
+    text-underline-offset: 3pt;   
+}
+
+.uc .eq {
+    color: black;
+}
+
+.uc .sorry {
+    color: #c00;
+}

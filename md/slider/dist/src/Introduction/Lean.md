@@ -49,7 +49,9 @@ Notes:
   - Wait for the tool to completely finish before opening or changing anything.
   - I don't like the option where it creates a new workspace.
   - Don't make a new project every time you want to try something out.
-  You will use up all the space on your hard drive. Instead, create a single monolithic project and make subdirectores for ideas you want to explore.
+      - Each project is about 6GB to start with
+      - You will use up all the space on your hard drive
+      - Instead, create a single monolithic project and make sub-directories for ideas you want to explore.
 
 Directory Structure
 ===
@@ -85,7 +87,7 @@ E.g, if your last name is Turing, name your project `EE598_Turing`.
 
 
 ```lean
-import mathlib
+import Mathlib.Tactic.Linarith
 
 -- Problem 1 : Test basic functionality.
 
@@ -99,7 +101,11 @@ example (x y z : ℚ)
 ```
 
 
-Open the Lean Infoview (∀ menu) and check the results.
+Open the Lean Infoview (`∀` menu) and check the results.
+
+**Note:** If you do `import Mathlib`, VS Code will launch a process to compile *everything* in
+Mathlib, which can take an hour or so. At some point this week, do this so that you don't
+constantly need to hunt for the exact `Mathlib` directory you need.
 
 Course Notes
 ===
@@ -152,7 +158,7 @@ To find the type of an expression, use #check. The result will show up in the In
 ```lean
 #check 1
 #check "1"
-#check ∃ (x : Nat) , x > 0
+#check ∃ (x : Nat), x > 0
 #check fun x => x+1
 #check (4,5)
 #check ℕ × ℕ
@@ -213,7 +219,8 @@ example (p : Prop) : p → p :=
   fun h => h
 
 example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) :=
-  fun ⟨ hpq, hqr ⟩ hp => hqr (hpq hp)
+  fun ⟨ hpq, hqr ⟩ hp
+    => hqr (hpq hp)
 ```
 
 The Tactic Language and `sorry`
