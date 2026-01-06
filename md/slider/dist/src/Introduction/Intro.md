@@ -146,7 +146,8 @@ Homework: 60%
 - Exercises are due as a standalone Lean file in canvas 1 week after the deck is completed in class
 
 Project: 40%
-- Formalize an interesting (to you) area of mathematics in Lean
+- Lean centered project that builds on the ideas in this course
+   - Formalization, language design, applications, tools, ...
 - Rubric TBA
 
 Classroom Etiquette

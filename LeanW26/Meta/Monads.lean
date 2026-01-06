@@ -4,9 +4,15 @@ namespace LeanW26.Monads
 
 universe u v w
 
+--notdone
+
 /-
 Monads
 ===
+
+What's a Monad
+===
+
 Monads are
 - a data type that allows for sequencing, side effects, and off-path
 information.

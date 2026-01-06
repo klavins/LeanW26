@@ -26,3 +26,4 @@ mkdir -p  dist/node_modules/react-dom
 mkdir -p  dist/node_modules/react-dom/umd
 cp node_modules/react-dom/umd/react-dom.production.min.js dist/node_modules/react-dom/umd
 
+cp -r img dist

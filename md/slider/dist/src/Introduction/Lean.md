@@ -143,7 +143,7 @@ Exercises
 
 <ex/> Figure out how to encode this statement:
 
-&nbsp; &nbsp;  &nbsp;  &nbsp; $\mathtt{theorem} \;\mathtt{T}_1 \; : \; \forall \mathtt{x} : \mathbb{R}, \; \mathtt{0} \leq \mathtt{x}^2 := \mathtt{sorry}$
+&nbsp; &nbsp;  &nbsp;  &nbsp; $\mathtt{theorem} \;\mathtt{T}_1 \; : \; \forall \; \mathtt{x} : \mathbb{R}, \; \mathtt{0} \leq \mathtt{x}$ ^ $2 := \mathtt{sorry}$
 
 
 
@@ -155,11 +155,10 @@ To find the type of an expression, use #check. The result will show up in the In
 ```lean
 #check 1
 #check "1"
-#check ∃ (x : Nat), x > 0
+#check ∃ (x : Nat), x < 0
 #check fun x => x+1
-#check (4,5)
-#check ℕ × ℕ
-#check Type
+
+x²
 ```
 
 Exercises
@@ -176,7 +175,7 @@ will show up in the Infoview.
 #eval 1+1
 #eval "hello".append " world"
 #eval if 2 > 2 then "the universe has a problem" else "everything is ok"
-#eval Nat.Prime 741013183
+#eval Nat.Prime 1013
 ```
 
 Proofs
@@ -349,7 +348,7 @@ partial credit and move on with your life.
 <ex/> Make a github repo for your homework using the same as your project
 (e.g. `EE598_Turing`). You will use this repo to save your homework. Make the repo `private`.
 
-<ex/> Once you are satisfied with your work, submit the `HW1.lean` file
+<ex/> Once you are satisfied with your work, submit the `HW_I_2.lean` file
 to Canvas as Assignment 1.
 
 

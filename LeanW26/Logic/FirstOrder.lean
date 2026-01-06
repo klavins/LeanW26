@@ -9,6 +9,9 @@ import Mathlib
 
 namespace LeanW26
 
+--notdone
+
+
 /-
 First Order Logic
 ===

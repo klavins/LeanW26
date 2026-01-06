@@ -5,6 +5,7 @@
 --  the Free Software Foundation, either version 3 of the License, or
 --  (at your option) any later version.
 
+import Mathlib
 
 /-
 A Tour of L∃∀N
@@ -48,7 +49,8 @@ With the VS Code Extension, you can install two types of projects:
 
 - **Standalone** project. Just the basics.
 
-- **Mathlib** project. Includes a *huge* library of most basic and several advanced areas of mathematics. Choose this if in particular if you want to use real numbers, algebra, sets, matrices, etc.
+- **Mathlib** project. Includes a *huge* library of most basic and several advanced areas of mathematics.
+Choose this if in particular if you want to use real numbers, algebra, sets, matrices, etc.
 
 Despite its size, I recommend starting a *Mathlib* based project. You never know
 when you might need something from Mathlib.
@@ -58,7 +60,6 @@ Notes:
   - I don't like the option where it creates a new workspace.
   - Don't make a new project every time you want to try something out.
       - Each project is about 6GB to start with
-      - You will use up all the space on your hard drive
       - Instead, create a single monolithic project and make sub-directories for ideas you want to explore.
 
 Directory Structure
@@ -82,7 +83,7 @@ If you create a new project called `EE598_Turing`, you will get a whole director
 ```
 
 For now, you mainly need to know that the subdirectory with the same name as your
-project is where you can put your .lean files. It has one in it already, called `Basic.lean`.
+project is where you can put your `.lean files`. It has one in it already, called `Basic.lean`.
 Open this and you can start playing with Lean.
 
 Exercises
@@ -96,8 +97,6 @@ E.g, if your last name is Turing, name your project `EE598_Turing`.
 -/
 
 import Mathlib.Tactic.Linarith
-
--- Problem 1 : Test basic functionality.
 
 #eval 1+2
 
@@ -123,8 +122,7 @@ The course notes I am presenting are on under construction Github at
 
 The source code for every slide deck is in an executable `.lean` file.
 
-Feel free to clone this repo as well, but note I will make updaes constant
-changes. So periodically do
+Feel free to clone this repo as well, but note I will make updates constantly. So periodically do
 
 ```bash
 git update
@@ -154,7 +152,7 @@ Exercises
 
 <ex/> Figure out how to encode this statement:
 
-&nbsp; &nbsp;  &nbsp;  &nbsp; $\mathtt{theorem} \;\mathtt{T}_1 \; : \; \forall \mathtt{x} : \mathbb{R}, \; \mathtt{0} \leq \mathtt{x}^2 := \mathtt{sorry}$
+&nbsp; &nbsp;  &nbsp;  &nbsp; $\mathtt{theorem} \;\mathtt{T}_1 \; : \; \forall \; \mathtt{x} : \mathbb{R}, \; \mathtt{0} \leq \mathtt{x}$ ^ $2 := \mathtt{sorry}$
 
 
 
@@ -166,17 +164,16 @@ To find the type of an expression, use #check. The result will show up in the In
 
 #check 1
 #check "1"
-#check ∃ (x : Nat), x > 0
+#check ∃ (x : Nat), x < 0
 #check fun x => x+1
-#check (4,5)
-#check ℕ × ℕ
-#check Type
+
+x²
 
 /-
 Exercises
 ===
 
-<ex/> Use `#check` to determine the types of `(4,5)`, `ℕ × ℕ`, and `Type`?
+<ex/> Use `#check` to determine the types of `(4,5)`, `ℕ × ℕ`, and `Type`.
 
 Evaluation
 ===
@@ -187,7 +184,7 @@ will show up in the Infoview. -/
 #eval 1+1
 #eval "hello".append " world"
 #eval if 2 > 2 then "the universe has a problem" else "everything is ok"
-#eval Nat.Prime 741013183
+#eval Nat.Prime 1013
 
 /-
 Proofs
@@ -203,11 +200,9 @@ theorem my_amazing_result (p : Prop) : p → p :=
 
 ```text
   my_amazing_result is the name of the theorem
-  (p : Prop)        is an assumption that p is a proposition
-                    (true or false statement)
+  (p : Prop)        is an assumption that p is a true or false statement
   p → p             is the actual theorem
-  :=                delinates the statement of the theorem
-                    from the proof
+  :=                delineates the theorem from the proof
   λ h => h          (the identity function) is the proof
 ```
 
@@ -257,7 +252,7 @@ Exercises
 ===
 
 <ex /> Lean provides a powerful tactic called `aesop`. Redo the proof
-of the previous example replacing the prooof with the single line `aesop`.
+of the previous example replacing the proof with the single line `aesop`.
 -/
 
 
@@ -320,7 +315,7 @@ Documentation and Resources
 
 - <a href="https://loogle.lean-lang.org/" target="other">
  Loogle
- </a> — Google for L∃∀N
+ </a> — Google for L∃∀N, also in VS Code
 
 - <a href="https://leanprover.zulipchat.com/" target="other">
   Zulip Chat
@@ -331,14 +326,14 @@ Exercises
 ===
 
 <ex /> Go to Loogle and look up `List.find?`. There should be two examples
-of how to use this function. Try them in your `HW1.lean` file.
+of how to use this function. Try them in your `HW_I_2.lean` file.
 
 Homework Routine
 ===
 
 Each slide deck contains
-- Warm up exercises interspersed with the slides
-- A final set of exercises that can be done on your own
+- Warm up exercises interspersed with the slides, mostly done in class
+- A final set of exercises that should be done on your own
 
 When we finish a slide deck, **all** solutions should be put
 into a file with the same name in your project directory. This
@@ -348,6 +343,8 @@ To turn in a solution set, submit a standalone file to Canvas.
 
 I will download all solution sets into a Lean project and
 execute your code to grade them.
+
+Late homework accrues 10% reduction per week.
 
 
 Exercises
@@ -366,7 +363,7 @@ partial credit and move on with your life.
 <ex/> Make a github repo for your homework using the same as your project
 (e.g. `EE598_Turing`). You will use this repo to save your homework. Make the repo `private`.
 
-<ex/> Once you are satisfied with your work, submit the `HW1.lean` file
+<ex/> Once you are satisfied with your work, submit the `HW_I_2.lean` file
 to Canvas as Assignment 1.
 
 -/

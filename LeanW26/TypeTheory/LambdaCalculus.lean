@@ -9,6 +9,9 @@ import Mathlib
 
 namespace LeanW26.LambdaCalculus
 
+--notdone
+
+
 /-
 The Lambda Calculus
 ===

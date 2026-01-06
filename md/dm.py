@@ -20,11 +20,11 @@ comment = r'(?s:(/-.*?-/))'
 if "--notdone" in data:
     data = """
 /-
-Under Construction
+<div class='uc'><span class='def'>def</span> <span class='slidedeck'>SlideDeck</span> <span class='eq'>:=</span> <span class='sorry'>sorry</span></div>
 ===
 -/
 
-def SlideDeck := sorry
+
 """
 
 for str in re.split(comment, data)[1:]:

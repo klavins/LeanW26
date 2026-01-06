@@ -5,18 +5,10 @@
 --  the Free Software Foundation, either version 3 of the License, or
 --  (at your option) any later version.
 
+--notdone
+
 /-
-Category Theory
+Todo!
 ===
-
-Topics
-===
-
-Under construction!
-
-These section will consist of several slide decks introducing Category Theory
-via Mathlib's framework.
-
 
 -/
---notdone
