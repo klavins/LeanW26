@@ -182,6 +182,8 @@ even, and once otherwise. Then try these`evals:
 #eval apply_twice_when_even (abs_diff 10) 11
 ```
 
+(Optional) Show that `abs_diff` is symmetric in its arguments.
+
 -/
 
 
@@ -356,6 +358,8 @@ def fact2 (n : ℕ) : ℕ :=
   aux n 1
 
 #eval fact2 5
+
+#check fact2.aux
 
 
 /-
@@ -566,7 +570,7 @@ Exercises
 ===
 
 <ex/> Define a function `mediant (x y : Rat)` that evaluates to the sum
-of the numerators plus the sum of the denominators of `x` and `y` respectively.
+of the numerators over the sum of the denominators of `x` and `y` respectively.
 
 <ex/> Define a function `rep (c : Char) (n : ℕ)` that evaluates to the string consisting
 of `n` copies of `c`.
