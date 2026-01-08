@@ -28,14 +28,14 @@ Functions
 Here is an example function.
 
 ```lean
-def f1 (x : Nat) : Nat := x+1
+def f1 (x : ℕ) : ℕ := x+1
 ```
  It is called `f1`. It takes one *argument* x.
 
-The type of `x` is `Nat` which is Lean's *Natural Number Type*. It can take
-values 0, 1, 2, 3, ...
+The type of `x` is `ℕ` which is Lean's *Natural Number Type* (also written `Nat`).
+It can take on values 0, 1, 2, 3, ...
 
-The return type of the function is also `Nat`.
+The return type of the function is also `ℕ`.
 
 You can (usually) evaluate a function using `#eval`. For example,  
 ```lean
@@ -49,7 +49,7 @@ You can define a new expression using `if`, `then`, and `else`.
 
 
 ```lean
-def f2 (x : Nat) : Nat :=
+def f2 (x : ℕ) : ℕ :=
   if x < 10
   then 0
   else 1
@@ -74,7 +74,7 @@ Let expressions allow you to define a *bound* variable with a specific value in 
 rest of an expression.
 
 ```lean
-def f3 (x : Nat) : Nat :=
+def f3 (x : ℕ) : ℕ :=
   let y := x*x
   y+1
 
@@ -83,6 +83,41 @@ def f3 (x : Nat) : Nat :=
  Similarly, this is not a control flow situation. For example, you can write: 
 ```lean
 #eval (let x := 5; x*2) + (let x := 3; x-1) -- 12
+```
+
+Currying
+===
+
+When a function is defined with multiple arguments, as in
+
+```lean
+def f4 (x y : ℕ) := 2*x + y
+```
+
+it is really being defined as a _a function that takes an argument and returns a function that takes an argument that returns an expression_. The above is in fact shorthand for:
+
+```lean
+def f4' := fun (x : ℕ) => fun (y : ℕ) => 2*x + y
+```
+
+Thus, if we just pass one argument to `f4` we a get _partial application_, 
+```lean
+def f5 := f4 10
+```
+
+The function `f5` in this case is equivalent to
+
+```lean
+def f5' (y: ℕ) := 20 + y
+```
+
+Testing these functions gives:
+
+```lean
+#eval f4 10 1    -- 21
+#eval f4' 10 1   -- 21
+#eval f5 1       -- 21
+#eval f5' 1      -- 21
 ```
 
 Functions that Operate on Functions
@@ -95,11 +130,15 @@ For example:
 
 
 ```lean
-def do_twice (f : Nat → Nat) (x : Nat) := f (f x)
+def do_twice (f : ℕ → ℕ) (x : ℕ) := f (f x)
 
-#check do_twice f1
-#eval do_twice f1 3
-#eval do_twice (do_twice f1) 3
+#check do_twice f1                    -- ℕ → ℕ
+#eval do_twice f1 3                   -- 5
+#eval do_twice (do_twice f1) 3        -- 7
+
+theorem d2 : do_twice (do_twice f1) 3 = 7 := by
+  unfold f1 do_twice
+  sorry
 ```
 
 Unnamed Variables
@@ -108,22 +147,23 @@ Unnamed Variables
 If a function does not use an argument, the Lean linter complains
 that you have an unused variable. You can get rid of this with `_` 
 ```lean
-def h1 (x : Nat) := 1             -- unused variable `x`
-def h2 (_ : Nat) := 1
-def h3 (_ : Nat) := 1
+def h1 (x : ℕ) := 1             -- Linter says: unused variable `x`
+def h2 (_ : ℕ) := 1
+def h3 (_x : ℕ) := 1
 ```
 
 Exercises
 ===
 
-<ex/> Define a function `abs_diff` that takes two natural numbers and returns the absolute
+<ex/> Define a function `abs_diff` that takes two ℕural numbers and returns the absolute
 value of their difference. Use only the constructs defined so far. Evaluate
 ```lean
 #eval abs_diff 23 89
 #eval abs_diff 101 89
 ```
-<ex/> Define a function `apply_twice_when_even` that takes a function `f` and a natural number `x`
-and returns a function that applies `f` twice if `x` is even, and once otherwise.
+<ex/> Define a function `apply_twice_when_even` that takes a function `f` and a
+natural number `x` and returns a function that applies `f` twice if `x` is
+even, and once otherwise. Then try these`evals:
 ```lean
 #eval apply_twice_when_even (abs_diff 10) 8
 #eval apply_twice_when_even (abs_diff 10) 11
@@ -135,17 +175,17 @@ Constructors
 ===
 
 Many types in Lean are defined *inductively* with *constructors*. For example, there are two
-ways to make a `Nat`.
+ways to make a `ℕ`.
 
 ```lean
 #print Nat -- constructors:
-           -- Nat.zero : ℕ
-           -- Nat.succ : ℕ → ℕ
+           -- ℕ.zero : ℕ
+           -- ℕ.succ : ℕ → ℕ
 ```
- You can use the keyword `match` to check how a value was constructed.
+ You can use the keyword `match` to respond to how a value was constructed.
 
 ```lean
-def nonzero (x : Nat) : Bool :=
+def nonzero (x : ℕ) : Bool :=
   match x with
   | Nat.zero => false
   | Nat.succ k => true
@@ -155,15 +195,17 @@ def nonzero (x : Nat) : Bool :=
 ```
  Of course this function could also have been written: 
 ```lean
-def nonzero' (x : Nat) := x ≠ 0
+def nonzero' (x : ℕ) := x ≠ 0
 ```
 
 Match is a General Pattern Matcher
 ===
 
- You just have to cover all possibilities. `_` matches everything. 
+ You just have to cover all possibilities.
+
+In this context, `_` matches anything that hasn't been listed yet. 
 ```lean
-def is_3_or_12 (x : Nat) : Bool :=
+def is_3_or_12 (x : ℕ) : Bool :=
   match x with
   | 3 => true
   | 12 => true
@@ -171,31 +213,34 @@ def is_3_or_12 (x : Nat) : Bool :=
 ```
  You can match pairs, triples, etc. 
 ```lean
-def is_3_and_12 (x y : Nat) : Bool :=
+def is_3_and_12 (x y : ℕ) : Bool :=
   match x, y with
   | 3, 12 => true
   | _, _ => false
 ```
 
+If you don't match all possibilities, Lean will give you an error: _Missing cases: ..._
+
+
 Recursion
 ===
 Recursion is how you do loops in a functional language like Lean.
 
-Here is a standard example with `Nat`:
+Here is a standard example with `ℕ`:
 
 
 ```lean
-def fct (n : Nat) : Nat :=
+def fct (n : ℕ) : ℕ :=
   match n with
   | 0 => 1
-  | Nat.succ k => n * (fct k)
+  | k+1 => n * (fct k)
 ```
- And here's another example with: 
+ And here's another example the extends the `do_twice` function: 
 ```lean
-def do_n (n : Nat) (f : Nat → Nat) (x : Nat) :=
+def do_n (n : ℕ) (f : ℕ → ℕ) (x : ℕ) :=
   match n with
   | 0 => x
-  | Nat.succ k => f (do_n k f x)
+  | k+1 => f (do_n k f x)
 
 def f10 := do_n 10 f1
 
@@ -209,7 +254,7 @@ Recursion has to be well founded, otherwise you may get an infinite loop,
 which Lean does not allow:
 
 ```lean
---def not_ok (x : Nat) : Nat := not_ok x
+--def not_ok (x : ℕ) : ℕ := not_ok x
 ```
  Which results in the error:
 
@@ -229,11 +274,19 @@ may not be able to figure it out, requiring you to also supply a proof
 of termination.
 
 
-
 Head Recursion
 ===
 
-They way we wrote `fct` it is *head recursive*. The expression evaluated
+They way we wrote `fct`
+
+```lean
+def fct (n : ℕ) : ℕ :=
+  match n with
+  | 0 => 1
+  | ℕ.succ k => n * (fct k)
+```
+
+it is *head recursive*. The expression evaluated
 by growing it and then reducing it.
 
 ```lean
@@ -247,7 +300,7 @@ Tail Recursion
 ===
 
 ```lean
-def factAux (n acc : Nat) : Nat :=
+def factAux (n acc : ℕ) : ℕ :=
   match n with
   | 0     => acc
   | k+1   => factAux k (acc * (k + 1))
@@ -263,8 +316,10 @@ factAux 4 1 = factAux 3 (acc*4)  = factAux 3 4
 ```
 We wrap `factAux` to initialize `acc` and get the desired function. 
 ```lean
-def fact (n : Nat) : Nat :=
+def fact (n : ℕ) : ℕ :=
   factAux n 1
+
+#eval fact 5         -- 120
 ```
 
 Local Functions
@@ -273,16 +328,18 @@ Local Functions
 Using `let rec` we can declare a local function `aux`
 to avoid polluting the namespace. 
 ```lean
-def fact2 (n : Nat) : Nat :=
-  let rec aux (n acc : Nat) : Nat :=
+def fact2 (n : ℕ) : ℕ :=
+  let rec aux (n acc : ℕ) : ℕ :=
     match n with
     | 0     => acc
     | k+1   => aux k (acc * (k + 1))
   aux n 1
 
-#eval fact2 5         -- 120
+#eval fact2 5
 ```
- The resulting code is usually more compact. 
+
+The resulting code is usually more compact.
+
 
 A Look Ahead
 ===
@@ -290,7 +347,7 @@ A Look Ahead
 We can write a proof that these two definitions yield the same function!
 
 ```lean
-lemma helper (n acc : Nat) : factAux n acc = acc * fct n := by
+theorem helper (n acc : ℕ) : factAux n acc = acc * fct n := by
   induction n generalizing acc with
   | zero => simp [factAux, fct]
   | succ k ih =>
@@ -303,6 +360,7 @@ theorem fct_fact : fact = fct := by
   unfold fact
   simp[helper n 1]
 ```
+ We'll explain this in a couple of weeks. 
 
 Exercises
 ===
@@ -323,6 +381,8 @@ Hint: For the tail recursive version, define a helper function that takes
 three arguments: `n`, `a` and `b` where `a` and `b` are the previous
 two values in the sequence.
 
+(Optional) Prove the two implementations are equivalent.
+
 
 
 Booelans vs Propositions
@@ -340,13 +400,13 @@ def is_even (x : ℕ) : Bool := x % 2 = 0
 ```
  `Prop` has values that are *proofs*. 
 ```lean
-def my_prop : Prop := ∀ x : Nat, x ≥ 0
+def my_prop : Prop := ∀ x : ℕ, x ≥ 0
 def my_proof : my_prop := fun x => Nat.zero_le x
 theorem my_theorem : my_prop := my_proof
 
-#check my_prop
-#check my_proof
-#check my_theorem
+#check my_prop            -- Prop
+#check my_proof           -- my_prop
+#check my_theorem         -- mp_prop
 ```
 
 True and False
@@ -384,11 +444,11 @@ Number Types
 Lean provides a bunch of different types of numbers.
 
 ```lean
-#check ℕ       -- Nat
-#check ℤ       -- Int
-#check ℚ       -- Rat
-#check ℝ       -- Real
-#check ℂ       -- Complex
+#check ℕ       -- Natural Numbers
+#check ℤ       -- Integers
+#check ℚ       -- Rational Numbers
+#check ℝ       -- Real Numbers
+#check ℂ       -- Complex Numbers
 #check Float
 #check Float32
 ```
@@ -399,13 +459,14 @@ def invert_rat (x : ℚ) : ℚ := x.den / x.num
 
 #eval invert_rat (2/4)  -- 2
 ```
+ VS Code will give you completion possibilities for you to explore
+if you type a `.` and wait a second.
 
 Real Numbers
 ===
 
 `Real` numbers are different. They are not floating point numbers. They are an
-actual mathematical representations of real numbers (as limits of Cauchy sequences,
-if you must know).
+actual mathematical representations of real numbers (as limits of Cauchy sequences).
 
 Therefore, we can't run  `#eval` on functions involving reals.
 
@@ -475,10 +536,10 @@ Characters are unicode values with a way to write them as characters under the h
 Exercises
 ===
 
-<ex/> Define a function `my_sum (x y : Rat)` that evalutes to the sum of `a` and `b`. Use the
-numerator and denominator of `a` and `b`.
+<ex/> Define a function `mediant (x y : Rat)` that evaluates to the sum
+of the numerators plus the sum of the denominators of `x` and `y` respectively.
 
-<ex/> Define a function `rep (c : Char) (n : Nat)` that evaluates to the string consisting
+<ex/> Define a function `rep (c : Char) (n : ℕ)` that evaluates to the string consisting
 of `n` copies of `c`.
 
 
@@ -496,15 +557,15 @@ front of some other list.
             -- List.nil : {α : Type u} → List α
             -- List.cons : {α : Type u} → α → List α → List α
 
-def f5 (L : List Nat) : Nat :=
+def f6 (L : List ℕ) : ℕ :=
   match L with
   | List.nil => 0
   | List.cons x _M => x
 ```
  For example: 
 ```lean
-#eval f5 [1,2,3]
-#eval f5 []
+#eval f6 [1,2,3]  -- 1
+#eval f6 []       -- 0
 ```
 
 List Notation
@@ -519,14 +580,14 @@ Lists come with various convenient notation.
 #eval 1 :: 2 :: 3 :: []
 ```
  For example, here are two ways to write the function `map` which
-applies a function to evey element in a list.  
+applies a function to every element in a list.  
 ```lean
-def map (f : Nat → Nat) (L : List Nat) :=
+def map (f : ℕ → ℕ) (L : List ℕ) :=
   match L with
   | List.nil => List.nil
   | List.cons x M => List.cons (f x) (map f M)
 
-def map' (f : Nat → Nat) (L : List Nat) :=
+def map' (f : ℕ → ℕ) (L : List ℕ) :=
   match L with
   | [] => []
   | x :: M => (f x) :: map' f M
@@ -550,10 +611,19 @@ def map_poly {A : Type} {B : Type} (f : A → B) (L : List A) : List B :=
 
 Here, `map_poly` is a **polymorphic** function and `List A` is a **parameterized** type.
 
-Implicit vs Explicity Variables
+Implicit vs Explicit Variables
 ===
 
-Note `A` and `B` above are implicit variables. Lean can infer what they
+Note `A` and `B` in
+
+```lean
+def map_poly {A : Type} {B : Type} (f : A → B) (L : List A) : List B :=
+  match L with
+  | List.nil => []
+  | List.cons x M => (f x) :: map_poly f M
+```
+
+are _implicit_ variables. Lean can infer what they
 are from the type of `f` and `L`. So we put them in curly braces so we don't
 have to write:
 
@@ -601,11 +671,11 @@ Exercises
 algorithm that works on any type `α` as long as a comparison function of the form
 `lt (x y α) : Bool` is provided as an argument. 
 ```lean
-def insert (x : Nat) : List Nat → List Nat
+def insert (x : ℕ) : List ℕ → List ℕ
 | [] => [x]
 | y :: ys => if  x ≤ y then x :: y :: ys else y :: insert x ys
 
-def insertionSort :  List Nat → List Nat
+def insertionSort :  List ℕ → List ℕ
 | [] => []
 | x :: xs => insert x (insertionSort xs)
 ```

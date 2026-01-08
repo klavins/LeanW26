@@ -157,8 +157,6 @@ To find the type of an expression, use #check. The result will show up in the In
 #check "1"
 #check ∃ (x : Nat), x < 0
 #check fun x => x+1
-
-x²
 ```
 
 Exercises
@@ -349,7 +347,7 @@ partial credit and move on with your life.
 (e.g. `EE598_Turing`). You will use this repo to save your homework. Make the repo `private`.
 
 <ex/> Once you are satisfied with your work, submit the `HW_I_2.lean` file
-to Canvas as Assignment 1.
+to Canvas under the corresponding assignment.
 
 
 
