@@ -92,7 +92,7 @@ Notes:
 Parameterized types
 ===
 
-A **parameterized** type has a constructor taking another type as a paramter.
+A **parameterized** type has a constructor taking another type as a parameter.
 
 The standard example is List.
 -/
@@ -130,7 +130,7 @@ def Vec.add {α : Type u} [Add α] {n : Nat} (x y : Vec α n)
   | cons a w, cons b z => cons (a+b) (Vec.add w z)
 
 
-/- The notation [Add α] ensures that α is a type that has addition (See Typeclasses)-/
+/- The notation [Add α] ensures that α is a type that has addition (See Type classes)-/
 
 #check_failure Vec.add (Vec.nil.cons 1) ((Vec.nil.cons 1).cons 2)
 
