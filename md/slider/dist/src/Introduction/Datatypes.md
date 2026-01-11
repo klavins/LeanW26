@@ -138,11 +138,11 @@ def my_tree := node 1 (leaf 2) (node 3 (leaf 4) (leaf 5))
 
 
 
-Defining Functions
+Defining Functions on Inductive Types
 ===
 
 Here's an example function to convert tree to a list.
-It can be refered to as `BTree.to_list` when `BTree` is not open. 
+It can be referred to as `BTree.to_list` when `BTree` is not open. 
 ```lean
 def to_list {A : Type} (T : BTree A) : List A :=
   match T with
@@ -203,6 +203,65 @@ children in all nodes. You should get, for example:
 #eval swap my_tree             -- (1 (3 5 4) 2)
 ```
 
+
+Mutually Inductive Types
+===
+
+Sometimes you want to define two types inductively where the definition of
+one depends on the definition of the other. For example:
+
+```lean
+mutual
+  inductive Ev
+  | zero : Ev
+  | succ : Od → Ev
+
+  inductive Od
+  | succ : Ev → Od
+end
+
+#check Ev.succ (Od.succ Ev.zero)
+```
+
+Expression Trees
+===
+A common use case for mutual induction is to define terms and expressions.
+
+```lean
+mutual
+  inductive Term
+  | var : String → Term
+  | num : ℕ → Term
+  | paren : Expr → Term
+
+  inductive Expr
+  | neg : Term → Expr
+  | add : Term → Term → Expr
+  | mul : Term → Term → Expr
+end
+```
+
+Here's how you would encode 2*(x+1)
+
+```lean
+open Expr Term in
+def expr : Expr := mul (num 2) (paren (add (var "x") (num 1)))
+```
+
+Exercises
+===
+
+<ex /> Write a function `Expr.CountAdds` that takes an `Expr` and returns the number of
+additions in it. You will need an auxiliary function and you will have to put both
+definitions in a mutual block, since they call each other.
+
+
+```lean
+mutual
+  def Term.CountAdds (t : Term) : ℕ := sorry
+  def Expr.CountAdds (e : Expr) : ℕ := sorry
+end
+```
 
 Structures
 ===
@@ -278,14 +337,15 @@ Exercises
 
 <ex/> Define a structure `3DVector`.
 
-<ex/> Define a cross product function of two `3DVectors`.
-
-<ex/> Test on examples.
+<ex/> Define a cross product function of two `3DVectors` and test it on examples.
 
 
 
 Products
 ===
+
+Products represent a pair of objects.
+
 
 ```lean
 structure MyProd (A B : Type) where
@@ -302,8 +362,81 @@ def p : MyProd Rat String := ⟨ 0, "zero" ⟩
 def q : Rat × String := ⟨ 1, "one" ⟩
 ```
 
+Using Products
+===
+We could have defined
+
+```lean
+def Komplex' := ℝ × ℝ
+def Komplex'.re (x : Komplex') := x.fst
+```
+
+and so on. Or
+
+
+```lean
+def Point {α : Type} := α × α
+def Vector3D' := ℝ × ℝ × ℝ
+```
+ The benefit is that you get a bunch of defined functions for products. The downsides are
+- the defined type may not really be a cross product space
+(e.g. cross products don't really have inverses).
+- you have to define a lot of synonyms (e.g. `x.re = x.fst`) anyway.
+
+
+
+Π-Types
+===
+
+A Π-Type is a generalization of a product. In type theory it is a core object not defined
+in terms of some other notion.
+
+An example of a _non-dependent_ `Pi-Type` is the set of infinite sequences of rationals.
+
+```lean
+def Qn := Π _n : ℕ, ℚ
+```
+
+This is definitionally equal to 
+```lean
+def Qn' := (ℕ → ℚ)
+```
+ An example is 
+```lean
+def harmonic_sequence : Qn := fun n => 1/(n+1)
+```
+
+Dependent Π-Types
+===
+
+To build an example of a _dependent_ Π-type, we first need a _dependent type_,
+which is a type that depends on a parameter. For example, `Fin n` is the set of
+natural numbers less than `n` (defined in the `Prelude` as a structure).
+
+From `Fin n` we can construct
+
+```lean
+def DPT := Π n : ℕ, Fin (n+1)
+```
+ or equivalently 
+```lean
+def DPT' := (n : ℕ) → Fin (n+1)
+```
+
+which is the set of sequences `σ` of natural numbers where `σ(n) < n`. For example,
+
+```lean
+def σ1 : DPT := fun n => ⟨ n, by lia ⟩
+def σ2 : DPT' := fun n => ⟨ n/2, by lia ⟩
+```
+ Since we haven't covered proofs yet, we'll dig in to these ideas later. 
+
 Sums
 ===
+
+A sum type represents the _choice_ of value from one of two sets.
+So a value is constructed as either "in left" or "in right".
+
 
 ```lean
 inductive MySum (A B : Type) where
@@ -321,6 +454,90 @@ def swap (s : MySum Rat String) : MySum String Rat :=
  Lean's Sum uses `⊕`: 
 ```lean
 def s : Rat ⊕ String := .inl 1
+```
+
+An Alternative ℕ
+===
+
+A cute use of sums is to build on our definition of Even and Odd numbers with:
+
+
+```lean
+def Naturals := Ev ⊕ Od
+```
+ Zero and successor can be defined with: 
+```lean
+def Naturals.zero : Naturals := .inl Ev.zero
+
+def Naturals.succ (x : Naturals) : Naturals := match x with
+  | .inl a => .inr (Od.succ a)
+  | .inr a => .inl (Ev.succ a)
+```
+
+Sums as Co-products
+===
+
+A sum type is called a co-product in, for example, topology. Suppose we have
+two disjoint copies of a space `X`, Then `X ⊕ X` is the type of points in
+that space. They are either a point from the "left" side or a point in the "right"
+side.
+
+For example, a way to start building an identification topology might be:
+
+```lean
+def TwoR := ℝ ⊕ ℝ
+
+def equiv (x y : TwoR) : Prop := match x,y with
+  | .inl a, .inl b => a = b
+  | .inr a, .inr b => a = b
+  | .inl a, .inr b => a = 0 ∧ b = 0
+  | .inr a, .inl b => a = 0 ∧ b = 0
+```
+ Then show `equiv` is an equivalence relation and take the quotient
+
+```lean
+TwoR / equiv
+```
+with respect to `equiv`. We'll get to how to do this later. 
+
+Σ-Types
+===
+
+A Σ-Type represents a choice of an object from a single set. These are defined inductively.
+
+```lean
+structure Sigma {α : Type} (β : α → Type) where
+  fst : α
+  snd : α → β fst
+```
+
+Lean provides several equivalent notations:
+
+```lean
+def SigT   := Sigma (fun n : ℕ => Fin n)
+def SigT'  := Σ n : ℕ, (Fin n)
+def SigT'' := (n:ℕ) × (Fin n)
+```
+ As an example of a value: 
+```lean
+def x : SigT := ⟨ 3, 2 ⟩     -- 2 has type Fin 3
+```
+
+Exercises
+===
+
+<ex /> Rewrite your cross product function in terms of `ℝ × ℝ × ℝ`.
+
+<ex /> You can specify a circle with a single point `r : ℝ` and a rectangle
+with a pair of points `x y : ℝ`. Thus a shape might be defined as
+
+```lean
+def Shape := ℝ ⊕ (ℝ × ℝ)
+```
+ define functions `area (s : Shape) : ℝ` and `perimeter (s : Shape) : ℝ`.
+Note that π is defined with `Real.pi` 
+```lean
+#check Real.pi
 ```
 
 Option
@@ -355,6 +572,21 @@ def my_func (L : List ℕ) : List ℕ :=
   | .none => [0,1]
 ```
 
+`Option` is an example of a `Monad`. A similar Monad is `Except`, which
+also takes a string argument. We'll get to these later.
+
+```lean
+#check Except
+```
+
+Exercise
+===
+
+<ex /> Lean's rational number type `ℚ` defines `1/0` to be `0`. Define a function
+`reciprocal (x : ℚ) : Option ℚ` that returns `none` when `x` is zero.
+
+
+
 Notation
 ===
 
@@ -381,18 +613,17 @@ See the [Lean Language Reference](https://lean-lang.org/doc/reference/latest/Not
 Exercises
 ===
 
-<ex/> Define a tree type `MyTree` where every node may have any number of
-children. Define an instance of `Repr` for it so you can print it nicely.
-Define a few example trees demonstrating the feature of your datatype.
+<ex/> Define a polymorphic tree type `MyTree` where every node may have any number of
+children (using List). Define a few example trees demonstrating the features of your datatype.
 
 <ex/> Define a method that maps a function onto the tree. Demonstrate
 the method by mapping a function that squares it's argument onto
 a tree made of natural numbers.
 
 <ex/> Create a function that converts a `BTree` to a `MyTree`.
-Test on examples.
+Test on your examples.
 
-More Exercises
+Exercises
 ===
 
 <ex/> Consider the *Dyadic Rationals*, which consist of fractions who's denominators

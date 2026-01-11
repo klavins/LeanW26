@@ -6,6 +6,7 @@
 --  (at your option) any later version.
 
 import Mathlib
+import Lean
 
 /-
 Datatypes
@@ -32,6 +33,7 @@ For now we'll describe them via examples.
 /-
 Natural Numbers
 ===
+We can redefine the natural numbers with the definition:
 
 -/
 
@@ -39,25 +41,27 @@ inductive MyNat where
   | zero : MyNat               -- base case
   | succ : MyNat → MyNat         -- recursive constructor
 
-#check MyNat                   -- Type
+/-
+opening the namespace MyNat allows us to type `zero` instead of `MyNat.zero`.
+-/
 
 open MyNat
 
-#check zero                  -- all Nat
+#check zero                  -- 0
 #check succ zero             -- 1
 #check succ (succ zero)      -- 2
-#check zero.succ
-#check zero.succ.succ
+#check zero.succ             -- alternative syntax for 1
+#check zero.succ.succ        -- alternative syntax for 2
 
 /-
 This is how you build the natural numbers in Lean. The numerals 0, 1, 2, etc.
 are just "syntactic sugar".
  -/
 
-#eval Nat.zero == 0
-#eval Nat.zero.succ.succ.succ == 3
+#eval Nat.zero == 0                      -- True
+#eval Nat.zero.succ.succ.succ == 3       -- True
 
-/-!
+/-
 Complex Numbers
 ===
 
@@ -67,6 +71,10 @@ Many types are inductive. For example, here is a complex number:
 inductive MyComplex where
   | mk : Real → Real → MyComplex
 
+#check MyComplex.mk 1 2       -- 1 + 2i
+
+/- Recall that you can match the way an inductive type was constructed. -/
+
 def MyComplex.re (x : MyComplex) : Real :=
   match x with
   | mk a _ => a
@@ -75,16 +83,14 @@ def MyComplex.im (x : MyComplex) : Real :=
   match x with
   | mk _ b => b
 
-#check MyComplex.mk 1 2
-
-noncomputable
+noncomputable      -- Real.sqrt is non-computable
 def MyComplex.abs (x : MyComplex) : Real := Real.sqrt (x.re^2 + x.im^2)
 
 /-
 Three Valued Logic
 ===
 
-Not all inductive types have recursive constructors. `Bool` has only bases cases.
+Not all inductive types have _recursive_ constructors. `Bool` has only base cases.
 Here's a similar example:
 -/
 
@@ -102,7 +108,54 @@ def and (A B : TriBool) :=
   | U, F   => F
   | U, _   => U
 
-#eval and T (and U F)   -- f
+#eval and T (and U F)   -- F
+
+
+/-
+Option
+===
+
+The `Option` type is useful in situations where a value might not be available.
+This is an example of an inductive type that depends on another type.
+
+-/
+
+inductive MyOption (A : Type)
+  | none : MyOption A
+  | some : A → MyOption A
+
+/- In the definition below, Lean knows the return type is `Option`. Thus,
+we can use the `.` notation to call methods in the `Option` namespace
+when in the expression. -/
+
+def first {A : Type} (L : List A) : Option A :=
+  match L with
+  | [] => .none
+  | x :: _ => .some x
+
+/- Some examples: -/
+
+#eval first [1,2,3]             -- some 1
+#eval first ([]:List Int)       -- none
+
+/-
+Matching Option
+===
+
+You can use match to get the value of an `Option`, if it exists. -/
+
+def my_func (L : List ℕ) : List ℕ :=
+  let x := first L
+  match x with
+  | .some x => [x,x+1]
+  | .none => [0,1]
+
+/-
+`Option` is an example of a `Monad`. A similar Monad is `Except`, which
+also takes a string argument. We'll get to these later.
+-/
+
+#check Except
 
 
 /-
@@ -110,12 +163,14 @@ Exercises
 ===
 
 <ex/> Define an alternative complex number in terms of its magnitude and argument.
-Note that the type of non-negative reals is defined as `NNReal`.
+Note that the type of non-negative reals is defined as `NNReal` in Mathlib.
 
 <ex/> Define `or` for `TriBool`.
 
--/
+<ex /> Lean's rational number type `ℚ` defines `1/0` to be `0`. Define a function
+`reciprocal (x : ℚ) : Option ℚ` that returns `none` when `x` is zero.
 
+-/
 
 
 
@@ -133,11 +188,10 @@ inductive BTree (A : Type) where
 /- Once a new type is defined, we usually put all of its functions in a *namespace*.
 The following line opens that namespace. -/
 
-open BTree             -- Variables are now all BTree.*
+namespace BTree
 
-#check leaf            -- Temp.BTree.leaf {A : Type} : A → BTree A
-#check node            -- Temp.BTree.node {A : Type} : A → BTree A
-                       -- → BTree A → BTree A
+#check leaf            -- A → BTree A
+#check node            -- A → BTree A → BTree A → BTree A
 
 /-
 Defining a Binary Tree
@@ -158,8 +212,7 @@ def my_tree := node 1 (leaf 2) (node 3 (leaf 4) (leaf 5))
 Defining Functions on Inductive Types
 ===
 
-Here's an example function to convert tree to a list.
-It can be referred to as `BTree.to_list` when `BTree` is not open. -/
+Here's an example function to convert tree to a list. -/
 
 def to_list {A : Type} (T : BTree A) : List A :=
   match T with
@@ -177,12 +230,15 @@ When we define a tree and evaluate it, we get a cumbersome representation:  -/
 #eval my_tree -- BTree.node 1 (BTree.leaf 2)
               -- (BTree.node 3 (BTree.leaf 4) (BTree.leaf 5))
 
-/- We can tell Lean to make a more compact representation. -/
+/- We can tell Lean to make a more compact representation. First we define a `to_str`
+function. It requires that `A` has a `toString` instance we can use (more on this later). -/
 
 def to_str {A : Type} [sa : ToString A] (T : BTree A) : String :=
   match T with
   | leaf a => toString a
   | node a L R =>  "(" ++ (toString a) ++ " " ++ (to_str L) ++ " " ++ (to_str R) ++ ")"
+
+/- The we define a _representation_ of a tree (using the representation of `A`).-/
 
 instance {A : Type} [Repr A] [ToString A] : Repr (BTree A) := {
   reprPrec := fun T _ => to_str T
@@ -203,12 +259,26 @@ Here is an example function. Note the use of curly braces since `A` and
 
 -/
 
-def bt_map {A B : Type} (f : A → B) (T : BTree A) : BTree B :=
+def map {A B : Type} (f : A → B) (T : BTree A) : BTree B :=
   match T with
   | leaf a => leaf (f a)
-  | node a left right => node (f a) (bt_map f left) (bt_map f right)
+  | node a left right => node (f a) (map f left) (map f right)
 
-#eval bt_map (fun x => x*x) (node 0 my_tree my_tree)
+#eval map (fun x => x*x) (node 0 my_tree my_tree)
+
+/- By the way, since we opened the namespace `BTree`, the functions we defined
+are in the `BTree` namespace, accessible after we close it using `.`. -/
+
+end BTree
+
+#check BTree.to_list
+#check BTree.map
+
+/- Even better, values of type BTree can use the methods via the `.`. -/
+
+def T : BTree ℕ := BTree.leaf 0
+
+#eval T.map Nat.succ
 
 
 /-
@@ -355,6 +425,79 @@ def negate3 (x : Komplex) : Komplex :=
 def negate4 (x : Komplex) : Komplex := ⟨ -x.1, -x.2 ⟩
 
 
+
+/-
+Fields Can Depend on Other Fields
+===
+
+For example, here is a type that stores a type and a value of that type.
+-/
+
+structure Dyn where
+  α : Type
+  val : α
+
+/- This particular type is useful for making heterogeneous lists. -/
+
+def L : List Dyn := [ ⟨ ℕ, 3 ⟩, ⟨ String, "three"⟩ ]
+
+/-
+<div class='fn'>Note that `Dyn` is isomorphic to `Σ α, α`, which is a `Sigma` type,
+which also has this property.</div>
+-/
+
+
+/-
+Structures Can Be Self-Referential
+===
+Here is an example of a structure that references itself.
+-/
+
+structure Node where
+  label : String
+  next  : Option Node
+
+/- An example value is : -/
+
+def chain : Node :=
+  {
+    label := "a",
+    next  := some { label := "b", next := none }
+  }
+
+/-
+Note that not using `Option` type checks, but without additional assumptions
+has no inhabitants.
+-/
+
+structure Node' where
+  label : String
+  next  : Node'
+
+
+
+
+
+/-
+Extending Structures
+===
+
+You may also see examples where a structure extends other structures.
+-/
+
+structure A where
+  x : ℕ
+
+structure B where
+  y : ℕ
+
+structure C extends A, B where
+  z : ℕ
+
+/- A value of type `C` has three fields: -/
+
+def c : C := { x := 1, y := 2, z := 3 }
+
 /-
 Exercises
 ===
@@ -403,9 +546,10 @@ and so on. Or
 def Point {α : Type} := α × α
 def Vector3D' := ℝ × ℝ × ℝ
 
-/- The benefit is that you get a bunch of defined functions for products. The downsides are
-- the defined type may not really be a cross product space
-(e.g. cross products don't really have inverses).
+/- The benefit is that you get a bunch of defined functions for products.
+The downsides are
+- the defined type may not really be a cross product space (e.g. complex numbers
+have inverses, but pairs don't).
 - you have to define a lot of synonyms (e.g. `x.re = x.fst`) anyway.
 
 -/
@@ -570,76 +714,93 @@ Note that π is defined with `Real.pi` -/
 #check Real.pi
 
 /-
-Option
-===
-
-The `Option` type is useful in situations where a value might not be available.
-
--/
-
-inductive MyOption (A : Type)
-  | none : MyOption A
-  | some : A → MyOption A
-
-def first {A : Type} (L : List A) : MyOption A :=
-  match L with
-  | [] => .none
-  | x :: _ => .some x
-
-#eval first [1,2,3]             -- MyOption 1
-#eval first ([]:List Int)       -- none
-
-/-
-Using Option
-===
-
-You can use match to get the value of an `Option`, if it exists. -/
-
-def my_func (L : List ℕ) : List ℕ :=
-  let x := first L
-  match x with
-  | .some x => [x,x+1]
-  | .none => [0,1]
-
-/-
-`Option` is an example of a `Monad`. A similar Monad is `Except`, which
-also takes a string argument. We'll get to these later.
--/
-
-#check Except
-
-
-/-
-Exercise
-===
-
-<ex /> Lean's rational number type `ℚ` defines `1/0` to be `0`. Define a function
-`reciprocal (x : ℚ) : Option ℚ` that returns `none` when `x` is zero.
-
--/
-
-/-
 Notation
 ===
 
-Lean uses notation extensively to make code look more like math.
-That's where most symbols come from, in fact. For example, all
-operators in the natural numbers are defined as syntax. -/
+Lean uses user-defined syntax extensively to make code look more like math.
+
+This can make it challenging to figure out what an expression means.
+
+For example, suppose we defined addition as
+-/
 
 def MyNat.add (x y : MyNat) :=
   match x with
   | .zero => y
   | .succ k => .succ (MyNat.add k y)
 
+/- The we can register a syntax directive like: -/
+
 infix:65 " + " => MyNat.add
+
+/- so we can write: -/
 
 #eval MyNat.zero.succ + MyNat.zero.succ.succ
 
 
+/-
+Notation for Term and Expr
+===
+
+Recall our `Expr` class in which `2*x+1` was represented as
+```lean
+mul (num 2) (paren (add (var "x") (num 1)))
+```
+
+At the risk of completely befuddling our user, we can overload some notation.
+Here we use _notation classes_ instead of _syntax_ directives.
+-/
+
+open Term Expr
+
+instance : Coe String Term where coe s := Term.var s
+instance : HMul Term Term Expr := ⟨ mul ⟩
+instance : HMul ℕ Expr Expr := ⟨ fun x y => mul (num x) (paren y) ⟩
+instance : HAdd Term Term Expr := ⟨ add ⟩
+instance : HAdd Term ℕ Expr := ⟨ fun x y => add x (num y) ⟩
+instance : Coe Expr Term := ⟨ paren ⟩
+
+/-
+Now we can write, for example:
+-/
+
+def t1 : Expr := 2 * (var "x" + 1)
+
+
+
+/-
+Notation in Lean is Endless
+===
+-/
+
+
 /- The ways in which you can define your own syntax in are many and varied.
-We will introduce these mechanisms as we need them.
+
+Pros:
+  - You can make expressions easier to read
+  - You can make code look more like math
+
+Cons:
+  - You can confuse users
+  - You have to refactor all your notation when you change your library
+
+
+In either case, we will introduce these mechanisms as we need them.
 
 See the [Lean Language Reference](https://lean-lang.org/doc/reference/latest/Notations-and-Macros/#language-extension).
+
+-/
+
+/-
+Summary
+===
+
+- Inductive types are fundamental to Lean (and Type Theory)
+- Structures are inductive types with one constructor and many methods
+- Products and sums record pairs and choices, respectively
+- Π-types are generalizations of products, and are built in
+- Σ-types are generalized choices, and are defined as structures
+- Notation can be defined for _anything_ you want. Use with care.
 
 -/
 
