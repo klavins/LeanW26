@@ -13,7 +13,7 @@ Datatypes
 ===
 
 
-Introduction to Inductively Defined Types
+Inductively Defined Types
 ===
 
 
@@ -267,7 +267,7 @@ def map {A B : Type} (f : A → B) (T : BTree A) : BTree B :=
 #eval map (fun x => x*x) (node 0 my_tree my_tree)
 
 /- By the way, since we opened the namespace `BTree`, the functions we defined
-are in the `BTree` namespace, accessible after we close it using `.`. -/
+are in the `BTree` namespace, accessible after we close it using `.` -/
 
 end BTree
 
@@ -630,7 +630,7 @@ def s : Rat ⊕ String := .inl 1
 An Alternative ℕ
 ===
 
-A cute use of sums is to build on our definition of Even and Odd numbers with:
+An illustrative use of sums is to build on our definition of Even and Odd numbers with:
 
 -/
 
@@ -648,12 +648,12 @@ def Naturals.succ (x : Naturals) : Naturals := match x with
 Sums as Co-products
 ===
 
-A sum type is called a co-product in, for example, topology. Suppose we have
-two disjoint copies of a space `X`, Then `X ⊕ X` is the type of points in
+Suppose we have
+two disjoint copies of a space `X`. Then `X ⊕ X` is the type of points in
 that space. They are either a point from the "left" side or a point in the "right"
 side.
 
-For example, a way to start building an identification topology might be:
+For example, to start building an identification topology we might:
 -/
 
 def TwoR := ℝ ⊕ ℝ
@@ -774,7 +774,7 @@ Notation in Lean is Endless
 -/
 
 
-/- The ways in which you can define your own syntax in are many and varied.
+/- The ways in which you can define your own syntax in Lean are many and varied.
 
 Pros:
   - You can make expressions easier to read
@@ -784,14 +784,11 @@ Cons:
   - You can confuse users
   - You have to refactor all your notation when you change your library
 
-
-In either case, we will introduce these mechanisms as we need them.
+In any case, we will introduce these mechanisms as we need them.
 
 See the [Lean Language Reference](https://lean-lang.org/doc/reference/latest/Notations-and-Macros/#language-extension).
 
--/
 
-/-
 Summary
 ===
 
@@ -802,9 +799,10 @@ Summary
 - Σ-types are generalized choices, and are defined as structures
 - Notation can be defined for _anything_ you want. Use with care.
 
--/
+These data types can be used to construct a large part of mathematics,
+including algebra, topology, analysis, logic, computability, and so on.
 
-/-
+
 Exercises
 ===
 
