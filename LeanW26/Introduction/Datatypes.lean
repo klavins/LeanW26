@@ -233,7 +233,7 @@ When we define a tree and evaluate it, we get a cumbersome representation:  -/
 /- We can tell Lean to make a more compact representation. First we define a `to_str`
 function. It requires that `A` has a `toString` instance we can use (more on this later). -/
 
-def to_str {A : Type} [sa : ToString A] (T : BTree A) : String :=
+def to_str {A : Type} [ToString A] (T : BTree A) : String :=
   match T with
   | leaf a => toString a
   | node a L R =>  "(" ++ (toString a) ++ " " ++ (to_str L) ++ " " ++ (to_str R) ++ ")"
@@ -648,10 +648,11 @@ def Naturals.succ (x : Naturals) : Naturals := match x with
 Sums as Co-products
 ===
 
-Suppose we have
-two disjoint copies of a space `X`. Then `X ⊕ X` is the type of points in
-that space. They are either a point from the "left" side or a point in the "right"
-side.
+<img src='img/coprod.jpg' class='img-up-right' width=20%></img>
+
+Suppose we have two disjoint copies of a space `X`. Then `X ⊕ X` <br>
+is the type of points in that space. They are either a point <br>
+from the "left" side or a point in the "right" side.
 
 For example, to start building an identification topology we might:
 -/
@@ -669,7 +670,7 @@ def equiv (x y : TwoR) : Prop := match x,y with
 ```lean
 TwoR / equiv
 ```
-with respect to `equiv`. We'll get to how to do this later. -/
+We'll get to what this means and how to do it later. -/
 
 
 

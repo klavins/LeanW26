@@ -7,8 +7,6 @@
 
 import Mathlib
 
---notdone
-
 /-
 Foundations of Mathematics
 ===
@@ -39,12 +37,12 @@ Cracks in the Edifice of Mathematics
 
 **Gödel’s Incompleteness Theorem (1930)**
 - Any sufficiently expressive formal system is incomplete
-- E.g. The *Continuum Hypothesis* is neither provable nor unprovable from the axioms of set theory.
+- E.g. The [Continuum Hypothesis](https://arxiv.org/abs/2102.02901) is neither provable nor unprovable from the axioms of set theory.
 
-**Uncomputability (Turning, 1936, numbers) (Church, 1936, Logic)**
+**Uncomputability (Turing, 1936) (Church, 1936)**
 - Some problems are uncomputable: No algorithm exists to decide all possible instances
 
-**Take-aways**
+**Takeaways**
 - All mathematical results are relative to a set of axioms
 - Automated mathematics tends to be conservative, and constructive
 
@@ -78,7 +76,7 @@ Building Math from Sets
 - Functions and relations:
     - Sets of ordered pairs
 - Etc.
-    - Arithmetic, Analysis, Topology, can all be constructed within ZF
+    - Arithmetic, Analysis, Topology, have all been constructed within ZF
 
 Proof Assistants
 - *Mizar* uses a version of ZFC
@@ -90,7 +88,7 @@ Problems with ZF
 ===
 
 - You can write `x ∈ x` and have to prove it does not follow from the axioms
-- It is not *constructive*, so hard to encode algorithmically
+- It is not *constructive*, thus hard to encode algorithmically
 - Not amenable to computation (no data structures, not modular, ...)
 
 
@@ -126,7 +124,7 @@ The *Calculus of Inductive Constructions*
 
 Additionally:
 - Type classes (organizational but powerful)
-- A sophisticaed elaborator / syntax creator
+- A sophisticated elaborator / syntax creator
 - Easy extend to classical logic
 
 -/
@@ -136,11 +134,15 @@ Beyond CIC
 ===
 
 Lean's Type Theory does not have native support for:
-- **Higher inductive types**. For example, defining homotopy is clunkiny in Lean.
-- **Univalence**: Isomorphic structures are not equal, making many natural arguments clunky.
-- **Coinduction**: Coinductive definitions that result in infinite objects are not allowed.
+- **Higher inductive types**. Defining homotopy is clunky in in CIC.
+- **Univalence**: Isomorphic structures are not equal, making many natural
+arguments overly complicated.
+- **Coinduction**: Coinductive definitions, resulting in infinite
+objects, are in general not allowed. Although Lean 4.25.0 added support for
+[coinductive predicates](https://lean-lang.org/doc/reference/latest/releases/v4.25.0/).
+-/
 
-
+/-
 Exercises
 ===
 

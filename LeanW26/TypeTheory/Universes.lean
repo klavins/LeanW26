@@ -9,9 +9,6 @@ import Mathlib
 
 namespace LeanW26.Universes
 
---notdone
-
-
 /-
 Universes
 ===

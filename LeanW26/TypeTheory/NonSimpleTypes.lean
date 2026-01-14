@@ -9,8 +9,6 @@ import Mathlib
 
 namespace LeanW26.NonSimpleTypes
 
---notdone
-
 /-
 Beyond Simple Types
 ===
@@ -359,15 +357,11 @@ defined] occurs is a dependent arrow type in which the inductive
 type under definition occurs only as the resulting type, where the
 indices are given in terms of constants and previous arguments." (TPIL)
 
-**Agda:** Somewhat stronger requirement. The defined type "may only
-occur strictly positively in the types of their arguments."(Agda Docs)
-
-**Roq:** Allows coinductive types.
-
-**Haskell**: Perfectly happy with nonterminating things.
-
-Pragmatic approach: If you see the "positivity" error, try to understand
+If you see the "positivity" error, try to understand
 how you could accidentally write a non-terminating function with your type. Then refactor.
+
+Note: Lean added coinductive Prop definitions in v4.25.
+We will cover these when we get to proofs.
 
 -/
 
@@ -385,8 +379,6 @@ def length {α} (L : List α) : Nat :=
   List.rec sorry sorry sorry sorry
 ```
 -/
-
-
 
 
 
