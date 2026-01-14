@@ -6,18 +6,21 @@ The λ-Calculus
 Background
 ===
 
-The **λ-calculus** was introduced in the 1930s by Alonzo Church as a way to represent
-how functions on natural numbers are calculated using symbols.
+The **λ-calculus** was introduced in the 1930s by Alonzo Church as a way
+to represent functions and how they are calculated using symbols.
 
-Church asked: Does every function have an algorithm?
+Church asked: Is there an algorithm to decide any mathematical question?
 
 Church showed that the answer is "no". The reasoning, roughly, is this:
 
   - Devise a simple programming language, the λ-calculus
   - Define computation as rewriting operations on λ-calculus terms
-  - Correspond to every term a natural number
-  - Conclude that questions about terms are thus questions about numbers
-  - Show there are more functions from terms into terms than there are terms.
+  - The set of algorithms (λ-calculus expressions) is countable, but
+  the set of total functions is not. So there exist functions without
+  algorithms.
+
+<div class='fn'>For example, there is no algorithm that decides whether
+a λ-calculus term normalizes.</div>
 
 The λ-Calculus
 ===
@@ -30,7 +33,7 @@ Specifically, the λ-calculus has two parts:
 - Application: If `M` and `N` are terms, then `M N` is a term
 
 **β-Reduction**
-- `λ x ↦ M` applied to `N` is `M[N/x]`, where all occurances of x are replaced with N.
+- `λ x ↦ M` applied to `N` is `M[N/x]`, where all occurrences of x are replaced with N.
 
 The λ-Calculus in Lean
 ===
@@ -86,16 +89,15 @@ Thus, the λ-calclus and the formal notion of computation has its roots in the
 foundations of mathematics.
 
 In the 1960s, linguists and computer scientists realized that the λ-calculus
-was an useful framework for the theory and design of programming languages.
+was a useful framework for the theory and design of programming languages.
 
-Simultaenously, logicians were becoming frustrated with Set Theory as a foundation
-for mathematics and started exploring Type Theory as an alternative. In 1990s many
-of these ideas came together, especially through the work of Thierry Coquand on
-the *Calculus of Constructions*.
+Logicians were also exploring exploring Type Theory as an alternative.
+In 1980s many of these ideas came together, especially through the work of
+Thierry Coquand on the *Calculus of Constructions*.
 
-It was observed that typed programming languages were not only an ideal foundation
-for all of mathematics, they could be used to develop computational proof assistants
-and theoerm provers.
+Eventually typed programming languages emerged as an alternative foundation
+for all of mathematics and they could be used to develop computational proof assistants
+and theorem provers such as Coq, NuPRL, and HOL.
 
 
 Infinite Loops
