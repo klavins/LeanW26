@@ -673,7 +673,9 @@ Exercises
 
 <ex/> Here is a simple sorting algorithm called *insertion sort*. Make a version of this
 algorithm that works on any type `α` as long as a comparison function of the form
-`lt (x y α) : Bool` is provided as an argument. 
+`lt (x y α) : Bool` is provided as an argument.
+
+ 
 ```lean
 def insert (x : ℕ) : List ℕ → List ℕ
 | [] => [x]
@@ -686,9 +688,23 @@ def insertionSort :  List ℕ → List ℕ
 
 <ex/> Test your code on the type `String` with the alphabetical ordering defined by
 
+
 ```lean
 def str_cmp (a b : String) : Bool := decide (a ≤ b)
+```
 
+Exercise (Optional)
+===
+
+<ex /> You can solve the insertion sort problem by adding an argument
+to `insert` and `insertionSort`
+for the comparison function. But the more _Lean_ way to do it is to require
+`A` to have instances of `LE` and `DecidableRel` using the `[...]` notation.
+Give it a try.
+
+We'll talk about _classes_ and _instances_ next week.
+
+```lean
 --hide
 end LeanW26
 --unhide

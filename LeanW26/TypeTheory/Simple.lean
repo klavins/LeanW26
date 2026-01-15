@@ -23,8 +23,7 @@ In Lean the base type is called `Type`. -/
 
 #check Type
 
-/- Lean tells you `Type` has `Type 1`, so `Type` is a synonym for `Type 0`.
-One constructs new types using the arrow → as in the following examples: -/
+/- One constructs new types using the arrow → as in the following examples: -/
 
 #check Type → Type
 #check Type → (Type → Type)
@@ -74,11 +73,12 @@ Next, we define the terms of the lambda calculus.
 We start with **variables**, for example `x` and `f`,
 which we declare in Lean as follows: -/
 
+
 variable (x : A)               -- declare a variable x of type a
 variable (f : A → A)           -- declare a function f from A into A
 
-#check x
-#check f
+#check x          -- A
+#check f          -- A → A
 
 /-  Here. `x` is a simple object with type `A`, while `f` is an function type from `A` into `A`.
 
@@ -89,9 +89,9 @@ Terms : Applications
 **Applications** have the form `e₁ e₁` where `e₁` and `e₂` are terms.
 For example, -/
 
-#check f x
-#check f (f x)
-#check f (f (f x))
+#check f x                   -- A
+#check f (f x)               -- A
+#check f (f (f x))           -- A
 
 /- are all applications of terms to terms. -/
 
@@ -132,7 +132,7 @@ Equivalence with `def`
 ===
 
 A lambda abstraction is an unamed function.
-Give your functions names and use `def`. -/
+To give your functions names and use `def`. -/
 
 def inc₁ (x : Nat) : Nat := x + 1
 def inc₂ := fun (x : Nat) => x + 1
@@ -167,17 +167,14 @@ def r₃ := r₂ a
 
 /- In this example, `r₂` is a curried expression:
 It has "ingested" a function `(fun x => x)` and can then apply this function
-to subsequenct arguments.
+to subsequent arguments.
 
-Currying is named after the Logician Haskel Curry, who
+<div class='fn'>Currying is named after the Logician Haskell Curry, who
 studied Electrical Engineering at MIT in the 1920s (although he eventually
-switched to Physics).
+switched to Physics).</fn>
 
  -/
 
---hide
-end
---unhide
 
 /-
 Exercises
@@ -188,11 +185,11 @@ Exercises
 - `(Type → Type) → Type`
 
 Use `#check` to make sure your functions have the desired types.
-*Challenge:* Define the second expression without using free variables.
+*Challenge:*
 
-<ex /> The functin `String.append` has the type `String → String → String`.
+<ex /> The function `String.append` has the type `String → String → String`.
 Define a new function `prepend_label` that prepends the string "STRING: "
-to its argument by currying `String.append`. Test your function.
+to its argument by combining with `String.append`. Test your function.
 
 -/
 
@@ -214,7 +211,12 @@ where `A` is the type of the argument and `B` is the type of the result.
 - **APPL** If `f : A → B` and `x : A`, then the type of the application of `f`
 to `x is B`.
 
-We can see the types Lean derives.. -/
+
+Lean's Type Derivation
+===
+
+
+We see the types Lean derives using `#check`. -/
 
 variable (x : A) (f : A → A)
 def h₁ := fun (y : A) => y
@@ -224,7 +226,7 @@ def h₂ := fun (g : A → A) => fun (y : A) => g y
 #check h₁                  --> A → A
 #check h₂                  --> (A → A) → A → A
 #check h₁ x                --> A
-#check h₂ h₁               --> A → A via currying
+#check h₂ h₁               --> A → A
 #check h₂ h₁ (f x)         --> A
 
 
@@ -248,11 +250,11 @@ Another example is -/
 
 
 /-
-Judgements and Contexts
+Judgments and Contexts
 ===
 
 When you hover over a `#check` directive, Lean shows the results of the type derivation
-as what is called a **judgement**. It is an expression in two parts separated by a
+as what is called a **judgment**. It is an expression in two parts separated by a
 **turnstile** `⊢`. For example: `#check h₁ x` produces
 
 ```lean
@@ -271,9 +273,62 @@ In the literature, this written:
 { x : A, f : A → A }  ⊢  h₁ x : A
 ```
 
-which reads: "If A has type A and f has type A → A, then we can derive h₁ x has type A". -/
+which reads: "If x has type A and f has type A → A, then we can derive f x has type A". -/
+
+--hide
+end
+--unhide
+
+/-
+Type Inference
+===
+
+The full syntax of a λ expression in Lean might look like this: -/
+
+#check fun (x:ℕ) => fun (y:ℕ) => x+y   -- ℕ → ℕ → ℕ
+
+/- But Lean can often figure out the types from the context. So this is fine: -/
+
+#check fun x => fun y => x+y          -- (x : ?m.7) → (y : ?m.11 x) → ?m.12 x y
+
+/- You can also combine sequential abstractions as in -/
+
+#check fun x y => x+y
+
+/- We can't leave out all of the type information though. Consider: -/
+
+#check_failure λ g y => g y
+
+/- In the above, there are any number of ways types could be assigned to g and y, so Lean
+complains that it can't assign types to them.
 
 
+
+Self Application is Untypeable
+===
+
+Dropping types for the moment, define the term
+```
+Ω := λ x => x x
+```
+and consider `Ω` applied to itself:
+```
+(λ x => x x) (λ x => x x)       —β—>       (λ x => x x) (λ x => x x)
+```
+producing an infinite loop. Suppose you could give `M M` a type, say `α`.
+Then `M` has to be a function `M : τ → σ`
+
+But since `M` is operating on itself, `M` has to be of type τ:
+```
+M : τ
+```
+So `M `has two different types, which is not possible. Lean is not able to find
+a type for `x`. The placeholder symbol `_` is used by Lean as a way to ask the type
+checker to infer a type.
+
+-/
+
+#check_failure (λ (M:_) => M M)
 
 /-
 Exercises
@@ -284,21 +339,8 @@ Exercises
 { a : A, b : B, f : A → B }  ⊢  f a : B
 ```
 
-Note: If you put
-
-```lean
-section
---- code here
-end
-```
-
-Around all previous examples, then the variables defined remain
-local to that section. The source code to this slide deck does this.
 
 -/
-
-
-
 
 /-
 Free Variables
@@ -346,26 +388,29 @@ Beta Reduction in Lean
 To apply β-reduction in Lean, you can use the `#reduce` directive. For example,
 
 ```
-(fun (g : α → α) => λ (y : α) => g y) f   —β—>   λ (y : α) => f y
+(fun g => fun y => g y) f   —β—>  fun y => f y
 ```
 
 is obtained by replacing `g` in `g y` with `f`, as the rule describes.
 
 You can have Lean do this for you using the `#reduce` directive.
 
-The `#reduce` directive needs permission to be aggressive,
-which we can do using the `(types := true)` option. -/
 
-#reduce (types:=true) (fun (y : A) => y) x
+-/
+
+variable (x : A)
+
+#reduce (types:=true) (fun (y : A) => y) x           -- x
 
 #reduce (types:=true) (fun (g : A → A) => fun (y : A) => g y)
-                      (fun (y : A) => y)
+                      (fun (y : A) => y)             -- fun y => y
 
 #reduce (types:=true) (fun (g : A → A) => fun (y : A) => g y)
-                       (fun (y : A) => y) x
+                       (fun (y : A) => y) x          -- x
 
 
-
+/-<div class='fn'>The <tt>#reduce</tt> directive needs permission to be aggressive,
+which we can do using the <tt>(types := true)</tt> option.</div>-/
 
 
 
@@ -398,7 +443,7 @@ you can write infinite loops. But not in the simply typed lambda calculus!
 Exercises
 ===
 
-<ex /> In the Simply Typed Lamdbda Calculus, the proof that β-reduction is strongly
+<ex /> In the Simply Typed λ-Calculus, the proof that β-reduction is strongly
 normalizing shows that every step of β-reduction reduces the following measure:
 
 ```text
@@ -409,7 +454,7 @@ Size(M) = 1 + Size(M₁) + Size(M₂) if M = M₁ M₂
 
 where `M` is an expression.
 
-Suppose `x : A`. Define a lambda calculus expression `M` such that `Size(M) = 5` and
+Suppose `x : A`. Define a λ-calculus expression `M` such that `Size(M) = 5` and
 `M` β-reduces to `x`.
 
 -/
@@ -420,16 +465,16 @@ Suppose `x : A`. Define a lambda calculus expression `M` such that `Size(M) = 5`
 Example: The Church Numerals
 ===
 
-You can program arithmetic in captured by the λ-calculus.
+You can program arithmetic in the λ-calculus.
 
 Church devised the following scheme to represent numbers,
 where `c₀` is the Church Numeral for `0` and so on. -/
 
 def α := Type
 def c₀ := fun ( f : α → α ) => fun ( x : α ) => x
-def c₁ := fun ( f : α → α ) => fun ( x : α ) => f x
-def c₂ := fun ( f : α → α ) => fun ( x : α ) => f (f x)
-def c₃ := fun ( f : α → α ) => fun ( x : α ) => f (f (f x))
+def c₁ := fun ( f : α → α ) => fun x => f x
+def c₂ := fun ( f : α → α ) => fun x => f (f x)
+def c₃ := fun ( f : α → α ) => fun x => f (f (f x))
 
 /- You can check the type of a Church numeral: -/
 
@@ -452,18 +497,18 @@ Arithmetic
 
 We can define functions on numbers. For example, the successor function is defined below. -/
 
-def succ := fun (m : N) (f : α → α) (x: α) => f (m f x)
+def succ := fun (m : N) (f : α → α) x => f (m f x)
 
-/- To see how this works, let's apply succ to c₀. We omit the types to make it
-easier to read. Note for clarity we use the dummy variables g and y in c₀ instead of f and x.
+/- To see how this works, let's apply `succ to c₀`.
+Note for clarity we use the dummy variables `g` and `y` in `c₀`
+instead of `f` and `x`.
 
 ```lean
   succ c₀ = ( λ m => λ f => λ x => f (m f x) ) ( λ g => λ y => y )
           —β—> λ f => λ x => f ( ( λ g => λ y => y ) f x )
                           [note, g is not used, so f x disappears]
           —β—> λ f => λ x => f ( ( λ y => y ) x )
-          —β—> λ f => λ x => f x
-          = c₁
+          —β—> λ f => λ x => f x = c₁
 ```
 
 This is a lot of work, so let's let Lean do this for us: -/
@@ -484,16 +529,17 @@ Addition and Multiplication
 
 We can also add two numbers together: -/
 
-def add := fun (m : N) (n : N) (f : α → α) (x: α) => m f (n f x)
+def add := fun (m n : N) f x => m f (n f x)
 
 #reduce (types := true) add c₃ c₂
 #reduce (types := true) add (succ c₃) (add c₁ c₂)
 
 /- And here is multiplication: -/
 
-def mul :=  fun (m : N) (n : N) (f : α → α) (x: α) => m (n f) x
+def mul :=  fun (m n : N) f x => m (n f) x
 
 #reduce (types := true) mul c₃ c₂
+
 
 /-
 Booleans and If Statements
@@ -501,8 +547,7 @@ Booleans and If Statements
 
 We can encode an if-statement: -/
 
-def ifzero := fun (m : N)  (n : N) (p : N) =>
-              fun (f : α → α) (x: α) =>
+def ifzero := fun (m n p: N) => fun f x =>
               n (fun ( y : _ ) => p f x) (m f x)
 
 #reduce (types := true) ifzero c₂ c₀ c₃
@@ -526,9 +571,15 @@ theorem one_plus_one_is_two : add c₁ c₁ = c₂ :=
 because two λ-expressions that beta reduce to the same thing are
 considered **definitionally equal**.
 
-Of course, Church Numerals are a very clunky way to define numbers and operators.
+Arithmetic with the Simply Typed λ-Calculus illustrates its power. In fact,
+we'll show it can represent a fragment of logic called _intuitionist propositional
+logic`. And, clearly, you can do arithmetic.
 
-To represent more mathematics more elegantly, we need more types! -/
+However:
+- It does not have quantification (e.g. Π types)
+- Church numeral like constructions do not have an induction principle that is part of the language
+
+To represent _more_ mathematics _more_ elegantly, we need more types! -/
 
 
 
@@ -541,58 +592,9 @@ Exercises
 <ex /> Define a lambda abstraction, called double, that takes a Church numeral
 and doubles it. Evaluate it on a few examples.
 
- -/
+-/
 
 
-
-/-
-Type Inference
-===
-
-Lean is good at type inference. We can go a step further with Lean and leave out
-types in expressions. -/
-
-#check fun _ y => y
-#check fun ( g : α → α ) y => g y
-#check fun ( g : α → α ) y => g (g y)
-
-/- We can also write the other operations, like multiplication, more concisely: -/
-
-#check λ (m n : N) f x => m (n f) x
-
-/- We can't leave out all of the type information though. Consider: -/
-
-#check_failure λ g y => g y
-
-/- In the above, there are any number of ways types could be assigned to g and y, so Lean
-complains that it can't assign types to them.
-
-
-
-
-Self Application is Untypeable
-===
-
-Dropping types for the moment, define the term
-```
-Ω := λ x => x x
-```
-and consider `Ω` applied to itself:
-```
-(λ x => x x) (λ x => x x)       —β—>       (λ x => x x) (λ x => x x)
-```
-producing an infinite loop. Suppose you could give `M M` a type, say `α`.
-Then `M` has to be a function `M : τ → σ`
-
-But since `M` is operating on itself, `M` has to be of type τ:
-```
-M : τ
-```
-So `M `has two different types, which is not possible. Lean is not able to find
-a type for `x`. The placeholder symbol `_` is used by Lean as a way to ask the type
-checker to infer a type. -/
-
-#check_failure (λ (M:_) => M M)
 
 
 
@@ -637,12 +639,12 @@ example (p q : Prop) : p → (p → q) → q :=
 --hide
 
 /-
-Looking Ahead: The Curry Howard Isomorphims
+Looking Ahead: The Curry Howard Isomorphism
 ===
 
 The most important problem in using type theory for proofs is INHABITATION,
 followed by TYPE CHECKING. We will see later the following
-remarkable fact, called the Curry-Howard corresponence, which says that in
+remarkable fact, called the Curry-Howard correspondence, which says that in
 the judgement `Γ ⊢ M : σ`,
 
   `Γ` can be considered a set of givens or assumptions
@@ -650,7 +652,7 @@ the judgement `Γ ⊢ M : σ`,
   `M` can be considered a proof of the theorem assuming the statements in `Γ`.
 
 Thus, type checking amounts to checking that `M` is a proof of `σ`,
-which is a relatively straightfoward problem.
+which is a relatively straightforward problem.
 
 This is why tools like Lean are called `proof assistants`. They check to make sure
 your proofs are correct.
@@ -674,9 +676,9 @@ It can be thought of as a transformation taking a proof of `σ`, which one assum
 is available, and returning a proof of `τ`, which is thought of as a goal to be
 proved. Writing the details of what `q` is amounts to programming.
 
-By building on it, as Lean and similar tools do, one can enocde an astonishingly
+By building on it, as Lean and similar tools do, one can encode an astonishingly
 large set of all of mathematics, and presumably knowledge in general.
-We'll learn how to take advantage of the Curry-Howard corresponence soon.
+We'll learn how to take advantage of the Curry-Howard correspondence soon.
 
  -/
 
@@ -688,7 +690,7 @@ We'll learn how to take advantage of the Curry-Howard corresponence soon.
 Exercises
 ===
 
-<ex /> The following lamdba calculus expressions do not type check in Lean.
+<ex /> The following λ-calculus expressions do not type check in Lean.
 
 ```lean
   fun x y => x y
@@ -703,7 +705,7 @@ Rewrite them by giving the variables types. Use #check to make sure they work.
 Church Encodings shows how to define various other types and operations using
 only the Simply Typed Lambda Calculus. Choose an interesting example,
 show how to define it in Lean, and test it on a few examples. In your solution,
-make sure to write a few sentences on what you are doing.
+make sure to write a few sentences about what you have done.
 
 -/
 

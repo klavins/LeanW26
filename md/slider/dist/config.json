@@ -13,7 +13,6 @@
             "name": "Type Theory", 
             "decks": [
                 { "path": "src/TypeTheory/Overview.md", "title": "Foundations" },
-                { "path": "src/TypeTheory/LambdaCalculus.md", "title": "The λ-Calculus" },
                 { "path": "src/TypeTheory/Universes.md", "title": "Universes" },
                 { "path": "src/TypeTheory/Simple.md", "title": "Simple Types" },
                 { "path": "src/TypeTheory/NonSimpleTypes.md", "title": "Non Simple Types" },

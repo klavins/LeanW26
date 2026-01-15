@@ -11,8 +11,7 @@ In Lean the base type is called `Type`.
 ```lean
 #check Type
 ```
- Lean tells you `Type` has `Type 1`, so `Type` is a synonym for `Type 0`.
-One constructs new types using the arrow → as in the following examples: 
+ One constructs new types using the arrow → as in the following examples: 
 ```lean
 #check Type → Type
 #check Type → (Type → Type)
@@ -63,8 +62,8 @@ which we declare in Lean as follows:
 variable (x : A)               -- declare a variable x of type a
 variable (f : A → A)           -- declare a function f from A into A
 
-#check x
-#check f
+#check x          -- A
+#check f          -- A → A
 ```
   Here. `x` is a simple object with type `A`, while `f` is an function type from `A` into `A`.
 
@@ -75,9 +74,9 @@ Terms : Applications
 **Applications** have the form `e₁ e₁` where `e₁` and `e₂` are terms.
 For example, 
 ```lean
-#check f x
-#check f (f x)
-#check f (f (f x))
+#check f x                   -- A
+#check f (f x)               -- A
+#check f (f (f x))           -- A
 ```
  are all applications of terms to terms. 
 
@@ -110,7 +109,7 @@ Equivalence with `def`
 ===
 
 A lambda abstraction is an unamed function.
-Give your functions names and use `def`. 
+To give your functions names and use `def`. 
 ```lean
 def inc₁ (x : Nat) : Nat := x + 1
 def inc₂ := fun (x : Nat) => x + 1
@@ -140,11 +139,11 @@ def r₃ := r₂ a
 ```
  In this example, `r₂` is a curried expression:
 It has "ingested" a function `(fun x => x)` and can then apply this function
-to subsequenct arguments.
+to subsequent arguments.
 
-Currying is named after the Logician Haskel Curry, who
+<div class='fn'>Currying is named after the Logician Haskell Curry, who
 studied Electrical Engineering at MIT in the 1920s (although he eventually
-switched to Physics).
+switched to Physics).</fn>
 
  
 ```lean
@@ -161,11 +160,11 @@ Exercises
 - `(Type → Type) → Type`
 
 Use `#check` to make sure your functions have the desired types.
-*Challenge:* Define the second expression without using free variables.
+*Challenge:*
 
-<ex /> The functin `String.append` has the type `String → String → String`.
+<ex /> The function `String.append` has the type `String → String → String`.
 Define a new function `prepend_label` that prepends the string "STRING: "
-to its argument by currying `String.append`. Test your function.
+to its argument by combining with `String.append`. Test your function.
 
 
 
@@ -183,7 +182,12 @@ where `A` is the type of the argument and `B` is the type of the result.
 - **APPL** If `f : A → B` and `x : A`, then the type of the application of `f`
 to `x is B`.
 
-We can see the types Lean derives.. 
+
+Lean's Type Derivation
+===
+
+
+We see the types Lean derives using `#check`. 
 ```lean
 variable (x : A) (f : A → A)
 def h₁ := fun (y : A) => y
@@ -193,7 +197,7 @@ def h₂ := fun (g : A → A) => fun (y : A) => g y
 #check h₁                  --> A → A
 #check h₂                  --> (A → A) → A → A
 #check h₁ x                --> A
-#check h₂ h₁               --> A → A via currying
+#check h₂ h₁               --> A → A
 #check h₂ h₁ (f x)         --> A
 ```
 

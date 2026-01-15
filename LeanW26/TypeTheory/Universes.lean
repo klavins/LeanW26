@@ -76,11 +76,14 @@ You can use `#check` to check types
 #check_failure Type 100 -- Universe level offset `100`
                         -- exceeds maximum offset `32`
 
+/- Most math does not require many universe levels,
+but various categorical constructions do.  -/
+
 /-
 Universe Variables
 ===
 
-You can declare universes with the universe command:
+You can declare universes with the universe keyword:
 -/
 
 universe u v
@@ -91,7 +94,7 @@ def f1 (x : Type u) : Type u := x
 def f2.{w} (x : Type w) : Type w := x
 
 /-
-The function is then *universe polymorphic*
+A function with a universe variable is then *universe polymorphic*
 -/
 
 #check f2                         -- Type v → Type v
@@ -161,14 +164,7 @@ You can
 #check Prod             -- Type u → Type v → Type (max u v)
 #check Type u × Type v  --  Type (max (u + 1) (v + 1))
 
-/- There is also:
-```lean
-imax u v := if u = 0 then 0 else max u v
-```
--/
 
-#check Type (imax 1 0)   -- 0
-#check Type (imax 0 1)   -- 1
 
 /-
 Prop is Impredicative
@@ -206,6 +202,37 @@ and so lack the expressive power to encode Girard's paradox.
 
 -/
 
+
+/-
+More Type Arithmetic
+===
+
+Because `Prop` is impredicative, sometimes you need a version of `max`
+except when the codomain of a function is `Prop`. Then you can use `imax`
+```lean
+imax u v := if u = 0 then 0 else max u v
+#check Type (imax 1 0)   -- 0
+#check Type (imax 0 1)   -- 1
+```
+-/
+
+
+/- For example, -/
+
+variable (α : Sort u) (β : α → Sort v)
+#check (Π x : α, β x)                   -- Sort (imax u v)
+
+/-
+If `α := Type 2` and `β x := Type 3`:
+```
+#check (Π x : α, β x)           -- Type 3
+```
+If `α := Type 2` and `β x := Prop` then
+```
+#check (Π x : α, β x)           -- Prop, equiv to ∀ x, β x
+```
+-/
+
 /-
 References
 ===
@@ -221,7 +248,7 @@ Universe hierarchies appear to have been introduced by Per Martin-Löf in
 Exercises
 ===
 
-<ex/> What is the type of `Type u × Type v`?
+<ex/> What is the type of `Type u ⊕ Type v`?
 
 <ex/> Define
 ```lean
@@ -230,19 +257,26 @@ def TypeList := List Type
 Which of the following are ok in Lean? Why?
 ```
 def A : TypeList := []
+def A : TypeList := [TypeList]
 def A : TypeList := [ℕ,ℚ]
+def A : TypeList := [ℕ,ℕ×Type]
 def A : TypeList := [ℕ,List ℕ]
+def A : TypeList := [ℕ,ℕ×Prop]
 def A : TypeList := [ℕ,A]
 ```
+
+<ex /> What if we change TypeList to
+```
+def TypeList.{w} := List (Type w)
+```
+which of the above work when refactored with this new definition? Why?
 
 <ex/> Why doesn't this function type check?
 ```lean
 def f (n : ℕ) := if n = 0 then Type 0 else Type 1
 ```
-
+How would you fix it?
 -/
-
-
 
 --hide
 end LeanW26.Universes
