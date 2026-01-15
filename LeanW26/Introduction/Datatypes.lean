@@ -544,7 +544,7 @@ and so on. Or
 -/
 
 def Point {α : Type} := α × α
-def Vector3D' := ℝ × ℝ × ℝ
+def Vector3D' := ℚ × ℚ × ℚ
 
 /- The benefit is that you get a bunch of defined functions for products.
 The downsides are
@@ -701,16 +701,16 @@ def x : SigT := ⟨ 3, 2 ⟩     -- 2 has type Fin 3
 Exercises
 ===
 
-<ex /> Rewrite your cross product function in terms of `ℝ × ℝ × ℝ`.
+<ex /> Rewrite your cross product function in terms of `ℚ × ℚ × ℚ`.
 
-<ex /> You can specify a circle with a single point `r : ℝ` and a rectangle
-with a pair of points `x y : ℝ`. Thus a shape might be defined as
+<ex /> You can specify a circle with a single point `r : ℚ` and a rectangle
+with a pair of points `x y : ℚ`. Thus a shape might be defined as
 -/
 
-def Shape := ℝ ⊕ (ℝ × ℝ)
+def Shape := ℚ ⊕ (ℚ × ℚ)
 
-/- define functions `area (s : Shape) : ℝ` and `perimeter (s : Shape) : ℝ`.
-Note that π is defined with `Real.pi` -/
+/- define functions `area (s : Shape) : ℚ` and `perimeter (s : Shape) : ℚ`.
+Approximate π with `22/7` (or whatever your favorite approximate is).-/
 
 #check Real.pi
 
@@ -834,12 +834,14 @@ inductive Dyadic where
   | neg     : Dyadic → Dyadic  -- x ↦ -x
 
 /-
+
 a. Define `Dyadic.double` that doubles a `Dyadic`.<br>
 b. Define `Dyadic.add` that adds two `Dyadic` values.<br>
 c. Define `Dyadic.mul` that multiplies two `Dyadic` values.<br>
 d. Define a function `Dyadic.to_rat` that converts a `Dyadic` to a `Rat`.<br>
 e. Define the Dyadics `5/8` and `-7/32` and test your methods on these values.<br>
 f. Are Dyadics as defined here unique? Why or why not?
+
 -/
 
 --hide

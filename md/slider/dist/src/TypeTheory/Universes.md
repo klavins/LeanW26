@@ -41,7 +41,7 @@ Lean, and most Type Theories, define a hierarchy of universes
 
 All types have types:
 
-    - Prop : Sort 0          (read: Prop "has type" Sort 0)
+    - Prop : Sort 1          (read: Prop "has type" Sort 1)
     - Type u : Type u+1
 
 Now expressions don't quantify over all types,
@@ -189,7 +189,7 @@ More Type Arithmetic
 Because `Prop` is impredicative, sometimes you need a version of `max`
 except when the codomain of a function is `Prop`. Then you can use `imax`
 ```lean
-imax u v := if u = 0 then 0 else max u v
+imax u v := if v = 0 then 0 else max u v
 #check Type (imax 1 0)   -- 0
 #check Type (imax 0 1)   -- 1
 ```

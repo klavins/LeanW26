@@ -7,6 +7,8 @@
 
 import Mathlib
 
+namespace LeanW26
+
 /-
 Foundations of Mathematics
 ===
@@ -338,6 +340,16 @@ In the next section we'll look at what exactly is `Type` and come back to
 the lambda calculus in the following section.
 -/
 
+/-
+Exercise
+===
+
+<ex /> Watch this video (https://www.youtube.com/watch?v=iM_0Rxqqn7Y) on Lean and come up with
+three questions you would like to ask this speaker. For each question, see how much you can
+answer by doing some research and reading to refine the question.
+
+-/
+
 --hide
-end LeanW26.LambdaCalculus
+end LeanW26
 --unhide
