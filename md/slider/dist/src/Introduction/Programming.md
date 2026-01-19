@@ -94,7 +94,8 @@ When a function is defined with multiple arguments, as in
 def f4 (x y : ℕ) := 2*x + y
 ```
 
-it is really being defined as a _a function that takes an argument and returns a function that takes an argument that returns an expression_. The above is in fact shorthand for:
+it is really being defined as a _a function that takes an argument and returns a function
+that takes an argument that returns an expression_. The above is in fact shorthand for:
 
 ```lean
 def f4' := fun (x : ℕ) => fun (y : ℕ) => 2*x + y

@@ -579,15 +579,22 @@ Exercises
 ===
 
 <ex /> Recall the definition of `Dyadic` from Slide Deck II.4.
-- Instantiate `Zero`, `HAdd` and `Add` for this type.
-- Write a function `neg_pow2 (n : Nat) : Dyadic ` that computes $2^{-n}$.
+- Instantiate `Zero` and `One`
+- To compute a function `f : α → α` `n` times, you can use the f^[n] notation.
+Check that the following notation works for your `Dyadic`
+```lean
+#eval add_one^[8] 0    - 8
+#eval double^[8] 1     - 256
+#eval half^[8] 1       - 1/256
+```
+<ex /> Sums of Dyadics
+- Instantiate `HAdd` and `Add` for `Dyadic`.
 - Use the `sum` function with `Dyadic` to compute $\sum_{n=1}^8 n\cdot2^{-n}$ and use
 your `.to_rat` function to check the answer.
 
-<ex /> Instantiate `One`, `HMul` and `Mul` and instantiate them
-for the `Dyadic` type.
-
-<ex /> Define `product` similarly to how we defined `sum`. Compute
+<ex /> Products of Dyadics
+- Instantiate `HMul` and `Mul` for `Dyadic`.
+- Define `product` similarly to how we defined `sum`. Compute
 $\prod_{n=1}^8 n\cdot2^{-n}$ with `Dyadic` and use your `.to_rat` function to check the answer.
 
 
