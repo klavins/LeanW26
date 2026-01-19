@@ -400,7 +400,8 @@ def mult (m n : Nat) : Nat := sorry
 def exp (m n : Nat) : Nat := sorry
 
 /- <span></span>
-4) Using Lean's built in Integer class, we can define a new inductive type `GaussianInt` as follows: -/
+4) Using Lean's built in Integer class, we can define a new
+inductive type `GaussianInt` as follows: -/
 
 inductive GaussianInt where
   | gint : Int → Int → GaussianInt

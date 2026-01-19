@@ -55,8 +55,10 @@ Terms with these types are
 Polymorphism
 ===
 
-**Polymorphism** in Lean is handled the `Π` type formation operator, which
-quantifies over types, like `λ` quantifies over terms. For example,
+**Polymorphism** in Lean is handled with the `Π` type formation operator, which
+quantifies over types, like `λ` quantifies over terms.
+
+For example,
 
 ```lean
 universe u
@@ -341,19 +343,6 @@ We will cover these when we get to proofs.
 
 
 
-Exercise
-===
-
-<ex /> Use List.rec to define a function that computes the
-length of a list. Use only List.rec, Nat.zero and Nat.succ.
-
-Start with
-```lean
-def length {α} (L : List α) : Nat :=
-  List.rec sorry sorry sorry sorry
-```
-
-
 Coming Soon: Using the Recursor in Proofs
 ===
 
@@ -375,76 +364,16 @@ example : ∀ (n : Nat), n.succ ≠ .zero := by
   | succ k ih => exact Nat.noConfusion
 ```
 
-Type Classes
-===
-A **type class** is a way to associate data and methods with all
-type definitions that meet the class's specifications.
-
-For example,
-
-```lean
-class HasZero (α : Type) where
-  zero : α
-
-class HasAdd (α : Type) where
-  add : α → α → α
-```
- Which can then be used in functions, as in the following, which
-allows you to sum a list of anything that has a `zero` and an `add` funciton. 
-```lean
-def sum {α : Type} (f : ℕ → α) (n : ℕ) [hz : HasZero α] [ha : HasAdd α] :=
-  match n with
-  | .zero => hz.zero
-  | .succ k => ha.add (f n) (sum f k)
-```
-
-Instances
-===
-You can instantiate a type class for a given type using the `instance` keyword.
-
-```lean
-instance : HasZero String where
-  zero := ""
-
-instance : HasAdd String where
-  add a b := b ++ a
-
-#eval sum (fun n => String.singleton (Char.ofNat (n+96))) 26
-```
- or 
-```lean
-instance : HasZero Nat where
-  zero := .zero
-
-instance : HasAdd Nat where
-  add := .add
-
-#eval sum (fun n => n^2) 26
-```
-
-Lean/Mathlib Classes
+Exercise
 ===
 
-There are a **huge** number of type classes in Lean and we will encounter many
-of them. For example: 
+<ex /> Use List.rec to define a function that computes the
+length of a list. Use only List.rec, Nat.zero and Nat.succ.
+
+Start with
 ```lean
-inductive Numero where
-  | nada : Numero
-  | mas : Numero → Numero
-
-def Numero.add (x y : Numero) := match x with
-  | nada => y
-  | mas z => mas (add z y)
-
-instance : One Numero := ⟨ .mas .nada ⟩
-instance : HAdd Numero Numero Numero := ⟨ Numero.add ⟩
-
-def f (x y : Numero) := x + y + 1
-```
-
-Later we will build algebraic structures for our datatypes. For example,
-```
-instance : Group ℤ := ...
+def length {α} (L : List α) : Nat :=
+  List.rec sorry sorry sorry sorry
 ```
 
 
@@ -470,6 +399,198 @@ type checking decidable.
 **Many Others**: Observational type theory, modal type theory, linear type theory, ...
 
 
+Type Classes
+===
+A **type class** is a way to associate data and methods with all
+type definitions that meet the class's specifications.
+
+For example, Lean's Standard Library defines
+
+```lean
+--hide
+namespace Temp
+--unhide
+
+class Zero (α : Type) where
+  zero : α
+
+class Add (α : Type) where
+  add : α → α → α
+```
+ Which can be used in functions, as in the following, which
+allows you to sum a list of anything that has a `zero` and an `add` function. 
+```lean
+def sum {α : Type} (f : ℕ → α) (n : ℕ) [hz : Zero α] [ha : Add α] :=
+  match n with
+  | .zero => hz.zero
+  | .succ k => ha.add (f n) (sum f k)
+```
+
+Instances
+===
+You can instantiate a type class for a given type using the `instance` keyword.
+
+```lean
+instance : Zero String where
+  zero := ""
+
+instance : Add String where
+  add a b := b ++ a
+
+#eval sum (fun n => String.singleton (Char.ofNat (n+96))) 26
+      -- "abcdefghijklmnopqrstuvwxyz"
+```
+ or 
+```lean
+instance : Zero Nat where
+  zero := .zero
+
+instance : Add Nat where
+  add := .add
+
+#eval sum (fun n => n^2) 26    -- 6201
+
+--hide
+end Temp
+--unhide
+```
+
+Lean/Mathlib Classes
+===
+
+There are a **huge** number of type classes in Lean and we will encounter many
+of them.
+
+
+<img src="img/mathlib-hierarchies.jpg" width=85%></img>
+
+We'll go into some of these in a latter class.
+
+Naturals Revisited
+===
+
+For example, suppose we defined our own version of the natural numbers with: 
+```lean
+mutual
+  inductive Ev
+  | zero : Ev
+  | succ : Od → Ev
+  deriving Repr              -- allows Lean to print Ev terms
+
+  inductive Od
+  | succ : Ev → Od
+  deriving Repr              -- allows Lean to print Od terms
+end
+
+def Naturals := Ev ⊕ Od
+
+def Naturals.zero : Naturals := .inl Ev.zero
+
+def Naturals.succ (x : Naturals) : Naturals := match x with
+  | .inl a => .inr (Od.succ a)
+  | .inr a => .inl (Ev.succ a)
+```
+
+Using Lean's Natural Number Syntax
+===
+
+Writing `(succ (succ zero))` for two gets old fast. We would like to
+be able to write
+
+```lean
+#check_failure (0:Naturals)
+#check_failure (1:Naturals)
+#check_failure (2:Naturals)
+```
+ Lean has classes for zero and one. 
+```lean
+instance : Zero Naturals := ⟨ .zero ⟩
+instance : One Naturals := ⟨ .succ .zero ⟩
+
+#check (0:Naturals)
+#check (1:Naturals)
+```
+ We can also convert Lean's `Nat` to our `Naturals` (obviating the
+need for `Naturals`, but whatever).
+```lean
+def of_nat (n : Nat) : Naturals := match n with
+  | Nat.zero => .zero
+  | Nat.succ k => .succ (of_nat k)
+
+instance {n : Nat} : OfNat Naturals n := ⟨ of_nat n ⟩
+
+#check (2:Naturals)
+```
+
+Defining Addition
+===
+
+First we define addition for `Ev` and `Od`
+
+```lean
+mutual
+  def add_ev_ev (x y : Ev) := match x with
+    | .zero => y
+    | .succ k => .succ (add_od_ev k y)
+  def add_od_ev (x : Od) (y : Ev) := match x with
+    | .succ k => .succ (add_ev_ev k y)
+  def add_ev_od (x : Ev) (y : Od) := match x with
+    | .zero => y
+    | .succ k => .succ (add_od_od k y)
+  def add_od_od (x y : Od) := match x with
+    | .succ k => .succ (add_ev_od k y)
+end
+```
+ Then we define addition for `Naturals`. 
+```lean
+def Naturals.add (x y : Naturals) : Naturals := match x,y with
+  | .inl a, .inl b => .inl (add_ev_ev a b)
+  | .inl a, .inr b => .inr (add_ev_od a b)
+  | .inr a, .inl b => .inr (add_od_ev a b)
+  | .inr a, .inr b => .inl (add_od_od a b)
+```
+
+Instantiating Addition
+===
+
+Now we can define and instantiate addition.
+
+```lean
+instance : HAdd Naturals Naturals Naturals := ⟨ Naturals.add ⟩
+instance : Add Naturals := ⟨ Naturals.add ⟩
+
+def f (x y : Naturals) := x + y + 1
+
+#eval f 2 3         -- 5
+```
+ Other classes we might define for our `Naturals` type include 
+```lean
+#check (Add, Sub, Mul, Mod, Div, LT, LE)
+#check (HAdd, HSub, HMul, HDiv)
+#check Inhabited
+#check Ord
+#check LinearOrder
+#check Coe
+#check CommSemiring      -- adds theorems that interact with simplifier
+#check Countable         -- adds theorems
+```
+
+Exercises
+===
+
+<ex /> Recall the definition of `Dyadic` from Slide Deck II.4.
+- Instantiate `Zero`, `HAdd` and `Add` for this type.
+- Write a function `neg_pow2 (n : Nat) : Dyadic ` that computes $2^{-n}$.
+- Use the `sum` function with `Dyadic` to compute $\sum_{n=1}^8 n\cdot2^{-n}$ and use
+your `.to_rat` function to check the answer.
+
+<ex /> Instantiate `One`, `HMul` and `Mul` and instantiate them
+for the `Dyadic` type.
+
+<ex /> Define `product` similarly to how we defined `sum`. Compute
+$\prod_{n=1}^8 n\cdot2^{-n}$ with `Dyadic` and use your `.to_rat` function to check the answer.
+
+
 
 References
 ===
@@ -481,22 +602,6 @@ Conference on Computer Logic, *Lecture Notes in Computer Science*, vol. 417, Spr
 - Homotopy Type Theory: Univalent Foundations of Mathematics
 The Univalent Foundations Program Institute for Advanced Study (https://homotopytypetheory.org/book/).
 
-
-
-
-Exercises
-===
-
-<ex /> Recall the definition of `Dyadic` from Slide Deck II.4.
-- Instantiate `HasZero`and `HasAdd` for this type.
-- Use the `sum` function to compute $\sum_{n=1}^8 n\cdot2^{-n}$ and use
-your `.to_rat` function to check the answer.
-
-<ex /> Define the type classes `HasOne`and `HasMult` and instantiate them
-for the `Dyadic` type.
-
-<ex /> Define `product` similarly to how we defined `sum`. Compute
-$\prod_{n=1}^8 n\cdot2^{-n}$ and use your `.to_rat` function to check the answer.
 
 
 ```lean

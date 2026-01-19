@@ -602,7 +602,7 @@ and doubles it. Evaluate it on a few examples.
 
 
 /-
-Proposition
+Looking Ahead: Proposition
 ===
 
 Lean has a special type called Prop which stands for **Proposition**.
@@ -618,7 +618,7 @@ type `p` is not empty. Alternatively, you can think of hp as a `proof` of `p`.
 
 
 
-Arrow Types on Props are Implications
+Looking Ahead: Arrow Types on Props are Implications
 ===
 
 Arrow types which above denoted functions, can be

@@ -63,7 +63,7 @@ For example, in the following proposition built from these elements:
 ∀ x ∃ y , f x > y
 ```
 is read "For all x, there exists a y such that f(x) is greater than y". In this example,
-- The objects x and y are presumbly numbers
+- The objects x and y are presumably numbers
 - The symbol f is a function that maps numbers to numbers
 - The symbol > is predicate taking two arguments and return true or false
 
@@ -92,7 +92,7 @@ open Person
 #check ed
 
 /-
-Lean has a number of built inn types we can use, such as numbers, strings, and Booleans.
+Lean has a number of built in types we can use, such as numbers, strings, and Booleans.
 -/
 
 #check 1234
