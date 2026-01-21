@@ -121,6 +121,29 @@ def Vec.add {α : Type u} [Add α] {n : Nat} (x y : Vec α n)
 #check_failure Vec.add (Vec.nil.cons 1) ((Vec.nil.cons 1).cons 2)
 ```
 
+Aside
+===
+Note that we cannot write
+
+```lean
+inductive Vec (α : Type u) (n : Nat) : Type u where
+  | nil  : Vec α 0
+  | cons {n} :  α → Vec α n → Vec α (n + 1)
+```
+
+which gives the error
+
+>Note: The value of parameter `n` must be fixed throughout the
+inductive declaration. Consider making this parameter an index if it must vary.
+
+A **parameter** is constant in all constructors and in Lean appears before the `:`
+
+An **index** can vary between constructors and in Lean appears after the `:`
+
+<div class='fn'>The difference between parameters and indices is described in the <a href="https://lean-lang.org/doc/reference/latest/The-Type-System/Inductive-Types/#inductive-declarations">Lean Manual</a>. Also, in type theoretic terms, the motive of the recursor does not depend on parameters, but does depend on indices. </div>
+
+
+
 Exercises
 ===
 
@@ -132,13 +155,12 @@ it's type?
 
 <ex/> Consider the dependent type
 
-
 ```lean
 def chooseType : Bool → Type
 | true  => Nat
 | false => String
 ```
- Create a function `f : Bool → chooseType Bool`. 
+ Create a function `f : b → chooseType b`. 
 
 Sigma Types
 ===
@@ -615,6 +637,8 @@ The Univalent Foundations Program Institute for Advanced Study (https://homotopy
 --hide
 end LeanW26.NonSimpleTypes
 --unhide
+
+#help tactic
 ```
 
 License

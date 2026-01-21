@@ -502,11 +502,13 @@ def c : C := { x := 1, y := 2, z := 3 }
 Exercises
 ===
 
-<ex/> Define a structure `3DVector`.
+<ex/> Define a structure `Vector3D`.
 
-<ex/> Define a cross product function of two `3DVectors` and test it on examples.
+<ex/> Define a cross product function of two `Vector3D` terms and test it on examples.
 
 -/
+
+
 
 /-
 Products
