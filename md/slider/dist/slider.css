@@ -348,6 +348,7 @@ pre:has(> code:empty) {
     position: absolute;
     bottom : 10px;
     color: #aab;
+    padding-right: 20px;
 }
 
 .first-slide {

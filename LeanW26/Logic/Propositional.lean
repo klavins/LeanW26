@@ -9,9 +9,6 @@ import Mathlib
 
 namespace LeanW26
 
---notdone
-
-
 /-
 Propositional Logic
 ===
@@ -339,7 +336,7 @@ So we can apply it to a proof `hp` of `p` to get a proof of `q`.
 Exercise
 ===
 
-<ex /> Prove `⊢ (p → q) → p → q`
+<ex /> Prove `⊢ (p → q) → p → q` by hand.
 
 
 And Rules
@@ -423,7 +420,7 @@ Or Example
 Exercise
 ===
 
-<ex /> Prove `⊢ p ∧ q → p ∨ q`
+<ex /> Prove `⊢ p ∧ q → p ∨ q` by hand.
 
 
 Ex Falso
@@ -475,14 +472,10 @@ pattern matching the  against the `Γ`, `φ`, `ψ`, `ρ` in each inference rule
 - As we add complexity, finding a proof goes from intractable to undecidable
 - But checking a proof is linear in the number of steps.
 
-**Gödel's Incompleteness Theorem**
-- A **complete** logic is one in which every proposition `P` has a proof.
-- In any sufficiently expressive logic (strong enough to interpret Peano Arithmetic),
-there are propositions that cannot be proven true or false.
-- GIC applies to Lean 4 and most other proof assistants.
 
-<div class='fn'>E.g. "This sentence is not provable in Lean" can in principle be formalized in Lean.
-Or the continuum hypothesis, once ZF is encoded in Lean. </div>
+
+<div class='fn'>E.g. "This sentence is not provable in Lean" can in principle
+be formalized in Lean. Or the continuum hypothesis, once ZF is encoded in Lean.</div>
 
 Exercises
 ===

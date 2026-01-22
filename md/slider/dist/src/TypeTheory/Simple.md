@@ -155,7 +155,7 @@ Exercises
 - `(Type → Type) → Type`
 
 Use `#check` to make sure your functions have the desired types.
-*Challenge:*
+
 
 <ex /> The function `String.append` has the type `String → String → String`.
 Define a new function `prepend_label` that prepends the string "STRING: "

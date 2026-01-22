@@ -66,7 +66,7 @@ The symbol `⊢` is entered equivalently (and suggestively) as `\entails` or `\g
 Typing Rules
 ===
 
-Typing rules are written the same way as the inference rules in propositional logic.
+Typing rules are written as inference rules, common in papers on logic:
 ```none
   VAR   ————————————————
           Γ,x:τ ⊢ x:τ
@@ -301,15 +301,18 @@ Inhabitation
 ===
 The problem `Γ ⊢ ? : σ` amounts to *synthesizing* a term of a given type.
 It requires searching over *all* terms of which there are an infinite number.
-Thus, this problem is beyond intractable. It is *undecidable*.
 
 But Lean has some search algorithms for simple types.
 -/
 
-def thm (n : Nat) : n+1 > 0 :=     -- The aesop tactic finds a
-  by aesop                                -- term of the desired type
+def thm (n : Nat) : n+1 > 0 :=      -- The aesop tactic finds a
+  by aesop                          -- term of the desired type
 
-#print thm
+#print thm                          -- fun n ↦ of_eq_true (Eq.trans gt_iff_lt._simp_1
+                                    -- (Eq.trans (lt_mul_iff_one_lt_left'._simp_4 0)
+                                    -- (Eq.trans one_lt_mul_iff._simp_4 (Eq.trans
+                                    -- (congrArg (Or (0 < n)) zero_lt_one._simp_1)
+                                    -- (or_true (0 < n))))))
 
 /- This doesn't always work: -/
 
@@ -317,13 +320,9 @@ def goldbach : ∀ n : ℕ, n > 2 ∧ Even n →
                ∃ p q : ℕ, Nat.Prime p ∧
                           Nat.Prime q ∧
                           p + q = n :=
-  by aesop
+  by aesop                              -- aesop: failed to prove the goal after exhaustive search
 
 /-
-```none
-aesop: failed to prove the goal after exhaustive search
-```
-
 Keeping mathematicians in business (for now).
 -/
 

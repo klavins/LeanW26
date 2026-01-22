@@ -416,8 +416,9 @@ structure Dyn where
 def L : List Dyn := [ ⟨ ℕ, 3 ⟩, ⟨ String, "three"⟩ ]
 ```
 
-<div class='fn'>Note that `Dyn` is isomorphic to `Σ α, α`, which is a `Sigma` type,
-which also has this property.</div>
+<div class='fn'>Note that <tt>Dyn</tt> is isomorphic to <tt>Σ α, α</tt>,
+which is a <tt>Sigma</tt> type, which also has this property.
+So we could have written <tt>List (Σ α, α)</tt>.</div>
 
 
 Structures Can Be Self-Referential
@@ -470,9 +471,9 @@ def c : C := { x := 1, y := 2, z := 3 }
 Exercises
 ===
 
-<ex/> Define a structure `3DVector`.
+<ex/> Define a structure `Vector3D`.
 
-<ex/> Define a cross product function of two `3DVectors` and test it on examples.
+<ex/> Define a cross product function of two `Vector3D` terms and test it on examples.
 
 
 

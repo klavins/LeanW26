@@ -442,8 +442,9 @@ structure Dyn where
 def L : List Dyn := [ ⟨ ℕ, 3 ⟩, ⟨ String, "three"⟩ ]
 
 /-
-<div class='fn'>Note that `Dyn` is isomorphic to `Σ α, α`, which is a `Sigma` type,
-which also has this property.</div>
+<div class='fn'>Note that <tt>Dyn</tt> is isomorphic to <tt>Σ α, α</tt>,
+which is a <tt>Sigma</tt> type, which also has this property.
+So we could have written <tt>List (Σ α, α)</tt>.</div>
 -/
 
 

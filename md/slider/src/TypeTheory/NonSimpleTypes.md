@@ -155,6 +155,7 @@ it's type?
 
 <ex/> Consider the dependent type
 
+
 ```lean
 def chooseType : Bool → Type
 | true  => Nat
@@ -207,6 +208,9 @@ that takes a Sigma value representing a length and a vector of that length
 and returns the vector turned into a list.
 
 
+```lean
+--hide
+```
 
 Inductive Arguments
 ===
@@ -217,7 +221,7 @@ In the lambda calculus we encoded natural numbers using Church encodings.
 What if we wanted to do a proof by induction? We would have to do that
 *outside* the lambda calculus.
 
-In particular, we cannot expression the inductive principle:
+In particular, we cannot express the inductive principle:
 
 ```lean
 ∀ (P : ℕ → Prop), P 0 → (∀ n, P n → P (n+1)) → ∀ n, P n
@@ -225,6 +229,8 @@ In particular, we cannot expression the inductive principle:
 
 because we don't have a definition of ℕ as a type with an inductive
 principle that goes with it.
+
+--unhide
 
 Inductive Types
 ===
@@ -248,45 +254,65 @@ inductive Nat : Type where         -- Formation rule
 The Recursor
 ===
 
-Every time you define an inductive type, you get an inductive
-schema as a definition:
+Declaring an inductive type extends the kernel with its full inductive schema:
+the type, constructors, and **recursor**, which is the inductive principle for
+that type. For example,
 
 ```lean
 #check Nat.rec   -- {motive : Nat → Sort u} →
-                 -- motive Nat.nada →
-                 -- (∀ n : Nat, motive n → motive n.mas) →
+                 -- motive Nat.zero →
+                 -- (∀ n : Nat, motive n → motive n.succ) →
                  -- ∀ t : Nat, motive t
 ```
- You also get a way to show terms constructed differently are different. 
+ You will recognize this as being the induction principle for the natural numbers. If `Sort u`
+were Prop, then `motive` would be a predicate on the natural numbers.
+
+You also get a way to show terms constructed differently are different. 
 ```lean
 #check Nat.noConfusion -- {P : Sort u} →
-                      -- {x1 x2 : ℕ} →
-                      -- x1 = x2 →
-                      -- Nat.noConfusionType P x1 x2
+                       -- {x1 x2 : Nat} →
+                       -- x1 = x2 →
+                       -- Nat.noConfusionType P x1 x2
 
 #check Nat.noConfusionType -- Sort u → ℕ → ℕ → Sort u
 ```
 
 We will later use `noConfusion` to prove statements like `m.succ ≠ m.succ.succ`.
 
+<div class='fn'>We will usually use higher level operations like <tt>match</tt> and
+<tt>induction</tt> in Lean. But for those studying type theory or PL, understanding
+what the recursor is will be helpful in reading, for example,
+<a href="">https://homotopytypetheory.org/book/</a>.
+
 
 Derived Recursors
 ===
-Lean also defines the following in terms of `.rec`.
+Lean also defines the following variants in terms of `.rec`.
 
 ```lean
 #check Nat.recOn   -- {motive : Nat → Sort u} →
                    -- ∀ t : Nat,
-                   --   motive Nat.nada →
-                   --   (∀ n : Nat, motive n → motive n.mas) →
+                   --   motive Nat.zero →
+                   --   (∀ n : Nat, motive n → motive n.succ) →
                    --   motive t
 
 #check Nat.casesOn -- {motive : Nat → Sort u} →
                    -- ∀ t : Nat,
-                   --   motive Nat.nada →
-                   --   (∀ a : Nat, motive a.mas) →
+                   --   motive Nat.zero →
+                   --   (∀ a : Nat, motive a.succ) →
                    --   motive t
 ```
+
+
+<div class='fn'>
+For those already doing proofs, here's how you would form
+a proof by induction using `recOn`:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <tt>example (n : Nat) : ∑ k ≤ n, k = n*(n+1)/2 := Nat.recOn n sorry sorry
+</tt></br>
+Here, the motive is <tt>fun n => ∑ k ≤ n, k = n*(n+1)/2</tt>
+</div>
+
+
 
 Non-recursive Inductive Types
 ===
@@ -308,25 +334,50 @@ The `.casesOn` instance is particularly simple.
 ```
  For example: 
 ```lean
-def ThreeVal.toNat (x : ThreeVal) : ℕ :=
+def ThreeVal.toNat (x : ThreeVal) : Nat :=
   ThreeVal.casesOn x 1 2 3
 
 #eval ThreeVal.one.toNat     -- 1
 ```
+ We can explicitly state the motive using the `@` operator to make the implicit
+argument explicit: 
+```lean
+def ThreeVal.toNat' (x : ThreeVal) : Nat :=
+  @ThreeVal.casesOn (fun _ => Nat) x 1 2 3
+```
 
-Recursors With Recursive Definitions
+Recursive Definitions with the Recursor
 ===
 
-The following are equivalent
+When we write a recursive function with `match`
 
 ```lean
-def even1 (n : Nat) : Bool :=
-  Nat.recOn n true (fun k pk => ¬pk)
-
-def even2 (n : Nat) : Bool := match n with
+def even (n : Nat) : Bool :=
+  match n with
   | .zero => true
-  | .succ k => ¬ even2 k
+  | .succ k => ¬even k
 ```
+ Lean internally compiles this to a recursor definition, we can see with `#print even`:
+```lean
+def LeanW26.NonSimpleTypes.even : ℕ → Bool :=
+fun n ↦
+  Nat.brecOn n fun n f ↦
+    (match (motive := (n : ℕ) → Nat.below n → Bool) n with
+      | Nat.zero => fun x ↦ true
+      | k.succ => fun x ↦ decide ¬x.1 = true)
+      f
+```
+
+Note that there is no recursive call here. In fact, we can write
+
+```lean
+def even' (n : Nat) : Bool := Nat.recOn n true (fun _ ih => ¬ih)
+```
+
+To define the same function.
+<div class='fn'>See <a href="https://leanprover.github.io/theorem_proving_in_lean/theorem_proving_in_lean.pdf">Theorem Proving in Lean</a>, Sec. 8.4.</div>
+
+
 
 Restrictions on Inductive Types
 ===
@@ -349,6 +400,7 @@ def loop (b : T) : Nat := match b with
 An infinite loop.
 
 
+
 Positivity in Inductive Types
 ===
 
@@ -365,39 +417,52 @@ We will cover these when we get to proofs.
 
 
 
-Coming Soon: Using the Recursor in Proofs
+Parameters vs. Indices
 ===
+Coming back to the parameters vs indices discussion.
 
-You can use the recursor in proofs (we'll get to this later).
+A parameter is a constant throughout the recursor definition:
 
 ```lean
-#check Nat.noConfusion
+inductive A (n : Nat) : Type u where
+  | a : A n
 
-open Nat in
-example : ∀ (n : Nat), n.succ ≠ zero :=
-  Nat.rec (Nat.noConfusion) (fun n hn => Nat.noConfusion)
+#check A.rec           -- {n : ℕ} → {motive : A n → Sort u_1} →
+                       -- motive A.a → (t : A n) → motive t
 ```
- Which fortunately can also be written: 
+ While an index is passed to the motive and thus varies.  
 ```lean
-example : ∀ (n : Nat), n.succ ≠ .zero := by
-  intro n
-  induction n with
-  | zero => exact Nat.noConfusion
-  | succ k ih => exact Nat.noConfusion
+inductive B : Nat → Type u where
+  | b : B 0
+  | c n : B (n+1)
+
+#check B.rec           -- motive : (a : ℕ) → B a → Sort u_1} →
+                       -- motive 0 B.b → ((n : ℕ) →
+                       -- motive (n + 1) (B.c n)) → {a : ℕ} → (t : B a) →
+                       -- motive a t
 ```
 
 Exercise
 ===
 
 <ex /> Use List.rec to define a function that computes the
-length of a list. Use only List.rec, Nat.zero and Nat.succ.
+length of a list. Use only `List.recOn`, `Nat.zero` and `Nat.succ`.
 
 Start with
 ```lean
 def length {α} (L : List α) : Nat :=
-  List.rec sorry sorry sorry sorry
+  List.recOn L sorry (fun h t mt => sorry)
 ```
 
+And fill in the details by examining the definition:
+
+
+```lean
+#check List.recOn  -- {α : Type u} →  {motive : List α → Sort u_1} →
+                   -- (t : List α) → motive [] → ((head : α) →
+                   -- (tail : List α) → motive tail →
+                   -- motive (head :: tail)) → motive t
+```
 
 Various Advanced Types (Not in Lean)
 ===
@@ -637,8 +702,6 @@ The Univalent Foundations Program Institute for Advanced Study (https://homotopy
 --hide
 end LeanW26.NonSimpleTypes
 --unhide
-
-#help tactic
 ```
 
 License
