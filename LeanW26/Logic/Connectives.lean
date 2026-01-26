@@ -348,12 +348,10 @@ example : ¬(p ∨ q) ↔ ¬p ∧ ¬q := sorry
 example : ¬p ∨ ¬q → ¬(p ∧ q) := sorry
 example : ¬(p ∧ ¬p) := sorry
 example : p ∧ ¬q → ¬(p → q) := sorry
-example : ¬p → (p → q) := sorry
 example : (¬p ∨ q) → (p → q) := sorry
 example : p ∨ False ↔ p := sorry
 example : p ∧ False ↔ False := sorry
-example : (p → q) → (¬q → ¬p) := sorry
-example : (p → q) → (¬q → ¬p) := sorry
+
 
 
 /- <span></span> 2) Consider the Not-Or operation also known as Nor. It has the following inference rules:

@@ -9,7 +9,6 @@ import Mathlib
 
 namespace LeanW26
 
---notdone
 
 
 /-
@@ -19,7 +18,7 @@ Curry-Howard Isomorphism
 
 /-
 
-Curry-Howard Isomorphism Intuition
+Intuition
 ===
 
 Consider the types:
@@ -31,16 +30,16 @@ A → A
 The first is the type of a function on `A`. The second is the type of a
 function that takes a function on `C → A`.
 
-Wwe can read these as propositional formulas stating
+We can read these as propositional formulas stating
 ```
 A implies A
 (C implies A) implies C implies A
 ```
 
 The **Curry-Howard Isomorphism** emerges from the observation that the λ expressions
-having the above types look like the proofs that the above implications are tautologies!
+having the above types act like proofs that the above implications are tautologies!
 
-With this observation, the statement x : A reads "x is a proof of A".
+With this observation, the statement x : A reads "x is a proof of A". Furthermore,
 ```
 λ x : A => x
 ```
@@ -53,14 +52,19 @@ is a method that takes a proof of `A` and returns a proof of `A`, proving the im
 Types ≡ Propositions
 ===
 
-To state the CHI exacly, we will restrict ourselves to showing that Propositional Logic with only implication (→) is isomorphic to the simply typed λ-calculus. We will need one definition.
+To state the CHI exacly, we will restrict ourselves to showing that Propositional Logic with only
+implication (→) is isomorphic to the simply typed λ-calculus. We will need one definition.
 
-**Def:** Given a context Γ = { x₁: φ₁, x₂ : φ₂, ..., xₙ : φₙ }, the _range_ of Γ, denoted |Γ|, is { φ₁, φ₂, ..., φₙ }.
+**Def:** Given a context Γ = { x₁: φ₁, x₂ : φ₂, ..., xₙ : φₙ }, the _range_ of Γ,
+denoted |Γ|, is { φ₁, φ₂, ..., φₙ }.
 
 **Theorem:** If Γ ⊢ M : φ then |Γ| ⊢ φ.
 
-**Proof Sketch:** We convert any type derivation tree into a propositional proof by replacing VAR with AX, ABST with →-Intro, and APPL with →-Elim. This is done by induction on the proof tree. Here we just show an example which should be easily generalized. The type proof tree in the previous section can be re-written be removing all "x : "
-```
+**Proof Sketch:** We convert any type derivation tree into a propositional proof by replacing
+VAR with AX, ABST with →-Intro, and APPL with →-Elim. This is done by induction on the proof tree.
+Here we just show an example which should be easily generalized. The type proof tree in the
+slide deck on type inference can be re-written be removing all "x : " and renaming the rules.
+```none
     ————————————————————— AX       ———————————————————— AX
      C → A, C  ⊢  C → A               C → A, C  ⊢  C
   ——————————————————————————————————————————————————————————— →Elim
@@ -74,7 +78,10 @@ To state the CHI exacly, we will restrict ourselves to showing that Propositiona
 Curry-Howard: Propositions → Types
 ===
 
-The opposite direction of the CHI is more technical. We have to show how to produce a λ-calculus term M from a proof of `φ` so that `M : φ`. For example, suppose we started with the propositional proof tree in the previous section. How would we produce the type derivation from it? Here we will outline how this is done in general.
+The opposite direction of the CHI is more technical. We have to show how to produce a
+λ-calculus term M from aproof of `φ` so that `M : φ`. For example, suppose we started
+with the propositional proof tree in the previous section. How would we produce the
+type derivation from it? Here we will outline how this is done in general.
 
 First we need a way to produce a type context from a propositional context. Suppose that
 ```
@@ -86,35 +93,48 @@ and define
 Δ = { x₁ : φ₁, x₂ : φ₂, ..., xₙ : φₙ }
 ```
 
-where the `xᵢ` are introduced as new type variables. The object `Δ` is a function of `Γ` of course, but we just don't write it this way.
+where the `xᵢ` are introduced as new type variables. The object `Δ` is a simple function of `Γ`.
 
-**Theorem:** If `Γ ⊢ φ` then there exists a λ-calculus term `M` such that `∆ ⊢ M:φ`.
+**Theorem:** If `Γ ⊢ φ` then there exists a λ-calculus term `M` such that `∆ ⊢ M : φ`.
 
-The proof of this theorem uses induction on the proof tree that shows `Γ ⊢ φ`. Since there are three rules (AX, →Intro, and →-Elim), we have three cases, which we handle one by one.
+The proof uses induction on the proof tree that shows `Γ ⊢ φ`.
+Since there are three rules (AX, →Intro, and →-Elim), we have three cases,
+which we handle one by one.
 
-*Case:* The proof ends with `Γ,φ ⊢ φ` by the VAR rule
 
-*Subcase 1*: If `φ ∈ Γ` then there is some type variable `x` such that `x : φ ∈ Δ`. By the VAR rule we can conclude
+Proof : Case 1
+===
+
+**Case:** The proof ends with `Γ,φ ⊢ φ` by the VAR rule
+
+**Subcase 1**: If `φ ∈ Γ` then there is some type variable `x` such that `x : φ ∈ Δ`.
+By the VAR rule we can conclude
 ```
 Δ  ⊢  x : φ
 ```
 
-*Subcase 2*: If `φ ∉ Γ` then we introduce a new variable `x` such that `x : φ`. Once again by the VAR rule
+**Subcase 2**: If `φ ∉ Γ` then we introduce a new variable `x` such that `x : φ`.
+Once again by the VAR rule
 ```
 Δ, x : φ  ⊢  x : φ
 ```
 
-(Why do we need two sub-cases? It's because of how we defined `Δ` on the previous as related to `Γ` and not to `Γ ∪ { x : φ }`).
+Why do we need two sub-cases? It's because of how we defined `Δ` on the previous
+as related to `Γ` and not to `Γ ∪ { x : φ }`)
 
-*Case:* The proof ends with →Elim
+Proof : Case 2
+===
+
+**Case:** The proof ends with →Elim
 
 Suppose the proof that `Γ ⊢ φ` ends with
-```
+```none
     Γ ⊢ ρ → φ      Γ ⊢ ρ
   ——————————————————————————
            Γ ⊢ φ
 ```
-We need to find a λ-term that has type `φ`. Here the premises of the above rule instance allow us to assume the induction hypothesis that there exists `M` and `N` such that
+We need to find a λ-term that has type `φ`. Here the premises of the above rule
+instance allow us to assume the induction hypothesis that there exists `M` and `N` such that
 ```
 Δ ⊢ M : ρ → φ
 Δ ⊢ N : ρ
@@ -124,7 +144,10 @@ By the ABST rule, we can conclude
 Δ ⊢ M N : φ
 ```
 
-*Case:*: The proof ends with →Intro
+Proof : Case 3
+===
+
+**Case:**: The proof ends with →Intro
 
 Suppose the proposition `φ` has the form the `ρ → ψ` and the proof `Γ ⊢ ρ → ψ` ends with
 ```
@@ -133,7 +156,8 @@ Suppose the proposition `φ` has the form the `ρ → ψ` and the proof `Γ ⊢ 
     Γ ⊢ ρ → ψ
 ```
 
-Subcase 1: `ψ ∈ Γ`. By the induction hypothesis, there is a term `M` such that `Δ ⊢ M : ψ`. Introduce a variable `x` (not used in `Δ`) such that `x : ρ`. Then we can conclude
+**Subcase 1**: `ψ ∈ Γ`. By the induction hypothesis, there is a term `M` such that `Δ ⊢ M : ψ`.
+Introduce a variable `x` (not used in `Δ`) such that `x : ρ`. Then we can conclude
 ```
 Δ, x : ρ  ⊢  M : ψ
 ```
@@ -143,7 +167,7 @@ and by the ABST rule
 Δ ⊢ λ x : ρ => M : ρ →  ψ
 ```
 
-Subcase 2: `ψ ∉ Γ`. Then by the induction hypothesis, there is a term `M` such that
+**Subcase 2**: `ψ ∉ Γ`. Then by the induction hypothesis, there is a term `M` such that
 ```
 Δ, x : ρ ⊢ M : ψ
 ```
@@ -159,100 +183,144 @@ from which we may also conclude
 Propositions, Theorems, and Proofs in Lean
 ===
 
-The Curry-Howard approach is exactly how proofs of theorems are done in Lean. We show that the proposition to be proved is inhabited. In the examples below, we use the type Prop, from Lean's standard library.
+The Curry-Howard approach is exactly how proofs of theorems are done in Lean.
+We show that the proposition to be proved is inhabited. In the examples below,
+we use the type `Prop`, from Lean's standard library.
 
-We will start by declaring two variables of type Prop. We use curly braces here instead of parentheses for reasons we will explain later. -/
+We will start by declaring two variables of type Prop. We use curly braces here
+instead of parentheses for reasons we will explain later. -/
 
-variable { A C : Prop }
+variable {A C : Prop}
 
-/- To prove a proposition like A → A, we define the identity function from A into A, showing the proposition considered as a type is occupied. We have called the bound variable in the lambda expression _proof_, but you could call the bound variable anything you like. -/
-
+/- To prove a proposition like`A → A`, we define the identity function from `A` into `A`,
+showing the proposition considered as a type is occupied. -/
 def my_theorem : A → A :=
-  λ proof : A => proof
+  fun proof_of_A : A => proof_of_A
 
-/- Lean provides the keyword _theorem_ for definitions intended to be results, which is like def but does requires the type of the theorem being defined to be Prop. The theorem keyword also gives Lean and the user an indication of the intended use of the definition. -/
+/- We have called the bound variable in the lambda expression `proof`, but you could call the bound
+variable anything you like. A common scheme is to refer to a proof of `x` by `hx`. -/
 
-theorem my_lean_theorem : A → A :=
-  λ proof : A => proof
+def my_theorem' : A → A :=
+  fun hA : A => hA
+
+/- Lean provides the keyword `theorem` for definitions intended to be results, which is like `def`
+but requires the type of the function being defined to be `Prop`. -/
 
 /-
 Applying Theorems to Prove Other Theorems
 ===
 
-As another example, we prove the other proposition we encountered above. Here we call the bound variables pca for "proof of c → a" and pc for "proof of c".  -/
+As another example, we prove the other proposition we encountered above.
+Here we call the bound variables pca for "proof of c → a" and pc for "proof of c".  -/
 
 theorem another_theorem : (C → A) → C → A :=
-  λ pca : C → A =>
-  λ pc : C =>
-  pca pc
+  fun hca : C → A =>
+  fun hc : C =>
+  hca hc
 
-/- Or even better, we can use our first theorem to prove the second theorem: -/
+/- Or we can use our first theorem to prove the second theorem. Notice
+how `my_theorem` acts as a function from proofs to proofs. -/
 
 theorem another_theorem_v2 : (C → A) → C → A :=
-  λ h : C → A => my_lean_theorem h
+  fun h : C → A => my_theorem h
 
 /-
-More Examples
+Another Example
 ===
 -/
 
 theorem t1 : A → C → A :=
-  λ pa : A =>
-  λ pc : C =>                                -- Notice that pc is not used
-  pa
+  fun ha : A =>
+  fun hc : C =>                                -- Notice that hc is not used
+  ha
 
 theorem t2 : A → C → A :=
-  λ pa pc  => pa                             -- We can use λ with two arguments
+  fun ha hc  => ha                             -- We can use fun with two arguments
 
 theorem t3 : A → C → A :=
-  λ pa _ => pa                               -- We can tell Lean we know pc is not used
+  fun ha _ => ha                               -- We can tell Lean we know hc is not used
 
-example : A → C → A :=                       -- We can state and prove an unnamed theorem
-  λ pa _ => pa                               -- using the `example` keyword
+example : A → C → A :=                         -- We can state and prove an unnamed theorem
+  fun ha _ => ha                               -- using the `example` keyword
 
 /-
 Negation
 ===
 
-There are, of course, only so many theorems we can state using only implication. In the next chapter we will show how the λ-calculus can be extended to include `∧`, `∨`, and `False`. To give a sense of how this looks, here is an example using `¬p`, which as you will recall is the same as `p → False`. -/
+`False` is defined inductively as
+```lean
+inductive False where
+```
+That is, there are no terms of type False. -/
 
-variable (p q: Prop)
+--hide
+variable (p q : Prop)
+--unhide
+
+example : False → p :=
+  fun hf => nomatch hf     -- there is no work to do because there is
+                           -- nothing to match.
+
+/-
+In type theory, *a match with no cases may have any type*.
+
+To use this pattern, recall that `¬p` is the same as `p → False`
+(a function type).
+-/
 
 example : p → ¬p → q :=
-  λ pa pna => absurd pa pna
+  fun ha =>                        -- ha : p
+  fun hna =>                       -- hna : (p → False)
+  nomatch hna ha                   -- hna ha = False
 
 example : (p → q) → (¬q → ¬p) :=
-  fun hpq nq hp => absurd (hpq hp) nq
+  fun hpq nq hp => nomatch nq (hpq hp)
 
-/- Here, absurd is a theorem from the Lean standard library that we will discuss when we get to Lean's `inductive type` system.
+
+
+/-
+
+We will show how all the other connectives work in the next slide deck.
 
 Variable Declarations
 ===
 
-If we had used
-```hs
-variable (A C : Prop)
-```
+If we write
+-/
 
-above, then my_lean_theorem would have (A : Prop) as a non-implicit argument, so it would have to be applied as
-```hs
-my_lean_theorem hca h
-```
+def thm1 (A : Prop) : A → A :=
+  fun h : A => h
 
-which is ugly.
+/- vs -/
 
-The way Lean uses variables is by putting them silently into all definitions and theorems that use them. So my_theorem internally looks like:
-```hs
-theorem my_lean_theorem (A : Prop) : A → A :=
-  λ proof : A => proof
-```
+def thm2 {A : Prop} : A → A :=
+  fun h : A => h
 
-On the other hand, if we use curly braces in the variable declaration, as we did in the previous examples, then we get
-```hs
-theorem my_lean_theorem {A : Prop} : A → A :=
-  λ proof : A => proof
-```
-so that the type of A is an implicit argument to my_lean_theorem. -/
+/- We get the same theorem. But in the latter we are asking Lean to infer the type, which is
+usually more convenient. For example: -/
+
+example : (p → q) → (p → q) :=
+  fun hpq => thm1 (p → q) hpq
+
+/- vs -/
+
+example : (p → q) → (p → q) :=
+  fun hpq => thm2 hpq           -- Lean infers A is p → q
+
+/-
+Exercises
+===
+
+<ex /> Prove the following using only lambda expressions and (possibly) `nomatch`.
+
+-/
+
+variable (P Q : Prop)
+
+example : P → P → P → P := sorry
+example : (P → Q) → (¬Q → ¬P) := sorry
+example : ¬p → (p → q) := sorry
+example : (∀ x, x > 0) → (∀ y, y > 0) := sorry
 
 /-
 References

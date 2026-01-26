@@ -169,7 +169,7 @@ Just because we have a way to transform a proof of `¬p` into `False`
 does not mean we can have a construction of a proof of `p`.
 
 
-Classical Logic
+Classical Logic in Lean
 ===
 
 As an aside, Lean can reason both classically and constructively.
@@ -336,7 +336,7 @@ So we can apply it to a proof `hp` of `p` to get a proof of `q`.
 Exercise
 ===
 
-<ex /> Prove `⊢ (p → q) → p → q` by hand.
+<ex /> Prove `⊢ (p → q) → p → q` by hand in the format described in this slide deck.
 
 
 And Rules
@@ -420,7 +420,7 @@ Or Example
 Exercise
 ===
 
-<ex /> Prove `⊢ p ∧ q → p ∨ q` by hand.
+<ex /> Prove `⊢ p ∧ q → p ∨ q` by hand in the format described in this slide deck
 
 
 Ex Falso
@@ -480,13 +480,14 @@ be formalized in Lean. Or the continuum hypothesis, once ZF is encoded in Lean.<
 Exercises
 ===
 
-<ex /> Prove the statement `¬¬p↔p`. One direction requires classical logic. For that direction,
-formally state the law of the excluded middle as
-an inference rule and use the rule in your proof.
+<ex /> Prove the statement `¬¬p↔p` (by hand) in the format described in this slide deck.
+One direction requires classical logic.
+For that direction, formally state the law of the excluded middle as an inference rule and
+use the rule in your proof.
 
 <ex /> Prove both directions of or distributing over and
 - `⊢ p ∨ (q∧r) → (p∨q) ∧ (p∨r)`
-- ⊢ (p∨q) ∧ (p∨r) → p ∨ (q∧r)`
+- `⊢ (p∨q) ∧ (p∨r) → p ∨ (q∧r)`
 using your excluded middle inference rule where needed.
 
 

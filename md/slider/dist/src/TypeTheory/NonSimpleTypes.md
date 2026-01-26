@@ -454,10 +454,15 @@ def length {α} (L : List α) : Nat :=
   List.recOn L sorry (fun h t mt => sorry)
 ```
 
+
+
 And fill in the details by examining the definition:
 
 
 ```lean
+def length {α} (L : List α) : Nat :=
+  List.recOn L 0 (fun h t mt => 1+ mt)
+
 #check List.recOn  -- {α : Type u} →  {motive : List α → Sort u_1} →
                    -- (t : List α) → motive [] → ((head : α) →
                    -- (tail : List α) → motive tail →
@@ -676,13 +681,13 @@ Check that the following notation works for your `Dyadic`
 ```
 <ex /> Sums of Dyadics
 - Instantiate `HAdd` and `Add` for `Dyadic`.
-- Use the `sum` function with `Dyadic` to compute $\sum_{n=1}^8 n\cdot2^{-n}$ and use
+- Use the `sum` function with `Dyadic` to compute $\sum_{n=1}^4 n\cdot2^{-n}$ and use
 your `.to_rat` function to check the answer.
 
 <ex /> Products of Dyadics
 - Instantiate `HMul` and `Mul` for `Dyadic`.
 - Define `product` similarly to how we defined `sum`. Compute
-$\prod_{n=1}^8 n\cdot2^{-n}$ with `Dyadic` and use your `.to_rat` function to check the answer.
+$\prod_{n=1}^4 n\cdot2^{-n}$ with `Dyadic` and use your `.to_rat` function to check the answer.
 
 
 
