@@ -189,11 +189,11 @@ We'll get to this later.
 Exercise
 ===
 
-<ex /> Which of the following two statements cannot be proven without the law of
-the excluded middle?
+<ex /> Which of the following two statements
+if any cannot be proven without the law of the excluded middle?
 - `p ∨ (q∧r) → (p∨q) ∧ (p∨r)`
 - `(p∨q) ∧ (p∨r) → p ∨ (q∧r)`
-
+- `((p→q)→p)→p`
 
 
 Contexts
@@ -367,13 +367,13 @@ the weaker statement `φ` or the weaker statement `ψ`.
 And Example
 ===
 
-**Example**: Show `{p∧q} ⊢ {q∧p}`
+**Example**: Show `{p∧q} ⊢ q∧p`
 
 **Proof**:
 - Apply ∧-Intro to get sub-goals:
-    - Goal 1: `{p∧q} → {q}`
+    - Goal 1: `{p∧q} ⊢ q`
         - Apply `∧-Elim-Right`
-    - Goal 2: `{p∧q} → p`
+    - Goal 2: `{p∧q} ⊢ p`
         - Apply `∧-Elim-Left`
 
 Or Rules
@@ -404,7 +404,7 @@ If we also know that both `φ` and `ψ` separately entail `ρ`, then we know tha
 Or Example
 ===
 
-**Example**: Show `{p∨q} ⊢ {q∨p}`
+**Example**: Show `{p∨q} ⊢ q∨p`
 
 **Proof**:
 - Apply `∨-Elim` with `φ=p`, `ψ=q` and `ρ = q∨p` to give three sub-goals
@@ -434,8 +434,7 @@ Finally, we have the a rule for the ¬ connective:
 ```
 
 which states that you can conclude anything if you have a proof of ⊥.
-This rule is also know as **ex falso sequitur quodlibet** or just **ex falso**
-or the **principle of explosion**!
+This rule is also know as **ex falso sequitur quodlibet** or just **ex falso**.
 
 Example with False
 ===
@@ -480,15 +479,17 @@ be formalized in Lean. Or the continuum hypothesis, once ZF is encoded in Lean.<
 Exercises
 ===
 
-<ex /> Prove the statement `¬¬p↔p` (by hand) in the format described in this slide deck.
-One direction requires classical logic.
-For that direction, formally state the law of the excluded middle as an inference rule and
-use the rule in your proof.
-
-<ex /> Prove both directions of or distributing over and
+<ex /> Prove both directions of `∨` distributing over `∧`
 - `⊢ p ∨ (q∧r) → (p∨q) ∧ (p∨r)`
 - `⊢ (p∨q) ∧ (p∨r) → p ∨ (q∧r)`
-using your excluded middle inference rule where needed.
+
+<ex /> Prove the statement `(¬¬p) ↔ p` (by hand) in the format described in this slide deck.
+One direction requires classical logic.
+For that direction, formally state the law of the excluded
+middle as an inference rule and use the rule in your proof.
+
+
+
 
 
 

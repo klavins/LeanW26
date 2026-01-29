@@ -11,7 +11,6 @@ namespace LeanW26
 
 --notdone
 
-
 /-
 Equality
 ===
@@ -21,14 +20,17 @@ Equality
 Objects, Functions and Equality
 ===
 
-In this chapter we extend the first order logic discussed in the last chapter to deal with functions of objects in our universe.
+We extend the first order logic to deal with functions of objects in our universe.
 A critical components is a notion of **equality** between objects.
 
 Astonishingly, Lean's equality is not a built in type, but is defined in the standard library.
-Once we have equality, we can start working with statements about functions and their relationships in earnest.
+Once we have equality, we can start working with statements
+about functions and their relationships in earnest.
 
 Equality is Defined Inductively
 ===
+
+To lean how equality works, let's define our own version of it.
 -/
 
 universe u
@@ -41,7 +43,7 @@ inductive MyEq {α : Sort u} : α → α → Prop where
 example : MyEq 1 1 :=
   MyEq.refl 1
 
-/- We can define some notation -/
+/- We can define notation -/
 
 infix:50 " ~ "  => MyEq
 
@@ -51,8 +53,8 @@ infix:50 " ~ "  => MyEq
 Refl is Powerful
 ===
 
-In Lean, terms that are beta-reducible to each other are considered definitionally equal.
-You can show a lot of equalities automatically -/
+Terms that are beta-reducible to each other are considered definitionally equal.
+You can show many of equalities automatically -/
 
 example : 1 ~ 1 :=
   MyEq.refl 1
@@ -64,38 +66,86 @@ example : 9 ~ (3*(2+1)) := by
   apply MyEq.refl
 
 /-
+These proofs do not use rules of arithmetic like associativity.
+The use proof by computation (reducibility). So
+```lean
+| refl a : MyEq a a
+```
+works for any two definitionally equivalent forms of `a`.
+
+-/
+
+/-
 Substitution
 ===
 
 Substitution is the second most critical property of the equality.
-It allows us to conclude, for example, that if `x = y` then `p x` is equal to `p y`. -/
+It allows us to conclude, for example, that if `x = y` and `p x` then `p y`. -/
 
 theorem MyEq.subst {α : Sort u} {P : α → Prop} {a b : α}
                    (h₁ : a ~ b) (h₂ : P a) : P b := by
   cases h₁ with
   | refl => exact h₂
 
-/- You can use this theorem to show the standard properties we know and love about equality. -/
+/- In this example we substitute `y` for `x` to prove equality between two propositions. -/
 
-theorem my_symmetry (a b : Type): a ~ b → b ~ a := by
+example {x y : Nat} : x ~ y → (x > 2 ↔ y > 2) := by
+  intro h
+  apply MyEq.subst h       -- goal becomes x > 2 ↔ x > 2
+  exact ⟨ id, id ⟩
+
+
+/-
+Symmetry and Transitivity
+===
+You can use substitution to show the standard properties we know and love about equality. -/
+
+theorem MyEq.sym {α : Sort u} {a b : α} : a ~ b → b ~ a := by
   intro h
   apply MyEq.subst h
   exact MyEq.refl a
 
-theorem my_transitivity (a b c : Type) : a ~ b → b ~ c → a ~ c := by
+theorem MyEq.trans {α : Sort u} {a b c : α} : a ~ b → b ~ c → a ~ c := by
   intro hab hbc
   exact MyEq.subst hbc hab
 
-theorem my_congr_arg (a b : Type) (f : Type → Type) : a ~ b → f a ~ f b := by
+/- Here is an example showing the use of both of these theorems at once. -/
+
+example {x y z : Nat} : y ~ x → z ~ y → x ~ z := by
+  intro h1 h2
+  apply MyEq.trans (MyEq.sym h1) (MyEq.sym h2)
+
+/-
+Congruence
+===
+
+Congruence is critical for equation solving.
+-/
+
+theorem MyEq.congr_arg {α : Sort u} {a b : α} {f : α → α} : a ~ b → f a ~ f b := by
   intro hab
   apply MyEq.subst hab
   exact MyEq.refl (f a)
+
+
+/- For example, -/
+
+example (x y : Nat) : x ~ y → 2*x+1 ~ 2*y + 1 :=
+  fun h => MyEq.congr_arg (f := fun w => 2*w + 1) h
+
+/- Or, with tactics -/
+
+example (x y : Nat) : x ~ y → 2*x+1 ~ 2*y + 1 := by
+  intro h
+  apply MyEq.congr_arg (f := fun w => 2*w + 1)    -- goal becomes x ~ y
+  exact h
 
 /-
 Lean's Equality
 ===
 
-Lean's equality relation is called `Eq` and its notation is `=`, as we have been using. Lean also defines `rfl` to be `Eq.refl _` -/
+Lean's equality relation is called `Eq` and its notation is `=`,
+as we have been using. Lean also defines `rfl` to be `Eq.refl _` -/
 
 #print rfl
 example : 9 = 3*(2+1) := Eq.refl 9
@@ -103,44 +153,97 @@ example : 9 = 3*(2+1) := rfl
 
 /- Lean provides a long list of theorems about equality, such as -/
 
-#check Eq.symm
-#check Eq.subst
-#check Eq.substr
-#check Eq.trans
-#check Eq.to_iff
-#check Eq.mp
-#check Eq.mpr
-
-#check congrArg
-#check congrFun
-#check congr
+#check Eq.symm            -- a = b → b = a
+#check Eq.subst           -- a = b → motive a → motive b
+#check Eq.substr          -- b = a → p a → p b
+#check Eq.trans           -- a = b → b = c → a = c
+#check Eq.to_iff          -- a = b → (a ↔ b) when a and b are Prop
+#check Eq.mp              -- α = β → α → β
+#check Eq.mpr             -- α = β → β → α
+#check congrArg           -- (f : α → β), a₁ = a₂ → f a₁ = f a₂
+#check congrFun           -- f = g → ∀ (a : α), f a = g a
+#check congr              -- (h₁ : f₁ = f₂) (h₂ : a₁ = a₂) : f₁ a₁ = f₂ a₂
 
 /-
-Tactics for Equality
+Exercises
 ===
 -/
 
-/- rw[h]: Rewrites the current goal using the equality h. -/
+/-
+Triangle
+===
+
+h ▸ e is a macro built on top of Eq.rec and Eq.symm definitions.
+Given h : a = b and e : p a, the term h ▸ e has type p b. You can
+also view h ▸ e as a "type casting" operation where you change the
+type of e by using h. The macro tries both orientations of h. If
+the context provides an expected type, it rewrites the expected
+type, else it rewrites the type of e`. See the Chapter "Quantifiers
+and Equality" in the manual "Theorem Proving in Lean" for
+additional information.
+
+-/
+
+
+theorem of_eq_true1 {p : Prop} (h : p = True) : p := by
+  rw[h]
+  exact True.intro
+
+theorem of_eq_true2 {p : Prop} (h : p = True) : p :=
+  Eq.mpr h True.intro          -- α = β     → β         → α
+                               --   h    True.intro       p
+
+theorem of_eq_true3 {p : Prop} (h : p = True) : p :=
+  h ▸ True.intro
+
+/-
+Rewriting
+===
+-/
+
+/- `rw[h]`: Rewrites the current goal using the equality h. -/
 theorem t1 (a b : Nat) : a = b → a + 1 = b + 1 := by
   intro hab
   rw[hab]
 
-#print t1
+/- The `rw` tactic is doing a searching for pattern matches and then using
+the basic theorems about equality. -/
+
+#print t1      -- theorem LeanW26.t1 : ∀ (a b : ℕ), a = b → a + 1 = b + 1 :=
+               -- fun a b hab ↦ Eq.mpr (id (congrArg (fun _a ↦ _a + 1 = b + 1)
+               -- hab)) (Eq.refl (b + 1))
+
+/-
+More Rewriting
+===
+-/
 
 /- To use an equality backwards, use ← (written \left)-/
 theorem t2 (a b c : Nat) : a = b ∧ a = c → b + 1 = c + 1 := by
   intro ⟨ h1, h2 ⟩
   rw[←h1, ←h2]
 
-#print t2
-
 /- You can also rewrite assumptions using `at`. -/
 
-example (a b c : Nat) : a = b ∧ a = c → b + 1 = c + 1 := by
-  intro ⟨ h1, h2 ⟩
+example (a b c : Nat) : a = b → a = c → b + 1 = c + 1 := by
+  intro h1 h2
   rw[h1] at h2
   rw[h2]
 
+/- Rewrite variants include -/
+
+#help tactic rewrite          -- rewrite without rfl at the end
+#help tactic nth_rewrite      -- rewrite a specific sub-term
+
+/-
+Conv
+===
+-/
+
+/-
+Calc
+===
+-/
 
 /-
 The Simplifier
@@ -164,74 +267,13 @@ theorem t4 (a b c d e : Nat)
  : a = e := by
    simp only[h1,h2,h3,h4,Nat.add_comm]
 
-
 #check Nat.add_comm
-
-#print t4
-
-/-
-The `linarith` Tactic
-===
-
-By importing `Mathlib.Tactic.Linarith` (or just `Mathlib`), you get an even more powerful simplifier.
-
--/
-
-example (a b c d e : Nat)
- (h1 : a = b)
- (h2 : b = c + 1)
- (h3 : c = d)
- (h4 : e = 1 + d)
- : a = e := by linarith
-
-example (x y z : ℚ)
- (h1 : 2*x - y + 3*z = 9)
- (h2 : x - 3*y - 2*z = 0)
- (h3 : 3*x + 2*y -z = -1)
- : x = 1 ∧ y = -1 ∧ z = 2 := by
- apply And.intro
- . linarith
- . apply And.intro
-   . linarith
-   . linarith
-
-/-
-Example : Induction on Nat
-===
-
-As an example the brings many of these ideas together, consider the
-sum of the first `n` natural numbers, which is `n(n+1)/2`.
-A proof by induction would be:
-
-- **BASE CASE**: `0 = 0*1/2`
-- **NDUCTIVE STEP**: `∀ k, Sum k = k(k+1)/2 → Sum (k+1) = (k+1)(k+2)/2`
-
-We can do this in lean with the `induction` tactic. -/
-
-def S (n : Nat) : Nat := match n with
-  | Nat.zero => 0
-  | Nat.succ x => n + S x
-
-#eval S 3
-
-example : ∀ n, 2 * S n = n*(n+1) := by
-  intro n
-  induction n with
-  | zero => simp[S]
-  | succ k ih =>
-    simp[S,ih]
-    linarith
-
 
 /-
 Exercise
 ===
 
-<ex /> Consider the following definition of the sum of the first n squares. -/
-
-def S (n : Nat) : Nat := match n with
-  | Nat.zero => 0
-  | Nat.succ x => n*n + S x
+<ex /> TBD
 
 /-
 
@@ -246,7 +288,8 @@ example (n : Nat) : 6 * (S n) = (n * (n+1)) * (2*n+1) :=
 Inequality
 ===
 
-Every inductive type comes with a theorem called `noConfusion` that states that different constructors give different objects. -/
+Every inductive type comes with a theorem called `noConfusion`
+that states that different constructors give different objects. -/
 
 inductive Person where | mary | steve | ed | jolin
 open Person
@@ -304,3 +347,5 @@ Exercises
 --hide
 end LeanW26
 --nohide
+
+end LeanW26

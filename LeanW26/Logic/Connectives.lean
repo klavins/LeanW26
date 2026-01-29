@@ -9,7 +9,7 @@ import Mathlib
 
 namespace LeanW26
 
---notdone
+
 
 
 /-
@@ -325,14 +325,18 @@ example (p q : Prop) : (p ∧ (¬p)) → q :=
 
 /-
 <div class='fn'>https://github.com/leanprover/lean4/blob/master/src/Init/Notation.lean</div>
+
 -/
 
 
 /-
-Exercises
+Exercise
 ===
 
-<span></span> 1) Try to do as many of these as possible. These are borrowed from the [Theorem Proving in Lean Book](https://lean-lang.org/theorem_proving_in_lean4/title_page.html). -/
+<ex /> Do all these proofs, which are borrowed from the [Theorem Proving in Lean Book](https://lean-lang.org/theorem_proving_in_lean4/title_page.html). Use only term level proofs. No tactics.
+
+
+ -/
 
 variable (p q r : Prop)
 
@@ -354,9 +358,12 @@ example : p ∧ False ↔ False := sorry
 
 
 
-/- <span></span> 2) Consider the Not-Or operation also known as Nor. It has the following inference rules:
+/-
+Exercise
+===
 
-```
+<ex /> Consider the Not-Or operation also known as Nor. It has the following inference rules:
+```none
                  Γ ⊢ ¬p   Γ ⊢ ¬q
   `Nor-Intro` ———————————————————
                   Γ ⊢ Nor p q
@@ -367,8 +374,9 @@ example : p ∧ False ↔ False := sorry
                       Γ ⊢ ¬p                                 Γ ⊢ ¬q
 
 ```
+Define these in Lean. Here is a start:
 
-Define these in Lean. Here is a start: -/
+-/
 
 inductive Nor (p q : Prop) : Prop where
   | intro : ¬p → ¬q → Nor p q
@@ -377,50 +385,19 @@ def Nor.elim_left {p q : Prop} (hnpq : Nor p q) : Prop := sorry
 
 def Nor.elim_right {p q : Prop} (hnpq : Nor p q) : Prop := sorry
 
+/-
+Exercise
+===
 
-/- <span></span> 3) Use the above Nor inference rules, and the regular inference rules from Lean's propopsitional logic, to prove the following examples. Note, *do not* use the Classical logic option for these. It isn't needed.  -/
+<ex /> Use your `Nor` inference rules, and the regular inference rules from Lean's
+propopsitional logic, to prove the following examples.
+*Do not* use classical logic for these.
+
+-/
 
 example (p : Prop) : ¬p → (Nor p p) := sorry
 example (p q : Prop) : (Nor p q) → ¬(p ∨ q) := sorry
 example (p q : Prop) : ¬(p ∨ q) → (Nor p q) := sorry
-
-6) Using the definition of natural numbers below, define functions that perform multiplication and exponentiation similarly to how addition was defined in the Lecture on Inductive Types. Do *not* use Lean's built in natural numbers to do this. Evaluate your functions on a few examples to show they work. -/
-
-namespace Temp
-
-inductive Nat where
-  | zero : Nat
-  | succ : Nat → Nat           -- succ stand for `successor`
-
-open Nat
-
-def mult (m n : Nat) : Nat := sorry
-def exp (m n : Nat) : Nat := sorry
-
-/- <span></span>
-4) Using Lean's built in Integer class, we can define a new
-inductive type `GaussianInt` as follows: -/
-
-inductive GaussianInt where
-  | gint : Int → Int → GaussianInt
-
-open GaussianInt
-
-/- For example, we can represent the complex number 1 + 2 i with -/
-
-#check gint 1 2
-
-/- Define real, imaginary, addition, subtraction, complex conjugate, and multiplication operations for GaussianInt: -/
-
-def re (x : GaussianInt) : Int := sorry
-def im (x : GaussianInt) : Int := sorry
-def cadd (x y : GaussianInt) : GaussianInt := sorry
-def csub (x y : GaussianInt) : GaussianInt := sorry
-def conjugate (x : GaussianInt) : GaussianInt := sorry
-def cmul (x y : GaussianInt) : GaussianInt := sorry
-
-/- Test all of these with eval to make sure they work. -/
-
 
 /-
 References

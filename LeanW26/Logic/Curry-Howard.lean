@@ -203,12 +203,13 @@ variable anything you like. A common scheme is to refer to a proof of `x` by `hx
 def my_theorem' : A → A :=
   fun hA : A => hA
 
-/- Lean provides the keyword `theorem` for definitions intended to be results, which is like `def`
-but requires the type of the function being defined to be `Prop`. -/
 
 /-
 Applying Theorems to Prove Other Theorems
 ===
+
+Lean provides the keyword `theorem` for definitions intended to be results, which is like `def`
+but requires the type of the function being defined to be `Prop`.
 
 As another example, we prove the other proposition we encountered above.
 Here we call the bound variables pca for "proof of c → a" and pc for "proof of c".  -/
@@ -242,6 +243,16 @@ theorem t3 : A → C → A :=
 
 example : A → C → A :=                         -- We can state and prove an unnamed theorem
   fun ha _ => ha                               -- using the `example` keyword
+
+/-
+Note that the `example` keyword does not require its type
+to be `Prop`. For example:
+-/
+
+example : ℕ := 1
+
+/- Whereas `theorem` does require its type to be `Prop`. -/
+
 
 /-
 Negation
