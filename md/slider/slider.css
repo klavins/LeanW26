@@ -132,11 +132,12 @@ body {
 
 }
 
-.exercise + .title {
+.last_exercise + .title {
     margin-top: 8px;
     padding-top: 2px;
     border-top: 0.75pt solid gray;
 }
+
 
 
 

@@ -222,6 +222,7 @@ class Slider extends React.Component {
       key: i, 
       id: i, 
       title: "" + (i+1) + ". " + t,
+      next_title: titles[i+1],
       active: this.state.slide == i,
       go: this.go }))
     )

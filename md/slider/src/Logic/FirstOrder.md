@@ -180,7 +180,7 @@ Exercise
 
 <ex /> Prove
 ```lean
-example : on_left mary jolin
+example : on_left mary jolin := sorry
 ```
 
 

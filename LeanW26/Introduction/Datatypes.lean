@@ -823,25 +823,27 @@ Test on your examples.
 Exercises
 ===
 
-<ex/> Consider the *Dyadic Rationals*, which consist of fractions who's denominators
-are powers of two defined inductively as follows:
+<ex/> Consider the Dyadic Rationals, which consist of fractions who's
+denominators are powers of two. We can define PreDyadics as follows.
+We use the name `PreDyadic` elements in this type are not unique.
+Later we will use this definition to define the Dyadic Rationals properly.
 
 -/
 
 namespace Temp
 
-inductive Dyadic where
-  | zero    : Dyadic
-  | add_one : Dyadic → Dyadic  -- x ↦ x + 1
-  | half    : Dyadic → Dyadic  -- x ↦ x / 2
-  | neg     : Dyadic → Dyadic  -- x ↦ -x
+inductive PreDyadic where
+  | zero    : PreDyadic
+  | add_one : PreDyadic → PreDyadic  -- x ↦ x + 1
+  | half    : PreDyadic → PreDyadic  -- x ↦ x / 2
+  | neg     : PreDyadic → PreDyadic  -- x ↦ -x
 
 /-
 
-a. Define `Dyadic.double` that doubles a `Dyadic`.<br>
-b. Define `Dyadic.add` that adds two `Dyadic` values.<br>
-c. Define `Dyadic.mul` that multiplies two `Dyadic` values.<br>
-d. Define a function `Dyadic.to_rat` that converts a `Dyadic` to a `Rat`.<br>
+a. Define `PreDyadic.double` that doubles a `PreDyadic`.<br>
+b. Define `PreDyadic.add` that adds two `PreDyadic` values.<br>
+c. Define `PreDyadic.mul` that multiplies two `PreDyadic` values.<br>
+d. Define a function `PreDyadic.to_rat` that converts a `PreDyadic` to a `Rat`.<br>
 e. Define the Dyadics `5/8` and `-7/32` and test your methods on these values.<br>
 f. Are Dyadics as defined here unique? Why or why not?
 
