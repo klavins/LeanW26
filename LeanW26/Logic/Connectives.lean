@@ -30,7 +30,7 @@ To avoid naming conflicts with Lean's standard library, we open a namespace.
 
 namespace Temp
 
-variable (p q r: Prop)
+variable (p q r : Prop)
 
 /-
 The Axiom Rule
@@ -123,7 +123,8 @@ Recall the inference rule
 It states that whenever we know propositions `φ` and `ψ`, then we know `φ ∧ ψ`.
 From the point of view of types,
 it says that if `φ` and `ψ` are of type `Prop`, then so is `φ ∧ ψ`.
-In Lean we can write this as an inductive type definition as follows. -/
+
+We can write this as an inductive type definition as follows. -/
 
 inductive And (φ ψ : Prop) : Prop where
   | intro : φ → ψ → And φ ψ
@@ -189,6 +190,9 @@ example (p q : Prop) : (And p q) → p :=
 example (p q : Prop) : (And p q) → (And q p) :=
   fun hpq => And.intro hpq.right hpq.left
 
+
+
+
 /-
 Match is Enough
 ===
@@ -197,11 +201,72 @@ The elimination rules above are a _convenience_ we defined to make the proof loo
 more like propositional logic. We could also have written: -/
 
 example (p q : Prop) : (And p q) → p :=
-  λ hpq => match hpq with
-    | And.intro hp _ => hp
+  fun hpq => match hpq with
+             | And.intro hp _ => hp
 
-/- That is, `match` is a generic elimination rule.
+/- That is, `match` is a generic elimination rule. -/
 
+
+/-
+Lean's And
+===
+
+Lean's And is actually defined as a structure:
+```lean
+structure And (a b : Prop) : Prop where
+  intro ::
+  left : a
+  right : b
+```
+
+The `intro ::` part renames the introduction rule `intro` instead of the default `mk`.
+
+Lean also defines infix notation `∧`. So you can write
+
+-/
+
+end Temp -- stop using our temporary namespace and use Lean's And
+
+variable (p q r : Prop)
+#check p ∧ q
+
+/-
+Structures
+===
+With Lean's `And` we can do
+-/
+
+example : (p ∧ q) → (q ∧ p) :=
+  fun hpq => And.intro hpq.right hpq.left
+
+example : (p ∧ q) → (q ∧ p) :=
+  fun hpq => { left := hpq.right, right :=  hpq.left }
+
+example : (p ∧ q) → (q ∧ p) := fun hpq => ⟨ hpq.right, hpq.left ⟩
+
+/- You can also match the the parts of a structure in the argument to `fun`: -/
+
+example : (p ∧ q) → (q ∧ p) := fun ⟨ hp, hq ⟩ => ⟨ hq, hp ⟩
+
+/-
+which is defined in [Init.core](https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#And.symm).
+-/
+
+/-
+Exercise
+===
+
+<ex /> Show the following using a term level proof without using the library.
+
+-/
+
+example : p ∧ (q ∧ r) → (p ∧ q) ∧ r := sorry
+
+--hide
+namespace Temp
+--unhide
+
+/-
 Or is Inductive
 ===
 
@@ -298,6 +363,39 @@ example (p q : Prop) : And p (Not p) → q :=
 example : False → True :=
   False.elim
 
+
+
+
+/-
+If and only iff
+===
+
+If and only if is defined inductively as
+```lean
+structure Iff (p q : Prop) : Prop where
+  intro ::
+  mp : p → q → Iff p q
+  mpr : q → p → Iff q p
+```
+
+For example:
+
+-/
+
+example : Iff p p := Iff.intro id id
+
+/- or -/
+
+example : Iff p p := { mp := id, mpr := id }
+
+/- or -/
+
+example : Iff p p := ⟨ id, id ⟩
+
+
+
+
+
 /-
 Notation
 ===
@@ -310,6 +408,7 @@ notation for `Or`, `And`, and `Not` notation.
 ```hs
 infixr:30 " ∨ "  => Or
 infixr:35 " ∧ "   => And
+infixr:50 " ↔ "   => Iff
 notation:max "¬" p:40 => Not p
 ```
 
@@ -324,39 +423,46 @@ example (p q : Prop) : (p ∧ (¬p)) → q :=
   fun h => False.elim (h.right h.left)
 
 /-
-<div class='fn'>https://github.com/leanprover/lean4/blob/master/src/Init/Notation.lean</div>
+<div class='fn'>
+  <a href="https://github.com/leanprover/lean4/blob/master/src/Init/Notation.lean">
+  Lean's core notation</a></div>
 
 -/
+
+
 
 
 /-
 Exercise
 ===
 
+<ex /> Show
+
+-/
+
+example (p q : Prop) : (p ↔ q) ↔ (p → q) ∧ (q → p) := sorry
+
+/-
 <ex /> Do all these proofs, which are borrowed from the [Theorem Proving in Lean Book](https://lean-lang.org/theorem_proving_in_lean4/title_page.html). Use only term level proofs. No tactics.
 
 
  -/
 
-variable (p q r : Prop)
-
-example (h : p ∨ q) : q ∨ p := sorry
-example : p ∧ q ↔ q ∧ p := sorry
 example : p ∨ q ↔ q ∨ p := sorry
 example : (p ∨ q) ∨ r ↔ p ∨ (q ∨ r) := sorry
-example : p ∧ (q ∨ r) ↔ (p ∧ q) ∨ (p ∧ r) := sorry
-example : p ∨ (q ∧ r) ↔ (p ∨ q) ∧ (p ∨ r) := sorry
-example : (p → (q → r)) ↔ (p ∧ q → r) := sorry
-example : ((p ∨ q) → r) ↔ (p → r) ∧ (q → r) := sorry
 example : ¬(p ∨ q) ↔ ¬p ∧ ¬q := sorry
-example : ¬p ∨ ¬q → ¬(p ∧ q) := sorry
 example : ¬(p ∧ ¬p) := sorry
-example : p ∧ ¬q → ¬(p → q) := sorry
 example : (¬p ∨ q) → (p → q) := sorry
 example : p ∨ False ↔ p := sorry
 example : p ∧ False ↔ False := sorry
 
+/-
+<ex /> This one requires the law of the excluded middle, which can be
+used with `Classical.em`. The way to do this one is to do Or-elimination
+on `Classical.em p`.
+-/
 
+example : (p → q) → (¬p ∨ q) := sorry
 
 /-
 Exercise
@@ -382,7 +488,6 @@ inductive Nor (p q : Prop) : Prop where
   | intro : ¬p → ¬q → Nor p q
 
 def Nor.elim_left {p q : Prop} (hnpq : Nor p q) : Prop := sorry
-
 def Nor.elim_right {p q : Prop} (hnpq : Nor p q) : Prop := sorry
 
 /-

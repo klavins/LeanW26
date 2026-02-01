@@ -9,7 +9,6 @@ import Mathlib
 
 namespace LeanW26
 
---notdone
 
 
 /-
@@ -58,6 +57,9 @@ First order logic (FOL) enriches propositional logic with the following elements
 - All the connectives we have encountered so far: ∨, ∧, →, ¬, ...
 - **Types**: Traditional FOL does not have types, but we will use them anyway)
 
+Examples
+===
+
 For example, in the following proposition built from these elements:
 ```
 ∀ x ∃ y , f x > y
@@ -80,10 +82,9 @@ Objects
 **Objects** in FOL can come from any agreed upon universe.
 Since we will be using Lean to work with first order logic,
 you can just assume that objects are any basic terms: numbers,
-strings, lists, and so on. FOL does not allow us to quantify
-over functions and types, only basic objects. -/
+strings, lists, and so on.
 
-For example, suppose we wanted to reason about a finite number of people. In Lean we can enumerate them with a new type: -/
+In what follows, we'll use a simple type with four values. -/
 
 inductive Person where | mary | steve | ed | jolin
 
@@ -91,13 +92,6 @@ open Person
 
 #check ed
 
-/-
-Lean has a number of built in types we can use, such as numbers, strings, and Booleans.
--/
-
-#check 1234
-#check "uwece"
-#check true
 
 
 /-
@@ -116,7 +110,7 @@ def InSeattle (x : Person) : Prop := match x with
 #check InSeattle
 
 example : InSeattle steve ∨ ¬InSeattle steve :=
-  Or.inr (λ h => h)
+  Or.inr (fun h => h)
 
 /-
 Example: A Predicate on ℕ
@@ -124,16 +118,16 @@ Example: A Predicate on ℕ
 
 Or we might define a predicate inductively on the natural numbers. -/
 
-def is_zero(n : Nat) : Prop := match n with
+def is_zero (n : Nat) : Prop := match n with
   | Nat.zero => True
   | Nat.succ _ => False
 
 #check is_zero
 
 example : ¬is_zero 91 :=  -- is_zero 91 → False
-  λ h => h
+  fun h => h
 
-theorem t : is_zero 0 := True.intro
+theorem t0 : is_zero 0 := True.intro
 
 theorem t1 : True := True.intro
 
@@ -143,7 +137,7 @@ Predicates with Multiple Arguments
 
 We may define predicates to take any number or arguments, including no arguments at all. -/
 
--- No argument predicates are just normal propositions
+-- No-argument predicates are just normal propositions
 variable (P : Prop)
 #check P
 
@@ -198,6 +192,17 @@ and we can write: -/
 /- Similarly, >=, <, <=, != are all relations available in Lean. -/
 
 /-
+Exercise
+===
+
+<ex /> Define the relation `on_left` for `Person`.
+
+<ex /> Prove
+```lean
+example : on_left mary jolin
+```
+
+
 Universal Quantification
 ===
 
@@ -209,7 +214,7 @@ You can think of universal quantification like a potentially infinite AND:
 
 Example: Here's how you say "All people who live in Seattle also live in Washington":
 ```
-∀ x : Person , InSeattle(x) → InWashington(x)
+∀ x : Person , InSeattle x → InWashington x
 ```
 
 Example
@@ -221,8 +226,8 @@ A proof of this fact has the form of a function that takes an arbitrary person `
 and returns a proof that that person either lives in Seattle or does not. Thus, we can say: -/
 
 example : ∀ (x : Person) , (InSeattle x) ∨ ¬(InSeattle x) :=
-  λ x => match x with
-  | steve => Or.inr (λ h => h)
+  fun x => match x with
+  | steve => Or.inr (fun h => h)
   | mary => sorry
   | ed => sorry
   | jolin => sorry
@@ -265,9 +270,8 @@ Proving Statements with ∀
 ===
 
 The Curry-Howard Isomorphism works for universal quantification too.
-We could do as we did with propositional
+We could prove it as we did with propositional
  logic and rewrite the FOL rules as type inference.
- However, here we just say what it means in Lean (which amounts to the same thing).
 
 - **∀-intro**: To prove `∀ x , P x` we construction a function that takes
 any `x` and returns proof of `P x`.
@@ -283,7 +287,18 @@ For example, here is a proof that uses both of these rules: -/
 variable (α : Type) (P Q : α → Prop)
 
 example : (∀ x : α, P x ∧ Q x) → ∀ y : α, P y :=
-  λ h q => (h q).left
+  fun h y => And.left (h y)
+
+/-
+Exercise
+===
+
+<ex /> Show
+
+-/
+example : (∀ x, P x → Q x) → (∀ x, P x) → (∀ x, Q x) := sorry
+
+
 
 /-
 Existential Quantification
@@ -301,11 +316,11 @@ and it has similar introduction and elimination rules:
              Γ ⊢ ∃ x, φ                        Γ ⊢ ψ
 ```
 
-Constructively, the first rule says that if we have a proof of `φ` with `x` some
+Constructively, the first rule says that if we have a proof of `φ` with some
 term `t` substituted in for `x`, then we have a proof of `∃ x, φ`.
 
 The second says that if we have a proof of `∃ x, φ` and also a proof of `ψ`
-assuming `φ`, then we have a proof of ψ.
+assuming `φ`, then we have a proof of `ψ`.
 
 Lean's Implementation of Exists
 ===
@@ -315,23 +330,56 @@ In FOL, ∃ is usually just an abbreviation for as `¬∀¬`. However, from a co
 > knowing that it is not the case that every `x` satisfies`¬p` is not the same
 as having a particular `x` that satisfies p. (Lean manual)
 
-So in Lean, `∃` is defined inductively and constructively: -/
+So in Lean, `∃` is defined inductively and constructively:
 
-namespace temp
-
+```lean
 inductive Exists {α : Type} (p : α → Prop) : Prop where
   | intro (x : α) (h : p x) : Exists p
+```
+-/
 
-end temp
+/- Lean defined the shorthand -/
 
-/- All we need to introduce an existentially quantified statement with predicate `P`
+#check ∃ x, P x
+
+/- for -/
+
+#check Exists (fun x => P x)
+
+
+/-
+Using Exists-intro
+===
+
+All we need to introduce an existentially quantified statement with predicate `P`
 is an element and a proof that `P` holds for that element.
 
 An example use of the introduction rule is the following.
 Note the assumption that `α has at least one element q` is necessary.  -/
 
 example (q : α) : (∀ x , P x) → (∃ x , P x) :=
-  λ hp => Exists.intro q (hp q)
+  fun hp => Exists.intro q (hp q)
+
+/-
+Exercise
+===
+
+<ex /> Prove the following
+
+-/
+
+example : ∃ x, on_right mary x := sorry
+example : ∃ x, ¬on_right mary x := sorry
+
+/-
+<ex /> Using your definition of `PreDyadic` show:
+```lean
+example : ∀ x , ∃ y, y = neg x := sorry
+```
+
+-/
+
+
 
 /-
 Exists Elimination
@@ -342,29 +390,46 @@ The ∃-elim rule is defined in Lean as follows: -/
 namespace temp
 
 theorem Exists.elim {α : Type} {P : α → Prop} {b : Prop}
-   (h₁ : Exists (λ x => P x)) (h₂ : ∀ (a : α), P a → b) : b :=
+   (h₁ : ∃ x, P x) (h₂ : ∀ (a : α), P a → b) : b :=
   match h₁ with
-  | intro a h => h₂ a h
+  | _root_.Exists.intro a h => h₂ a h
 
 end temp
 
 /- In this rule
 
-  b is an arbitrary proposition
-  h₁ is a proof of ∃ x , p x
-  h₂ is a proof that ∀ a , p a → b
+- `b` is an arbitrary proposition
+- `h₁` is a proof of `∃ x , p x`
+- `h₂` is a proof that `∀ a , p a → b`
 
-which allow us to conclude b -/
+which allow us to conclude `b`. -/
 
 /-
 Exists Elimination Example
 ===
 
-For example, in -/
+For example, -/
+
+example (h₁ : ∃ x, P x ∧ Q x) : ∃ x, Q x ∧ P x :=
+  Exists.elim h₁ sorry                  -- ⊢  ∀ (a : α), P a ∧ Q a → ∃ x, Q x ∧ P x
+
+/- -/
 
 example (h₁ : ∃ x, P x ∧ Q x) : ∃ x, Q x ∧ P x :=
   Exists.elim h₁
-  (λ c h => Exists.intro c (And.intro h.right h.left))
+  (fun c h => sorry)                    -- ⊢ ∃ x, Q x ∧ P x
+
+/- -/
+
+example (h₁ : ∃ x, P x ∧ Q x) : ∃ x, Q x ∧ P x :=
+  Exists.elim h₁
+  (fun c h => Exists.intro c sorry)     -- ⊢  c ∧ P c
+
+/- -/
+
+example (h₁ : ∃ x, P x ∧ Q x) : ∃ x, Q x ∧ P x :=
+  Exists.elim h₁
+  (fun c h => Exists.intro c (And.intro h.right h.left))
 
 /-
 Example Proofs
@@ -376,16 +441,16 @@ variable (r : Prop)
 
 example : (∃ x, p x ∧ r) ↔ (∃ x, p x) ∧ r :=
   Iff.intro
-  (λ h => Exists.elim h (λ c h => And.intro (Exists.intro c h.left) h.right))
-  (λ h => Exists.elim h.left (λ c h1 => Exists.intro c (And.intro h1 h.right)))
+  (fun h => Exists.elim h (fun c h => And.intro (Exists.intro c h.left) h.right))
+  (fun h => Exists.elim h.left (fun c h1 => Exists.intro c (And.intro h1 h.right)))
 
 example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) :=
   Iff.intro
-  (λ h x hp => h (Exists.intro x hp))
-  (λ h he => Exists.elim he (λ y hy => h y hy))
+  (fun h x hp => h (Exists.intro x hp))
+  (fun h he => Exists.elim he (λ y hy => h y hy))
 
 example : ∀ (x : Person) , (InSeattle x) ∨ ¬(InSeattle x) :=
-  λ x => match x with
+  fun x => match x with
     | mary  | ed    => Or.inl trivial
     | steve | jolin => Or.inr (λ h => False.elim h)
 
@@ -395,16 +460,25 @@ More Example Proofs
 -/
 
 example : (∀ x : α, P x ∧ Q x) → ∀ y : α, P y :=
-  λ h : ∀ x : α, P x ∧ Q x =>
-  λ y : α =>
+  fun h : ∀ x : α, P x ∧ Q x =>
+  fun y : α =>
   (h y).left
 
 example (q : α) : (∀ x , P x) → (∃ x , P x) :=
-  λ h => Exists.intro q (h q)
+  fun h => Exists.intro q (h q)
+
+
+/-
+Intermediate Results
+===
+
+The keyword `have` is like `let`, except for `Prop`. You can use it to
+define intermediate results.
+-/
 
 example (h₁ : ∃ x, P x ∧ Q x) : ∃ x, Q x ∧ P x :=
-  have h₂ := λ w : α =>                                            -- proof of ∀
-             λ hpq : P w ∧ Q w  =>                                 -- proof of →
+  have h₂ := fun w : α =>                                            -- proof of ∀
+             fun hpq : P w ∧ Q w  =>                                 -- proof of →
              (Exists.intro w (And.intro hpq.right hpq.left))
   Exists.elim h₁ h₂
 
@@ -414,38 +488,28 @@ Exercises
 ===
 
 <ex /> Prove the following FOL examples using introduction, elimination, etc.
-using either direct proofs or tactics.
-Do not use the built in theorems from the standard library that match these, that's too easy.
+using term level proofs (and withouth using library theorems).
+
 -/
 
 variable (p q : Type → Prop)
 variable (r : Prop)
 
-example : (∃ x, p x ∨ q x) ↔ (∃ x, p x) ∨ (∃ x, q x) :=
-  sorry
+example : (∀ x, p x → r) ↔ (∃ x, p x) → r := sorry
+example : (∃ x, p x ∨ q x) ↔ (∃ x, p x) ∨ (∃ x, q x) :=  sorry
 
-example : (∀ x, p x → r) ↔ (∃ x, p x) → r :=
-  sorry
 
 
 /-
-Exercises
-===
-
 <ex /> Given the definitions of `Person`, `on_right`, and `next_to`:
 
 -/
 
 /- Prove the following examples: -/
 
-example : ∀ p q , on_right p q → next_to p q :=
-  sorry
-
-example : ∀ p : Person, ∃ q : Person, next_to p q :=
-  sorry
-
-example : ∀ p : Person, ∃ q : Person, ¬next_to p q :=
-  sorry
+example : ∀ p q , on_right p q → next_to p q := sorry
+example : ∀ p : Person, ∃ q : Person, next_to p q := sorry
+example : ∀ p : Person, ∃ q : Person, ¬next_to p q := sorry
 
 
 /-
@@ -489,83 +553,10 @@ theorem Exists1.elim {α : Type} {P : α → Prop} {b : Prop}
 <ex /> Prove the following examples:
 -/
 
-example : ∀ x, Exists1 (fun y : Person => x ≠ y ∧ ¬next_to y x ) :=  by
-  sorry
-
+example : ∀ x, Exists1 (fun y : Person => x ≠ y ∧ ¬next_to y x ) := sorry
 example (α : Type) (P : α → Prop) : Exists1 ( fun x => P x ) → ¬ ∀ x, ¬ P x  := sorry
-
 example : Exists1 (fun x => x=0) := sorry
-
 example : ¬Exists1 (fun x => x ≠ 0) := sorry
-
-
-/-
-Sigma Types Revisited
-===
-
-
-- Sigma, PSigma, Exists
-
-  Type    2nd Component  Universe   Proof Irrelevance Applies?
-  ----------------------------------------------------------------
-  Sigma   α → Type       Type       ❌ No
-  PSigma  α → Prop       Type       ❌ No (not automatically)
-  Exists  α → Prop       Prop       ✅ Yes
-
-  When B x : Prop, the Pi type corresponds to universal quantification:
-  ∀x:A,B(x)\forall x : A, B(x)∀x:A,B(x)
-  When B x : Type, it’s a dependent function type:
-  A function whose return type depends on the input.
-
-  Sigma types are *not* required for expressivity. They are completely
-  subsumed by inductive types. -/
-
-
-def NatPos := Σ' n : Nat, n > 0
-
-def x : NatPos := ⟨ 3 , by decide ⟩
-
-#check NatPos -- Type
-#check x -- NatPos, Not Prop
-
-inductive NatPos2 (n : Nat) : Type
-  | intro  : Π (_: n>0), NatPos2 n
-
-def y : NatPos2 3 := ⟨ by decide ⟩
-#check y -- NatPos, Not Prop
-
-/-
-
-Use of Sigma Types
-  def NatPos := Σ n : Nat, n > 0
-  def TypedValue := Σ T : Type, T
-  def EvenNat := Σ n : Nat, n % 2 = 0
-  def PreRat := Σ p : Int × Int, p.snd ≠ 0
-  def TaggedValue (Tag : Type) := Σ t : Tag, String
-
-All of these could be written inductively.
-
-
-
-Todo
-===
-
-Pi types on the other hand are necessary to define dependent types and are
-even used to define inductive types. For example,
--/
-
-#check NatPos2.intro
-
-/- is a Pi type. Lean doesn't write Pi out always, but it could have been written: -/
-
-inductive NatPos3 (n : Nat) : Type
-  | intro : Π (_: n>0), NatPos3 n
-
-#check NatPos3.intro
-
-def z : NatPos3 3 := ⟨ by decide ⟩
-#check z -- NatPos, Not Prop
-
 
 --hide
 end LeanW26

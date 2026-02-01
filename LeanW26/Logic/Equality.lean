@@ -339,7 +339,7 @@ theorem t10 : ed ≠ steve := by
   intro h
   trivial
 
-/-
+
 Exercises
 ===
 -/
@@ -347,5 +347,3 @@ Exercises
 --hide
 end LeanW26
 --nohide
-
-end LeanW26
