@@ -1,7 +1,7 @@
 section
   def Set (α : Type):= α → Prop
   variable (α : Type) (A B : Set α)
-  #check (x : α) →A x → B x -- Prop, no universe bump
+  #check (x : α) → A x → B x -- Prop, no universe bump
 end
 
 section

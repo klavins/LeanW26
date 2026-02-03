@@ -15,9 +15,12 @@ To avoid naming conflicts with Lean's standard library, we open a namespace.
 
 ```lean
 namespace Temp
-
+```
+ And we define some variables to use throughout. 
+```lean
 variable (p q r : Prop)
 ```
+ We begin by reviewing what we have previous covered about propositional logic. 
 
 The Axiom Rule
 ===
@@ -30,7 +33,7 @@ As discussed in the slide deck on Propositional Logic, the Axiom Rule is
   AX  ——————————
        Γ,φ ⊢ φ
 ```
-Here is a simple proof that `{hp:p} ⊢ p` in Lean using the Axiom rule: 
+Here is a proof of `{hp:p} ⊢ p` in Lean using the Axiom rule: 
 ```lean
 example (hp : p) : p :=  hp
 ```
@@ -39,7 +42,7 @@ example (hp : p) : p :=  hp
 hp : p
 ⊢ p
 ```
-Which says, give we have a proof `hp` of `p`, we need show `p`.
+Which says, given we have a proof `hp` of `p`, we need show `p`.
 This is easy, we just use `hp` itself.
 
 
@@ -48,7 +51,7 @@ Aside: def, theorem, example, lemma
 
 By the CHI, note that `def` and `theorem`
 are essentially the same from a type theory point of few. And `example` is
-just a theorem without a name.
+just a definition without a name.
 
 So in the above we could write:
 
@@ -66,7 +69,10 @@ def my_id.{u} {α : Sort u} (x : α) : α := x
 
 example (hp : p) : p := my_id hp
 ```
- So if you can write code in Lean you can prove theorems! 
+ Finally, example is not just for `Prop`: 
+```lean
+example : Nat := 10000001
+```
 
 Implication in Lean
 ===
@@ -76,7 +82,7 @@ write a lambda to get a simpler goal.
 
 ```lean
 example (hp : p) : q → p :=
-  fun hq => sorry
+  fun hq => sorry                           -- goal for the `sorry` is `p`
 
 example (hp : p) : q → p :=
   fun hq => hp
@@ -87,7 +93,7 @@ you can apply it to get a simpler goal.
 
 ```lean
 example (hpq : p → q) (hp : p) : q :=
-  hpq sorry
+  hpq sorry                                 -- goal for the `sorry` is `p`
 
 example (hpq : p → q) (hp : p) : q :=
   hpq hp
@@ -98,19 +104,19 @@ And is an Inductive Type
 
 Recall the inference rule
 ```none
-                 Γ ⊢ φ   Γ ⊢ ψ
+              Γ ⊢ p   Γ ⊢ q
     ∧-Intro ———————————————————
-                  Γ ⊢ φ ∧ ψ
+                Γ ⊢ p ∧ q
 ```
 
-It states that whenever we know propositions `φ` and `ψ`, then we know `φ ∧ ψ`.
+It states that whenever we know propositions `p` and `q`, then we know `p ∧ q`.
 From the point of view of types,
-it says that if `φ` and `ψ` are of type `Prop`, then so is `φ ∧ ψ`.
+it says that if `p` and `q` are of type `Prop`, then so is `p ∧ q`.
 
 We can write this as an inductive type definition as follows. 
 ```lean
-inductive And (φ ψ : Prop) : Prop where
-  | intro : φ → ψ → And φ ψ
+inductive And (p q : Prop) : Prop where
+  | intro : p → q → And p q
 ```
  You can think of `h : And p q` as
 - `h` has type `And p q`
@@ -122,24 +128,26 @@ Proof of a Simple Proposition
 
 Consider the proposition
 ```lean
-p → q → And p q
+q → p → And p q
 ```
 
-As a type, this proposition is a function from `p to q` to `And p q`.
+As a type, this proposition is a function from `q` to `p` to `And p q`.
 Thus, we know that an element of this type has the form
 ```lean
-fun hp => fun hq => sorry
+fun hq => fun hp => sorry
 ```
 
-For the body of this lambda abstraction, we need to `introduce` an `And` type,
-which requires proofs of `p` and `q` respectively. Using the inductive definition of `And` we get
+For the body of this lambda abstraction, we need to *introduce* an `And` type,
+which requires proofs of `q` and `p` respectively. Using the inductive definition of `And` we get
 ```lean
-fun hp hq => And.intro hp hq
+fun hq hp => And.intro hp hq
 ```
 
+The complete proof is then:
+
 ```lean
-example (p q : Prop) : p → q → And p q :=
-  fun hp => fun hq => And.intro hp hq
+example : q → p → And p q :=
+  fun hq => fun hp => And.intro hp hq
 ```
 
 And Elimination
@@ -147,9 +155,9 @@ And Elimination
 
 The elimination rules for `And` are
 ```none
-                Γ ⊢ φ ∧ ψ                          Γ ⊢ φ ∧ ψ
+                Γ ⊢ p ∧ q                          Γ ⊢ p ∧ q
   ∧-Elim-Left ——————————————         ∧-Elim-Right —————————————
-                  Γ ⊢ φ                              Γ ⊢ ψ
+                  Γ ⊢ p                              Γ ⊢ q
 ```
 which we can write in Lean as 
 ```lean
@@ -167,10 +175,7 @@ Proofs with And-Elimination
 
 With these inference rules, we can do more proofs: 
 ```lean
-example (p q : Prop) : (And p q) → p :=
-  fun hpq => And.left hpq
-
-example (p q : Prop) : (And p q) → (And q p) :=
+example : (And p q) → (And q p) :=
   fun hpq => And.intro hpq.right hpq.left
 ```
 
@@ -181,10 +186,11 @@ The elimination rules above are a _convenience_ we defined to make the proof loo
 more like propositional logic. We could also have written: 
 ```lean
 example (p q : Prop) : (And p q) → p :=
-  fun hpq => match hpq with
-             | And.intro hp _ => hp
+  fun hpq =>
+  match hpq with
+  | And.intro hp _ => hp
 ```
- That is, `match` is a generic elimination rule. 
+ You can view `match` as a generic elimination rule. 
 
 Lean's And
 ===
@@ -199,19 +205,22 @@ structure And (a b : Prop) : Prop where
 
 The `intro ::` part renames the introduction rule `intro` instead of the default `mk`.
 
-Lean also defines infix notation `∧`. So you can write
+Lean defines infix notation `∧`. So you can write
 
 
 ```lean
+--hide
 end Temp -- stop using our temporary namespace and use Lean's And
-
 variable (p q r : Prop)
-#check p ∧ q
+--unhide
+
+
+#check p ∧ q                        --p ∧ q : Prop
 ```
 
 Structures
 ===
-With Lean's `And` we can do
+With Lean's `And` defined as a structure we can do
 
 ```lean
 example : (p ∧ q) → (q ∧ p) :=
@@ -220,15 +229,14 @@ example : (p ∧ q) → (q ∧ p) :=
 example : (p ∧ q) → (q ∧ p) :=
   fun hpq => { left := hpq.right, right :=  hpq.left }
 
-example : (p ∧ q) → (q ∧ p) := fun hpq => ⟨ hpq.right, hpq.left ⟩
+example : (p ∧ q) → (q ∧ p) :=
+  fun hpq => ⟨ hpq.right, hpq.left ⟩
 ```
- You can also match the the parts of a structure in the argument to `fun`: 
+ You can match the the parts of a structure in the argument to `fun`: 
 ```lean
-example : (p ∧ q) → (q ∧ p) := fun ⟨ hp, hq ⟩ => ⟨ hq, hp ⟩
+example : (p ∧ q) → (q ∧ p) :=
+  fun ⟨ hp, hq ⟩ => ⟨ hq, hp ⟩
 ```
-
-which is defined in [Init.core](https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#And.symm).
-
 
 Exercise
 ===
@@ -249,20 +257,20 @@ Or is Inductive
 
 To introduce new `Or` propositions, we use the two introduction rules
 ```none
-                 Γ ⊢ φ                              Γ ⊢ ψ
+                 Γ ⊢ p                              Γ ⊢ p
  ∨-Intro-Left ———————————          ∨-Intro-Right ————————————
-               Γ ⊢ φ ∨ ψ                          Γ ⊢ φ ∨ ψ
+               Γ ⊢ p ∨ q                          Γ ⊢ p ∨ q
 ```
 In Lean, we have 
 ```lean
-inductive Or (φ ψ : Prop) : Prop where
-  | inl (h : φ) : Or φ ψ
-  | inr (h : ψ) : Or φ ψ
+inductive Or (p q : Prop) : Prop where
+  | inl (h : p) : Or p q
+  | inr (h : q) : Or p q
 ```
- And we can use this inference rule in proofs as well. 
+ For example,  
 ```lean
-example (p q : Prop) : And p q → Or p q :=
-  fun hpq => Or.inr hpq.right
+example : And p q → Or p q :=
+  fun ⟨ _, hq ⟩ => Or.inr hq
 ```
 
 Or Elimination
@@ -276,6 +284,7 @@ Recall the inference rule
 ```
 
 It allows us to prove `r` given proofs that `p → r`, `q → r` and `p ∨ q`.
+
 We can define this rule in Lean with: 
 ```lean
 def Or.elim {p q r : Prop} (hpq : Or p q) (hpr : p → r) (hqr : q → r) :=
@@ -289,14 +298,50 @@ Example of and Or-Elim Proof
 
 Here is an example proof using or introduction and elimination. 
 ```lean
-example (p q : Prop): Or p q → Or q p :=
+example : Or p q → Or q p :=
   fun hpq => Or.elim
-      hpq                                 -- p ∨ q
-      (fun hp => Or.inr hp)               -- p → (q ∨ p)
-      (fun hq => Or.inl hq)               -- q → (q ∨ p)
+      hpq                                 -- ⊢ p ∨ q
+      (fun hp => Or.inr hp)               -- ⊢ p → (q ∨ p)
+      (fun hq => Or.inl hq)               -- ⊢ q → (q ∨ p)
 ```
- Once again, the elimination rule is just a convenience and
-the proof could have been written with `match`.
+ Once again, the elimination rule is just a convenience.
+The proof could have been written with `match`. 
+```lean
+example : Or p q → Or q p :=
+  fun hpq =>
+  match hpq with
+  | inl hp => Or.inr hp
+  | inr hq => Or.inl hq
+```
+
+True is Inductive
+===
+`True` is defined inductively as
+```lean
+inductive True : Prop where
+  | intro : True
+```
+
+for example:
+
+
+```lean
+example : Or True True := Or.inl True.intro
+```
+ Or, using Lean's notation and definitons 
+```lean
+--hide
+end Temp
+--unhide
+
+#print trivial                 -- theorem trivial : True := True.intro
+
+example : True ∨ True := Or.inl trivial
+
+--hide
+namespace Temp
+--unhide
+```
 
 False is Inductive
 ===
@@ -306,14 +351,16 @@ except we add the requirement that `False` is also type of `Prop`.
 ```lean
 inductive False : Prop
 ```
- From False we get the `Not` connective, which is "syntactic sugar". 
+ From `False` we get the `Not` connective, which is *syntactic sugar*. 
 ```lean
 def Not (p : Prop) : Prop := p → False
 ```
  Here is an example proof: 
 ```lean
-example (p q : Prop) : (p → q) → (Not q → Not p) :=
-  fun hpq hq => fun hp => hq (hpq hp)
+example : (p → q) → (Not q → Not p) :=
+  fun hpq hq =>
+  fun hp =>
+  hq (hpq hp)
 ```
 
 False Elimination
@@ -333,7 +380,7 @@ def False.elim {p : Prop} (h : False) : p :=
  Here is an example proof that from False you can conclude anything: 
 ```lean
 example (p q : Prop) : And p (Not p) → q :=
-  fun h => False.elim (h.right h.left)
+  fun ⟨ hp, hq ⟩ => False.elim (hq hp)
 ```
  This elimination rule provides another way to prove the example: 
 ```lean
@@ -352,19 +399,21 @@ structure Iff (p q : Prop) : Prop where
   mpr : q → p → Iff q p
 ```
 
+with notation `p ↔ q`.
+
 For example:
 
 
 ```lean
-example : Iff p p := Iff.intro id id
+example : p ↔ p := Iff.intro id id
 ```
  or 
 ```lean
-example : Iff p p := { mp := id, mpr := id }
+example : p ↔ p := { mp := id, mpr := id }
 ```
  or 
 ```lean
-example : Iff p p := ⟨ id, id ⟩
+example : p ↔ p := ⟨ id, id ⟩
 ```
 
 Notation
@@ -387,10 +436,12 @@ which has lower precedence than `¬`.
 
 Now we can write: 
 ```lean
+--hide
 end Temp -- start using Lean's propositions
+--unhide
 
 example (p q : Prop) : (p ∧ (¬p)) → q :=
-  fun h => False.elim (h.right h.left)
+  fun ⟨ hp, hnp ⟩ => False.elim (hnp hp)
 ```
 
 <div class='fn'>
@@ -436,14 +487,14 @@ Exercise
 
 <ex /> Consider the Not-Or operation also known as Nor. It has the following inference rules:
 ```none
-                 Γ ⊢ ¬p   Γ ⊢ ¬q
-  `Nor-Intro` ———————————————————
-                  Γ ⊢ Nor p q
+             Γ ⊢ ¬p   Γ ⊢ ¬q
+  Nor-Intro ———————————————————
+               Γ ⊢ Nor p q
 
 
-                    Γ ⊢ Nor p q                            Γ ⊢ Nor p q
-  `Nor-Elim-Left` ——————————————         `Nor-Elim-Right` —————————————
-                      Γ ⊢ ¬p                                 Γ ⊢ ¬q
+                 Γ ⊢ Nor p q                          Γ ⊢ Nor p q
+  Nor-Elim-Left ——————————————         Nor-Elim-Right —————————————
+                   Γ ⊢ ¬p                                Γ ⊢ ¬q
 
 ```
 Define these in Lean. Here is a start:
@@ -462,23 +513,19 @@ Exercise
 
 <ex /> Use your `Nor` inference rules, and the regular inference rules from Lean's
 propopsitional logic, to prove the following examples.
-*Do not* use classical logic for these.
+
 
 
 ```lean
-example (p : Prop) : ¬p → (Nor p p) := sorry
-example (p q : Prop) : (Nor p q) → ¬(p ∨ q) := sorry
-example (p q : Prop) : ¬(p ∨ q) → (Nor p q) := sorry
+example : ¬p → (Nor p p) := sorry
+example : (Nor p q) → ¬(p ∨ q) := sorry
+example : ¬(p ∨ q) → (Nor p q) := sorry
 ```
 
 References
 ===
 
-- https://lean-lang.org/theorem_proving_in_lean4/inductive_types.html
-
-- Homotypy Type Theory Book
-  https://homotopytypetheory.org/book/
-  Chapter 5 covers inductive types
+- Section 7.3 of [TPL](https://lean-lang.org/theorem_proving_in_lean4/inductive_types.html) describes how to define the propositional connectives.
 
 
 ```lean

@@ -1,0 +1,194 @@
+namespace LeanW26
+
+/-
+Course Project
+===
+-/
+
+/-
+Goals
+===
+
+- Move from small, self-contained Lean examples to a more substantial theory or tool
+
+- Projects may
+    - Formalize an area of mathematics
+    - Verify a program or digital system
+    - Implement a domain specific language or embedding
+    - Introduce a new tactic for a specific theory
+    - Model an interesting Type Theory construct
+
+- Synergies with your current research and interests are encouraged
+
+- Group work ok, but clearly defined roles are important
+
+- Out of scope : AI projects that use Lean as a black box
+
+
+Outcomes
+===
+
+
+- You learn something!
+- You draft a contribution to Mathlib, CSLib, SciLean, PhysLean, etc.
+- You get preliminary results for a paper
+
+
+Requirements
+===
+
+- A standalone Lean project in a Git repository (public or private)
+
+- A thorough README.md describing your work
+- Well-commented code
+- For group work, clear deliniation of who did what. I'll look at Github-blame
+- A lightning presentation (2 min) of your results on the last day of class
+- All work completed on the repo by Wed March 18
+
+-/
+
+/-
+Using an AI Assistant
+===
+
+<img src='img/ai.jpg' class='img-up-right' width=45%></img>
+
+AI can be a good way to
+- Brainstorm
+- Find Prior Art
+- Estimate a timeline
+- Prototype code
+
+It becomes counterproductive when
+- It sends you in the wrong direction
+- Goes in circles
+- Does not cite sources
+
+Be careful
+- Realize AI output is at best "in the right ballpark"
+- Realize AI output is produced by reframing text written by other people
+- Independently verify all claims, citations,
+- Do old-fashioned searches for primary sources
+
+
+Choosing a Project
+===
+Example prompts in a conversation I had with [Copilot](https://m365.cloud.microsoft/chat/).
+
+<div class='small'><table class='condensed'>
+<tr>
+  <td> Does Lean 4 define W-Types?</td>
+  <td><span class='highlight'>No ...</span></td>
+</tr>
+<tr>
+  <td> What standard mathematical objects would benefit from W-Types if they were available in Mathlib?  </td>
+  <td><span class='highlight'>Bunch of examples ...</span></td>
+</tr>
+<tr>
+  <td> Which of these are already defined some other way in Mathlib?  </td>
+  <td><span class='highlight'>All of them ...</span></td>
+</tr>
+<tr>
+  <td> Can trajectories of the 3x+1 problem be represented as a W-Type?  </td>
+  <td><span class='highlight'>Yes ...</span></td>
+</tr>
+<tr>
+  <td> I don't mean trajectories, I mean the backwards tree structure.  </td>
+  <td><span class='highlight'> this is exactly the kind of structure W‑types were designed for!</span></td>
+</tr>
+<tr>
+  <td> What is an M-Type? </td>
+  <td><span class='highlight'>Probably correct, should check ...</span>
+</td>
+<tr>
+  <td> Co-induction is not defined in Lean (except for Prop I think). So how would I represent M-Types in Lean? </td>
+  <td><span class='highlight'>Suggests I look at https://github.com/alexkeizer/QpfTypes<span></td>
+</tr>
+<tr>
+  <td> What is an example of a theorem about 3x+1 that could be nicely expressed using this formalism? </td>
+  <td><span class='highlight'>Several examples ...</span></td>
+</tr>
+<tr>
+  <td> Is there a paper about the use of M-Types to represent the 3x+1 problem?  </td>
+  <td><span class='highlight'>None found ...</span></td>
+</tr>
+<tr>
+  <td> What are some reasons to suspect that formallizing 3x+1 using M-Types would *not* be interesting.  </td>
+  <td><span class='highlight'>Long list that sounds like people posturing on reddit ...</span></td>
+</tr>
+<tr>
+  <td> List reasons why it might actually *be* interesting. </td>
+  <td> <span class='highlight'>Long list that sounds too good to be true ...</span></td>
+</tr>
+<tr>
+  <td> I am a CS PhD student taking a class on Lean and have about 10 hours per week for 5 weeks to do this project. Give me<ul>
+    <li> A few achievable goals, ranked by how hard they are
+    <li> For each goal, a list of intermediate steps (preferable the goals have common first steps)
+    <li> A list of gotchas I should look out for
+  </ul>  </td>
+  <td><span class='highlight'>A plan that needs considerable refinement ...</span></td>
+</tr>
+<tr>
+  <td>Give me a citation list of all relevant sources with links.</td>
+  <td><span class='highlight'>Gives 17 references, some of which are quite interesting</span></td>
+</tr>
+</table></div>
+-/
+
+/-
+Customization Prompt
+===
+
+<div class='small'>
+
+<p style="margin-bottom: 2px !important;">Tone and style:
+<ul>
+<li>Use concise, technical, and non-evaluative language.
+<li>Do not flatter the user or praise questions.
+<li>Avoid certainty; qualify claims and note uncertainty or limitations.
+</ul>
+
+<p style="margin-bottom: 2px !important;">Values and boundaries:
+<ul>
+<li>Prioritize human-created sources and primary materials over AI-generated summaries.
+<li>Do not mimic the style of living artists, animators, researchers, or authors unless permission is documented.
+<li>Avoid long rambling text; prefer structured outlines, references, and drafts that invite human revision.
+<li>Avoid techno-utopian framing or AGI advocacy; present multi-sided evidence and risks.
+<li>Disclose when content is model-generated.
+</ul>
+
+<p style="margin-bottom: 2px !important;">Evidence and verification:
+<ul>
+<li>Cite sources with links for factual claims; prefer peer-reviewed, standards bodies, or primary documents.
+<li>Flag contested or low-evidence claims; always provide multiple viewpoints.
+<li>When sources are absent or low-quality, state “Insufficient evidence” and stop.
+<li>Reminde the user that AI generated output is very likely innacurate.
+</ul>
+
+<p style="margin-bottom: 2px !important;">Privacy and safety:
+<ul>
+<li>Do not process or retain sensitive personal data unless necessary and explicitly requested.
+<li>Avoid content that could cause physical, emotional, or financial harm.
+</ul>
+
+<p style="margin-bottom: 2px !important;">Creative assistance constraints:
+<ul>
+<li> Offer process support (structure, checklists, critique prompts) rather than final “finished” creative artifacts.
+<li> For writing, provide outlines, references, and revision plans; avoid final prose unless asked, and keep it minimal and clearly labeled.
+</ul>
+
+</div>
+
+-/
+
+/-
+First Steps
+===
+
+<ex /> Have a conversation with [Copilot](https://m365.cloud.microsoft/chat/). You might choose
+several different topics to explore in different chats. Choose one you like and turn in the
+prompts you used and the ultimate project idea you settled on (ok if this changes as you learn more).
+
+Note: If you are adamantly opposed to using an AI for this exercise, find a well-informed human (or potentially several) and ask them your questions.
+
+-/

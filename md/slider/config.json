@@ -92,6 +92,7 @@
         {
             "name": "Appendix",
             "decks": [      
+                { "path": "src/Appendix/Projects.md", "title": "Projects" },
                 { "path": "src/Appendix/Latex.md", "title": "Latex" }
             ]
         }
