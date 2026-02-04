@@ -132,11 +132,12 @@ body {
 
 }
 
-.exercise + .title {
+.last_exercise + .title {
     margin-top: 8px;
     padding-top: 2px;
     border-top: 0.75pt solid gray;
 }
+
 
 
 
@@ -277,6 +278,30 @@ pre {
     top: 5px;
     right: 5px;
     cursor: pointer;
+}
+
+.small {
+    font-size: 7pt;
+    padding: 0;
+    margin: 0;
+}
+
+.highlight {
+    color: purple;
+    padding: 0;
+    margin: 0;    
+}
+
+.condensed {
+  border-collapse: collapse; /* Removes the gap between cell borders */
+  border-spacing: 0;         /* Ensures no extra space between cells */
+}
+
+.condensed th, 
+.condensed td {
+  padding: 1pt !important;            /* Removes space inside the cells */
+  margin: 0     !important;            /* Reset, though margins usually don't affect td */
+  border: 1pt solid #eee !important; 
 }
 
 .infoview-container {

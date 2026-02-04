@@ -9,9 +9,6 @@ import Mathlib
 
 namespace LeanW26
 
-
-
-
 /-
 Propositional Connectives
 ===
@@ -25,7 +22,6 @@ built-in operators in CIC, they are just defined terms of more primitive inducti
 
 In this slide deck we redefine the connectives, to understand how they work.
 To avoid naming conflicts with Lean's standard library, we open a namespace.
-
 -/
 
 namespace Temp
@@ -336,8 +332,8 @@ The proof could have been written with `match`. -/
 example : Or p q → Or q p :=
   fun hpq =>
   match hpq with
-  | inl hp => Or.inr hp
-  | inr hq => Or.inl hq
+  | .inl hp => Or.inr hp
+  | .inr hq => Or.inl hq
 
 /-
 True is Inductive
@@ -425,8 +421,8 @@ If and only if is defined inductively as
 ```lean
 structure Iff (p q : Prop) : Prop where
   intro ::
-  mp : p → q → Iff p q
-  mpr : q → p → Iff q p
+  mp : p → q
+  mpr : q → p
 ```
 
 with notation `p ↔ q`.

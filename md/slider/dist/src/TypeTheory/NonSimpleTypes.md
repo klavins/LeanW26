@@ -670,24 +670,24 @@ def f (x y : Naturals) := x + y + 1
 Exercises
 ===
 
-<ex /> Recall the definition of `Dyadic` from Slide Deck II.4.
+<ex /> Recall the definition of `PreDyadic` from Slide Deck II.4.
 - Instantiate `Zero` and `One`
 - To compute a function `f : α → α` `n` times, you can use the f^[n] notation.
-Check that the following notation works for your `Dyadic`
+Check that the following notation works for your `PreDyadic`
 ```lean
 #eval add_one^[8] 0    - 8
 #eval double^[8] 1     - 256
 #eval half^[8] 1       - 1/256
 ```
-<ex /> Sums of Dyadics
-- Instantiate `HAdd` and `Add` for `Dyadic`.
-- Use the `sum` function with `Dyadic` to compute $\sum_{n=1}^4 n\cdot2^{-n}$ and use
+<ex /> Sums of PreDyadics
+- Instantiate `HAdd` and `Add` for `PreDyadic`.
+- Use the `sum` function with `PreDyadic` to compute $\sum_{n=1}^4 n\cdot2^{-n}$ and use
 your `.to_rat` function to check the answer.
 
-<ex /> Products of Dyadics
-- Instantiate `HMul` and `Mul` for `Dyadic`.
+<ex /> Products of PreDyadics
+- Instantiate `HMul` and `Mul` for `PreDyadic`.
 - Define `product` similarly to how we defined `sum`. Compute
-$\prod_{n=1}^4 n\cdot2^{-n}$ with `Dyadic` and use your `.to_rat` function to check the answer.
+$\prod_{n=1}^4 n\cdot2^{-n}$ with `PreDyadic` and use your `.to_rat` function to check the answer.
 
 
 

@@ -21,9 +21,15 @@ class Thumbnail extends React.PureComponent {
           ? this.props.title.slice(0,19) + "..."
           : this.props.title;
 
-    if (this.props.title.includes("Exercise")) {
+    if (this.props.title.includes("Exercise") ) {
+      console.log(this.props);
       classes += " exercise";
     }
+
+    if (this.props.title.includes("Exercise") && !this.props.next_title.includes("Exercise") ) {
+      console.log(this.props);
+      classes += " last_exercise";
+    }    
 
     if (this.props.title.includes("div")) {
       t = "1. Under Construction";

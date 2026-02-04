@@ -134,7 +134,7 @@ def is_zero (n : Nat) : Prop := match n with
 #check is_zero
 
 example : ¬is_zero 91 :=              -- is_zero 91 → False
-  id                                  -- False → False (definitionally)
+  id
 
 example : is_zero 0 :=                -- True (definitionally)
   trivial

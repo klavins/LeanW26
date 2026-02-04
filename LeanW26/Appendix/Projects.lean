@@ -60,15 +60,14 @@ AI can be a good way to
 - Prototype code
 
 It becomes counterproductive when
-- It sends you in the wrong direction
-- Goes in circles
-- Does not cite sources
+- It goes in circles
+- It does not cite sources
 
 Be careful
 - Realize AI output is at best "in the right ballpark"
 - Realize AI output is produced by reframing text written by other people
-- Independently verify all claims, citations,
-- Do old-fashioned searches for primary sources
+- Verify all claims, citations and do old-fashioned searches for primary sources
+- The value of research has to do with the community of people who find it interesting. Talk to experts in the field as you progress.
 
 
 Choosing a Project
@@ -185,10 +184,11 @@ Customization Prompt
 First Steps
 ===
 
-<ex /> Have a conversation with [Copilot](https://m365.cloud.microsoft/chat/). You might choose
-several different topics to explore in different chats. Choose one you like and turn in the
-prompts you used and the ultimate project idea you settled on (ok if this changes as you learn more).
+<ex /> Have a conversation with [Copilot](https://m365.cloud.microsoft/chat/). Choose
+several different topics to explore in different chats. Choose one you like and turn in the prompts you used and the ultimate project idea you settled on (ok if this changes as you learn more).
 
-Note: If you are adamantly opposed to using an AI for this exercise, find a well-informed human (or potentially several) and ask them your questions.
+Ask at least twice as many questions as in example above, focusing on making sure you understand the output, and asking clarifying questions.
+
+**Note**: If you are opposed to using an AI for this exercise, find a well-informed human (or potentially several) and ask them your questions.
 
 -/
