@@ -10,7 +10,7 @@ import Lean
 
 namespace LeanW26
 
---notdone
+
 
 /-
 Tactics
@@ -69,7 +69,7 @@ theorem my_thm1 : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by
 
 /-
 Here, `sorry` is a tactic that closes the proof, but uses the `sorryAx` axiom.
-Lean then underlines the example keyword to denote that you still have work to do.
+Lean underlines the theorem name to denote that you still have work to do.
 -/
 
 #help tactic sorry
@@ -77,18 +77,32 @@ Lean then underlines the example keyword to denote that you still have work to d
 #print axioms my_thm1   -- 'LeanW26.my_thm' depends on axioms: [sorryAx]
 
 /-
+Tactics Produce Terms
+===
+
+Tactics produce terms that are then type checked by the kernel. -/
+
+theorem t (x y z : ℚ) (h1 : 2*x < 3*y) (h2 : -4*x + 2*z < 0) (h3 : 12*y - 4* z < 0)
+  : False := by
+  linarith
+
+#print t
+
+/-<div style='font-family: monospace; font-size: 4pt'>
+ fun x y z h1 h2 h3 ↦ False.elim (Linarith.lt_irrefl (Eq.mp (congrArg (fun _a ↦ _a < 0) (Ring.of_eq (Ring.add_congr (Ring.add_congr (Ring.mul_congr (Ring.cast_pos (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 4))) (Ring.sub_congr (Ring.mul_congr (Ring.cast_pos (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 2))) (Ring.atom_pf x) (Ring.add_mul (Ring.mul_add (Ring.mul_pf_right x (Nat.rawCast 1) (Ring.mul_one (Nat.rawCast 2))) (Ring.mul_zero (Nat.rawCast 2)) (Ring.add_pf_add_zero (x ^ Nat.rawCast 1 * Nat.rawCast 2 + 0))) (Ring.zero_mul (x ^ Nat.rawCast 1 * Nat.rawCast 1 + 0)) (Ring.add_pf_add_zero (x ^ Nat.rawCast 1 * Nat.rawCast 2 + 0)))) (Ring.mul_congr (Ring.cast_pos (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 3))) (Ring.atom_pf y) (Ring.add_mul (Ring.mul_add (Ring.mul_pf_right y (Nat.rawCast 1) (Ring.mul_one (Nat.rawCast 3))) (Ring.mul_zero (Nat.rawCast 3)) (Ring.add_pf_add_zero (y ^ Nat.rawCast 1 * Nat.rawCast 3 + 0))) (Ring.zero_mul (y ^ Nat.rawCast 1 * Nat.rawCast 1 + 0)) (Ring.add_pf_add_zero (y ^ Nat.rawCast 1 * Nat.rawCast 3 + 0)))) (Ring.sub_pf (Ring.neg_add (Ring.neg_mul y (Nat.rawCast 1) (Ring.neg_one_mul (Meta.NormNum.IsInt.to_raw_eq (Meta.NormNum.isInt_mul (Eq.refl HMul.hMul) (Meta.NormNum.IsInt.of_raw ℚ (Int.negOfNat 1)) (Meta.NormNum.IsNat.to_isInt (Meta.NormNum.IsNat.of_raw ℚ 3)) (Eq.refl (Int.negOfNat 3)))))) Ring.neg_zero) (Ring.add_pf_add_lt (x ^ Nat.rawCast 1 * Nat.rawCast 2) (Ring.add_pf_zero_add (y ^ Nat.rawCast 1 * (Int.negOfNat 3).rawCast + 0))))) (Ring.add_mul (Ring.mul_add (Ring.mul_pf_right x (Nat.rawCast 1) (Meta.NormNum.IsNat.to_raw_eq (Meta.NormNum.isNat_mul (Eq.refl HMul.hMul) (Meta.NormNum.IsNat.of_raw ℚ 4) (Meta.NormNum.IsNat.of_raw ℚ 2) (Eq.refl 8)))) (Ring.mul_add (Ring.mul_pf_right y (Nat.rawCast 1) (Meta.NormNum.IsInt.to_raw_eq (Meta.NormNum.isInt_mul (Eq.refl HMul.hMul) (Meta.NormNum.IsNat.to_isInt (Meta.NormNum.IsNat.of_raw ℚ 4)) (Meta.NormNum.IsInt.of_raw ℚ (Int.negOfNat 3)) (Eq.refl (Int.negOfNat 12))))) (Ring.mul_zero (Nat.rawCast 4)) (Ring.add_pf_add_zero (y ^ Nat.rawCast 1 * (Int.negOfNat 12).rawCast + 0))) (Ring.add_pf_add_lt (x ^ Nat.rawCast 1 * Nat.rawCast 8) (Ring.add_pf_zero_add (y ^ Nat.rawCast 1 * (Int.negOfNat 12).rawCast + 0)))) (Ring.zero_mul (x ^ Nat.rawCast 1 * Nat.rawCast 2 + (y ^ Nat.rawCast 1 * (Int.negOfNat 3).rawCast + 0))) (Ring.add_pf_add_zero (x ^ Nat.rawCast 1 * Nat.rawCast 8 + (y ^ Nat.rawCast 1 * (Int.negOfNat 12).rawCast + 0))))) (Ring.mul_congr (Ring.cast_pos (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 2))) (Ring.sub_congr (Ring.add_congr (Ring.mul_congr (Ring.neg_congr (Ring.cast_pos (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 4))) (Ring.neg_add (Ring.neg_one_mul (Meta.NormNum.IsInt.to_raw_eq (Meta.NormNum.isInt_mul (Eq.refl HMul.hMul) (Meta.NormNum.IsInt.of_raw ℚ (Int.negOfNat 1)) (Meta.NormNum.IsNat.to_isInt (Meta.NormNum.IsNat.of_raw ℚ 4)) (Eq.refl (Int.negOfNat 4))))) Ring.neg_zero)) (Ring.atom_pf x) (Ring.add_mul (Ring.mul_add (Ring.mul_pf_right x (Nat.rawCast 1) (Ring.mul_one (Int.negOfNat 4).rawCast)) (Ring.mul_zero (Int.negOfNat 4).rawCast) (Ring.add_pf_add_zero (x ^ Nat.rawCast 1 * (Int.negOfNat 4).rawCast + 0))) (Ring.zero_mul (x ^ Nat.rawCast 1 * Nat.rawCast 1 + 0)) (Ring.add_pf_add_zero (x ^ Nat.rawCast 1 * (Int.negOfNat 4).rawCast + 0)))) (Ring.mul_congr (Ring.cast_pos (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 2))) (Ring.atom_pf z) (Ring.add_mul (Ring.mul_add (Ring.mul_pf_right z (Nat.rawCast 1) (Ring.mul_one (Nat.rawCast 2))) (Ring.mul_zero (Nat.rawCast 2)) (Ring.add_pf_add_zero (z ^ Nat.rawCast 1 * Nat.rawCast 2 + 0))) (Ring.zero_mul (z ^ Nat.rawCast 1 * Nat.rawCast 1 + 0)) (Ring.add_pf_add_zero (z ^ Nat.rawCast 1 * Nat.rawCast 2 + 0)))) (Ring.add_pf_add_lt (x ^ Nat.rawCast 1 * (Int.negOfNat 4).rawCast) (Ring.add_pf_zero_add (z ^ Nat.rawCast 1 * Nat.rawCast 2 + 0)))) (Ring.cast_zero (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 0))) (Ring.sub_pf Ring.neg_zero (Ring.add_pf_add_zero (x ^ Nat.rawCast 1 * (Int.negOfNat 4).rawCast + (z ^ Nat.rawCast 1 * Nat.rawCast 2 + 0))))) (Ring.add_mul (Ring.mul_add (Ring.mul_pf_right x (Nat.rawCast 1) (Meta.NormNum.IsInt.to_raw_eq (Meta.NormNum.isInt_mul (Eq.refl HMul.hMul) (Meta.NormNum.IsNat.to_isInt (Meta.NormNum.IsNat.of_raw ℚ 2)) (Meta.NormNum.IsInt.of_raw ℚ (Int.negOfNat 4)) (Eq.refl (Int.negOfNat 8))))) (Ring.mul_add (Ring.mul_pf_right z (Nat.rawCast 1) (Meta.NormNum.IsNat.to_raw_eq (Meta.NormNum.isNat_mul (Eq.refl HMul.hMul) (Meta.NormNum.IsNat.of_raw ℚ 2) (Meta.NormNum.IsNat.of_raw ℚ 2) (Eq.refl 4)))) (Ring.mul_zero (Nat.rawCast 2)) (Ring.add_pf_add_zero (z ^ Nat.rawCast 1 * Nat.rawCast 4 + 0))) (Ring.add_pf_add_lt (x ^ Nat.rawCast 1 * (Int.negOfNat 8).rawCast) (Ring.add_pf_zero_add (z ^ Nat.rawCast 1 * Nat.rawCast 4 + 0)))) (Ring.zero_mul (x ^ Nat.rawCast 1 * (Int.negOfNat 4).rawCast + (z ^ Nat.rawCast 1 * Nat.rawCast 2 + 0))) (Ring.add_pf_add_zero (x ^ Nat.rawCast 1 * (Int.negOfNat 8).rawCast + (z ^ Nat.rawCast 1 * Nat.rawCast 4 + 0))))) (Ring.add_pf_add_overlap_zero (Ring.add_overlap_pf_zero x (Nat.rawCast 1) (Meta.NormNum.IsInt.to_isNat (Meta.NormNum.isInt_add (Eq.refl HAdd.hAdd) (Meta.NormNum.IsNat.to_isInt (Meta.NormNum.IsNat.of_raw ℚ 8)) (Meta.NormNum.IsInt.of_raw ℚ (Int.negOfNat 8)) (Eq.refl (Int.ofNat 0))))) (Ring.add_pf_add_lt (y ^ Nat.rawCast 1 * (Int.negOfNat 12).rawCast) (Ring.add_pf_zero_add (z ^ Nat.rawCast 1 * Nat.rawCast 4 + 0))))) (Ring.sub_congr (Ring.sub_congr (Ring.mul_congr (Ring.cast_pos (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 12))) (Ring.atom_pf y) (Ring.add_mul (Ring.mul_add (Ring.mul_pf_right y (Nat.rawCast 1) (Ring.mul_one (Nat.rawCast 12))) (Ring.mul_zero (Nat.rawCast 12)) (Ring.add_pf_add_zero (y ^ Nat.rawCast 1 * Nat.rawCast 12 + 0))) (Ring.zero_mul (y ^ Nat.rawCast 1 * Nat.rawCast 1 + 0)) (Ring.add_pf_add_zero (y ^ Nat.rawCast 1 * Nat.rawCast 12 + 0)))) (Ring.mul_congr (Ring.cast_pos (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 4))) (Ring.atom_pf z) (Ring.add_mul (Ring.mul_add (Ring.mul_pf_right z (Nat.rawCast 1) (Ring.mul_one (Nat.rawCast 4))) (Ring.mul_zero (Nat.rawCast 4)) (Ring.add_pf_add_zero (z ^ Nat.rawCast 1 * Nat.rawCast 4 + 0))) (Ring.zero_mul (z ^ Nat.rawCast 1 * Nat.rawCast 1 + 0)) (Ring.add_pf_add_zero (z ^ Nat.rawCast 1 * Nat.rawCast 4 + 0)))) (Ring.sub_pf (Ring.neg_add (Ring.neg_mul z (Nat.rawCast 1) (Ring.neg_one_mul (Meta.NormNum.IsInt.to_raw_eq (Meta.NormNum.isInt_mul (Eq.refl HMul.hMul) (Meta.NormNum.IsInt.of_raw ℚ (Int.negOfNat 1)) (Meta.NormNum.IsNat.to_isInt (Meta.NormNum.IsNat.of_raw ℚ 4)) (Eq.refl (Int.negOfNat 4)))))) Ring.neg_zero) (Ring.add_pf_add_lt (y ^ Nat.rawCast 1 * Nat.rawCast 12) (Ring.add_pf_zero_add (z ^ Nat.rawCast 1 * (Int.negOfNat 4).rawCast + 0))))) (Ring.cast_zero (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 0))) (Ring.sub_pf Ring.neg_zero (Ring.add_pf_add_zero (y ^ Nat.rawCast 1 * Nat.rawCast 12 + (z ^ Nat.rawCast 1 * (Int.negOfNat 4).rawCast + 0))))) (Ring.add_pf_add_overlap_zero (Ring.add_overlap_pf_zero y (Nat.rawCast 1) (Meta.NormNum.IsInt.to_isNat (Meta.NormNum.isInt_add (Eq.refl HAdd.hAdd) (Meta.NormNum.IsInt.of_raw ℚ (Int.negOfNat 12)) (Meta.NormNum.IsNat.to_isInt (Meta.NormNum.IsNat.of_raw ℚ 12)) (Eq.refl (Int.ofNat 0))))) (Ring.add_pf_add_overlap_zero (Ring.add_overlap_pf_zero z (Nat.rawCast 1) (Meta.NormNum.IsInt.to_isNat (Meta.NormNum.isInt_add (Eq.refl HAdd.hAdd) (Meta.NormNum.IsNat.to_isInt (Meta.NormNum.IsNat.of_raw ℚ 4)) (Meta.NormNum.IsInt.of_raw ℚ (Int.negOfNat 4)) (Eq.refl (Int.ofNat 0))))) (Ring.add_pf_zero_add 0)))) (Ring.cast_zero (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 0))))) (Linarith.add_neg (Linarith.add_neg (Linarith.mul_neg (Linarith.sub_neg_of_lt h1) (Meta.NormNum.isNat_lt_true (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 0)) (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 4)) (Eq.refl false))) (Linarith.mul_neg (Linarith.sub_neg_of_lt h2) (Meta.NormNum.isNat_lt_true (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 0)) (Meta.NormNum.isNat_ofNat ℚ (Eq.refl 2)) (Eq.refl false)))) (Linarith.sub_neg_of_lt h3)))) </div>
+
+-/
+
+/-
 intro
 ===
 
 Introduction applies to implications and forall statements, introducing either a new
-hypothesis or a new object. It takes the place of `fun h₁ h₂ ... => ...`
-
-Note also that by using `.` and indentation, you can visually break up your
-proof to it is more readable. -/
+hypothesis or a new object. It takes the place of `fun h₁ h₂ ... => ...`  -/
 
 example : (¬ ∃ x, p x) → (∀ x, ¬ p x) := by
   intro hnep x
-  sorry
+  sorry                -- ⊢ ¬p x
 
 /-
 apply
@@ -124,7 +138,7 @@ fun p ↦ {
 apply with Other Theorems
 ===
 
-You can use `apply` and `exact` with perviously defined theorems.
+You can use `apply` with previously defined theorems.
 
 -/
 
@@ -173,15 +187,14 @@ example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by
 example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by
   apply Iff.intro
   · intro h x hp
-    exact h (Exists.intro x hp)
+    exact h ⟨ x, hp ⟩
   · intro h ⟨ x, hp ⟩
     exact (h x) hp
 
 /-
 use
 ===
-apply `Exists.intro x` is quite common. The tactic `use` wraps it
-and allows for multiple introductions at the same time.
+apply `Exists.intro x` is quite common. The tactic `use` wraps it.
 -/
 
 example : ∀ (x : ℕ), ∃ y, x < y := by
@@ -195,6 +208,8 @@ example : ∀ (x : ℕ), ∃ y, x < y := by
   use x+1
   exact lt_add_one x
 
+/- `use` allows for multiple introductions at the same time-/
+
 example : ∃ (x:ℕ), ∃ y, x < y := by
   use 0, 1
   exact Nat.one_pos
@@ -207,61 +222,28 @@ assumption
 ===
 
 This tactic looks through the context to find an assumption that applies,
-and applies it. It is like apply but where you don't even say what to apply. -/
+and applies it. It is like apply but where you don't have to say what to apply. -/
 
 example (c : Type) (h : p c) : ∃ x, p x := by
   apply Exists.intro c
   assumption
 
 /-
-Exercise
-===
--/
-
-
-/-
-Packaging And and Exists
+Exercises
 ===
 
-Recall that `And` and `Exists` are defined inductively. We can use brackets
-to invoke their constructors as described in the _Datatypes_ slide deck in proofs as well. -/
+<ex /> Do the following proofs using the tactics `intro`, `apply` and `use` along with the
+basic inductive definitions and eliminators for `And` and `Or`. -/
 
-example (p : Prop) : p → (p ∧ p) := by
-  intro hp
-  exact ⟨ hp, hp ⟩
+variable (P Q : Type → Prop)
 
-example (p : Type → Prop) (c : Type) : (∀ x, p x) → ∃ x, p x :=
-  fun h => ⟨ c, h c ⟩
+example : (∃ x, P x ∧ Q x) →  ∃ x, Q x ∧ P x := sorry
 
-/- Brackets work on any structure / inductive type : -/
-
-structure Point where
-  x : ℕ
-  y : ℕ
-
-example : ∃ (p : Point) , p.x = 0 :=  by
-  exact ⟨ ⟨ 0, 0 ⟩, rfl ⟩
+example : (∃ x, P x ∨ Q x) →  ∃ x, Q x ∨ P x := sorry
 
 
 
 
-/-
-Pattern Matching
-===
-
-You can match also constructors with `intro` to more easily break up expressions. -/
-
-example (p q : Prop) : p ∧ q → q := by
-  intro ⟨ _, hq ⟩
-  exact hq
-
-example : (∃ x , ¬p x) → ¬ ∀ x, p x := by
-  intro ⟨ x, hnp ⟩ hnap
-  exact hnp (hnap x)
-
-example (P Q : Type → Prop): (∃ x, P x ∧ Q x) → ∃ x, Q x ∧ P x := by
-  intro ⟨ x, ⟨ hp, hq ⟩ ⟩
-  exact ⟨ x, ⟨ hq, hp ⟩ ⟩
 
 
 
@@ -339,15 +321,47 @@ Here's are some alternative ways to prove some simple results -/
 
 variable (P Q : Type → Prop)
 
+/- Cases on an Exists structure -/
+
 example : (∃ x, P x ∧ Q x) → ∃ x, Q x ∧ P x := by
   intro h
   cases h with
   | intro x h => exact ⟨ x, And.symm h ⟩
 
+/- Cases on an And structure -/
+
 example (p q : Prop) : (p ∧ q) → (p ∨ q) :=  by
   intro h
   cases h with
   | intro hp hq => exact Or.inl hp
+
+
+/-
+nomatch Revisited
+===
+
+We defined using `nomatch`.
+-/
+
+def False.elim {p : Prop} (h : False) : p :=
+  nomatch h
+
+/- We could have used the `cases` tactic, which finds no cases and
+produces a term. -/
+
+def False.elim' {p : Prop} (h : False) : p :=
+  by cases h
+  -- ... no cases
+
+/- The term level proov uses t version of the recursor for `False` -/
+
+#print False.elim'   -- fun {p} h ↦ False.casesOn (fun t ↦ h = t → p) h (Eq.refl h)
+
+#check False.casesOn       -- False.casesOn.{u} (motive : False → Sort u) (t : False)
+                           -- : motive t
+
+#check False.recOn         -- False.recOn.{u} (motive : False → Sort u) (t : False)
+                           -- : motive t
 
 /-
 Cases with Person
@@ -408,12 +422,39 @@ theorem another_example : ∀ n : ℕ, n = 0 ∨ n > 0 := by
     exact Nat.zero_lt_of_ne_zero h     -- obtained via apply?
 
 #print axioms another_example      -- does not depend on any axioms
-                                   -- since it can be proved by induction
+
+
+/-
+Unfolding
+===
+
+Recall the definition
+
+-/
+
+def next_to (p q : Person) := on_right p q ∨ on_right q p
+
+/-
+We might encounter `next_to` in a proof and want to replace it with its definition.
+-/
+
+example : ∀ p , ∀ q , (on_right p q) → next_to p q := by
+  intro p q h
+  unfold next_to             -- helps us see what we have to do
+  exact Or.inl h
+
 
 /-
 Exercise
 ===
+
+<ex /> Prove the following.
+
 -/
+
+example : ∀ p : Person, ∃ q : Person, next_to p q := sorry
+example : ∀ p : Person, ∃ q : Person, ¬next_to p q := sorry
+
 
 /-
 Induction
@@ -426,7 +467,7 @@ def E (n : Nat) : Prop := match n with
   | Nat.zero => True
   | Nat.succ x => ¬E x
 
-example : ∀ n : Nat, E n ∨ E n.succ := by
+theorem even_or_even_succ : ∀ n : Nat, E n ∨ E n.succ := by
   intro n
   induction n with
   | zero => exact Or.inl True.intro
@@ -438,8 +479,21 @@ example : ∀ n : Nat, E n ∨ E n.succ := by
       exact Or.inl h
 
 /-
+The `induction` tactic is essentialy a front end to the recursor.
+-/
+
+#print even_or_even_succ    -- ∀ (n : ℕ), E n ∨ E n.succ :=
+                            -- fun n ↦ Nat.recAux (Or.inl True.intro)
+                            -- (fun k ih ↦ Or.elim ih (fun h ↦ Or.inr
+                            -- fun a ↦ a h) fun h ↦ Or.inl h) n
+
+/-
 Induction on any Inductive Type
 ===
+
+The `induction` tactic behaves like `cases` when there are no inductive
+steps. But the opposite is not true.
+
 -/
 
 example {p q : Prop} : p ∧ q → q ∧ p := by
@@ -453,25 +507,81 @@ example {p : ℕ → Prop} : (∃ x, ¬p x) → ¬∀ x, p x := by
   | intro w h => exact h (h2 w)
 
 
+--hide
+inductive PreDyadic where
+  | zero    : PreDyadic
+  | add_one : PreDyadic → PreDyadic  -- x ↦ x + 1
+  | half    : PreDyadic → PreDyadic  -- x ↦ x / 2
+  | neg     : PreDyadic → PreDyadic  -- x ↦ -x
+
+open PreDyadic
+
+def PreDyadic.double (x : PreDyadic) : PreDyadic := match x with
+  | PreDyadic.zero =>  PreDyadic.zero
+  | add_one x => add_one (add_one (double x))   -- 2(x+1) = 2x+2
+  | half x =>  x                                -- 2(x/2) = x
+  | neg  x  => neg (double x)
+
+def PreDyadic.add (x y : PreDyadic) : PreDyadic := match x with
+  | PreDyadic.zero => y
+  | add_one z =>  (add z y).add_one  -- (z+1) + y = z+y + 1,  a/(2^n) --> (a+2^n)/(2^n)
+  | half z => (add z y.double).half  -- z/2 + y = (z+2y)/2
+  | neg z => (add z y.neg).neg       -- (-z)+y = -(z+(-y))
+
+def PreDyadic.mul (x y : PreDyadic) : PreDyadic := match x with
+  | PreDyadic.zero => zero
+  | add_one z =>  add (mul z y) y    -- (z+1)*y = z*y + y
+  | half z => (mul z y).half         -- (z/2)*y = (z*y)/2
+  | neg z => (mul z y).neg
+--unhide
 
 /-
 Exercise
 ===
 
-<ex /> TODO: Proof by induction on PreDyadics.
+<ex /> Recall the definition of `PreDyadic`.
 
-<ex /> TODO: student looks up a tactic and uses it in a proof of an example defined here.
+a) Define a function
 
 -/
 
+def no_negs ( x : PreDyadic ) : Prop := sorry
+
+/- that is `True` when `x` has no `neg` constructors used to define it.
+
+b) Prove
+
+-/
+
+example (x : PreDyadic) : no_negs x → no_negs (double x) := sorry
+
 /-
+c) Prove
+-/
+
+example (x y : PreDyadic) : no_negs x → no_negs y → no_negs (mul x y) := sorry
+
+
+/-
+Exercise
+===
+
+<ex /> Scan through the list of tactics using:
+
+-/
+
+#help tactic
+
+/- which puts all the tactics in the Infoview. Make sure that mathlib is imported, or this doesn't work.
+
+Choose a tactic that looks interesting and come up with two examples of its use in simple proofs. Use `#print` to print out your proofs to see what terms are generated. Finally , for each example, explain to the best of your understanding what the tactic is doing.
+
+
 Defining New Tactics
 ===
 
 You can define your own tactics. Here is an example. We will cover this
-and other "meta-programming" methods later.
-
-You will need to `import Lean`.
+and other "meta-programming" methods later. You will need to `import Lean`.
 
 -/
 
@@ -482,7 +592,10 @@ syntax (name := myTacticSyntax) "my_tactic" : tactic
 @[tactic myTacticSyntax]
 def myTactic : Tactic := fun _ => do
   try
-    evalTactic (← `(tactic| rfl))
+    evalTactic (← `(tactic| rfl))      -- Put any  logic you want
+                                       -- here, including inspecting the
+                                       -- context, expressions, low level
+                                       -- syntax, etc.
   catch _ =>
     throwError "my_tactic: could not solve the goal"
 
@@ -496,6 +609,8 @@ It only works when rfl does though.
 example (p : Prop) : p := by my_tactic      -- my_tactic: could not solve the goal
 ```
 -/
+
+
 
 --hide
 end LeanW26

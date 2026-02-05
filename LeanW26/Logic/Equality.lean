@@ -9,7 +9,7 @@ import Mathlib
 
 namespace LeanW26
 
---notdone
+
 
 /-
 Equality
@@ -59,6 +59,8 @@ You can show many of equalities automatically -/
 example : 1 ~ 1 :=
   MyEq.refl 1
 
+/- The `apply` tactic figures out what the argument to `refl` should be. -/
+
 example : 2 ~ (1+1) := by
   apply MyEq.refl
 
@@ -87,7 +89,10 @@ theorem MyEq.subst {α : Sort u} {P : α → Prop} {a b : α}
   cases h₁ with
   | refl => exact h₂
 
-/- In this example we substitute `y` for `x` to prove equality between two propositions. -/
+/- The cases tactic compiles a term that uses the recursor for `MyEq`.
+
+**Example:** Here is an example where we substitute `y` for `x`
+to prove equality between two propositions. -/
 
 example {x y : Nat} : x ~ y → (x > 2 ↔ y > 2) := by
   intro h
@@ -167,34 +172,39 @@ example : 9 = 3*(2+1) := rfl
 /-
 Exercises
 ===
+
+<ex /> Prove the `to_iff` theorem for `MyEq`. Hint, study the proof for `MyEq.subst`.
+
 -/
+
+theorem MyEq.to_iff (a b : Prop) : a ~ b → (a ↔ b) := sorry
 
 /-
-Triangle
+The Triangle Macro
 ===
 
-h ▸ e is a macro built on top of Eq.rec and Eq.symm definitions.
-Given h : a = b and e : p a, the term h ▸ e has type p b. You can
-also view h ▸ e as a "type casting" operation where you change the
-type of e by using h. The macro tries both orientations of h. If
-the context provides an expected type, it rewrites the expected
-type, else it rewrites the type of e`. See the Chapter "Quantifiers
-and Equality" in the manual "Theorem Proving in Lean" for
-additional information.
+`h ▸ e` is a macro built on top of `Eq.rec` and `Eq.symm` definitions.
+
+Given `h : a = b` and `e : p a`, the term `h ▸ e` has type `p b`.
+
+`h ▸ e` is like a "type casting" operation where you change the type of `e` by using `h`.
+
+For example:
 
 -/
 
+example (α : Type) (a b : α) (p : α → Prop) (h₁ : a = b) (h₂ : p a) : p b :=
+  h₁ ▸ h₂
 
-theorem of_eq_true1 {p : Prop} (h : p = True) : p := by
-  rw[h]
-  exact True.intro
+/- A nice example is how `Eq.symm` is proved: -/
 
-theorem of_eq_true2 {p : Prop} (h : p = True) : p :=
-  Eq.mpr h True.intro          -- α = β     → β         → α
-                               --   h    True.intro       p
+example (a b : Type) (h : a = b) : b = a := h ▸ rfl
 
-theorem of_eq_true3 {p : Prop} (h : p = True) : p :=
-  h ▸ True.intro
+/- Or `Eq.trans`: -/
+
+theorem Eq.trans {α : Sort u} {a b c : α} (h₁ : a = b) (h₂ : b = c) : a = c :=
+  h₂ ▸ h₁
+
 
 /-
 Rewriting
@@ -235,15 +245,6 @@ example (a b c : Nat) : a = b → a = c → b + 1 = c + 1 := by
 #help tactic rewrite          -- rewrite without rfl at the end
 #help tactic nth_rewrite      -- rewrite a specific sub-term
 
-/-
-Conv
-===
--/
-
-/-
-Calc
-===
--/
 
 /-
 The Simplifier
@@ -267,21 +268,73 @@ theorem t4 (a b c d e : Nat)
  : a = e := by
    simp only[h1,h2,h3,h4,Nat.add_comm]
 
-#check Nat.add_comm
+#check Nat.add_comm       -- Try Loogle "Nat" for more
+
+
+/-
+The `linarith` Tactic
+===
+
+The `linarith` tactic attempts to solve linear equalities and
+inequalities and works on `ℕ`, `ℤ`, `ℚ`, `ℝ` and related types.
+
+On `ℕ` and `ℤ` it is incomplete, but on `ℚ` and `ℝ` it is complete.
+
+-/
+
+example (a b c d e : Nat)
+ (h1 : a = b)
+ (h2 : b = c + 1)
+ (h3 : c = d)
+ (h4 : e = 1 + d)
+ : a = e := by linarith
+
+example (x y z : ℚ) (h1 : 2*x - y + 3*z = 9)
+                    (h2 : x - 3*y - 2*z = 0)
+                    (h3 : 3*x + 2*y -z = -1)
+ : x = 1 ∧ y = -1 ∧ z = 2 := by
+ apply And.intro
+ . linarith
+ . apply And.intro
+   . linarith
+   . linarith
+
+
+/- ### Example : Induction on Nat
+
+As an example the brings many of these ideas together, consider
+the sum of the first `n` natural numbers, which is `n(n+1)/2`.
+-/
+
+def S (n : Nat) : Nat := match n with
+  | Nat.zero => 0
+  | Nat.succ x => n + S x
+
+example : ∀ n, 2 * S n = n*(n+1) := by
+  intro n
+  induction n with
+  | zero => simp[S]
+  | succ k ih =>
+    simp[S]
+    linarith -- uses ih (check with clear ih before linarith)
 
 /-
 Exercise
 ===
 
-<ex /> TBD
+<ex /> Try finding a use for `▸` to prove:
+
+-/
+
+example (P : Type → Prop) : ∀ x y, x = y → P x → ∃ z, P z := sorry
+
 
 /-
+<ex /> Show the following using the `induction` tactic:
 
-<ex />
-Show the following result using induction. -/
+-/
 
-example (n : Nat) : 6 * (S n) = (n * (n+1)) * (2*n+1) :=
-  sorry
+example (n : Nat) : 6 * (S n) = n * (n+1) * (2*n+1) :=  sorry
 
 
 /-
@@ -326,24 +379,126 @@ example : ¬next_to mary ed := by
   | inl hme => exact noConfusion hme
   | inr hem => exact noConfusion hem
 
-example : ∀ p , p ≠ on_right p := by
-  sorry
-
 /-
-Trival
+Trivial
 ===
 
-The `trivial` tactic actually figures out when to apply noConfusion-/
+The `trivial` tactic (not to be confused with the `trivial` theorem,
+sometimes figures out when to apply `noConfusion` -/
 
 theorem t10 : ed ≠ steve := by
   intro h
   trivial
 
+#print t10       -- fun h ↦ False.elim (noConfusion_of_Nat Person.ctorIdx h)
+
+/-
+Exercises
+===
+
+<ex /> For `PreDyadic`, show
+```lean
+example (x : PreDyadic) : zero ≠ add_one x
+
+example : ¬zero.add_one = zero.add_one.add_one.half := sorry
+```
+using `noConfusion`.
+
+<ex /> Show
+```lean
+example (x y : PreDyadic) : add_one x = add_one y ↔ x = y := sorry
+```
+
+-/
+
+
+
+/-
+Equality for Structure Types
+===
+
+Two terms of a structure type are equal if the values of their fields
+are equal.
+
+For example, given
+
+-/
+
+structure Point (α : Type u) where
+  x : α
+  y : α
+
+/- We can show -/
+
+theorem Point.ext {α : Type} (p q : Point α) (hx : p.x = q.x) (hy : p.y = q.y)
+  : p = q := by
+  cases p; cases q;
+  cases hx; cases hy;
+  rfl
+
+/- Then we can do, for example, -/
+
+example (x y : Nat) : Point.mk (x+y) (x+y) = Point.mk (y+x) (y+x) := by
+  apply Point.ext
+  · exact add_comm x y
+  · exact add_comm x y
+
+/-
+Defining Extensionality Automatically
+===
+
+If we add the @[ext] tag to a definition, we can automatically
+define extensionality and register it to be used with the `ext` tactic.
+-/
+
+@[ext]
+structure Komplex where
+  re : ℝ
+  im : ℝ
+
+example (x y : ℝ) : Komplex.mk (x+y) (x+y) = Komplex.mk (y+x) (y+x) := by
+  ext
+  · exact add_comm x y
+  · exact add_comm x y
+
+/-
+Function Extensionality
+===
+
+Two functions are considered equal if they assign the same value to every
+argument. The theorem that allows us to prove that is -/
+
+#check funext -- (∀ (x : α), f x = g x) → f = g
+
+/- Here is an example: -/
+
+def f (n : ℕ) := n + 1
+def g (n : ℕ) := 1 + n
+
+example : f = g := by
+  funext x
+  unfold f g              -- not needed, but makes it easy to see the goal
+  rw[add_comm]
+
+/-
+<div class='fn'>In some languages, function extensionality is an axiom.
+In Lean, it follows from the properties of quotients (which we will get in to
+later). This approach was possibly first described in
+<a href="https://ncatlab.org/nlab/files/HofmannExtensionalIntensionalTypeTheory.pdf">Extensional concepts in intensional type theory</a> by Martin Hoffman. </div>
+
 
 Exercises
 ===
+
+<ex /> For `PreDyadic` show
+```lean
+example : double ∘ half = id := sorry
+```
+
 -/
+
+
 
 --hide
 end LeanW26
---nohide
+--unhide
