@@ -303,13 +303,17 @@ class Slider extends React.Component {
       hljs.highlightBlock(block);
     });
 
-
     if (this.state.sidebar == "slides") {
 
       let sidebar = document.querySelectorAll('.sidebar')[0];
       let active_thumb = document.querySelectorAll('.active-title')[0];
+      if (!active_thumb) {
+        console.log("Error. No active slide. Did the number of slides decrease?");
+      }
       let initial = sidebar.scrollTop;
-      let target = Math.max(active_thumb.offsetTop - sidebar.clientHeight / 2, 0);
+      let target = 0;
+      if ( active_thumb )
+          target = Math.max(active_thumb.offsetTop - sidebar.clientHeight / 2, 0);
       let current = initial;
       let t = 0,
           T = 1 * Math.abs(target - initial);
