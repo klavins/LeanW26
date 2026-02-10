@@ -20,4 +20,4 @@ name = "LeanW26"
 # [[require]]
 # name = "verso"
 # git = "https://github.com/leanprover/verso.git"
-# rev = "v4.26.0"
+# rev = "v4.27.0"

@@ -490,7 +490,13 @@ variable (p q : Type → Prop)
 variable (r : Prop)
 --unhide
 
-example : (∀ x, p x → r) ↔ (∃ x, p x) → r := sorry
+example : (∀ x, p x → r) ↔ (∃ x, p x) → r :=
+  Iff.intro
+  (fun h1 h2 =>
+    match h2 with
+    | Exists.intro c hc => h1 c hc)
+  sorry
+
 example : (∃ x, p x ∨ q x) ↔ (∃ x, p x) ∨ (∃ x, q x) :=  sorry
 ```
 
