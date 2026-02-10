@@ -351,16 +351,16 @@ make a note of which theorems it is calling for each case (using `simp?`).
 
 -/
 
--- Don't @[simp] this one!
 theorem assoc {x y z} : x o (y o z) = (x o y) o z := sorry
 
--- Don't @[simp] this one!
 theorem com {x y} : x o y = y o x := sorry
 
 theorem toggle_op_right {x y} : (x o y)⁻¹ = y o x⁻¹ := sorry
 
+@[simp]
 theorem inv_cancel_right {x} : x o x⁻¹ = dn := sorry
 
+@[simp]
 theorem inv_cancel_left {x} : x⁻¹ o x = dn := sorry
 
 

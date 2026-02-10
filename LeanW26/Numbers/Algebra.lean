@@ -12,11 +12,22 @@ set_option linter.style.commandStart false
 --  the Free Software Foundation, either version 3 of the License, or
 --  (at your option) any later version.
 
-
+--notdone
 
 /-
 Algebra
 ===
+-/
+
+/-
+Overview
+===
+
+- Groups
+- Monoids
+- Rings
+- Fields
+
 -/
 
 /-
@@ -39,6 +50,30 @@ Ideally, a proof assistant can reason at an abstract level about groups in gener
 so results about groups can be reused for any concrete group.
 
 Lean does this with *type classes* and *instances*.
+
+-/
+
+/-
+Building the Theory
+===
+
+Group theory is a huge topic dating back to the 18th centyr.
+It is well beyond the scope of this course to prove much about it.
+
+In a textbook, one usually does builds up simple identities (such as `- - x = x`)
+and uses those to prove more complex identities. The order in which these
+identities are proved is an example of code reuse! We will give a few examples.
+
+Historically, the application of proof assistants to Group Theory were
+early successes.
+
+For example:
+
+- Rideu and Théry, "Formalising Sylow’s theorems in Coq", 2006. [🔗](https://arxiv.org/pdf/cs/0611057). Also appears in Mathlib [🔗](https://leanprover-community.github.io/mathlib4_docs/Mathlib/GroupTheory/Sylow.html).
+
+- Gontheir et al, "A Machine-Checked Proof of the Odd Order Theorem", ITP 2013.
+[🔗](https://www.cs.unibo.it/~asperti/PAPERS/odd_order.pdf). Original proof is 255 pages long.
+
 
 -/
 
@@ -98,29 +133,34 @@ class CommGroup (G : Type u) extends Group G where
 Group Notation
 ===
 
-We add standard notation for `Group` using the following.
-Lean uses `∘` for function composition, so we can't easily
-reuse it. In Mathlib, one usually uses `*`.
-Here, we'll use `•` (written `\bu`), because, well, I like it.
+The group operation can either be like addition or like multiplication,
+depending on the sample. For our purposes we'll assume our operation is
+like `+`.
+
 
 -/
 
-infixl:60 " • " => Group.op            -- left associating infix syntax
-postfix:100 " ⁻¹ " => Group.inv
+infixl:60 " + " => Group.op            -- left associating infix syntax
+prefix:95 "-" => Group.inv
 
 /- Now we have standard notation. Note that we can declare a type `G`
 to be a group by using the notation [Group G]. -/
 
 open Group CommGroup
 
-section
-  variable (G : Type) [Group G] (a b : G)
-  #check (a • b)⁻¹ • a
-  #check a • b • e
-end
+variable (G : Type) [Group G] (a b : G)
+#check -(a + b) + a           -- G
+#check a + b + e              -- G
+
+
+/- Mathlib defines both `Group` and `AddGroup`. They are identical
+mathematically, but have different notation associated with them. -/
+
+
+
 
 /-
-Group Theorems
+Group Theorems and Identites
 ===
 
 In the standard textbook development of group theory, one builds out
@@ -132,16 +172,16 @@ open Group
 variable {G : Type u} [Group G] {a b c : G}
 --unhide
 
-theorem Group.id_inv_left : e • a⁻¹ = a⁻¹ := id_left (a := a⁻¹)
+theorem Group.id_inv_left : e + (-a) = -a := id_left (a := -a)
 
 /- From which you can prove. -/
 
-lemma cancel_left : a • b = a • c → b = c := by
+lemma cancel_left : a + b = a + c → b = c := by
   intro h
-  apply congrArg (fun t => a⁻¹ • t) at h -- a⁻¹ • (a • b) = a⁻¹ • (a • c)
-  rw[←assoc] at h                        -- (a⁻¹ • a) • b = a⁻¹ • (a • c)
-  rw[inv_left] at h                      --         e • b = a⁻¹ • (a • c)
-  rw[id_left] at h                       --             b = a⁻¹ • (a • c)
+  apply congrArg (fun t => -a + t) at h  -- -a + (a + b) = -a + (a + c)
+  rw[←assoc] at h                        --   -a + a + b = -a + (a + c)
+  rw[inv_left] at h                      --        e + b = -a + (a + c)
+  rw[id_left] at h                       --            b = -a + (a + c)
   rw[←assoc] at h                        -- etc
   rw[inv_left] at h
   rw[id_left] at h
@@ -159,37 +199,38 @@ are applying very clearly.
 For example, we can show `id_right` is derivable.
 -/
 
-theorem id_right : a • e = a := by
-  apply cancel_left (a := a⁻¹)
-  calc  a ⁻¹ • (a • e)
-  _   = (a ⁻¹ • a) • e := by rw[assoc]
-  _   = (e • e : G)    := by rw[inv_left]
+theorem id_right : a + e = a := by
+  apply cancel_left (a := -a)
+  calc  -a +  (a + e)
+  _   = (-a + a) + e := by rw[assoc]
+  _   = (e + e : G)    := by rw[inv_left]
   _   = e              := by rw[id_left]
-  _   = a ⁻¹ • a       := by rw[inv_left]
+  _   = -a + a       := by rw[inv_left]
 
 /- which can be done with simp as well. You have to tell simp which way to associate.  -/
 
-example : a • e = a := by
-  apply cancel_left (a := a⁻¹)
+example : a + e = a := by
+  apply cancel_left (a := -a)
   simp[←assoc,id_left,inv_left]
 
 /-
-Another proof
+Proving inv_right
 ===
 
 We can also show `inv_right` is derivable. -/
 
-theorem inv_right : a • a⁻¹ = e := by
-  apply cancel_left (a := a⁻¹)
-  calc  a⁻¹ • (a • a⁻¹)
-  _   = (a⁻¹ • a) • a⁻¹ := by rw[assoc]
-  _   = e • a⁻¹         := by rw[inv_left]
-  _   = a⁻¹             := by rw[id_left]
-  _   = a⁻¹ • e         := by rw[id_right (a := a⁻¹)]
+theorem inv_right : a + (-a) = e := by
+  apply cancel_left (a := -a)
+  calc  -a + (a + (-a))
+  _   = (-a + a) + (-a) := by rw[assoc]
+  _   = e + (-a)         := by rw[inv_left]
+  _   = -a             := by rw[id_left]
+  _   = -a + e         := by rw[id_right (a := -a)]
 
 /-
 These can also be done as a `simp` proof.
 -/
+
 
 /-
 Exercise
@@ -199,22 +240,22 @@ Exercise
 
 -/
 
-theorem id_unique {e' : G} : (∀ a, e' • a = a) → e = e' := by sorry
+theorem id_unique {e' : G} : (∀ a, e'+ a = a) → e = e' := by sorry
 
 /- Hints:
 - Introduce the hypothesis
-- Using a `have`, establish `e' • e = e'` via a group property
-- Using another `have`, establish `e' • e = e` via our hypothesis
+- Using a `have`, establish `e' + e = e'` via a group property
+- Using another `have`, establish `e' + e = e` via our hypothesis
 - Use these intermediate results to rewrite the goal.
 -/
 
 /-
 <ex /> Show that the inverse of every element is unique. The proof goes like this:
-- Suppose `b • a = e` and `c ∘ a = e`
+- Suppose `b + a = e` and `c + a = e`
 - Then
 
 ```lean
-b = b • e = b • (a • c) = (b • a) • c = e • c = c .
+b = b + e = b + (a + c) = (b + a) + c = e + c = c .
 ```
 
 -/
@@ -261,7 +302,7 @@ instance Spin.inst_comm_group : CommGroup Spin := {
   assoc {a b c} := by cases a <;> cases b <;> cases c <;> aesop,
   id_left {a}   := by cases a <;> aesop
   inv_left {a}  := by cases a <;> aesop
-  comm {a b} := by cases a <;> simp[op] <;> aesop
+  comm {a b}    := by cases a <;> simp[op] <;> aesop
 }
 
 /- You could also instantiate `Monoid`, `Group` and `CommGroup` sequentially,
@@ -274,12 +315,12 @@ Group Theorems apply to the Spin Group
 ===
 -/
 
-example {x : Spin} : x • e = x := by simp[id_right]
+example {x : Spin} : x + e = x := by simp[id_right]
 
 open Spin in
-example : up • up = up := by
-  have : up = up⁻¹ := rfl
-  nth_rewrite 1 [this]       -- up ⁻¹ • up = up
+example : up + up = up := by
+  have : up = -up := rfl
+  nth_rewrite 1 [this]       -- -up + up = up
   rw[inv_left]               -- e = up
   rfl
 
@@ -297,16 +338,20 @@ Monoids
 
 A **Ring** is *almost* two groups, one for addition and one for multiplication,
 along with distributivity.
-However, multiplication is not required to have inverses. To build a `Ring` type
-we first define a `Monoid` type for multiplication.
+However, multiplication is not required to have inverses.
+
+To build a `Ring` type we first define a `Monoid` type for multiplication.
 -/
 
 class Monoid (M : Type u) where
   mul : M → M → M
   one : M
   mul_assoc {a b c : M} : mul (mul a b) c = mul a (mul b c)
-  mul_id_left {a : M} : mul one a = a
-  mul_id_right {a : M} : mul a one = a
+  mul_id_left {a : M}   : mul one a = a
+  mul_id_right {a : M}  : mul a one = a
+
+/- We cannot derive `mul_id_right` as we did with `Group`,
+because we do not have inverses.  -/
 
 /-
 Rings
@@ -315,50 +360,108 @@ Now we have what we need do define a Ring.
 -/
 
 class Ring (R : Type u) extends CommGroup R, Monoid R where
-  left_distrib {x y z : R} : mul x (op y z) = op (mul x y) (mul x z)
+  left_distrib {x y z : R}  : mul x (op y z) = op (mul x y) (mul x z)
   right_distrib {x y z : R} : mul (op y z) x = op (mul y x) (mul z x)
 
-/- And standard notation: -/
+/-
+Ring Notation
+===
+-/
 
-variable {R : Type u} [Ring R] (x y z : R)
+variable {R : Type u} [Ring R]
 
-infixl:60 " + " => Group.op
 infixl:80 " * " => Monoid.mul
-prefix:95 " - " => Group.inv
 
-def Group.sub := Group.op x (-y)
-
+def Group.sub (x y : R):= Group.op x (-y)
 infixl:60 " - " => Group.sub
 
 open Monoid Ring
 
 section
-  #check x*(y+z)⁻¹ -x
-end
+  variable (x y z : R)
+  #check x * (y + z) - x    -- R
+end section
 
 /-
-An Example Ring Theorem
+Operating on Equations
+===
+
+When proving `Ring` identites, it is useful to operate on both sides
+of an equation. That is, we may want to change the proof from
+
+```lean
+h : y = z
+⊢ ...
+```
+
+to
+
+```lean
+h : x + y = z + y
+⊢ ...
+```
+
+We can do this with theorems of the form:
+
+-/
+--hide
+variable {x y z : R}
+--unhide
+
+theorem Ring.add_left  (h : y = z) (x : R) : x + y = x + z := by rw[h]
+theorem Ring.add_right (h : y = z) (x : R) : y + x = z + x := by rw [h]
+theorem Ring.mul_left  (h : y = z) (x : R) : x * y = x * z := by rw [h]
+theorem Ring.mul_right (h : y = z) (x : R) : y * x = z * x := by rw [h]
+
+
+/-
+Example Identity
 ===
 -/
-
-theorem e_plus_e : (e + e : R) = e := by rw[id_left]
-
 theorem mul_zero : x * e = e := by
 
   have h := left_distrib (x := x) (y := e) (z := e)
-    -- h : x * (e + e) = x * e + x * e
+                      -- x*(e + e) = x*e + x*e
 
-  have h := congrArg (fun t => (x*e)⁻¹ + t) h
-  simp only at h
-    -- h : -(x * e) + x * (e + e) = -(x * e) + (x * e + x * e)
+  have h := Ring.add_left h (-(x*e))
+                     -- -(x*e) + x*(e + e) = -(x*e) + (x*e + x*e)
 
-  rw[e_plus_e] at h  -- -(x * e) + x * e = -(x * e) + (x * e + x * e)
-  rw[inv_left] at h  -- e = -(x * e) + (x * e + x * e)
-  rw[←assoc]   at h  -- e = -(x * e) + x * e + x * e
-  rw[inv_left] at h  -- e = e + x * e
-  rw[id_left]  at h  -- x * e = e
+  rw[id_left]  at h  -- -(x*e) + x*e = -(x*e) + (x*e + x*e)
+  rw[inv_left] at h  -- e = -(x*e) + (x*e + x*e)
+  rw[←assoc]   at h  -- e = -(x*e) + x*e + x*e
+  rw[inv_left] at h  -- e = e + x*e
+  rw[id_left]  at h  -- x*e = e
 
   exact h.symm
+
+
+/- The `rw` part can be replaced with `simp only [id_left,inv_left,←assoc] at h`-/
+
+/-
+Another Example
+===
+-/
+
+theorem neg_one : (-one:R)*(-one:R) = one := by sorry
+
+
+theorem inv_to_mul : -x = (-e:R) * x := by
+  have h1 : x + (-x) = e := by rw[inv_right]
+
+  sorry
+
+theorem neg_mul : (-x) * (-y) = x*y := by
+
+  sorry
+
+
+/-
+Exercise
+===
+
+<ex /> Todo
+
+-/
 
 
 /-
@@ -394,8 +497,125 @@ instance Spin.inst_ring : Ring Spin := {
 }
 
 
+/-
+Nontrivial Types
+===
+
+Our next goal is to define **fields**.
+Typically, we also require that a field `F` is not simply `{0}`.
+
+To prevent trivial
+situations like this, we define
+
+```lean
+class Nontrivial (α : Type*) : Prop where
+  exists_pair_ne : ∃ x y : α, x ≠ y
+```
+
+Which allows us to do:
+
+```lean
+obtain ⟨ x, y, hxy ⟩ := (inferInstance : Nontrivial F).exists_pair_ne
+```
+
+in a proof to get a context with
+```lean
+x : F
+y : F
+hxy : x ≠ y
+```
+-/
+
+/-
+Fields
+===
+A **Field** is a commutative ring with inverses for all elements except zero.
+-/
+
+class Field (F : Type u) extends Ring F, Nontrivial F where
+  minv : F → F
+  minv_zero : minv e = e
+  mul_inv_prop {x : F} : x ≠ e → mul x (minv x) = one
+  mul_comm {x y : F} : mul x y = mul y x
+
+open Field
+
+variable {F : Type u} [Field F] {x y z : F}
+
+/- The convention 0⁻¹ = 0 is a convention that makes proof automation easier. -/
+
+/-
+Field Notation
+===
+
+We reuse the notation from Groups and Rings, adding just
+-/
+
+postfix:95 "⁻¹" => Field.minv
+
+/- for the field inverse.
+
+Now we can write
+
+-/
+
+section
+  variable (x y : F)
+  #check one * (x - x⁻¹) + e * y
+end section
+
+/- for example. -/
+
+/-
+Example Field Identities
+===
+
+We only put `one * x = x` in our definition because we can prove the symmetric case:
+
+-/
+
+theorem mul_id_right : x * one = x := by
+  rw[Field.mul_comm]
+  rw[mul_id_left]
+
+/- Other basic theorems include -/
+
+theorem neg_inv : (-x)⁻¹ = -(x⁻¹) := by
+  sorry
+
+/-
+A Proof that 1 ≠ 0
+===
+-/
+
+theorem one_ne_e : (one:F) ≠ e := by
+
+  intro h
+
+  obtain ⟨ x, y, hxy ⟩ := (inferInstance : Nontrivial F).exists_pair_ne
+
+  have hx : x = e := by
+    calc
+      x = x * one := by rw[mul_id_right]
+      _ = x * e   := by rw[h]
+      _ = e       := by rw [mul_zero]
+
+  have hy : y = e := by
+    calc
+      y = y * one := by rw[mul_id_right]
+      _ = y * e   := by rw[h]
+      _ = e       := by rw[mul_zero]
+
+  exact hxy (hx.trans hy.symm)
+
+@[simp]
+theorem one_inv : (one:F)⁻¹ = one := by
+  have h : one = (one:F) * one⁻¹ := by rw[mul_inv_prop one_ne_e]
+  nth_rewrite 2 [h]
+  rw[mul_id_left]
+
 
 --hide
-end Temp
-end LeanW26
+end
+end
 --unhide
