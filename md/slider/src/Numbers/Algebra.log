@@ -177,7 +177,7 @@ prefix:95 "-" => Group.inv
 
 open Group CommGroup
 
-variable (G : Type) [Group G] (a b : G)
+variable (G : Type u) [Group G] (a b : G)
 #check -(a + b) + a           -- G
 #check a + b + e              -- G
 
@@ -258,8 +258,8 @@ theorem Group.id_right : a + e = a := by <proofstate>['G : Type u\ninst✝ : Gro
 
 /- which can be done with `simp` as well. You just have to tell `simp` which way to associate.  -/
 
-example : a + e = a := by <proofstate>['G✝ : Type\ninst✝¹ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝ : Group G\na b c : G\n⊢ a + e = a']</proofstate>
-  apply cancel_left (a := -a) <proofstate>['G✝ : Type\ninst✝¹ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝ : Group G\na b c : G\n⊢ -a + (a + e) = -a + a']</proofstate>
+example : a + e = a := by <proofstate>['G✝ : Type u\ninst✝¹ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝ : Group G\na b c : G\n⊢ a + e = a']</proofstate>
+  apply cancel_left (a := -a) <proofstate>['G✝ : Type u\ninst✝¹ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝ : Group G\na b c : G\n⊢ -a + (a + e) = -a + a']</proofstate>
   simp[←assoc,id_left,inv_left]
 
 /-
@@ -390,9 +390,9 @@ instance Group.prod {G H : Type u} [Group G] [Group H] : Group (G × H) := {
   op x y := (x.1 + y.1, x.2 + y.2),
   e := (e,e),
   inv x := (-x.1, -x.2),
-  id_left {x} := sorry,
-  inv_left := sorry,
-  assoc := sorry
+  id_left {x} := by simp[id_left]
+  inv_left := by simp[inv_left],
+  assoc :=  by simp[assoc]
 }
 
 infix:50 " × " => Group.prod
@@ -812,8 +812,8 @@ Spin is a a Nonempty Commutative Ring
 -/
 
 instance Spin.inst_nt : Nontrivial Spin := {
-  exists_pair_ne := by <proofstate>['G✝ : Type\ninst✝³ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝² : Group G\na b c : G\nR : Type u\ninst✝¹ : CommRing R\nx✝ y✝ z✝ : R\nF : Type u\ninst✝ : Field F\nx y z : F\n⊢ ∃ x y, x ≠ y']</proofstate>
-    use up, dn <proofstate>['case h\nG✝ : Type\ninst✝³ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝² : Group G\na b c : G\nR : Type u\ninst✝¹ : CommRing R\nx✝ y✝ z✝ : R\nF : Type u\ninst✝ : Field F\nx y z : F\n⊢ up ≠ dn']</proofstate>
+  exists_pair_ne := by <proofstate>['G✝ : Type u\ninst✝³ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝² : Group G\na b c : G\nR : Type u\ninst✝¹ : CommRing R\nx✝ y✝ z✝ : R\nF : Type u\ninst✝ : Field F\nx y z : F\n⊢ ∃ x y, x ≠ y']</proofstate>
+    use up, dn <proofstate>['case h\nG✝ : Type u\ninst✝³ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝² : Group G\na b c : G\nR : Type u\ninst✝¹ : CommRing R\nx✝ y✝ z✝ : R\nF : Type u\ninst✝ : Field F\nx y z : F\n⊢ up ≠ dn']</proofstate>
     simp
 }
 
