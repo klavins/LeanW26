@@ -223,11 +223,11 @@ A super useful property for proving identities is:
 
 lemma Group.cancel_left : a + b = a + c → b = c := by
   intro h
-  apply congrArg (fun t => -a + t) at h  -- -a + (a + b) = -a + (a + c)
-  rw[←assoc] at h                        --   -a + a + b = -a + (a + c)
-  rw[inv_left] at h                      --        e + b = -a + (a + c)
-  rw[id_left] at h                       --            b = -a + (a + c)
-  rw[←assoc] at h                        -- etc
+  apply congrArg (fun t => -a + t) at h
+  rw[←assoc] at h
+  rw[inv_left] at h
+  rw[id_left] at h
+  rw[←assoc] at h
   rw[inv_left] at h
   rw[id_left] at h
   exact h
@@ -268,9 +268,9 @@ theorem Group.inv_right : a + (-a) = e := by
   apply cancel_left (a := -a)
   calc  -a + (a + (-a))
   _   = (-a + a) + (-a) := by rw[assoc]
-  _   = e + (-a)         := by rw[inv_left]
-  _   = -a             := by rw[id_left]
-  _   = -a + e         := by rw[id_right (a := -a)]
+  _   = e + (-a)        := by rw[inv_left]
+  _   = -a              := by rw[id_left]
+  _   = -a + e          := by rw[id_right (a := -a)]
 
 /-
 which can also be done as a `simp` proof.
@@ -521,19 +521,13 @@ Example Identity
 ===
 -/
 theorem mul_zero : x * e = e := by
-
-  have h := left_distrib (x := x) (y := e) (z := e)
-                      -- x*(e + e) = x*e + x*e
-
-  have h := Ring.add_left h (-(x*e))
-                     -- -(x*e) + x*(e + e) = -(x*e) + (x*e + x*e)
-
-  rw[id_left]  at h  -- -(x*e) + x*e = -(x*e) + (x*e + x*e)
-  rw[inv_left] at h  -- e = -(x*e) + (x*e + x*e)
-  rw[←assoc]   at h  -- e = -(x*e) + x*e + x*e
-  rw[inv_left] at h  -- e = e + x*e
-  rw[id_left]  at h  -- x*e = e
-
+  have h0 := left_distrib (x := x) (y := e) (z := e)
+  have h := Ring.add_left h0 (-(x*e))
+  rw[id_left]  at h
+  rw[inv_left] at h
+  rw[←assoc]   at h
+  rw[inv_left] at h
+  rw[id_left]  at h
   exact h.symm
 
 

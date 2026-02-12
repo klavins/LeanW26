@@ -219,30 +219,31 @@ pre {
   padding: 4px 4px;
   border-radius: 1px;
   font-family: monospace;
-  font-size: 4pt;
+  font-size: 3pt;
   position: relative;
   cursor: pointer;
   margin: 0 2px;
 }
 
 
-.hoverable::after {
+/* .hoverable::after {
+  display: hidden;
   content: attr(data-tooltip);
   position: absolute;
   left: 0;
   top: 100%;
-  background-color: #333;
+  background-color: #999;
   color: #fff;
   padding: 4px 8px;
   border-radius: 4px;
   white-space: nowrap;
-  font-size: 4pt;
+  font-size: 3pt;
   opacity: 0;
   pointer-events: none;
   transform: translateY(4px);
   transition: opacity 0.2s ease-in-out;
   z-index: 100;
-}
+} */
 
 .hoverable:hover::after {
   opacity: 1;
@@ -325,7 +326,7 @@ pre {
     font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
     font-size: 8pt;
     color: #444;
-    width: 25%;
+    width: 30%;
     display: none;
 }
 

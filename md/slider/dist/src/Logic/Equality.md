@@ -1,6 +1,8 @@
 
 Equality
 ===
+... one should instead show that they are really equal by disclosing the inner ground for their equality
+Emmy Noether, <a href="https://shethoughtit.ilcml.com/biography/emmy-noether/">She Thought It</a>.
 
 
 Objects, Functions and Equality

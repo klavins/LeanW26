@@ -41,7 +41,7 @@ client = lc.LeanLSPClient(root)
 
 files = [
 
-   "Introduction/Lean"
+   "Numbers/Algebra"
 #   "Introduction/Programming",
 #   "Introduction/Datatypes",
 

@@ -59,9 +59,9 @@ class Slider extends React.Component {
         ]
     });
 
-    fetch("config.json").then(result => result.json()).then(config => {
+    fetch("config.json").then(result => result.json(), { cache: 'no-store' }).then(config => {
       this.config = config;
-      return fetch(this.config.sections[this.state.section].decks[this.state.deck].path);
+      return fetch(this.config.sections[this.state.section].decks[this.state.deck].path, { cache: 'no-store' });
     }).then(res => res.text()).then(result => {
       var slides = this.parse(result);
       let titles = slides.map(s => s.split("===")[0]);
@@ -150,10 +150,11 @@ class Slider extends React.Component {
   }
 
   handleKeyDown(event) {
+    console.log(event)
     if (this.scroll_animation == null) {
-      if (event.key == "ArrowRight") {
+      if (event.key == "ArrowRight" || event.key == " " && ! event.shiftKey ) {
         this.forward();
-      } else if (event.key == "ArrowLeft") {
+      } else if (event.key == "ArrowLeft" || ( event.key == " " && event.shiftKey ) ) {
         this.reverse();
       }
     }
