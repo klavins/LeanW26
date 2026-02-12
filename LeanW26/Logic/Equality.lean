@@ -14,6 +14,8 @@ namespace LeanW26
 /-
 Equality
 ===
+... one should instead show that they are really equal by disclosing the inner ground for their equality
+Emmy Noether, <a href="https://shethoughtit.ilcml.com/biography/emmy-noether/">She Thought It</a>.
 -/
 
 /-
@@ -566,9 +568,9 @@ structure Point (α : Type u) where
 
 theorem Point.ext {α : Type} (p q : Point α) (hx : p.x = q.x) (hy : p.y = q.y)
   : p = q := by
-  cases p; cases q;
-  cases hx; cases hy;
-  rfl
+  cases p with | mk a b =>
+  cases q with | mk c d =>
+  simp_all
 
 /- Then we can do, for example, -/
 

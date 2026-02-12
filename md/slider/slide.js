@@ -47,17 +47,34 @@ class Slide extends React.PureComponent {
 
     let html = "";
     if (this.props.id == 0) {
+
+        let title = this.props.content.split('\n')[0];
+        let thought = this.props.content.split('\n')[2];
+        let cite = this.props.content.split('\n')[3];
+
         html = `<div class='first-slide'>
           <div class='course'>EE 598 : Automated Mathematics : W26</div>
-          <div class='slide-title'>${this.props.content.split('\n')[0]}</div>
+          <div class='slide-title'>${title}</div>
           <div class='author'>
             Prof. Eric Klavins</br>
             Electrical and Computer Engineering</br>
             University of Washington</br>
             Seattle, WA</br>
           </div>
-        </div> 
-        `
+        `;
+
+        if ( thought ) {
+          html += `<div class='thought'>${thought}</div>`;
+        }
+      
+      
+
+        html += `</div>`;
+
+        if ( cite ) {
+          html += `<div class='fn'>${cite}</div>`;
+        }          
+        
     } 
     else {
         html = this.props.converter.makeHtml(this.props.content);

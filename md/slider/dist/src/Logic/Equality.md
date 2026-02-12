@@ -327,16 +327,16 @@ make a note of which theorems it is calling for each case (using `simp?`).
 
 
 ```lean
--- Don't @[simp] this one!
 theorem assoc {x y z} : x o (y o z) = (x o y) o z := sorry
 
--- Don't @[simp] this one!
 theorem com {x y} : x o y = y o x := sorry
 
 theorem toggle_op_right {x y} : (x o y)⁻¹ = y o x⁻¹ := sorry
 
+@[simp]
 theorem inv_cancel_right {x} : x o x⁻¹ = dn := sorry
 
+@[simp]
 theorem inv_cancel_left {x} : x⁻¹ o x = dn := sorry
 ```
 
@@ -533,9 +533,9 @@ structure Point (α : Type u) where
 ```lean
 theorem Point.ext {α : Type} (p q : Point α) (hx : p.x = q.x) (hy : p.y = q.y)
   : p = q := by
-  cases p; cases q;
-  cases hx; cases hy;
-  rfl
+  cases p with | mk a b =>
+  cases q with | mk c d =>
+  simp_all
 ```
  Then we can do, for example, 
 ```lean

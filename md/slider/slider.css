@@ -25,6 +25,13 @@ body {
     overflow-y: hidden;
 }
 
+.thought {
+    margin-top: 30px;
+    font-size : 8pt;
+    color: rgb(166, 73, 178);
+    font-style: italic;
+}
+
 .slider-container {
     margin: 0px;
     padding: 0px;

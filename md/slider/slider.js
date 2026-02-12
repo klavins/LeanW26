@@ -150,10 +150,11 @@ class Slider extends React.Component {
   }
 
   handleKeyDown(event) {
+    console.log(event)
     if (this.scroll_animation == null) {
-      if (event.key == "ArrowRight") {
+      if (event.key == "ArrowRight" || event.key == " " && ! event.shiftKey ) {
         this.forward();
-      } else if (event.key == "ArrowLeft") {
+      } else if (event.key == "ArrowLeft" || ( event.key == " " && event.shiftKey ) ) {
         this.reverse();
       }
     }

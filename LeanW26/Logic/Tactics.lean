@@ -15,6 +15,9 @@ namespace LeanW26
 /-
 Tactics
 ===
+Most of the development in softare development has been in making programs easier to write, easier to understand, and easier to maintain.
+Donald Knuth, <a href="https://www.cs.tufts.edu/~nr/cs257/archive/don-knuth/empirical-fortran.pdf">An Emperical Study of FORTRAN Progams</a>, 1971.
+
 
 What's a Tactic?
 ===
