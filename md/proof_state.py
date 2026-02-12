@@ -37,7 +37,7 @@ def log_proof_states(client, infile: str, outfile: str ):
 
 
         print("found",n,"proof states")
-        
+
     sfc.close_file()
 
 root = "/Users/ericklavins/Courses/LeanW26"
@@ -46,8 +46,8 @@ client = lc.LeanLSPClient(root)
 
 files = [
 
-  "Logic/Tactics",
-  "Logic/Equality",
+  # "Logic/Tactics",
+  # "Logic/Equality",
   "Numbers/Algebra"
 
 ]

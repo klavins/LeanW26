@@ -788,7 +788,7 @@ instance Spin.inst_field : Field Spin := {
 example : dn ≠ up := one_ne_e
 ```
 
-Mathlib's Alegebra
+Mathlib's Algebra
 ===
 
 The integers `ℤ` with `+` and `*` are the standard example of a commutative ring.

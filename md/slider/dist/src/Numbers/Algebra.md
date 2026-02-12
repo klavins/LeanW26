@@ -57,11 +57,12 @@ A **Monoid** is a group without inverses.
 
 A **Commutative Group** is a group where `a ∘ b = b ∘ a` for all `a` and `b`.
 
-Many mathematical objects are groups: ℤ, ℚ, ℝ, ℂ with `+` or `*`. Matrices, polynomials,
+Many mathematical objects are groups: ℤ, ℚ, ℝ, ℂ. Matrices, polynomials,
 functions, permutations, cycles, symmetries, paths, etc.
 
-Ideally, a proof assistant can reason at an abstract level about groups in general,
-so results about groups can be reused for any concrete group.
+Ideally, a proof assistant can reason at an abstract
+level about groups in general, so results about groups
+can be reused for any concrete group.
 
 Lean does this with *type classes* and *instances*.
 
@@ -75,7 +76,7 @@ advanced results require more infrastrcture than presented here, but much of
 it is available in Mathlib.
 
 Historically, the application of proof assistants to Group Theory were
-early successes of the technology.
+some of the early successes of the technology.
 
 For example:
 
@@ -91,7 +92,8 @@ For example:
 Preliminaries
 ===
 
-We will redefine basic typeclass, using the same names as Mathlib does.
+We will redefine Mathlib's basic typeclasses for Group, Ring, etc.,
+using the same names as Mathlib uses.
 So we'll put everything into a temporary namespace.
 
 
@@ -198,7 +200,7 @@ A super useful property for proving identities is:
 
 
 ```lean
-lemma Group.cancel_left : a + b = a + c → b = c := by <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\n⊢ a + b = a + c → b = c']</proofstate>
+theorem Group.cancel_left : a + b = a + c → b = c := by <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\n⊢ a + b = a + c → b = c']</proofstate>
   intro h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : a + b = a + c\n⊢ b = c']</proofstate>
   apply congrArg (fun t => -a + t) at h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : -a + (a + b) = -a + (a + c)\n⊢ b = c']</proofstate>
   rw[←assoc] at h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : -a + a + b = -a + (a + c)\n⊢ b = c']</proofstate>
@@ -421,12 +423,12 @@ Now we have what we need do define a `Ring`.
 ```lean
 class Ring (R : Type u)
   extends CommGroup R, Monoid R where
-  left_distrib {x y z : R}  : mul x (op y z) = op (mul x y) (mul x z)
-  right_distrib {x y z : R} : mul (op y z) x = op (mul y x) (mul z x)
+  l_distrib {x y z : R} : mul x (op y z) = op (mul x y) (mul x z)
+  r_distrib {x y z : R} : mul (op y z) x = op (mul y x) (mul z x)
 
 class CommRing (R : Type u)
    extends Ring R where
-   mulcomm {x y: R} : mul x y = mul y x
+   mulcomm {x y : R} : mul x y = mul y x
 ```
 
 Ring Notation
@@ -478,7 +480,7 @@ We can do this with theorems of the form:
 variable {x y z : R}
 --unhide
 
-theorem Ring.add_left  (h : y = z) (x : R) : x + y = x + z := by rw[h]
+theorem Ring.add_left  (h : y = z) (x : R) : x + y = x + z := by rw [h]
 theorem Ring.add_right (h : y = z) (x : R) : y + x = z + x := by rw [h]
 theorem Ring.mul_left  (h : y = z) (x : R) : x * y = x * z := by rw [h]
 theorem Ring.mul_right (h : y = z) (x : R) : y * x = z * x := by rw [h]
@@ -489,7 +491,7 @@ Example Identity
 
 ```lean
 theorem mul_zero : x * e = e := by <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\n⊢ x * e = e']</proofstate>
-  have h0 := left_distrib (x := x) (y := e) (z := e) <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\n⊢ x * e = e']</proofstate>
+  have h0 := l_distrib (x := x) (y := e) (z := e) <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\n⊢ x * e = e']</proofstate>
   have h := Ring.add_left h0 (-(x*e)) <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\nh : -(x * e) + x * (e + e) = -(x * e) + (x * e + x * e)\n⊢ x * e = e']</proofstate>
   rw[id_left]  at h <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\nh : -(x * e) + x * e = -(x * e) + (x * e + x * e)\n⊢ x * e = e']</proofstate>
   rw[inv_left] at h <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\nh : e = -(x * e) + (x * e + x * e)\n⊢ x * e = e']</proofstate>
@@ -511,9 +513,9 @@ theorem neg_one : (-one:R)*x = -x := by <proofstate>['R : Type u\ninst✝ : Comm
   have h1 : e = (e:R) * x := by rw[mulcomm,mul_zero]
  <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = e * x\n⊢ -one * x = -x']</proofstate>
   nth_rewrite 2 [←h0] at h1 <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = (one + -one) * x\n⊢ -one * x = -x']</proofstate>
-  rw[Ring.right_distrib,mul_id_left] at h1 <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\n⊢ -one * x = -x']</proofstate>
+  rw[r_distrib,mul_id_left] at h1 <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\n⊢ -one * x = -x']</proofstate>
  <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\n⊢ -one * x = -x']</proofstate>
-  have h2 := Ring.add_left h1 (-x) <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\nh2 : -x + e = -x + (x + -one * x)\n⊢ -one * x = -x']</proofstate>
+  have h2 := add_left h1 (-x) <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\nh2 : -x + e = -x + (x + -one * x)\n⊢ -one * x = -x']</proofstate>
   rw[←assoc,id_right,inv_left,id_left] at h2 <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\nh2 : -x = -one * x\n⊢ -one * x = -x']</proofstate>
  <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\nh2 : -x = -one * x\n⊢ -one * x = -x']</proofstate>
   exact h2.symm
@@ -566,8 +568,8 @@ Spin is a Ring
 
 ```lean
 instance Spin.inst_ring : Ring Spin := {
-  left_distrib {x y z} := by cases x <;> cases y <;> cases z <;> aesop
-  right_distrib {x y z} := by cases x <;> cases y <;> cases z <;> aesop
+  l_distrib {x y z} := by cases x <;> cases y <;> cases z <;> aesop
+  r_distrib {x y z} := by cases x <;> cases y <;> cases z <;> aesop
 }
 ```
 
@@ -692,7 +694,6 @@ class Field (F : Type u) extends CommRing F, Nontrivial F where
   minv : F → F
   minv_zero : minv e = e
   mul_inv_prop {x : F} : x ≠ e → mul x (minv x) = one
-  mul_comm {x y : F} : mul x y = mul y x
 
 open Field
 
@@ -729,7 +730,7 @@ We only required `one * x = x` in our definition because we can prove the symmet
 
 ```lean
 theorem mul_id_right : x * one = x := by <proofstate>['F : Type u\ninst✝ : Field F\nx : F\n⊢ x * one = x']</proofstate>
-  rw[Field.mul_comm] <proofstate>['F : Type u\ninst✝ : Field F\nx : F\n⊢ one * x = x']</proofstate>
+  rw[mulcomm] <proofstate>['F : Type u\ninst✝ : Field F\nx : F\n⊢ one * x = x']</proofstate>
   rw[mul_id_left]
 ```
 
@@ -757,6 +758,61 @@ theorem one_ne_e : (one:F) ≠ e := by <proofstate>['F : Type u\ninst✝ : Field
   exact hxy (hx.trans hy.symm)
 ```
 
+Spin is a a Nonempty Commutative Ring
+===
+
+```lean
+instance Spin.inst_nt : Nontrivial Spin := {
+  exists_pair_ne := by <proofstate>['G✝ : Type\ninst✝³ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝² : Group G\na b c : G\nR : Type u\ninst✝¹ : CommRing R\nx✝ y✝ z✝ : R\nF : Type u\ninst✝ : Field F\nx y z : F\n⊢ ∃ x y, x ≠ y']</proofstate>
+    use up, dn <proofstate>['case h\nG✝ : Type\ninst✝³ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝² : Group G\na b c : G\nR : Type u\ninst✝¹ : CommRing R\nx✝ y✝ z✝ : R\nF : Type u\ninst✝ : Field F\nx y z : F\n⊢ up ≠ dn']</proofstate>
+    simp
+}
+
+instance Spin.inst_comm_ring : CommRing Spin := {
+  mulcomm {x y} := by cases x <;> cases y <;> aesop
+}
+```
+
+Spin is a Field
+===
+
+```lean
+instance Spin.inst_field : Field Spin := {
+  minv x := x
+  minv_zero := by simp,
+  mul_inv_prop {x} h := by cases x <;> simp_all[e]; rfl
+}
+```
+ Field theorems apply: 
+```lean
+example : dn ≠ up := one_ne_e
+```
+
+Mathlib's Algebra
+===
+
+The integers `ℤ` with `+` and `*` are the standard example of a commutative ring.
+
+```lean
+#synth AddGroup ℤ              -- Int.instAddGroup
+#synth CommMonoid ℤ            -- etc.
+#synth _root_.CommRing ℤ
+```
+
+The rationals `ℚ` with `+`, `*` and `x⁻¹` are the standard example of a field.
+
+```lean
+#synth AddGroup ℚ               -- Rat.addGroup
+#synth CommMonoid ℚ
+#synth _root_.Field ℚ
+```
+ And there are tactics 
+```lean
+example (x y : ℤ) : x + y = y + x := by group
+example (x y : ℤ) : 2*(x + y) = 2*y + 2*x := by ring
+example (x y : ℚ) : 2*(x⁻¹ + y) = 2*y + 2*x⁻¹ := by field
+```
+
 Exercises
 ===
 
@@ -768,11 +824,11 @@ theorem one_inv : (one:F)⁻¹ = one := sorry
 ```
 
 
-<ex /> Instantiate `(ℤ,+)` as a `Field`. For the properties,
-find them [here](https://leanprover-community.github.io/mathlib4_docs/Init/Data/Int/Lemmas.html)
+<ex /> Instantiate `(ℤ,+)` as a `Field` (using the definition in this file,
+not Mathlib's). For the properties, find them [here](https://leanprover-community.github.io/mathlib4_docs/Init/Data/Int/Lemmas.html)
 or by just checking `by apply?`.
 
-You can do this all at onces with `instance : Field ℤ` or by building up
+You can do this all at once with `instance : Field ℤ` or by building up
 `Group`, `Monoind`, `Ring`, `CommRing` and `Field` sequentially.
 
 <ex /> (Optional) Show that in a `Field`, `(a*b)⁻¹ = (a⁻¹)*(b⁻¹)`.

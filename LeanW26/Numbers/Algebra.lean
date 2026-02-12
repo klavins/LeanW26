@@ -177,7 +177,7 @@ prefix:95 "-" => Group.inv
 
 open Group CommGroup
 
-variable (G : Type) [Group G] (a b : G)
+variable (G : Type u) [Group G] (a b : G)
 #check -(a + b) + a           -- G
 #check a + b + e              -- G
 
@@ -390,9 +390,9 @@ instance Group.prod {G H : Type u} [Group G] [Group H] : Group (G × H) := {
   op x y := (x.1 + y.1, x.2 + y.2),
   e := (e,e),
   inv x := (-x.1, -x.2),
-  id_left {x} := sorry,
-  inv_left := sorry,
-  assoc := sorry
+  id_left {x} := by simp[id_left]
+  inv_left := by simp[inv_left],
+  assoc :=  by simp[assoc]
 }
 
 infix:50 " × " => Group.prod

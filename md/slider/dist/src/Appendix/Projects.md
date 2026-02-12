@@ -175,7 +175,7 @@ Customization Prompt
 
 
 
-First Steps
+Exercise
 ===
 
 <ex /> Have a conversation with [Copilot](https://m365.cloud.microsoft/chat/). Choose
@@ -184,6 +184,21 @@ several different topics to explore in different chats. Choose one you like and 
 Ask at least twice as many questions as in example above, focusing on making sure you understand the output, and asking clarifying questions.
 
 **Note**: If you are opposed to using an AI for this exercise, find a well-informed human (or potentially several) and ask them your questions.
+
+Exercise
+===
+
+<ex /> Get started:
+- Start a new Lean project. Create a github repo for your project and share it with Eric. It may be public or private. If it is public, put a `LICENSE.md` file in your repo. Gnu, MIT, etc.
+- Add a one paragraph description to the `README.md` describing what you plan to do.
+- Make a `TODO.md` with a list of achievable goals in order that you will do them.
+- As you make progress, adjust the `README` to describe your work, and the `TODO` to with what is left to do.
+
+<ex /> Read this article and share your thoughts.
+- https://www.nytimes.com/2026/02/12/opinion/ai-companies-college-students.html
+
+Note you you have a free [NYT account](https://www.nytimes.com/activate-access/edu-access) as a UW student.
+
 
 
 
