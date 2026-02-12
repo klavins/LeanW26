@@ -5,12 +5,12 @@
 --  the Free Software Foundation, either version 3 of the License, or
 --  (at your option) any later version.
 
-import Mathlib
-import Lean
+import mathlib
+import lean
 
 namespace LeanW26
 
-
+#eval Lean.versionString
 
 /-
 Tactics

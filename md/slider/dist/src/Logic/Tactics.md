@@ -53,7 +53,7 @@ Tactic mode is entered in a proof using the keyword `by`
 ```lean
 variable (p : Type → Prop)
 
-theorem my_thm1 : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by
+theorem my_thm1 : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by <proofstate>['p : Type → Prop\n⊢ (¬∃ x, p x) ↔ ∀ (x : Type), ¬p x']</proofstate>
   sorry
 ```
 
@@ -72,7 +72,7 @@ Tactics Produce Terms
 Tactics produce terms that are then type checked by the kernel. 
 ```lean
 theorem t (x y z : ℚ) (h1 : 2*x < 3*y) (h2 : -4*x + 2*z < 0) (h3 : 12*y - 4* z < 0)
-  : False := by
+  : False := by <proofstate>['x y z : ℚ\nh1 : 2 * x < 3 * y\nh2 : -4 * x + 2 * z < 0\nh3 : 12 * y - 4 * z < 0\n⊢ False']</proofstate>
   linarith
 
 #print t
@@ -88,8 +88,8 @@ intro
 Introduction applies to implications and forall statements, introducing either a new
 hypothesis or a new object. It takes the place of `fun h₁ h₂ ... => ...`  
 ```lean
-example : (¬ ∃ x, p x) → (∀ x, ¬ p x) := by
-  intro hnep x
+example : (¬ ∃ x, p x) → (∀ x, ¬ p x) := by <proofstate>['p : Type → Prop\n⊢ (¬∃ x, p x) → ∀ (x : Type), ¬p x']</proofstate>
+  intro hnep x <proofstate>['p : Type → Prop\nhnep : ¬∃ x, p x\nx : Type\n⊢ ¬p x']</proofstate>
   sorry                -- ⊢ ¬p x
 ```
 
@@ -100,16 +100,16 @@ The `apply` tactic applies a function, for-all statement, or another theorem.
 It looks for arguments that match its type signature in the context and
 automatically uses them if possible. 
 ```lean
-example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by
-  apply Iff.intro
-  · intro h x hp               --  ⊢ False
-    apply h                    --  ⊢ ∃ x, p x
-    apply Exists.intro x       --  ⊢ p x
+example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by <proofstate>['p : Type → Prop\n⊢ (¬∃ x, p x) ↔ ∀ (x : Type), ¬p x']</proofstate>
+  apply Iff.intro <proofstate>['case mp\np : Type → Prop\n⊢ (¬∃ x, p x) → ∀ (x : Type), ¬p x', 'case mpr\np : Type → Prop\n⊢ (∀ (x : Type), ¬p x) → ¬∃ x, p x']</proofstate>
+  · intro h x hp               --  ⊢ False <proofstate>['case mp\np : Type → Prop\nh : ¬∃ x, p x\nx : Type\nhp : p x\n⊢ False']</proofstate>
+    apply h                    --  ⊢ ∃ x, p x <proofstate>['case mp\np : Type → Prop\nh : ¬∃ x, p x\nx : Type\nhp : p x\n⊢ ∃ x, p x']</proofstate>
+    apply Exists.intro x       --  ⊢ p x <proofstate>['case mp\np : Type → Prop\nh : ¬∃ x, p x\nx : Type\nhp : p x\n⊢ p x']</proofstate>
     apply hp                   --  Goals accomplished!
-  · intro hnpx h
-    apply Exists.elim h
-    intro x hp
-    apply hnpx x
+  · intro hnpx h <proofstate>['case mpr\np : Type → Prop\nhnpx : ∀ (x : Type), ¬p x\nh : ∃ x, p x\n⊢ False']</proofstate>
+    apply Exists.elim h <proofstate>['case mpr\np : Type → Prop\nhnpx : ∀ (x : Type), ¬p x\nh : ∃ x, p x\n⊢ ∀ (a : Type), p a → False']</proofstate>
+    intro x hp <proofstate>['case mpr\np : Type → Prop\nhnpx : ∀ (x : Type), ¬p x\nh : ∃ x, p x\nx : Type\nhp : p x\n⊢ False']</proofstate>
+    apply hnpx x <proofstate>['case mpr\np : Type → Prop\nhnpx : ∀ (x : Type), ¬p x\nh : ∃ x, p x\nx : Type\nhp : p x\n⊢ p x']</proofstate>
     apply hp
 ```
  The dots (entered as `\.`) help deliniate the subcases, isolating them in the Infoview.
@@ -132,17 +132,17 @@ You can use `apply` with previously defined theorems.
 ```lean
 theorem my_thm2 (q : Prop) : q → q := id
 
-example (q : ℕ → Prop) : (∀ x, q x) → ∀ x, q x := by
+example (q : ℕ → Prop) : (∀ x, q x) → ∀ x, q x := by <proofstate>['p : Type → Prop\nq : ℕ → Prop\n⊢ (∀ (x : ℕ), q x) → ∀ (x : ℕ), q x']</proofstate>
   apply my_thm2
 
 #check Eq.symm  -- defined in Init.Prelude
 
-example (x y : ℕ) : x = y → y = x := by
+example (x y : ℕ) : x = y → y = x := by <proofstate>['p : Type → Prop\nx y : ℕ\n⊢ x = y → y = x']</proofstate>
   apply Eq.symm
 ```
  If you are stuck, there is `apply?` 
 ```lean
-example (x y : ℕ) : x = y → y = x := by
+example (x y : ℕ) : x = y → y = x := by <proofstate>['p : Type → Prop\nx y : ℕ\n⊢ x = y → y = x']</proofstate>
   apply?         -- Try this:
                  --   [apply] exact fun a ↦ id
                  -- (Eq.symm a)
@@ -159,22 +159,22 @@ more clear and robust to changes in how other tactics in the proof are applied.
 
 Here is the previous proof presented more compactly. 
 ```lean
-example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by
-  apply Iff.intro
-  · intro h x hp
+example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by <proofstate>['p : Type → Prop\n⊢ (¬∃ x, p x) ↔ ∀ (x : Type), ¬p x']</proofstate>
+  apply Iff.intro <proofstate>['case mp\np : Type → Prop\n⊢ (¬∃ x, p x) → ∀ (x : Type), ¬p x', 'case mpr\np : Type → Prop\n⊢ (∀ (x : Type), ¬p x) → ¬∃ x, p x']</proofstate>
+  · intro h x hp <proofstate>['case mp\np : Type → Prop\nh : ¬∃ x, p x\nx : Type\nhp : p x\n⊢ False']</proofstate>
     exact h (Exists.intro x hp)
-  · intro h hepx
-    apply Exists.elim hepx
-    intro x hpa
+  · intro h hepx <proofstate>['case mpr\np : Type → Prop\nh : ∀ (x : Type), ¬p x\nhepx : ∃ x, p x\n⊢ False']</proofstate>
+    apply Exists.elim hepx <proofstate>['case mpr\np : Type → Prop\nh : ∀ (x : Type), ¬p x\nhepx : ∃ x, p x\n⊢ ∀ (a : Type), p a → False']</proofstate>
+    intro x hpa <proofstate>['case mpr\np : Type → Prop\nh : ∀ (x : Type), ¬p x\nhepx : ∃ x, p x\nx : Type\nhpa : p x\n⊢ False']</proofstate>
     exact (h x) hpa
 ```
  And even more compactly using structure notation and matching 
 ```lean
-example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by
-  apply Iff.intro
-  · intro h x hp
+example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by <proofstate>['p : Type → Prop\n⊢ (¬∃ x, p x) ↔ ∀ (x : Type), ¬p x']</proofstate>
+  apply Iff.intro <proofstate>['case mp\np : Type → Prop\n⊢ (¬∃ x, p x) → ∀ (x : Type), ¬p x', 'case mpr\np : Type → Prop\n⊢ (∀ (x : Type), ¬p x) → ¬∃ x, p x']</proofstate>
+  · intro h x hp <proofstate>['case mp\np : Type → Prop\nh : ¬∃ x, p x\nx : Type\nhp : p x\n⊢ False']</proofstate>
     exact h ⟨ x, hp ⟩
-  · intro h ⟨ x, hp ⟩
+  · intro h ⟨ x, hp ⟩ <proofstate>['case mpr\np : Type → Prop\nh : ∀ (x : Type), ¬p x\nx : Type\nhp : p x\n⊢ False']</proofstate>
     exact (h x) hp
 ```
 
@@ -183,21 +183,21 @@ use
 apply `Exists.intro x` is quite common. The tactic `use` wraps it.
 
 ```lean
-example : ∀ (x : ℕ), ∃ y, x < y := by
-  intro x
-  use x+1
+example : ∀ (x : ℕ), ∃ y, x < y := by <proofstate>['p : Type → Prop\n⊢ ∀ (x : ℕ), ∃ y, x < y']</proofstate>
+  intro x <proofstate>['p : Type → Prop\nx : ℕ\n⊢ ∃ y, x < y']</proofstate>
+  use x+1 <proofstate>['case h\np : Type → Prop\nx : ℕ\n⊢ x < x + 1']</proofstate>
   apply?       -- Try this:
                --   [apply] exact lt_add_one x
 
-example : ∀ (x : ℕ), ∃ y, x < y := by
-  intro x
-  use x+1
+example : ∀ (x : ℕ), ∃ y, x < y := by <proofstate>['p : Type → Prop\n⊢ ∀ (x : ℕ), ∃ y, x < y']</proofstate>
+  intro x <proofstate>['p : Type → Prop\nx : ℕ\n⊢ ∃ y, x < y']</proofstate>
+  use x+1 <proofstate>['case h\np : Type → Prop\nx : ℕ\n⊢ x < x + 1']</proofstate>
   exact lt_add_one x
 ```
  `use` allows for multiple introductions at the same time
 ```lean
-example : ∃ (x:ℕ), ∃ y, x < y := by
-  use 0, 1
+example : ∃ (x:ℕ), ∃ y, x < y := by <proofstate>['p : Type → Prop\n⊢ ∃ x y, x < y']</proofstate>
+  use 0, 1 <proofstate>['case h\np : Type → Prop\n⊢ 0 < 1']</proofstate>
   exact Nat.one_pos
 ```
 
@@ -207,8 +207,8 @@ assumption
 This tactic looks through the context to find an assumption that applies,
 and applies it. It is like apply but where you don't have to say what to apply. 
 ```lean
-example (c : Type) (h : p c) : ∃ x, p x := by
-  apply Exists.intro c
+example (c : Type) (h : p c) : ∃ x, p x := by <proofstate>['p : Type → Prop\nc : Type\nh : p c\n⊢ ∃ x, p x']</proofstate>
+  apply Exists.intro c <proofstate>['p : Type → Prop\nc : Type\nh : p c\n⊢ p c']</proofstate>
   assumption
 ```
 
@@ -234,18 +234,18 @@ cleaner, although one might argue the use of angled brackets is harder to read.
 variable (p : Type → Prop)
 variable (r : Prop)
 
-example : (∃ x, p x ∧ r) ↔ (∃ x, p x) ∧ r := by
-  apply Iff.intro
-  · intro ⟨ x, ⟨ hx, hr ⟩ ⟩
+example : (∃ x, p x ∧ r) ↔ (∃ x, p x) ∧ r := by <proofstate>['p✝ P Q p : Type → Prop\nr : Prop\n⊢ (∃ x, p x ∧ r) ↔ (∃ x, p x) ∧ r']</proofstate>
+  apply Iff.intro <proofstate>['case mp\np✝ P Q p : Type → Prop\nr : Prop\n⊢ (∃ x, p x ∧ r) → (∃ x, p x) ∧ r', 'case mpr\np✝ P Q p : Type → Prop\nr : Prop\n⊢ (∃ x, p x) ∧ r → ∃ x, p x ∧ r']</proofstate>
+  · intro ⟨ x, ⟨ hx, hr ⟩ ⟩ <proofstate>['case mp\np✝ P Q p : Type → Prop\nr : Prop\nx : Type\nhx : p x\nhr : r\n⊢ (∃ x, p x) ∧ r']</proofstate>
     exact ⟨ ⟨ x, hx ⟩ , hr ⟩
-  · intro ⟨ ⟨ x, hx ⟩ , hr ⟩
+  · intro ⟨ ⟨ x, hx ⟩ , hr ⟩ <proofstate>['case mpr\np✝ P Q p : Type → Prop\nr : Prop\nx : Type\nhx : p x\nhr : r\n⊢ ∃ x, p x ∧ r']</proofstate>
     exact ⟨ x, ⟨ hx, hr ⟩ ⟩
 
-example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by
-  apply Iff.intro
-  · intro h x hp
+example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by <proofstate>['p✝ P Q p : Type → Prop\nr : Prop\n⊢ (¬∃ x, p x) ↔ ∀ (x : Type), ¬p x']</proofstate>
+  apply Iff.intro <proofstate>['case mp\np✝ P Q p : Type → Prop\nr : Prop\n⊢ (¬∃ x, p x) → ∀ (x : Type), ¬p x', 'case mpr\np✝ P Q p : Type → Prop\nr : Prop\n⊢ (∀ (x : Type), ¬p x) → ¬∃ x, p x']</proofstate>
+  · intro h x hp <proofstate>['case mp\np✝ P Q p : Type → Prop\nr : Prop\nh : ¬∃ x, p x\nx : Type\nhp : p x\n⊢ False']</proofstate>
     exact h ⟨ x, hp ⟩
-  · intro h ⟨ x, hp ⟩
+  · intro h ⟨ x, hp ⟩ <proofstate>['case mpr\np✝ P Q p : Type → Prop\nr : Prop\nh : ∀ (x : Type), ¬p x\nx : Type\nhp : p x\n⊢ False']</proofstate>
     exact h x hp
 ```
 
@@ -254,15 +254,15 @@ example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) := by
 
 You can use `have` to record intermediate results 
 ```lean
-example (p q : Prop) : p ∧ q → p ∨ q := by
-  intro ⟨ h1, h2 ⟩
-  have hp : p := h1
+example (p q : Prop) : p ∧ q → p ∨ q := by <proofstate>['p✝¹ P Q p✝ : Type → Prop\nr p q : Prop\n⊢ p ∧ q → p ∨ q']</proofstate>
+  intro ⟨ h1, h2 ⟩ <proofstate>['p✝¹ P Q p✝ : Type → Prop\nr p q : Prop\nh1 : p\nh2 : q\n⊢ p ∨ q']</proofstate>
+  have hp : p := h1 <proofstate>['p✝¹ P Q p✝ : Type → Prop\nr p q : Prop\nh1 : p\nh2 : q\nhp : p\n⊢ p ∨ q']</proofstate>
   exact Or.inl hp
 ```
  If you need an intermediate value, you should use `let`. 
 ```lean
-example : ∃ n , n > 0 := by
-  let m := 1
+example : ∃ n , n > 0 := by <proofstate>['p✝ P Q p : Type → Prop\nr : Prop\n⊢ ∃ n, n > 0']</proofstate>
+  let m := 1 <proofstate>['p✝ P Q p : Type → Prop\nr : Prop\nm : ℕ := 1\n⊢ ∃ n, n > 0']</proofstate>
   exact ⟨ m, Nat.one_pos ⟩
 ```
 
@@ -271,19 +271,19 @@ cases
 
 The `cases` tactic wraps around `Or.elim` to make proofs easier to read. For example, 
 ```lean
-example (p q : Prop) : (p ∨ q) → q ∨ p  := by
-  intro h
-  apply Or.elim h
-  · intro hp
+example (p q : Prop) : (p ∨ q) → q ∨ p  := by <proofstate>['p✝¹ P Q p✝ : Type → Prop\nr p q : Prop\n⊢ p ∨ q → q ∨ p']</proofstate>
+  intro h <proofstate>['p✝¹ P Q p✝ : Type → Prop\nr p q : Prop\nh : p ∨ q\n⊢ q ∨ p']</proofstate>
+  apply Or.elim h <proofstate>['case left\np✝¹ P Q p✝ : Type → Prop\nr p q : Prop\nh : p ∨ q\n⊢ p → q ∨ p', 'case right\np✝¹ P Q p✝ : Type → Prop\nr p q : Prop\nh : p ∨ q\n⊢ q → q ∨ p']</proofstate>
+  · intro hp <proofstate>['case left\np✝¹ P Q p✝ : Type → Prop\nr p q : Prop\nh : p ∨ q\nhp : p\n⊢ q ∨ p']</proofstate>
     exact Or.symm h
-  · intro hq
+  · intro hq <proofstate>['case right\np✝¹ P Q p✝ : Type → Prop\nr p q : Prop\nh : p ∨ q\nhq : q\n⊢ q ∨ p']</proofstate>
     exact Or.symm h
 ```
  Becomes 
 ```lean
-example (p q : Prop) : (p ∨ q) → q ∨ p  := by
-  intro h
-  cases h with
+example (p q : Prop) : (p ∨ q) → q ∨ p  := by <proofstate>['p✝¹ P Q p✝ : Type → Prop\nr p q : Prop\n⊢ p ∨ q → q ∨ p']</proofstate>
+  intro h <proofstate>['p✝¹ P Q p✝ : Type → Prop\nr p q : Prop\nh : p ∨ q\n⊢ q ∨ p']</proofstate>
+  cases h with <proofstate>['p✝¹ P Q p✝ : Type → Prop\nr p q : Prop\nh : p ∨ q\n⊢ q ∨ p']</proofstate>
   | inl hp => exact Or.inr hp
   | inr hq => exact Or.symm (Or.inr hq)
 ```
@@ -297,16 +297,16 @@ variable (P Q : Type → Prop)
 ```
  Cases on an Exists structure 
 ```lean
-example : (∃ x, P x ∧ Q x) → ∃ x, Q x ∧ P x := by
-  intro h
-  cases h with
+example : (∃ x, P x ∧ Q x) → ∃ x, Q x ∧ P x := by <proofstate>['p✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\n⊢ (∃ x, P x ∧ Q x) → ∃ x, Q x ∧ P x']</proofstate>
+  intro h <proofstate>['p✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\nh : ∃ x, P x ∧ Q x\n⊢ ∃ x, Q x ∧ P x']</proofstate>
+  cases h with <proofstate>['p✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\nh : ∃ x, P x ∧ Q x\n⊢ ∃ x, Q x ∧ P x']</proofstate>
   | intro x h => exact ⟨ x, And.symm h ⟩
 ```
  Cases on an And structure 
 ```lean
-example (p q : Prop) : (p ∧ q) → (p ∨ q) :=  by
-  intro h
-  cases h with
+example (p q : Prop) : (p ∧ q) → (p ∨ q) :=  by <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np q : Prop\n⊢ p ∧ q → p ∨ q']</proofstate>
+  intro h <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np q : Prop\nh : p ∧ q\n⊢ p ∨ q']</proofstate>
+  cases h with <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np q : Prop\nh : p ∧ q\n⊢ p ∨ q']</proofstate>
   | intro hp hq => exact Or.inl hp
 ```
 
@@ -357,12 +357,12 @@ def on_right (p q : Person) : Prop := match p with
 ```
  We can do a proof by cases with `Person` using the `cases` tactic 
 ```lean
-example : ∀ x : Person, ∃ y, ¬on_right x y := by
-  intro hp
-  cases hp with
-  | mary =>                 -- ⊢ ∃ y, ¬on_right mary y
-    use jolin               -- ⊢ ¬on_right mary jolin
-    intro h                 -- on_right mary jolin ⊢ False
+example : ∀ x : Person, ∃ y, ¬on_right x y := by <proofstate>['p✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\n⊢ ∀ (x : Person), ∃ y, ¬on_right x y']</proofstate>
+  intro hp <proofstate>['p✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\nhp : Person\n⊢ ∃ y, ¬on_right hp y']</proofstate>
+  cases hp with <proofstate>['p✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\nhp : Person\n⊢ ∃ y, ¬on_right hp y']</proofstate>
+  | mary =>                 -- ⊢ ∃ y, ¬on_right mary y <proofstate>['case mary\np✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\n⊢ ∃ y, ¬on_right mary y']</proofstate>
+    use jolin               -- ⊢ ¬on_right mary jolin <proofstate>['case h\np✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\n⊢ ¬on_right mary jolin']</proofstate>
+    intro h                 -- on_right mary jolin ⊢ False <proofstate>['case h\np✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\nh : on_right mary jolin\n⊢ False']</proofstate>
     cases h                 -- Subgoal accomplished
                             -- There are no cases in which on_right mary jolin is true
   | steve => sorry
@@ -376,8 +376,8 @@ example : ∀ x : Person, ∃ y, ¬on_right x y := by
 The `cases` tactic is not to be confused with the `by_cases` tactic,
 may use resort to classical reasoning. 
 ```lean
-theorem cases_example (p : Prop) : p ∨ ¬p := by
-  by_cases h : p
+theorem cases_example (p : Prop) : p ∨ ¬p := by <proofstate>['p : Prop\n⊢ p ∨ ¬p']</proofstate>
+  by_cases h : p <proofstate>['case pos\np : Prop\nh : p\n⊢ p ∨ ¬p', 'case neg\np : Prop\nh : ¬p\n⊢ p ∨ ¬p']</proofstate>
   · exact Or.inl h -- show p ∨ ¬p assuming h : p
   · exact Or.inr h -- show p ∨ ¬p assuming h : ¬p
 
@@ -385,11 +385,11 @@ theorem cases_example (p : Prop) : p ∨ ¬p := by
 ```
  However, `by_cases` on a non-prop usually does not require classical reasoning. 
 ```lean
-theorem another_example : ∀ n : ℕ, n = 0 ∨ n > 0 := by
-  intro n
-  by_cases h : n = 0
+theorem another_example : ∀ n : ℕ, n = 0 ∨ n > 0 := by <proofstate>['⊢ ∀ (n : ℕ), n = 0 ∨ n > 0']</proofstate>
+  intro n <proofstate>['n : ℕ\n⊢ n = 0 ∨ n > 0']</proofstate>
+  by_cases h : n = 0 <proofstate>['case pos\nn : ℕ\nh : n = 0\n⊢ n = 0 ∨ n > 0', 'case neg\nn : ℕ\nh : ¬n = 0\n⊢ n = 0 ∨ n > 0']</proofstate>
   · exact Or.inl h
-  · apply Or.inr
+  · apply Or.inr <proofstate>['case neg.h\nn : ℕ\nh : ¬n = 0\n⊢ n > 0']</proofstate>
     exact Nat.zero_lt_of_ne_zero h     -- obtained via apply?
 
 #print axioms another_example      -- does not depend on any axioms
@@ -408,9 +408,9 @@ def next_to (p q : Person) := on_right p q ∨ on_right q p
 We might encounter `next_to` in a proof and want to replace it with its definition.
 
 ```lean
-example : ∀ p , ∀ q , (on_right p q) → next_to p q := by
-  intro p q h
-  unfold next_to             -- helps us see what we have to do
+example : ∀ p , ∀ q , (on_right p q) → next_to p q := by <proofstate>['p✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\n⊢ ∀ (p q : Person), on_right p q → next_to p q']</proofstate>
+  intro p q h <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np q : Person\nh : on_right p q\n⊢ next_to p q']</proofstate>
+  unfold next_to             -- helps us see what we have to do <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np q : Person\nh : on_right p q\n⊢ on_right p q ∨ on_right q p']</proofstate>
   exact Or.inl h
 ```
 
@@ -435,15 +435,15 @@ def E (n : Nat) : Prop := match n with
   | Nat.zero => True
   | Nat.succ x => ¬E x
 
-theorem even_or_even_succ : ∀ n : Nat, E n ∨ E n.succ := by
-  intro n
-  induction n with
+theorem even_or_even_succ : ∀ n : Nat, E n ∨ E n.succ := by <proofstate>['⊢ ∀ (n : ℕ), E n ∨ E n.succ']</proofstate>
+  intro n <proofstate>['n : ℕ\n⊢ E n ∨ E n.succ']</proofstate>
+  induction n with <proofstate>['n : ℕ\n⊢ E n ∨ E n.succ']</proofstate>
   | zero => exact Or.inl True.intro
-  | succ k ih =>
-    apply Or.elim ih                           -- ih : E k ∨ E k.succ
-    · intro h                                  -- h  : E k
+  | succ k ih => <proofstate>['case succ\nk : ℕ\nih : E k ∨ E k.succ\n⊢ E (k + 1) ∨ E (k + 1).succ']</proofstate>
+    apply Or.elim ih                           -- ih : E k ∨ E k.succ <proofstate>['case succ.left\nk : ℕ\nih : E k ∨ E k.succ\n⊢ E k → E (k + 1) ∨ E (k + 1).succ', 'case succ.right\nk : ℕ\nih : E k ∨ E k.succ\n⊢ E k.succ → E (k + 1) ∨ E (k + 1).succ']</proofstate>
+    · intro h                                  -- h  : E k <proofstate>['case succ.left\nk : ℕ\nih : E k ∨ E k.succ\nh : E k\n⊢ E (k + 1) ∨ E (k + 1).succ']</proofstate>
       exact Or.inr (fun a => a h)              -- ⊢ E (k + 1) ∨ E (k + 1).succ
-    · intro h
+    · intro h <proofstate>['case succ.right\nk : ℕ\nih : E k ∨ E k.succ\nh : E k.succ\n⊢ E (k + 1) ∨ E (k + 1).succ']</proofstate>
       exact Or.inl h
 ```
 
@@ -464,14 +464,14 @@ steps. But the opposite is not true.
 
 
 ```lean
-example {p q : Prop} : p ∧ q → q ∧ p := by
-  intro hpq
-  induction hpq with
+example {p q : Prop} : p ∧ q → q ∧ p := by <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np q : Prop\n⊢ p ∧ q → q ∧ p']</proofstate>
+  intro hpq <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np q : Prop\nhpq : p ∧ q\n⊢ q ∧ p']</proofstate>
+  induction hpq with <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np q : Prop\nhpq : p ∧ q\n⊢ q ∧ p']</proofstate>
   | intro left right => exact ⟨ right, left ⟩
 
-example {p : ℕ → Prop} : (∃ x, ¬p x) → ¬∀ x, p x := by
-  intro h1 h2
-  induction h1 with
+example {p : ℕ → Prop} : (∃ x, ¬p x) → ¬∀ x, p x := by <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np : ℕ → Prop\n⊢ (∃ x, ¬p x) → ¬∀ (x : ℕ), p x']</proofstate>
+  intro h1 h2 <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np : ℕ → Prop\nh1 : ∃ x, ¬p x\nh2 : ∀ (x : ℕ), p x\n⊢ False']</proofstate>
+  induction h1 with <proofstate>['p✝¹ P✝ Q✝ p✝ : Type → Prop\nr : Prop\nP Q : Type → Prop\np : ℕ → Prop\nh1 : ∃ x, ¬p x\nh2 : ∀ (x : ℕ), p x\n⊢ False']</proofstate>
   | intro w h => exact h (h2 w)
 
 
@@ -566,7 +566,7 @@ def myTactic : Tactic := fun _ => do
   catch _ =>
     throwError "my_tactic: could not solve the goal"
 
-example : 0 = 0 := by
+example : 0 = 0 := by <proofstate>['p✝ P✝ Q✝ p : Type → Prop\nr : Prop\nP Q : Type → Prop\n⊢ 0 = 0']</proofstate>
   my_tactic             -- yay it works!
 ```
 

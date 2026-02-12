@@ -49,10 +49,10 @@ example : 1 ~ 1 :=
 ```
  The `apply` tactic figures out what the argument to `refl` should be. 
 ```lean
-example : 2 ~ (1+1) := by
+example : 2 ~ (1+1) := by <proofstate>['⊢ 2 ~ 1 + 1']</proofstate>
   apply MyEq.refl
 
-example : 9 ~ (3*(2+1)) := by
+example : 9 ~ (3*(2+1)) := by <proofstate>['⊢ 9 ~ 3 * (2 + 1)']</proofstate>
   apply MyEq.refl
 ```
 
@@ -72,8 +72,8 @@ Substitution is the second most critical property of the equality.
 It allows us to conclude, for example, that if `x = y` and `p x` then `p y`. 
 ```lean
 theorem MyEq.subst {α : Sort u} {P : α → Prop} {a b : α}
-                   (h₁ : a ~ b) (h₂ : P a) : P b := by
-  cases h₁ with
+                   (h₁ : a ~ b) (h₂ : P a) : P b := by <proofstate>['α : Sort u\nP : α → Prop\na b : α\nh₁ : a ~ b\nh₂ : P a\n⊢ P b']</proofstate>
+  cases h₁ with <proofstate>['α : Sort u\nP : α → Prop\na b : α\nh₁ : a ~ b\nh₂ : P a\n⊢ P b']</proofstate>
   | refl => exact h₂
 ```
  The cases tactic compiles a term that uses the recursor for `MyEq`.
@@ -81,9 +81,9 @@ theorem MyEq.subst {α : Sort u} {P : α → Prop} {a b : α}
 **Example:** Here is an example where we substitute `y` for `x`
 to prove equality between two propositions. 
 ```lean
-example {x y : Nat} : x ~ y → (x > 2 ↔ y > 2) := by
-  intro h
-  apply MyEq.subst h       -- goal becomes x > 2 ↔ x > 2
+example {x y : Nat} : x ~ y → (x > 2 ↔ y > 2) := by <proofstate>['x y : ℕ\n⊢ x ~ y → (x > 2 ↔ y > 2)']</proofstate>
+  intro h <proofstate>['x y : ℕ\nh : x ~ y\n⊢ x > 2 ↔ y > 2']</proofstate>
+  apply MyEq.subst h       -- goal becomes x > 2 ↔ x > 2 <proofstate>['x y : ℕ\nh : x ~ y\n⊢ x > 2 ↔ x > 2']</proofstate>
   exact ⟨ id, id ⟩
 ```
 
@@ -91,19 +91,19 @@ Symmetry and Transitivity
 ===
 You can use substitution to show the standard properties we know and love about equality. 
 ```lean
-theorem MyEq.sym {α : Sort u} {a b : α} : a ~ b → b ~ a := by
-  intro h
-  apply MyEq.subst h
+theorem MyEq.sym {α : Sort u} {a b : α} : a ~ b → b ~ a := by <proofstate>['α : Sort u\na b : α\n⊢ a ~ b → b ~ a']</proofstate>
+  intro h <proofstate>['α : Sort u\na b : α\nh : a ~ b\n⊢ b ~ a']</proofstate>
+  apply MyEq.subst h <proofstate>['α : Sort u\na b : α\nh : a ~ b\n⊢ a ~ a']</proofstate>
   exact MyEq.refl a
 
-theorem MyEq.trans {α : Sort u} {a b c : α} : a ~ b → b ~ c → a ~ c := by
-  intro hab hbc
+theorem MyEq.trans {α : Sort u} {a b c : α} : a ~ b → b ~ c → a ~ c := by <proofstate>['α : Sort u\na b c : α\n⊢ a ~ b → b ~ c → a ~ c']</proofstate>
+  intro hab hbc <proofstate>['α : Sort u\na b c : α\nhab : a ~ b\nhbc : b ~ c\n⊢ a ~ c']</proofstate>
   exact MyEq.subst hbc hab
 ```
  Here is an example showing the use of both of these theorems at once. 
 ```lean
-example {x y z : Nat} : y ~ x → z ~ y → x ~ z := by
-  intro h1 h2
+example {x y z : Nat} : y ~ x → z ~ y → x ~ z := by <proofstate>['x y z : ℕ\n⊢ y ~ x → z ~ y → x ~ z']</proofstate>
+  intro h1 h2 <proofstate>['x y z : ℕ\nh1 : y ~ x\nh2 : z ~ y\n⊢ x ~ z']</proofstate>
   apply MyEq.trans (MyEq.sym h1) (MyEq.sym h2)
 ```
 
@@ -113,9 +113,9 @@ Congruence
 Congruence is critical for equation solving.
 
 ```lean
-theorem MyEq.congr_arg {α : Sort u} {a b : α} {f : α → α} : a ~ b → f a ~ f b := by
-  intro hab
-  apply MyEq.subst hab
+theorem MyEq.congr_arg {α : Sort u} {a b : α} {f : α → α} : a ~ b → f a ~ f b := by <proofstate>['α : Sort u\na b : α\nf : α → α\n⊢ a ~ b → f a ~ f b']</proofstate>
+  intro hab <proofstate>['α : Sort u\na b : α\nf : α → α\nhab : a ~ b\n⊢ f a ~ f b']</proofstate>
+  apply MyEq.subst hab <proofstate>['α : Sort u\na b : α\nf : α → α\nhab : a ~ b\n⊢ f a ~ f a']</proofstate>
   exact MyEq.refl (f a)
 ```
  For example, 
@@ -125,9 +125,9 @@ example (x y : Nat) : x ~ y → 2*x+1 ~ 2*y + 1 :=
 ```
  Or, with tactics 
 ```lean
-example (x y : Nat) : x ~ y → 2*x+1 ~ 2*y + 1 := by
-  intro h
-  apply MyEq.congr_arg (f := fun w => 2*w + 1)    -- goal becomes x ~ y
+example (x y : Nat) : x ~ y → 2*x+1 ~ 2*y + 1 := by <proofstate>['x y : ℕ\n⊢ x ~ y → 2 * x + 1 ~ 2 * y + 1']</proofstate>
+  intro h <proofstate>['x y : ℕ\nh : x ~ y\n⊢ 2 * x + 1 ~ 2 * y + 1']</proofstate>
+  apply MyEq.congr_arg (f := fun w => 2*w + 1)    -- goal becomes x ~ y <proofstate>['x y : ℕ\nh : x ~ y\n⊢ x ~ y']</proofstate>
   exact h
 ```
 
@@ -203,8 +203,8 @@ Rewriting
 
  `rw[h]`: Rewrites the current goal using the equality h. 
 ```lean
-theorem t1 (a b : Nat) : a = b → a + 1 = b + 1 := by
-  intro hab
+theorem t1 (a b : Nat) : a = b → a + 1 = b + 1 := by <proofstate>['a b : ℕ\n⊢ a = b → a + 1 = b + 1']</proofstate>
+  intro hab <proofstate>['a b : ℕ\nhab : a = b\n⊢ a + 1 = b + 1']</proofstate>
   rw[hab]
 ```
  The `rw` tactic is doing a searching for pattern matches and then using
@@ -220,15 +220,15 @@ More Rewriting
 
  To use an equality backwards, use ← (written \left)
 ```lean
-theorem t2 (a b c : Nat) : a = b ∧ a = c → b + 1 = c + 1 := by
-  intro ⟨ h1, h2 ⟩
+theorem t2 (a b c : Nat) : a = b ∧ a = c → b + 1 = c + 1 := by <proofstate>['a b c : ℕ\n⊢ a = b ∧ a = c → b + 1 = c + 1']</proofstate>
+  intro ⟨ h1, h2 ⟩ <proofstate>['a b c : ℕ\nh1 : a = b\nh2 : a = c\n⊢ b + 1 = c + 1']</proofstate>
   rw[←h1, ←h2]
 ```
  You can also rewrite assumptions using `at`. 
 ```lean
-example (a b c : Nat) : a = b → a = c → b + 1 = c + 1 := by
-  intro h1 h2
-  rw[h1] at h2
+example (a b c : Nat) : a = b → a = c → b + 1 = c + 1 := by <proofstate>['a b c : ℕ\n⊢ a = b → a = c → b + 1 = c + 1']</proofstate>
+  intro h1 h2 <proofstate>['a b c : ℕ\nh1 : a = b\nh2 : a = c\n⊢ b + 1 = c + 1']</proofstate>
+  rw[h1] at h2 <proofstate>['a b c : ℕ\nh1 : a = b\nh2 : b = c\n⊢ b + 1 = c + 1']</proofstate>
   rw[h2]
 ```
  Rewrite variants include 
@@ -242,7 +242,7 @@ The Simplifier
 
  The simplifier uses equations and lemmas to simplify expressions 
 ```lean
-theorem t3 (a b : Nat) : a = b → a + 1 = b + 1 := by
+theorem t3 (a b : Nat) : a = b → a + 1 = b + 1 := by <proofstate>['a b : ℕ\n⊢ a = b → a + 1 = b + 1']</proofstate>
   simp
 ```
  Sometimes you have to tell the simplifer what equations to use. 
@@ -252,7 +252,7 @@ theorem t4 (a b c d e : Nat)
  (h2 : b = c + 1)
  (h3 : c = d)
  (h4 : e = 1 + d)
- : a = e := by
+ : a = e := by <proofstate>['a b c d e : ℕ\nh1 : a = b\nh2 : b = c + 1\nh3 : c = d\nh4 : e = 1 + d\n⊢ a = e']</proofstate>
     simp[h1,h2,h3,h4,Nat.add_comm]          -- simp[*] also works
 
 #check Nat.add_comm       -- Try Loogle "Nat" for more
@@ -288,7 +288,7 @@ Using Spin's simps
  We can use these theorems to prove another theorem, which is also added to
 the simplifier. 
 ```lean
-@[simp] theorem toggle_toggle {x} : x⁻¹⁻¹ = x := by
+@[simp] theorem toggle_toggle {x} : x⁻¹⁻¹ = x := by <proofstate>['x : Spin\n⊢ x ⁻¹ ⁻¹ = x']</proofstate>
   cases x <;> simp?  -- uses toggle_up, toggle_dn
 ```
  And then prove yet another theorem. 
@@ -316,7 +316,7 @@ infix:75 " o " => op
 ```
  Using these, we can show: 
 ```lean
-@[simp] theorem toggle_op_left {x y} : (x o y)⁻¹ = x⁻¹ o y := by
+@[simp] theorem toggle_op_left {x y} : (x o y)⁻¹ = x⁻¹ o y := by <proofstate>['x y : Spin\n⊢ (x o y) ⁻¹ = x ⁻¹ o y']</proofstate>
   cases x <;> simp   -- case 1 uses op_up_left, toggle_up, op_dn_left
                      -- case w uses op_dn_left, toggle_toggle, toggle_dn, op_up_left
 ```
@@ -354,14 +354,14 @@ On `ℕ` and `ℤ` it is incomplete, but on `ℚ` and `ℝ` it is complete.
 ```lean
 example (a b c d e : Nat)
  (h1 : a = b) (h2 : b = c + 1) (h3 : c = d) (h4 : e = 1 + d)
- : a = e := by
+ : a = e := by <proofstate>['a b c d e : ℕ\nh1 : a = b\nh2 : b = c + 1\nh3 : c = d\nh4 : e = 1 + d\n⊢ a = e']</proofstate>
  linarith
 
 example (x y z : ℚ) (h1 : 2*x - y + 3*z = 9)
                     (h2 : x - 3*y - 2*z = 0)
                     (h3 : 3*x + 2*y -z = -1)
- : x = 1 ∧ y = -1 ∧ z = 2 := by
- constructor
+ : x = 1 ∧ y = -1 ∧ z = 2 := by <proofstate>['x y z : ℚ\nh1 : 2 * x - y + 3 * z = 9\nh2 : x - 3 * y - 2 * z = 0\nh3 : 3 * x + 2 * y - z = -1\n⊢ x = 1 ∧ y = -1 ∧ z = 2']</proofstate>
+ constructor <proofstate>['case left\nx y z : ℚ\nh1 : 2 * x - y + 3 * z = 9\nh2 : x - 3 * y - 2 * z = 0\nh3 : 3 * x + 2 * y - z = -1\n⊢ x = 1', 'case right\nx y z : ℚ\nh1 : 2 * x - y + 3 * z = 9\nh2 : x - 3 * y - 2 * z = 0\nh3 : 3 * x + 2 * y - z = -1\n⊢ y = -1 ∧ z = 2']</proofstate>
  · linarith
  · constructor <;> linarith
 ```
@@ -377,12 +377,12 @@ def S (n : Nat) : Nat := match n with
   | Nat.zero => 0
   | Nat.succ x => n + S x
 
-example : ∀ n, 2 * S n = n*(n+1) := by
-  intro n
-  induction n with
+example : ∀ n, 2 * S n = n*(n+1) := by <proofstate>['⊢ ∀ (n : ℕ), 2 * S n = n * (n + 1)']</proofstate>
+  intro n <proofstate>['n : ℕ\n⊢ 2 * S n = n * (n + 1)']</proofstate>
+  induction n with <proofstate>['n : ℕ\n⊢ 2 * S n = n * (n + 1)']</proofstate>
   | zero => simp[S]
-  | succ k ih =>
-    simp[S]
+  | succ k ih => <proofstate>['case succ\nk : ℕ\nih : 2 * S k = k * (k + 1)\n⊢ 2 * S (k + 1) = (k + 1) * (k + 1 + 1)']</proofstate>
+    simp[S] <proofstate>['case succ\nk : ℕ\nih : 2 * S k = k * (k + 1)\n⊢ 2 * (k + 1 + S k) = (k + 1) * (k + 1 + 1)']</proofstate>
     linarith         -- uses ih (check with clear ih before linarith)
 ```
 
@@ -409,8 +409,8 @@ Inequality
 
 Any two elements of an inductive type constructed differently are not equal. 
 ```lean
-example : up ≠ dn := by
-  intro h
+example : up ≠ dn := by <proofstate>['⊢ up ≠ dn']</proofstate>
+  intro h <proofstate>['h : up = dn\n⊢ False']</proofstate>
   exact Spin.noConfusion h
 ```
 
@@ -430,10 +430,10 @@ def nc_type (P : Prop) (x y : Spin) : Prop :=
 example : nc_type True up up = True  := by rfl
 example : nc_type True dn up = False := by rfl
 
-example : up ≠ dn := by
-  intro h
-  have hAB : nc_type True up dn := by
-    rw[←h]                              -- ⊢ nc_type True A A
+example : up ≠ dn := by <proofstate>['⊢ up ≠ dn']</proofstate>
+  intro h <proofstate>['h : up = dn\n⊢ False']</proofstate>
+  have hAB : nc_type True up dn := by <proofstate>['h : up = dn\n⊢ nc_type True up dn']</proofstate>
+    rw[←h]                              -- ⊢ nc_type True A A <proofstate>['h : up = dn\n⊢ nc_type True up up']</proofstate>
     trivial
   exact hAB                             -- nc_type True A B is equivalent to False
 ```
@@ -442,19 +442,19 @@ Other Ways to Show Inequality
 ===
 
 ```lean
-example : up ≠ dn := by
-  intro h
+example : up ≠ dn := by <proofstate>['⊢ up ≠ dn']</proofstate>
+  intro h <proofstate>['h : up = dn\n⊢ False']</proofstate>
   cases h     -- uses Eq.casesOn, Thing.ctorIdx, and Nat.noConfusion
 
-example : up ≠ dn := by
-  intro h
+example : up ≠ dn := by <proofstate>['⊢ up ≠ dn']</proofstate>
+  intro h <proofstate>['h : up = dn\n⊢ False']</proofstate>
   have : Spin.ctorIdx up = Spin.ctorIdx dn := by rw[h]
   exact Nat.noConfusion this
 ```
  Or you can use nomatch on `h`. 
 ```lean
-example : up ≠ dn := by
-  intro h
+example : up ≠ dn := by <proofstate>['⊢ up ≠ dn']</proofstate>
+  intro h <proofstate>['h : up = dn\n⊢ False']</proofstate>
   nomatch h
 ```
  Which is the same as 
@@ -479,9 +479,9 @@ def on_right (p : Person) := match p with
 
 def next_to (p q : Person) := on_right p = q ∨ on_right q = p
 
-example : ¬next_to mary ed := by
-  intro h
-  cases h with
+example : ¬next_to mary ed := by <proofstate>['⊢ ¬next_to mary ed']</proofstate>
+  intro h <proofstate>['h : next_to mary ed\n⊢ False']</proofstate>
+  cases h with <proofstate>['h : next_to mary ed\n⊢ False']</proofstate>
   | inl hme => exact noConfusion hme
   | inr hem => exact noConfusion hem
 ```
@@ -492,8 +492,8 @@ Trivial
 The `trivial` tactic (not to be confused with the `trivial` theorem),
 sometimes figures out when to apply `noConfusion` 
 ```lean
-theorem t10 : ed ≠ steve := by
-  intro h
+theorem t10 : ed ≠ steve := by <proofstate>['⊢ ed ≠ steve']</proofstate>
+  intro h <proofstate>['h : ed = steve\n⊢ False']</proofstate>
   trivial
 
 #print t10       -- fun h ↦ False.elim (noConfusion_of_Nat Person.ctorIdx h)
@@ -534,15 +534,15 @@ structure Point (α : Type u) where
  We can show 
 ```lean
 theorem Point.ext {α : Type} (p q : Point α) (hx : p.x = q.x) (hy : p.y = q.y)
-  : p = q := by
-  cases p with | mk a b =>
-  cases q with | mk c d =>
+  : p = q := by <proofstate>['α : Type\np q : Point α\nhx : p.x = q.x\nhy : p.y = q.y\n⊢ p = q']</proofstate>
+  cases p with | mk a b => <proofstate>['case mk\nα : Type\nq : Point α\na b : α\nhx : { x := a, y := b }.x = q.x\nhy : { x := a, y := b }.y = q.y\n⊢ { x := a, y := b } = q']</proofstate>
+  cases q with | mk c d => <proofstate>['case mk.mk\nα : Type\na b c d : α\nhx : { x := a, y := b }.x = { x := c, y := d }.x\nhy : { x := a, y := b }.y = { x := c, y := d }.y\n⊢ { x := a, y := b } = { x := c, y := d }']</proofstate>
   simp_all
 ```
  Then we can do, for example, 
 ```lean
-example (x y : Nat) : Point.mk (x+y) (x+y) = Point.mk (y+x) (y+x) := by
-  apply Point.ext
+example (x y : Nat) : Point.mk (x+y) (x+y) = Point.mk (y+x) (y+x) := by <proofstate>['x y : ℕ\n⊢ { x := x + y, y := x + y } = { x := y + x, y := y + x }']</proofstate>
+  apply Point.ext <proofstate>['case hx\nx y : ℕ\n⊢ { x := x + y, y := x + y }.x = { x := y + x, y := y + x }.x', 'case hy\nx y : ℕ\n⊢ { x := x + y, y := x + y }.y = { x := y + x, y := y + x }.y']</proofstate>
   · exact add_comm x y
   · exact add_comm x y
 ```
@@ -559,8 +559,8 @@ structure Komplex where
   re : ℝ
   im : ℝ
 
-example (x y : ℝ) : Komplex.mk (x+y) (x+y) = Komplex.mk (y+x) (y+x) := by
-  ext
+example (x y : ℝ) : Komplex.mk (x+y) (x+y) = Komplex.mk (y+x) (y+x) := by <proofstate>['x y : ℝ\n⊢ { re := x + y, im := x + y } = { re := y + x, im := y + x }']</proofstate>
+  ext <proofstate>['case re\nx y : ℝ\n⊢ { re := x + y, im := x + y }.re = { re := y + x, im := y + x }.re', 'case im\nx y : ℝ\n⊢ { re := x + y, im := x + y }.im = { re := y + x, im := y + x }.im']</proofstate>
   · exact add_comm x y
   · exact add_comm x y
 ```
@@ -578,9 +578,9 @@ argument. The theorem that allows us to prove that is
 def f (n : ℕ) := n + 1
 def g (n : ℕ) := 1 + n
 
-example : f = g := by
-  funext x
-  unfold f g              -- not needed, but makes it easy to see the goal
+example : f = g := by <proofstate>['⊢ f = g']</proofstate>
+  funext x <proofstate>['case h\nx : ℕ\n⊢ f x = g x']</proofstate>
+  unfold f g              -- not needed, but makes it easy to see the goal <proofstate>['case h\nx : ℕ\n⊢ x + 1 = 1 + x']</proofstate>
   rw[add_comm]
 ```
 
@@ -601,13 +601,13 @@ def shift (k x : ℤ) : ℤ := x+k
  Then we can show 
 ```lean
 @[simp]
-theorem shift_inv_right {k} : shift k ∘ shift (-k) = id := by
-  funext x              -- x : ℤ ⊢ (shift k ∘ shift (-k)) x = id x
+theorem shift_inv_right {k} : shift k ∘ shift (-k) = id := by <proofstate>['k : ℤ\n⊢ shift k ∘ shift (-k) = id']</proofstate>
+  funext x              -- x : ℤ ⊢ (shift k ∘ shift (-k)) x = id x <proofstate>['case h\nk x : ℤ\n⊢ (shift k ∘ shift (-k)) x = id x']</proofstate>
   simp[shift]
 
 @[simp]
-theorem shift_inv_left {k} : shift (-k) ∘ shift k = id := by
-  funext x
+theorem shift_inv_left {k} : shift (-k) ∘ shift k = id := by <proofstate>['k : ℤ\n⊢ shift (-k) ∘ shift k = id']</proofstate>
+  funext x <proofstate>['case h\nk x : ℤ\n⊢ (shift (-k) ∘ shift k) x = id x']</proofstate>
   simp[shift]
 ```
 
@@ -629,10 +629,10 @@ open Function
 Using the above, we can show:
 
 ```lean
-example {k} : Bijective (shift k) := by
-  rw[bijective_iff_has_inverse]
-  use shift (-k)
-  constructor
+example {k} : Bijective (shift k) := by <proofstate>['k : ℤ\n⊢ Bijective (shift k)']</proofstate>
+  rw[bijective_iff_has_inverse] <proofstate>['k : ℤ\n⊢ ∃ g, LeftInverse g (shift k) ∧ RightInverse g (shift k)']</proofstate>
+  use shift (-k) <proofstate>['case h\nk : ℤ\n⊢ LeftInverse (shift (-k)) (shift k) ∧ RightInverse (shift (-k)) (shift k)']</proofstate>
+  constructor <proofstate>['case h.left\nk : ℤ\n⊢ LeftInverse (shift (-k)) (shift k)', 'case h.right\nk : ℤ\n⊢ RightInverse (shift (-k)) (shift k)']</proofstate>
   · simp[leftInverse_iff_comp]     -- uses shift_inv_left
   · simp[rightInverse_iff_comp]    -- uses shift_inv_right
 ```
@@ -782,17 +782,17 @@ By the way, theorems can be *mutually defined*!
 mutual
 
   @[simp]
-  theorem Ev.left_inv {ev : Ev} : of_nat (Ev.to_nat ev) = Sum.inl ev := by
+  theorem Ev.left_inv {ev : Ev} : of_nat (Ev.to_nat ev) = Sum.inl ev := by <proofstate>['ev : Ev\n⊢ of_nat (Ev.to_nat ev) = Sum.inl ev']</proofstate>
     cases ev <;> simp[Ev.to_nat,of_nat,succ,Od.left_inv,zero]
 
   @[simp]
-  theorem Od.left_inv {od : Od} : Natural.of_nat (Od.to_nat od) = Sum.inr od := by
+  theorem Od.left_inv {od : Od} : Natural.of_nat (Od.to_nat od) = Sum.inr od := by <proofstate>['od : Od\n⊢ of_nat (Od.to_nat od) = Sum.inr od']</proofstate>
     cases od; simp[Od.to_nat,of_nat,succ,Ev.left_inv]
 
 end
 
-theorem left_inv {n : Natural} : Natural.of_nat n.to_nat = n := by
-    cases n with
+theorem left_inv {n : Natural} : Natural.of_nat n.to_nat = n := by <proofstate>['n : Natural\n⊢ of_nat n.to_nat = n']</proofstate>
+    cases n with <proofstate>['n : Natural\n⊢ of_nat n.to_nat = n']</proofstate>
     | inl _ => exact Ev.left_inv
     | inr _ => exact Od.left_inv
 ```
@@ -806,18 +806,18 @@ Next we show `to_nat` is a right inverse of `of_nat`.
 ```lean
 @[simp]
 theorem to_nat_succ {m : Natural}
-  : m.succ.to_nat = m.to_nat.succ := by
+  : m.succ.to_nat = m.to_nat.succ := by <proofstate>['m : Natural\n⊢ m.succ.to_nat = m.to_nat.succ']</proofstate>
   cases m <;> aesop
 
 @[simp]
-theorem right_inv {n : Nat} : (Natural.of_nat n).to_nat = n := by
-  induction n with
+theorem right_inv {n : Nat} : (Natural.of_nat n).to_nat = n := by <proofstate>['n : ℕ\n⊢ (of_nat n).to_nat = n']</proofstate>
+  induction n with <proofstate>['n : ℕ\n⊢ (of_nat n).to_nat = n']</proofstate>
     | zero => aesop
-    | succ n ih =>
-      unfold Natural.of_nat -- common pattern in induction. required for ih to apply.
-      conv =>
-        rhs
-        rw[←ih]
+    | succ n ih => <proofstate>['case succ\nn : ℕ\nih : (of_nat n).to_nat = n\n⊢ (of_nat (n + 1)).to_nat = n + 1']</proofstate>
+      unfold Natural.of_nat -- common pattern in induction. required for ih to apply. <proofstate>['case succ\nn : ℕ\nih : (of_nat n).to_nat = n\n⊢ (of_nat n).succ.to_nat = n + 1']</proofstate>
+      conv => <proofstate>['n : ℕ\nih : (of_nat n).to_nat = n\n| (of_nat n).succ.to_nat = n + 1']</proofstate>
+        rhs <proofstate>['n : ℕ\nih : (of_nat n).to_nat = n\n| n + 1']</proofstate>
+        rw[←ih] <proofstate>['n : ℕ\nih : (of_nat n).to_nat = n\n| (of_nat n).to_nat + 1']</proofstate>
       rw[to_nat_succ]
 ```
 

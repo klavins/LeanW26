@@ -19,12 +19,14 @@ def log_proof_states(client, infile: str, outfile: str ):
     with open(outfile, "w") as f:
 
         r = sfc.get_diagnostics()
+        n = 0
  
         for i, line in enumerate(lines):
 
             try:
                 goal = sfc.get_goal(i, len(line))  # line number `i`, column at end of line
                 if goal and len(goal['goals']) > 0:
+                  n = n + 1
                   f.write(f"{line} <proofstate>{goal['goals']}</proofstate>\n")
                 else:
                   f.write(f"{line}\n")                      
@@ -33,6 +35,9 @@ def log_proof_states(client, infile: str, outfile: str ):
                 print(e)
                 f.write(f"{line}\n")
 
+
+        print("found",n,"proof states")
+        
     sfc.close_file()
 
 root = "/Users/ericklavins/Courses/LeanW26"
@@ -41,18 +46,9 @@ client = lc.LeanLSPClient(root)
 
 files = [
 
-   "Numbers/Algebra"
-#   "Introduction/Programming",
-#   "Introduction/Datatypes",
-
-#   "TypeTheory/Overview",
-#   "TypeTheory/LambdaCalculus",
-#   "TypeTheory/Universes",
-#   "TypeTheory/Simple",
-#   "TypeTheory/NonSimpleTypes",
-#   "TypeTheory/Inference",
-
- # "Logic/Connectives"
+  "Logic/Tactics",
+  "Logic/Equality",
+  "Numbers/Algebra"
 
 ]
 

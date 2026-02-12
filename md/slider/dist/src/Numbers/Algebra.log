@@ -5,6 +5,8 @@ namespace LeanW26
 set_option linter.style.emptyLine false
 set_option linter.style.commandStart false
 
+#eval Lean.versionString
+
 --  Copyright (C) 2025  Eric Klavins
 --
 --  This program is free software: you can redistribute it and/or modify

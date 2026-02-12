@@ -1,9 +1,11 @@
-import mathlib
+import mathlib.tactic
 
 namespace LeanW26
 
 set_option linter.style.emptyLine false
-set_option linter.style.commandStart false
+set_option linter.style.whitespace false
+
+#eval Lean.versionString
 
 --  Copyright (C) 2025  Eric Klavins
 --
@@ -73,11 +75,12 @@ A **Monoid** is a group without inverses.
 
 A **Commutative Group** is a group where `a ∘ b = b ∘ a` for all `a` and `b`.
 
-Many mathematical objects are groups: ℤ, ℚ, ℝ, ℂ with `+` or `*`. Matrices, polynomials,
+Many mathematical objects are groups: ℤ, ℚ, ℝ, ℂ. Matrices, polynomials,
 functions, permutations, cycles, symmetries, paths, etc.
 
-Ideally, a proof assistant can reason at an abstract level about groups in general,
-so results about groups can be reused for any concrete group.
+Ideally, a proof assistant can reason at an abstract
+level about groups in general, so results about groups
+can be reused for any concrete group.
 
 Lean does this with *type classes* and *instances*.
 
@@ -92,7 +95,7 @@ advanced results require more infrastrcture than presented here, but much of
 it is available in Mathlib.
 
 Historically, the application of proof assistants to Group Theory were
-early successes of the technology.
+some of the early successes of the technology.
 
 For example:
 
@@ -109,7 +112,8 @@ For example:
 Preliminaries
 ===
 
-We will redefine basic typeclass, using the same names as Mathlib does.
+We will redefine Mathlib's basic typeclasses for Group, Ring, etc.,
+using the same names as Mathlib uses.
 So we'll put everything into a temporary namespace.
 
 -/
@@ -221,7 +225,7 @@ A super useful property for proving identities is:
 
 -/
 
-lemma Group.cancel_left : a + b = a + c → b = c := by
+theorem Group.cancel_left : a + b = a + c → b = c := by
   intro h
   apply congrArg (fun t => -a + t) at h
   rw[←assoc] at h
@@ -454,12 +458,12 @@ Now we have what we need do define a `Ring`.
 
 class Ring (R : Type u)
   extends CommGroup R, Monoid R where
-  left_distrib {x y z : R}  : mul x (op y z) = op (mul x y) (mul x z)
-  right_distrib {x y z : R} : mul (op y z) x = op (mul y x) (mul z x)
+  l_distrib {x y z : R} : mul x (op y z) = op (mul x y) (mul x z)
+  r_distrib {x y z : R} : mul (op y z) x = op (mul y x) (mul z x)
 
 class CommRing (R : Type u)
    extends Ring R where
-   mulcomm {x y: R} : mul x y = mul y x
+   mulcomm {x y : R} : mul x y = mul y x
 
 /-
 Ring Notation
@@ -510,7 +514,7 @@ We can do this with theorems of the form:
 variable {x y z : R}
 --unhide
 
-theorem Ring.add_left  (h : y = z) (x : R) : x + y = x + z := by rw[h]
+theorem Ring.add_left  (h : y = z) (x : R) : x + y = x + z := by rw [h]
 theorem Ring.add_right (h : y = z) (x : R) : y + x = z + x := by rw [h]
 theorem Ring.mul_left  (h : y = z) (x : R) : x * y = x * z := by rw [h]
 theorem Ring.mul_right (h : y = z) (x : R) : y * x = z * x := by rw [h]
@@ -521,7 +525,7 @@ Example Identity
 ===
 -/
 theorem mul_zero : x * e = e := by
-  have h0 := left_distrib (x := x) (y := e) (z := e)
+  have h0 := l_distrib (x := x) (y := e) (z := e)
   have h := Ring.add_left h0 (-(x*e))
   rw[id_left]  at h
   rw[inv_left] at h
@@ -545,9 +549,9 @@ theorem neg_one : (-one:R)*x = -x := by
   have h1 : e = (e:R) * x := by rw[mulcomm,mul_zero]
 
   nth_rewrite 2 [←h0] at h1
-  rw[Ring.right_distrib,mul_id_left] at h1
+  rw[r_distrib,mul_id_left] at h1
 
-  have h2 := Ring.add_left h1 (-x)
+  have h2 := add_left h1 (-x)
   rw[←assoc,id_right,inv_left,id_left] at h2
 
   exact h2.symm
@@ -603,8 +607,8 @@ Spin is a Ring
 -/
 
 instance Spin.inst_ring : Ring Spin := {
-  left_distrib {x y z} := by cases x <;> cases y <;> cases z <;> aesop
-  right_distrib {x y z} := by cases x <;> cases y <;> cases z <;> aesop
+  l_distrib {x y z} := by cases x <;> cases y <;> cases z <;> aesop
+  r_distrib {x y z} := by cases x <;> cases y <;> cases z <;> aesop
 }
 
 /-
@@ -736,7 +740,6 @@ class Field (F : Type u) extends CommRing F, Nontrivial F where
   minv : F → F
   minv_zero : minv e = e
   mul_inv_prop {x : F} : x ≠ e → mul x (minv x) = one
-  mul_comm {x y : F} : mul x y = mul y x
 
 open Field
 
@@ -775,7 +778,7 @@ We only required `one * x = x` in our definition because we can prove the symmet
 -/
 
 theorem mul_id_right : x * one = x := by
-  rw[Field.mul_comm]
+  rw[mulcomm]
   rw[mul_id_left]
 
 
@@ -804,6 +807,61 @@ theorem one_ne_e : (one:F) ≠ e := by
   exact hxy (hx.trans hy.symm)
 
 /-
+Spin is a a Nonempty Commutative Ring
+===
+-/
+
+instance Spin.inst_nt : Nontrivial Spin := {
+  exists_pair_ne := by
+    use up, dn
+    simp
+}
+
+instance Spin.inst_comm_ring : CommRing Spin := {
+  mulcomm {x y} := by cases x <;> cases y <;> aesop
+}
+
+/-
+Spin is a Field
+===
+-/
+
+instance Spin.inst_field : Field Spin := {
+  minv x := x
+  minv_zero := by simp,
+  mul_inv_prop {x} h := by cases x <;> simp_all[e]; rfl
+}
+
+/- Field theorems apply: -/
+
+example : dn ≠ up := one_ne_e
+
+/-
+Mathlib's Algebra
+===
+
+The integers `ℤ` with `+` and `*` are the standard example of a commutative ring.
+-/
+
+#synth AddGroup ℤ              -- Int.instAddGroup
+#synth CommMonoid ℤ            -- etc.
+#synth _root_.CommRing ℤ
+
+/-
+The rationals `ℚ` with `+`, `*` and `x⁻¹` are the standard example of a field.
+-/
+
+#synth AddGroup ℚ               -- Rat.addGroup
+#synth CommMonoid ℚ
+#synth _root_.Field ℚ
+
+/- And there are tactics -/
+
+example (x y : ℤ) : x + y = y + x := by group
+example (x y : ℤ) : 2*(x + y) = 2*y + 2*x := by ring
+example (x y : ℚ) : 2*(x⁻¹ + y) = 2*y + 2*x⁻¹ := by field
+
+/-
 Exercises
 ===
 
@@ -815,18 +873,17 @@ theorem one_inv : (one:F)⁻¹ = one := sorry
 
 /-
 
-<ex /> Instantiate `(ℤ,+)` as a `Field`. For the properties,
-find them [here](https://leanprover-community.github.io/mathlib4_docs/Init/Data/Int/Lemmas.html)
+<ex /> Instantiate `(ℤ,+)` as a `Field` (using the definition in this file,
+not Mathlib's). For the properties, find them [here](https://leanprover-community.github.io/mathlib4_docs/Init/Data/Int/Lemmas.html)
 or by just checking `by apply?`.
 
-You can do this all at onces with `instance : Field ℤ` or by building up
+You can do this all at once with `instance : Field ℤ` or by building up
 `Group`, `Monoind`, `Ring`, `CommRing` and `Field` sequentially.
 
 <ex /> (Optional) Show that in a `Field`, `(a*b)⁻¹ = (a⁻¹)*(b⁻¹)`.
 You should build up several simpler identities about `Ring` before tackling this one.
 
 -/
-
 
 --hide
 end
