@@ -32,7 +32,7 @@ class Slide extends React.PureComponent {
   };  
 
   clear_infoview() {
-      console.log(this)
+      console.log("clearing infoview", this)
       this.setState({infoview: null});
   }
 
@@ -81,6 +81,8 @@ class Slide extends React.PureComponent {
     }
     let that = this;
     let i = 0;
+
+    this.infoview_list = [];
 
     html = html.replace(/&lt;proofstate&gt;(.*?)&lt;\/proofstate&gt;/g, function (_, tooltip) {
         that.infoview_list.push({data: tooltip, index: i});

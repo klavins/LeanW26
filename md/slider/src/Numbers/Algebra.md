@@ -118,7 +118,7 @@ Actual abstract algebra projects should use Mathlib's typeclasses.
 A Group Class
 ===
 
-You the properties of a group into a typeclass.
+You can put the properties of a group into a typeclass.
 
 ```lean
 class Group (G : Type u) where
@@ -135,7 +135,7 @@ class CommGroup (G : Type u) extends Group G where
   comm {a b} : op a b = op b a                      -- additional property
 ```
 
-Any theorem we prove about a `CommGroup` is also true about a `Group`.
+Any theorem we prove about a `Group` is also true about a `CommGroup`.
 
 
 Group Notation
@@ -281,6 +281,8 @@ A `calc` proof goes like this:
 ```lean
 b = b + e = b + (a + c) = (b + a) + c = e + c = c
 ```
+Note that the substitution `e = a+c` is not automatic, since the
+hypothesis is `e = c+a`. You might need an auxilliary lemma.
 
 
 Spin Again

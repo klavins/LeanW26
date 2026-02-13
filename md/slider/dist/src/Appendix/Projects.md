@@ -1,6 +1,8 @@
 
 Course Project
 ===
+The secret of getting ahead is getting started.
+Attributed to Mark Twain, but likely originated <a href="https://quoteinvestigator.com/2018/02/03/start/">somewhere else</a>.
 
 
 Goals

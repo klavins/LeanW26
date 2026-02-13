@@ -22,12 +22,12 @@ class Thumbnail extends React.PureComponent {
           : this.props.title;
 
     if (this.props.title.includes("Exercise") ) {
-      console.log(this.props);
+      // console.log(this.props);
       classes += " exercise";
     }
 
     if (this.props.title.includes("Exercise") && !this.props.next_title.includes("Exercise") ) {
-      console.log(this.props);
+      // console.log(this.props);
       classes += " last_exercise";
     }    
 
