@@ -31,36 +31,15 @@
             ]
         },
         { 
-            "name": "Numbers", 
+            "name": "Maths", 
             "decks": [
-                { "path": "src/Numbers/Algebra.md", "title": "Algebra" },
-                { "path": "src/Numbers/Nats.md", "title": "Naturals" },
-                { "path": "src/Numbers/Ints.md", "title": "Integers" },
-                { "path": "src/Numbers/Rats.md", "title": "Rationals" },
-                { "path": "src/Numbers/Matrices.md", "title": "Matrices" }
+                { "path": "src/Maths/Algebra.md", "title": "Algebra" },
+                { "path": "src/Maths/Sets.md", "title": "Sets" },
+                { "path": "src/Maths/Relations.md", "title": "Relations" },
+                { "path": "src/Maths/Numbers.md", "title": "Numbers" },
+                { "path": "src/Maths/Quotients.md", "title": "Quotients" }
             ]
-        },      
-        { 
-            "name": "Relations", 
-            "decks": [
-                { "path": "src/Relations/Sets.md", "title": "Sets" },
-                { "path": "src/Relations/Relations.md", "title": "Relations" },
-                { "path": "src/Relations/Ordering.md", "title": "Ordering" },
-                { "path": "src/Relations/Equivalence.md", "title": "Equivalence" },
-                { "path": "src/Relations/Quotients.md", "title": "Quotients" },
-                { "path": "src/Relations/Integers.md", "title": "Integers Revisited" },
-                { "path": "src/Relations/Reals.md", "title": "Reals" }
-            ]
-        },       
-        { 
-            "name": "DSLs", 
-            "decks": [
-                { "path": "src/DSL/DSL.md", "title": "Domain Specific Languages" },
-                { "path": "src/DSL/FOL-ast.md", "title": "FOL : AST" },
-                { "path": "src/DSL/FOL-syntax.md", "title": "FOL : Syntax" },
-                { "path": "src/DSL/FOL-model.md", "title": "FOL : Models" }
-            ]
-        },                   
+        },    
         { 
             "name": "Metaprogramming", 
             "decks": [
@@ -70,7 +49,23 @@
                 { "path": "src/Meta/Tactics.md", "title": "Custom Tactics" }
                 
             ]
-        },         
+        },  
+        {
+            "name": "Examples",
+            "decks": [
+                { "path": "src/Examples/TemporalLogic.md", "title": "Temporal Logic" },
+                { "path": "src/Examples/ISA.md", "title": "Instruction Sets" }
+            ]
+        },
+        { 
+            "name": "DSLs", 
+            "decks": [
+                { "path": "src/DSL/DSL.md", "title": "Domain Specific Languages" },
+                { "path": "src/DSL/FOL-ast.md", "title": "FOL : AST" },
+                { "path": "src/DSL/FOL-syntax.md", "title": "FOL : Syntax" },
+                { "path": "src/DSL/FOL-model.md", "title": "FOL : Models" }
+            ]
+        },                   
         {
             "name": "Category Theory",
             "decks": [

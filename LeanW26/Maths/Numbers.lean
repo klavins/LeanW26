@@ -12,11 +12,15 @@ namespace LeanW26
 --notdone
 
 /-
-Todo
+Numbers
 ===
+-/
 
+/-
 Todo
 ===
 -/
 
+--hide
 end LeanW26
+--unhide

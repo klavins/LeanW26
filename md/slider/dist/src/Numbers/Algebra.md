@@ -124,9 +124,9 @@ You can put the properties of a group into a typeclass.
 class Group (G : Type u) where
   op : G → G → G                                    -- data
   e : G
+  inv : G → G
   assoc {a b c} : op (op a b) c = op a (op b c)     -- properties
   id_left {a} : op e a = a
-  inv : G → G
   inv_left {a} : op (inv a) a = e
 ```
  And extend `Group` to the special case of a commutative (or abelian) group: 

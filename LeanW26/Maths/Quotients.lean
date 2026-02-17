@@ -11,8 +11,9 @@ namespace LeanW26
 
 --notdone
 
+
 /-
-Todo
+Quotients
 ===
 
 Todo

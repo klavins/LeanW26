@@ -28,6 +28,7 @@ def log_proof_states(client, infile: str, outfile: str ):
                 if goal and len(goal['goals']) > 0:
                   n = n + 1
                   f.write(f"{line} <proofstate>{goal['goals']}</proofstate>\n")
+
                 else:
                   f.write(f"{line}\n")                      
 
@@ -46,9 +47,10 @@ client = lc.LeanLSPClient(root)
 
 files = [
 
-  # "Logic/Tactics",
-  # "Logic/Equality",
-  "Numbers/Algebra"
+  "Logic/Tactics",
+  "Logic/Equality",
+  "Maths/Algebra",
+  "Maths/Sets"
 
 ]
 
