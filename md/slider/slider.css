@@ -194,6 +194,7 @@ pre {
     padding: 4px 4px 4px 4px !important;
     margin-left: 20px;
     margin-right: 40px;
+    overflow: visible !important;
 }
 
 .deck-title {
@@ -477,14 +478,44 @@ pre:has(> code:empty) {
     color: #6e6b5e;
 }
 
-/* Hover for tokens with title info */
-[title] {
-    cursor: help;
+/* Subverso token tooltips */
+.sv-has-tooltip {
+    cursor: pointer;
+    position: relative;
 }
 
-[title]:hover {
+.sv-has-tooltip:hover {
     background-color: #e8e8e8;
     border-radius: 2px;
+}
+
+/* pointer arrow */
+
+.sv-has-tooltip::after {
+    left: -25%;
+    transform: translateX(-10%);
+    opacity: 0;
+    position: absolute;
+    z-index: -100;
+    transition: opacity .2s ease;
+    background: #EDEFF0;
+    border: 1px solid black;
+    border-radius: .25em;
+    bottom: 180%;
+    color: #3E474F;
+    content: attr(data-tooltip);
+    padding: 0.6em;
+    font-size: 6pt;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    white-space: pre;
+    font-weight: normal;
+    width: max-content;
+    max-width: 100em;
+}
+
+.sv-has-tooltip:hover::after {
+    opacity: 1;
+    z-index: 10000;
 }
 
 /* Info spans (#check output, etc.) */

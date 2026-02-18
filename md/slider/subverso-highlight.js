@@ -347,9 +347,9 @@ class SubversoHighlighter {
         }
       }
 
-      let attrs = `class="${cssClass}"`;
+      let attrs = `class="${cssClass}${title ? ' sv-has-tooltip' : ''}"`;
       if (title) {
-        attrs += ` title="${this.escapeAttr(title)}"`;
+        attrs += ` data-tooltip="${this.escapeAttr(title)}"`;
       }
 
       html += `<span ${attrs}>${this.escapeHtml(originalText.slice(t.start, t.end))}</span>`;
