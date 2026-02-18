@@ -78,8 +78,8 @@ body {
 }
 
 #reverse-button {
-    font-size: 6pt;    
-    height: 14px;    
+    font-size: 6pt;
+    height: 14px;
     position: fixed;
     right: 30px;
     top: 5px;
@@ -88,8 +88,8 @@ body {
 }
 
 #expand-button {
-    font-size: 6pt;    
-    height: 14px;    
+    font-size: 6pt;
+    height: 14px;
     position: fixed;
     right: 55px;
     top: 5px;
@@ -98,8 +98,8 @@ body {
 }
 
 #sidebar-button {
-    font-size: 6pt;    
-    height: 14px;    
+    font-size: 6pt;
+    height: 14px;
     position: fixed;
     right: 81px;
     top: 5px;
@@ -116,7 +116,7 @@ body {
 .title {
     font-size: 6pt;
     border: 1pt solid #fff;
-    margin: 0; 
+    margin: 0;
     border-radius: 3px;
     padding: 1px 1px 0px 0;
     font-family: "Open Sans", sans-serif;
@@ -274,11 +274,11 @@ pre {
 }
 
 .infoview-title {
-    color: #aaa;    
+    color: #aaa;
 }
 
 .infoview-button {
-    color: #aaa;    
+    color: #aaa;
     border: none;
     background: none;
     font-size: 6pt;
@@ -297,7 +297,7 @@ pre {
 .highlight {
     color: purple;
     padding: 0;
-    margin: 0;    
+    margin: 0;
 }
 
 .condensed {
@@ -305,11 +305,11 @@ pre {
   border-spacing: 0;         /* Ensures no extra space between cells */
 }
 
-.condensed th, 
+.condensed th,
 .condensed td {
   padding: 1pt !important;            /* Removes space inside the cells */
   margin: 0     !important;            /* Reset, though margins usually don't affect td */
-  border: 1pt solid #eee !important; 
+  border: 1pt solid #eee !important;
 }
 
 .infoview-container {
@@ -349,7 +349,7 @@ pre {
     padding: 2px 0 2px 0;
     font-family: "Open Sans", sans-serif;
     cursor: pointer;
-    text-align: left;    
+    text-align: left;
     overflow-x: hidden;
 }
 
@@ -403,7 +403,7 @@ pre:has(> code:empty) {
     color: #000;
     line-height: 0.9;
     padding: 20px 0 20px 0;
-    
+
 }
 
 .first-slide .author {
@@ -430,7 +430,7 @@ pre:has(> code:empty) {
     font-family: monospace;
     font-weight: normal;
     font-size: 20pt;
-    margin-top: 10px;    
+    margin-top: 10px;
 }
 
 .uc .def {
@@ -439,8 +439,8 @@ pre:has(> code:empty) {
 
 .uc .slidedeck {
     color: black;
-    text-decoration: underline #c22 wavy;  
-    text-underline-offset: 3pt;   
+    text-decoration: underline #c22 wavy;
+    text-underline-offset: 3pt;
 }
 
 .uc .eq {
@@ -449,4 +449,45 @@ pre:has(> code:empty) {
 
 .uc .sorry {
     color: #c00;
+}
+
+/* Subverso syntax highlighting — atelier-dune-light colors */
+.sv-keyword {
+    color: #b854d4;
+    font-weight: bold;
+}
+
+.sv-const {
+    color: #6684e1;
+}
+
+.sv-var {
+    color: #d73737;
+}
+
+.sv-sort {
+    color: #b65611;
+}
+
+.sv-module {
+    color: #6684e1;
+}
+
+.sv-unknown {
+    color: #6e6b5e;
+}
+
+/* Hover for tokens with title info */
+[title] {
+    cursor: help;
+}
+
+[title]:hover {
+    background-color: #e8e8e8;
+    border-radius: 2px;
+}
+
+/* Info spans (#check output, etc.) */
+.sv-info {
+    border-bottom: 1px dashed #888;
 }
