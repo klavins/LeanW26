@@ -1,4 +1,4 @@
-import mathlib.tactic
+import Mathlib.Tactic
 
 namespace LeanW26
 
