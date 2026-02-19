@@ -600,7 +600,9 @@ showing sequence addition forms a `Group`.
 
 
 ```lean
-instance Seq.inst_group {R : Type u} [Ring R] : Group (ℕ → R) := {
+#check Group
+
+instance Seq.inst_group {R : Type u} [Group R] : Group (ℕ → R) := {
   op f g n      := f n + g n,
   e n           := e,
   inv f n       := - f n,
@@ -616,7 +618,7 @@ Ring-Valued Sequences : Monoid
 Show sequences form a `Monoid` is equally straightforward.
 
 ```lean
-instance Seq.inst_monoid {R : Type u} [Ring R] : Monoid (ℕ → R) := {
+instance Seq.inst_monoid {R : Type u} [Monoid R] : Monoid (ℕ → R) := {
   mul f g n := (f n) * (g n),
   one n := one,
   mul_assoc {f g h} := by funext n; exact mul_assoc,
@@ -826,12 +828,12 @@ theorem one_inv : (one:F)⁻¹ = one := sorry
 ```
 
 
-<ex /> Instantiate `(ℤ,+)` as a `Field` (using the definition in this file,
+<ex /> Instantiate `(ℤ,+)` as a `CommRing` (using the definition in this file,
 not Mathlib's). For the properties, find them [here](https://leanprover-community.github.io/mathlib4_docs/Init/Data/Int/Lemmas.html)
 or by just checking `by apply?`.
 
-You can do this all at once with `instance : Field ℤ` or by building up
-`Group`, `Monoind`, `Ring`, `CommRing` and `Field` sequentially.
+You can do this all at once with `instance : Ring ℤ` or by building up
+`Group`, `Monoind`, `Ring`, and `CommRing` sequentially.
 
 <ex /> (Optional) Show that in a `Field`, `(a*b)⁻¹ = (a⁻¹)*(b⁻¹)`.
 You should build up several simpler identities about `Ring` before tackling this one.

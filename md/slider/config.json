@@ -36,8 +36,7 @@
                 { "path": "src/Maths/Algebra.md", "title": "Algebra" },
                 { "path": "src/Maths/Sets.md", "title": "Sets" },
                 { "path": "src/Maths/Relations.md", "title": "Relations" },
-                { "path": "src/Maths/Numbers.md", "title": "Numbers" },
-                { "path": "src/Maths/Quotients.md", "title": "Quotients" }
+                { "path": "src/Maths/Numbers.md", "title": "Numbers" }
             ]
         },    
         { 
@@ -54,26 +53,8 @@
             "name": "Examples",
             "decks": [
                 { "path": "src/Examples/TemporalLogic.md", "title": "Temporal Logic" },
-                { "path": "src/Examples/ISA.md", "title": "Instruction Sets" }
-            ]
-        },
-        { 
-            "name": "DSLs", 
-            "decks": [
-                { "path": "src/DSL/DSL.md", "title": "Domain Specific Languages" },
-                { "path": "src/DSL/FOL-ast.md", "title": "FOL : AST" },
-                { "path": "src/DSL/FOL-syntax.md", "title": "FOL : Syntax" },
-                { "path": "src/DSL/FOL-model.md", "title": "FOL : Models" }
-            ]
-        },                   
-        {
-            "name": "Category Theory",
-            "decks": [
-                { "path": "src/CategoryTheory/Definitions.md", "title": "Definitions" },
-                { "path": "src/CategoryTheory/Examples.md", "title": "Examples" },
-                { "path": "src/CategoryTheory/Products.md", "title": "Products" },
-                { "path": "src/CategoryTheory/Exponentials.md", "title": "Exponentials" },
-                { "path": "src/CategoryTheory/Syntactic.md", "title": "Syntactic Categories" }
+                { "path": "src/Examples/ISA.md", "title": "Instruction Sets" },
+                { "path": "src/Examples/ISA.md", "title": "First Order Logic DSL" }
             ]
         },
         {
