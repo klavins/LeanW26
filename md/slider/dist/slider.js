@@ -300,7 +300,12 @@ class Slider extends React.Component {
 
   componentDidUpdate() {
 
-    document.querySelectorAll('pre code').forEach(block => {
+    // Use subverso highlighting for lean code blocks
+    const deckPath = this.config.sections[this.state.section].decks[this.state.deck].path;
+    window.subversoHighlighter.highlightAll(deckPath);
+
+    // Use hljs for non-lean code blocks only
+    document.querySelectorAll('pre:not(.lean-code) code').forEach(block => {
       hljs.highlightBlock(block);
     });
 
