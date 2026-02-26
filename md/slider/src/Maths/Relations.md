@@ -196,12 +196,16 @@ example {x y : ℕ} : ReflC (Nat.lt) x y ↔ x ≤ y := by <proofstate>['α : So
   constructor <proofstate>['case mp\nα : Sort u\nβ : Type u\nx y : ℕ\n⊢ ReflC Nat.lt x y → x ≤ y', 'case mpr\nα : Sort u\nβ : Type u\nx y : ℕ\n⊢ x ≤ y → ReflC Nat.lt x y']</proofstate>
   · intro h <proofstate>['case mp\nα : Sort u\nβ : Type u\nx y : ℕ\nh : ReflC Nat.lt x y\n⊢ x ≤ y']</proofstate>
     cases h with <proofstate>['case mp\nα : Sort u\nβ : Type u\nx y : ℕ\nh : ReflC Nat.lt x y\n⊢ x ≤ y']</proofstate>
-    | base h1 => exact Nat.le_of_succ_le h1
-    | refl => aesop
+    | base h1 => <proofstate>['case mp.base\nα : Sort u\nβ : Type u\nx y : ℕ\nh1 : x.lt y\n⊢ x ≤ y']</proofstate>
+      exact Nat.le_of_succ_le h1
+    | refl => <proofstate>['case mp.refl\nα : Sort u\nβ : Type u\nx : ℕ\n⊢ x ≤ x']</proofstate>
+      aesop
   · intro h <proofstate>['case mpr\nα : Sort u\nβ : Type u\nx y : ℕ\nh : x ≤ y\n⊢ ReflC Nat.lt x y']</proofstate>
     cases h with <proofstate>['case mpr\nα : Sort u\nβ : Type u\nx y : ℕ\nh : x ≤ y\n⊢ ReflC Nat.lt x y']</proofstate>
-    | refl => exact ReflC.refl
-    | step h1 => exact ReflC.base (by aesop)
+    | refl => <proofstate>['case mpr.refl\nα : Sort u\nβ : Type u\nx : ℕ\n⊢ ReflC Nat.lt x x']</proofstate>
+      exact ReflC.refl
+    | step h1 => <proofstate>['case mpr.step\nα : Sort u\nβ : Type u\nx m✝ : ℕ\nh1 : x.le m✝\n⊢ ReflC Nat.lt x m✝.succ']</proofstate>
+      exact ReflC.base (by aesop)
 ```
 
 Other Closures
@@ -228,7 +232,19 @@ Exercises
 
 
 ```lean
-example (R : α → α → Prop) : Symm R → ∀ x y, R x y ↔ (SymmC R) x y := sorry
+example (R : α → α → Prop)
+  : Symm R → ∀ x y, R x y ↔ (SymmC R) x y :=
+  sorry
+```
+
+<ex /> Show the symmetric closure of the reflexive closure is
+the transitive closure of the reflexive closure.
+
+
+```lean
+example (R : α → α → Prop) : ∀ x y,
+  ReflC (TransC R) x y ↔ TransC (ReflC R) x y :=
+  sorry
 ```
 
 Ordering

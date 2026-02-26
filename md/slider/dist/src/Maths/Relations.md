@@ -1,7 +1,1059 @@
 
-<div class='uc'><span class='def'>def</span> <span class='slidedeck'>SlideDeck</span> <span class='eq'>:=</span> <span class='sorry'>sorry</span></div>
+Binary Relations
 ===
 
+
+Definition
+===
+
+A **binary relation** on a type `α` is a function `σ → α → Prop`.
+
+
+```lean
+universe u
+variable {α : Sort u} {β : Type u}
+abbrev Rel := α → α → Prop
+```
+
+Running Examples
+===
+
+ Order Like: 
+```lean
+#check Nat.le               -- ≤ : ℕ → ℕ → Prop
+#check List.lt              -- < : List α → List α → Prop (lexicographic)
+#check Set.Subset           -- Set α → Set α → Prop
+```
+ Lean's Connectives 
+```lean
+#check And                  -- Prop → Prop → Prop
+#check Or                   -- Prop → Prop → Prop
+```
+ Equality 
+```lean
+#check Eq                   -- Prop → Prop → Prop
+```
+ Tail Equivalence on Sequences 
+```lean
+def te (σ₁ σ₂ : ℕ → α) : Prop := ∃ m, ∀ n > m, σ₁ n = σ₂ n
+```
+
+<div class='fn'>Tail equivalence is the same notion as <tt>EventuallyEq</tt>
+in Mathlib's <a href="https://leanprover-community.github.io/mathlib4_docs/Mathlib/Order/Filter/Defs.html#Filter.EventuallyEq">Filter Library</a>, except without the filters.</div>
+
+
+
+Reflexivity
+===
+`R` is reflexive if `R x x` for all `x`.
+
+```lean
+def Refl (R : α → α → Prop) := ∀ x, R x x
+```
+ Applying this definition to our examples:  
+```lean
+example :  Refl Nat.le                := by intro n; simp
+example :  Refl (Set.Subset (α := β)) := fun _ _ hx => hx
+example : ¬Refl And           := fun h => by simpa using (h False)
+example : ¬Refl Or            := fun h => by simpa using (h False)
+example :  Refl (Eq (α := ℕ))         := fun _ => rfl
+example :  Refl (te (α := α))         := fun _ => ⟨ 0, fun _ _ => rfl ⟩
+```
+ The list example requires some extra work. We have to show we are applying
+it to a type for which the typeclass `LT` has been intantiated. 
+```lean
+example [hl : LT β] : ¬Refl (List.lt (α := β)) :=
+  fun h => by simpa using (h [])
+```
+
+Symmetry
+===
+`R` is symmetric if `R x y → R y x` for all `x` and `y`.
+
+```lean
+def Symm (R : α → α → Prop) := ∀ x y, R x y → R y x
+```
+ For example: 
+```lean
+example : ¬Symm Nat.le := fun h => by simpa using (h 0 1 (by simp))
+
+example :  Symm And    := fun _ _ ⟨ hx, hy ⟩ => ⟨ hy, hx ⟩
+
+example :  Symm (te (α := α)) := by <proofstate>['α : Sort u\nβ : Type u\n⊢ Symm te']</proofstate>
+  intro σ₁ σ₂ ⟨ m, hm ⟩ <proofstate>['α : Sort u\nβ : Type u\nσ₁ σ₂ : ℕ → α\nm : ℕ\nhm : ∀ n > m, σ₁ n = σ₂ n\n⊢ te σ₂ σ₁']</proofstate>
+  use m <proofstate>['case h\nα : Sort u\nβ : Type u\nσ₁ σ₂ : ℕ → α\nm : ℕ\nhm : ∀ n > m, σ₁ n = σ₂ n\n⊢ ∀ n > m, σ₂ n = σ₁ n']</proofstate>
+  intro n hn <proofstate>['case h\nα : Sort u\nβ : Type u\nσ₁ σ₂ : ℕ → α\nm : ℕ\nhm : ∀ n > m, σ₁ n = σ₂ n\nn : ℕ\nhn : n > m\n⊢ σ₂ n = σ₁ n']</proofstate>
+  exact Eq.symm (hm n hn)
+```
+
+Antisymmetry
+===
+ `R` is antisymmetric if `R x y → R y x → x = y` for all `x` and `y`
+
+```lean
+def AntiSymm (R : α → α → Prop) := ∀ x y, R x y → R y x → x = y
+```
+ For example: 
+```lean
+example : AntiSymm (Set.Subset (α := β)) := by <proofstate>['α : Sort u\nβ : Type u\n⊢ AntiSymm Set.Subset']</proofstate>
+  intro A B hAB hBA <proofstate>['α : Sort u\nβ : Type u\nA B : Set β\nhAB : A.Subset B\nhBA : B.Subset A\n⊢ A = B']</proofstate>
+  ext x <proofstate>['case h\nα : Sort u\nβ : Type u\nA B : Set β\nhAB : A.Subset B\nhBA : B.Subset A\nx : β\n⊢ x ∈ A ↔ x ∈ B']</proofstate>
+  exact ⟨ fun hx => hAB hx, fun hy => hBA hy ⟩
+
+example : ¬AntiSymm (te (α := ℕ)) := by <proofstate>['α : Sort u\nβ : Type u\n⊢ ¬AntiSymm te']</proofstate>
+  intro h <proofstate>['α : Sort u\nβ : Type u\nh : AntiSymm te\n⊢ False']</proofstate>
+  let f n := if n < 2 then 0 else n <proofstate>['α : Sort u\nβ : Type u\nh : AntiSymm te\nf : ℕ → ℕ := fun n ↦ if n < 2 then 0 else n\n⊢ False']</proofstate>
+  have heq := h f id ⟨ 2, by grind ⟩ ⟨ 2, by grind ⟩ <proofstate>['α : Sort u\nβ : Type u\nh : AntiSymm te\nf : ℕ → ℕ := fun n ↦ if n < 2 then 0 else n\nheq : f = id\n⊢ False']</proofstate>
+  have hne : f 1 ≠ id 1 := by grind
+  have heq : f 1 = id 1 := by grind
+  grind
+```
+
+Transitivity
+===
+A relation `R` is transitive if `R x y → R y z → R x z` for all `x`, `y` and `z`.
+
+```lean
+def Trans (R : α → α → Prop) := ∀ x y z, R x y → R y z → R x z
+```
+ For example, 
+```lean
+example : Trans (Set.Subset (α := β)) := by <proofstate>['α : Sort u\nβ : Type u\n⊢ Trans Set.Subset']</proofstate>
+  intro _ _ _ hAB hBC _ hA <proofstate>['α : Sort u\nβ : Type u\nx✝ y✝ z✝ : Set β\nhAB : x✝.Subset y✝\nhBC : y✝.Subset z✝\na✝ : β\nhA : a✝ ∈ x✝\n⊢ a✝ ∈ z✝']</proofstate>
+  exact hBC (hAB hA)
+
+example : Trans And := by <proofstate>['α : Sort u\nβ : Type u\n⊢ Trans And']</proofstate>
+  intro p q r ⟨ hp, hq ⟩ ⟨ hq, hr ⟩ <proofstate>['α : Sort u\nβ : Type u\np q r : Prop\nhp : p\nhq✝ hq : q\nhr : r\n⊢ p ∧ r']</proofstate>
+  exact ⟨ hp, hr ⟩
+```
+ Inequality is not transitive, as you would expect. 
+```lean
+example : ¬Trans (Ne (α := ℕ)) := by <proofstate>['α : Sort u\nβ : Type u\n⊢ ¬Trans Ne']</proofstate>
+  intro h <proofstate>['α : Sort u\nβ : Type u\nh : Trans Ne\n⊢ False']</proofstate>
+  have h12 : 1 ≠ 2 := by decide
+  have := h 1 2 1 h12 h12.symm <proofstate>['α : Sort u\nβ : Type u\nh : Trans Ne\nh12 : 1 ≠ 2\nthis : 1 ≠ 1\n⊢ False']</proofstate>
+  simp_all
+```
+
+Exercises
+===
+
+<ex /> Do the remaining examples left undone on the slide about symmetry.
+
+<ex /> Do the remaining examples left undone on the slide about antisymmetry.
+
+<ex /> Do the remaining examples left undone on the slide about transitivity.
+
+</ex > Many textbooks define a relation as a subset of `Set (α × α)`. These
+two notions are equivalent, and it is more idomatic in
+type theory to use currying. Show the definitions are equivalent:
+
+
+```lean
+def relation_defs_equiv {α : Type u} : (α → α → Prop) ≃ Set (α × α) := {
+  toFun := sorry,
+  invFun := sorry,
+  right_inv := sorry,
+  left_inv := sorry
+}
+```
+
+The Reflexive Closure
+===
+The **reflexive closure** of `R` is the smallest reflexive relation containing `R`.
+It can be defined:
+
+
+```lean
+inductive ReflC (R : α → α → Prop) : α → α → Prop where
+  | base {x y} : R x y → ReflC R x y
+  | refl {x} : ReflC R x x
+```
+ We can show this definition is reflexive, contains `R` and is the smallest such relation: 
+```lean
+theorem is_refl {R : α → α → Prop} : Refl (ReflC R) := by <proofstate>['α : Sort u\nR : α → α → Prop\n⊢ Refl (ReflC R)']</proofstate>
+  intro x <proofstate>['α : Sort u\nR : α → α → Prop\nx : α\n⊢ ReflC R x x']</proofstate>
+  exact ReflC.refl
+
+theorem contains {R : α → α → Prop} {x y : α} : R x y → ReflC R x y := by <proofstate>['α : Sort u\nR : α → α → Prop\nx y : α\n⊢ R x y → ReflC R x y']</proofstate>
+  exact ReflC.base
+
+theorem is_smallest {R S : α → α → Prop} (hr : ∀ x, S x x) (hi : ∀ {x y}, R x y → S x y)
+  : ∀ {x y}, ReflC R x y → S x y  := by <proofstate>['α : Sort u\nR S : α → α → Prop\nhr : ∀ (x : α), S x x\nhi : ∀ {x y : α}, R x y → S x y\n⊢ ∀ {x y : α}, ReflC R x y → S x y']</proofstate>
+  intro x y h <proofstate>['α : Sort u\nR S : α → α → Prop\nhr : ∀ (x : α), S x x\nhi : ∀ {x y : α}, R x y → S x y\nx y : α\nh : ReflC R x y\n⊢ S x y']</proofstate>
+  cases h with <proofstate>['α : Sort u\nR S : α → α → Prop\nhr : ∀ (x : α), S x x\nhi : ∀ {x y : α}, R x y → S x y\nx y : α\nh : ReflC R x y\n⊢ S x y']</proofstate>
+  | base hb => exact hi hb
+  | refl => exact hr x
+```
+
+Example Reflexive Closure
+===
+
+We can show `≤` is the reflexive closure of `<`:
+
+```lean
+example {x y : ℕ} : ReflC (Nat.lt) x y ↔ x ≤ y := by <proofstate>['α : Sort u\nβ : Type u\nx y : ℕ\n⊢ ReflC Nat.lt x y ↔ x ≤ y']</proofstate>
+  constructor <proofstate>['case mp\nα : Sort u\nβ : Type u\nx y : ℕ\n⊢ ReflC Nat.lt x y → x ≤ y', 'case mpr\nα : Sort u\nβ : Type u\nx y : ℕ\n⊢ x ≤ y → ReflC Nat.lt x y']</proofstate>
+  · intro h <proofstate>['case mp\nα : Sort u\nβ : Type u\nx y : ℕ\nh : ReflC Nat.lt x y\n⊢ x ≤ y']</proofstate>
+    cases h with <proofstate>['case mp\nα : Sort u\nβ : Type u\nx y : ℕ\nh : ReflC Nat.lt x y\n⊢ x ≤ y']</proofstate>
+    | base h1 => <proofstate>['case mp.base\nα : Sort u\nβ : Type u\nx y : ℕ\nh1 : x.lt y\n⊢ x ≤ y']</proofstate>
+      exact Nat.le_of_succ_le h1
+    | refl => <proofstate>['case mp.refl\nα : Sort u\nβ : Type u\nx : ℕ\n⊢ x ≤ x']</proofstate>
+      aesop
+  · intro h <proofstate>['case mpr\nα : Sort u\nβ : Type u\nx y : ℕ\nh : x ≤ y\n⊢ ReflC Nat.lt x y']</proofstate>
+    cases h with <proofstate>['case mpr\nα : Sort u\nβ : Type u\nx y : ℕ\nh : x ≤ y\n⊢ ReflC Nat.lt x y']</proofstate>
+    | refl => <proofstate>['case mpr.refl\nα : Sort u\nβ : Type u\nx : ℕ\n⊢ ReflC Nat.lt x x']</proofstate>
+      exact ReflC.refl
+    | step h1 => <proofstate>['case mpr.step\nα : Sort u\nβ : Type u\nx m✝ : ℕ\nh1 : x.le m✝\n⊢ ReflC Nat.lt x m✝.succ']</proofstate>
+      exact ReflC.base (by aesop)
+```
+
+Other Closures
+===
+Similarly we can define
+
+ **Symmetric Closure**: 
+```lean
+inductive SymmC (R : α → α → Prop) : α → α → Prop where
+  | base {x y} : R x y → SymmC R x y
+  | symm {x y} : R x y → SymmC R y x
+```
+ **Transitive Closure**: 
+```lean
+inductive TransC (R : α → α → Prop) : α → α → Prop where
+  | base {x y} : R x y → TransC R x y
+  | trans {x y z} : R x y → TransC R y z → TransC R x z
+```
+
+Exercises
+===
+
+<ex /> Show the symmetric closure of a symmetric relation is the relation itelf.
+
+
+```lean
+example (R : α → α → Prop)
+  : Symm R → ∀ x y, R x y ↔ (SymmC R) x y :=
+  sorry
+```
+
+<ex /> Show the symmetric closure of the reflexive closure is
+the transitive closure of the reflexive closure.
+
+
+```lean
+example (R : α → α → Prop) : ∀ x y,
+  ReflC (TransC R) x y ↔ TransC (ReflC R) x y :=
+  sorry
+```
+
+Ordering
+===
+
+An **order relation** on a set `A` is a relation `A → A → Prop` that captures some notion of order.
+A familiar example is the the `≤` relation on the natural numbers:
+
+`≤` is an example of a **total order** on a set,
+meaning any two elements `x` and `y` are related (i.e. `x≤y` or `y≤x`).
+
+This need not be the case in general.
+For example, the subset relation `⊆` on sets is only a
+**partial order**, because one can find sets `A` and `B`
+for which neither `A ⊆ B` or `B ⊆ A`.
+
+Most of this material comes from the book
+_Introduction to Lattices and Order_ by Davey and Priestly.
+
+
+
+Partial Orders
+===
+
+A **partially ordered set** or **poset** is a set and a _less-than_ ordering relation
+that is reflexive, anti-symmetric, and transitive. Using a new Lean `class`,
+we define a class of types that have a less-than relation with these three properties. 
+```lean
+class Poset (α : Type u) where
+  le : α → α → Prop
+  refl {x} : le x x
+  anti_sym {x y} : le x y → le y x → x = y
+  trans {x y z} : le x y → le y z → le x z
+```
+
+Example : The Natural Numbers
+===
+
+We can assert `ℕ` is a `poset` by instantiating the `Poset` class as follows. 
+```lean
+instance : Poset ℕ := ⟨
+  Nat.le,
+  Nat.le.refl,
+  Nat.le_antisymm,
+  Nat.le_trans
+⟩
+```
+ Conveniently, the proofs of each property already exist in Lean's library for `Nat`. 
+
+Example : Sets
+===
+
+Similarly, Lean's standard library has all of these properties defined for sets.  
+```lean
+instance {A : Type u} : Poset (Set A) := ⟨
+  Set.Subset,
+  id,
+  Set.Subset.antisymm,
+  Set.Subset.trans
+⟩
+```
+
+Poset Notation
+===
+
+Instantiating the `LE` and `LT` classes in Lean's standard library allow
+us to use `≤`, `≥`, `<`, and `≥` on elements of our `Poset` type.
+
+```lean
+instance le_inst {A : Type u} [Poset A] : LE A := ⟨ Poset.le ⟩
+instance lt_inst {A : Type u} [Poset A] : LT A := ⟨ fun x y => x ≤ y ∧ x ≠ y ⟩
+
+example {A : Type u} [Poset A] (x : A) := x ≥ x
+```
+
+Total Orders
+===
+
+A **total order** is a `Poset` with the added requirement that any two elements are comparable. 
+```lean
+def Comparable {P : Type u} [Poset P] (x y : P) :=
+  x ≤ y ∨ y ≤ x
+
+class TotalOrder (T : Type u) extends Poset T where
+  comp : ∀ x y : T, Comparable x y
+```
+ **Example:** The natural numbers are a total order, which is shown via a
+theorem in Lean's standard library: 
+```lean
+instance nat_total_order : TotalOrder ℕ :=
+  ⟨ Nat.le_total ⟩
+```
+ **Example:**  Sets are not a total order, however. 
+```lean
+example : ∃ x y : Set ℕ, ¬Comparable x y := by <proofstate>['α : Sort u\nβ : Type u\n⊢ ∃ x y, ¬Comparable x y']</proofstate>
+  apply Exists.intro {1} <proofstate>['α : Sort u\nβ : Type u\n⊢ ∃ y, ¬Comparable {1} y']</proofstate>
+  apply Exists.intro {2} <proofstate>['α : Sort u\nβ : Type u\n⊢ ¬Comparable {1} {2}']</proofstate>
+  simp[Comparable]
+```
+
+Exercises
+===
+
+<ex /> Given two sequences of natural numbers,
+we define the *subsequence order* as follows.
+
+First, note that strictly increasing function
+can be specified with the Mathlib function
+
+
+```lean
+#print StrictMono        -- fun f => ∀ a b, a < b → f a < f b
+```
+ Then we define the ordering as 
+```lean
+def subseq {α : Type u} (σ τ : ℕ → α) :=
+  ∃ f, StrictMono f ∧ σ = τ ∘ f
+```
+ Show subseq is a partial order on `ℕ → α` 
+```lean
+instance {α : Type u} : Poset (ℕ → α) := {
+  le := subseq,
+  refl {σ} := sorry,
+  anti_sym {σ τ}:= sorry,
+  trans {σ τ ρ} := sorry
+}
+```
+
+<ex /> Is `subseq` a total order? Why or why not?
+
+
+
+Semilattices
+===
+
+A (meet) *semilattice* is a `Poset` for which there exists a greatest
+lower bound function, usually called `meet`, for every pair of
+points `x` and `y`. Then we extend the hierarchy with a new class of orders. 
+```lean
+class Semilattice (L : Type u) extends Poset L where
+  meet : L → L → L
+  lb : ∀ x y, meet x y ≤ x ∧ meet x y ≤ y
+  greatest : ∀ x y w, w ≤ x → w ≤ y → w ≤ meet x y
+```
+
+Example Semilattices
+===
+
+For example, the natural numbers form a semilattice.  
+```lean
+instance nat_semi_lattice : Semilattice ℕ :=
+  ⟨
+    Nat.min,
+    by aesop,
+    by aesop
+  ⟩
+```
+ So do sets. 
+```lean
+instance set_semi_lattice {α : Type u}: Semilattice (Set α) :=
+  ⟨
+    (· ∩ ·),
+    by aesop,
+    by aesop
+  ⟩
+```
+
+Lattices
+===
+
+If all pairs of elements also have a least upper bound, then the `Poset` is called a *lattice*.
+The least upper bound function is called the **join**. 
+```lean
+class Lattice (L : Type u) extends Semilattice L where
+  join : L → L → L
+  ub : ∀ x y, (x ≤ join x y ∧ y ≤ join x y)
+  least : ∀ x y w, x ≤ w → y ≤ w → join x y ≤ w
+```
+
+Example Lattices
+===
+
+ Both ℕ and Sets are Lattices as well.
+The join for ℕ is `Nat.max` and the join for sets is `Set.union`. 
+```lean
+instance nat_lattice : Lattice ℕ :=
+  ⟨
+    Nat.max,
+    by aesop,
+    by aesop
+  ⟩
+
+instance set_lattice {α : Type u}: Lattice (Set α) :=
+  ⟨
+    (· ∪ ·),
+    by aesop,
+    by aesop
+  ⟩
+```
+
+Notation for Lattices
+===
+
+The meet and join of two elements `x` and `y` of a poset are
+denonted `x ⊓ y` and `x ⊔ y`.
+The notation classes for these operations are called `Min` and `Max`.
+
+```lean
+instance Semilattice.and_inst {L : Type u} [Semilattice L] : Min L :=
+  ⟨ meet ⟩
+
+instance Lattice.or_inst {L : Type u} [Lattice L] : Max L :=
+  ⟨ join ⟩
+```
+ Now we can use meets and joins with types instantiating `Lattice`. 
+```lean
+example : 3 ⊔ 4 = 4 := by decide
+```
+
+Meet and Join Example Theorems
+===
+
+Here are two straightforward theorems about meets and joins
+that test out the definitions and notation.
+They follow from the definitions of greatest lower bound,
+least upper bound, anti-symmetry, and reflexivity. 
+```lean
+theorem Semilattice.meet_idempotent {L : Type u} [Semilattice L] (x : L) : x ⊓ x = x := by <proofstate>['L : Type u\ninst✝ : Semilattice L\nx : L\n⊢ x ⊓ x = x']</proofstate>
+  have ⟨ h1, h2 ⟩ := lb x x <proofstate>['L : Type u\ninst✝ : Semilattice L\nx : L\nh1 h2 : meet x x ≤ x\n⊢ x ⊓ x = x']</proofstate>
+  have h4 := greatest x x x Poset.refl Poset.refl <proofstate>['L : Type u\ninst✝ : Semilattice L\nx : L\nh1 h2 : meet x x ≤ x\nh4 : x ≤ meet x x\n⊢ x ⊓ x = x']</proofstate>
+  exact Poset.anti_sym h1 h4
+
+theorem Lattice.join_idempotent {L : Type u} [Lattice L] (x : L) : x ⊔ x = x := by <proofstate>['L : Type u\ninst✝ : Lattice L\nx : L\n⊢ x ⊔ x = x']</proofstate>
+  have ⟨ h1, h2 ⟩ := ub x x <proofstate>['L : Type u\ninst✝ : Lattice L\nx : L\nh1 h2 : x ≤ join x x\n⊢ x ⊔ x = x']</proofstate>
+  have h4 := least x x x Poset.refl Poset.refl <proofstate>['L : Type u\ninst✝ : Lattice L\nx : L\nh1 h2 : x ≤ join x x\nh4 : join x x ≤ x\n⊢ x ⊔ x = x']</proofstate>
+  apply Poset.anti_sym h4 h1
+```
+
+Exercise
+===
+
+<ex /> (Optional) A *complete semilattice* requires every set to have
+a lower bound. A *complete lattice* requires every set to have an
+upper bound.
+
+
+```lean
+def IsLB {P : Type u} [Poset P] (S : Set P) (lb : P) := ∀ x ∈ S, lb ≤ x
+
+class CompleteSemilattice (L : Type u) extends Poset L where
+  inf : Set L → L
+  lb : ∀ S, IsLB S (inf S)
+  greatest : ∀ S w, (IsLB S w) → w ≤ inf S
+
+def IsUB {P : Type u} [Poset P] (S : Set P) (ub : P) := ∀ x, x ∈ S → x ≤ ub
+
+class CompleteLattice (L : Type u) extends CompleteSemilattice L where
+  sup : Set L → L
+  ub : ∀ S, IsUB S (sup S)
+  least : ∀ S, ∀ w, (IsUB S w) → sup S ≤ w
+```
+ Show that for any set `A` that `(A,⊆)` is a complete lattice by instantiating
+the above classes. 
+
+Exercise
+===
+
+<ex /> (Optional) In the definition of `inf` the condition `(IsLB S w)`
+in  `(IsLB S w)→ w ≤ inf S` is trivially satisfied if `S = ∅`.
+Therefore, `w ≤ inf ∅` for all `w`, meaning that `inf ∅`
+is a top element. Similarly, `sup ∅` is a bottom element.
+Conclude that every complete lattice is bounded.
+
+ 
+```lean
+@[simp]
+def CompleteLattice.bot {L : Type u} [CompleteLattice L] : L :=
+  sup (∅:Set L)
+
+@[simp]
+def CompleteLattice.top {L : Type u} [CompleteLattice L] : L :=
+  CompleteSemilattice.inf (∅:Set L)
+
+theorem CompleteLattice.is_bot {L : Type u} [CompleteLattice L]
+  : ∀ x : L, bot ≤ x := sorry
+
+theorem CompleteLattice.is_top {L : Type u} [CompleteLattice L]
+  : ∀ x : L, x ≤ top := sorry
+```
+
+Equivalence
+===
+An *equivalence relation* is reflexive, symmetric, and transitive.
+Lean provides the following typeclass:
+```lean
+structure Equivalence {α : Sort u} (r : α → α → Prop) : Prop where
+  refl x : r x x
+  symm {x y} : r x y → r y x
+  trans {x y z} : r x y → r y z → r x z
+```
+
+Lean defines the typeclass
+```lean
+class Setoid (α : Sort u) where
+  r : α → α → Prop
+  iseqv : Equivalence r
+```
+to keep track of a relation, the type on which it operates, and to provide
+notation. The requirement
+`[Setoid α]` allows downstream declarations to require `α` to come equipped with
+an equivalence relation.
+ 
+
+Equivalence Classes
+===
+An equivalence relation `≈ : α → α → Prop` partitions `α` into equivalence classes
+of the form
+```lean
+{ y | x ≈ y }
+```
+Equivalences classes are disjoint:
+
+
+```lean
+theorem disjoint_equiv {α : Type u} [s : Setoid α] {x₁ x₂ : α}
+  : ¬ x₁ ≈ x₂ → { y | x₁ ≈ y } ∩ { y | x₂ ≈ y } = ∅ := by <proofstate>['α : Type u\ns : Setoid α\nx₁ x₂ : α\n⊢ ¬x₁ ≈ x₂ → {y | x₁ ≈ y} ∩ {y | x₂ ≈ y} = ∅']</proofstate>
+  intro h <proofstate>['α : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\n⊢ {y | x₁ ≈ y} ∩ {y | x₂ ≈ y} = ∅']</proofstate>
+  ext z <proofstate>['case h\nα : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\nz : α\n⊢ z ∈ {y | x₁ ≈ y} ∩ {y | x₂ ≈ y} ↔ z ∈ ∅']</proofstate>
+  constructor <proofstate>['case h.mp\nα : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\nz : α\n⊢ z ∈ {y | x₁ ≈ y} ∩ {y | x₂ ≈ y} → z ∈ ∅', 'case h.mpr\nα : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\nz : α\n⊢ z ∈ ∅ → z ∈ {y | x₁ ≈ y} ∩ {y | x₂ ≈ y}']</proofstate>
+  · intro ⟨ h1 , h2 ⟩ <proofstate>['case h.mp\nα : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\nz : α\nh1 : z ∈ {y | x₁ ≈ y}\nh2 : z ∈ {y | x₂ ≈ y}\n⊢ z ∈ ∅']</proofstate>
+    have := s.trans h1 (s.symm h2) <proofstate>['case h.mp\nα : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\nz : α\nh1 : z ∈ {y | x₁ ≈ y}\nh2 : z ∈ {y | x₂ ≈ y}\nthis : x₁ ≈ x₂\n⊢ z ∈ ∅']</proofstate>
+    exact h this
+  · exact False.elim
+```
+ And they partition the entire space 
+```lean
+theorem univ_equiv {α : Type u} [s : Setoid α]
+  : ⋃ x : α, {y|x≈y} = Set.univ := by <proofstate>['α : Type u\ns : Setoid α\n⊢ ⋃ x, {y | x ≈ y} = Set.univ']</proofstate>
+  ext z <proofstate>['case h\nα : Type u\ns : Setoid α\nz : α\n⊢ z ∈ ⋃ x, {y | x ≈ y} ↔ z ∈ Set.univ']</proofstate>
+  aesop
+```
+
+Equivalence Preserving Functions
+===
+
+A function `f : α → α` *respects equivalence* if makes equivalent elements to equivalent elements.
+
+```lean
+def respects {α : Type u} [Setoid α] (f : α → α) := ∀ x y,
+  x ≈ y → f x ≈ f y
+```
+
+A similar property may be stated for operations `op ∶ α → α → α`.
+
+```lean
+def respects_op {α : Type u} [Setoid α] (op : α → α → α) := ∀ x₁ x₂ y₁ y₂,
+  x₁ ≈ x₂ → y₁ ≈ y₂ → op x₁ y₁ ≈ op x₂ y₂
+```
+ A respectful function respects equivalence classes. 
+```lean
+theorem respects_ec {α : Type u} [Setoid α] {f : α → α} {x y : α}
+  : respects f → f x ≈ y → f '' { z | z ≈ x } ⊆ { z | z ≈ y } := by <proofstate>["α : Type u\ninst✝ : Setoid α\nf : α → α\nx y : α\n⊢ respects f → f x ≈ y → f '' {z | z ≈ x} ⊆ {z | z ≈ y}"]</proofstate>
+  intro hr hxy z ⟨ w, ⟨ h1, h2 ⟩ ⟩ <proofstate>['α : Type u\ninst✝ : Setoid α\nf : α → α\nx y : α\nhr : respects f\nhxy : f x ≈ y\nz w : α\nh1 : w ∈ {z | z ≈ x}\nh2 : f w = z\n⊢ z ∈ {z | z ≈ y}']</proofstate>
+  rw[←h2] <proofstate>['α : Type u\ninst✝ : Setoid α\nf : α → α\nx y : α\nhr : respects f\nhxy : f x ≈ y\nz w : α\nh1 : w ∈ {z | z ≈ x}\nh2 : f w = z\n⊢ f w ∈ {z | z ≈ y}']</proofstate>
+  exact Setoid.trans (hr w x h1) hxy
+```
+ We can show a similar result for respectful operations. 
+
+Equivalence
+===
+
+Many objects are defined up to equivalence:
+- Rationals
+- Cauchy Reals
+- Integers `mod n`
+- Lambda terms that reduce to the same value
+- Equivalent states in an automaton
+- Path equivalence in homotopy
+- Quotient spaces in group theory, topology, ...
+
+But there are issues:
+- To reason about these objects you have to
+    - reason about representatives of the equivalence classes
+    - carry proofs with the representatives
+    - extend to the whole equivalence class
+- You can't use Lean's built-in definitional equality
+on equivalence to do substitution, congruence, rewriting, etc.
+- Equivalence classes are *sets* not *types*.
+
+Lean provides a way to turn equivalences into equality
+and equivalence classes into terms in a **quotient type**.
+
+
+Quotients
+===
+
+Given a `Setoid` `S` the **quotient** of `S` is
+_a new type_ `Quotient S`.
+
+If `x:α` then
+```
+⟦x⟧ : Quotient S
+```
+is akin to the equivalence class of `x` under `≈`, but it is *not* a set.
+
+Lean defines, axiomatically, the following:
+```lean
+#check Quotient.mk        -- A way to construct elements, also called **projection**
+                          -- `(x : α) → Quotient S`, denoted `⟦x⟧`
+
+#check Quotient.sound     -- An soundness axiom
+                          -- `x ≈ y → ⟦x⟧ = ⟦y⟧
+
+#check Quotient.lift     -- A way to lift functions
+                         -- f → (∀ (a b : α), a ≈ b → f a = f b) → Quotient s → β
+
+#check Quotient.lift_mk   -- The property that lifting respects ≈
+                          -- Quotient.lift f h ⟦x⟧ = f x
+```
+
+Example : Z2
+===
+
+```lean
+def M (x y : ℤ) : Prop := ∃ k, x - y = 2*k
+
+instance m_equiv : Equivalence M := {
+  refl x        := by use 0; simp,
+  symm {x y}    := by intro ⟨ k, hm ⟩; use -k; linarith,
+  trans {x y z} := by intro ⟨ k, hk ⟩ ⟨ j, hj ⟩; use (k+j); linarith
+}
+
+instance m_setoid : Setoid ℤ := ⟨ M, m_equiv ⟩
+
+abbrev Z2 := Quotient m_setoid
+
+instance m_zero : Zero Z2 := ⟨ ⟦0⟧ ⟩
+```
+
+Z2: Lifting Unary Operators
+===
+Lifting a one argument function:
+
+```lean
+def pre_neg (x : ℤ) : Z2 := ⟦-x⟧
+
+theorem pre_neg_respects : ∀ (a b : ℤ), a ≈ b → pre_neg a = pre_neg b := by <proofstate>['⊢ ∀ (a b : ℤ), a ≈ b → pre_neg a = pre_neg b']</proofstate>
+  intro a b ⟨ k, hk ⟩ <proofstate>['a b k : ℤ\nhk : a - b = 2 * k\n⊢ pre_neg a = pre_neg b']</proofstate>
+  apply Quotient.sound <proofstate>['case a\na b k : ℤ\nhk : a - b = 2 * k\n⊢ -a ≈ -b']</proofstate>
+  use -k <proofstate>['case h\na b k : ℤ\nhk : a - b = 2 * k\n⊢ -a - -b = 2 * -k']</proofstate>
+  linarith
+
+def Z2.neg (X : Z2) : Z2 := Quotient.lift pre_neg pre_neg_respects X
+
+instance z2_neg : Neg Z2 := ⟨ Z2.neg ⟩
+
+#check -(⟦3⟧:Z2)
+```
+
+Z2: Lifting Binary Operators
+===
+Lifting a two argument function:
+```lean
+def pre_add (x y : ℤ) : Z2 := ⟦x+y⟧
+
+theorem pre_add_respects : ∀ (a₁ b₁ a₂ b₂ : ℤ),
+  a₁ ≈ a₂ → b₁ ≈ b₂ → pre_add a₁ b₁ = pre_add a₂ b₂ := by <proofstate>['⊢ ∀ (a₁ b₁ a₂ b₂ : ℤ), a₁ ≈ a₂ → b₁ ≈ b₂ → pre_add a₁ b₁ = pre_add a₂ b₂']</proofstate>
+  intro a₁ b₁ a₂ b₂ ⟨k, hk⟩ ⟨j, hj⟩ <proofstate>['a₁ b₁ a₂ b₂ k : ℤ\nhk : a₁ - a₂ = 2 * k\nj : ℤ\nhj : b₁ - b₂ = 2 * j\n⊢ pre_add a₁ b₁ = pre_add a₂ b₂']</proofstate>
+  apply Quotient.sound <proofstate>['case a\na₁ b₁ a₂ b₂ k : ℤ\nhk : a₁ - a₂ = 2 * k\nj : ℤ\nhj : b₁ - b₂ = 2 * j\n⊢ a₁ + b₁ ≈ a₂ + b₂']</proofstate>
+  use k+j <proofstate>['case h\na₁ b₁ a₂ b₂ k : ℤ\nhk : a₁ - a₂ = 2 * k\nj : ℤ\nhj : b₁ - b₂ = 2 * j\n⊢ a₁ + b₁ - (a₂ + b₂) = 2 * (k + j)']</proofstate>
+  linarith
+
+def Z2.add (X Y : Z2) : Z2 := Quotient.lift₂ pre_add pre_add_respects X Y
+
+instance Z2.hadd_inst : HAdd Z2 Z2 Z2 := ⟨ Z2.add ⟩
+instance Z2.add_inst : Add Z2 := ⟨ Z2.add ⟩
+```
+
+Z2 : Properties
+===
+
+```lean
+theorem Z2.zero_add (X : Z2) : 0 + X = X := by <proofstate>['X : Z2\n⊢ 0 + X = X']</proofstate>
+  have ⟨ k, hm ⟩ := Quotient.exists_rep X <proofstate>['X : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ 0 + X = X']</proofstate>
+  rw[←hm] <proofstate>['X : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ 0 + ⟦k⟧ = ⟦k⟧']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nX : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ 0 + k ≈ k']</proofstate>
+  use 0 <proofstate>['case h\nX : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ 0 + k - k = 2 * 0']</proofstate>
+  linarith
+
+theorem Z2.neg_add_cancel (X : Z2) : -X + X = ⟦0⟧ := by <proofstate>['X : Z2\n⊢ -X + X = ⟦0⟧']</proofstate>
+  have ⟨ k, hm ⟩ := Quotient.exists_rep X <proofstate>['X : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ -X + X = ⟦0⟧']</proofstate>
+  rw[←hm] <proofstate>['X : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ -⟦k⟧ + ⟦k⟧ = ⟦0⟧']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nX : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ -k + k ≈ 0']</proofstate>
+  use 0 <proofstate>['case h\nX : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ -k + k - 0 = 2 * 0']</proofstate>
+  linarith
+
+theorem Z2.assoc (X Y Z : Z2) : X + Y + Z = X + (Y + Z) := by <proofstate>['X Y Z : Z2\n⊢ X + Y + Z = X + (Y + Z)']</proofstate>
+  have ⟨ i, hi ⟩ := Quotient.exists_rep X <proofstate>['X Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\n⊢ X + Y + Z = X + (Y + Z)']</proofstate>
+  have ⟨ j, hj ⟩ := Quotient.exists_rep Y <proofstate>['X Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\nj : ℤ\nhj : ⟦j⟧ = Y\n⊢ X + Y + Z = X + (Y + Z)']</proofstate>
+  have ⟨ k, hk ⟩ := Quotient.exists_rep Z <proofstate>['X Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\nj : ℤ\nhj : ⟦j⟧ = Y\nk : ℤ\nhk : ⟦k⟧ = Z\n⊢ X + Y + Z = X + (Y + Z)']</proofstate>
+  rw[←hi,←hj,←hk] <proofstate>['X Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\nj : ℤ\nhj : ⟦j⟧ = Y\nk : ℤ\nhk : ⟦k⟧ = Z\n⊢ ⟦i⟧ + ⟦j⟧ + ⟦k⟧ = ⟦i⟧ + (⟦j⟧ + ⟦k⟧)']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nX Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\nj : ℤ\nhj : ⟦j⟧ = Y\nk : ℤ\nhk : ⟦k⟧ = Z\n⊢ i + j + k ≈ i + (j + k)']</proofstate>
+  use 0 <proofstate>['case h\nX Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\nj : ℤ\nhj : ⟦j⟧ = Y\nk : ℤ\nhk : ⟦k⟧ = Z\n⊢ i + j + k - (i + (j + k)) = 2 * 0']</proofstate>
+  linarith
+```
+
+Z2 is an Additive Group
+===
+
+Mathlib provides a function `AddGroup.ofLeftAxioms` to build a group instance. 
+```lean
+instance Z2.group_inst : AddGroup Z2 :=
+  AddGroup.ofLeftAxioms
+  Z2.assoc Z2.zero_add Z2.neg_add_cancel
+```
+ Everything true about groups is now easily proved for `Z2`: 
+```lean
+example (X : Z2) : - -X = X := by group;
+```
+
+Exercise
+===
+<ex /> (Optional) Show that the integers mod an positive number `m` form a group by
+generalizing the construction for `Z2` above.
+
+
+
+Tail Equivalence
+===
+Recall our definition of tail equilvalence:
+```lean
+def te (σ₁ σ₂ : ℕ → α) : Prop := ∃ m, ∀ n > m, σ₁ n = σ₂ n
+```
+
+We show `te` satisfies all the conditions of an equivalence relation:
+
+
+```lean
+instance te_equiv {α : Type u} : Equivalence (te (α := α)) := {
+  refl x := ⟨ 0, fun _ _ => rfl ⟩,
+  symm {x y} := fun ⟨ m,h ⟩ => ⟨ m, by aesop ⟩,
+  trans {x y z} := fun ⟨ m₁, h₁ ⟩ => fun ⟨ m₂, h₂ ⟩ => ⟨ m₁ ⊔ m₂, by aesop ⟩
+}
+
+instance te_setoid {α : Type u} : Setoid (ℕ → α) := {
+  r := te,
+  iseqv := te_equiv
+}
+```
+ Now we can write 
+```lean
+--hide
+section
+--unhide
+
+variable {α : Type u} (σ τ : ℕ → α)
+#check σ ≈ τ
+
+--hide
+end
+--unhide
+```
+
+Germs
+===
+
+The quotient on the set of sequences under tail equivalence is called a `Germ`.
+
+```lean
+def Germ (α : Type u) := Quotient (te_setoid (α := α))
+```
+ We can construct elements of `Germ` using: 
+```lean
+def Germ.mk {α : Type u} (σ : ℕ → α) := Quotient.mk te_setoid σ
+
+def σ : ℕ → ℕ := fun x => 2*x
+
+#check Germ.mk σ              -- Quotient te_setoid
+#check (⟦σ⟧:Germ ℕ)            -- Quotient te_setoid
+
+
+namespace Germ
+
+instance inst_zero {α : Type u} [Zero α]: Zero (Germ α) := ⟨ ⟦fun _ => 0⟧ ⟩
+```
+
+Germ Preoperators
+===
+
+```lean
+def pre_neg {α : Type u} [hn : Neg α] (σ : ℕ → α) : Germ α := ⟦fun n => -(σ n)⟧
+def pre_add {α : Type u} [Add α] (σ τ : ℕ → α) : Germ α := ⟦fun n => σ n + τ n⟧
+```
+ We can show `neg` preserves equivalence via: 
+```lean
+theorem te_neg_respects {α : Type u} [Neg α]
+  : ∀ (a b : ℕ → α), a ≈ b → pre_neg a = pre_neg b := by <proofstate>['α : Type u\ninst✝ : Neg α\n⊢ ∀ (a b : ℕ → α), a ≈ b → pre_neg a = pre_neg b']</proofstate>
+  intro σ τ ⟨ m, h ⟩ <proofstate>['α : Type u\ninst✝ : Neg α\nσ τ : ℕ → α\nm : ℕ\nh : ∀ n > m, σ n = τ n\n⊢ pre_neg σ = pre_neg τ']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nα : Type u\ninst✝ : Neg α\nσ τ : ℕ → α\nm : ℕ\nh : ∀ n > m, σ n = τ n\n⊢ (fun n ↦ -σ n) ≈ fun n ↦ -τ n']</proofstate>
+  use m <proofstate>['case h\nα : Type u\ninst✝ : Neg α\nσ τ : ℕ → α\nm : ℕ\nh : ∀ n > m, σ n = τ n\n⊢ ∀ n > m, -σ n = -τ n']</proofstate>
+  aesop
+
+theorem te_add_respects {α : Type u} [a : Add α] :
+  ∀ (a₁ b₁ a₂ b₂ : ℕ → α), a₁ ≈ a₂ → b₁ ≈ b₂ → pre_add a₁ b₁ = pre_add a₂ b₂ := by <proofstate>['α : Type u\na : Add α\n⊢ ∀ (a₁ b₁ a₂ b₂ : ℕ → α), a₁ ≈ a₂ → b₁ ≈ b₂ → pre_add a₁ b₁ = pre_add a₂ b₂']</proofstate>
+  intro a b c d ⟨ m1, h1 ⟩ ⟨ m2, h2 ⟩ <proofstate>['α : Type u\na✝ : Add α\na b c d : ℕ → α\nm1 : ℕ\nh1 : ∀ n > m1, a n = c n\nm2 : ℕ\nh2 : ∀ n > m2, b n = d n\n⊢ pre_add a b = pre_add c d']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nα : Type u\na✝ : Add α\na b c d : ℕ → α\nm1 : ℕ\nh1 : ∀ n > m1, a n = c n\nm2 : ℕ\nh2 : ∀ n > m2, b n = d n\n⊢ (fun n ↦ a n + b n) ≈ fun n ↦ c n + d n']</proofstate>
+  use m1 ⊔ m2 <proofstate>['case h\nα : Type u\na✝ : Add α\na b c d : ℕ → α\nm1 : ℕ\nh1 : ∀ n > m1, a n = c n\nm2 : ℕ\nh2 : ∀ n > m2, b n = d n\n⊢ ∀ n > max m1 m2, a n + b n = c n + d n']</proofstate>
+  intro n hn <proofstate>['case h\nα : Type u\na✝ : Add α\na b c d : ℕ → α\nm1 : ℕ\nh1 : ∀ n > m1, a n = c n\nm2 : ℕ\nh2 : ∀ n > m2, b n = d n\nn : ℕ\nhn : n > max m1 m2\n⊢ a n + b n = c n + d n']</proofstate>
+  aesop
+```
+
+Germ Operators
+===
+We can lift functions from sequences to germs.
+
+```lean
+def neg {α : Type u} [Neg α] : Germ α → Germ α :=
+  Quotient.lift pre_neg te_neg_respects
+
+def add {α : Type u} [Add α] : Germ α → Germ α → Germ α :=
+  Quotient.lift₂ pre_add te_add_respects
+```
+
+Exercises
+===
+
+<ex /> Show the shift operator
+
+
+```lean
+def pre_shift {α : Type u} (σ : ℕ → α) : Germ α := ⟦fun n => σ (n+1)⟧
+```
+ can be lifted to define an operator on `Germ`: 
+```lean
+def shift {α : Type u} (σ : Germ α) : Germ α :=
+  Quotient.lift pre_shift sorry σ
+```
+ <ex /> Show
+
+
+```lean
+example : shift (0:Germ ℤ) = 0 := sorry
+```
+
+<ex /> What is an example of a function `f` on `ℕ → ℕ` that does not preservce equivalence? Show:
+
+
+```lean
+def my_func (σ : ℕ → ℕ) : ℕ → ℕ := sorry
+def σ₁ : ℕ → ℕ := sorry
+def σ₂ : ℕ → ℕ  := sorry
+example : σ₁ ≈ σ₂ ∧ ¬ my_func σ₁ ≈ my_func σ₂ := sorry
+```
+
+Equivalent Expressions
+===
+
+Induction and closures allow us to define fairly sophisticated relations.
+
+For example, suppose we define a simple set of expressions
+
+
+```lean
+inductive Expr where
+  | zero
+  | one
+  | add : Expr → Expr → Expr
+
+infixl:60 " + " => Expr.add
+
+open Expr
+```
+
+We mean the same thing when we write, for example,
+-  (one+zero)+one
+-  one+one
+
+But how do we define that these are equivalent?
+
+
+Equality on Expressions
+===
+
+```lean
+inductive Expr.eq : Expr → Expr → Prop where
+
+  -- Core
+  | assoc {a b c}      : eq ((a+b)+c) (a+(b+c))
+  | comm {a b}         : eq (a+b) (b+a)
+  | add_zero_right {a} : eq (a+zero) a
+  | add_zero_left {a}  : eq (zero+a) a
+
+  -- Congruence
+  | congr {a b c d}    : eq a c → eq b d → eq (a+b) (c+d)
+
+  -- Closures
+  | refl {a}           : eq a a
+  | symm {a b}         : eq a b → eq b a
+  | trans {a b c }     : eq a b → eq b c → eq a c
+```
+ Think of these rules as defining a proof theory for showing when two expressions are equal. 
+```lean
+namespace Expr
+```
+
+Instances
+===
+Since the definition of `~` includes reflexivity, symmetry, and transitivity, it is easy to show
+it is an equivalence relation.
+
+```lean
+instance inst_equiv : Equivalence Expr.eq := ⟨ @eq.refl, eq.symm, eq.trans ⟩
+
+instance inst_setoid : Setoid Expr := ⟨ Expr.eq, inst_equiv ⟩
+```
+ Now we can write simple examples: 
+```lean
+example : (one+zero)+one ≈ one+one := by <proofstate>['α : Sort u\nβ : Type u\n⊢ one + zero + one ≈ one + one']</proofstate>
+  apply eq.congr <proofstate>['case a\nα : Sort u\nβ : Type u\n⊢ (one + zero).eq one', 'case a\nα : Sort u\nβ : Type u\n⊢ one.eq one']</proofstate>
+  · apply eq.add_zero_right
+  · apply eq.refl
+```
+
+Congruence
+===
+We can build out everything you would expect to see in a rewriting system.
+
+```lean
+theorem cong_left {a b c : Expr} : a ≈ b → a + c ≈ b + c := by <proofstate>['a b c : Expr\n⊢ a ≈ b → a + c ≈ b + c']</proofstate>
+  intro h <proofstate>['a b c : Expr\nh : a ≈ b\n⊢ a + c ≈ b + c']</proofstate>
+  exact eq.congr h eq.refl
+
+theorem cong_right {a b c : Expr} : b ≈ c → a + b ≈ a + c := eq.congr eq.refl
+
+theorem cong_assoc_left {a b c a' b' : Expr}
+  : a ≈ a' → b ≈ b' → (a + b) + c ≈ (a' + b') + c := by <proofstate>["a b c a' b' : Expr\n⊢ a ≈ a' → b ≈ b' → a + b + c ≈ a' + b' + c"]</proofstate>
+  intro ha hb <proofstate>["a b c a' b' : Expr\nha : a ≈ a'\nhb : b ≈ b'\n⊢ a + b + c ≈ a' + b' + c"]</proofstate>
+  apply cong_left <proofstate>["case a\na b c a' b' : Expr\nha : a ≈ a'\nhb : b ≈ b'\n⊢ a + b ≈ a' + b'"]</proofstate>
+  exact Expr.eq.congr ha hb
+
+theorem cong_assoc_right {a b c b' c' : Expr}
+  : b ≈ b' → c ≈ c' → a + (b + c) ≈ a + (b' + c') := by <proofstate>["a b c b' c' : Expr\n⊢ b ≈ b' → c ≈ c' → a + (b + c) ≈ a + (b' + c')"]</proofstate>
+  intro hb hc <proofstate>["a b c b' c' : Expr\nhb : b ≈ b'\nhc : c ≈ c'\n⊢ a + (b + c) ≈ a + (b' + c')"]</proofstate>
+  apply cong_right <proofstate>["case a\na b c b' c' : Expr\nhb : b ≈ b'\nhc : c ≈ c'\n⊢ b + c ≈ b' + c'"]</proofstate>
+  apply Expr.eq.congr hb hc
+
+theorem sub {a b c : Expr} : a ≈ c → b ≈ c → a ≈ b := by <proofstate>['a b c : Expr\n⊢ a ≈ c → b ≈ c → a ≈ b']</proofstate>
+  intro h1 h2 <proofstate>['a b c : Expr\nh1 : a ≈ c\nh2 : b ≈ c\n⊢ a ≈ b']</proofstate>
+  exact eq.trans h1 (eq.symm h2)
+```
+
+Soundness
+===
+We need to make sure we do not accidentlly
+say two expressions are equal if they do not evaluate to the same thing.
+To check this we define an eval function:
+
+```lean
+def eval : Expr → Nat
+  | .zero => 0
+  | .one => 1
+  | .add a b => eval a + eval b
+```
+ We can check soundess by induction on the equivalence: 
+```lean
+theorem sound (e f : Expr) : e ≈ f → eval e = eval f := by <proofstate>['e f : Expr\n⊢ e ≈ f → e.eval = f.eval']</proofstate>
+  intro h <proofstate>['e f : Expr\nh : e ≈ f\n⊢ e.eval = f.eval']</proofstate>
+  induction h with <proofstate>['e f : Expr\nh : e ≈ f\n⊢ e.eval = f.eval']</proofstate>
+  | assoc           => simp[eval,Nat.add_assoc]
+  | comm            => simp[eval,Nat.add_comm]
+  | add_zero_left   => simp[eval]
+  | add_zero_right  => simp[eval]
+  | congr ih1 ih2   => unfold eval; simp_all
+  | refl            => simp
+  | symm _ ih       => exact ih.symm
+  | trans ih1 ih2   => simp[*]
+```
+
+Exercises
+===
+
+<ex /> (Optional) Show that equivalence on `Expr` is complete:
+
+
+```lean
+theorem complete {e f : Expr} : eval e = eval f → e ≈ f := sorry
+```
+
+One way to do this is to define a normal form `(1+(1+(1+0)))` for each
+`Expr`, establish completness for normal forms as a `lemma`, and then
+use transitivity to establish the desired result.
+
+
+<ex /> (Optional) Define
+
+
+```lean
+def E := Quotient Expr.inst_setoid
+```
+ and show 
+```lean
+def E_equiv_Nat : E ≃ ℕ := sorry
+
+--hide
+end Expr
+end Germ
+end LeanW26
+--unhide
+```
 
 License
 ===

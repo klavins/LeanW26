@@ -76,7 +76,7 @@ Many objects in Lean and Mathib are defined as subtypes:
 /-
 And the basic pattern of including a predicate in a structure is common, as in:
 ```lean
-structure Subgroup (G : Type*) [Group G] where
+structure Subgroup (G : Type u) [Group G] where
   p : G → Prop
   one_in : p 1
   inv_in : p x → p x⁻¹
