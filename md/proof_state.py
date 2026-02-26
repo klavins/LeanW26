@@ -51,7 +51,8 @@ files = [
   "Logic/Equality",
   "Maths/Algebra",
   "Maths/Sets",
-  "Maths/Relations"
+  "Maths/Relations",
+  "Maths/Numbers"
 
 ]
 

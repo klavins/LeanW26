@@ -43,8 +43,8 @@ def mul (x y : Nat) : Nat :=
 
 def sub : Nat → Nat → Nat
   | n, zero => n
-  | n, succ j => sub n j
-
+  | zero, _ => zero
+  | succ k, succ j => sub k j
 
 /-
 Properties of Addition and Multiplication
@@ -100,7 +100,8 @@ theorem le_succ {n : Nat} : le n (succ n) := le.step le.refl
 theorem zero_is_least {n : Nat} : le zero n := by
   induction n with
   | zero => exact le.refl
-  | succ k ih => exact le.step ih
+  | succ k ih =>
+    exact le.step ih
 
 theorem zero_is_only_least (n : Nat) : le n zero ↔ n = zero := by
   constructor
@@ -244,6 +245,12 @@ example : eq ⟨1,2⟩ ⟨2,3⟩ := rfl          -- ways to write -1
 example : eq ⟨3,2⟩ ⟨20,19⟩ := rfl        -- ways to write 1
 
 /-
+<div class='fn'>The pair construction is described in *Bourbaki: Algebra I, page 20* in the section
+called "Rational Integers".</div>
+
+-/
+
+/-
 Forming the Quotient
 ===
 
@@ -263,7 +270,7 @@ instance eq_equiv : Equivalence eq := ⟨ eq_refl, eq_symm, eq_trans ⟩
 
 /- Then we instantiate the `Setoid` instance and form the quotient: -/
 
-instance pre_int_setoid : Setoid Pair :=  ⟨ eq, eq_equiv ⟩
+instance pre_int_setoid : Setoid Pair := ⟨ eq, eq_equiv ⟩
 def Bint := Quotient pre_int_setoid
 def mk (w : Pair) : Bint := Quotient.mk pre_int_setoid w
 
@@ -282,9 +289,9 @@ example : mk ⟨ 1, 2 ⟩ = mk ⟨ 2, 3 ⟩ := by
 
 /- And we can instantiate some type classes: -/
 
-instance zero_sint : Zero Bint := ⟨ mk ⟨ 0,0 ⟩ ⟩
-instance one_inst : One Bint := ⟨ mk ⟨ 1,0 ⟩ ⟩
-instance of_nat_inst {n : ℕ} :OfNat Bint n := ⟨ mk ⟨ n, 0 ⟩ ⟩
+instance zero_sint           : Zero Bint    := ⟨ mk ⟨ 0,0 ⟩ ⟩
+instance one_inst            : One Bint     := ⟨ mk ⟨ 1,0 ⟩ ⟩
+instance of_nat_inst {n : ℕ} : OfNat Bint n := ⟨ mk ⟨ n, 0 ⟩ ⟩
 
 #check (0:Bint)
 #check (1:Bint)
@@ -303,13 +310,13 @@ def pre_negate (x : Pair) : Pair := ⟨ x.q, x.p ⟩
 theorem pre_negate_respects (x y : Pair) :
   x ≈ y → mk (pre_negate x) = mk (pre_negate y) := by
   intro h
-  apply Quot.sound
+  apply Quotient.sound
   exact h.symm
 
 def pre_negate' (x : Pair) : Bint := mk (pre_negate x)
 def negate (x : Bint) : Bint := Quotient.lift pre_negate' pre_negate_respects x
 
-/- We may register our negation function wit the `Neg` class.  -/
+/- We register our negation function wit the `Neg` class.  -/
 
 instance int_negate : Neg Bint := ⟨ negate ⟩
 
@@ -321,6 +328,7 @@ instance int_negate : Neg Bint := ⟨ negate ⟩
 /-
 Basic Equivalence with Int
 ===
+We convert `Bint` to Lean's `Int` using `Quotient.lift` again.
 -/
 
 def bint_to_int : Bint → Int :=
@@ -329,14 +337,18 @@ def bint_to_int : Bint → Int :=
     have : a.p + b.q = a.q + b.p := h
     linarith)
 
+/- Converting Lean's `Int` to `Bint` uses the constructors for `Int`. -/
+
 def int_to_bint (x : Int) : Bint := match x with
     | Int.ofNat k => mk ⟨ k, 0 ⟩
     | Int.negSucc k => mk ⟨ 0, k+1 ⟩
 
+/- Then we can form the equivalence, -/
+
 def bint_int_equiv : Bint ≃ Int := {
   toFun := bint_to_int,
   invFun := int_to_bint
-  left_inv := sorry,
+  left_inv x:= sorry,       -- exercises
   right_inv := sorry
 }
 
@@ -361,6 +373,8 @@ theorem neg_neg (x : Bint) : - -x = x := by
 /-
 Exercises
 ===
+
+<ex /> Supply the proofs in the definition of `bint_int_equiv`.
 
 <ex /> Define `pre_add` for `Pair` and `add` for `Bint`.
 

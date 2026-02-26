@@ -1,22 +1,36 @@
+--  Copyright (C) 2025  Eric Klavins
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.
 
+import Mathlib
+
+namespace LeanW26
+
+namespace Temp
+
+/-
 Numbers by Construction
 ===
+-/
 
-
+/-
 Natural Numbers
 ===
+-/
 
-```lean
 inductive Nat where
   | zero                         -- Least element
   | succ : Nat → Nat             -- Successor function
 
 open Nat
-```
 
+/-
 With basic operations
+-/
 
-```lean
 def add (x y : Nat) : Nat :=
   match x with
   | zero => y
@@ -30,16 +44,17 @@ def mul (x y : Nat) : Nat :=
 def sub : Nat → Nat → Nat
   | n, zero => n
   | n, succ j => sub n j
-```
 
+
+/-
 Properties of Addition and Multiplication
 ===
 
 Addition is associative and commutative and multiplication
 is associative, commutative, and distributive. One starts with basic
 properties and builds up to these. For example,
+-/
 
-```lean
 theorem zero_add (n : Nat) : add zero n = n := by rfl
 
 theorem add_zero (n : Nat) : add n zero = n := by induction n with <proofstate>['n : Nat\n⊢ add n zero = n']</proofstate>
@@ -61,22 +76,25 @@ theorem add_comm (m n : Nat) : add m n = add n m := by <proofstate>['m n : Nat\n
   | succ k ih => <proofstate>['case succ\nn k : Nat\nih : add k n = add n k\n⊢ add k.succ n = add n k.succ']</proofstate>
     conv => lhs; unfold add <proofstate>['n k : Nat\nih : add k n = add n k\n| (add k n).succ']</proofstate>
     rw[ih,add_succ]
-```
 
+
+
+
+/-
 Ordering
 ===
 Ordering is defined as an iductive predicate, giving two proof rules.
+-/
 
-```lean
 inductive le (n : Nat) : Nat → Prop
   | refl     : le n n
   | step {m} : le n m → le n (succ m)
 
 def lt (x y : Nat) : Prop := le (succ x) y
-```
- The properties of the less than relation can then be built up from
-simple theorems. For example, 
-```lean
+
+/- The properties of the less than relation can then be built up from
+simple theorems. For example, -/
+
 theorem le_succ {n : Nat} : le n (succ n) := le.step le.refl
 
 theorem zero_is_least {n : Nat} : le zero n := by <proofstate>['n : Nat\n⊢ le zero n']</proofstate>
@@ -88,12 +106,12 @@ theorem zero_is_only_least (n : Nat) : le n zero ↔ n = zero := by <proofstate>
   constructor <proofstate>['case mp\nn : Nat\n⊢ le n zero → n = zero', 'case mpr\nn : Nat\n⊢ n = zero → le n zero']</proofstate>
   · intro h; cases h; rfl
   · intro h; rw[h]; exact le.refl
-```
 
+/-
 Further Properties of Less-Than
 ===
+-/
 
-```lean
 theorem succ_not_le_zero {k : Nat} : ¬le (succ k) zero := by <proofstate>['k : Nat\n⊢ ¬le k.succ zero']</proofstate>
   --brief <proofstate>['k : Nat\n⊢ ¬le k.succ zero']</proofstate>
   intro h <proofstate>['k : Nat\nh : le k.succ zero\n⊢ False']</proofstate>
@@ -148,8 +166,10 @@ theorem le_antisymm {x y : Nat} : le x y → le y x → x = y := by <proofstate>
       apply le_trans hj (le_trans _ hk) <proofstate>['k j : Nat\nhj : le k.succ j\nhk : le j.succ k\n⊢ le j j.succ']</proofstate>
       exact le_succ
   --unbrief
-```
 
+
+
+/-
 Exercises
 ===
 
@@ -159,15 +179,15 @@ series of similer theorems to show these cleanly.
 
 <ex /> Show that `le` is a total order:
 
+-/
 
-```lean
 theorem le_total (x y : Nat) : le x y ∨ le y x := sorry
-```
 
+/-
 <ex /> Show that `le` on `Nat` is well-founded:
 
+-/
 
-```lean
 theorem wf (S : Nat → Prop) (Sne : ∃ q, S q)
   : ∃ m, (S m ∧ ∀ n, S n → le m n) := sorry
 
@@ -175,8 +195,8 @@ theorem wf (S : Nat → Prop) (Sne : ∃ q, S q)
 --hide
 end Temp
 --unhide
-```
 
+/-
 Lean's Integers
 ===
 
@@ -192,44 +212,44 @@ The *negative successor* is required to avoid two representatives of `0`.
 
 For example:
 
+-/
 
-```lean
 #eval Int.ofNat 1       --  1 : ℤ
 #eval Int.ofNat 0       --  0 : ℤ
 #eval Int.negSucc 0     -- -1 : ℤ
 #eval Int.negSucc 1     -- -2 : ℤ
-```
 
+/-
 Bourbaki Integers
 ===
 As an alternative construction of the integers, where we take pairs
 `(x,y)` with `x-y` being nonnegative integer when `x ≥ y` and negative
 otherwise.
 
+-/
 
-```lean
 @[ext]
 structure Pair where
   p : Nat
   q : Nat
-```
- Since there are multiple representations of each intger, we define
-an equivalence relation: 
-```lean
+
+/- Since there are multiple representations of each intger, we define
+an equivalence relation: -/
+
 def eq (x y : Pair) : Prop := x.p + y.q = x.q + y.p
-```
- For example 
-```lean
+
+/- For example -/
+
 example : eq ⟨1,2⟩ ⟨2,3⟩ := rfl          -- ways to write -1
 example : eq ⟨3,2⟩ ⟨20,19⟩ := rfl        -- ways to write 1
-```
 
+/-
 Forming the Quotient
 ===
 
 First we prove `eq` is an equivalence relation.
+-/
 
-```lean
 theorem eq_refl (u : Pair) : eq u u := by <proofstate>['u : Pair\n⊢ eq u u']</proofstate>
   simp[eq]; linarith
 
@@ -240,28 +260,28 @@ theorem eq_trans {u v w : Pair} : eq u v → eq v w → eq u w := by <proofstate
   intro h1 h2; simp_all[eq]; linarith
 
 instance eq_equiv : Equivalence eq := ⟨ eq_refl, eq_symm, eq_trans ⟩
-```
- Then we instantiate the `Setoid` instance and form the quotient: 
-```lean
+
+/- Then we instantiate the `Setoid` instance and form the quotient: -/
+
 instance pre_int_setoid : Setoid Pair :=  ⟨ eq, eq_equiv ⟩
 def Bint := Quotient pre_int_setoid
 def mk (w : Pair) : Bint := Quotient.mk pre_int_setoid w
 
 namespace Bint
-```
 
+/-
 Using The New Bint Type
 ===
 
 Basic examples now work
+-/
 
-```lean
 example : mk ⟨ 1, 2 ⟩ = mk ⟨ 2, 3 ⟩ := by <proofstate>['⊢ mk { p := 1, q := 2 } = mk { p := 2, q := 3 }']</proofstate>
   apply Quotient.sound <proofstate>['case a\n⊢ { p := 1, q := 2 } ≈ { p := 2, q := 3 }']</proofstate>
   rfl
-```
- And we can instantiate some type classes: 
-```lean
+
+/- And we can instantiate some type classes: -/
+
 instance zero_sint : Zero Bint := ⟨ mk ⟨ 0,0 ⟩ ⟩
 instance one_inst : One Bint := ⟨ mk ⟨ 1,0 ⟩ ⟩
 instance of_nat_inst {n : ℕ} :OfNat Bint n := ⟨ mk ⟨ n, 0 ⟩ ⟩
@@ -269,14 +289,15 @@ instance of_nat_inst {n : ℕ} :OfNat Bint n := ⟨ mk ⟨ n, 0 ⟩ ⟩
 #check (0:Bint)
 #check (1:Bint)
 #check (123:Bint)
-```
 
+
+/-
 Operations on Bint
 ===
 
 We can lift operations on `Pair` to `Bint`. For example, here is negation:
+-/
 
-```lean
 def pre_negate (x : Pair) : Pair := ⟨ x.q, x.p ⟩
 
 theorem pre_negate_respects (x y : Pair) :
@@ -287,21 +308,21 @@ theorem pre_negate_respects (x y : Pair) :
 
 def pre_negate' (x : Pair) : Bint := mk (pre_negate x)
 def negate (x : Bint) : Bint := Quotient.lift pre_negate' pre_negate_respects x
-```
- We may register our negation function wit the `Neg` class.  
-```lean
+
+/- We may register our negation function wit the `Neg` class.  -/
+
 instance int_negate : Neg Bint := ⟨ negate ⟩
-```
- Now we can use negative integers. 
-```lean
+
+/- Now we can use negative integers. -/
+
 #check -mk ⟨2,1⟩
 #check -(1:Int)
-```
 
+/-
 Basic Equivalence with Int
 ===
+-/
 
-```lean
 def bint_to_int : Bint → Int :=
   Quotient.lift (fun p => (p.p : Int) - p.q) (by <proofstate>['⊢ ∀ (a b : Pair), a ≈ b → (fun p ↦ ↑p.p - ↑p.q) a = (fun p ↦ ↑p.p - ↑p.q) b']</proofstate>
     intro a b h <proofstate>['a b : Pair\nh : a ≈ b\n⊢ (fun p ↦ ↑p.p - ↑p.q) a = (fun p ↦ ↑p.p - ↑p.q) b']</proofstate>
@@ -318,12 +339,12 @@ def bint_int_equiv : Bint ≃ Int := {
   left_inv := sorry,
   right_inv := sorry
 }
-```
 
+/-
 Transporting Theorems
 ===
+-/
 
-```lean
 lemma bint_int_equiv_neg (x : Bint) : bint_int_equiv (-x) = -bint_int_equiv x := by <proofstate>['x : Bint\n⊢ bint_int_equiv (-x) = -bint_int_equiv x']</proofstate>
   induction x using Quotient.inductionOn with <proofstate>['x : Bint\n⊢ bint_int_equiv (-x) = -bint_int_equiv x']</proofstate>
   | h y => <proofstate>['case h\ny : Pair\n⊢ bint_int_equiv (-⟦y⟧) = -bint_int_equiv ⟦y⟧']</proofstate>
@@ -334,8 +355,10 @@ theorem neg_neg (x : Bint) : - -x = x := by <proofstate>['x : Bint\n⊢ - -x = x
   apply bint_int_equiv.injective <proofstate>['case a\nx : Bint\n⊢ bint_int_equiv (- -x) = bint_int_equiv x']</proofstate>
   rw [bint_int_equiv_neg, bint_int_equiv_neg] <proofstate>['case a\nx : Bint\n⊢ - -bint_int_equiv x = bint_int_equiv x']</proofstate>
   exact Int.neg_neg (bint_int_equiv x)
-```
 
+
+
+/-
 Exercises
 ===
 
@@ -345,13 +368,13 @@ Exercises
 
 <ex /> Show associativity for `add` by transporting from `Int`.
 
+-/
 
-```lean
 --hide
 end Bint
 --unhide
-```
 
+/-
 Lean's Rationals
 ===
 
@@ -369,8 +392,11 @@ structure Rat where
 def mkRat (num : Int) (den : Nat) : Rat :=
   if den_nz : den = 0 then { num := 0 } else Rat.normalize num den den_nz
 ```
+-/
 
 
+
+/-
 Exercises
 ===
 
@@ -380,8 +406,9 @@ quotient to define an alternative rational number type, `Brat`.
 <ex /> Define addition on `Brat` and show it it commutative using
 (a) a direct proof and (b) by transporting from Lean`'s `Rat.
 
+-/
 
-
+/-
 Cauchy Sequences
 ===
 
@@ -390,16 +417,16 @@ To define the Real Numbers, we start with sequences of Rationals.
 We define a sequence `ℕ → ℚ` to be *Cauchy* if terms in the sequence eventually
 become arbitrarily close to each other.
 
+-/
 
-```lean
 @[ext]
 structure CauchySeq where
   σ : ℕ → ℚ
   is_cauchy : ∀ ε > 0, ∃ N : ℕ, ∀ n m : ℕ,
               n > N → m > N → abs (σ n - σ m) < ε
-```
- For example, a constant sequence is `Cauchy`.  
-```lean
+
+/- For example, a constant sequence is `Cauchy`.  -/
+
 instance Cauchy.zero_inst : Zero CauchySeq := ⟨
   fun _ => 0,
   by <proofstate>['⊢ ∀ ε > 0, ∃ N, ∀ (n m : ℕ), n > N → m > N → |(fun x ↦ 0) n - (fun x ↦ 0) m| < ε']</proofstate>
@@ -419,19 +446,20 @@ instance Cauchy.one_inst : One CauchySeq := ⟨
     simp[hε]
 ⟩
 --unhide
-```
 
+/-
 <div class='fn'>This construction is an incompletely simplification of how
 Mathlib defines the real numbers. For a complete description, see the
 <a href="https://github.com/leanprover-community/mathlib4/blob/d20aa7a3b0563797673a3465f67586af5a5aede9/Mathlib/Data/Real/Basic.lean#L33-L37">source code</a>.</div>
 
+-/
 
-
+/-
 Operations on Cauchy Sequences
 ===
 The following is a standard proof from most Real Analysis texts:
+-/
 
-```lean
 def Cauchy.add (s1 s2 : CauchySeq) : CauchySeq := ⟨
   fun n => s1.σ n +  s2.σ n, by <proofstate>['s1 s2 : CauchySeq\n⊢ ∀ ε > 0, ∃ N, ∀ (n m : ℕ), n > N → m > N → |(fun n ↦ s1.σ n + s2.σ n) n - (fun n ↦ s1.σ n + s2.σ n) m| < ε']</proofstate>
   intro ε hε <proofstate>['s1 s2 : CauchySeq\nε : ℚ\nhε : ε > 0\n⊢ ∃ N, ∀ (n m : ℕ), n > N → m > N → |(fun n ↦ s1.σ n + s2.σ n) n - (fun n ↦ s1.σ n + s2.σ n) m| < ε']</proofstate>
@@ -444,27 +472,27 @@ def Cauchy.add (s1 s2 : CauchySeq) : CauchySeq := ⟨
   simp_all[abs_lt] <proofstate>["case h\ns1 s2 : CauchySeq\nε : ℚ\nN1 N2 m n : ℕ\nhε : 0 < ε\nh1' : ∀ (n m : ℕ), N1 < n → N1 < m → s1.σ m < ε / 2 + s1.σ n ∧ s1.σ n - s1.σ m < ε / 2\nh2' : ∀ (n m : ℕ), N2 < n → N2 < m → s2.σ m < ε / 2 + s2.σ n ∧ s2.σ n - s2.σ m < ε / 2\ngm : N1 + N2 < m\ngn : N1 + N2 < n\nh1'' : s1.σ m < ε / 2 + s1.σ n ∧ s1.σ n - s1.σ m < ε / 2\nh2'' : s2.σ m < ε / 2 + s2.σ n ∧ s2.σ n - s2.σ m < ε / 2\n⊢ s1.σ n + s2.σ n < ε + (s1.σ m + s2.σ m) ∧ s1.σ m + s2.σ m - (s1.σ n + s2.σ n) < ε"]</proofstate>
   exact ⟨ by linarith, by linarith ⟩
 ⟩
-```
- We can show, for example 
-```lean
+
+/- We can show, for example -/
+
 theorem zero_plus_zero : Cauchy.add 0 0 = 0 := by <proofstate>['⊢ Cauchy.add 0 0 = 0']</proofstate>
   ext n <proofstate>['case σ.h\nn : ℕ\n⊢ (Cauchy.add 0 0).σ n = CauchySeq.σ 0 n']</proofstate>
   simp[Cauchy.add] <proofstate>['case σ.h\nn : ℕ\n⊢ CauchySeq.σ 0 n = 0']</proofstate>
   rfl
-```
 
+/-
 Sequence Equivalence
 ===
 
 Two sequences are equivalent in the *Cauchy* sense if:
+-/
 
-```lean
 def Cauchy.eq (x y : CauchySeq) :=
   ∀ ε > 0, ∃ N, ∀ m n,
   m > N → n > N → |x.σ n - y.σ m| < ε
-```
- One can show, for example: 
-```lean
+
+/- One can show, for example: -/
+
 theorem Cauchy.eq_refl {x : CauchySeq} : Cauchy.eq x x := by <proofstate>['x : CauchySeq\n⊢ eq x x']</proofstate>
   intro ε hε <proofstate>['x : CauchySeq\nε : ℚ\nhε : ε > 0\n⊢ ∃ N, ∀ (m n : ℕ), m > N → n > N → |x.σ n - x.σ m| < ε']</proofstate>
   have ⟨ N, h ⟩ := x.is_cauchy ε hε <proofstate>['x : CauchySeq\nε : ℚ\nhε : ε > 0\nN : ℕ\nh : ∀ (n m : ℕ), n > N → m > N → |x.σ n - x.σ m| < ε\n⊢ ∃ N, ∀ (m n : ℕ), m > N → n > N → |x.σ n - x.σ m| < ε']</proofstate>
@@ -472,10 +500,11 @@ theorem Cauchy.eq_refl {x : CauchySeq} : Cauchy.eq x x := by <proofstate>['x : C
   intro m n hm hn <proofstate>['case h\nx : CauchySeq\nε : ℚ\nhε : ε > 0\nN : ℕ\nh : ∀ (n m : ℕ), n > N → m > N → |x.σ n - x.σ m| < ε\nm n : ℕ\nhm : m > N\nhn : n > N\n⊢ |x.σ n - x.σ m| < ε']</proofstate>
   have h' := h n m hn hm <proofstate>["case h\nx : CauchySeq\nε : ℚ\nhε : ε > 0\nN : ℕ\nh : ∀ (n m : ℕ), n > N → m > N → |x.σ n - x.σ m| < ε\nm n : ℕ\nhm : m > N\nhn : n > N\nh' : |x.σ n - x.σ m| < ε\n⊢ |x.σ n - x.σ m| < ε"]</proofstate>
   exact h'
-```
- And eventually prove `Cauchy.eq` is an equivalence relation so that
-the reals become the quotient of `CauchySeq` w.r.t this relation. 
 
+/- And eventually prove `Cauchy.eq` is an equivalence relation so that
+the reals become the quotient of `CauchySeq` w.r.t this relation. -/
+
+/-
 Exercises
 ===
 
@@ -484,47 +513,49 @@ and form the quotient to get a `CauchyReal` type.
 
 <ex /> Complete the definition
 
+-/
 
-```lean
 def cauchy_mul (x y : CauchySeq) : CauchySeq := ⟨
   fun n => (x.σ n)*(y.σ n),
   sorry,
 ⟩
-```
 
+/-
 and lift it to  `CauchyReal`.
+-/
 
-
+/-
 <ex /> Define
 
+-/
 
-```lean
 def sqrt2_seq (n : Nat) : ℚ := match n with
   | Nat.zero => 1
   | Nat.succ k => (sqrt2_seq k + 2 / (sqrt2_seq k))/2
-```
- and complete the definition 
-```lean
+
+/- and complete the definition -/
+
 def sqrt2 : CauchySeq := ⟨
    sqrt2_seq,
    sorry
 ⟩
-```
 
+/-
 Exercise
 ===
 
 <ex /> Define less than or equal for sequences as
 
+-/
 
-```lean
 def leq (x y : CauchySeq) := Cauchy.eq x y ∨ ∃ N, ∀ n > N, x.σ n ≤ y.σ n
-```
- then show 
-```lean
-example : leq 1 sqrt2 := sorry
-```
 
+/- then show -/
+
+example : leq 1 sqrt2 := sorry
+
+
+/-
 Dedekind Reals
 ===
 An alternative construction of the reals is Dedekind's method, which does
@@ -532,8 +563,8 @@ not require quotients.
 
 First, we define a structure to capture the precise definition of a cut `A ⊆ ℚ`.
 We require that A is nonempty, that it is not ℚ, that it is
-downward closed, and that is an open interval. 
-```lean
+downward closed, and that is an open interval. -/
+
 @[ext]
 structure DCut where
   A : Set ℚ
@@ -543,31 +574,33 @@ structure DCut where
   op : ∀ x ∈ A, ∃ y ∈ A, x < y      -- open
 
 open DCut
-```
- We have only defined the lower part, `A` of a cut.
-The upper part of the cut, `B` is defined simply: 
-```lean
-def DCut.B (c : DCut) : Set ℚ := Set.univ \ c.A
-```
 
+/- We have only defined the lower part, `A` of a cut.
+The upper part of the cut, `B` is defined simply: -/
+
+def DCut.B (c : DCut) : Set ℚ := Set.univ \ c.A
+
+/-
 <div class='fn'>A standard reference for Dedekind cuts is Rudin's Principles of Mathematics.
 In the 3rd edition, cuts are defined on pages 17-21.</div>
 
+-/
 
 
+/-
 ofRat
 ===
 
 All rational numbers are also real numbers via the map that identifies a
 rational `q` with the interval `(∞,q)` of all rationals less than `q`.
 We call this set `odown q`, where `odown` is meant to abbreviate
-`open, downward closed`. 
-```lean
+`open, downward closed`. -/
+
 def odown (q : ℚ) : Set ℚ := { y | y < q }
-```
- To prove that `odown q` is a Dedekind cut requires we show it is nonempty,
-not `ℚ` itself, downward closed, and open.  
-```lean
+
+/- To prove that `odown q` is a Dedekind cut requires we show it is nonempty,
+not `ℚ` itself, downward closed, and open.  -/
+
 def ofRat (q : ℚ) : DCut := ⟨
   odown q,
   by use q-1; simp[odown],
@@ -579,26 +612,27 @@ def ofRat (q : ℚ) : DCut := ⟨
     simp_all[odown] <proofstate>['case h\nq x : ℚ\nhx : x < q\n⊢ (x + q) / 2 < q ∧ x < (x + q) / 2']</proofstate>
     exact ⟨ by linarith, by linarith ⟩
   ⟩
-```
 
+
+/-
 Basic Instances
 ===
 
 Casting
+-/
 
-```lean
 instance rat_cast_inst : RatCast DCut := ⟨ fun x => ofRat x ⟩
 instance nat_cast_inst : NatCast DCut := ⟨ fun x => ofRat x ⟩
 instance int_cast_inst : IntCast DCut := ⟨ fun x => ofRat x ⟩
-```
- Zero and One 
-```lean
+
+/- Zero and One -/
+
 instance zero_inst : Zero DCut := ⟨ ofRat 0 ⟩
 instance one_inst : One DCut := ⟨ ofRat 1 ⟩
 instance inhabited_inst : Inhabited DCut := ⟨ 0 ⟩
-```
- Nontriviality 
-```lean
+
+/- Nontriviality -/
+
 theorem zero_ne_one : (0:DCut) ≠ 1 := by <proofstate>['⊢ 0 ≠ 1']</proofstate>
   intro h <proofstate>['h : 0 = 1\n⊢ False']</proofstate>
   simp[DCut.ext_iff,odown,Set.ext_iff] at h <proofstate>['h : ∀ (x : ℚ), x ∈ A 0 ↔ x ∈ A 1\n⊢ False']</proofstate>
@@ -608,30 +642,31 @@ theorem zero_ne_one : (0:DCut) ≠ 1 := by <proofstate>['⊢ 0 ≠ 1']</proofsta
   exact h2 (h0.mpr h1)
 
 instance non_triv_inst : Nontrivial DCut := ⟨ ⟨ 0, 1, zero_ne_one ⟩ ⟩
-```
 
+
+/-
 Addition
 ===
 Operators on the Dedekind reals are not nearly as straightforward
 as with the Cauchy reals. Here is addition:
+-/
 
-```lean
 def presum (a b : DCut) :=  { z | ∃ x ∈ a.A, ∃ y ∈ b.A, x+y=z }
-```
- The first property required be a cut is straigtforward: 
-```lean
+
+/- The first property required be a cut is straigtforward: -/
+
 theorem presum_ne {a b : DCut} :  ∃ q, q ∈ presum a b := by <proofstate>['a b : DCut\n⊢ ∃ q, q ∈ presum a b']</proofstate>
   obtain ⟨ x, hx ⟩ := a.ne <proofstate>['a b : DCut\nx : ℚ\nhx : x ∈ a.A\n⊢ ∃ q, q ∈ presum a b']</proofstate>
   obtain ⟨ y, hy ⟩ := b.ne <proofstate>['a b : DCut\nx : ℚ\nhx : x ∈ a.A\ny : ℚ\nhy : y ∈ b.A\n⊢ ∃ q, q ∈ presum a b']</proofstate>
   exact ⟨ x+y, ⟨ x, ⟨ hx, ⟨ y, ⟨ hy, by linarith ⟩ ⟩ ⟩ ⟩ ⟩
-```
 
+/-
 Addition does not Result in all of ℚ
 ===
 
 We start with some helper theorems.
+-/
 
-```lean
 theorem not_in_a_in_b {c : DCut} {q : ℚ} : q ∉ c.A → q ∈ c.B := by simp[B]
 theorem not_in_b_in_a {c : DCut} {q : ℚ} : q ∉ c.B → q ∈ c.A := by simp[B]
 
@@ -640,9 +675,9 @@ theorem b_gt_a {c : DCut} {x y : ℚ} : x ∈ c.A → y ∈ c.B → x < y := by 
   simp[B] at hy <proofstate>['c : DCut\nx y : ℚ\nhx : x ∈ c.A\nhy : y ∉ c.A\n⊢ x < y']</proofstate>
   by_contra h <proofstate>['c : DCut\nx y : ℚ\nhx : x ∈ c.A\nhy : y ∉ c.A\nh : ¬x < y\n⊢ False']</proofstate>
   exact hy (c.dc y x ⟨ Rat.not_lt.mp h, hx ⟩)
-```
- Then we have, 
-```lean
+
+/- Then we have, -/
+
 theorem presum_nf {a b : DCut} : ∃ q, q ∉ presum a b := by <proofstate>['a b : DCut\n⊢ ∃ q, q ∉ presum a b']</proofstate>
     obtain ⟨ x, hx ⟩ := a.nf <proofstate>['a b : DCut\nx : ℚ\nhx : x ∉ a.A\n⊢ ∃ q, q ∉ presum a b']</proofstate>
     obtain ⟨ y, hy ⟩ := b.nf <proofstate>['a b : DCut\nx : ℚ\nhx : x ∉ a.A\ny : ℚ\nhy : y ∉ b.A\n⊢ ∃ q, q ∉ presum a b']</proofstate>
@@ -652,12 +687,12 @@ theorem presum_nf {a b : DCut} : ∃ q, q ∉ presum a b := by <proofstate>['a b
     have hs' := b_gt_a hs (not_in_a_in_b hx) <proofstate>["case h\na b : DCut\nx : ℚ\nhx : x ∉ a.A\ny : ℚ\nhy : y ∉ b.A\ns : ℚ\nhs : s ∈ a.A\nt : ℚ\nht : t ∈ b.A\nhst : s + t = x + y\nhs' : s < x\n⊢ False"]</proofstate>
     have ht' := b_gt_a ht (not_in_a_in_b hy) <proofstate>["case h\na b : DCut\nx : ℚ\nhx : x ∉ a.A\ny : ℚ\nhy : y ∉ b.A\ns : ℚ\nhs : s ∈ a.A\nt : ℚ\nht : t ∈ b.A\nhst : s + t = x + y\nhs' : s < x\nht' : t < y\n⊢ False"]</proofstate>
     linarith
-```
 
+/-
 The Sum of Two Cuts is Open
 ===
+-/
 
-```lean
 theorem presum_op {a b : DCut}
   : ∀ x ∈ presum a b, ∃ y ∈ presum a b, x < y := by <proofstate>['a b : DCut\n⊢ ∀ x ∈ presum a b, ∃ y ∈ presum a b, x < y']</proofstate>
   intro c hc <proofstate>['a b : DCut\nc : ℚ\nhc : c ∈ presum a b\n⊢ ∃ y ∈ presum a b, c < y']</proofstate>
@@ -674,12 +709,12 @@ theorem presum_op {a b : DCut}
     apply And.intro <proofstate>["case h.left\na b : DCut\nc x : ℚ\nhx : x ∈ a.A\ny : ℚ\nhy : y ∈ b.A\nh : x + y = c\nhao : ∀ x ∈ a.A, ∃ y ∈ a.A, x < y\nhbo : ∀ x ∈ b.A, ∃ y ∈ b.A, x < y\nx' : ℚ\nhx' : x' ∈ a.A\nhxx' : x < x'\ny' : ℚ\nhy' : y' ∈ b.A\nhyy' : y < y'\n⊢ y' ∈ b.A", "case h.right\na b : DCut\nc x : ℚ\nhx : x ∈ a.A\ny : ℚ\nhy : y ∈ b.A\nh : x + y = c\nhao : ∀ x ∈ a.A, ∃ y ∈ a.A, x < y\nhbo : ∀ x ∈ b.A, ∃ y ∈ b.A, x < y\nx' : ℚ\nhx' : x' ∈ a.A\nhxx' : x < x'\ny' : ℚ\nhy' : y' ∈ b.A\nhyy' : y < y'\n⊢ c < x' + y'"]</proofstate>
     · exact hy'
     · linarith
-```
 
+/-
 The Sum of Two Cuts is Downward Closed
 ===
+-/
 
-```lean
 theorem presum_dc {a b : DCut }
   : ∀ (x y : ℚ), x ≤ y ∧ y ∈ presum a b → x ∈ presum a b := by <proofstate>['a b : DCut\n⊢ ∀ (x y : ℚ), x ≤ y ∧ y ∈ presum a b → x ∈ presum a b']</proofstate>
   intro s t ⟨ h1, h2 ⟩ <proofstate>['a b : DCut\ns t : ℚ\nh1 : s ≤ t\nh2 : t ∈ presum a b\n⊢ s ∈ presum a b']</proofstate>
@@ -692,22 +727,22 @@ theorem presum_dc {a b : DCut }
     exact b.dc (y-(t-s)) y ⟨h4,hy⟩
  <proofstate>['a b : DCut\ns t : ℚ\nh1 : s ≤ t\nx : ℚ\nhx : x ∈ a.A\ny : ℚ\nhy : y ∈ b.A\nh : x + y = t\nhyts : y - (t - s) ∈ b.A\n⊢ ∃ x ∈ a.A, ∃ y ∈ b.A, x + y = s']</proofstate>
   exact ⟨ x, ⟨ hx, ⟨ y - (t-s), ⟨ hyts, by linarith ⟩ ⟩ ⟩ ⟩
-```
 
+/-
 Instances for Addition
 ===
+-/
 
-```lean
 def sum (a b : DCut) : DCut :=
   ⟨ presum a b, presum_ne, presum_nf, presum_dc, presum_op ⟩
 
 instance hadd_inst : HAdd DCut DCut DCut:= ⟨ sum ⟩
 instance add_inst : Add DCut := ⟨ sum ⟩
-```
 
+/-
 And here is an example property, which requires mainly rearrangment.
+-/
 
-```lean
 theorem sum_assoc {a b c : DCut} : (a+b)+c = a + (b+c) := by <proofstate>['a b c : DCut\n⊢ a + b + c = a + (b + c)']</proofstate>
   simp[hadd_inst,sum] <proofstate>['a b c : DCut\n⊢ presum { A := presum a b, ne := ⋯, nf := ⋯, dc := ⋯, op := ⋯ } c =\n    presum a { A := presum b c, ne := ⋯, nf := ⋯, dc := ⋯, op := ⋯ }']</proofstate>
   ext q <proofstate>['case h\na b c : DCut\nq : ℚ\n⊢ q ∈ presum { A := presum a b, ne := ⋯, nf := ⋯, dc := ⋯, op := ⋯ } c ↔\n    q ∈ presum a { A := presum b c, ne := ⋯, nf := ⋯, dc := ⋯, op := ⋯ }']</proofstate>
@@ -720,56 +755,50 @@ theorem sum_assoc {a b c : DCut} : (a+b)+c = a + (b+c) := by <proofstate>['a b c
     simp_all[presum] <proofstate>['case h.mpr\na b c : DCut\nq : ℚ\nhq : ∃ x ∈ a.A, ∃ a ∈ b.A, ∃ b ∈ c.A, x + (a + b) = q\n⊢ ∃ a_1 ∈ a.A, ∃ b_1 ∈ b.A, ∃ y ∈ c.A, a_1 + b_1 + y = q']</proofstate>
     obtain ⟨ x, ⟨ hx, ⟨ y, ⟨ hy, ⟨ z, ⟨ hz, hsum ⟩ ⟩ ⟩ ⟩ ⟩ ⟩ := hq <proofstate>['case h.mpr\na b c : DCut\nq x : ℚ\nhx : x ∈ a.A\ny : ℚ\nhy : y ∈ b.A\nz : ℚ\nhz : z ∈ c.A\nhsum : x + (y + z) = q\n⊢ ∃ a_1 ∈ a.A, ∃ b_1 ∈ b.A, ∃ y ∈ c.A, a_1 + b_1 + y = q']</proofstate>
     exact ⟨ x, ⟨ hx, ⟨ y, ⟨ hy, ⟨ z, ⟨ hz, by linarith ⟩ ⟩ ⟩ ⟩ ⟩ ⟩
-```
 
+
+/-
 Exercises
 ===
 
 <ex /> Show
 
+-/
 
-```lean
 theorem sum_comm {a b : DCut} : a + b = b + a := sorry
 theorem sum_zero_left {a : DCut} : 0 + a = a :=  sorry
 theorem sum_zero_right {a : DCut} : a + 0 = a := sorry
-```
 
+/-
 
 <ex /> Define the instances
 
+-/
 
-```lean
 instance lt_inst : LT DCut := ⟨ fun x y => x ≠ y ∧ x.A ⊆ y.A ⟩
 instance le_inst : LE DCut := ⟨ fun x y => x.A ⊆ y.A ⟩
-```
- And show 
-```lean
+
+/- And show -/
+
+
 theorem sum_pos_pos {a b : DCut} (ha : 0 < a) (hb : 0 < b) : 0 < a + b := sorry
 theorem sum_nneg_nneg {a b : DCut} (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ a + b := sorry
-```
 
+
+/-
 <ex /> Use this definition
 
+-/
 
-```lean
 def preneg (c : DCut) : Set ℚ := { x | ∃ a < 0, ∃ b ∉ c.A, x = a-b }
-```
 
+/-
 To build subtraction for `DCut`.
+-/
 
-```lean
+
+
 --hide
 end LeanW26
 --unhide
-```
-
-License
-===
-
-Copyright (C) 2025  Eric Klavins
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.   
 
