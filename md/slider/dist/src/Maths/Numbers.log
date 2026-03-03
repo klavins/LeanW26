@@ -43,8 +43,8 @@ def mul (x y : Nat) : Nat :=
 
 def sub : Nat → Nat → Nat
   | n, zero => n
-  | n, succ j => sub n j
-
+  | zero, _ => zero
+  | succ k, succ j => sub k j
 
 /-
 Properties of Addition and Multiplication
@@ -100,7 +100,8 @@ theorem le_succ {n : Nat} : le n (succ n) := le.step le.refl
 theorem zero_is_least {n : Nat} : le zero n := by <proofstate>['n : Nat\n⊢ le zero n']</proofstate>
   induction n with <proofstate>['n : Nat\n⊢ le zero n']</proofstate>
   | zero => exact le.refl
-  | succ k ih => exact le.step ih
+  | succ k ih => <proofstate>['case succ\nk : Nat\nih : le zero k\n⊢ le zero k.succ']</proofstate>
+    exact le.step ih
 
 theorem zero_is_only_least (n : Nat) : le n zero ↔ n = zero := by <proofstate>['n : Nat\n⊢ le n zero ↔ n = zero']</proofstate>
   constructor <proofstate>['case mp\nn : Nat\n⊢ le n zero → n = zero', 'case mpr\nn : Nat\n⊢ n = zero → le n zero']</proofstate>
@@ -244,6 +245,12 @@ example : eq ⟨1,2⟩ ⟨2,3⟩ := rfl          -- ways to write -1
 example : eq ⟨3,2⟩ ⟨20,19⟩ := rfl        -- ways to write 1
 
 /-
+<div class='fn'>The pair construction is described in *Bourbaki: Algebra I, page 20* in the section
+called "Rational Integers".</div>
+
+-/
+
+/-
 Forming the Quotient
 ===
 
@@ -263,7 +270,7 @@ instance eq_equiv : Equivalence eq := ⟨ eq_refl, eq_symm, eq_trans ⟩
 
 /- Then we instantiate the `Setoid` instance and form the quotient: -/
 
-instance pre_int_setoid : Setoid Pair :=  ⟨ eq, eq_equiv ⟩
+instance pre_int_setoid : Setoid Pair := ⟨ eq, eq_equiv ⟩
 def Bint := Quotient pre_int_setoid
 def mk (w : Pair) : Bint := Quotient.mk pre_int_setoid w
 
@@ -282,9 +289,9 @@ example : mk ⟨ 1, 2 ⟩ = mk ⟨ 2, 3 ⟩ := by <proofstate>['⊢ mk { p := 1,
 
 /- And we can instantiate some type classes: -/
 
-instance zero_sint : Zero Bint := ⟨ mk ⟨ 0,0 ⟩ ⟩
-instance one_inst : One Bint := ⟨ mk ⟨ 1,0 ⟩ ⟩
-instance of_nat_inst {n : ℕ} :OfNat Bint n := ⟨ mk ⟨ n, 0 ⟩ ⟩
+instance zero_sint           : Zero Bint    := ⟨ mk ⟨ 0,0 ⟩ ⟩
+instance one_inst            : One Bint     := ⟨ mk ⟨ 1,0 ⟩ ⟩
+instance of_nat_inst {n : ℕ} : OfNat Bint n := ⟨ mk ⟨ n, 0 ⟩ ⟩
 
 #check (0:Bint)
 #check (1:Bint)
@@ -303,13 +310,13 @@ def pre_negate (x : Pair) : Pair := ⟨ x.q, x.p ⟩
 theorem pre_negate_respects (x y : Pair) :
   x ≈ y → mk (pre_negate x) = mk (pre_negate y) := by <proofstate>['x y : Pair\n⊢ x ≈ y → mk (pre_negate x) = mk (pre_negate y)']</proofstate>
   intro h <proofstate>['x y : Pair\nh : x ≈ y\n⊢ mk (pre_negate x) = mk (pre_negate y)']</proofstate>
-  apply Quot.sound <proofstate>['case a\nx y : Pair\nh : x ≈ y\n⊢ pre_int_setoid (pre_negate x) (pre_negate y)']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nx y : Pair\nh : x ≈ y\n⊢ pre_negate x ≈ pre_negate y']</proofstate>
   exact h.symm
 
 def pre_negate' (x : Pair) : Bint := mk (pre_negate x)
 def negate (x : Bint) : Bint := Quotient.lift pre_negate' pre_negate_respects x
 
-/- We may register our negation function wit the `Neg` class.  -/
+/- We register our negation function wit the `Neg` class.  -/
 
 instance int_negate : Neg Bint := ⟨ negate ⟩
 
@@ -321,6 +328,7 @@ instance int_negate : Neg Bint := ⟨ negate ⟩
 /-
 Basic Equivalence with Int
 ===
+We convert `Bint` to Lean's `Int` using `Quotient.lift` again.
 -/
 
 def bint_to_int : Bint → Int :=
@@ -329,14 +337,18 @@ def bint_to_int : Bint → Int :=
     have : a.p + b.q = a.q + b.p := h <proofstate>['a b : Pair\nh : a ≈ b\nthis : a.p + b.q = a.q + b.p\n⊢ (fun p ↦ ↑p.p - ↑p.q) a = (fun p ↦ ↑p.p - ↑p.q) b']</proofstate>
     linarith)
 
+/- Converting Lean's `Int` to `Bint` uses the constructors for `Int`. -/
+
 def int_to_bint (x : Int) : Bint := match x with
     | Int.ofNat k => mk ⟨ k, 0 ⟩
     | Int.negSucc k => mk ⟨ 0, k+1 ⟩
 
+/- Then we can form the equivalence, -/
+
 def bint_int_equiv : Bint ≃ Int := {
   toFun := bint_to_int,
   invFun := int_to_bint
-  left_inv := sorry,
+  left_inv x:= sorry,       -- exercises
   right_inv := sorry
 }
 
@@ -361,6 +373,8 @@ theorem neg_neg (x : Bint) : - -x = x := by <proofstate>['x : Bint\n⊢ - -x = x
 /-
 Exercises
 ===
+
+<ex /> Supply the proofs in the definition of `bint_int_equiv`.
 
 <ex /> Define `pre_add` for `Pair` and `add` for `Bint`.
 
