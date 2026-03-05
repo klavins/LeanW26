@@ -52,7 +52,8 @@ files = [
   "Maths/Algebra",
   "Maths/Sets",
   "Maths/Relations",
-  "Maths/Numbers"
+  "Maths/Numbers",
+  "Examples/FOL"
 
 ]
 

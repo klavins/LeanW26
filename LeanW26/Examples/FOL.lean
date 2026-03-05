@@ -80,7 +80,12 @@ in terms of the lambda calculus. It is explained in Arthur Charguéraud's *The L
 
 ▸ First order logic is already defined in Mathlib based on the
 [Flypitch project](https://flypitch.github.io/), which is a formalization
-of the proof of the independence of the continuum hypothesis.
+of the proof of the independence of the continuum hypothesis. This project was
+developed separately, for purposes of self-edification.
+
+▸ For connections to category theory: *First Order Categorical Logic
+Model-Theoretical Methods in the Theory of Topoi and Related Categories*, by
+Michael Makkai and Gonzalo E. Reyes.
 
 
 -/
