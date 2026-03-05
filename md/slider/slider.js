@@ -85,8 +85,9 @@ class Slider extends React.Component {
     let text0 = text.replace(/<ex\s*\/>/g, () => `<span class='exercise-num'>${++exercise_count}.</span> `);
 
     let text1 = text0.replace(/--hide[\s\S\n]*?--unhide/g, '');
-    let text2 = text1.replace(/--brief[\s\S]*?--unbrief/g, '    ···');
-    let text3 = text2.replace(
+    let text2 = text1.replace(/--brief[\s\S]*?--unbrief/g, '    ...');
+    let text2b = text2.replace(/by\s*\.\.\./g, 'by ...');
+    let text3 = text2b.replace(
       /(^|\n)```[^\n]*\n[\t \r]*\n?```(?=\s|$)/g,
       (_m, lead) => lead || ''
     );

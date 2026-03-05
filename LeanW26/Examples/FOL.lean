@@ -7,6 +7,11 @@
 
 import Mathlib
 
+set_option linter.style.longLine false
+set_option linter.style.whitespace false
+set_option linter.style.setOption false
+set_option linter.flexible false
+
 namespace LeanW26
 
 /-
@@ -19,7 +24,7 @@ Embedding First Order Logic
 ===
 In this slide deck we embed First Order Logic into Lean by defining:
 
-- An **abstract syntax** tree (AST) for first order logic expressions built from predicates, `⊥`, `→`, and `∀`, from which you can define `∧`, `∨`, `¬`, and `∃`.
+- An **abstract syntax** tree (AST) for first order logic expressions built from variables, predicates, `⊥`, `→`, and `∀`, from which one defines `∧`, `∨`, `¬`, and `∃`.
 
 - An inductive definition of **provability**, denoted `Γ ⊢ φ`, that encodes the proof rules `ax`, `⊥-elim`, `→-intro`, `→-elim`, `∀-intro`, `∀-elim`, and `em`.
 
@@ -45,10 +50,10 @@ represents                  &nbsp;&nbsp;&nbsp;
 `∀ x . ∃ y . P(x,y)`
 
 A comprehesive library of dozens of `@[simps]` supports substitution, lifting,
-and renaming of variable indices and used in the proof of soundness.
+and renaming of variable indices crucial for the proof of soundness.
 
 ▸ **Signatures** contain predicate declarations with specific arities.
-For example, a Graph theory signature with equality can be denoted:
+For example, a Graph theory signature with equality is denoted:
 ```lean
 inductive Graph : Signature | E : Graph 2 | eq: Graph 2
 ```
@@ -57,16 +62,53 @@ inductive Graph : Signature | E : Graph 2 | eq: Graph 2
 ```lean
 def Cycle (n : ℕ): Model Graph (Fin n) := ⟨
   fun sym f => match sym with
-    | E => f 0 = (f 1) % n
+    | E => f 0 = ((f 1) + 1) % n
     | eq => f 0 = f 1
 ⟩
 ```
 -/
 
 /-
-Code Structure
+Related Work
 ===
+
+▸ A great book for First Order Logic is by Ederton: *A Mathematical
+Introduction to Logic*.
+
+▸ [Debruijn](https://en.wikipedia.org/wiki/De_Bruijn_index) was developed
+in terms of the lambda calculus. It is explained in Arthur Charguéraud's *The Locally Nameless Representation*, JAR 2012 [Link](https://www.chargueraud.org/research/2009/ln/main.pdf) among other places.
+
+▸ First order logic is already defined in Mathlib based on the
+[Flypitch project](https://flypitch.github.io/), which is a formalization
+of the proof of the independence of the continuum hypothesis.
+
+
 -/
+
+
+/-
+Outline
+===
+
+The overall structure of the code to build this embedding is as follows.
+
+- Variables
+- Tuples
+- Signatures
+- Formulas
+- Contexts and Provability
+- Satisfiability and Entailment
+- Soundness
+- Completness (partial)
+
+The code presented in this slide deck is contained in the source code
+for the slide deck on [github](https://github.com/klavins/LeanW26).
+
+However, as a standalone project, the code would be split up into
+multiple files.
+
+-/
+
 
 
 
@@ -74,7 +116,7 @@ Code Structure
 Variables
 ===
 In first order logic we assume a countably infinite supply of variables `x₀`, `x₁`, `x₂`, ...,
-which we just identify with the natural numbers:
+which we identify with the natural numbers:
 -/
 
 abbrev Var := ℕ
@@ -102,15 +144,17 @@ abbrev Arity := ℕ
 
 abbrev Tuple (k : Arity) := Fin k → Var
 
-
-
 /- Tuples are easily expressed using Lean's `![...]` notation. For example, -/
 
+--hide
 namespace Examples
+--unhide
 
 def my_tuple : Tuple 3 := ![1,2,3]
 
+--hide
 end Examples
+--unhide
 
 /-
 Formulas
@@ -127,18 +171,18 @@ inductive Formula (S : Signature)
   | imp     : (Formula S) → (Formula S) → (Formula S)
   | all     : (Formula S) → (Formula S)
 
-/- We defer the definition of substitution for formulas, denoted `φ[x↦s]`
-to a later slide. -/
+
 
 /-
 Derived Formulas
 ===
-Other connecties and quantifiers are derived from the core syntax.
+Other connectives and quantifiers are derived from the core syntax.
 -/
 
+--hide
 section
 namespace Formula
-
+--unhide
 variable {S : Signature}
 
 def not (a : Formula S) := (imp a bot)
@@ -146,15 +190,15 @@ def or (a b : Formula S) := (imp (not a) b)
 def and (a b : Formula S) := not (or (not a) (not b))
 def top : Formula S := (not bot)
 def ex (a : Formula S) := not (all (not a))
-
+--hide
 end Formula
 end
-
+--unhide
 
 /-
 Example: Graphs
 ===
-A signature `(E)` for directed graphs can be defined as follows
+A signature `(E)` for directed graphs may be defined as follows
 -/
 
 namespace Examples
@@ -177,7 +221,7 @@ def Graph.completely_connected : Formula Graph :=
 /-
 Example: Natural Numbers
 ===
-A signature `(0,succ,+,*,≤)` for the natural numbers can be defined as
+A signature `(0,succ,+,*,≤)` for the natural numbers may be defined
 -/
 
 inductive Nats : Signature
@@ -196,7 +240,21 @@ def Nats.one_plus_one := (Formula.and (rel is_zero ![0])
                          (Formula.and (rel is_succ ![0,1])
                          (Formula.and (rel is_succ ![1,2])
                          (rel is_sum ![1,1,2]))))
+--hide
 end Examples
+--unhide
+
+/-
+Exercises
+===
+
+<ex /> Define a formula over graphs stating that a graph has an isolated vertex.
+
+<ex /> Define a formula over natural numnbers stating that a number is prime.
+
+<ex /> Define a signature for Group Theory and define a formula stating that a group is Abelian.
+
+-/
 
 /-
 Shifting and Instantiating
@@ -220,7 +278,9 @@ Instantiation
 ===
 
 When a formula of the form `all φ` is instantiated at a particular term `t`
-we replace occurances of `x₀` with `t`. This is supported at the variable
+we replace occurances of `x₀` with `t`.
+
+This is supported at the variable
 level by the following:
 
 -/
@@ -231,34 +291,37 @@ def Var.inst_at (t : Var) (level : Level) (v : Var) : Var :=
   else v - 1
 
 /-
-Theorems About Variable Substitution
+Variable Substitution Properties
 ===
+We define simplifiying theorems for variable substitution.
 -/
 
+--hide
 section
 namespace Var
 variable {level : Level} {t v s s' x y : Var}
+--unhide
 
 @[simp] theorem subst_eq : x[x↦s] = s := by simp[subst]
 
-@[simp] theorem subst_ne (h : t ≠ x) : t[x↦s] = t := by simp[subst, h]
+theorem subst_ne (h : t ≠ x) : t[x↦s] = t := by simp[subst, h]
 
 @[simp] theorem subst_subst (h₁ : x ≠ y) (h₂ : t ≠ x)
   : v[x↦s][y↦t] = v[y↦t][x↦s[y↦t]] := by
   simp[subst]
   aesop
 
-@[simp] theorem subst_succ_ne_succ (h : t ≠ x) : (t + 1)[x+1 ↦ s+1] = t[x↦s]+1 := by
+@[simp] theorem subst_succ_ne_succ (h : t ≠ x)
+  : (t + 1)[x+1 ↦ s+1] = t[x↦s]+1 := by
   simp[subst, h]
 
 @[simp] theorem subst_succ : (t + 1)[x+1 ↦ s+1] = t[x↦s]+1 := by
   by_cases h : t = x <;> simp [h]
 
 /-
-Theorems About Variable Shifting and Instanting
+Variable Shifting and Instantiation Properties
 ===
-To avoid having to do arithmetic and if-then-else reasoning in high level proofs,
-we prove a seet of simplifiers for shifting and instantiating.
+To avoid having to do arithmetic and if-then-else reasoning in high level proofs, we prove a set of simplifiers for shifting and instantiating.
 -/
 
 @[simp] theorem unshift_shift : unshift level ∘ shift level = id := by
@@ -274,23 +337,28 @@ we prove a seet of simplifiers for shifting and instantiating.
     exact False.elim ((lt_self_iff_false level).mp h3)
   · exact add_tsub_cancel_right _ _
   --unbrief
-@[simp] theorem inst_at_lt (h : v < level) :  inst_at t level v = v := by
+
+@[simp] theorem inst_at_lt (h : v < level) : inst_at t level v = v := by
   --brief
   simp [inst_at, h]
   --unbrief
+
 @[simp] theorem inst_at_eq : inst_at t level level = t := by
   --brief
   simp [inst_at]
   --unbrief
+
 @[simp] theorem inst_at_gt (h : level < v) : inst_at t level v = v - 1 := by
   --brief
   simp [inst_at, not_lt.mpr (Nat.le_of_lt h), Nat.ne_of_gt h]
   --unbrief
+
 @[simp] theorem subst_of_lt_of_le (hv : v < level) (hx : level ≤ x)
   : v[x ↦ s] = v := by
     --brief
    exact subst_ne (Nat.ne_of_lt (Nat.lt_of_lt_of_le hv hx))
   --unbrief
+
 @[simp] theorem subst_succ_of_lt_of_le (hv : v < level) (hx : level ≤ x)
   : v[x+1 ↦ s+1] = v := by
   --brief
@@ -306,12 +374,14 @@ More simps
   --brief
   simp [inst_at_gt (Nat.lt_succ_of_le hs)]
   --unbrief
+
 @[simp] theorem inst_at_shift : inst_at t level (Var.shift level v) = v := by
   --brief
   by_cases h : v < level
-  · simp [Var.shift, h, inst_at_lt h]
+  · simp [Var.shift, h]
   · simp [Var.shift, h, inst_at_succ_of_le (Nat.le_of_not_lt h)]
   --unbrief
+
 @[simp] theorem subst_pred_of_gt_of_ne (hgt : level < v) (hne : v ≠ x + 1)
   : (v - 1)[x ↦ s] = v - 1 := by
   --brief
@@ -319,8 +389,10 @@ More simps
   intro heq
   exact hne (Nat.eq_add_of_sub_eq (Nat.lt_of_le_of_lt (Nat.zero_le level) hgt) heq)
   --unbrief
+
 theorem subst_inst_at (hs : level ≤ s) (hx : level ≤ x) :
-    (inst_at t level v)[x ↦ s] = inst_at (t[x ↦ s]) level (v[x+1 ↦ s+1]) := by
+    (inst_at t level v)[x ↦ s] =
+    inst_at (t[x↦s]) level (v[x+1 ↦ s+1]) := by
   --brief
   by_cases h1 : v < level
   · simp [subst_of_lt_of_le h1 hx, subst_succ_of_lt_of_le h1 hx, inst_at_lt h1]
@@ -335,22 +407,25 @@ theorem subst_inst_at (hs : level ≤ s) (hx : level ≤ x) :
     · rw [subst_pred_of_gt_of_ne hgt h4, subst_ne h4, inst_at_gt hgt]
   --unbrief
 
+--hide
 end Var
-
 end
+--unhide
 
 /-
 Extending to Tuples
 ===
 
 By composing variable operators with tuples, we can lift the standard
-operations to tuples:
+operations to tuples. Subsitution is simply:
 -/
 
 def Tuple.subst {k} (s x : Var) (tuple : Tuple k) : Tuple k :=
   (Var.subst s x) ∘ tuple
 
 notation:max t "[" x " ↦ " s "]" => Tuple.subst s x t
+
+/- And the other operations are -/
 
 def Tuple.shift {k} (level : Level) (tuple : Tuple k): Tuple k :=
   (Var.shift level) ∘ tuple
@@ -366,11 +441,14 @@ def Tuple.inst_at {k} (level : Level) (t : Var) (tuple : Tuple k) : Tuple k :=
 /-
 Theorems About Tuples
 ===
+We similarly have a number of `@[simps]` for `Tuple`.
 -/
 
+--hide
 section
 namespace Tuple
 variable {k : Arity} {level : Level} {s t x y : Var} {τ : Tuple k} {i : Fin k}
+--unhide
 
 @[simp] theorem unshift_shift
   : (unshift (k := k) level) ∘ (shift (k := k) level) = id := by
@@ -378,15 +456,20 @@ variable {k : Arity} {level : Level} {s t x y : Var} {τ : Tuple k} {i : Fin k}
   funext tuple
   simp[unshift,shift,←Function.comp_assoc]
   --unbrief
+
 @[simp] theorem subst_apply
-  : τ[x↦s] i = (if τ i = x then s else τ i) := rfl
+  : τ[x↦s] i = ((τ i)[x↦s]:Var) := rfl
+
 @[simp] theorem inst_at_apply
   : inst_at level t τ i = Var.inst_at t level (τ i) := rfl
-@[simp] theorem inst_at_shift : inst_at level t (shift level τ) = τ := by
+
+@[simp] theorem inst_at_shift
+  : inst_at level t (shift level τ) = τ := by
   --brief
   funext i
   simp [shift, Var.inst_at_shift]
   --unbrief
+
 @[simp] theorem inst_at_subst (hs : level ≤ s) (hx : level ≤ x) :
   (inst_at level t τ)[x↦s] = (τ[x+1↦s+1]).inst_at level (t[x↦s]) := by
   --brief
@@ -406,6 +489,7 @@ And last but not least:
   --brief
   simp[subst,h₁,h₂,funext_iff]
   --unbrief
+
 @[simp] theorem subst_id : τ[x↦x] = τ := by
   --brief
   simp[subst,funext_iff,Var.subst]
@@ -413,34 +497,20 @@ And last but not least:
   exact Eq.symm hi
   --unbrief
 
-/- While the `Var` simples are tedious and tricky. The `Tuple` proofs are easy extensions. -/
+/- While the `Var` simples are tedious and tricky, the `Tuple` proofs are easy extensions. -/
 
+--hide
 end Tuple
 end
-
-
+--unhide
 
 /-
-Free Variables
+Exercises
 ===
-The free variables of a formula are those that do not appear bound:
+
+<ex /> Show that substituting `x` for `y` and then `y` for `x` in a tuple does not necessarily result in the same tuple.
+
 -/
-
-def Formula.free_vars {S : Signature} (φ : Formula S) : Finset ℕ :=
-  match φ with
-    | Formula.bot => {}
-    | Formula.rel _ tuple => Finset.image tuple Finset.univ
-    | Formula.imp ψ₁ ψ₂ => free_vars ψ₁ ∪ free_vars ψ₂
-    | Formula.all ψ => ((free_vars ψ).filter (· ≠ 0)).image (· - 1)
-
-/- For example, -/
-
-namespace Examples
-
-  example : Graph.no_self_loops.free_vars = ∅ := rfl
-  example : Nats.one_plus_one.free_vars = {0,1,2} := rfl
-
-end Examples
 
 /-
 Substitution on Formulas
@@ -458,11 +528,18 @@ notation:max φ "[" x " ↦ " s "]" => Formula.subst s x φ
 
 /- For example: -/
 
+--hide
 namespace Examples
+--unhide
 
-  def Nats.one_plus_one_alt := Nats.one_plus_one[2↦3]
+def Nats.one_plus_one_alt := Nats.one_plus_one[2↦3]
 
+/- results in a formula where the variable `x₃` represents `2` instead
+of `x₂` representing `2`.-/
+
+--hide
 end Examples
+--unhide
 
 /-
 Subtitution simps
@@ -470,9 +547,11 @@ Subtitution simps
 The following substutition `@[simps]` make subsequent proofs much easier.
 -/
 
+--hide
 section
 namespace Formula
 variable {S : Signature} {φ ψ : Formula S} {s x: Var} {k : Arity} {τ : Tuple k} {r : S k} {r₁ : S 1}
+--unhide
 
 @[simp] theorem subst_bot : (bot : Formula S)[x↦s] = bot := rfl
 @[simp] theorem subst_imp : (imp φ ψ)[x↦s] = imp (φ[x↦s]) (ψ[x↦s]) := rfl
@@ -480,12 +559,19 @@ variable {S : Signature} {φ ψ : Formula S} {s x: Var} {k : Arity} {τ : Tuple 
 @[simp] theorem subst_and : (and φ ψ)[x↦s] = and φ[x↦s] ψ[x↦s] := rfl
 @[simp] theorem subst_all : (all φ)[x↦s] = all (φ[x+1↦s+1]) := rfl
 @[simp] theorem subst_rel : (rel r τ)[x↦s] = rel r (τ[x↦s]) := rfl
-@[simp] theorem subst_rel0 : (rel r₁ ![0])[0↦s] = rel r₁ ![s] := by simp[funext_iff]
-@[simp] theorem subst_rel0' : (rel r₁) ![0][0↦s]  = rel r₁ ![s] := by simp[funext_iff]
+@[simp] theorem subst_rel0 : (rel r₁ ![0])[0↦s] = rel r₁ ![s] := by
+  --brief
+  simp[funext_iff]
+  --unbrief
+@[simp] theorem subst_rel0' : (rel r₁) ![0][0↦s]  = rel r₁ ![s] := by
+  --brief
+  simp[funext_iff]
+  --unbrief
 
+--hide
 end Formula
-
 end
+--unhide
 
 /-
 Renamers
@@ -510,12 +596,14 @@ variable {f g : Renamer} {level : Level}
   simp[lift]
   cases i <;> rfl
   --unbrief
+
 @[simp] theorem Renamer.lift_comp : lift (g ∘ f) = lift g ∘ lift f := by
   --brief
   funext i
   simp[lift]
   cases i <;> rfl
   --unbrief
+
 @[simp] theorem Renamer.lift_shift
   : lift f ∘ Var.shift 0 = Var.shift 0 ∘ f := by
   --brief
@@ -523,6 +611,7 @@ variable {f g : Renamer} {level : Level}
   simp[lift]
   rfl
   --unbrief
+
 @[simp] theorem hlift : Renamer.lift (Var.shift level)
                         = Var.shift (level + 1) := by
   --brief
@@ -540,7 +629,7 @@ end
 /-
 Rename
 ===
-We can now define renaming for formulas
+We now define renaming for formulas
 -/
 
 def Formula.rename {S : Signature} (φ : Formula S) (f : Renamer) : Formula S :=
@@ -566,7 +655,9 @@ variable {S : Signature} {φ : Formula S} {f g : Renamer} {t : Var} {level : Lev
   | imp ψ₁ ψ₂ ih₁ ih₂ => simp [rename, ih₁, ih₂]
   | all ψ ih => simp [rename, ih]
   --unbrief
-@[simp] theorem rename_comp : (φ.rename f).rename g = φ.rename (g ∘ f) := by
+
+@[simp] theorem rename_comp
+  : (φ.rename f).rename g = φ.rename (g ∘ f) := by
   --brief
   induction φ generalizing f g with
   | bot => rfl
@@ -574,8 +665,10 @@ variable {S : Signature} {φ : Formula S} {f g : Renamer} {t : Var} {level : Lev
   | imp ψ₁ ψ₂ ih₁ ih₂ => simp [rename, ih₁, ih₂]
   | all ψ ih => simp [rename, ih]
   --unbrief
+
 @[simp] theorem lift_inst_at  :
-    Renamer.lift (Var.inst_at t level) = Var.inst_at (t+1) (level+1) := by
+    Renamer.lift (Var.inst_at t level) =
+    Var.inst_at (t+1) (level+1) := by
   --brief
   funext v
   cases v with
@@ -599,11 +692,13 @@ end
 Instantiation for Formulas
 ===
 Applying a formula of the form `all φ` to a particular term `t` is called instantiating `φ` with `t`.
-We define a general notion of instantition at an level first.
+
+We define a general notion of instantition at any level.
 -/
 
 open Formula in
-def Formula.inst_at {S : Signature} (t : Var) (level : Level) : Formula S → Formula S
+def Formula.inst_at {S : Signature} (t : Var) (level : Level)
+  : Formula S → Formula S
   | bot         => bot
   | rel r tuple => rel r (tuple.inst_at level t)
   | imp φ ψ     => imp (inst_at t level φ) (inst_at t level ψ)
@@ -623,17 +718,24 @@ For example, instantiating `∀ x . E(x,y)` with `z` gives `∀ x . E(x,z)`.
 The the example below, we use `10` for `z`.
 
 -/
+--hide
 namespace Examples
+--unhide
 
-open Graph Formula in
-example : (all (rel E ![0,1])).inst 10 = (all (rel E ![0,11])) := by
+open Graph Formula
+
+example : (all (rel E ![0,1])).inst 10
+        = (all (rel E ![0,11])) := by
   simp[inst,inst_at,Tuple.inst_at,funext_iff,Var.inst_at]
 
+--hide
 end Examples
+--unhide
 
 /-
 Instantiation simps
 ===
+We prove a number of results about instantiation.
 -/
 
 --hide
@@ -649,6 +751,11 @@ variable {S : Signature} {φ ψ : Formula S} {s x y t : Var} {L : Level}
   : (all φ).inst_at t L = all (φ.inst_at (t+1) (L+1)) := rfl
 @[simp] theorem inst_at_rel {k : Arity} {r : S k} {τ : Tuple k}
   : (rel r τ).inst_at t L = rel r (τ.inst_at L t) := rfl
+@[simp] theorem subst_id : φ[x↦x] = φ := by
+  --brief
+  induction φ generalizing x <;> simp[*]
+  --unbrief
+
 theorem inst_at_subst (h₁ : L ≤ x) (h₂ : L ≤ s)
   : (φ.inst_at t L)[x↦s] = φ[x+1↦s+1].inst_at t[x↦s] L := by
   --brief
@@ -659,15 +766,13 @@ theorem inst_at_subst (h₁ : L ≤ x) (h₂ : L ≤ s)
   | all f ih =>
       simp [ih (Nat.succ_le_succ h₁) (Nat.succ_le_succ h₂)]
   --unbrief
+
 theorem inst_subst {S : Signature} (φ : Formula S) (s x t : Var)
   : (φ.inst t)[x↦s] = φ[x+1↦s+1].inst t[x↦s]  := by
   --brief
   exact inst_at_subst (Nat.zero_le x) (Nat.zero_le s)
   --unbrief
-@[simp] theorem subst_id : φ[x↦x] = φ := by
-  --brief
-  induction φ generalizing x <;> simp[*]
-  --unbrief
+
 
 /-
 Example Proof
@@ -686,11 +791,21 @@ Most of these proofs are simple. Here's a slightly complicated one:
                 ((add_ne_add_left 1).mpr h₂)
     simp[this]
 
+/-
+Exercises
+===
+
+<ex /> Show that `subst_subst` is not necessariy true when if we drop the requirement that `x ≠ y`.
+
+-/
 
 /-
 Shifting
 ===
-Shifting is renaming by shifting at 0. It is used in the definition of `∀-Intro`:
+
+We now start building the definition of provability, starting with shifting.
+
+Shifting is renaming by shifting at `0`. It is used in the definition of `∀-Intro`:
 -/
 
 def shift {S : Signature} (φ : Formula S) := φ.rename (Var.shift 0)
@@ -704,7 +819,7 @@ def shift {S : Signature} (φ : Formula S) := φ.rename (Var.shift 0)
   | bot => intros; rfl
   | rel r τ =>
     intros
-    simp [rename, inst_at]
+    simp [rename]
     exact Tuple.inst_at_shift
   | imp f g ihf ihg => simp [rename, ihf, ihg]
   | all f ih => simp [rename, ih]
@@ -723,10 +838,13 @@ theorem inst_at_eq_rename
     exact ih
   --unbrief
 
+/- Both of these proofs require proof by induction un the structure of the formula. -/
+
 --hide
 end Formula
 end
 --unhide
+
 
 /-
 Provability
@@ -734,9 +852,6 @@ Provability
 -/
 
 abbrev Context S := Set (Formula S)
-
-def free_vars_context {S : Signature} (C : Context S) : Set Var :=
-  ⋃ f ∈ C, f.free_vars
 
 open Formula in
 inductive Provable {S : Signature} : Context S → Formula S → Prop
@@ -751,7 +866,7 @@ inductive Provable {S : Signature} : Context S → Formula S → Prop
 infix:50 " ⊢ " => Provable
 
 /-
-Provability Examples
+Provability Example
 ===
 To illustrate the how proofs work in this system, we do a few proofs.
 -/
@@ -770,7 +885,7 @@ example {S : Signature} {P : S 1}
   simp
 
 /-
-More Examles
+Another Example
 ===
 Here we show
 ```
@@ -791,6 +906,26 @@ example {S : Signature} {P : S 1}
 --hide
 end Examples
 --unhide
+
+/-
+Exercises
+===
+
+<ex /> Show the following:
+
+-/
+
+section
+namespace Examples
+
+  open Formula Provable
+
+  example {S : Signature} {P Q : S 1}
+    : {all (all (rel P ![0]))} ⊢ rel P ![3] := by
+    sorry
+
+end Examples
+end
 
 /-
 Models
@@ -831,26 +966,22 @@ def Assignment (α : Type u) := Var → α
 
 /- We operate on assignments with the following. -/
 
-def update {α : Type u} (A : Assignment α) (v : α) :=
+def update {α : Type u} (A : Assignment α) (v : α) : Assignment α :=
   fun j => if j = 0 then v else A (j-1)
 
-def update_at {α : Type u} (x : Var) (v : α) (A : Assignment α) :=
+def update_at {α : Type u} (x : Var) (v : α) (A : Assignment α) : Assignment α :=
   fun j => if j = x then v else A j
 
 def inst_assign {α : Type u} (A : Assignment α) (t : Var) (L : Level)
-  : Assignment α := fun j => if j < L
-                             then A j
-                             else if j = L
-                                  then A t
-                                  else A (j - 1)
-
-
+  : Assignment α := fun j => if      j < L then A j
+                             else if j = L then A t
+                             else               A (j - 1)
 
 
 /-
 Satisfaction
 ===
-A model `M` and an assignment `A` **satisfy** a formula if the formula
+A model `M` and an assignment `A` **satisfies** a formula if the formula
 holds when interpreted under `M` with assignment `A`. Formally,
 -/
 
@@ -883,8 +1014,8 @@ def Cycle (n : ℕ) : Model Graph (Fin n) := ⟨
   fun sym tuple => match sym with
   | E => tuple 0 = ((tuple 1) + 1) % n ⟩
 
-/- The a cycle with one node has self loops -/
-example : ¬ models (Cycle 1) Graph.no_self_loops := by
+/- The a cycle with one node has one (and only one) self loop -/
+example : ¬models (Cycle 1) Graph.no_self_loops := by
   intro h
   have := h (fun _ => 0)
   simp[no_self_loops,Formula.not,satisfies,Cycle] at this
@@ -897,6 +1028,17 @@ example : models (Cycle 2) Graph.no_self_loops := by
 --hide
 end Examples
 --unhide
+
+/-
+Exercise
+===
+
+<ex /> Define a Model for the signature `Nats` with the usual definition of
+`zero`, `succ`, `add`, `prod`, and `le`.
+
+<ex /> Show the model satisfies `Nats.one_plus_one`.
+
+-/
 
 /-
 Entailment
@@ -993,7 +1135,7 @@ Soundness
 ===
 Soundness means that everything provable is also true: `Γ ⊢ φ → Γ ⊨ φ`.
 
-We prove for each possible way the proof `Γ ⊢ φ` might end.
+We prove soundness for each possible way the proof `Γ ⊢ φ` might end.
 -/
 
 theorem sound_ax (h : φ ∈ Γ) : Γ ⊨ φ := by
@@ -1027,6 +1169,11 @@ theorem sound_all_intro (h : Formula.shift '' Γ ⊨ φ) : Γ ⊨ Formula.all φ
     rw [show ψ.shift = ψ.rename (Var.shift 0) from rfl, satisfies_rename]
     exact hΓ ψ hψ)
 
+/-
+Soundess Continued
+===
+-/
+
 theorem sound_all_elim (h : Γ ⊨ Formula.all φ) : Γ ⊨ φ.inst t := by
   intro α M a hψ
   rw [Formula.inst_eq, satisfies_inst_at]
@@ -1035,12 +1182,6 @@ theorem sound_all_elim (h : Γ ⊨ Formula.all φ) : Γ ⊨ φ.inst t := by
   rw [this]
   exact h M a hψ (a t)
 
-/-
-Soundess Continued
-===
--/
-
-open Formula in
 theorem sound_em : Γ ⊨ Formula.or (Formula.not φ) φ:= by
   intro  α M a hψ h1
   unfold Formula.not at h1
@@ -1070,79 +1211,41 @@ theorem sound : Γ ⊢ φ → Γ ⊨ φ := by
 /-
 Completeness
 ===
--/
+Completness means `Γ ⊨ φ → Γ ⊢ φ`, which was proved by Gödel in 1929.
 
--- `¬ Γ ⊨ bot` for arbitrary Γ is unprovable (e.g. Γ = {bot} is a counterexample).
--- The correct lemma: the empty context does not entail bot.
-theorem not_entailss_bot {S : Signature} : ¬ entails (∅ : Context S) Formula.bot := by
-  intro h
-  have := h (⟨fun _ _ => True⟩ : Model S Unit) (fun _ => ()) (by simp)
-  simp [satisfies] at this
+This theorem is more complex than soundness and at this point I have it only partially finished.
+
+-/
 
 /-
-`complete_bot` is essentially Gödel's completeness theorem for the `bot` case:
-  "semantic inconsistency implies syntactic inconsistency."
+Incompleteness
+===
+Completeness is not to be confused with incompletness. Gödel showed the remarkable result that
+> There exists `φ` such that `models ℕ φ` but `PA ⊬ φ` and `PA ⊬ ¬φ`
 
-Proof strategy (Henkin construction):
-  (→) By contrapositive: assume Γ ⊬ bot (Γ is consistent). We build a model satisfying Γ.
-  1. **Lindenbaum**: Extend Γ to a maximal consistent set Δ (Γ ⊆ Δ, Δ ⊬ bot, and for every φ,
-     either φ ∈ Δ or (not φ) ∈ Δ). Requires Zorn's lemma on the poset of consistent extensions.
-  2. **Henkin witnesses**: For each `all φ ∉ Δ`, add a "witness constant" c and `inst c φ ∉ Δ`.
-     Repeat transfinitely to get a Henkin-complete Δ'.
-  3. **Canonical model**: Universe = ℕ (Var), relation `r(τ)` holds iff `rel r τ ∈ Δ'`,
-     assignment `a = id`.
-  4. **Truth lemma** (by formula induction): `satisfies M id φ ↔ φ ∈ Δ'`.
-  5. Since Γ ⊆ Δ', M satisfies Γ, so Γ ⊭ bot. □
+where `PA` is the set of *Peano Axioms*:
+```lean
+1. ∀x, S(x) ≠ 0
+2. ∀x ∀y, S(x) = S(y) → x = y
+3. ∀x, x + 0 = x
+4. ∀x ∀y, x + S(y) = S(x + y)
+5. ∀x, x × 0 = 0
+6. ∀x ∀y, x × S(y) = (x × y) + x
+7. (φ(0) ∧ ∀x, φ(x) → φ(S(x))) → ∀x, φ(x)
+```
+
+The GIT was proved by `Gödel` in 1931.
 -/
-open Provable Formula in
-theorem complete_bot : Γ ⊨ bot → Γ ⊢ bot := by
-  intro h
-  by_contra hne
-  -- hne : ¬ Γ ⊢ bot  (i.e., Γ is consistent)
-  -- Step 1: extend Γ to a maximal consistent set Δ
-  have lindenbaum : ∃ Δ : Context S, Γ ⊆ Δ ∧ ¬ Provable Δ bot ∧
-      ∀ φ, φ ∈ Δ ∨ Provable (Δ ∪ {φ}) bot := by
-    sorry
-  obtain ⟨Δ, hΓΔ, hΔcons, hΔmax⟩ := lindenbaum
-  -- Step 2 & 3: build the canonical model from Δ
-  -- Universe: ℕ (variables serve as the Henkin witnesses)
-  -- Relation: r(τ) holds iff (rel r τ) ∈ Δ (up to provable equivalence)
-  let M : Model S ℕ := ⟨fun r τ => rel r τ ∈ Δ⟩
-  let a : Assignment ℕ := id
-  -- Step 4: truth lemma — satisfies M a φ ↔ φ ∈ Δ
-  have truth : ∀ φ : Formula S, satisfies M a φ ↔ φ ∈ Δ := by
-    sorry
-  -- Step 5: Γ is satisfiable, contradicting h : Γ ⊨ bot
-  have hmod : ∀ ψ ∈ Γ, satisfies M a ψ := fun ψ hψ => (truth ψ).mpr (hΓΔ hψ)
-  exact absurd (h M a hmod) (by simp [satisfies])
 
--- open Provable Formula Examples in
--- theorem complete : Γ ⊨ φ → Γ ⊢ φ := by
---   intro h
---   induction φ with
---   | bot =>
---     let M : Model S Unit := ⟨ fun sym f => True ⟩
---     let a : Assignment Unit := fun _ => Unit.unit
---     have h1 := h M a
---     have : satisfies M a bot = False := by simp[satisfies]
---     rw[this] at h1
---     simp at h1
---     have h2 : ∀ ψ ∈ Γ, satisfies M a ψ := by
---       intro ψ hψ
---       simp[satisfies,M]
---       cases ψ with
---       | bot =>
---         have : Γ ⊨ bot := sound (Provable.ax hψ)
---         sorry
---       | rel _ _ => sorry
---       | imp _ _ => sorry
---       | all _ => sorry
---     have := h1 h2
---     simp[satisfies] at this
---   | rel _ _ => sorry
---   | imp _ _ _ _ => sorry
---   | all _ _ => sorry
 
+
+/-
+Future Work
+===
+
+Spring 2026: Weekly research meetings on formalizing logic.
+
+-/
 
 
 --hide
