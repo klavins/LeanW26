@@ -384,19 +384,7 @@ can be specified with the Mathlib function
 def subseq {α : Type u} (σ τ : ℕ → α) :=
   ∃ f, StrictMono f ∧ σ = τ ∘ f
 
-/- Show subseq is a partial order on `ℕ → α` -/
-
-instance {α : Type u} : Poset (ℕ → α) := {
-  le := subseq,
-  refl {σ} := sorry,
-  anti_sym {σ τ}:= sorry,
-  trans {σ τ ρ} := sorry
-}
-
-/-
-<ex /> Is `subseq` a total order? Why or why not?
-
--/
+/- Show subseq is a reflexive and transitive, but not antisymmetric.  -/
 
 /-
 Semilattices

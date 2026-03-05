@@ -220,3 +220,13 @@ State the definitions used in your project. If you not defining anything new, st
 <ex /> **Examples**: For each definition, construct several object of the corresponding type. For example, if you defined a `Point` type or typeclass, define a point. If you defined an `Automaton` type or class, define a simple automaton.
 
 -/
+
+/-
+Project Requirements
+===
+-/
+
+/-
+Presentation Requirements
+===
+-/
