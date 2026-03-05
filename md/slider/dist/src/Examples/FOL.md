@@ -61,7 +61,12 @@ in terms of the lambda calculus. It is explained in Arthur Charguéraud's *The L
 
 ▸ First order logic is already defined in Mathlib based on the
 [Flypitch project](https://flypitch.github.io/), which is a formalization
-of the proof of the independence of the continuum hypothesis.
+of the proof of the independence of the continuum hypothesis. This project was
+developed separately, for purposes of self-edification.
+
+▸ For connections to category theory: *First Order Categorical Logic
+Model-Theoretical Methods in the Theory of Topoi and Related Categories*, by
+Michael Makkai and Gonzalo E. Reyes.
 
 
 
@@ -84,7 +89,9 @@ The code presented in this slide deck is contained in the source code
 for the slide deck on [github](https://github.com/klavins/LeanW26).
 
 However, as a standalone project, the code would be split up into
-multiple files.
+multiple files. An example of how this would look is at:
+
+> [https://github.com/klavins/LeanFOL](https://github.com/klavins/LeanFOL)
 
 
 
@@ -277,15 +284,15 @@ variable {level : Level} {t v s s' x y : Var}
 theorem subst_ne (h : t ≠ x) : t[x↦s] = t := by simp[subst, h]
 
 @[simp] theorem subst_subst (h₁ : x ≠ y) (h₂ : t ≠ x)
-  : v[x↦s][y↦t] = v[y↦t][x↦s[y↦t]] := by <proofstate>['t v s x y : Var\nh₁ : x ≠ y\nh₂ : t ≠ x\n⊢ v[x ↦ s][y ↦ t] = v[y ↦ t][x ↦ s[y ↦ t]]']</proofstate>
-  simp[subst] <proofstate>['t v s x y : Var\nh₁ : x ≠ y\nh₂ : t ≠ x\n⊢ (if (if v = x then s else v) = y then t else if v = x then s else v) =\n    if (if v = y then t else v) = x then if s = y then t else s else if v = y then t else v']</proofstate>
+  : v[x↦s][y↦t] = v[y↦t][x↦s[y↦t]] := by
+  simp[subst]
   aesop
 
 @[simp] theorem subst_succ_ne_succ (h : t ≠ x)
-  : (t + 1)[x+1 ↦ s+1] = t[x↦s]+1 := by <proofstate>['t s x : Var\nh : t ≠ x\n⊢ (t + 1)[x + 1 ↦ s + 1] = t[x ↦ s] + 1']</proofstate>
+  : (t + 1)[x+1 ↦ s+1] = t[x↦s]+1 := by
   simp[subst, h]
 
-@[simp] theorem subst_succ : (t + 1)[x+1 ↦ s+1] = t[x↦s]+1 := by <proofstate>['t s x : Var\n⊢ (t + 1)[x + 1 ↦ s + 1] = t[x ↦ s] + 1']</proofstate>
+@[simp] theorem subst_succ : (t + 1)[x+1 ↦ s+1] = t[x↦s]+1 := by
   by_cases h : t = x <;> simp [h]
 ```
 
@@ -294,44 +301,44 @@ Variable Shifting and Instantiation Properties
 To avoid having to do arithmetic and if-then-else reasoning in high level proofs, we prove a set of simplifiers for shifting and instantiating.
 
 ```lean
-@[simp] theorem unshift_shift : unshift level ∘ shift level = id := by <proofstate>['level : Level\n⊢ unshift level ∘ shift level = id']</proofstate>
-  --brief <proofstate>['level : Level\n⊢ unshift level ∘ shift level = id']</proofstate>
-  funext v <proofstate>['case h\nlevel : Level\nv : Var\n⊢ (unshift level ∘ shift level) v = id v']</proofstate>
-  simp[shift,unshift] <proofstate>['case h\nlevel : Level\nv : Var\n⊢ (if (if v < level then v else v + 1) < level then if v < level then v else v + 1\n    else (if v < level then v else v + 1) - 1) =\n    v']</proofstate>
-  split_ifs with h1 h2 <proofstate>['case pos\nlevel : Level\nv : Var\nh1 : v < level\n⊢ v = v', 'case pos\nlevel : Level\nv : Var\nh1 : ¬v < level\nh2 : v + 1 < level\n⊢ v + 1 = v', 'case neg\nlevel : Level\nv : Var\nh1 : ¬v < level\nh2 : ¬v + 1 < level\n⊢ v + 1 - 1 = v']</proofstate>
+@[simp] theorem unshift_shift : unshift level ∘ shift level = id := by
+  --brief
+  funext v
+  simp[shift,unshift]
+  split_ifs with h1 h2
   · rfl
-  · have h3 : level < level := by <proofstate>['level : Level\nv : Var\nh1 : ¬v < level\nh2 : v + 1 < level\n⊢ level < level']</proofstate>
-      have h4 : v < v + 1 := lt_add_one v <proofstate>['level : Level\nv : Var\nh1 : ¬v < level\nh2 : v + 1 < level\nh4 : v < v + 1\n⊢ level < level']</proofstate>
-      have h5 : v < level := Nat.lt_trans h4 h2 <proofstate>['level : Level\nv : Var\nh1 : ¬v < level\nh2 : v + 1 < level\nh4 : v < v + 1\nh5 : v < level\n⊢ level < level']</proofstate>
+  · have h3 : level < level := by
+      have h4 : v < v + 1 := lt_add_one v
+      have h5 : v < level := Nat.lt_trans h4 h2
       exact False.elim (h1 h5)
     exact False.elim ((lt_self_iff_false level).mp h3)
   · exact add_tsub_cancel_right _ _
   --unbrief
 
-@[simp] theorem inst_at_lt (h : v < level) : inst_at t level v = v := by <proofstate>['level : Level\nt v : Var\nh : v < level\n⊢ t.inst_at level v = v']</proofstate>
-  --brief <proofstate>['level : Level\nt v : Var\nh : v < level\n⊢ t.inst_at level v = v']</proofstate>
+@[simp] theorem inst_at_lt (h : v < level) : inst_at t level v = v := by
+  --brief
   simp [inst_at, h]
   --unbrief
 
-@[simp] theorem inst_at_eq : inst_at t level level = t := by <proofstate>['level : Level\nt : Var\n⊢ t.inst_at level level = t']</proofstate>
-  --brief <proofstate>['level : Level\nt : Var\n⊢ t.inst_at level level = t']</proofstate>
+@[simp] theorem inst_at_eq : inst_at t level level = t := by
+  --brief
   simp [inst_at]
   --unbrief
 
-@[simp] theorem inst_at_gt (h : level < v) : inst_at t level v = v - 1 := by <proofstate>['level : Level\nt v : Var\nh : level < v\n⊢ t.inst_at level v = v - 1']</proofstate>
-  --brief <proofstate>['level : Level\nt v : Var\nh : level < v\n⊢ t.inst_at level v = v - 1']</proofstate>
+@[simp] theorem inst_at_gt (h : level < v) : inst_at t level v = v - 1 := by
+  --brief
   simp [inst_at, not_lt.mpr (Nat.le_of_lt h), Nat.ne_of_gt h]
   --unbrief
 
 @[simp] theorem subst_of_lt_of_le (hv : v < level) (hx : level ≤ x)
-  : v[x ↦ s] = v := by <proofstate>['level : Level\nv s x : Var\nhv : v < level\nhx : level ≤ x\n⊢ v[x ↦ s] = v']</proofstate>
-    --brief <proofstate>['level : Level\nv s x : Var\nhv : v < level\nhx : level ≤ x\n⊢ v[x ↦ s] = v']</proofstate>
+  : v[x ↦ s] = v := by
+    --brief
    exact subst_ne (Nat.ne_of_lt (Nat.lt_of_lt_of_le hv hx))
   --unbrief
 
 @[simp] theorem subst_succ_of_lt_of_le (hv : v < level) (hx : level ≤ x)
-  : v[x+1 ↦ s+1] = v := by <proofstate>['level : Level\nv s x : Var\nhv : v < level\nhx : level ≤ x\n⊢ v[x + 1 ↦ s + 1] = v']</proofstate>
-  --brief <proofstate>['level : Level\nv s x : Var\nhv : v < level\nhx : level ≤ x\n⊢ v[x + 1 ↦ s + 1] = v']</proofstate>
+  : v[x+1 ↦ s+1] = v := by
+  --brief
   exact subst_ne (Nat.ne_of_lt (Nat.lt_of_lt_of_le hv (Nat.le_succ_of_le hx)))
   --unbrief
 ```
@@ -340,39 +347,40 @@ More simps
 ===
 
 ```lean
-@[simp] theorem inst_at_succ_of_le (hs : level ≤ s) : inst_at t level (s + 1) = s := by <proofstate>['level : Level\nt s : Var\nhs : level ≤ s\n⊢ t.inst_at level (s + 1) = s']</proofstate>
-  --brief <proofstate>['level : Level\nt s : Var\nhs : level ≤ s\n⊢ t.inst_at level (s + 1) = s']</proofstate>
+@[simp] theorem inst_at_succ_of_le (hs : level ≤ s) : inst_at t level (s + 1) = s := by
+  --brief
   simp [inst_at_gt (Nat.lt_succ_of_le hs)]
   --unbrief
 
-@[simp] theorem inst_at_shift : inst_at t level (Var.shift level v) = v := by <proofstate>['level : Level\nt v : Var\n⊢ t.inst_at level (shift level v) = v']</proofstate>
-  --brief <proofstate>['level : Level\nt v : Var\n⊢ t.inst_at level (shift level v) = v']</proofstate>
-  by_cases h : v < level <proofstate>['case pos\nlevel : Level\nt v : Var\nh : v < level\n⊢ t.inst_at level (shift level v) = v', 'case neg\nlevel : Level\nt v : Var\nh : ¬v < level\n⊢ t.inst_at level (shift level v) = v']</proofstate>
+@[simp] theorem inst_at_shift : inst_at t level (Var.shift level v) = v := by
+  --brief
+  by_cases h : v < level
   · simp [Var.shift, h]
   · simp [Var.shift, h, inst_at_succ_of_le (Nat.le_of_not_lt h)]
   --unbrief
 
-@[simp] theorem subst_pred_of_gt_of_ne (hgt : level < v) (hne : v ≠ x + 1)
-  : (v - 1)[x ↦ s] = v - 1 := by <proofstate>['level : Level\nv s x : Var\nhgt : level < v\nhne : v ≠ x + 1\n⊢ (v - 1)[x ↦ s] = v - 1']</proofstate>
-  --brief <proofstate>['level : Level\nv s x : Var\nhgt : level < v\nhne : v ≠ x + 1\n⊢ (v - 1)[x ↦ s] = v - 1']</proofstate>
-  apply subst_ne <proofstate>['case h\nlevel : Level\nv s x : Var\nhgt : level < v\nhne : v ≠ x + 1\n⊢ v - 1 ≠ x']</proofstate>
-  intro heq <proofstate>['case h\nlevel : Level\nv s x : Var\nhgt : level < v\nhne : v ≠ x + 1\nheq : v - 1 = x\n⊢ False']</proofstate>
+@[simp] theorem subst_pred_of_gt_of_ne
+  (hgt : level < v) (hne : v ≠ x + 1)
+  : (v - 1)[x ↦ s] = v - 1 := by
+  --brief
+  apply subst_ne
+  intro heq
   exact hne (Nat.eq_add_of_sub_eq (Nat.lt_of_le_of_lt (Nat.zero_le level) hgt) heq)
   --unbrief
 
 theorem subst_inst_at (hs : level ≤ s) (hx : level ≤ x) :
     (inst_at t level v)[x ↦ s] =
-    inst_at (t[x↦s]) level (v[x+1 ↦ s+1]) := by <proofstate>['level : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\n⊢ (t.inst_at level v)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]']</proofstate>
-  --brief <proofstate>['level : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\n⊢ (t.inst_at level v)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]']</proofstate>
-  by_cases h1 : v < level <proofstate>['case pos\nlevel : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\nh1 : v < level\n⊢ (t.inst_at level v)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]', 'case neg\nlevel : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\nh1 : ¬v < level\n⊢ (t.inst_at level v)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]']</proofstate>
+    inst_at (t[x↦s]) level (v[x+1 ↦ s+1]) := by
+  --brief
+  by_cases h1 : v < level
   · simp [subst_of_lt_of_le h1 hx, subst_succ_of_lt_of_le h1 hx, inst_at_lt h1]
-  by_cases h2 : v = level <proofstate>['case pos\nlevel : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\nh1 : ¬v < level\nh2 : v = level\n⊢ (t.inst_at level v)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]', 'case neg\nlevel : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\nh1 : ¬v < level\nh2 : ¬v = level\n⊢ (t.inst_at level v)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]']</proofstate>
+  by_cases h2 : v = level
   · simp [*,subst_ne (Nat.ne_of_lt (hx.trans_lt (Nat.lt_succ_self x))), inst_at_eq]
-  · have h3 : v ≥ level := Nat.le_of_not_lt h1 <proofstate>['case neg\nlevel : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\nh1 : ¬v < level\nh2 : ¬v = level\nh3 : v ≥ level\n⊢ (t.inst_at level v)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]']</proofstate>
-    have hgt : level < v := Nat.lt_of_le_of_ne h3 (Ne.symm h2) <proofstate>['case neg\nlevel : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\nh1 : ¬v < level\nh2 : ¬v = level\nh3 : v ≥ level\nhgt : level < v\n⊢ (t.inst_at level v)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]']</proofstate>
-    rw [inst_at_gt hgt] <proofstate>['case neg\nlevel : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\nh1 : ¬v < level\nh2 : ¬v = level\nh3 : v ≥ level\nhgt : level < v\n⊢ (v - 1)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]']</proofstate>
-    by_cases h4 : v = x + 1 <proofstate>['case pos\nlevel : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\nh1 : ¬v < level\nh2 : ¬v = level\nh3 : v ≥ level\nhgt : level < v\nh4 : v = x + 1\n⊢ (v - 1)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]', 'case neg\nlevel : Level\nt v s x : Var\nhs : level ≤ s\nhx : level ≤ x\nh1 : ¬v < level\nh2 : ¬v = level\nh3 : v ≥ level\nhgt : level < v\nh4 : ¬v = x + 1\n⊢ (v - 1)[x ↦ s] = t[x ↦ s].inst_at level v[x + 1 ↦ s + 1]']</proofstate>
-    · subst h4 <proofstate>['case pos\nlevel : Level\nt s x : Var\nhs : level ≤ s\nhx : level ≤ x\nh1 : ¬x + 1 < level\nh2 : ¬x + 1 = level\nh3 : x + 1 ≥ level\nhgt : level < x + 1\n⊢ (x + 1 - 1)[x ↦ s] = t[x ↦ s].inst_at level (x + 1)[x + 1 ↦ s + 1]']</proofstate>
+  · have h3 : v ≥ level := Nat.le_of_not_lt h1
+    have hgt : level < v := Nat.lt_of_le_of_ne h3 (Ne.symm h2)
+    rw [inst_at_gt hgt]
+    by_cases h4 : v = x + 1
+    · subst h4
       simp [subst_eq, inst_at_succ_of_le hs]
     · rw [subst_pred_of_gt_of_ne hgt h4, subst_ne h4, inst_at_gt hgt]
   --unbrief
@@ -419,9 +427,9 @@ variable {k : Arity} {level : Level} {s t x y : Var} {τ : Tuple k} {i : Fin k}
 --unhide
 
 @[simp] theorem unshift_shift
-  : (unshift (k := k) level) ∘ (shift (k := k) level) = id := by <proofstate>['k : Arity\nlevel : Level\n⊢ unshift level ∘ shift level = id']</proofstate>
-  --brief <proofstate>['k : Arity\nlevel : Level\n⊢ unshift level ∘ shift level = id']</proofstate>
-  funext tuple <proofstate>['case h\nk : Arity\nlevel : Level\ntuple : Tuple k\n⊢ (unshift level ∘ shift level) tuple = id tuple']</proofstate>
+  : (unshift (k := k) level) ∘ (shift (k := k) level) = id := by
+  --brief
+  funext tuple
   simp[unshift,shift,←Function.comp_assoc]
   --unbrief
 
@@ -432,17 +440,17 @@ variable {k : Arity} {level : Level} {s t x y : Var} {τ : Tuple k} {i : Fin k}
   : inst_at level t τ i = Var.inst_at t level (τ i) := rfl
 
 @[simp] theorem inst_at_shift
-  : inst_at level t (shift level τ) = τ := by <proofstate>['k : Arity\nlevel : Level\nt : Var\nτ : Tuple k\n⊢ inst_at level t (shift level τ) = τ']</proofstate>
-  --brief <proofstate>['k : Arity\nlevel : Level\nt : Var\nτ : Tuple k\n⊢ inst_at level t (shift level τ) = τ']</proofstate>
-  funext i <proofstate>['case h\nk : Arity\nlevel : Level\nt : Var\nτ : Tuple k\ni : Fin k\n⊢ inst_at level t (shift level τ) i = τ i']</proofstate>
+  : inst_at level t (shift level τ) = τ := by
+  --brief
+  funext i
   simp [shift, Var.inst_at_shift]
   --unbrief
 
 @[simp] theorem inst_at_subst (hs : level ≤ s) (hx : level ≤ x) :
-  (inst_at level t τ)[x↦s] = (τ[x+1↦s+1]).inst_at level (t[x↦s]) := by <proofstate>['k : Arity\nlevel : Level\ns t x : Var\nτ : Tuple k\nhs : level ≤ s\nhx : level ≤ x\n⊢ (inst_at level t τ)[x ↦ s] = inst_at level t[x ↦ s] τ[x + 1 ↦ s + 1]']</proofstate>
-  --brief <proofstate>['k : Arity\nlevel : Level\ns t x : Var\nτ : Tuple k\nhs : level ≤ s\nhx : level ≤ x\n⊢ (inst_at level t τ)[x ↦ s] = inst_at level t[x ↦ s] τ[x + 1 ↦ s + 1]']</proofstate>
-  funext i <proofstate>['case h\nk : Arity\nlevel : Level\ns t x : Var\nτ : Tuple k\nhs : level ≤ s\nhx : level ≤ x\ni : Fin k\n⊢ (inst_at level t τ)[x ↦ s] i = inst_at level t[x ↦ s] τ[x + 1 ↦ s + 1] i']</proofstate>
-  simp only [Tuple.subst, Tuple.inst_at, Function.comp] <proofstate>['case h\nk : Arity\nlevel : Level\ns t x : Var\nτ : Tuple k\nhs : level ≤ s\nhx : level ≤ x\ni : Fin k\n⊢ (t.inst_at level (τ i))[x ↦ s] = t[x ↦ s].inst_at level (τ i)[x + 1 ↦ s + 1]']</proofstate>
+  (inst_at level t τ)[x↦s] = (τ[x+1↦s+1]).inst_at level (t[x↦s]) := by
+  --brief
+  funext i
+  simp only [Tuple.subst, Tuple.inst_at, Function.comp]
   exact Var.subst_inst_at hs hx
   --unbrief
 ```
@@ -453,15 +461,15 @@ And last but not least:
 
 ```lean
 @[simp] theorem subst_subst (h₁ : x ≠ y) (h₂ : t ≠ x)
-  : τ[x↦s][y↦t] = τ[y↦t][x↦s[y↦t]] := by <proofstate>['k : Arity\ns t x y : Var\nτ : Tuple k\nh₁ : x ≠ y\nh₂ : t ≠ x\n⊢ τ[x ↦ s][y ↦ t] = τ[y ↦ t][x ↦ s[y ↦ t]]']</proofstate>
-  --brief <proofstate>['k : Arity\ns t x y : Var\nτ : Tuple k\nh₁ : x ≠ y\nh₂ : t ≠ x\n⊢ τ[x ↦ s][y ↦ t] = τ[y ↦ t][x ↦ s[y ↦ t]]']</proofstate>
+  : τ[x↦s][y↦t] = τ[y↦t][x↦s[y↦t]] := by
+  --brief
   simp[subst,h₁,h₂,funext_iff]
   --unbrief
 
-@[simp] theorem subst_id : τ[x↦x] = τ := by <proofstate>['k : Arity\nx : Var\nτ : Tuple k\n⊢ τ[x ↦ x] = τ']</proofstate>
-  --brief <proofstate>['k : Arity\nx : Var\nτ : Tuple k\n⊢ τ[x ↦ x] = τ']</proofstate>
-  simp[subst,funext_iff,Var.subst] <proofstate>['k : Arity\nx : Var\nτ : Tuple k\n⊢ ∀ (x_1 : Fin k), τ x_1 = x → x = τ x_1']</proofstate>
-  intro _ hi <proofstate>['k : Arity\nx : Var\nτ : Tuple k\nx✝ : Fin k\nhi : τ x✝ = x\n⊢ x = τ x✝']</proofstate>
+@[simp] theorem subst_id : τ[x↦x] = τ := by
+  --brief
+  simp[subst,funext_iff,Var.subst]
+  intro _ hi
   exact Eq.symm hi
   --unbrief
 ```
@@ -526,12 +534,12 @@ variable {S : Signature} {φ ψ : Formula S} {s x: Var} {k : Arity} {τ : Tuple 
 @[simp] theorem subst_and : (and φ ψ)[x↦s] = and φ[x↦s] ψ[x↦s] := rfl
 @[simp] theorem subst_all : (all φ)[x↦s] = all (φ[x+1↦s+1]) := rfl
 @[simp] theorem subst_rel : (rel r τ)[x↦s] = rel r (τ[x↦s]) := rfl
-@[simp] theorem subst_rel0 : (rel r₁ ![0])[0↦s] = rel r₁ ![s] := by <proofstate>['S : Signature\ns : Var\nr₁ : S 1\n⊢ (rel r₁ ![0])[0 ↦ s] = rel r₁ ![s]']</proofstate>
-  --brief <proofstate>['S : Signature\ns : Var\nr₁ : S 1\n⊢ (rel r₁ ![0])[0 ↦ s] = rel r₁ ![s]']</proofstate>
+@[simp] theorem subst_rel0 : (rel r₁ ![0])[0↦s] = rel r₁ ![s] := by
+  --brief
   simp[funext_iff]
   --unbrief
-@[simp] theorem subst_rel0' : (rel r₁) ![0][0↦s]  = rel r₁ ![s] := by <proofstate>['S : Signature\ns : Var\nr₁ : S 1\n⊢ rel r₁ ![0][0 ↦ s] = rel r₁ ![s]']</proofstate>
-  --brief <proofstate>['S : Signature\ns : Var\nr₁ : S 1\n⊢ rel r₁ ![0][0 ↦ s] = rel r₁ ![s]']</proofstate>
+@[simp] theorem subst_rel0' : (rel r₁) ![0][0↦s]  = rel r₁ ![s] := by
+  --brief
   simp[funext_iff]
   --unbrief
 
@@ -557,35 +565,35 @@ def Renamer.lift (f : Renamer) : Renamer
 section
 variable {f g : Renamer} {level : Level}
 --unhide
-@[simp] theorem Renamer.lift_id : lift id = id := by <proofstate>['⊢ lift id = id']</proofstate>
-  --brief <proofstate>['⊢ lift id = id']</proofstate>
-  funext i <proofstate>['case h\ni : Var\n⊢ lift id i = id i']</proofstate>
-  simp[lift] <proofstate>['case h\ni : Var\n⊢ (match i with\n    | 0 => 0\n    | Nat.succ n => n + 1) =\n    i']</proofstate>
+@[simp] theorem Renamer.lift_id : lift id = id := by
+  --brief
+  funext i
+  simp[lift]
   cases i <;> rfl
   --unbrief
 
-@[simp] theorem Renamer.lift_comp : lift (g ∘ f) = lift g ∘ lift f := by <proofstate>['f g : Renamer\n⊢ lift (g ∘ f) = g.lift ∘ f.lift']</proofstate>
-  --brief <proofstate>['f g : Renamer\n⊢ lift (g ∘ f) = g.lift ∘ f.lift']</proofstate>
-  funext i <proofstate>['case h\nf g : Renamer\ni : Var\n⊢ lift (g ∘ f) i = (g.lift ∘ f.lift) i']</proofstate>
-  simp[lift] <proofstate>['case h\nf g : Renamer\ni : Var\n⊢ (match i with\n    | 0 => 0\n    | Nat.succ n => g (f n) + 1) =\n    match\n      match i with\n      | 0 => 0\n      | Nat.succ n => f n + 1 with\n    | 0 => 0\n    | Nat.succ n => g n + 1']</proofstate>
+@[simp] theorem Renamer.lift_comp : lift (g ∘ f) = lift g ∘ lift f := by
+  --brief
+  funext i
+  simp[lift]
   cases i <;> rfl
   --unbrief
 
 @[simp] theorem Renamer.lift_shift
-  : lift f ∘ Var.shift 0 = Var.shift 0 ∘ f := by <proofstate>['f : Renamer\n⊢ f.lift ∘ Var.shift 0 = Var.shift 0 ∘ f']</proofstate>
-  --brief <proofstate>['f : Renamer\n⊢ f.lift ∘ Var.shift 0 = Var.shift 0 ∘ f']</proofstate>
-  funext i <proofstate>['case h\nf : Renamer\ni : Var\n⊢ (f.lift ∘ Var.shift 0) i = (Var.shift 0 ∘ f) i']</proofstate>
-  simp[lift] <proofstate>['case h\nf : Renamer\ni : Var\n⊢ (match Var.shift 0 i with\n    | 0 => 0\n    | Nat.succ n => f n + 1) =\n    Var.shift 0 (f i)']</proofstate>
+  : lift f ∘ Var.shift 0 = Var.shift 0 ∘ f := by
+  --brief
+  funext i
+  simp[lift]
   rfl
   --unbrief
 
 @[simp] theorem hlift : Renamer.lift (Var.shift level)
-                        = Var.shift (level + 1) := by <proofstate>['level : Level\n⊢ Renamer.lift (Var.shift level) = Var.shift (level + 1)']</proofstate>
-  --brief <proofstate>['level : Level\n⊢ Renamer.lift (Var.shift level) = Var.shift (level + 1)']</proofstate>
-    funext v <proofstate>['case h\nlevel : Level\nv : Var\n⊢ Renamer.lift (Var.shift level) v = Var.shift (level + 1) v']</proofstate>
-    cases v <proofstate>['case h.zero\nlevel : Level\n⊢ Renamer.lift (Var.shift level) Nat.zero = Var.shift (level + 1) Nat.zero', 'case h.succ\nlevel : Level\nn✝ : ℕ\n⊢ Renamer.lift (Var.shift level) n✝.succ = Var.shift (level + 1) n✝.succ']</proofstate>
+                        = Var.shift (level + 1) := by
+  --brief
+    funext v
+    cases v
     · simp [Renamer.lift, Var.shift]
-    · simp only [Renamer.lift, Var.shift, Nat.succ_lt_succ_iff] <proofstate>['case h.succ\nlevel : Level\nn✝ : ℕ\n⊢ (if n✝ < level then n✝ else n✝ + 1) + 1 = if n✝ < level then n✝.succ else n✝.succ + 1']</proofstate>
+    · simp only [Renamer.lift, Var.shift, Nat.succ_lt_succ_iff]
       split_ifs <;> rfl
   --unbrief
 
@@ -614,9 +622,9 @@ open Formula
 variable {S : Signature} {φ : Formula S} {f g : Renamer} {t : Var} {level : Level}
 --unhide
 
-@[simp] theorem rename_id : φ.rename id = φ := by <proofstate>['S : Signature\nφ : Formula S\n⊢ φ.rename id = φ']</proofstate>
-  --brief <proofstate>['S : Signature\nφ : Formula S\n⊢ φ.rename id = φ']</proofstate>
-  induction φ with <proofstate>['S : Signature\nφ : Formula S\n⊢ φ.rename id = φ']</proofstate>
+@[simp] theorem rename_id : φ.rename id = φ := by
+  --brief
+  induction φ with
   | bot => rfl
   | rel r t => simp [rename]
   | imp ψ₁ ψ₂ ih₁ ih₂ => simp [rename, ih₁, ih₂]
@@ -624,9 +632,9 @@ variable {S : Signature} {φ : Formula S} {f g : Renamer} {t : Var} {level : Lev
   --unbrief
 
 @[simp] theorem rename_comp
-  : (φ.rename f).rename g = φ.rename (g ∘ f) := by <proofstate>['S : Signature\nφ : Formula S\nf g : Renamer\n⊢ (φ.rename f).rename g = φ.rename (g ∘ f)']</proofstate>
-  --brief <proofstate>['S : Signature\nφ : Formula S\nf g : Renamer\n⊢ (φ.rename f).rename g = φ.rename (g ∘ f)']</proofstate>
-  induction φ generalizing f g with <proofstate>['S : Signature\nφ : Formula S\nf g : Renamer\n⊢ (φ.rename f).rename g = φ.rename (g ∘ f)']</proofstate>
+  : (φ.rename f).rename g = φ.rename (g ∘ f) := by
+  --brief
+  induction φ generalizing f g with
   | bot => rfl
   | rel r t => simp [rename, Function.comp_assoc]
   | imp ψ₁ ψ₂ ih₁ ih₂ => simp [rename, ih₁, ih₂]
@@ -635,17 +643,17 @@ variable {S : Signature} {φ : Formula S} {f g : Renamer} {t : Var} {level : Lev
 
 @[simp] theorem lift_inst_at  :
     Renamer.lift (Var.inst_at t level) =
-    Var.inst_at (t+1) (level+1) := by <proofstate>['t : Var\nlevel : Level\n⊢ Renamer.lift (t.inst_at level) = (t + 1).inst_at (level + 1)']</proofstate>
-  --brief <proofstate>['t : Var\nlevel : Level\n⊢ Renamer.lift (t.inst_at level) = (t + 1).inst_at (level + 1)']</proofstate>
-  funext v <proofstate>['case h\nt : Var\nlevel : Level\nv : Var\n⊢ Renamer.lift (t.inst_at level) v = (t + 1).inst_at (level + 1) v']</proofstate>
-  cases v with <proofstate>['case h\nt : Var\nlevel : Level\nv : Var\n⊢ Renamer.lift (t.inst_at level) v = (t + 1).inst_at (level + 1) v']</proofstate>
+    Var.inst_at (t+1) (level+1) := by
+  --brief
+  funext v
+  cases v with
   | zero => simp [Renamer.lift, Var.inst_at]
-  | succ n => <proofstate>['case h.succ\nt : Var\nlevel : Level\nn : ℕ\n⊢ Renamer.lift (t.inst_at level) n.succ = (t + 1).inst_at (level + 1) n.succ']</proofstate>
-     simp[Renamer.lift, Var.inst_at] <proofstate>['case h.succ\nt : Var\nlevel : Level\nn : ℕ\n⊢ (if n < level then n else if n = level then t else n - 1) + 1 =\n    if n < level then n + 1 else if n = level then t + 1 else n']</proofstate>
-     split_ifs <proofstate>['case pos\nt : Var\nlevel : Level\nn : ℕ\nh✝ : n < level\n⊢ n + 1 = n + 1', 'case pos\nt : Var\nlevel : Level\nn : ℕ\nh✝¹ : ¬n < level\nh✝ : n = level\n⊢ t + 1 = t + 1', 'case neg\nt : Var\nlevel : Level\nn : ℕ\nh✝¹ : ¬n < level\nh✝ : ¬n = level\n⊢ n - 1 + 1 = n']</proofstate>
+  | succ n =>
+     simp[Renamer.lift, Var.inst_at]
+     split_ifs
      · simp
      · simp
-     · apply Nat.succ_pred_eq_of_ne_zero <proofstate>['case neg.a\nt : Var\nlevel : Level\nn : ℕ\nh✝¹ : ¬n < level\nh✝ : ¬n = level\n⊢ n.sub 0 ≠ 0']</proofstate>
+     · apply Nat.succ_pred_eq_of_ne_zero
        aesop
   --unbrief
 
@@ -691,7 +699,7 @@ namespace Examples
 open Graph Formula
 
 example : (all (rel E ![0,1])).inst 10
-        = (all (rel E ![0,11])) := by <proofstate>['⊢ inst 10 (rel E ![0, 1]).all = (rel E ![0, 11]).all']</proofstate>
+        = (all (rel E ![0,11])) := by
   simp[inst,inst_at,Tuple.inst_at,funext_iff,Var.inst_at]
 
 --hide
@@ -717,25 +725,25 @@ variable {S : Signature} {φ ψ : Formula S} {s x y t : Var} {L : Level}
   : (all φ).inst_at t L = all (φ.inst_at (t+1) (L+1)) := rfl
 @[simp] theorem inst_at_rel {k : Arity} {r : S k} {τ : Tuple k}
   : (rel r τ).inst_at t L = rel r (τ.inst_at L t) := rfl
-@[simp] theorem subst_id : φ[x↦x] = φ := by <proofstate>['S : Signature\nφ : Formula S\nx : Var\n⊢ φ[x ↦ x] = φ']</proofstate>
-  --brief <proofstate>['S : Signature\nφ : Formula S\nx : Var\n⊢ φ[x ↦ x] = φ']</proofstate>
+@[simp] theorem subst_id : φ[x↦x] = φ := by
+  --brief
   induction φ generalizing x <;> simp[*]
   --unbrief
 
 theorem inst_at_subst (h₁ : L ≤ x) (h₂ : L ≤ s)
-  : (φ.inst_at t L)[x↦s] = φ[x+1↦s+1].inst_at t[x↦s] L := by <proofstate>['S : Signature\nφ : Formula S\ns x t : Var\nL : Level\nh₁ : L ≤ x\nh₂ : L ≤ s\n⊢ (inst_at t L φ)[x ↦ s] = inst_at t[x ↦ s] L φ[x + 1 ↦ s + 1]']</proofstate>
-  --brief <proofstate>['S : Signature\nφ : Formula S\ns x t : Var\nL : Level\nh₁ : L ≤ x\nh₂ : L ≤ s\n⊢ (inst_at t L φ)[x ↦ s] = inst_at t[x ↦ s] L φ[x + 1 ↦ s + 1]']</proofstate>
-  induction φ generalizing t s L x with <proofstate>['S : Signature\nφ : Formula S\ns x t : Var\nL : Level\nh₁ : L ≤ x\nh₂ : L ≤ s\n⊢ (inst_at t L φ)[x ↦ s] = inst_at t[x ↦ s] L φ[x + 1 ↦ s + 1]']</proofstate>
+  : (φ.inst_at t L)[x↦s] = φ[x+1↦s+1].inst_at t[x↦s] L := by
+  --brief
+  induction φ generalizing t s L x with
   | bot => rfl
   | rel t τ => simp[*]
   | imp f g ihf ihg => simp[*]
-  | all f ih => <proofstate>['case all\nS : Signature\nf : Formula S\nih : ∀ {s x t : Var} {L : Level}, L ≤ x → L ≤ s → (inst_at t L f)[x ↦ s] = inst_at t[x ↦ s] L f[x + 1 ↦ s + 1]\ns x t : Var\nL : Level\nh₁ : L ≤ x\nh₂ : L ≤ s\n⊢ (inst_at t L f.all)[x ↦ s] = inst_at t[x ↦ s] L f.all[x + 1 ↦ s + 1]']</proofstate>
+  | all f ih =>
       simp [ih (Nat.succ_le_succ h₁) (Nat.succ_le_succ h₂)]
   --unbrief
 
 theorem inst_subst {S : Signature} (φ : Formula S) (s x t : Var)
-  : (φ.inst t)[x↦s] = φ[x+1↦s+1].inst t[x↦s]  := by <proofstate>['S : Signature\nφ : Formula S\ns x t : Var\n⊢ (inst t φ)[x ↦ s] = inst t[x ↦ s] φ[x + 1 ↦ s + 1]']</proofstate>
-  --brief <proofstate>['S : Signature\nφ : Formula S\ns x t : Var\n⊢ (inst t φ)[x ↦ s] = inst t[x ↦ s] φ[x + 1 ↦ s + 1]']</proofstate>
+  : (φ.inst t)[x↦s] = φ[x+1↦s+1].inst t[x↦s]  := by
+  --brief
   exact inst_at_subst (Nat.zero_le x) (Nat.zero_le s)
   --unbrief
 ```
@@ -746,15 +754,15 @@ Most of these proofs are simple. Here's a slightly complicated one:
 
 ```lean
 @[simp] theorem subst_subst (h₁ : x ≠ y) (h₂ : t ≠ x)
-  : φ[x↦s][y↦t] = φ[y↦t][x↦s[y↦t]] := by <proofstate>['S : Signature\nφ : Formula S\ns x y t : Var\nh₁ : x ≠ y\nh₂ : t ≠ x\n⊢ φ[x ↦ s][y ↦ t] = φ[y ↦ t][x ↦ s[y ↦ t]]']</proofstate>
-  induction φ generalizing t s x y with <proofstate>['S : Signature\nφ : Formula S\ns x y t : Var\nh₁ : x ≠ y\nh₂ : t ≠ x\n⊢ φ[x ↦ s][y ↦ t] = φ[y ↦ t][x ↦ s[y ↦ t]]']</proofstate>
+  : φ[x↦s][y↦t] = φ[y↦t][x↦s[y↦t]] := by
+  induction φ generalizing t s x y with
   | bot => rfl
   | rel r τ => simp[subst, *]
   | imp f g ihf ihg => simp[subst, *]
-  | all f ih => <proofstate>['case all\nS : Signature\nf : Formula S\nih : ∀ {s x y t : Var}, x ≠ y → t ≠ x → f[x ↦ s][y ↦ t] = f[y ↦ t][x ↦ s[y ↦ t]]\ns x y t : Var\nh₁ : x ≠ y\nh₂ : t ≠ x\n⊢ f.all[x ↦ s][y ↦ t] = f.all[y ↦ t][x ↦ s[y ↦ t]]']</proofstate>
-    have := @ih (s+1) (x+1) (y+1) (t+1) <proofstate>['case all\nS : Signature\nf : Formula S\nih : ∀ {s x y t : Var}, x ≠ y → t ≠ x → f[x ↦ s][y ↦ t] = f[y ↦ t][x ↦ s[y ↦ t]]\ns x y t : Var\nh₁ : x ≠ y\nh₂ : t ≠ x\nthis : f[x + 1 ↦ s + 1][y + 1 ↦ t + 1] = f[y + 1 ↦ t + 1][x + 1 ↦ (s + 1)[y + 1 ↦ t + 1]]\n⊢ f.all[x ↦ s][y ↦ t] = f.all[y ↦ t][x ↦ s[y ↦ t]]']</proofstate>
-                ((add_ne_add_left 1).mpr h₁) <proofstate>['case all\nS : Signature\nf : Formula S\nih : ∀ {s x y t : Var}, x ≠ y → t ≠ x → f[x ↦ s][y ↦ t] = f[y ↦ t][x ↦ s[y ↦ t]]\ns x y t : Var\nh₁ : x ≠ y\nh₂ : t ≠ x\nthis : f[x + 1 ↦ s + 1][y + 1 ↦ t + 1] = f[y + 1 ↦ t + 1][x + 1 ↦ (s + 1)[y + 1 ↦ t + 1]]\n⊢ f.all[x ↦ s][y ↦ t] = f.all[y ↦ t][x ↦ s[y ↦ t]]']</proofstate>
-                ((add_ne_add_left 1).mpr h₂) <proofstate>['case all\nS : Signature\nf : Formula S\nih : ∀ {s x y t : Var}, x ≠ y → t ≠ x → f[x ↦ s][y ↦ t] = f[y ↦ t][x ↦ s[y ↦ t]]\ns x y t : Var\nh₁ : x ≠ y\nh₂ : t ≠ x\nthis : f[x + 1 ↦ s + 1][y + 1 ↦ t + 1] = f[y + 1 ↦ t + 1][x + 1 ↦ (s + 1)[y + 1 ↦ t + 1]]\n⊢ f.all[x ↦ s][y ↦ t] = f.all[y ↦ t][x ↦ s[y ↦ t]]']</proofstate>
+  | all f ih =>
+    have := @ih (s+1) (x+1) (y+1) (t+1)
+                ((add_ne_add_left 1).mpr h₁)
+                ((add_ne_add_left 1).mpr h₂)
     simp[this]
 ```
 
@@ -777,29 +785,29 @@ def shift {S : Signature} (φ : Formula S) := φ.rename (Var.shift 0)
 ```
  The interaction between instantiation and shift is a key property. 
 ```lean
-@[simp] theorem inst_shift : (φ.shift).inst x = φ := by <proofstate>['S : Signature\nφ : Formula S\nx : Var\n⊢ inst x φ.shift = φ']</proofstate>
-  --brief <proofstate>['S : Signature\nφ : Formula S\nx : Var\n⊢ inst x φ.shift = φ']</proofstate>
-  suffices h : ∀ (level : Level), (φ.rename (Var.shift level)).inst_at x level = φ from h 0 <proofstate>['S : Signature\nφ : Formula S\nx : Var\n⊢ ∀ (level : Level), inst_at x level (φ.rename (Var.shift level)) = φ']</proofstate>
-  induction φ generalizing x with <proofstate>['S : Signature\nφ : Formula S\nx : Var\n⊢ ∀ (level : Level), inst_at x level (φ.rename (Var.shift level)) = φ']</proofstate>
+@[simp] theorem inst_shift : (φ.shift).inst x = φ := by
+  --brief
+  suffices h : ∀ (level : Level), (φ.rename (Var.shift level)).inst_at x level = φ from h 0
+  induction φ generalizing x with
   | bot => intros; rfl
-  | rel r τ => <proofstate>['case rel\nS : Signature\nk✝ : Arity\nr : S k✝\nτ : Tuple k✝\nx : Var\n⊢ ∀ (level : Level), inst_at x level ((rel r τ).rename (Var.shift level)) = rel r τ']</proofstate>
-    intros <proofstate>['case rel\nS : Signature\nk✝ : Arity\nr : S k✝\nτ : Tuple k✝\nx : Var\nlevel✝ : Level\n⊢ inst_at x level✝ ((rel r τ).rename (Var.shift level✝)) = rel r τ']</proofstate>
-    simp [rename] <proofstate>['case rel\nS : Signature\nk✝ : Arity\nr : S k✝\nτ : Tuple k✝\nx : Var\nlevel✝ : Level\n⊢ Tuple.inst_at level✝ x (Var.shift level✝ ∘ τ) = τ']</proofstate>
+  | rel r τ =>
+    intros
+    simp [rename]
     exact Tuple.inst_at_shift
   | imp f g ihf ihg => simp [rename, ihf, ihg]
   | all f ih => simp [rename, ih]
   --unbrief
 
 theorem inst_at_eq_rename
-  : φ.inst_at t L = φ.rename (Var.inst_at t L) := by <proofstate>['S : Signature\nφ : Formula S\nt : Var\nL : Level\n⊢ inst_at t L φ = φ.rename (t.inst_at L)']</proofstate>
-  --brief <proofstate>['S : Signature\nφ : Formula S\nt : Var\nL : Level\n⊢ inst_at t L φ = φ.rename (t.inst_at L)']</proofstate>
-  induction φ generalizing t L with <proofstate>['S : Signature\nφ : Formula S\nt : Var\nL : Level\n⊢ inst_at t L φ = φ.rename (t.inst_at L)']</proofstate>
+  : φ.inst_at t L = φ.rename (Var.inst_at t L) := by
+  --brief
+  induction φ generalizing t L with
   | bot => rfl
   | rel r τ => simp[Formula.inst_at, Formula.rename, Tuple.inst_at]
   | imp g h ihg ihh => simp[Formula.inst_at, Formula.rename, ihg, ihh]
-  | all g ih => <proofstate>['case all\nS : Signature\ng : Formula S\nih : ∀ {t : Var} {L : Level}, inst_at t L g = g.rename (t.inst_at L)\nt : Var\nL : Level\n⊢ inst_at t L g.all = g.all.rename (t.inst_at L)']</proofstate>
-    simp only [Formula.inst_at, Formula.rename] <proofstate>['case all\nS : Signature\ng : Formula S\nih : ∀ {t : Var} {L : Level}, inst_at t L g = g.rename (t.inst_at L)\nt : Var\nL : Level\n⊢ (inst_at (t + 1) (L + 1) g).all = (g.rename (Renamer.lift (t.inst_at L))).all']</proofstate>
-    simp[lift_inst_at] <proofstate>['case all\nS : Signature\ng : Formula S\nih : ∀ {t : Var} {L : Level}, inst_at t L g = g.rename (t.inst_at L)\nt : Var\nL : Level\n⊢ inst_at (t + 1) (L + 1) g = g.rename ((t + 1).inst_at (L + 1))']</proofstate>
+  | all g ih =>
+    simp only [Formula.inst_at, Formula.rename]
+    simp[lift_inst_at]
     exact ih
   --unbrief
 ```
@@ -843,9 +851,9 @@ open Formula Provable
  Now we can do proofs like this one showing `(∀ x, P x) → (∀ x. Px)`. 
 ```lean
 example {S : Signature} {P : S 1}
-  : ∅ ⊢ imp (all (rel P ![0])) (all (rel P ![0])) := by <proofstate>['S : Signature\nP : S 1\n⊢ ∅ ⊢ (rel P ![0]).all.imp (rel P ![0]).all']</proofstate>
-  apply im_intro <proofstate>['case a\nS : Signature\nP : S 1\n⊢ ∅ ∪ {(rel P ![0]).all} ⊢ (rel P ![0]).all']</proofstate>
-  apply ax <proofstate>['case a.h\nS : Signature\nP : S 1\n⊢ (rel P ![0]).all ∈ ∅ ∪ {(rel P ![0]).all}']</proofstate>
+  : ∅ ⊢ imp (all (rel P ![0])) (all (rel P ![0])) := by
+  apply im_intro
+  apply ax
   simp
 ```
 
@@ -858,13 +866,13 @@ Here we show
 to test `all_elim` 
 ```lean
 example {S : Signature} {P : S 1}
-  : ∅ ⊢ imp (all (rel P ![0])) (rel P ![5]) := by <proofstate>['S : Signature\nP : S 1\n⊢ ∅ ⊢ (rel P ![0]).all.imp (rel P ![5])']</proofstate>
-  apply im_intro <proofstate>['case a\nS : Signature\nP : S 1\n⊢ ∅ ∪ {(rel P ![0]).all} ⊢ rel P ![5]']</proofstate>
-  have : rel P ![5] = (rel P ![0]).inst 5 := by <proofstate>['S : Signature\nP : S 1\n⊢ rel P ![5] = inst 5 (rel P ![0])']</proofstate>
+  : ∅ ⊢ imp (all (rel P ![0])) (rel P ![5]) := by
+  apply im_intro
+  have : rel P ![5] = (rel P ![0]).inst 5 := by
     simp[Tuple.inst_at,funext_iff]
-  rw[this] <proofstate>['case a\nS : Signature\nP : S 1\nthis : rel P ![5] = inst 5 (rel P ![0])\n⊢ ∅ ∪ {(rel P ![0]).all} ⊢ inst 5 (rel P ![0])']</proofstate>
-  apply all_elim <proofstate>['case a.a\nS : Signature\nP : S 1\nthis : rel P ![5] = inst 5 (rel P ![0])\n⊢ ∅ ∪ {(rel P ![0]).all} ⊢ (rel P ![0]).all']</proofstate>
-  apply ax <proofstate>['case a.a.h\nS : Signature\nP : S 1\nthis : rel P ![5] = inst 5 (rel P ![0])\n⊢ (rel P ![0]).all ∈ ∅ ∪ {(rel P ![0]).all}']</proofstate>
+  rw[this]
+  apply all_elim
+  apply ax
   simp
 
 --hide
@@ -885,7 +893,7 @@ namespace Examples
   open Formula Provable
 
   example {S : Signature} {P Q : S 1}
-    : {all (all (rel P ![0]))} ⊢ rel P ![3] := by <proofstate>['S : Signature\nP Q : S 1\n⊢ {(rel P ![0]).all.all} ⊢ rel P ![3]']</proofstate>
+    : {all (all (rel P ![0]))} ⊢ rel P ![3] := by
     sorry
 
 end Examples
@@ -980,15 +988,15 @@ def Cycle (n : ℕ) : Model Graph (Fin n) := ⟨
 ```
  The a cycle with one node has one (and only one) self loop 
 ```lean
-example : ¬models (Cycle 1) Graph.no_self_loops := by <proofstate>['⊢ ¬models (Cycle 1) no_self_loops']</proofstate>
-  intro h <proofstate>['h : models (Cycle 1) no_self_loops\n⊢ False']</proofstate>
-  have := h (fun _ => 0) <proofstate>['h : models (Cycle 1) no_self_loops\nthis : satisfies (Cycle 1) (fun x ↦ 0) no_self_loops\n⊢ False']</proofstate>
+example : ¬models (Cycle 1) Graph.no_self_loops := by
+  intro h
+  have := h (fun _ => 0)
   simp[no_self_loops,Formula.not,satisfies,Cycle] at this
 ```
  While a cycle with two nodes does not: 
 ```lean
-example : models (Cycle 2) Graph.no_self_loops := by <proofstate>['⊢ models (Cycle 2) no_self_loops']</proofstate>
-  intro A v h <proofstate>['A : Assignment (Fin 2)\nv : Fin 2\nh : satisfies (Cycle 2) (update A v) (Formula.rel E ![0, 0])\n⊢ satisfies (Cycle 2) (update A v) Formula.bot']</proofstate>
+example : models (Cycle 2) Graph.no_self_loops := by
+  intro A v h
   fin_cases v <;> simp_all[satisfies,Cycle,update]
 
 --hide
@@ -1026,8 +1034,8 @@ open Graph Formula
 --unhide
 
 example {S : Signature} {P : S 1}
-  : ∅ ⊨ imp (rel P ![0]) (rel P ![0]) := by <proofstate>['S : Signature\nP : S 1\n⊢ ∅ ⊨ (rel P ![0]).imp (rel P ![0])']</proofstate>
-  intro β M A h1 h2 <proofstate>['S : Signature\nP : S 1\nβ : Type\nM : Model S β\nA : Assignment β\nh1 : ∀ ψ ∈ ∅, satisfies M A ψ\nh2 : satisfies M A (rel P ![0])\n⊢ satisfies M A (rel P ![0])']</proofstate>
+  : ∅ ⊨ imp (rel P ![0]) (rel P ![0]) := by
+  intro β M A h1 h2
   exact h2
 
 --hide
@@ -1055,41 +1063,41 @@ variable {α : Type u} {S : Signature} {Γ : Context S} {M : Model S α}
          {t : Var} {level : Level}
 --unhide
 
-theorem update_comp_lift : update a x ∘ f.lift = update (a ∘ f) x := by <proofstate>['α : Type u\na : Assignment α\nx : α\nf : Renamer\n⊢ update a x ∘ f.lift = update (a ∘ f) x']</proofstate>
-  --brief <proofstate>['α : Type u\na : Assignment α\nx : α\nf : Renamer\n⊢ update a x ∘ f.lift = update (a ∘ f) x']</proofstate>
-  funext j; cases j with <proofstate>['case h\nα : Type u\na : Assignment α\nx : α\nf : Renamer\nj : Var\n⊢ (update a x ∘ f.lift) j = update (a ∘ f) x j']</proofstate>
+theorem update_comp_lift : update a x ∘ f.lift = update (a ∘ f) x := by
+  --brief
+  funext j; cases j with
   | zero => simp [update, Renamer.lift]
   | succ n => simp [Function.comp, update, Renamer.lift]
   --unbrief
 
 theorem satisfies_rename : satisfies M a (φ.rename f) ↔
-                           satisfies M (a ∘ f) φ := by <proofstate>['α : Type u\nS : Signature\nM : Model S α\nφ : Formula S\na : Assignment α\nf : Renamer\n⊢ satisfies M a (φ.rename f) ↔ satisfies M (a ∘ f) φ']</proofstate>
-  --brief <proofstate>['α : Type u\nS : Signature\nM : Model S α\nφ : Formula S\na : Assignment α\nf : Renamer\n⊢ satisfies M a (φ.rename f) ↔ satisfies M (a ∘ f) φ']</proofstate>
-  induction φ generalizing a f with <proofstate>['α : Type u\nS : Signature\nM : Model S α\nφ : Formula S\na : Assignment α\nf : Renamer\n⊢ satisfies M a (φ.rename f) ↔ satisfies M (a ∘ f) φ']</proofstate>
+                           satisfies M (a ∘ f) φ := by
+  --brief
+  induction φ generalizing a f with
   | bot => simp [satisfies, Formula.rename]
   | rel r t => simp [satisfies, Function.comp_assoc, Formula.rename]
   | imp g h ihg ihh => simp [satisfies, ihg, ihh, Formula.rename]
-  | all g ih => <proofstate>['case all\nα : Type u\nS : Signature\nM : Model S α\ng : Formula S\nih : ∀ {a : Assignment α} {f : Renamer}, satisfies M a (g.rename f) ↔ satisfies M (a ∘ f) g\na : Assignment α\nf : Renamer\n⊢ satisfies M a (g.all.rename f) ↔ satisfies M (a ∘ f) g.all']</proofstate>
-    simp only [satisfies, Formula.rename] <proofstate>['case all\nα : Type u\nS : Signature\nM : Model S α\ng : Formula S\nih : ∀ {a : Assignment α} {f : Renamer}, satisfies M a (g.rename f) ↔ satisfies M (a ∘ f) g\na : Assignment α\nf : Renamer\n⊢ (∀ (x : α), satisfies M (update a x) (g.rename f.lift)) ↔ ∀ (x : α), satisfies M (update (a ∘ f) x) g']</proofstate>
-    constructor <proofstate>['case all.mp\nα : Type u\nS : Signature\nM : Model S α\ng : Formula S\nih : ∀ {a : Assignment α} {f : Renamer}, satisfies M a (g.rename f) ↔ satisfies M (a ∘ f) g\na : Assignment α\nf : Renamer\n⊢ (∀ (x : α), satisfies M (update a x) (g.rename f.lift)) → ∀ (x : α), satisfies M (update (a ∘ f) x) g', 'case all.mpr\nα : Type u\nS : Signature\nM : Model S α\ng : Formula S\nih : ∀ {a : Assignment α} {f : Renamer}, satisfies M a (g.rename f) ↔ satisfies M (a ∘ f) g\na : Assignment α\nf : Renamer\n⊢ (∀ (x : α), satisfies M (update (a ∘ f) x) g) → ∀ (x : α), satisfies M (update a x) (g.rename f.lift)']</proofstate>
-    · intro h x <proofstate>['case all.mp\nα : Type u\nS : Signature\nM : Model S α\ng : Formula S\nih : ∀ {a : Assignment α} {f : Renamer}, satisfies M a (g.rename f) ↔ satisfies M (a ∘ f) g\na : Assignment α\nf : Renamer\nh : ∀ (x : α), satisfies M (update a x) (g.rename f.lift)\nx : α\n⊢ satisfies M (update (a ∘ f) x) g']</proofstate>
-      have := (@ih (update a x) f.lift).mp (h x); <proofstate>['case all.mp\nα : Type u\nS : Signature\nM : Model S α\ng : Formula S\nih : ∀ {a : Assignment α} {f : Renamer}, satisfies M a (g.rename f) ↔ satisfies M (a ∘ f) g\na : Assignment α\nf : Renamer\nh : ∀ (x : α), satisfies M (update a x) (g.rename f.lift)\nx : α\nthis : satisfies M (update a x ∘ f.lift) g\n⊢ satisfies M (update (a ∘ f) x) g']</proofstate>
+  | all g ih =>
+    simp only [satisfies, Formula.rename]
+    constructor
+    · intro h x
+      have := (@ih (update a x) f.lift).mp (h x);
       rwa [update_comp_lift] at this
-    · intro h x <proofstate>['case all.mpr\nα : Type u\nS : Signature\nM : Model S α\ng : Formula S\nih : ∀ {a : Assignment α} {f : Renamer}, satisfies M a (g.rename f) ↔ satisfies M (a ∘ f) g\na : Assignment α\nf : Renamer\nh : ∀ (x : α), satisfies M (update (a ∘ f) x) g\nx : α\n⊢ satisfies M (update a x) (g.rename f.lift)']</proofstate>
-      apply (@ih (update a x) f.lift).mpr <proofstate>['case all.mpr\nα : Type u\nS : Signature\nM : Model S α\ng : Formula S\nih : ∀ {a : Assignment α} {f : Renamer}, satisfies M a (g.rename f) ↔ satisfies M (a ∘ f) g\na : Assignment α\nf : Renamer\nh : ∀ (x : α), satisfies M (update (a ∘ f) x) g\nx : α\n⊢ satisfies M (update a x ∘ f.lift) g']</proofstate>
-      rw [update_comp_lift] <proofstate>['case all.mpr\nα : Type u\nS : Signature\nM : Model S α\ng : Formula S\nih : ∀ {a : Assignment α} {f : Renamer}, satisfies M a (g.rename f) ↔ satisfies M (a ∘ f) g\na : Assignment α\nf : Renamer\nh : ∀ (x : α), satisfies M (update (a ∘ f) x) g\nx : α\n⊢ satisfies M (update (a ∘ f) x) g']</proofstate>
+    · intro h x
+      apply (@ih (update a x) f.lift).mpr
+      rw [update_comp_lift]
       exact h x
   --unbrief
 
 theorem inst_assign_comp : a ∘ Var.inst_at t level =
-                           inst_assign a t level := by <proofstate>['α : Type u\na : Assignment α\nt : Var\nlevel : Level\n⊢ a ∘ t.inst_at level = inst_assign a t level']</proofstate>
-  --brief <proofstate>['α : Type u\na : Assignment α\nt : Var\nlevel : Level\n⊢ a ∘ t.inst_at level = inst_assign a t level']</proofstate>
+                           inst_assign a t level := by
+  --brief
   funext j; simp only [Function.comp, Var.inst_at, inst_assign]; split_ifs <;> rfl
   --unbrief
 
 theorem satisfies_inst_at : satisfies M a (φ.inst_at t level) ↔
-                            satisfies M (inst_assign a t level) φ := by <proofstate>['α : Type u\nS : Signature\nM : Model S α\nφ : Formula S\na : Assignment α\nt : Var\nlevel : Level\n⊢ satisfies M a (Formula.inst_at t level φ) ↔ satisfies M (inst_assign a t level) φ']</proofstate>
-  --brief <proofstate>['α : Type u\nS : Signature\nM : Model S α\nφ : Formula S\na : Assignment α\nt : Var\nlevel : Level\n⊢ satisfies M a (Formula.inst_at t level φ) ↔ satisfies M (inst_assign a t level) φ']</proofstate>
+                            satisfies M (inst_assign a t level) φ := by
+  --brief
   rw [Formula.inst_at_eq_rename, satisfies_rename, inst_assign_comp]
   --unbrief
 ```
@@ -1101,18 +1109,18 @@ Soundness means that everything provable is also true: `Γ ⊢ φ → Γ ⊨ φ`
 We prove soundness for each possible way the proof `Γ ⊢ φ` might end.
 
 ```lean
-theorem sound_ax (h : φ ∈ Γ) : Γ ⊨ φ := by <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nh : φ ∈ Γ\n⊢ Γ ⊨ φ']</proofstate>
-  intro α M a hψ <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nh : φ ∈ Γ\nα : Type\nM : Model S α\na : Assignment α\nhψ : ∀ ψ ∈ Γ, satisfies M a ψ\n⊢ satisfies M a φ']</proofstate>
+theorem sound_ax (h : φ ∈ Γ) : Γ ⊨ φ := by
+  intro α M a hψ
   exact hψ φ h
 
-theorem sound_bot_elim (h : Γ ⊨ Formula.bot) : Γ ⊨ φ := by <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nh : Γ ⊨ Formula.bot\n⊢ Γ ⊨ φ']</proofstate>
-  intro α M a hΓ <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nh : Γ ⊨ Formula.bot\nα : Type\nM : Model S α\na : Assignment α\nhΓ : ∀ ψ ∈ Γ, satisfies M a ψ\n⊢ satisfies M a φ']</proofstate>
+theorem sound_bot_elim (h : Γ ⊨ Formula.bot) : Γ ⊨ φ := by
+  intro α M a hΓ
   exact absurd (h M a hΓ) (by simp [satisfies])
 
-theorem sound_im_intro (h : Γ ∪ {φ} ⊨ ψ) : Γ ⊨ Formula.imp φ ψ := by <proofstate>['S : Signature\nΓ : Context S\nφ ψ : Formula S\nh : Γ ∪ {φ} ⊨ ψ\n⊢ Γ ⊨ φ.imp ψ']</proofstate>
-  intro α M a hΓ hφ <proofstate>['S : Signature\nΓ : Context S\nφ ψ : Formula S\nh : Γ ∪ {φ} ⊨ ψ\nα : Type\nM : Model S α\na : Assignment α\nhΓ : ∀ ψ ∈ Γ, satisfies M a ψ\nhφ : satisfies M a φ\n⊢ satisfies M a ψ']</proofstate>
-  exact h M a (fun ω hω => by <proofstate>['S : Signature\nΓ : Context S\nφ ψ : Formula S\nh : Γ ∪ {φ} ⊨ ψ\nα : Type\nM : Model S α\na : Assignment α\nhΓ : ∀ ψ ∈ Γ, satisfies M a ψ\nhφ : satisfies M a φ\nω : Formula S\nhω : ω ∈ Γ ∪ {φ}\n⊢ satisfies M a ω']</proofstate>
-    cases hω with <proofstate>['S : Signature\nΓ : Context S\nφ ψ : Formula S\nh : Γ ∪ {φ} ⊨ ψ\nα : Type\nM : Model S α\na : Assignment α\nhΓ : ∀ ψ ∈ Γ, satisfies M a ψ\nhφ : satisfies M a φ\nω : Formula S\nhω : ω ∈ Γ ∪ {φ}\n⊢ satisfies M a ω']</proofstate>
+theorem sound_im_intro (h : Γ ∪ {φ} ⊨ ψ) : Γ ⊨ Formula.imp φ ψ := by
+  intro α M a hΓ hφ
+  exact h M a (fun ω hω => by
+    cases hω with
     | inl h1 => exact hΓ ω h1
     | inr h1 => simp at h1; rw [h1]; exact hφ)
 ```
@@ -1121,15 +1129,15 @@ Soundness Continued
 ===
 
 ```lean
-theorem sound_im_elim (h₁ : Γ ⊨ Formula.imp φ ψ) (h₂ : Γ ⊨ φ) : Γ ⊨ ψ := by <proofstate>['S : Signature\nΓ : Context S\nφ ψ : Formula S\nh₁ : Γ ⊨ φ.imp ψ\nh₂ : Γ ⊨ φ\n⊢ Γ ⊨ ψ']</proofstate>
-  intro α M a hΓ <proofstate>['S : Signature\nΓ : Context S\nφ ψ : Formula S\nh₁ : Γ ⊨ φ.imp ψ\nh₂ : Γ ⊨ φ\nα : Type\nM : Model S α\na : Assignment α\nhΓ : ∀ ψ ∈ Γ, satisfies M a ψ\n⊢ satisfies M a ψ']</proofstate>
+theorem sound_im_elim (h₁ : Γ ⊨ Formula.imp φ ψ) (h₂ : Γ ⊨ φ) : Γ ⊨ ψ := by
+  intro α M a hΓ
   exact h₁ M a hΓ (h₂ M a hΓ)
 
-theorem sound_all_intro (h : Formula.shift '' Γ ⊨ φ) : Γ ⊨ Formula.all φ := by <proofstate>["S : Signature\nΓ : Context S\nφ : Formula S\nh : Formula.shift '' Γ ⊨ φ\n⊢ Γ ⊨ φ.all"]</proofstate>
-  intro α M a hΓ x <proofstate>["S : Signature\nΓ : Context S\nφ : Formula S\nh : Formula.shift '' Γ ⊨ φ\nα : Type\nM : Model S α\na : Assignment α\nhΓ : ∀ ψ ∈ Γ, satisfies M a ψ\nx : α\n⊢ satisfies M (update a x) φ"]</proofstate>
-  exact h M (update a x) (fun χ hχ => by <proofstate>["S : Signature\nΓ : Context S\nφ : Formula S\nh : Formula.shift '' Γ ⊨ φ\nα : Type\nM : Model S α\na : Assignment α\nhΓ : ∀ ψ ∈ Γ, satisfies M a ψ\nx : α\nχ : Formula S\nhχ : χ ∈ Formula.shift '' Γ\n⊢ satisfies M (update a x) χ"]</proofstate>
-    obtain ⟨ψ, hψ, rfl⟩ := hχ <proofstate>["S : Signature\nΓ : Context S\nφ : Formula S\nh : Formula.shift '' Γ ⊨ φ\nα : Type\nM : Model S α\na : Assignment α\nhΓ : ∀ ψ ∈ Γ, satisfies M a ψ\nx : α\nψ : Formula S\nhψ : ψ ∈ Γ\n⊢ satisfies M (update a x) ψ.shift"]</proofstate>
-    rw [show ψ.shift = ψ.rename (Var.shift 0) from rfl, satisfies_rename] <proofstate>["S : Signature\nΓ : Context S\nφ : Formula S\nh : Formula.shift '' Γ ⊨ φ\nα : Type\nM : Model S α\na : Assignment α\nhΓ : ∀ ψ ∈ Γ, satisfies M a ψ\nx : α\nψ : Formula S\nhψ : ψ ∈ Γ\n⊢ satisfies M (update a x ∘ Var.shift 0) ψ"]</proofstate>
+theorem sound_all_intro (h : Formula.shift '' Γ ⊨ φ) : Γ ⊨ Formula.all φ := by
+  intro α M a hΓ x
+  exact h M (update a x) (fun χ hχ => by
+    obtain ⟨ψ, hψ, rfl⟩ := hχ
+    rw [show ψ.shift = ψ.rename (Var.shift 0) from rfl, satisfies_rename]
     exact hΓ ψ hψ)
 ```
 
@@ -1137,18 +1145,18 @@ Soundess Continued
 ===
 
 ```lean
-theorem sound_all_elim (h : Γ ⊨ Formula.all φ) : Γ ⊨ φ.inst t := by <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nt : Var\nh : Γ ⊨ φ.all\n⊢ Γ ⊨ Formula.inst t φ']</proofstate>
-  intro α M a hψ <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nt : Var\nh : Γ ⊨ φ.all\nα : Type\nM : Model S α\na : Assignment α\nhψ : ∀ ψ ∈ Γ, satisfies M a ψ\n⊢ satisfies M a (Formula.inst t φ)']</proofstate>
-  rw [Formula.inst_eq, satisfies_inst_at] <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nt : Var\nh : Γ ⊨ φ.all\nα : Type\nM : Model S α\na : Assignment α\nhψ : ∀ ψ ∈ Γ, satisfies M a ψ\n⊢ satisfies M (inst_assign a t 0) φ']</proofstate>
-  have : inst_assign a t 0 = update a (a t) := <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nt : Var\nh : Γ ⊨ φ.all\nα : Type\nM : Model S α\na : Assignment α\nhψ : ∀ ψ ∈ Γ, satisfies M a ψ\nthis : inst_assign a t 0 = update a (a t)\n⊢ satisfies M (inst_assign a t 0) φ']</proofstate>
+theorem sound_all_elim (h : Γ ⊨ Formula.all φ) : Γ ⊨ φ.inst t := by
+  intro α M a hψ
+  rw [Formula.inst_eq, satisfies_inst_at]
+  have : inst_assign a t 0 = update a (a t) :=
     funext fun j => by simp [inst_assign, update]
-  rw [this] <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nt : Var\nh : Γ ⊨ φ.all\nα : Type\nM : Model S α\na : Assignment α\nhψ : ∀ ψ ∈ Γ, satisfies M a ψ\nthis : inst_assign a t 0 = update a (a t)\n⊢ satisfies M (update a (a t)) φ']</proofstate>
+  rw [this]
   exact h M a hψ (a t)
 
-theorem sound_em : Γ ⊨ Formula.or (Formula.not φ) φ:= by <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\n⊢ Γ ⊨ φ.not.or φ']</proofstate>
-  intro  α M a hψ h1 <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nα : Type\nM : Model S α\na : Assignment α\nhψ : ∀ ψ ∈ Γ, satisfies M a ψ\nh1 : satisfies M a φ.not.not\n⊢ satisfies M a φ']</proofstate>
-  unfold Formula.not at h1 <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nα : Type\nM : Model S α\na : Assignment α\nhψ : ∀ ψ ∈ Γ, satisfies M a ψ\nh1 : satisfies M a ((φ.imp Formula.bot).imp Formula.bot)\n⊢ satisfies M a φ']</proofstate>
-  simp[satisfies] at h1 <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nα : Type\nM : Model S α\na : Assignment α\nhψ : ∀ ψ ∈ Γ, satisfies M a ψ\nh1 : satisfies M a φ\n⊢ satisfies M a φ']</proofstate>
+theorem sound_em : Γ ⊨ Formula.or (Formula.not φ) φ:= by
+  intro  α M a hψ h1
+  unfold Formula.not at h1
+  simp[satisfies] at h1
   exact h1
 ```
 
@@ -1158,9 +1166,9 @@ And now the main result:
 
 ```lean
 open Provable Formula in
-theorem sound : Γ ⊢ φ → Γ ⊨ φ := by <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\n⊢ Γ ⊢ φ → Γ ⊨ φ']</proofstate>
-  intro h <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nh : Γ ⊢ φ\n⊢ Γ ⊨ φ']</proofstate>
-  induction h with <proofstate>['S : Signature\nΓ : Context S\nφ : Formula S\nh : Γ ⊢ φ\n⊢ Γ ⊨ φ']</proofstate>
+theorem sound : Γ ⊢ φ → Γ ⊨ φ := by
+  intro h
+  induction h with
   | ax h                 => exact sound_ax h
   | bot_elim _ ih        => exact sound_bot_elim ih
   | im_intro _ ih        => exact sound_im_intro ih
