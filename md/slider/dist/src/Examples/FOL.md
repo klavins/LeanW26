@@ -3,6 +3,24 @@ Embedding First Order Logic
 ===
 
 
+Under Construction!
+===
+
+<img src='img/construction.png' class='img-up-right' width=20%></img>
+
+These slides are a first pass at describing how to embed<br>
+first order logic in Lean, but present the code in a<br>
+sub-optimal way. In particular, definitions and theorems about<br>
+substitution are not needed for soundness, but are useful for<br>
+completeness.
+
+Eventually I will refactor this slide deck to omit that material.
+
+In the meantime, a clean presentation of the the code can be found<br>
+at [https://github.com/klavins/LeanFOL/tree/main/FOL/V2](https://github.com/klavins/LeanFOL/tree/main/FOL/V2).
+
+
+
 Embedding First Order Logic
 ===
 In this slide deck we embed First Order Logic into Lean by defining:
