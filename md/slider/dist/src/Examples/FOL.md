@@ -17,7 +17,7 @@ In this slide deck we embed First Order Logic into Lean by defining:
 
 - A proof of **soundness**: `Γ ⊢ φ → Γ ⊨ φ`
 
-- A *partial* proof of **completness**: `Γ ⊢ φ → Γ ⊨ φ`
+- A *partial* proof of **completness**: `Γ ⊨ φ → Γ ⊢ φ`
 
 Functions are not defined directly, but are simulated using predicates.
 
@@ -209,6 +209,7 @@ inductive Nats : Signature
   | is_sum    : Nats 3
   | is_prod   : Nats 3
   | le        : Nats 2
+  | eq        : Nats 2
   deriving Repr
 
 open Nats
@@ -1189,9 +1190,11 @@ This theorem is more complex than soundness and at this point I have it only par
 Incompleteness
 ===
 Completeness is not to be confused with incompletness. Gödel showed the remarkable result that
-> There exists `φ` such that `models ℕ φ` but `PA ⊬ φ` and `PA ⊬ ¬φ`
+```
+∃ φ : Formula Nats, ¬(PA ⊢ φ) ∧ ¬(PA ⊢ Formula.not φ)
+```
 
-where `PA` is the set of *Peano Axioms*:
+`PA` is the set of *Peano Axioms*:
 ```lean
 1. ∀x, S(x) ≠ 0
 2. ∀x ∀y, S(x) = S(y) → x = y
@@ -1199,10 +1202,15 @@ where `PA` is the set of *Peano Axioms*:
 4. ∀x ∀y, x + S(y) = S(x + y)
 5. ∀x, x × 0 = 0
 6. ∀x ∀y, x × S(y) = (x × y) + x
-7. (φ(0) ∧ ∀x, φ(x) → φ(S(x))) → ∀x, φ(x)
+7. ∀ φ : Formula Nats, (φ(0) ∧ ∀x, φ(x) → φ(S(x))) → ∀x, φ(x)
 ```
 
-The GIT was proved by `Gödel` in 1931.
+GIT was proved by `Gödel` in 1931.
+
+GIT appears to have been formalized [here](https://github.com/FormalizedFormalLogic).
+
+And a generalization, proved by Lawvere, is formalized in Agda [here](https://unimath.github.io/agda-unimath/foundation.lawveres-fixed-point-theorem.html).
+
 
 
 Future Work
