@@ -197,7 +197,7 @@ end Formula
 Examples
 ===
 
-Two Formulas over `Graph` signature is: 
+Example formulas over the `Graph` signature: 
 ```lean
 def Graph.no_self_loops : Formula Graph :=
   all (not (rel E ![0,0]))
@@ -205,7 +205,7 @@ def Graph.no_self_loops : Formula Graph :=
 def Graph.completely_connected : Formula Graph :=
   all (all (rel E ![0,1]))
 ```
- A formula over `Nats` is 
+ An example formula over `Nats`: 
 ```lean
 def Nats.one_plus_one := (Formula.and (rel is_zero ![0])
                          (Formula.and (rel is_succ ![0,1])
@@ -249,18 +249,20 @@ example : (all (not (rel E ![0,1]))).rename (fun _ => 100)
   · simp[Renamer.lift]
   · simp[Renamer.lift]
 ```
+ Note that when appearing inside a sigle quantifer, the free variable `100` is refered to as `101` under Debruijn indexing. 
 
 Shifting
 ===
-Shifting is increments variables above a certain level.
+Shifting increments variables above a certain level.
 
 ```lean
 def Var.shift (level : Level) (v : Var) : Var :=
   if v < level then v else v + 1
 ```
- We use it to define shifting for a formula, for which we only need level=0. 
+ We use it to define shifting for a formula, for which we only need `level=0`. 
 ```lean
-def Formula.shift {S : Signature} (φ : Formula S) := φ.rename (Var.shift 0)
+def Formula.shift {S : Signature} (φ : Formula S) :=
+  φ.rename (Var.shift 0)
 ```
  For example: 
 ```lean
@@ -322,20 +324,19 @@ abbrev Context S := Set (Formula S)
 ```lean
 open Formula in
 inductive Provable {S : Signature} : Context S → Formula S → Prop
-  | ax {Γ φ}              : (h : φ ∈ Γ) → Provable Γ φ
-  | bot_elim {Γ φ}        : Provable Γ bot → Provable Γ φ
-  | im_intro {Γ φ ψ}      : Provable (Γ ∪ {φ}) ψ → Provable Γ (imp φ ψ)
-  | im_elim {Γ φ ψ}       : Provable Γ (imp φ ψ) → Provable Γ φ → Provable Γ ψ
-  | all_intro {Γ φ}       : Provable (shift '' Γ) φ → Provable Γ (all φ)
-  | all_elim {Γ φ t}      : Provable Γ (all φ) → Provable Γ (inst t φ)
-  | em {Γ φ}              : Provable Γ (or (not φ) φ)
+  | ax {Γ φ}         : (h : φ ∈ Γ) → Provable Γ φ
+  | bot_elim {Γ φ}   : Provable Γ bot → Provable Γ φ
+  | im_intro {Γ φ ψ} : Provable (Γ ∪ {φ}) ψ → Provable Γ (imp φ ψ)
+  | im_elim {Γ φ ψ}  : Provable Γ (imp φ ψ) → Provable Γ φ → Provable Γ ψ
+  | all_intro {Γ φ}  : Provable (shift '' Γ) φ → Provable Γ (all φ)
+  | all_elim {Γ φ t} : Provable Γ (all φ) → Provable Γ (inst t φ)
+  | em {Γ φ}         : Provable Γ (or (not φ) φ)
 
 infix:50 " ⊢ " => Provable
 ```
 
 Provability Example
 ===
-To illustrate the how proofs work in this system, we do a few proofs.
 
 ```lean
 --hide
@@ -372,7 +373,7 @@ example {S : Signature} {P : S 1}
 
 Assignments
 ===
-An assignment is a mapping from variables to values. For values, we use some type `α` that depends on the application.
+An assignment is a mapping from variables to values. For values, we use some type `α` that depends on the application. For `Graph` it would be nodes. For `Nats` it would be natural numbers.
 
 ```lean
 universe u
@@ -406,7 +407,9 @@ def Cycle (n : ℕ) : Model Graph (Fin n) := ⟨
 Satisfaction
 ===
 A model `M` and an assignment `A` **satisfies** a formula if the formula
-holds when interpreted under `M` with assignment `A`. Formally,
+holds when interpreted under `M` with assignment `A`.
+
+Formally,
 
 ```lean
 open Formula in
@@ -427,7 +430,7 @@ Models
 def models {S : Signature} {α : Type u} (M : Model S α) (f : Formula S) :=
   ∀ a, satisfies M a f
 ```
- The a cycle with one node has one (and only one) self loop 
+ For example, a cycle with one node has one (and only one) self loop 
 ```lean
 open Graph in
 example : ¬models (Cycle 1) Graph.no_self_loops := by
@@ -439,7 +442,8 @@ example : ¬models (Cycle 1) Graph.no_self_loops := by
 ```lean
 example : models (Cycle 2) Graph.no_self_loops := by
   intro A v h
-  fin_cases v <;> simp_all[satisfies,Cycle,update]
+  fin_cases v <;>
+  simp_all[satisfies,Cycle,update]
 ```
 
 Entailment
@@ -474,7 +478,7 @@ I can't figure out a way around this.
 
 Soundness Plan
 ===
-Our goal is now to prove that everything provable is also true:
+Our goal now is to prove that everything provable is also true:
 ```lean
 Γ ⊢ φ → Γ ⊨ φ
 ```
@@ -496,6 +500,7 @@ Here's a super simple one, as an example, that is just a *definitional simp*.
 
 Lifting and Instantiation
 ===
+This theorem relates lifting and instantiation.
 
 ```lean
 @[simp] theorem lift_inst_at (t : Var) (level : Level):
@@ -514,6 +519,7 @@ Lifting and Instantiation
 
 Instantiaing and Renaming
 ===
+This theorem relates instantiating and renaming.
 
 ```lean
 theorem inst_at_eq_rename : φ.inst_at t level
@@ -535,6 +541,7 @@ end Formula
 
 Relating Updating and Lifting
 ===
+This theorem relates updating and lifting.
 
 ```lean
 --hide
@@ -553,6 +560,7 @@ theorem update_comp_lift : update a x ∘ f.lift = update (a ∘ f) x := by
 
 Relating Satisfies and Rename
 ===
+This theorem relates rename a formula with a renamer `f` with applying `f` directely to an assignment.
 
 ```lean
 lemma satisfies_rename : satisfies M a (φ.rename f)
@@ -573,6 +581,8 @@ lemma satisfies_rename : satisfies M a (φ.rename f)
 
 Assignments, instances and shifting
 ===
+These theorems unpack `φ.inst_at t level` in to a simpler expression
+that makes the proof of the `all_elim` case in soundness cleaner.
 
 ```lean
 def inst_assign {α : Type u} (A : Assignment α) (t level : ℕ)
@@ -590,15 +600,12 @@ theorem satisfies_inst_at
    : satisfies M a (φ.inst_at t level)
    ↔ satisfies M (inst_assign a t level) φ := by
   rw [Formula.inst_at_eq_rename, satisfies_rename, inst_assign_comp]
-
-@[simp] theorem update_shift : update a x ∘ Var.shift 0 = a := by
-  funext j
-  simp [Function.comp, update, Var.shift]
 ```
 
 Soundness
 ===
-Now we prove soundness for each possible way the proof `Γ ⊢ φ` might end.
+Now we prove soundness for each possible way the proof `Γ ⊢ φ` might end, starting with
+`ax`, `bot_elim`, and `im_intro`.
 
 ```lean
 theorem sound_ax (h : φ ∈ Γ) : Γ ⊨ φ := by
@@ -619,6 +626,7 @@ theorem sound_im_intro (h : Γ ∪ {φ} ⊨ ψ) : Γ ⊨ Formula.imp φ ψ := by
 
 Soundness Continued
 ===
+Here are `im_elim`  and `all_intro`.
 
 ```lean
 theorem sound_im_elim (h₁ : Γ ⊨ Formula.imp φ ψ) (h₂ : Γ ⊨ φ) : Γ ⊨ ψ := by
@@ -635,6 +643,7 @@ theorem sound_all_intro (h : Formula.shift '' Γ ⊨ φ) : Γ ⊨ Formula.all φ
 
 Soundess Continued
 ===
+And finally `all_elim` and `em`.
 
 ```lean
 theorem sound_all_elim (h : Γ ⊨ Formula.all φ) : Γ ⊨ φ.inst t := by
