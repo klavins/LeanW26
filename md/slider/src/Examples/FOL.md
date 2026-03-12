@@ -170,10 +170,10 @@ From these basic definitions we can define Formulas inductively.
 
 ```lean
 inductive Formula (S : Signature)
-  | bot     : (Formula S)
-  | rel {k} : S k → Tuple k  → (Formula S)
-  | imp     : (Formula S) → (Formula S) → (Formula S)
-  | all     : (Formula S) → (Formula S)
+  | bot     : Formula S
+  | rel {k} : S k → Tuple k  → Formula S
+  | imp     : Formula S → Formula S → Formula S
+  | all     : Formula S → Formula S
 
 open Formula
 ```
