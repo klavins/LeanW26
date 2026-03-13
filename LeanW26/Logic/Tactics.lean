@@ -5,8 +5,8 @@
 --  the Free Software Foundation, either version 3 of the License, or
 --  (at your option) any later version.
 
-import mathlib
-import lean
+import Mathlib
+import Lean
 
 namespace LeanW26
 
