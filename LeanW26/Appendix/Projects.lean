@@ -45,7 +45,7 @@ Requirements
 - Well-commented code
 - For group work, clear deliniation of who did what. I'll look at Github-blame
 - A lightning presentation (2 min) of your results on the last day of class
-- All work completed on the repo by Wed March 18
+- All work completed on the repo by Thu March 19 at midnight
 
 -/
 
