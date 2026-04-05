@@ -1,0 +1,515 @@
+{"items":
+ [{"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 8, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 7},
+  {"range":
+   {"start": {"line": 10, "column": 1}, "end": {"line": 10, "column": 33}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 13},
+  {"range":
+   {"start": {"line": 57, "column": 1}, "end": {"line": 57, "column": 20}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.LambdaCalculus.f1"],
+   "code": 31},
+  {"range":
+   {"start": {"line": 58, "column": 1}, "end": {"line": 58, "column": 28}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.LambdaCalculus.g1"],
+   "code": 47},
+  {"range":
+   {"start": {"line": 60, "column": 1}, "end": {"line": 60, "column": 13}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 62},
+  {"range":
+   {"start": {"line": 61, "column": 1}, "end": {"line": 61, "column": 15}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 77},
+  {"range":
+   {"start": {"line": 66, "column": 1}, "end": {"line": 66, "column": 23}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.LambdaCalculus.f2"],
+   "code": 89},
+  {"range":
+   {"start": {"line": 67, "column": 1}, "end": {"line": 67, "column": 27}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.LambdaCalculus.g2"],
+   "code": 100},
+  {"range":
+   {"start": {"line": 176, "column": 1}, "end": {"line": 176, "column": 43}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.LambdaCalculus.f3"],
+   "code": 120},
+  {"range":
+   {"start": {"line": 177, "column": 1}, "end": {"line": 189, "column": 1}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.LambdaCalculus.g3"],
+   "code": 133},
+  {"range":
+   {"start": {"line": 187, "column": 1}, "end": {"line": 187, "column": 27}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 137},
+  {"range":
+   {"start": {"line": 189, "column": 1}, "end": {"line": 189, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 141}],
+ "data":
+ {"tokens":
+  {"98": {"kind": {"var": {"type": "ℕ", "name": "_uniq.1866"}}, "content": "y"},
+   "96": {"kind": {"var": {"type": "ℕ", "name": "_uniq.1863"}}, "content": "x"},
+   "94":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-1835",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "92":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.LambdaCalculus.g2 (x y : ℕ) : ℕ",
+      "name": ["LeanW26", "LambdaCalculus", "g2"],
+      "isDef": true,
+      "docs": null}},
+    "content": "g2"},
+   "90":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1825",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "9":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-313",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"},
+   "87": {"kind": "unknown", "content": "=>"},
+   "85": {"kind": {"var": {"type": "ℕ", "name": "_uniq.1373"}}, "content": "x"},
+   "83":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-1812",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "81":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.LambdaCalculus.f2 (x : ℕ) : ℕ",
+      "name": ["LeanW26", "LambdaCalculus", "f2"],
+      "isDef": true,
+      "docs": null}},
+    "content": "f2"},
+   "79":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1802",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "74": {"kind": {"withType": {"type": "ℕ"}}, "content": "3"},
+   "72":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.LambdaCalculus.g1 (x y : ℕ) : ℕ",
+      "name": ["LeanW26", "LambdaCalculus", "g1"],
+      "isDef": false,
+      "docs": null}},
+    "content": "g1"},
+   "68":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-1640",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "63": {"kind": "unknown", "content": "1"},
+   "59":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.LambdaCalculus.f1 (x : ℕ) : ℕ",
+      "name": ["LeanW26", "LambdaCalculus", "f1"],
+      "isDef": false,
+      "docs": null}},
+    "content": "f1"},
+   "55":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-1614",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "50": {"kind": "unknown", "content": "3"},
+   "45": {"kind": "unknown", "content": "-"},
+   "43": {"kind": "unknown", "content": "*"},
+   "41": {"kind": {"withType": {"type": "ℕ"}}, "content": "2"},
+   "4": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "39": {"kind": {"var": {"type": "ℕ", "name": "_uniq.515"}}, "content": "y"},
+   "37": {"kind": {"var": {"type": "ℕ", "name": "_uniq.512"}}, "content": "x"},
+   "35":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.LambdaCalculus.g1 (x y : ℕ) : ℕ",
+      "name": ["LeanW26", "LambdaCalculus", "g1"],
+      "isDef": true,
+      "docs": null}},
+    "content": "g1"},
+   "33":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1579",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "29": {"kind": {"withType": {"type": "ℕ"}}, "content": "1"},
+   "27": {"kind": "unknown", "content": "+"},
+   "25": {"kind": "unknown", "content": "↦"},
+   "23": {"kind": {"var": {"type": "ℕ", "name": "_uniq.6"}}, "content": "x"},
+   "21": {"kind": "unknown", "content": "λ"},
+   "19": {"kind": "unknown", "content": ":="},
+   "17":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.LambdaCalculus.f1 (x : ℕ) : ℕ",
+      "name": ["LeanW26", "LambdaCalculus", "f1"],
+      "isDef": true,
+      "docs": null}},
+    "content": "f1"},
+   "15":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1556",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "139": {"kind": "unknown", "content": ""},
+   "135":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-5378",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "131": {"kind": "unknown", "content": "y"},
+   "129":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.2780"}}, "content": "y"},
+   "127":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.2778"}}, "content": "x"},
+   "125":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5150",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "123":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.LambdaCalculus.g3 : ℕ → ℕ → ℕ",
+      "name": ["LeanW26", "LambdaCalculus", "g3"],
+      "isDef": true,
+      "docs": null}},
+    "content": "g3"},
+   "121":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-5118",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "118": {"kind": "unknown", "content": ")"},
+   "116":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.2673"}}, "content": "x"},
+   "114": {"kind": "unknown", "content": "("},
+   "112":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5097",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "110": {"kind": "unknown", "content": "→"},
+   "11": {"kind": "unknown", "content": "LeanW26.LambdaCalculus"},
+   "108":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "Nat"},
+   "106": {"kind": "unknown", "content": ":"},
+   "104":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.LambdaCalculus.f3 : ℕ → ℕ",
+      "name": ["LeanW26", "LambdaCalculus", "f3"],
+      "isDef": true,
+      "docs": null}},
+    "content": "f3"},
+   "102":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-5073",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-297",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 142,
+  "messageContents":
+  {"67": {"append": [48, 66]},
+   "66": {"term": 65},
+   "54": {"append": [48, 53]},
+   "53": {"term": 52},
+   "48": {"text": ""}},
+  "goals": {},
+  "code":
+  {"99": {"token": {"tok": 98}},
+   "97": {"token": {"tok": 96}},
+   "95": {"token": {"tok": 94}},
+   "93": {"token": {"tok": 92}},
+   "91": {"token": {"tok": 90}},
+   "89":
+   {"seq":
+    {"highlights":
+     [78, 80, 3, 82, 3, 20, 3, 84, 3, 86, 3, 88, 3, 86, 28, 30, 6]}},
+   "88": {"token": {"tok": 87}},
+   "86": {"token": {"tok": 85}},
+   "84": {"token": {"tok": 83}},
+   "82": {"token": {"tok": 81}},
+   "80": {"token": {"tok": 79}},
+   "8": {"text": {"str": "\n\n"}},
+   "78":
+   {"text":
+    {"str":
+     "\n\n/- Note: The Lean Powers have recently decreed that `λ` and `↦` should be written as `fun` and `=>`.\nSo, we'll use syntax like: -/\n\n"}},
+   "77": {"seq": {"highlights": [32, 71, 3, 73, 3, 42, 3, 75, 76, 6]}},
+   "76": {"text": {"str": "       -- 1"}},
+   "75": {"token": {"tok": 74}},
+   "73": {"token": {"tok": 72}},
+   "71": {"span": {"info": [["info", 67]], "content": 70}},
+   "70": {"seq": {"highlights": [69, 6]}},
+   "7": {"seq": {"highlights": [0, 2, 3, 5, 6]}},
+   "69": {"token": {"tok": 68}},
+   "65": {"seq": {"highlights": [49, 64, 49]}},
+   "64": {"token": {"tok": 63}},
+   "62": {"seq": {"highlights": [8, 58, 3, 60, 3, 42, 61, 6]}},
+   "61": {"text": {"str": "         -- 3"}},
+   "60": {"token": {"tok": 59}},
+   "6": {"seq": {"highlights": []}},
+   "58": {"span": {"info": [["info", 54]], "content": 57}},
+   "57": {"seq": {"highlights": [56, 6]}},
+   "56": {"token": {"tok": 55}},
+   "52": {"seq": {"highlights": [49, 51, 49]}},
+   "51": {"token": {"tok": 50}},
+   "5": {"token": {"tok": 4}},
+   "49": {"text": {"str": ""}},
+   "47":
+   {"seq":
+    {"highlights":
+     [32,
+      34,
+      3,
+      36,
+      3,
+      20,
+      3,
+      22,
+      3,
+      38,
+      3,
+      26,
+      3,
+      22,
+      3,
+      40,
+      3,
+      26,
+      3,
+      42,
+      44,
+      38,
+      46,
+      40,
+      6]}},
+   "46": {"token": {"tok": 45}},
+   "44": {"token": {"tok": 43}},
+   "42": {"token": {"tok": 41}},
+   "40": {"token": {"tok": 39}},
+   "38": {"token": {"tok": 37}},
+   "36": {"token": {"tok": 35}},
+   "34": {"token": {"tok": 33}},
+   "32": {"text": {"str": "\n"}},
+   "31":
+   {"seq":
+    {"highlights":
+     [14, 16, 3, 18, 3, 20, 3, 22, 3, 24, 3, 26, 3, 24, 28, 30, 6]}},
+   "30": {"token": {"tok": 29}},
+   "3": {"text": {"str": " "}},
+   "28": {"token": {"tok": 27}},
+   "26": {"token": {"tok": 25}},
+   "24": {"token": {"tok": 23}},
+   "22": {"token": {"tok": 21}},
+   "20": {"token": {"tok": 19}},
+   "2": {"token": {"tok": 1}},
+   "18": {"token": {"tok": 17}},
+   "16": {"token": {"tok": 15}},
+   "141": {"seq": {"highlights": [138, 140, 6]}},
+   "140": {"token": {"tok": 139}},
+   "14":
+   {"text":
+    {"str":
+     "\n\n\n/-\nThe λ-Calculus\n===\n\n\nBackground\n===\n\nThe **λ-calculus** was introduced in the 1930s by Alonzo Church as a way\nto represent functions and how they are calculated using symbols.\n\nChurch asked: Is there an algorithm to decide any mathematical question?\n\nChurch showed that the answer is \"no\". The reasoning, roughly, is this:\n\n  - Devise a simple programming language, the λ-calculus\n  - Define computation as rewriting operations on λ-calculus terms\n  - The set of algorithms (λ-calculus expressions) is countable, but\n  the set of total functions is not. So there exist functions without\n  algorithms.\n\n<div class='fn'>For example, there is no algorithm that decides whether\na λ-calculus term normalizes.</div>\n\nThe λ-Calculus\n===\n\nSpecifically, the λ-calculus has two parts:\n\n**Term Syntax**\n- Variables: `x, y, z, ...` are terms\n- Abstraction: If `x` is a variable and `M` is a term then `λ x ↦ M` is a term\n- Application: If `M` and `N` are terms, then `M N` is a term\n\n**β-Reduction**\n- `λ x ↦ M` applied to `N` is `M[N/x]`, where all occurrences of x are replaced with N.\n\nThe λ-Calculus in Lean\n===\n\nIn Lean you can write lambda calculus statements and reduce them, for example:\n\n-/\n\n"}},
+   "138": {"text": {"str": "\n--unhide\n"}},
+   "137": {"seq": {"highlights": [134, 136, 3, 12, 6]}},
+   "136": {"token": {"tok": 135}},
+   "134":
+   {"text":
+    {"str":
+     "\n\n/-\nHowever, `Nat` is not a *simple* type (it is an *inductive* type).\n\nIn the next section we'll look at what exactly is `Type` and come back to\nthe lambda calculus in the following section.\n-/\n\n--hide\n"}},
+   "133":
+   {"seq":
+    {"highlights":
+     [32,
+      122,
+      3,
+      124,
+      3,
+      107,
+      3,
+      109,
+      3,
+      111,
+      3,
+      109,
+      3,
+      111,
+      3,
+      109,
+      3,
+      20,
+      3,
+      126,
+      3,
+      115,
+      128,
+      3,
+      130,
+      3,
+      107,
+      3,
+      109,
+      119,
+      3,
+      88,
+      3,
+      42,
+      44,
+      128,
+      46,
+      132,
+      6]}},
+   "132": {"token": {"tok": 131}},
+   "130": {"token": {"tok": 129}},
+   "13": {"seq": {"highlights": [8, 10, 3, 12, 6]}},
+   "128": {"token": {"tok": 127}},
+   "126": {"token": {"tok": 125}},
+   "124": {"token": {"tok": 123}},
+   "122": {"token": {"tok": 121}},
+   "120":
+   {"seq":
+    {"highlights":
+     [101,
+      103,
+      3,
+      105,
+      3,
+      107,
+      3,
+      109,
+      3,
+      111,
+      3,
+      109,
+      3,
+      20,
+      3,
+      113,
+      3,
+      115,
+      117,
+      3,
+      107,
+      3,
+      109,
+      119,
+      3,
+      88,
+      3,
+      117,
+      28,
+      30,
+      6]}},
+   "12": {"token": {"tok": 11}},
+   "119": {"token": {"tok": 118}},
+   "117": {"token": {"tok": 116}},
+   "115": {"token": {"tok": 114}},
+   "113": {"token": {"tok": 112}},
+   "111": {"token": {"tok": 110}},
+   "109": {"token": {"tok": 108}},
+   "107": {"token": {"tok": 106}},
+   "105": {"token": {"tok": 104}},
+   "103": {"token": {"tok": 102}},
+   "101":
+   {"text":
+    {"str":
+     "\n\n/-\nExercises\n===\n\n<ex/> Define a lambda called `h` that returns the square of its argument.\n\n<ex/> Evaluate `h (h (h 2))`.\n\n-/\n\n/-\n\nUnsolvable Problems\n===\n\nA specific problem that Church showed to be unsolvable is:\n\n> Given λ-calculus terms M and N, show there does not exist a λ-calculus function\nthat can determine whether M can be rewritten as N.\n\nThis argument is similar to Alan Turing's similar result which shows there is no\nTuring Machine that can determine whether a given Turing Machine eventually terminates.\n\nThe *Church-Turing Thesis* is the observation that _all_ formalizations of\ncomputation are equivalent to the λ-calculus or, equivalently, Turing Machines.\n\nThe former is more convenient for symbolic reasoning, while the latter is more\nakin to how electromechanical computers actually work.\n\nProgramming Languages\n===\n\nThus, the λ-calclus and the formal notion of computation has its roots in the\nfoundations of mathematics.\n\nIn the 1960s, linguists and computer scientists realized that the λ-calculus\nwas a useful framework for the theory and design of programming languages.\n\nLogicians were also exploring exploring Type Theory as an alternative.\nIn 1980s many of these ideas came together, especially through the work of\nThierry Coquand on the *Calculus of Constructions*.\n\nEventually typed programming languages emerged as an alternative foundation\nfor all of mathematics and they could be used to develop computational proof assistants\nand theorem provers such as Coq, NuPRL, and HOL.\n\n\nInfinite Loops\n===\n\nCentral to Church's (and Turing's) argument is that some evaluations go on infinitely,\nsome do not, and it is not always easy to tell the difference.\n\nHere is an easy example of infinite behavior. Define\n```\nΩ := λ x => x x\n```\nConsider `Ω` applied to itself `Ω`:\n```\n(λ x => x x) (λ x => x x)       —β—>       (λ x => x x) (λ x => x x)\n```\nproducing an infinite loop.\n\nExercises\n===\n\n<ex/> Define `Ω` in Lean and explain what happens.\n\n\nCurry's Paradox\n===\n\nInfinite Loops made the λ-calculus expressive enough for Church\nto prove his undecidability results, but it caused other problems.\n\nHaskel Curry discovered that one could encode the following paradox in logical\nsystems built from the λ-calculus.\n\n  - Suppose X = X → Y where Y is _any_ statement.\n  - Certainly X → X is true for any statement X.\n  - Substituting X → Y for the second X gives X → (X → Y)\n  - This statement is equivalent to X → Y, which is X by assumption.\n  - Thus X is true\n  - So Y is true since X → Y\n\nFor example, X → Y could mean \"If this sentence is true, then 1 < 0.\"\n\nTypes\n===\n\nThe solution was to assign _types_ to all terms in the λ-calculus.\n- Self referential programs are impossible to assign types to.\n- Infinite loops are no longer allowed (less powerful computationally).\n\nThus was born the _simply-typed λ-calculus_.\n\nEventually, more complicated types were added, in which type definitions could\ndepend on other types or on even terms.\n\nMost modern programming languages and some logical frameworks have these properties.\n\nThe Simply-Typed Lambda Calculus\n===\n\nIn the expressions we wrote above, the types were inferred, but we can write them out.\n-/\n\n"}},
+   "100":
+   {"seq":
+    {"highlights":
+     [32,
+      91,
+      3,
+      93,
+      3,
+      20,
+      3,
+      95,
+      3,
+      97,
+      3,
+      99,
+      3,
+      88,
+      3,
+      42,
+      44,
+      97,
+      46,
+      99,
+      6]}},
+   "10": {"token": {"tok": 9}},
+   "0":
+   {"text":
+    {"str":
+     "--  Copyright (C) 2025  Eric Klavins\n--\n--  This program is free software: you can redistribute it and/or modify\n--  it under the terms of the GNU General Public License as published by\n--  the Free Software Foundation, either version 3 of the License, or\n--  (at your option) any later version.\n\n"}}}}}

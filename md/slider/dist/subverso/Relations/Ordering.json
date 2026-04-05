@@ -1,0 +1,72 @@
+{"items":
+ [{"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 8, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 7},
+  {"range":
+   {"start": {"line": 10, "column": 1}, "end": {"line": 21, "column": 1}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 13},
+  {"range":
+   {"start": {"line": 20, "column": 1}, "end": {"line": 20, "column": 12}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 17},
+  {"range":
+   {"start": {"line": 21, "column": 1}, "end": {"line": 21, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 21}],
+ "data":
+ {"tokens":
+  {"9":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-313",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"},
+   "4": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "19": {"kind": "unknown", "content": ""},
+   "15":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-358",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "11": {"kind": "unknown", "content": "LeanW26"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-297",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 22,
+  "messageContents": {},
+  "goals": {},
+  "code":
+  {"8": {"text": {"str": "\n\n"}},
+   "7": {"seq": {"highlights": [0, 2, 3, 5, 6]}},
+   "6": {"seq": {"highlights": []}},
+   "5": {"token": {"tok": 4}},
+   "3": {"text": {"str": " "}},
+   "21": {"seq": {"highlights": [18, 20, 6]}},
+   "20": {"token": {"tok": 19}},
+   "2": {"token": {"tok": 1}},
+   "18": {"text": {"str": "\n"}},
+   "17": {"seq": {"highlights": [14, 16, 3, 12, 6]}},
+   "16": {"token": {"tok": 15}},
+   "14": {"text": {"str": "\n\n/-\nTodo\n===\n\nTodo\n===\n-/\n\n"}},
+   "13": {"seq": {"highlights": [8, 10, 3, 12, 6]}},
+   "12": {"token": {"tok": 11}},
+   "10": {"token": {"tok": 9}},
+   "0":
+   {"text":
+    {"str":
+     "--  Copyright (C) 2025  Eric Klavins\n--\n--  This program is free software: you can redistribute it and/or modify\n--  it under the terms of the GNU General Public License as published by\n--  the Free Software Foundation, either version 3 of the License, or\n--  (at your option) any later version.\n\n"}}}}}

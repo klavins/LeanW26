@@ -1,0 +1,252 @@
+{"items":
+ [{"range": null,
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 0},
+  {"range":
+   {"start": {"line": 1, "column": 1}, "end": {"line": 1, "column": 11}},
+   "kind": "Lean.Parser.Command.universe",
+   "defines": [],
+   "code": 6},
+  {"range":
+   {"start": {"line": 3, "column": 1}, "end": {"line": 3, "column": 11}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["idPi"],
+   "code": 14},
+  {"range":
+   {"start": {"line": 5, "column": 1}, "end": {"line": 5, "column": 53}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["idForall"],
+   "code": 46},
+  {"range":
+   {"start": {"line": 7, "column": 1}, "end": {"line": 8, "column": 1}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["idAscii"],
+   "code": 61},
+  {"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 8, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 65}],
+ "data":
+ {"tokens":
+  {"8":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-12",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "63": {"kind": "unknown", "content": ""},
+   "59": {"kind": "unknown", "content": "x"},
+   "57": {"kind": {"var": {"type": "x✝", "name": "_uniq.170"}}, "content": "x"},
+   "55":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-178",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "53":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.158"}}, "content": "α"},
+   "51":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.forall-143",
+      "name": ["Lean", "Parser", "Term", "forall"],
+      "docs": null}},
+    "content": "forall"},
+   "49":
+   {"kind":
+    {"const":
+     {"signature": "idAscii.{u} (α : Type u) : α → α",
+      "name": ["idAscii"],
+      "isDef": true,
+      "docs": null}},
+    "content": "idAscii"},
+   "47":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-129",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "44": {"kind": "unknown", "content": "=>"},
+   "42": {"kind": {"var": {"type": "x✝", "name": "_uniq.121"}}, "content": "x"},
+   "40": {"kind": "unknown", "content": "_"},
+   "4": {"kind": "unknown", "content": "u"},
+   "38":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-115",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "36": {"kind": "unknown", "content": ":="},
+   "34": {"kind": "unknown", "content": "→"},
+   "32": {"kind": "unknown", "content": ","},
+   "30": {"kind": "unknown", "content": ")"},
+   "28": {"kind": {"levelVar": {"name": ["u"]}}, "content": "u"},
+   "26":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type"},
+   "24":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.109"}}, "content": "α"},
+   "22": {"kind": "unknown", "content": "("},
+   "20": {"kind": "unknown", "content": "∀"},
+   "18":
+   {"kind":
+    {"const":
+     {"signature": "idForall.{u} (α : Type u) : α → α",
+      "name": ["idForall"],
+      "isDef": true,
+      "docs": null}},
+    "content": "idForall"},
+   "16":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-68",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "12": {"kind": "unknown", "content": ":"},
+   "10":
+   {"kind":
+    {"const":
+     {"signature": "idPi.{u_1} : sorry",
+      "name": ["idPi"],
+      "isDef": true,
+      "docs": null}},
+    "content": "idPi"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.universe-0",
+      "name": ["Lean", "Parser", "Command", "universe"],
+      "docs":
+      "Declares one or more universe variables.\n\n`universe u v`\n\n`Prop`, `Type`, `Type u` and `Sort u` are types that classify other types, also known as\n*universes*. In `Type u` and `Sort u`, the variable `u` stands for the universe's *level*, and a\nuniverse at level `u` can only classify universes that are at levels lower than `u`. For more\ndetails on type universes, please refer to [the relevant chapter of Theorem Proving in Lean][tpil\nuniverses].\n\nJust as type arguments allow polymorphic definitions to be used at many different types, universe\nparameters, represented by universe variables, allow a definition to be used at any required level.\nWhile Lean mostly handles universe levels automatically, declaring them explicitly can provide more\ncontrol when writing signatures. The `universe` keyword allows the declared universe variables to be\nused in a collection of definitions, and Lean will ensure that these definitions use them\nconsistently.\n\n[tpil universes]: https://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#types-as-objects\n(Type universes on Theorem Proving in Lean)\n\n```lean\n/- Explicit type-universe parameter. -/\ndef id₁.{u} (α : Type u) (a : α) := a\n\n/- Implicit type-universe parameter, equivalent to `id₁`.\n  Requires option `autoImplicit true`, which is the default. -/\ndef id₂ (α : Type u) (a : α) := a\n\n/- Explicit standalone universe variable declaration, equivalent to `id₁` and `id₂`. -/\nuniverse u\ndef id₃ (α : Type u) (a : α) := a\n```\n\nOn a more technical note, using a universe variable only in the right-hand side of a definition\ncauses an error if the universe has not been declared previously.\n\n```lean\ndef L₁.{u} := List (Type u)\n\n-- def L₂ := List (Type u) -- error: `unknown universe level 'u'`\n\nuniverse u\ndef L₃ := List (Type u)\n```\n\n## Examples\n\n```lean\nuniverse u v w\n\nstructure Pair (α : Type u) (β : Type v) : Type (max u v) where\n  a : α\n  b : β\n\n#check Pair.{v, w}\n-- Pair : Type v → Type w → Type (max v w)\n```\n"}},
+    "content": "universe"}},
+  "nextKey": 66,
+  "messageContents": {},
+  "goals": {},
+  "code":
+  {"9": {"token": {"tok": 8}},
+   "7": {"text": {"str": "\n\n"}},
+   "65": {"seq": {"highlights": [62, 64, 0]}},
+   "64": {"token": {"tok": 63}},
+   "62": {"text": {"str": "\n"}},
+   "61":
+   {"seq":
+    {"highlights":
+     [7,
+      48,
+      3,
+      50,
+      3,
+      13,
+      3,
+      52,
+      3,
+      23,
+      54,
+      3,
+      13,
+      3,
+      27,
+      3,
+      29,
+      31,
+      33,
+      3,
+      54,
+      3,
+      35,
+      3,
+      54,
+      3,
+      37,
+      3,
+      56,
+      3,
+      41,
+      3,
+      58,
+      3,
+      45,
+      3,
+      60,
+      0]}},
+   "60": {"token": {"tok": 59}},
+   "6": {"seq": {"highlights": [2, 3, 5, 0]}},
+   "58": {"token": {"tok": 57}},
+   "56": {"token": {"tok": 55}},
+   "54": {"token": {"tok": 53}},
+   "52": {"token": {"tok": 51}},
+   "50": {"token": {"tok": 49}},
+   "5": {"token": {"tok": 4}},
+   "48": {"token": {"tok": 47}},
+   "46":
+   {"seq":
+    {"highlights":
+     [15,
+      17,
+      3,
+      19,
+      3,
+      13,
+      3,
+      21,
+      3,
+      23,
+      25,
+      3,
+      13,
+      3,
+      27,
+      3,
+      29,
+      31,
+      33,
+      3,
+      25,
+      3,
+      35,
+      3,
+      25,
+      3,
+      37,
+      3,
+      39,
+      3,
+      41,
+      3,
+      43,
+      3,
+      45,
+      3,
+      43,
+      0]}},
+   "45": {"token": {"tok": 44}},
+   "43": {"token": {"tok": 42}},
+   "41": {"token": {"tok": 40}},
+   "39": {"token": {"tok": 38}},
+   "37": {"token": {"tok": 36}},
+   "35": {"token": {"tok": 34}},
+   "33": {"token": {"tok": 32}},
+   "31": {"token": {"tok": 30}},
+   "3": {"text": {"str": " "}},
+   "29": {"token": {"tok": 28}},
+   "27": {"token": {"tok": 26}},
+   "25": {"token": {"tok": 24}},
+   "23": {"token": {"tok": 22}},
+   "21": {"token": {"tok": 20}},
+   "2": {"token": {"tok": 1}},
+   "19": {"token": {"tok": 18}},
+   "17": {"token": {"tok": 16}},
+   "15": {"text": {"str": "Π (α : Type u), α → α := fun _ x => x\n\n"}},
+   "14": {"seq": {"highlights": [7, 9, 3, 11, 3, 13, 3, 0]}},
+   "13": {"token": {"tok": 12}},
+   "11": {"token": {"tok": 10}},
+   "0": {"seq": {"highlights": []}}}}}

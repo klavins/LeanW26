@@ -1,0 +1,42 @@
+{"items":
+ [{"range": null,
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 0},
+  {"range":
+   {"start": {"line": 1, "column": 1}, "end": {"line": 37, "column": 1}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 6},
+  {"range":
+   {"start": {"line": 37, "column": 1}, "end": {"line": 37, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 10}],
+ "data":
+ {"tokens":
+  {"8": {"kind": "unknown", "content": ""},
+   "4": {"kind": "unknown", "content": "LeanW26"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-0",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"}},
+  "nextKey": 11,
+  "messageContents": {},
+  "goals": {},
+  "code":
+  {"9": {"token": {"tok": 8}},
+   "7":
+   {"text":
+    {"str":
+     "\n\n/-\nLaTeX Support in these Slides\n===\n\nThese slides use the `showdown` markdown converter with the `katex` extension to render Latex in html.\n\nYou can put code in a ````latex` block\n\n```latex\n\\begin{aligned}\n\\mathcal{L}(y, f_1, \\ldots, f_k) &= \\sum_{i=1}^{n} \\left( y_i - \\sum_{j=1}^{k} f_j(x_i) \\right)^2 \\\\\n&= \\sum_{i=1}^{n} \\left( y_i - \\left( f_1(x_i) + \\cdots + f_k(x_i) \\right) \\right)^2 \\\\\n&= \\sum_{i=1}^{n} \\left( y_i^2 - 2y_i\\sum_{j=1}^{k} f_j(x_i) + \\left( \\sum_{j=1}^{k} f_j(x_i) \\right)^2 \\right) \\\\\n&= \\sum_{i=1}^{n} y_i^2 - 2\\sum_{i=1}^{n} y_i \\left( \\sum_{j=1}^{k} f_j(x_i) \\right) + \\sum_{i=1}^{n} \\left( \\sum_{j=1}^{k} f_j(x_i) \\right)^2\n\\end{aligned}\n```\n\nOr you can put it in a pair of dollar signs: $\\sum_{k=1}^{n} k$ -- inline with your text.\n\nTikz\n===\n\nSadly, `tikz` diagrams don't work. This might be because tools like katex and mathjax don't call a latex compiler.\nInstead they seem to be parsing the latex and building the displayed formula from scratch.\nSo you can't just include the tikz package like you would in a native latex environment.\n\nA path to `tikz` would be to\n\n- Embed tikz in your lean file with a special delimiter like ````tikz`\n- Covert the lean file to markdown using dm.py\n- Extract all tikz blocks from the resulting markdown file and compile them using pdflatex or similar\n- Replace the tikz blocks with \\<img\\> tags or \\<svg\\> tags\n\n-/\n"}},
+   "6": {"seq": {"highlights": [2, 3, 5, 0]}},
+   "5": {"token": {"tok": 4}},
+   "3": {"text": {"str": " "}},
+   "2": {"token": {"tok": 1}},
+   "10": {"seq": {"highlights": [7, 9, 0]}},
+   "0": {"seq": {"highlights": []}}}}}

@@ -1,0 +1,1819 @@
+{"items":
+ [{"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 99, "column": 31}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 12},
+  {"range":
+   {"start": {"line": 101, "column": 1}, "end": {"line": 101, "column": 10}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 31},
+  {"range":
+   {"start": {"line": 103, "column": 1}, "end": {"line": 107, "column": 8}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 108},
+  {"range":
+   {"start": {"line": 165, "column": 1}, "end": {"line": 165, "column": 9}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 125},
+  {"range":
+   {"start": {"line": 166, "column": 1}, "end": {"line": 166, "column": 11}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 141},
+  {"range":
+   {"start": {"line": 167, "column": 1}, "end": {"line": 167, "column": 26}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 166},
+  {"range":
+   {"start": {"line": 168, "column": 1}, "end": {"line": 168, "column": 20}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 187},
+  {"range":
+   {"start": {"line": 182, "column": 1}, "end": {"line": 182, "column": 10}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 196},
+  {"range":
+   {"start": {"line": 183, "column": 1}, "end": {"line": 183, "column": 30}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 214},
+  {"range":
+   {"start": {"line": 184, "column": 1}, "end": {"line": 184, "column": 73}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 234},
+  {"range":
+   {"start": {"line": 185, "column": 1}, "end": {"line": 185, "column": 21}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 248},
+  {"range":
+   {"start": {"line": 194, "column": 1}, "end": {"line": 195, "column": 13}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["my_amazing_result"],
+   "code": 260},
+  {"range":
+   {"start": {"line": 209, "column": 1}, "end": {"line": 210, "column": 26}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["a_less_amazing_result"],
+   "code": 280},
+  {"range":
+   {"start": {"line": 219, "column": 1}, "end": {"line": 220, "column": 13}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 290},
+  {"range":
+   {"start": {"line": 222, "column": 1}, "end": {"line": 224, "column": 20}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 314},
+  {"range":
+   {"start": {"line": 235, "column": 1}, "end": {"line": 236, "column": 8}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 346},
+  {"range":
+   {"start": {"line": 240, "column": 1}, "end": {"line": 245, "column": 11}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 409},
+  {"range":
+   {"start": {"line": 269, "column": 1}, "end": {"line": 271, "column": 66}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["remove_zeros"],
+   "code": 449},
+  {"range":
+   {"start": {"line": 273, "column": 1}, "end": {"line": 368, "column": 1}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 461},
+  {"range":
+   {"start": {"line": 275, "column": 1}, "end": {"line": 275, "column": 35}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 482},
+  {"range":
+   {"start": {"line": 368, "column": 1}, "end": {"line": 368, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 486}],
+ "data":
+ {"tokens":
+  {"99":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-3200",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "94":
+   {"kind":
+    {"const":
+     {"signature":
+      "HSub.hSub.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HSub α β γ] : α → β → γ",
+      "name": ["HSub", "hSub"],
+      "isDef": false,
+      "docs":
+      "`a - b` computes the difference of `a` and `b`.\nThe meaning of this notation is type-dependent.\n* For natural numbers, this operator saturates at 0: `a - b = 0` when `a ≤ b`. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `-` in identifiers is `sub` (when used as a binary operator)."}},
+    "content": "-"},
+   "92": {"kind": "unknown", "content": "12"},
+   "9":
+   {"kind": {"moduleName": {"name": ["Mathlib", "Tactic", "Linarith"]}},
+    "content": "Mathlib.Tactic.Linarith"},
+   "89": {"kind": "unknown", "content": "0"},
+   "87":
+   {"kind":
+    {"const":
+     {"signature":
+      "HAdd.hAdd.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HAdd α β γ] : α → β → γ",
+      "name": ["HAdd", "hAdd"],
+      "isDef": false,
+      "docs":
+      "`a + b` computes the sum of `a` and `b`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `+` in identifiers is `add`."}},
+    "content": "+"},
+   "85": {"kind": "unknown", "content": "4"},
+   "82":
+   {"kind":
+    {"const":
+     {"signature": "LT.lt.{u} {α : Type u} [self : LT α] : α → α → Prop",
+      "name": ["LT", "lt"],
+      "isDef": false,
+      "docs":
+      "The less-than relation: `x < y` \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `<` in identifiers is `lt`."}},
+    "content": "<"},
+   "80":
+   {"kind":
+    {"const":
+     {"signature":
+      "HMul.hMul.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HMul α β γ] : α → β → γ",
+      "name": ["HMul", "hMul"],
+      "isDef": false,
+      "docs":
+      "`a * b` computes the product of `a` and `b`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `*` in identifiers is `mul`."}},
+    "content": "*"},
+   "78": {"kind": "unknown", "content": "2"},
+   "75":
+   {"kind":
+    {"const":
+     {"signature": "Rat : Type",
+      "name": ["Rat"],
+      "isDef": false,
+      "docs":
+      "Rational numbers, implemented as a pair of integers `num / den` such that the\ndenominator is positive and the numerator and denominator are coprime.\n"}},
+    "content": "ℚ"},
+   "73": {"kind": "unknown", "content": ":="},
+   "71":
+   {"kind":
+    {"const":
+     {"signature": "False : Prop",
+      "name": ["False"],
+      "isDef": false,
+      "docs":
+      "`False` is the empty proposition. Thus, it has no introduction rules.\nIt represents a contradiction. `False` elimination rule, `False.rec`,\nexpresses the fact that anything follows from a contradiction.\nThis rule is sometimes called ex falso (short for ex falso sequitur quodlibet),\nor the principle of explosion.\nFor more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)\n"}},
+    "content": "False"},
+   "7":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-3038",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"},
+   "69": {"kind": {"withType": {"type": "ℚ"}}, "content": "12"},
+   "67":
+   {"kind": {"var": {"type": "12 * y - 4 * z < 0", "name": "_uniq.1211"}},
+    "content": "h3"},
+   "65": {"kind": {"withType": {"type": "ℚ"}}, "content": "0"},
+   "63": {"kind": {"withType": {"type": "ℚ"}}, "content": "4"},
+   "61": {"kind": "unknown", "content": "-"},
+   "59":
+   {"kind": {"var": {"type": "-4 * x + 2 * z < 0", "name": "_uniq.1028"}},
+    "content": "h2"},
+   "57": {"kind": {"withType": {"type": "ℚ"}}, "content": "3"},
+   "55": {"kind": "unknown", "content": "<"},
+   "53": {"kind": "unknown", "content": "*"},
+   "51": {"kind": {"withType": {"type": "ℚ"}}, "content": "2"},
+   "49":
+   {"kind": {"var": {"type": "2 * x < 3 * y", "name": "_uniq.825"}},
+    "content": "h1"},
+   "484": {"kind": "unknown", "content": ""},
+   "479": {"kind": {"withType": {"type": "ℕ"}}, "content": "5"},
+   "477": {"kind": {"withType": {"type": "ℕ"}}, "content": "3"},
+   "473":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-7298",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "468":
+   {"kind":
+    {"const":
+     {"signature":
+      "List.cons.{u} {α : Type u} (head : α) (tail : List α) : List α",
+      "name": ["List", "cons"],
+      "isDef": false,
+      "docs":
+      "The list whose first element is `head`, where `tail` is the rest of the list.\nUsually written `head :: tail`.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `::` in identifiers is `cons`.\n\n * The recommended spelling of `[a]` in identifiers is `singleton`."}},
+    "content": "]"},
+   "466": {"kind": "unknown", "content": "5"},
+   "464":
+   {"kind":
+    {"const":
+     {"signature":
+      "List.cons.{u} {α : Type u} (head : α) (tail : List α) : List α",
+      "name": ["List", "cons"],
+      "isDef": false,
+      "docs":
+      "The list whose first element is `head`, where `tail` is the rest of the list.\nUsually written `head :: tail`.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `::` in identifiers is `cons`.\n\n * The recommended spelling of `[a]` in identifiers is `singleton`."}},
+    "content": ","},
+   "462":
+   {"kind":
+    {"const":
+     {"signature":
+      "List.cons.{u} {α : Type u} (head : α) (tail : List α) : List α",
+      "name": ["List", "cons"],
+      "isDef": false,
+      "docs":
+      "The list whose first element is `head`, where `tail` is the rest of the list.\nUsually written `head :: tail`.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `::` in identifiers is `cons`.\n\n * The recommended spelling of `[a]` in identifiers is `singleton`."}},
+    "content": "["},
+   "46": {"kind": "unknown", "content": ")"},
+   "459": {"kind": "unknown", "content": "remove_zeros"},
+   "455":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-7277",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "450":
+   {"kind": {"var": {"type": "List ℕ", "name": "_pp_uniq.1"}}, "content": "L"},
+   "447":
+   {"kind":
+    {"keyword":
+     {"occurrence": "termIfThenElse-7222",
+      "name": ["termIfThenElse"],
+      "docs":
+      "`if c then t else e` is notation for `ite c t e`, \"if-then-else\", which decides to\nreturn `t` or `e` depending on whether `c` is true or false. The explicit argument\n`c : Prop` does not have any actual computational content, but there is an additional\n`[Decidable c]` argument synthesized by typeclass inference which actually\ndetermines how to evaluate `c` to true or false. Write `if h : c then t else e`\ninstead for a \"dependent if-then-else\" `dite`, which allows `t`/`e` to use the fact\nthat `c` is true/false.\n"}},
+    "content": "else"},
+   "445":
+   {"kind":
+    {"const":
+     {"signature": "remove_zeros (L : List ℕ) : List ℕ",
+      "name": ["remove_zeros"],
+      "isDef": false,
+      "docs": null}},
+    "content": "remove_zeros"},
+   "443":
+   {"kind":
+    {"keyword":
+     {"occurrence": "termIfThenElse-7222",
+      "name": ["termIfThenElse"],
+      "docs":
+      "`if c then t else e` is notation for `ite c t e`, \"if-then-else\", which decides to\nreturn `t` or `e` depending on whether `c` is true or false. The explicit argument\n`c : Prop` does not have any actual computational content, but there is an additional\n`[Decidable c]` argument synthesized by typeclass inference which actually\ndetermines how to evaluate `c` to true or false. Write `if h : c then t else e`\ninstead for a \"dependent if-then-else\" `dite`, which allows `t`/`e` to use the fact\nthat `c` is true/false.\n"}},
+    "content": "then"},
+   "441": {"kind": "unknown", "content": "="},
+   "44": {"kind": "unknown", "content": "ℚ"},
+   "439":
+   {"kind":
+    {"keyword":
+     {"occurrence": "termIfThenElse-7222",
+      "name": ["termIfThenElse"],
+      "docs":
+      "`if c then t else e` is notation for `ite c t e`, \"if-then-else\", which decides to\nreturn `t` or `e` depending on whether `c` is true or false. The explicit argument\n`c : Prop` does not have any actual computational content, but there is an additional\n`[Decidable c]` argument synthesized by typeclass inference which actually\ndetermines how to evaluate `c` to true or false. Write `if h : c then t else e`\ninstead for a \"dependent if-then-else\" `dite`, which allows `t`/`e` to use the fact\nthat `c` is true/false.\n"}},
+    "content": "if"},
+   "437":
+   {"kind": {"var": {"type": "List ℕ", "name": "_uniq.4418"}}, "content": "Q"},
+   "435": {"kind": "unknown", "content": "::"},
+   "433":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.4417"}}, "content": "x"},
+   "431":
+   {"kind":
+    {"const":
+     {"signature": "List.nil.{u} {α : Type u} : List α",
+      "name": ["List", "nil"],
+      "isDef": false,
+      "docs":
+      "The empty list, usually written `[]`. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `[]` in identifiers is `nil`."}},
+    "content": "List.nil"},
+   "429": {"kind": "unknown", "content": "]"},
+   "427": {"kind": "unknown", "content": "["},
+   "425": {"kind": "unknown", "content": "|"},
+   "423":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-7178",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "with"},
+   "421":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-7178",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "match"},
+   "42": {"kind": "unknown", "content": ":"},
+   "419": {"kind": "unknown", "content": "ℕ"},
+   "417":
+   {"kind":
+    {"const":
+     {"signature": "List.{u} (α : Type u) : Type u",
+      "name": ["List"],
+      "isDef": false,
+      "docs":
+      "Linked lists: ordered lists, in which each element has a reference to the next element.\n\nMost operations on linked lists take time proportional to the length of the list, because each\nelement must be traversed to find the next element.\n\n`List α` is isomorphic to `Array α`, but they are useful for different things:\n* `List α` is easier for reasoning, and `Array α` is modeled as a wrapper around `List α`.\n* `List α` works well as a persistent data structure, when many copies of the tail are shared. When\n  the value is not shared, `Array α` will have better performance because it can do destructive\n  updates.\n"}},
+    "content": "List"},
+   "415":
+   {"kind": {"var": {"type": "List ℕ", "name": "_uniq.4383"}}, "content": "L"},
+   "413":
+   {"kind":
+    {"const":
+     {"signature": "remove_zeros (L : List ℕ) : List ℕ",
+      "name": ["remove_zeros"],
+      "isDef": true,
+      "docs": null}},
+    "content": "remove_zeros"},
+   "411":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-7132",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "405":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.exact-6599",
+      "name": ["Lean", "Parser", "Tactic", "exact"],
+      "docs":
+      "`exact e` closes the main goal if its target type matches that of `e`.\n"}},
+    "content": "exact"},
+   "400":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.tacticHave__-6575",
+      "name": ["Lean", "Parser", "Tactic", "tacticHave__"],
+      "docs":
+      "The `have` tactic is for adding opaque definitions and hypotheses to the local context of the main goal.\nThe definitions forget their associated value and cannot be unfolded, unlike definitions added by the `let` tactic.\n\n* `have h : t := e` adds the hypothesis `h : t` if `e` is a term of type `t`.\n* `have h := e` uses the type of `e` for `t`.\n* `have : t := e` and `have := e` use `this` for the name of the hypothesis.\n* `have pat := e` for a pattern `pat` is equivalent to `match e with | pat => _`,\n  where `_` stands for the tactics that follow this one.\n  It is convenient for types that have only one applicable constructor.\n  For example, given `h : p ∧ q ∧ r`, `have ⟨h₁, h₂, h₃⟩ := h` produces the\n  hypotheses `h₁ : p`, `h₂ : q`, and `h₃ : r`.\n* The syntax `have (eq := h) pat := e` is equivalent to `match h : e with | pat => _`,\n  which adds the equation `h : e = pat` to the local context.\n\nThe tactic supports all the same syntax variants and options as the `have` term.\n\n## Properties and relations\n\n* It is not possible to unfold a variable introduced using `have`, since the definition's value is forgotten.\n  The `let` tactic introduces definitions that can be unfolded.\n* The `have h : t := e` is like doing `let h : t := e; clear_value h`.\n* The `have` tactic is preferred for propositions, and `let` is preferred for non-propositions.\n* Sometimes `have` is used for non-propositions to ensure that the variable is never unfolded,\n  which may be important for performance reasons.\n    Consider using the equivalent `let +nondep` to indicate the intent.\n\n"}},
+    "content": "have"},
+   "40": {"kind": {"var": {"type": "ℚ", "name": "_uniq.686"}}, "content": "z"},
+   "4": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "397":
+   {"kind": {"var": {"type": "r", "name": "_uniq.4372"}}, "content": "hr"},
+   "390":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.tacticHave__-6551",
+      "name": ["Lean", "Parser", "Tactic", "tacticHave__"],
+      "docs":
+      "The `have` tactic is for adding opaque definitions and hypotheses to the local context of the main goal.\nThe definitions forget their associated value and cannot be unfolded, unlike definitions added by the `let` tactic.\n\n* `have h : t := e` adds the hypothesis `h : t` if `e` is a term of type `t`.\n* `have h := e` uses the type of `e` for `t`.\n* `have : t := e` and `have := e` use `this` for the name of the hypothesis.\n* `have pat := e` for a pattern `pat` is equivalent to `match e with | pat => _`,\n  where `_` stands for the tactics that follow this one.\n  It is convenient for types that have only one applicable constructor.\n  For example, given `h : p ∧ q ∧ r`, `have ⟨h₁, h₂, h₃⟩ := h` produces the\n  hypotheses `h₁ : p`, `h₂ : q`, and `h₃ : r`.\n* The syntax `have (eq := h) pat := e` is equivalent to `match h : e with | pat => _`,\n  which adds the equation `h : e = pat` to the local context.\n\nThe tactic supports all the same syntax variants and options as the `have` term.\n\n## Properties and relations\n\n* It is not possible to unfold a variable introduced using `have`, since the definition's value is forgotten.\n  The `let` tactic introduces definitions that can be unfolded.\n* The `have h : t := e` is like doing `let h : t := e; clear_value h`.\n* The `have` tactic is preferred for propositions, and `let` is preferred for non-propositions.\n* Sometimes `have` is used for non-propositions to ensure that the variable is never unfolded,\n  which may be important for performance reasons.\n    Consider using the equivalent `let +nondep` to indicate the intent.\n\n"}},
+    "content": "have"},
+   "387":
+   {"kind": {"var": {"type": "q", "name": "_uniq.4367"}}, "content": "hq"},
+   "382":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.intro-6540",
+      "name": ["Lean", "Parser", "Tactic", "intro"],
+      "docs":
+      "Introduces one or more hypotheses, optionally naming and/or pattern-matching them.\nFor each hypothesis to be introduced, the remaining main goal's target type must\nbe a `let` or function type.\n\n* `intro` by itself introduces one anonymous hypothesis, which can be accessed\n  by e.g. `assumption`. It is equivalent to `intro _`.\n* `intro x y` introduces two hypotheses and names them. Individual hypotheses\n  can be anonymized via `_`, given a type ascription, or matched against a pattern:\n  ```lean\n  -- ... ⊢ α × β → ...\n  intro (a, b)\n  -- ..., a : α, b : β ⊢ ...\n  ```\n* `intro rfl` is short for `intro h; subst h`, if `h` is an equality where the left-hand or right-hand side\n  is a variable.\n* Alternatively, `intro` can be combined with pattern matching much like `fun`:\n  ```lean\n  intro\n  | n + 1, 0 => tac\n  | ...\n  ```\n"}},
+    "content": "intro"},
+   "38": {"kind": {"var": {"type": "ℚ", "name": "_uniq.684"}}, "content": "y"},
+   "378":
+   {"kind": {"var": {"type": "p", "name": "_uniq.4363"}}, "content": "hp"},
+   "372":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.intro-6515",
+      "name": ["Lean", "Parser", "Tactic", "intro"],
+      "docs":
+      "Introduces one or more hypotheses, optionally naming and/or pattern-matching them.\nFor each hypothesis to be introduced, the remaining main goal's target type must\nbe a `let` or function type.\n\n* `intro` by itself introduces one anonymous hypothesis, which can be accessed\n  by e.g. `assumption`. It is equivalent to `intro _`.\n* `intro x y` introduces two hypotheses and names them. Individual hypotheses\n  can be anonymized via `_`, given a type ascription, or matched against a pattern:\n  ```lean\n  -- ... ⊢ α × β → ...\n  intro (a, b)\n  -- ..., a : α, b : β ⊢ ...\n  ```\n* `intro rfl` is short for `intro h; subst h`, if `h` is an equality where the left-hand or right-hand side\n  is a variable.\n* Alternatively, `intro` can be combined with pattern matching much like `fun`:\n  ```lean\n  intro\n  | n + 1, 0 => tac\n  | ...\n  ```\n"}},
+    "content": "intro"},
+   "368":
+   {"kind": {"var": {"type": "q → r", "name": "_uniq.4290"}}, "content": "hqr"},
+   "366":
+   {"kind": {"var": {"type": "p → q", "name": "_uniq.4289"}}, "content": "hpq"},
+   "36": {"kind": {"var": {"type": "ℚ", "name": "_uniq.682"}}, "content": "x"},
+   "358":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-6510",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "354":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4233"}}, "content": "r"},
+   "352":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4231"}}, "content": "q"},
+   "350":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4229"}}, "content": "p"},
+   "348":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-6444",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "342":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.tacticSorry-6390",
+      "name": ["Lean", "Parser", "Tactic", "tacticSorry"],
+      "docs":
+      "The `sorry` tactic is a temporary placeholder for an incomplete tactic proof,\nclosing the main goal using `exact sorry`.\n\nThis is intended for stubbing-out incomplete parts of a proof while still having a syntactically correct proof skeleton.\nLean will give a warning whenever a proof uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a theorem depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n"}},
+    "content": "sorry"},
+   "34": {"kind": "unknown", "content": "("},
+   "338":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-6385",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "334":
+   {"kind":
+    {"const":
+     {"signature": "And (a b : Prop) : Prop",
+      "name": ["And"],
+      "isDef": false,
+      "docs":
+      "`And a b`, or `a ∧ b`, is the conjunction of propositions. It can be\nconstructed and destructed like a pair: if `ha : a` and `hb : b` then\n`⟨ha, hb⟩ : a ∧ b`, and if `h : a ∧ b` then `h.left : a` and `h.right : b`.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∧` in identifiers is `and`.\n\n * The recommended spelling of `/\\` in identifiers is `and` (prefer `∧` over `/\\`)."}},
+    "content": "∧"},
+   "332":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4188"}}, "content": "r"},
+   "330":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4186"}}, "content": "q"},
+   "328":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4184"}}, "content": "p"},
+   "324":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-6319",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "32":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-3081",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "317": {"kind": "unknown", "content": "sorry"},
+   "311":
+   {"kind": {"var": {"type": "p", "name": "_uniq.4076"}}, "content": "hp"},
+   "309": {"kind": "unknown", "content": "⟩"},
+   "307":
+   {"kind": {"var": {"type": "q → r", "name": "_uniq.4106"}}, "content": "hqr"},
+   "305":
+   {"kind": {"var": {"type": "p → q", "name": "_uniq.4105"}}, "content": "hpq"},
+   "303": {"kind": "unknown", "content": "⟨"},
+   "301":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-6041",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "299": {"kind": "unknown", "content": "∧"},
+   "297":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4050"}}, "content": "r"},
+   "295":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4048"}}, "content": "q"},
+   "293":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4046"}}, "content": "p"},
+   "291":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-5973",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "29": {"kind": {"withType": {"type": "ℕ"}}, "content": "2"},
+   "288":
+   {"kind": {"var": {"type": "p", "name": "_uniq.4041"}}, "content": "h"},
+   "286":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5961",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "284":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4031"}}, "content": "p"},
+   "282":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-5927",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "276":
+   {"kind":
+    {"const":
+     {"signature": "my_amazing_result (p : Prop) : p → p",
+      "name": ["my_amazing_result"],
+      "isDef": false,
+      "docs": null}},
+    "content": "my_amazing_result"},
+   "274":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.apply-5760",
+      "name": ["Lean", "Parser", "Tactic", "apply"],
+      "docs":
+      "`apply e` tries to match the current goal against the conclusion of `e`'s type.\nIf it succeeds, then the tactic returns as many subgoals as the number of premises that\nhave not been fixed by type inference or type class resolution.\nNon-dependent premises are added before dependent ones.\n\nThe `apply` tactic uses higher-order pattern matching, type class resolution,\nand first-order unification with dependent types.\n"}},
+    "content": "apply"},
+   "270":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-5755",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "27": {"kind": "unknown", "content": "+"},
+   "266":
+   {"kind":
+    {"const":
+     {"signature": "True : Prop",
+      "name": ["True"],
+      "isDef": false,
+      "docs":
+      "`True` is a proposition and has only an introduction rule, `True.intro : True`.\nIn other words, `True` is simply true, and has a canonical proof, `True.intro`\nFor more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)\n"}},
+    "content": "True"},
+   "264":
+   {"kind":
+    {"const":
+     {"signature": "a_less_amazing_result : True → True",
+      "name": ["a_less_amazing_result"],
+      "isDef": true,
+      "docs": null}},
+    "content": "a_less_amazing_result"},
+   "262":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-5706",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "258":
+   {"kind": {"var": {"type": "p", "name": "_uniq.4016"}}, "content": "h"},
+   "256":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5322",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "254":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.4008"}}, "content": "p"},
+   "252":
+   {"kind":
+    {"const":
+     {"signature": "my_amazing_result (p : Prop) : p → p",
+      "name": ["my_amazing_result"],
+      "isDef": true,
+      "docs": null}},
+    "content": "my_amazing_result"},
+   "250":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-5270",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "25": {"kind": {"withType": {"type": "ℕ"}}, "content": "1"},
+   "246": {"kind": {"withType": {"type": "ℕ"}}, "content": "1013"},
+   "244":
+   {"kind":
+    {"const":
+     {"signature": "Nat.Prime (p : ℕ) : Prop",
+      "name": ["Nat", "Prime"],
+      "isDef": false,
+      "docs":
+      "`Nat.Prime p` means that `p` is a prime number, that is, a natural number\nat least 2 whose only divisors are `p` and `1`.\nThe theorem `Nat.prime_def` witnesses this description of a prime number. "}},
+    "content": "Nat.Prime"},
+   "240":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-5112",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "235":
+   {"kind":
+    {"const":
+     {"signature": "Bool.true : Bool",
+      "name": ["Bool", "true"],
+      "isDef": false,
+      "docs":
+      "The Boolean value `true`, not to be confused with the proposition `True`. "}},
+    "content": "true"},
+   "232":
+   {"kind":
+    {"keyword":
+     {"occurrence": "termIfThenElse-5045",
+      "name": ["termIfThenElse"],
+      "docs":
+      "`if c then t else e` is notation for `ite c t e`, \"if-then-else\", which decides to\nreturn `t` or `e` depending on whether `c` is true or false. The explicit argument\n`c : Prop` does not have any actual computational content, but there is an additional\n`[Decidable c]` argument synthesized by typeclass inference which actually\ndetermines how to evaluate `c` to true or false. Write `if h : c then t else e`\ninstead for a \"dependent if-then-else\" `dite`, which allows `t`/`e` to use the fact\nthat `c` is true/false.\n"}},
+    "content": "else"},
+   "230":
+   {"kind": {"str": {"string": "the universe has a problem"}},
+    "content": "\"the universe has a problem\""},
+   "228":
+   {"kind":
+    {"keyword":
+     {"occurrence": "termIfThenElse-5045",
+      "name": ["termIfThenElse"],
+      "docs":
+      "`if c then t else e` is notation for `ite c t e`, \"if-then-else\", which decides to\nreturn `t` or `e` depending on whether `c` is true or false. The explicit argument\n`c : Prop` does not have any actual computational content, but there is an additional\n`[Decidable c]` argument synthesized by typeclass inference which actually\ndetermines how to evaluate `c` to true or false. Write `if h : c then t else e`\ninstead for a \"dependent if-then-else\" `dite`, which allows `t`/`e` to use the fact\nthat `c` is true/false.\n"}},
+    "content": "then"},
+   "226": {"kind": "unknown", "content": ">"},
+   "224":
+   {"kind":
+    {"keyword":
+     {"occurrence": "termIfThenElse-5045",
+      "name": ["termIfThenElse"],
+      "docs":
+      "`if c then t else e` is notation for `ite c t e`, \"if-then-else\", which decides to\nreturn `t` or `e` depending on whether `c` is true or false. The explicit argument\n`c : Prop` does not have any actual computational content, but there is an additional\n`[Decidable c]` argument synthesized by typeclass inference which actually\ndetermines how to evaluate `c` to true or false. Write `if h : c then t else e`\ninstead for a \"dependent if-then-else\" `dite`, which allows `t`/`e` to use the fact\nthat `c` is true/false.\n"}},
+    "content": "if"},
+   "220":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-5039",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "215":
+   {"kind": {"str": {"string": "everything is ok"}},
+    "content": "\"everything is ok\""},
+   "212": {"kind": {"str": {"string": " world"}}, "content": "\" world\""},
+   "210":
+   {"kind":
+    {"const":
+     {"signature": "String.append (s : String) (t : String) : String",
+      "name": ["String", "append"],
+      "isDef": false,
+      "docs":
+      "Appends two strings. Usually accessed via the `++` operator.\n\nThe internal implementation will perform destructive updates if the string is not shared.\n\nExamples:\n* `\"abc\".append \"def\" = \"abcdef\"`\n* `\"abc\" ++ \"def\" = \"abcdef\"`\n* `\"\" ++ \"\" = \"\"`\n"}},
+    "content": "append"},
+   "21":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-3070",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "208": {"kind": "unknown", "content": "."},
+   "206": {"kind": {"str": {"string": "hello"}}, "content": "\"hello\""},
+   "202":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-5009",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "197":
+   {"kind": {"str": {"string": "hello world"}}, "content": "\"hello world\""},
+   "192":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-4999",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "185":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.1775"}}, "content": "x"},
+   "183":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-4757",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "179":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-4750",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "173": {"kind": "unknown", "content": "→"},
+   "169": {"kind": "unknown", "content": "=>"},
+   "167":
+   {"kind": {"keyword": {"occurrence": null, "name": null, "docs": null}},
+    "content": "fun"},
+   "164": {"kind": {"withType": {"type": "ℕ"}}, "content": "0"},
+   "162":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "Nat"},
+   "160":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.1732"}}, "content": "x"},
+   "16": {"kind": "unknown", "content": "3"},
+   "156":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-4722",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "150":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "The universe of propositions. `Prop ≡ Sort 0`.\n\nEvery proposition is propositionally equal to either `True` or `False`. "}},
+    "content": "Prop"},
+   "146": {"kind": "unknown", "content": ","},
+   "144":
+   {"kind": {"var": {"type": "ℕ", "name": "_pp_uniq.1"}}, "content": "x"},
+   "142": {"kind": "unknown", "content": "∃"},
+   "137":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-4711",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "131":
+   {"kind":
+    {"const":
+     {"signature": "String : Type",
+      "name": ["String"],
+      "isDef": false,
+      "docs":
+      "A string is a sequence of Unicode scalar values.\n\nAt runtime, strings are represented by [dynamic arrays](https://en.wikipedia.org/wiki/Dynamic_array)\nof bytes using the UTF-8 encoding. Both the size in bytes (`String.utf8ByteSize`) and in characters\n(`String.length`) are cached and take constant time. Many operations on strings perform in-place\nmodifications when the reference to the string is unique.\n"}},
+    "content": "String"},
+   "127": {"kind": {"str": {"string": "1"}}, "content": "\"1\""},
+   "121":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-4702",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "115":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "ℕ"},
+   "110": {"kind": "unknown", "content": "1"},
+   "104":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.grind-3205",
+      "name": ["Lean", "Parser", "Tactic", "grind"],
+      "docs":
+      "`grind` is a tactic inspired by modern SMT solvers. **Picture a virtual whiteboard**:\nevery time grind discovers a new equality, inequality, or logical fact,\nit writes it on the board, groups together terms known to be equal,\nand lets each reasoning engine read from and contribute to the shared workspace.\nThese engines work together to handle equality reasoning, apply known theorems,\npropagate new facts, perform case analysis, and run specialized solvers\nfor domains like linear arithmetic and commutative rings.\n\nSee [the reference manual's chapter on `grind`](https://lean-lang.org/doc/reference/4.28.0-rc1/find/?domain=Verso.Genre.Manual.section&name=grind-tactic) for more information.\n\n`grind` is *not* designed for goals whose search space explodes combinatorially,\nthink large pigeonhole instances, graph‑coloring reductions, high‑order N‑queens boards,\nor a 200‑variable Sudoku encoded as Boolean constraints.  Such encodings require\n thousands (or millions) of case‑splits that overwhelm `grind`’s branching search.\n\nFor **bit‑level or combinatorial problems**, consider using **`bv_decide`**.\n`bv_decide` calls a state‑of‑the‑art SAT solver (CaDiCaL) and then returns a\n*compact, machine‑checkable certificate*.\n\n### Equality reasoning\n\n`grind` uses **congruence closure** to track equalities between terms.\nWhen two terms are known to be equal, congruence closure automatically deduces\nequalities between more complex expressions built from them.\nFor example, if `a = b`, then congruence closure will also conclude that `f a` = `f b`\nfor any function `f`. This forms the foundation for efficient equality reasoning in `grind`.\nHere is an example:\n```\nexample (f : Nat → Nat) (h : a = b) : f (f b) = f (f a) := by\n  grind\n```\n\n### Applying theorems using E-matching\n\nTo apply existing theorems, `grind` uses a technique called **E-matching**,\nwhich finds matches for known theorem patterns while taking equalities into account.\nCombined with congruence closure, E-matching helps `grind` discover\nnon-obvious consequences of theorems and equalities automatically.\n\nConsider the following functions and theorems:\n```\ndef f (a : Nat) : Nat :=\n  a + 1\n\ndef g (a : Nat) : Nat :=\n  a - 1\n\n@[grind =]\ntheorem gf (x : Nat) : g (f x) = x := by\n  simp [f, g]\n```\nThe theorem `gf` asserts that `g (f x) = x` for all natural numbers `x`.\nThe attribute `[grind =]` instructs `grind` to use the left-hand side of the equation,\n`g (f x)`, as a pattern for E-matching.\nSuppose we now have a goal involving:\n```\nexample {a b} (h : f b = a) : g a = b := by\n  grind\n```\nAlthough `g a` is not an instance of the pattern `g (f x)`,\nit becomes one modulo the equation `f b = a`. By substituting `a`\nwith `f b` in `g a`, we obtain the term `g (f b)`,\nwhich matches the pattern `g (f x)` with the assignment `x := b`.\nThus, the theorem `gf` is instantiated with `x := b`,\nand the new equality `g (f b) = b` is asserted.\n`grind` then uses congruence closure to derive the implied equality\n`g a = g (f b)` and completes the proof.\n\nThe pattern used to instantiate theorems affects the effectiveness of `grind`.\nFor example, the pattern `g (f x)` is too restrictive in the following case:\nthe theorem `gf` will not be instantiated because the goal does not even\ncontain the function symbol `g`.\n\n```\nexample (h₁ : f b = a) (h₂ : f c = a) : b = c := by\n  grind\n```\n\nYou can use the command `grind_pattern` to manually select a pattern for a given theorem.\nIn the following example, we instruct `grind` to use `f x` as the pattern,\nallowing it to solve the goal automatically:\n```\ngrind_pattern gf => f x\n\nexample {a b c} (h₁ : f b = a) (h₂ : f c = a) : b = c := by\n  grind\n```\nYou can enable the option `trace.grind.ematch.instance` to make `grind` print a\ntrace message for each theorem instance it generates.\n\nYou can also specify a **multi-pattern** to control when `grind` should apply a theorem.\nA multi-pattern requires that all specified patterns are matched in the current context\nbefore the theorem is applied. This is useful for theorems such as transitivity rules,\nwhere multiple premises must be simultaneously present for the rule to apply.\nThe following example demonstrates this feature using a transitivity axiom for a binary relation `R`:\n```\nopaque R : Int → Int → Prop\naxiom Rtrans {x y z : Int} : R x y → R y z → R x z\n\ngrind_pattern Rtrans => R x y, R y z\n\nexample {a b c d} : R a b → R b c → R c d → R a d := by\n  grind\n```\nBy specifying the multi-pattern `R x y, R y z`, we instruct `grind` to\ninstantiate `Rtrans` only when both `R x y` and `R y z` are available in the context.\nIn the example, `grind` applies `Rtrans` to derive `R a c` from `R a b` and `R b c`,\nand can then repeat the same reasoning to deduce `R a d` from `R a c` and `R c d`.\n\nInstead of using `grind_pattern` to explicitly specify a pattern,\nyou can use the `@[grind]` attribute or one of its variants, which will use a heuristic to\ngenerate a (multi-)pattern. The complete list is available in the reference manual. The main ones are:\n\n- `@[grind →]` will select a multi-pattern from the hypotheses of the theorem (i.e. it will use the theorem for forwards reasoning).\n  In more detail, it will traverse the hypotheses of the theorem from left-to-right, and each time it encounters a minimal indexable\n  (i.e. has a constant as its head) subexpression which \"covers\" (i.e. fixes the value of) an argument which was not\n  previously covered, it will add that subexpression as a pattern, until all arguments have been covered.\n- `@[grind ←]` will select a multi-pattern from the conclusion of theorem (i.e. it will use the theorem for backwards reasoning).\n  This may fail if not all the arguments to the theorem appear in the conclusion.\n- `@[grind]` will traverse the conclusion and then the hypotheses left-to-right, adding patterns as they increase the coverage,\n  stopping when all arguments are covered.\n- `@[grind =]` checks that the conclusion of the theorem is an equality, and then uses the left-hand-side of the equality as a pattern.\n  This may fail if not all of the arguments appear in the left-hand-side.\n\nHere is the previous example again but using the attribute `[grind →]`\n```\nopaque R : Int → Int → Prop\n@[grind →] axiom Rtrans {x y z : Int} : R x y → R y z → R x z\n\nexample {a b c d} : R a b → R b c → R c d → R a d := by\n  grind\n```\n\nTo control theorem instantiation and avoid generating an unbounded number of instances,\n`grind` uses a generation counter. Terms in the original goal are assigned generation zero.\nWhen `grind` applies a theorem using terms of generation `≤ n`, any new terms it creates\nare assigned generation `n + 1`. This limits how far the tactic explores when applying\ntheorems and helps prevent an excessive number of instantiations.\n\n#### Key options:\n- `grind (ematch := <num>)` controls the number of E-matching rounds.\n- `grind [<name>, ...]` instructs `grind` to use the declaration `name` during E-matching.\n- `grind only [<name>, ...]` is like `grind [<name>, ...]` but does not use theorems tagged with `@[grind]`.\n- `grind (gen := <num>)` sets the maximum generation.\n\n### Linear integer arithmetic (`lia`)\n\n`grind` can solve goals that reduce to **linear integer arithmetic (LIA)** using an\nintegrated decision procedure called **`lia`**.  It understands\n\n* equalities   `p = 0`\n* inequalities  `p ≤ 0`\n* disequalities `p ≠ 0`\n* divisibility  `d ∣ p`\n\nThe solver incrementally assigns integer values to variables; when a partial\nassignment violates a constraint it adds a new, implied constraint and retries.\nThis *model-based* search is **complete for LIA**.\n\n#### Key options:\n\n* `grind -lia` disable the solver (useful for debugging)\n* `grind +qlia` accept rational models (shrinks the search space but is incomplete for ℤ)\n\n#### Examples:\n\n```\n-- Even + even is never odd.\nexample {x y : Int} : 2 * x + 4 * y ≠ 5 := by\n  grind\n\n-- Mixing equalities and inequalities.\nexample {x y : Int} :\n    2 * x + 3 * y = 0 → 1 ≤ x → y < 1 := by\n  grind\n\n-- Reasoning with divisibility.\nexample (a b : Int) :\n    2 ∣ a + 1 → 2 ∣ b + a → ¬ 2 ∣ b + 2 * a := by\n  grind\n\nexample (x y : Int) :\n    27 ≤ 11*x + 13*y →\n    11*x + 13*y ≤ 45 →\n    -10 ≤ 7*x - 9*y →\n    7*x - 9*y ≤ 4 → False := by\n  grind\n\n-- Types that implement the `ToInt` type-class.\nexample (a b c : UInt64)\n    : a ≤ 2 → b ≤ 3 → c - a - b = 0 → c ≤ 5 := by\n  grind\n```\n\n### Algebraic solver (`ring`)\n\n`grind` ships with an algebraic solver nick-named **`ring`** for goals that can\nbe phrased as polynomial equations (or disequations) over commutative rings,\nsemirings, or fields.\n\n*Works out of the box*\nAll core numeric types and relevant Mathlib types already provide the required\ntype-class instances, so the solver is ready to use in most developments.\n\nWhat it can decide:\n\n* equalities of the form `p = q`\n* disequalities `p ≠ q`\n* basic reasoning under field inverses (`a / b := a * b⁻¹`)\n* goals that mix ring facts with other `grind` engines\n\n#### Key options:\n\n* `grind -ring` turn the solver off (useful when debugging)\n* `grind (ringSteps := n)` cap the number of steps performed by this procedure.\n\n#### Examples\n\n```\nopen Lean Grind\n\nexample [CommRing α] (x : α) : (x + 1) * (x - 1) = x^2 - 1 := by\n  grind\n\n-- Characteristic 256 means 16 * 16 = 0.\nexample [CommRing α] [IsCharP α 256] (x : α) :\n    (x + 16) * (x - 16) = x^2 := by\n  grind\n\n-- Works on built-in rings such as `UInt8`.\nexample (x : UInt8) : (x + 16) * (x - 16) = x^2 := by\n  grind\n\nexample [CommRing α] (a b c : α) :\n    a + b + c = 3 →\n    a^2 + b^2 + c^2 = 5 →\n    a^3 + b^3 + c^3 = 7 →\n    a^4 + b^4 = 9 - c^4 := by\n  grind\n\nexample [Field α] [NoNatZeroDivisors α] (a : α) :\n    1 / a + 1 / (2 * a) = 3 / (2 * a) := by\n  grind\n```\n\n### Other options\n\n- `grind (splits := <num>)` caps the *depth* of the search tree.  Once a branch performs `num` splits\n  `grind` stops splitting further in that branch.\n- `grind -splitIte` disables case splitting on if-then-else expressions.\n- `grind -splitMatch` disables case splitting on `match` expressions.\n- `grind +splitImp` instructs `grind` to split on any hypothesis `A → B` whose antecedent `A` is **propositional**.\n- `grind -linarith` disables the linear arithmetic solver for (ordered) modules and rings.\n\n### Additional Examples\n\n```\nexample {a b} {as bs : List α} : (as ++ bs ++ [b]).getLastD a = b := by\n  grind\n\nexample (x : BitVec (w+1)) : (BitVec.cons x.msb (x.setWidth w)) = x := by\n  grind\n\nexample (as : Array α) (lo hi i j : Nat) :\n    lo ≤ i → i < j → j ≤ hi → j < as.size → min lo (as.size - 1) ≤ i := by\n  grind\n```\n"}},
+    "content": "grind"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-297",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 487,
+  "messageContents":
+  {"472": {"append": [14, 471]},
+   "471": {"term": 470},
+   "454": {"append": [14, 453]},
+   "453": {"term": 452},
+   "365": {"append": [14, 364]},
+   "364": {"append": [362, 363]},
+   "363": {"text": "intro ⟨hpq, hqr⟩ hp"},
+   "362": {"text": "Try this: "},
+   "323": {"append": [14, 322]},
+   "322": {"append": [316, 320, 321]},
+   "321": {"text": "`"},
+   "320": {"term": 319},
+   "316": {"text": "declaration uses `"},
+   "239": {"append": [14, 238]},
+   "238": {"term": 237},
+   "219": {"append": [14, 218]},
+   "218": {"term": 217},
+   "201": {"append": [14, 200]},
+   "200": {"term": 199},
+   "20": {"append": [14, 19]},
+   "191": {"append": [14, 190]},
+   "190": {"term": 189},
+   "19": {"term": 18},
+   "178": {"append": [14, 177]},
+   "177": {"append": [172, 114, 176]},
+   "176": {"term": 175},
+   "172": {"term": 171},
+   "155": {"append": [14, 154]},
+   "154": {"append": [149, 114, 153]},
+   "153": {"term": 152},
+   "149": {"term": 148},
+   "14": {"text": ""},
+   "136": {"append": [14, 135]},
+   "135": {"append": [130, 114, 134]},
+   "134": {"term": 133},
+   "130": {"term": 129},
+   "120": {"append": [14, 119]},
+   "119": {"append": [113, 114, 118]},
+   "118": {"term": 117},
+   "114": {"text": " : "},
+   "113": {"term": 112}},
+  "goals":
+  {"98":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 77, "names": [36]},
+     {"typeAndVal": 77, "names": [38]},
+     {"typeAndVal": 77, "names": [40]},
+     {"typeAndVal": 84, "names": [49]},
+     {"typeAndVal": 91, "names": [59]},
+     {"typeAndVal": 96, "names": [67]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 97},
+   "399":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 152, "names": [350]},
+     {"typeAndVal": 152, "names": [352]},
+     {"typeAndVal": 152, "names": [354]},
+     {"typeAndVal": 367, "names": [366]},
+     {"typeAndVal": 369, "names": [368]},
+     {"typeAndVal": 379, "names": [378]},
+     {"typeAndVal": 388, "names": [387]},
+     {"typeAndVal": 398, "names": [397]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 380},
+   "389":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 152, "names": [350]},
+     {"typeAndVal": 152, "names": [352]},
+     {"typeAndVal": 152, "names": [354]},
+     {"typeAndVal": 367, "names": [366]},
+     {"typeAndVal": 369, "names": [368]},
+     {"typeAndVal": 379, "names": [378]},
+     {"typeAndVal": 388, "names": [387]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 380},
+   "381":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 152, "names": [350]},
+     {"typeAndVal": 152, "names": [352]},
+     {"typeAndVal": 152, "names": [354]},
+     {"typeAndVal": 367, "names": [366]},
+     {"typeAndVal": 369, "names": [368]},
+     {"typeAndVal": 379, "names": [378]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 380},
+   "371":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 152, "names": [350]},
+     {"typeAndVal": 152, "names": [352]},
+     {"typeAndVal": 152, "names": [354]},
+     {"typeAndVal": 367, "names": [366]},
+     {"typeAndVal": 369, "names": [368]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 370},
+   "357":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 152, "names": [350]},
+     {"typeAndVal": 152, "names": [352]},
+     {"typeAndVal": 152, "names": [354]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 356},
+   "337":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 152, "names": [328]},
+     {"typeAndVal": 152, "names": [330]},
+     {"typeAndVal": 152, "names": [332]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 336},
+   "269":
+   {"name": null, "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 268}},
+  "code":
+  {"97": {"seq": {"highlights": [15, 72, 15]}},
+   "96":
+   {"seq":
+    {"highlights":
+     [15, 93, 3, 81, 3, 39, 3, 95, 3, 86, 3, 81, 3, 41, 3, 83, 3, 90]}},
+   "95": {"token": {"tok": 94}},
+   "93": {"token": {"tok": 92}},
+   "91":
+   {"seq":
+    {"highlights":
+     [62, 86, 3, 81, 3, 37, 3, 88, 3, 79, 3, 81, 3, 41, 3, 83, 3, 90]}},
+   "90": {"token": {"tok": 89}},
+   "88": {"token": {"tok": 87}},
+   "86": {"token": {"tok": 85}},
+   "84":
+   {"seq": {"highlights": [15, 79, 3, 81, 3, 37, 3, 83, 3, 17, 3, 81, 3, 39]}},
+   "83": {"token": {"tok": 82}},
+   "81": {"token": {"tok": 80}},
+   "8": {"token": {"tok": 7}},
+   "79": {"token": {"tok": 78}},
+   "77": {"seq": {"highlights": [15, 76, 15]}},
+   "76": {"token": {"tok": 75}},
+   "74": {"token": {"tok": 73}},
+   "72": {"token": {"tok": 71}},
+   "70": {"token": {"tok": 69}},
+   "68": {"token": {"tok": 67}},
+   "66": {"token": {"tok": 65}},
+   "64": {"token": {"tok": 63}},
+   "62": {"token": {"tok": 61}},
+   "60": {"token": {"tok": 59}},
+   "6":
+   {"text":
+    {"str":
+     "\n\n/-\nA Tour of L∃∀N\n===\n\nAbout Lean\n===\n\nL∃∀N is a programming language and proof assistant.\n\nIt is an implementation of the *Calculus of Inductive Constructions*, a type\ntheoretic foundation for mathematics.\n\nYou can use it to\n- state almost any mathematical definition or theorem\n- write formal proofs of your theorems\n- check that your proofs are correct\n\nWhile L∃∀N will not prove all of your theorems for you, it does provide an increasing amount of\nautomation making it easier than ever to use a proof assistant.\n\nInstalling Lean\n===\n\nThe easiest way to install Lean is to follow the quickstart guide at\n- [Lean Quickstart](https://lean-lang.org/lean4/doc/quickstart.html)\n\nYou will need first install VS Code:\n\n- [VS Code](https://code.visualstudio.com/)\n\nThen go to `View > Extensions` and search for \"Lean 4\" and install it.\n\nThis will put a `∀` in the upper right menu bar of VS Code. From there, you can\ncreate a new project, which should install Lean and all of the associated tools.\n\nLean \"Project\" Types\n===\n\nWith the VS Code Extension, you can install two types of projects:\n\n- **Standalone** project. Just the basics.\n\n- **Mathlib** project. Includes a *huge* library of most basic and several advanced areas of mathematics.\nChoose this if in particular if you want to use real numbers, algebra, sets, matrices, etc.\n\nDespite its size, I recommend starting a *Mathlib* based project. You never know\nwhen you might need something from Mathlib.\n\nNotes:\n  - Wait for the tool to completely finish before opening or changing anything.\n  - I don't like the option where it creates a new workspace.\n  - Don't make a new project every time you want to try something out.\n      - Each project is about 6GB to start with\n      - Instead, create a single monolithic project and make sub-directories for ideas you want to explore.\n\nDirectory Structure\n===\n\nIf you create a new project called `EE598_Turing`, you will get a whole directory of stuff:\n\n```\n   EE598_Turing\n     .github/\n     .lake/\n     EE598_Turing/                 <-- put your code here\n       Basic.lean\n       HW_I_2.lean                 <-- Today's HW file\n     .gitignore\n     EE598_Turing.lean\n     lake-manifest.json\n     lakefile.toml\n     lean-toolchain\n     README.md\n```\n\nFor now, you mainly need to know that the subdirectory with the same name as your\nproject is where you can put your `.lean files`. It has one in it already, called `Basic.lean`.\nOpen this and you can start playing with Lean.\n\nExercises\n===\n\n<ex/> Create a Mathlib-based project using `EE598_Lastname` as the project name.\nE.g, if your last name is Turing, name your project `EE598_Turing`.\n\n<ex/> Create a new file `HW_I_2.lean` so that it has the code:\n\n-/\n\n"}},
+   "58": {"token": {"tok": 57}},
+   "56": {"token": {"tok": 55}},
+   "54": {"token": {"tok": 53}},
+   "52": {"token": {"tok": 51}},
+   "50": {"token": {"tok": 49}},
+   "5": {"token": {"tok": 4}},
+   "486": {"seq": {"highlights": [483, 485, 11]}},
+   "485": {"token": {"tok": 484}},
+   "483":
+   {"text":
+    {"str":
+     "\n\n/- Note the similarity between `def` and `theorem`. The latter is\nsimply a special kind of definition. -/\n\n/-\nExercises\n===\n\n<ex /> Write a function `square` that squares every number in a list\nof natural numbers. Use `remove_zeros` as a template. Test your\ncode using `#eval`.\n\n-/\n\n/-\nDocumentation and Resources\n===\n\n- <a href=\"https://lean-lang.org/theorem_proving_in_lean4/\" target=\"other\">\n  Theorem Proving in Lean\n  </a>\n\n- <a href=\"https://lean-lang.org/functional_programming_in_lean/\" target=\"other\">\n  L∃∀N Programming Book\n  </a>\n\n- <a href=\"https://leanprover-community.github.io/lean4-metaprogramming-book/\" target=\"other\">\n  L∃∀N Metaprogramming\n  </a>\n\n- <a href=\"https://leanprover-community.github.io/mathematics_in_lean\" target=\"other\">\n  Mathematics in L∃∀N\n  </a>\n\n- <a href=\"https://github.com/leanprover/lean4/blob/ffac974dba799956a97d63ffcb13a774f700149c/src/Init/Prelude.lean\" target=\"other\">\n  The Standard Library\n  </a>\n\n- <a href=\"https://loogle.lean-lang.org/\" target=\"other\">\n Loogle\n </a> — Google for L∃∀N, also in VS Code\n\n- <a href=\"https://leanprover.zulipchat.com/\" target=\"other\">\n  Zulip Chat\n  </a> — Discussion groups\n\n\nExercises\n===\n\n<ex /> Go to Loogle and look up `List.find?`. There should be two examples\nof how to use this function. Try them in your `HW_I_2.lean` file.\n\nHomework Routine\n===\n\nEach slide deck contains\n- Warm up exercises interspersed with the slides, mostly done in class\n- A final set of exercises that should be done on your own\n\nWhen we finish a slide deck, **all** solutions should be put\ninto a file with the same name in your project directory. This\nis primarily a way to backup your code.\n\nTo turn in a solution set, submit a standalone file to Canvas.\n\nI will download all solution sets into a Lean project and\nexecute your code to grade them.\n\nLate homework accrues 10% reduction per week.\n\n\nExercises\n===\n\n<ex/> If you have not done so already, create a file called `HW_I_2.lean`\nin the same directory as `Basic.lean`.\nPut your solutions to the exercises in this slide deck in this file.\n- Homework files should restate each problem.\n- Textual answers should be written as comments.\n- Lean code should be executable assuming Mathlib is installed and\nshould produce no errors.\n- If you are stuck on part of a theorem, use `sorry` for\npartial credit and move on with your life.\n\n<ex/> Make a github repo for your homework using the same as your project\n(e.g. `EE598_Turing`). You will use this repo to save your homework. Make the repo `private`.\n\n<ex/> Once you are satisfied with your work, submit the `HW_I_2.lean` file\nto Canvas under the corresponding assignment.\n\n-/\n"}},
+   "482":
+   {"seq":
+    {"highlights":
+     [13,
+      476,
+      3,
+      446,
+      3,
+      428,
+      26,
+      147,
+      30,
+      147,
+      478,
+      147,
+      165,
+      147,
+      480,
+      147,
+      165,
+      147,
+      165,
+      430,
+      481,
+      11]}},
+   "481": {"text": {"str": "     -- [1,2,3,5]"}},
+   "480": {"token": {"tok": 479}},
+   "48": {"text": {"str": "\n        "}},
+   "478": {"token": {"tok": 477}},
+   "476": {"span": {"info": [["info", 472]], "content": 475}},
+   "475": {"seq": {"highlights": [474, 11]}},
+   "474": {"token": {"tok": 473}},
+   "470":
+   {"seq":
+    {"highlights":
+     [15, 463, 15, 111, 465, 3, 79, 465, 3, 17, 465, 3, 467, 469]}},
+   "47": {"token": {"tok": 46}},
+   "469": {"token": {"tok": 468}},
+   "467": {"token": {"tok": 466}},
+   "465": {"token": {"tok": 464}},
+   "463": {"token": {"tok": 462}},
+   "461": {"seq": {"highlights": [13, 458, 3, 460, 11]}},
+   "460": {"token": {"tok": 459}},
+   "458": {"span": {"info": [["info", 454]], "content": 457}},
+   "457": {"seq": {"highlights": [456, 11]}},
+   "456": {"token": {"tok": 455}},
+   "452":
+   {"seq":
+    {"highlights":
+     [15, 446, 3, 35, 451, 3, 43, 3, 418, 3, 116, 47, 3, 43, 3, 418, 3, 116]}},
+   "451": {"token": {"tok": 450}},
+   "45": {"token": {"tok": 44}},
+   "449":
+   {"seq":
+    {"highlights":
+     [410,
+      412,
+      3,
+      414,
+      3,
+      35,
+      416,
+      3,
+      43,
+      3,
+      418,
+      3,
+      420,
+      47,
+      3,
+      43,
+      3,
+      418,
+      3,
+      420,
+      3,
+      74,
+      3,
+      422,
+      3,
+      416,
+      3,
+      424,
+      103,
+      426,
+      3,
+      428,
+      430,
+      3,
+      170,
+      3,
+      432,
+      103,
+      426,
+      3,
+      434,
+      436,
+      438,
+      3,
+      170,
+      3,
+      440,
+      3,
+      434,
+      3,
+      442,
+      3,
+      165,
+      3,
+      444,
+      3,
+      446,
+      3,
+      438,
+      3,
+      448,
+      3,
+      434,
+      436,
+      35,
+      446,
+      3,
+      438,
+      47,
+      11]}},
+   "448": {"token": {"tok": 447}},
+   "446": {"token": {"tok": 445}},
+   "444": {"token": {"tok": 443}},
+   "442": {"token": {"tok": 441}},
+   "440": {"token": {"tok": 439}},
+   "438": {"token": {"tok": 437}},
+   "436": {"token": {"tok": 435}},
+   "434": {"token": {"tok": 433}},
+   "432": {"token": {"tok": 431}},
+   "430": {"token": {"tok": 429}},
+   "43": {"token": {"tok": 42}},
+   "428": {"token": {"tok": 427}},
+   "426": {"token": {"tok": 425}},
+   "424": {"token": {"tok": 423}},
+   "422": {"token": {"tok": 421}},
+   "420": {"token": {"tok": 419}},
+   "418": {"token": {"tok": 417}},
+   "416": {"token": {"tok": 415}},
+   "414": {"token": {"tok": 413}},
+   "412": {"token": {"tok": 411}},
+   "410":
+   {"text":
+    {"str":
+     "\n\n/- Don't worry if none of this makes sense. We'll go into all the gory details later.\n\nExercises\n===\n\n<ex /> Lean provides a powerful tactic called `aesop`. Redo the proof\nof the previous example replacing the proof with the single line `aesop`.\n-/\n\n\n\n/-\nProgramming\n===\n\nL∃∀N is a full-fledged functional programming language. Much of\nL∃∀N is programmed in L∃∀N (and then compiled).\n\nIf you are not familiar with functional programming: you will be by then end of this course.\n\nHere is an example program: -/\n\n"}},
+   "41": {"token": {"tok": 40}},
+   "409":
+   {"seq":
+    {"highlights":
+     [347,
+      349,
+      3,
+      35,
+      351,
+      3,
+      353,
+      3,
+      355,
+      3,
+      43,
+      3,
+      151,
+      47,
+      3,
+      43,
+      3,
+      35,
+      351,
+      3,
+      174,
+      3,
+      353,
+      47,
+      3,
+      300,
+      3,
+      35,
+      353,
+      3,
+      174,
+      3,
+      355,
+      47,
+      3,
+      174,
+      3,
+      35,
+      351,
+      3,
+      174,
+      3,
+      355,
+      47,
+      3,
+      74,
+      3,
+      361,
+      103,
+      396,
+      103,
+      404,
+      103,
+      408,
+      11]}},
+   "408":
+   {"tactics": {"startPos": 6599, "info": [], "endPos": 6607, "content": 407}},
+   "407": {"seq": {"highlights": [406, 3, 402, 11]}},
+   "406": {"token": {"tok": 405}},
+   "404":
+   {"tactics":
+    {"startPos": 6575, "info": [399], "endPos": 6596, "content": 403}},
+   "403":
+   {"seq":
+    {"highlights": [401, 3, 402, 3, 43, 3, 355, 3, 74, 3, 375, 3, 392, 11]}},
+   "402": {"token": {"tok": 397}},
+   "401": {"token": {"tok": 400}},
+   "398": {"seq": {"highlights": [15, 355, 3, 74, 3, 375, 3, 392]}},
+   "396": {"span": {"info": [["warning", 365]], "content": 395}},
+   "395": {"seq": {"highlights": [377, 103, 386, 103, 394, 11]}},
+   "394":
+   {"tactics":
+    {"startPos": 6551, "info": [389], "endPos": 6572, "content": 393}},
+   "393":
+   {"seq":
+    {"highlights": [391, 3, 392, 3, 43, 3, 353, 3, 74, 3, 374, 3, 384, 11]}},
+   "392": {"token": {"tok": 387}},
+   "391": {"token": {"tok": 390}},
+   "39": {"token": {"tok": 38}},
+   "388": {"seq": {"highlights": [15, 353, 3, 74, 3, 374, 3, 384]}},
+   "386":
+   {"tactics":
+    {"startPos": 6540, "info": [381], "endPos": 6548, "content": 385}},
+   "385": {"seq": {"highlights": [383, 3, 384, 11]}},
+   "384": {"token": {"tok": 378}},
+   "383": {"token": {"tok": 382}},
+   "380": {"seq": {"highlights": [15, 355, 15]}},
+   "379": {"seq": {"highlights": [15, 351, 15]}},
+   "377":
+   {"tactics":
+    {"startPos": 6515, "info": [371], "endPos": 6537, "content": 376}},
+   "376":
+   {"seq": {"highlights": [373, 3, 304, 3, 374, 147, 3, 375, 3, 310, 11]}},
+   "375": {"token": {"tok": 368}},
+   "374": {"token": {"tok": 366}},
+   "373": {"token": {"tok": 372}},
+   "370": {"seq": {"highlights": [15, 351, 3, 174, 3, 355]}},
+   "37": {"token": {"tok": 36}},
+   "369": {"seq": {"highlights": [15, 353, 3, 174, 3, 355]}},
+   "367": {"seq": {"highlights": [15, 351, 3, 174, 3, 353]}},
+   "361":
+   {"tactics":
+    {"startPos": 6510, "info": [357], "endPos": 6512, "content": 360}},
+   "360": {"seq": {"highlights": [359, 11]}},
+   "359": {"token": {"tok": 358}},
+   "356":
+   {"seq":
+    {"highlights":
+     [35,
+      351,
+      3,
+      174,
+      3,
+      353,
+      47,
+      3,
+      335,
+      3,
+      35,
+      353,
+      3,
+      174,
+      3,
+      355,
+      47,
+      3,
+      174,
+      3,
+      351,
+      3,
+      174,
+      3,
+      355]}},
+   "355": {"token": {"tok": 354}},
+   "353": {"token": {"tok": 352}},
+   "351": {"token": {"tok": 350}},
+   "35": {"token": {"tok": 34}},
+   "349": {"token": {"tok": 348}},
+   "347":
+   {"text": {"str": "\n\n/- which can be built up part by part into -/\n\n"}},
+   "346":
+   {"seq":
+    {"highlights":
+     [315,
+      327,
+      3,
+      35,
+      329,
+      3,
+      331,
+      3,
+      333,
+      3,
+      43,
+      3,
+      151,
+      47,
+      3,
+      43,
+      3,
+      35,
+      329,
+      3,
+      174,
+      3,
+      331,
+      47,
+      3,
+      300,
+      3,
+      35,
+      331,
+      3,
+      174,
+      3,
+      333,
+      47,
+      3,
+      174,
+      3,
+      35,
+      329,
+      3,
+      174,
+      3,
+      333,
+      47,
+      3,
+      74,
+      3,
+      341,
+      103,
+      345,
+      11]}},
+   "345":
+   {"tactics": {"startPos": 6390, "info": [], "endPos": 6395, "content": 344}},
+   "344": {"seq": {"highlights": [343, 11]}},
+   "343": {"token": {"tok": 342}},
+   "341":
+   {"tactics":
+    {"startPos": 6385, "info": [337], "endPos": 6387, "content": 340}},
+   "340": {"seq": {"highlights": [339, 11]}},
+   "339": {"token": {"tok": 338}},
+   "336":
+   {"seq":
+    {"highlights":
+     [35,
+      329,
+      3,
+      174,
+      3,
+      331,
+      47,
+      3,
+      335,
+      3,
+      35,
+      331,
+      3,
+      174,
+      3,
+      333,
+      47,
+      3,
+      174,
+      3,
+      329,
+      3,
+      174,
+      3,
+      333]}},
+   "335": {"token": {"tok": 334}},
+   "333": {"token": {"tok": 332}},
+   "331": {"token": {"tok": 330}},
+   "33": {"token": {"tok": 32}},
+   "329": {"token": {"tok": 328}},
+   "327": {"span": {"info": [["warning", 323]], "content": 326}},
+   "326": {"seq": {"highlights": [325, 11]}},
+   "325": {"token": {"tok": 324}},
+   "319": {"seq": {"highlights": [15, 318, 15]}},
+   "318": {"token": {"tok": 317}},
+   "315":
+   {"text":
+    {"str":
+     "\n\n\n/-\nThe Tactic Language and `sorry`\n===\n\nThe examples above use fairly low level Lean expressions to prove statements.\nLean provides a higher level DSL (domain specific language) for proving.\nYou enter the Tactic DSL using `by`. -/\n\n"}},
+   "314":
+   {"seq":
+    {"highlights":
+     [13,
+      292,
+      3,
+      35,
+      294,
+      3,
+      296,
+      3,
+      298,
+      3,
+      43,
+      3,
+      151,
+      47,
+      3,
+      43,
+      3,
+      35,
+      294,
+      3,
+      174,
+      3,
+      296,
+      47,
+      3,
+      300,
+      3,
+      35,
+      296,
+      3,
+      174,
+      3,
+      298,
+      47,
+      3,
+      174,
+      3,
+      35,
+      294,
+      3,
+      174,
+      3,
+      298,
+      47,
+      3,
+      74,
+      103,
+      302,
+      3,
+      304,
+      3,
+      306,
+      147,
+      3,
+      308,
+      3,
+      310,
+      3,
+      312,
+      313,
+      170,
+      3,
+      308,
+      3,
+      35,
+      306,
+      3,
+      312,
+      47,
+      11]}},
+   "313": {"text": {"str": "\n    "}},
+   "312": {"token": {"tok": 311}},
+   "310": {"token": {"tok": 309}},
+   "31": {"seq": {"highlights": [13, 24, 3, 26, 28, 30, 11]}},
+   "308": {"token": {"tok": 307}},
+   "306": {"token": {"tok": 305}},
+   "304": {"token": {"tok": 303}},
+   "302": {"token": {"tok": 301}},
+   "300": {"token": {"tok": 299}},
+   "30": {"token": {"tok": 29}},
+   "3": {"text": {"str": " "}},
+   "298": {"token": {"tok": 297}},
+   "296": {"token": {"tok": 295}},
+   "294": {"token": {"tok": 293}},
+   "292": {"token": {"tok": 291}},
+   "290":
+   {"seq":
+    {"highlights":
+     [281,
+      283,
+      3,
+      35,
+      285,
+      3,
+      43,
+      3,
+      151,
+      47,
+      3,
+      43,
+      3,
+      285,
+      3,
+      174,
+      3,
+      285,
+      3,
+      74,
+      103,
+      287,
+      3,
+      289,
+      3,
+      170,
+      3,
+      289,
+      11]}},
+   "289": {"token": {"tok": 288}},
+   "287": {"token": {"tok": 286}},
+   "285": {"token": {"tok": 284}},
+   "283": {"token": {"tok": 282}},
+   "281":
+   {"text":
+    {"str":
+     "\n\n/-\nExamples vs Proofs\n===\n\nResults don't have to be named, which is useful for trying things\nout or when you don't need the result again. -/\n\n"}},
+   "280":
+   {"seq":
+    {"highlights":
+     [261,
+      263,
+      3,
+      265,
+      3,
+      43,
+      3,
+      267,
+      3,
+      174,
+      3,
+      267,
+      3,
+      74,
+      3,
+      273,
+      103,
+      279,
+      11]}},
+   "28": {"token": {"tok": 27}},
+   "279":
+   {"tactics": {"startPos": 5760, "info": [], "endPos": 5783, "content": 278}},
+   "278": {"seq": {"highlights": [275, 3, 277, 11]}},
+   "277": {"token": {"tok": 276}},
+   "275": {"token": {"tok": 274}},
+   "273":
+   {"tactics":
+    {"startPos": 5755, "info": [269], "endPos": 5757, "content": 272}},
+   "272": {"seq": {"highlights": [271, 11]}},
+   "271": {"token": {"tok": 270}},
+   "268": {"seq": {"highlights": [15, 267, 3, 174, 3, 267]}},
+   "267": {"token": {"tok": 266}},
+   "265": {"token": {"tok": 264}},
+   "263": {"token": {"tok": 262}},
+   "261":
+   {"text":
+    {"str":
+     "\n\n/- In this expression,\n\n```text\n  my_amazing_result is the name of the theorem\n  (p : Prop)        is an assumption that p is a true or false statement\n  p → p             is the actual theorem\n  :=                delineates the theorem from the proof\n  λ h => h          (the identity function) is the proof\n```\n\nYou can use your theorems to prove other theorems: -/\n\n"}},
+   "260":
+   {"seq":
+    {"highlights":
+     [249,
+      251,
+      3,
+      253,
+      3,
+      35,
+      255,
+      3,
+      43,
+      3,
+      151,
+      47,
+      3,
+      43,
+      3,
+      255,
+      3,
+      174,
+      3,
+      255,
+      3,
+      74,
+      103,
+      257,
+      3,
+      259,
+      3,
+      170,
+      3,
+      259,
+      11]}},
+   "26": {"token": {"tok": 25}},
+   "259": {"token": {"tok": 258}},
+   "257": {"token": {"tok": 256}},
+   "255": {"token": {"tok": 254}},
+   "253": {"token": {"tok": 252}},
+   "251": {"token": {"tok": 250}},
+   "249":
+   {"text":
+    {"str":
+     "\n\n/-\nProofs\n===\n\nWe will go into proofs in great detail later. For now, know that you can\nstate theorems using the `theorem` keyword. -/\n\n"}},
+   "248": {"seq": {"highlights": [126, 243, 3, 245, 3, 247, 11]}},
+   "247": {"token": {"tok": 246}},
+   "245": {"token": {"tok": 244}},
+   "243": {"span": {"info": [["info", 239]], "content": 242}},
+   "242": {"seq": {"highlights": [241, 11]}},
+   "241": {"token": {"tok": 240}},
+   "24": {"span": {"info": [["info", 20]], "content": 23}},
+   "237": {"seq": {"highlights": [15, 236, 15]}},
+   "236": {"token": {"tok": 235}},
+   "234":
+   {"seq":
+    {"highlights":
+     [126,
+      223,
+      3,
+      225,
+      3,
+      30,
+      3,
+      227,
+      3,
+      30,
+      3,
+      229,
+      3,
+      231,
+      3,
+      233,
+      3,
+      216,
+      11]}},
+   "233": {"token": {"tok": 232}},
+   "231": {"token": {"tok": 230}},
+   "23": {"seq": {"highlights": [22, 11]}},
+   "229": {"token": {"tok": 228}},
+   "227": {"token": {"tok": 226}},
+   "225": {"token": {"tok": 224}},
+   "223": {"span": {"info": [["info", 219]], "content": 222}},
+   "222": {"seq": {"highlights": [221, 11]}},
+   "221": {"token": {"tok": 220}},
+   "22": {"token": {"tok": 21}},
+   "217": {"seq": {"highlights": [15, 216, 15]}},
+   "216": {"token": {"tok": 215}},
+   "214": {"seq": {"highlights": [126, 205, 3, 207, 209, 211, 3, 213, 11]}},
+   "213": {"token": {"tok": 212}},
+   "211": {"token": {"tok": 210}},
+   "209": {"token": {"tok": 208}},
+   "207": {"token": {"tok": 206}},
+   "205": {"span": {"info": [["info", 201]], "content": 204}},
+   "204": {"seq": {"highlights": [203, 11]}},
+   "203": {"token": {"tok": 202}},
+   "2": {"token": {"tok": 1}},
+   "199": {"seq": {"highlights": [15, 198, 15]}},
+   "198": {"token": {"tok": 197}},
+   "196": {"seq": {"highlights": [188, 195, 3, 26, 28, 26, 11]}},
+   "195": {"span": {"info": [["info", 191]], "content": 194}},
+   "194": {"seq": {"highlights": [193, 11]}},
+   "193": {"token": {"tok": 192}},
+   "189": {"seq": {"highlights": [15, 79, 15]}},
+   "188":
+   {"text":
+    {"str":
+     "\n\n/-\nExercises\n===\n\n<ex/> Use `#check` to determine the types of `(4,5)`, `ℕ × ℕ`, and `Type`.\n\nEvaluation\n===\n\nYou can use Lean to evaluate expressions using the `#eval` command. The result\nwill show up in the Infoview. -/\n\n"}},
+   "187":
+   {"seq":
+    {"highlights": [126, 182, 3, 184, 3, 186, 3, 170, 3, 186, 28, 26, 11]}},
+   "186": {"token": {"tok": 185}},
+   "184": {"token": {"tok": 183}},
+   "182": {"span": {"info": [["info", 178]], "content": 181}},
+   "181": {"seq": {"highlights": [180, 11]}},
+   "180": {"token": {"tok": 179}},
+   "18": {"seq": {"highlights": [15, 17, 15]}},
+   "175": {"seq": {"highlights": [15, 116, 3, 174, 3, 116]}},
+   "174": {"token": {"tok": 173}},
+   "171": {"seq": {"highlights": [168, 3, 145, 3, 170, 3, 145, 3, 88, 3, 111]}},
+   "170": {"token": {"tok": 169}},
+   "17": {"token": {"tok": 16}},
+   "168": {"token": {"tok": 167}},
+   "166":
+   {"seq":
+    {"highlights":
+     [126,
+      159,
+      3,
+      143,
+      3,
+      35,
+      161,
+      3,
+      43,
+      3,
+      163,
+      47,
+      147,
+      3,
+      161,
+      3,
+      56,
+      3,
+      165,
+      11]}},
+   "165": {"token": {"tok": 164}},
+   "163": {"token": {"tok": 162}},
+   "161": {"token": {"tok": 160}},
+   "159": {"span": {"info": [["info", 155]], "content": 158}},
+   "158": {"seq": {"highlights": [157, 11]}},
+   "157": {"token": {"tok": 156}},
+   "152": {"seq": {"highlights": [15, 151, 15]}},
+   "151": {"token": {"tok": 150}},
+   "15": {"text": {"str": ""}},
+   "148": {"seq": {"highlights": [143, 3, 145, 147, 3, 145, 3, 83, 3, 90]}},
+   "147": {"token": {"tok": 146}},
+   "145": {"token": {"tok": 144}},
+   "143": {"token": {"tok": 142}},
+   "141": {"seq": {"highlights": [126, 140, 3, 128, 11]}},
+   "140": {"span": {"info": [["info", 136]], "content": 139}},
+   "139": {"seq": {"highlights": [138, 11]}},
+   "138": {"token": {"tok": 137}},
+   "133": {"seq": {"highlights": [15, 132, 15]}},
+   "132": {"token": {"tok": 131}},
+   "13": {"text": {"str": "\n\n"}},
+   "129": {"seq": {"highlights": [15, 128, 15]}},
+   "128": {"token": {"tok": 127}},
+   "126": {"text": {"str": "\n"}},
+   "125": {"seq": {"highlights": [109, 124, 3, 26, 11]}},
+   "124": {"span": {"info": [["info", 120]], "content": 123}},
+   "123": {"seq": {"highlights": [122, 11]}},
+   "122": {"token": {"tok": 121}},
+   "12": {"seq": {"highlights": [0, 2, 3, 5, 6, 8, 3, 10, 11]}},
+   "117": {"seq": {"highlights": [15, 116, 15]}},
+   "116": {"token": {"tok": 115}},
+   "112": {"seq": {"highlights": [15, 111, 15]}},
+   "111": {"token": {"tok": 110}},
+   "11": {"seq": {"highlights": []}},
+   "109":
+   {"text":
+    {"str":
+     "\n\n/-\n\nOpen the Lean Infoview (`∀` menu) and check the results.\n\n**Note:** If you do `import Mathlib`, VS Code will launch a process to compile *everything* in\nMathlib, which can take an hour or so. At some point this week, do this so that you don't\nconstantly need to hunt for the exact `Mathlib` directory you need.\n\nCourse Notes\n===\n\nThe course notes I am presenting are on under construction Github at\n> [https://github.com/klavins/LeanW26](https://github.com/klavins/LeanW26)\n\nThe source code for every slide deck is in an executable `.lean` file.\n\nFeel free to clone this repo as well, but note I will make updates constantly. So periodically do\n\n```bash\ngit update\n```\n\nto make sure you have the latest version.\n\nFancy Characters\n===\n\nYou can enter fancy characters in Lean using escape sequences\n\n```\n  →                   \\to\n  ↔                   \\iff\n  ∀                   \\forall\n  ∃                   \\exists\n  ℕ                   \\N\n  xᵢ                  x\\_i\n```\n\nGo to `∀ > Documentation > ... Unicode ...` for a complete list.\n\n\nExercises\n===\n\n<ex/> Figure out how to encode this statement:\n\n&nbsp; &nbsp;  &nbsp;  &nbsp; $\\mathtt{theorem} \\;\\mathtt{T}_1 \\; : \\; \\forall \\; \\mathtt{x} : \\mathbb{R}, \\; \\mathtt{0} \\leq \\mathtt{x}$ ^ $2 := \\mathtt{sorry}$\n\n\n\nType Checking\n===\n\nL∃∀N is based on type theory. This means that every term has a very well-defined type.\nTo find the type of an expression, use #check. The result will show up in the Infoview.  -/\n\n"}},
+   "108":
+   {"seq":
+    {"highlights":
+     [13,
+      33,
+      3,
+      35,
+      37,
+      3,
+      39,
+      3,
+      41,
+      3,
+      43,
+      3,
+      45,
+      47,
+      48,
+      35,
+      50,
+      3,
+      43,
+      3,
+      52,
+      54,
+      37,
+      3,
+      56,
+      3,
+      58,
+      54,
+      39,
+      47,
+      48,
+      35,
+      60,
+      3,
+      43,
+      3,
+      62,
+      64,
+      54,
+      37,
+      3,
+      28,
+      3,
+      52,
+      54,
+      41,
+      3,
+      56,
+      3,
+      66,
+      47,
+      48,
+      35,
+      68,
+      3,
+      43,
+      3,
+      70,
+      54,
+      39,
+      3,
+      62,
+      3,
+      64,
+      54,
+      3,
+      41,
+      3,
+      56,
+      3,
+      66,
+      47,
+      3,
+      43,
+      3,
+      72,
+      3,
+      74,
+      3,
+      102,
+      103,
+      107,
+      11]}},
+   "107":
+   {"tactics": {"startPos": 3205, "info": [], "endPos": 3210, "content": 106}},
+   "106": {"seq": {"highlights": [105, 11]}},
+   "105": {"token": {"tok": 104}},
+   "103": {"text": {"str": "\n  "}},
+   "102":
+   {"tactics":
+    {"startPos": 3200, "info": [98], "endPos": 3202, "content": 101}},
+   "101": {"seq": {"highlights": [100, 11]}},
+   "100": {"token": {"tok": 99}},
+   "10": {"token": {"tok": 9}},
+   "0":
+   {"text":
+    {"str":
+     "--  Copyright (C) 2025  Eric Klavins\n--\n--  This program is free software: you can redistribute it and/or modify\n--  it under the terms of the GNU General Public License as published by\n--  the Free Software Foundation, either version 3 of the License, or\n--  (at your option) any later version.\n\n"}}}}}

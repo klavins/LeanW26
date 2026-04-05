@@ -1,0 +1,521 @@
+{"items":
+ [{"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 8, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 7},
+  {"range":
+   {"start": {"line": 10, "column": 1}, "end": {"line": 10, "column": 18}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 13},
+  {"range":
+   {"start": {"line": 55, "column": 1}, "end": {"line": 55, "column": 26}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 33},
+  {"range":
+   {"start": {"line": 70, "column": 1}, "end": {"line": 70, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 52},
+  {"range":
+   {"start": {"line": 83, "column": 1}, "end": {"line": 83, "column": 10}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 67},
+  {"range":
+   {"start": {"line": 84, "column": 1}, "end": {"line": 84, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 74},
+  {"range":
+   {"start": {"line": 85, "column": 1}, "end": {"line": 85, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 88},
+  {"range":
+   {"start": {"line": 86, "column": 1}, "end": {"line": 86, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 100},
+  {"range":
+   {"start": {"line": 87, "column": 1}, "end": {"line": 87, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 114},
+  {"range":
+   {"start": {"line": 88, "column": 1}, "end": {"line": 88, "column": 12}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 124},
+  {"range":
+   {"start": {"line": 89, "column": 1}, "end": {"line": 89, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 134},
+  {"range":
+   {"start": {"line": 103, "column": 1}, "end": {"line": 103, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 140},
+  {"range":
+   {"start": {"line": 104, "column": 1}, "end": {"line": 104, "column": 17}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 149},
+  {"range":
+   {"start": {"line": 179, "column": 1}, "end": {"line": 180, "column": 17}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.t"],
+   "code": 162},
+  {"range":
+   {"start": {"line": 182, "column": 1}, "end": {"line": 508, "column": 1}},
+   "kind": "Lean.Parser.Command.printAxioms",
+   "defines": [],
+   "code": 184},
+  {"range":
+   {"start": {"line": 506, "column": 1}, "end": {"line": 506, "column": 12}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 188},
+  {"range":
+   {"start": {"line": 508, "column": 1}, "end": {"line": 508, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 192}],
+ "data":
+ {"tokens":
+  {"95":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2355",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "9":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-313",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"},
+   "89": {"kind": "unknown", "content": "→"},
+   "85": {"kind": "unknown", "content": "∧"},
+   "81":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2318",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "75":
+   {"kind":
+    {"const":
+     {"signature": "And (a b : Prop) : Prop",
+      "name": ["And"],
+      "isDef": false,
+      "docs":
+      "`And a b`, or `a ∧ b`, is the conjunction of propositions. It can be\nconstructed and destructed like a pair: if `ha : a` and `hb : b` then\n`⟨ha, hb⟩ : a ∧ b`, and if `h : a ∧ b` then `h.left : a` and `h.right : b`.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∧` in identifiers is `and`.\n\n * The recommended spelling of `/\\` in identifiers is `and` (prefer `∧` over `/\\`)."}},
+    "content": "∧"},
+   "69":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2282",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "64": {"kind": "unknown", "content": "¬"},
+   "60":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2248",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "54":
+   {"kind":
+    {"const":
+     {"signature": "Not (a : Prop) : Prop",
+      "name": ["Not"],
+      "isDef": false,
+      "docs":
+      "`Not p`, or `¬p`, is the negation of `p`. It is defined to be `p → False`,\nso if your goal is `¬p` you can use `intro h` to turn the goal into\n`h : p ⊢ False`, and if you have `hn : ¬p` and `h : p` then `hn h : False`\nand `(hn h).elim` will prove anything.\nFor more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `¬` in identifiers is `not`."}},
+    "content": "¬"},
+   "50": {"kind": "unknown", "content": "∨"},
+   "46":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1834",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "4": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "37":
+   {"kind":
+    {"const":
+     {"signature": "Or (a b : Prop) : Prop",
+      "name": ["Or"],
+      "isDef": false,
+      "docs":
+      "`Or a b`, or `a ∨ b`, is the disjunction of propositions. There are two\nconstructors for `Or`, called `Or.inl : a → a ∨ b` and `Or.inr : b → a ∨ b`,\nand you can use `match` or `cases` to destruct an `Or` assumption into the\ntwo cases.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∨` in identifiers is `or`.\n\n * The recommended spelling of `\\/` in identifiers is `or` (prefer `∨` over `\\/`)."}},
+    "content": "∨"},
+   "31": {"kind": "unknown", "content": ")"},
+   "29":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "The universe of propositions. `Prop ≡ Sort 0`.\n\nEvery proposition is propositionally equal to either `True` or `False`. "}},
+    "content": "Prop"},
+   "27": {"kind": "unknown", "content": ":"},
+   "25":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.92"}}, "content": "s"},
+   "23":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.90"}}, "content": "r"},
+   "21":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.88"}}, "content": "q"},
+   "190": {"kind": "unknown", "content": ""},
+   "19":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.86"}}, "content": "p"},
+   "186":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-14555",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "181": {"kind": "unknown", "content": "t"},
+   "179":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.printAxioms-4827",
+      "name": ["Lean", "Parser", "Command", "printAxioms"],
+      "docs": null}},
+    "content": "axioms"},
+   "175":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.printAxioms-4827",
+      "name": ["Lean", "Parser", "Command", "printAxioms"],
+      "docs": null}},
+    "content": "#print"},
+   "17": {"kind": "unknown", "content": "("},
+   "160":
+   {"kind":
+    {"const":
+     {"signature": "Classical.em (p : Prop) : p ∨ ¬p",
+      "name": ["Classical", "em"],
+      "isDef": false,
+      "docs":
+      "**Diaconescu's theorem**: excluded middle from choice, Function extensionality and propositional extensionality. "}},
+    "content": "Classical.em"},
+   "157": {"kind": "unknown", "content": ":="},
+   "155":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.106"}}, "content": "p"},
+   "153":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.t (p : Prop) : p ∨ ¬p",
+      "name": ["LeanW26", "t"],
+      "isDef": true,
+      "docs": null}},
+    "content": "t"},
+   "151":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-4773",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "15":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-1362",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "145":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2644",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "136":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2631",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "130":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2456",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "125":
+   {"kind":
+    {"const":
+     {"signature": "False : Prop",
+      "name": ["False"],
+      "isDef": false,
+      "docs":
+      "`False` is the empty proposition. Thus, it has no introduction rules.\nIt represents a contradiction. `False` elimination rule, `False.rec`,\nexpresses the fact that anything follows from a contradiction.\nThis rule is sometimes called ex falso (short for ex falso sequitur quodlibet),\nor the principle of explosion.\nFor more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)\n"}},
+    "content": "False"},
+   "120":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2444",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "115":
+   {"kind":
+    {"const":
+     {"signature": "True : Prop",
+      "name": ["True"],
+      "isDef": false,
+      "docs":
+      "`True` is a proposition and has only an introduction rule, `True.intro : True`.\nIn other words, `True` is simply true, and has a canonical proof, `True.intro`\nFor more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)\n"}},
+    "content": "True"},
+   "111": {"kind": "unknown", "content": "↔"},
+   "11": {"kind": "unknown", "content": "LeanW26"},
+   "107":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2396",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "101":
+   {"kind":
+    {"const":
+     {"signature": "Iff (a b : Prop) : Prop",
+      "name": ["Iff"],
+      "isDef": false,
+      "docs":
+      "If and only if, or logical bi-implication. `a ↔ b` means that `a` implies `b` and vice versa.\nBy `propext`, this implies that `a` and `b` are equal and hence any expression involving `a`\nis equivalent to the corresponding expression with `b` instead.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `↔` in identifiers is `iff`.\n\n * The recommended spelling of `<->` in identifiers is `iff` (prefer `↔` over `<->`)."}},
+    "content": "↔"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-297",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 193,
+  "messageContents":
+  {"94": {"append": [35, 93]},
+   "93": {"append": [92, 41, 43]},
+   "92": {"term": 91},
+   "80": {"append": [35, 79]},
+   "79": {"append": [78, 41, 43]},
+   "78": {"term": 77},
+   "59": {"append": [35, 58]},
+   "58": {"append": [57, 41, 43]},
+   "57": {"term": 56},
+   "45": {"append": [35, 44]},
+   "44": {"append": [40, 41, 43]},
+   "43": {"term": 42},
+   "41": {"text": " : "},
+   "40": {"term": 39},
+   "35": {"text": ""},
+   "174": {"append": [35, 173]},
+   "173":
+   {"append": [163, 164, 165, 166, 167, 168, 169, 170, 168, 169, 171, 172]},
+   "172": {"text": "]"},
+   "171": {"text": "Quot.sound"},
+   "170": {"text": "Classical.choice"},
+   "169": {"text": " "},
+   "168": {"text": ","},
+   "167": {"text": "propext"},
+   "166": {"text": "["},
+   "165": {"text": "' depends on axioms: "},
+   "164": {"text": "LeanW26.t"},
+   "163": {"text": "'"},
+   "144": {"append": [35, 143]},
+   "143": {"append": [142, 41, 43]},
+   "142": {"term": 141},
+   "129": {"append": [35, 128]},
+   "128": {"term": 127},
+   "119": {"append": [35, 118]},
+   "118": {"term": 117},
+   "106": {"append": [35, 105]},
+   "105": {"append": [104, 41, 43]},
+   "104": {"term": 103}},
+  "goals": {},
+  "code":
+  {"99": {"text": {"str": "            -- p implies q"}},
+   "98": {"span": {"info": [["info", 94]], "content": 97}},
+   "97": {"seq": {"highlights": [96, 6]}},
+   "96": {"token": {"tok": 95}},
+   "91": {"seq": {"highlights": [36, 20, 3, 90, 3, 22]}},
+   "90": {"token": {"tok": 89}},
+   "88": {"seq": {"highlights": [68, 84, 3, 20, 3, 86, 3, 22, 87, 6]}},
+   "87": {"text": {"str": "            -- p and q"}},
+   "86": {"token": {"tok": 85}},
+   "84": {"span": {"info": [["info", 80]], "content": 83}},
+   "83": {"seq": {"highlights": [82, 6]}},
+   "82": {"token": {"tok": 81}},
+   "8": {"text": {"str": "\n\n"}},
+   "77": {"seq": {"highlights": [36, 20, 3, 76, 3, 22]}},
+   "76": {"token": {"tok": 75}},
+   "74": {"seq": {"highlights": [68, 72, 3, 20, 3, 51, 3, 22, 73, 6]}},
+   "73": {"text": {"str": "            -- p or q"}},
+   "72": {"span": {"info": [["info", 45]], "content": 71}},
+   "71": {"seq": {"highlights": [70, 6]}},
+   "70": {"token": {"tok": 69}},
+   "7": {"seq": {"highlights": [0, 2, 3, 5, 6]}},
+   "68": {"text": {"str": "\n"}},
+   "67": {"seq": {"highlights": [53, 63, 3, 65, 20, 66, 6]}},
+   "66": {"text": {"str": "               -- not p"}},
+   "65": {"token": {"tok": 64}},
+   "63": {"span": {"info": [["info", 59]], "content": 62}},
+   "62": {"seq": {"highlights": [61, 6]}},
+   "61": {"token": {"tok": 60}},
+   "6": {"seq": {"highlights": []}},
+   "56": {"seq": {"highlights": [36, 55, 36, 20]}},
+   "55": {"token": {"tok": 54}},
+   "53":
+   {"text":
+    {"str":
+     "\n\n/- to check that the compound `p ∨ q` is a proposition. -/\n\n/-\nNotation\n===\n\nStudents used to digital logic will wonder why we are using `∨` instead of the symbol `+`.\nThe main reason is that `+` will usually mean actual addition when things get more complicated.\nThus, mathematicians have invented new symbols for logical connectives.\nHere are the most important for our current purposes: -/\n\n"}},
+   "52": {"seq": {"highlights": [34, 49, 3, 20, 3, 51, 3, 22, 6]}},
+   "51": {"token": {"tok": 50}},
+   "5": {"token": {"tok": 4}},
+   "49": {"span": {"info": [["info", 45]], "content": 48}},
+   "48": {"seq": {"highlights": [47, 6]}},
+   "47": {"token": {"tok": 46}},
+   "42": {"seq": {"highlights": [36, 30, 36]}},
+   "39": {"seq": {"highlights": [36, 20, 3, 38, 3, 22]}},
+   "38": {"token": {"tok": 37}},
+   "36": {"text": {"str": ""}},
+   "34":
+   {"text":
+    {"str":
+     "\n\n/-\nAtomic vs Compound Propositions\n===\n\nA proposition that corresponds to a direct measurement or other basic truth\nis called **atomic**. It cannot be sub-divided into more basic propositions.\nOtherwise it is called compound. For example, the proposition\n\n- It is raining outside or all cats are animals.\n\nis a compound proposition that uses the _connective_ \"or\", written as `∨` to\nconnect two atomic propositions. Symbolically, we write -/\n\n"}},
+   "33":
+   {"seq":
+    {"highlights":
+     [14, 16, 3, 18, 20, 3, 22, 3, 24, 3, 26, 3, 28, 3, 30, 32, 6]}},
+   "32": {"token": {"tok": 31}},
+   "30": {"token": {"tok": 29}},
+   "3": {"text": {"str": " "}},
+   "28": {"token": {"tok": 27}},
+   "26": {"token": {"tok": 25}},
+   "24": {"token": {"tok": 23}},
+   "22": {"token": {"tok": 21}},
+   "20": {"token": {"tok": 19}},
+   "2": {"token": {"tok": 1}},
+   "192": {"seq": {"highlights": [189, 191, 6]}},
+   "191": {"token": {"tok": 190}},
+   "189": {"text": {"str": "\n--unhide\n"}},
+   "188": {"seq": {"highlights": [185, 187, 3, 12, 6]}},
+   "187": {"token": {"tok": 186}},
+   "185":
+   {"text":
+    {"str":
+     "\n\n/-\nWe'll get to this later.\n-/\n\n/-\nExercise\n===\n\n<ex /> Which of the following two statements\nif any cannot be proven without the law of the excluded middle?\n- `p ∨ (q∧r) → (p∨q) ∧ (p∨r)`\n- `(p∨q) ∧ (p∨r) → p ∨ (q∧r)`\n- `((p→q)→p)→p`\n\n\nContexts\n===\n\nWe now begin to build a framework for proving theorems in propositional logic.\nThe first thing we need is a way to keep track of what propositions we\ncurrently know in the course of proving something.\n\nTo this end we define a **context** to be a finite set of propositions.\nGiven two contexts `Γ` and `Δ` we can take their union `Γ ∪ Δ` to make\na new context. The notation is a bit cumbersome, so we write `Γ,Δ` instead.\nIn particular, if `φ ∈ Φ` then `Γ,φ` is shorthand for `Γ ∪ {φ}`.\n\nIf we can show that a proposition `φ` is true whenever all the propositions\nin a context `Γ` are true, we write\n```\nΓ ⊢ φ\n```\nwhich reads gamma `entails` `φ`.\n\n\nTautologies\n===\n\nIf a proposition `φ` is tautology\n(meaning it is always true like `p ↔ p`) then it is true independent of any context.\nThat is, the empty context entails any tautology. Thus, we write\n```\n⊢ φ\n```\nto mean `∅ ⊢ φ`. We will define precisely what the entails relationship means next.\n\n\n\nRules of Inference\n===\n\nA **rule of inference** is set of **premises** and a **conclusion** that can be drawn\nfrom those premises.\n\nRules are presented with a name\nfollowed by what looks like a fraction with the premises listed on top and the\nconclusion on the bottom.\n```none\n                Γ₁ ⊢ A    Γ₂ ⊢ B    Γ₃ ⊢ C\n  RULE NAME    ————————————————————————————\n                          Γ ⊢ D\n```\nIn this schematic, the rule has three premises, each of which describe an assumption\nthat a particular context entails a particular proposition. And the rule has one conclusion,\nstating the entailment you are allowed to conclude.\n\nUsually, the contexts listed and the propositions are related in some way.\n\n\nPropositional Axioms\n===\n\nThe first rule has no premises and simply states that `φ` can be concluded from any\ncontext containing φ. Said constructively, if we have a proof of `φ`, then obviously\nwe can construct a proof of `φ`.\n```none\n  AX  ——————————\n       Γ,φ ⊢ φ\n```\n\nFor example, if `p` is a proposition and our context is `Γ = {p}`, then we can conclude `p`,\nand we write\n\n```none\n{p} ⊢ p\n```\n\n\nImplies Rules\n===\n\nWe have two rules for the `→` connective:\n```none\n              Γ,φ ⊢ ψ\n  →-Intro   ————————————\n             Γ ⊢ φ → ψ\n\n            Γ ⊢ φ → ψ    Γ ⊢ φ\n  →-Elim   —————————————————————\n                 Γ ⊢ ψ\n```\nThe **Implies Introduction** rule allows us to introduce `φ → ψ` whenever we have `Γ` and\n`φ` together entailing `ψ`.\n\n**Implies Elimination** is also know as **Modus Ponens**.\nIt states that if we know `φ` implies `ψ` and we know `φ`, then we know `ψ`.\n\nImplies is written with exactly the same arrow `→` as a function type.\nA proof of `φ→ψ` is a function that converts proofs of `φ` into proofs of `ψ`.\nTo prove statements with implications we thus use λ-calculus expressions\n(which have arrow types).\n\n\nImplication Intro Example\n===\n\n**`→-Intro` is lambda abstraction:**\nThe context includes a proof of `p`. Thus we can _introduce_ `q→p` for any `q`.\nWe do this with a lambda expression taking a proof of `q` (and in this case ignoring it)\nand returning the proof `hp` of `p` available in the context.\n\n**Example**: Prove `{p} ⊢ q → p`\n\n**Proof**: Since `{p,q} ⊢ p` holds by the `Axiom` rule we can conclude `{p} ⊢ q → p` by `→-Intro`.\n\n**Note:** We usually search from the goal backwards.\n- Encountering the goal `q → p`, we posit it was obtained by some proof ending with `→-Intro`.\n- _Applying_ `→-Intro` to the proof state `{p} ⊢ q → p` yields the simply proof state `{p,q} ⊢ p`,\nwhich we can prove using `Axiom`.\n- Thus, proving amounts to searching for a sequence of rule applications starting with the goal and\ngoing back to axioms.\n\n\n\nImplication Elimination Example\n===\n\n**`→-Elim` is lambda application:**\nWe have a context with a proof of `p→q` and a proof of `p`.\nWe know the proof `hp` of `p→q` is a lambda abstraction.\nSo we can apply it to a proof `hp` of `p` to get a proof of `q`.\n\n**Example:** Prove `{p → q, p} ⊢ q`\n\n**Proof**: Apply `→-Elim` with `φ=p` and `ψ=q`, yielding sub-goals:\n- Goal 1: `{p → q, p} ⊢ p → q`\n    - Apply `Axiom`\n- Goal 2 :`{p → q, p} ⊢ p`\n    - Apply `Axiom`\n\n\n\nExercise\n===\n\n<ex /> Prove `⊢ (p → q) → p → q` by hand in the format described in this slide deck.\n\n\nAnd Rules\n===\n\nNext we have three rules for the ∧ connective:\n```none\n              Γ ⊢ φ   Γ ⊢ ψ\n  ∧-Intro  ———————————————————\n               Γ ⊢ φ ∧ ψ\n\n                  Γ ⊢ φ ∧ ψ\n  ∧-Elim-Left   ——————————————\n                    Γ ⊢ φ\n\n                  Γ ⊢ φ ∧ ψ\n  ∧-Elim-Right  —————————————\n                    Γ ⊢ ψ\n```\n\n**And Introduction** rule says we can construct a proof of `φ ∧ ψ` whenever the context\ncontains a proof of `φ` and a proof of `ψ`.\n\n**And Elimination** rules allow us to \"eliminate\" half of the proposition `φ ∧ ψ` to conclude\nthe weaker statement `φ` or the weaker statement `ψ`.\n\n\nAnd Example\n===\n\n**Example**: Show `{p∧q} ⊢ q∧p`\n\n**Proof**:\n- Apply ∧-Intro to get sub-goals:\n    - Goal 1: `{p∧q} ⊢ q`\n        - Apply `∧-Elim-Right`\n    - Goal 2: `{p∧q} ⊢ p`\n        - Apply `∧-Elim-Left`\n\nOr Rules\n===\n\nThen we have three rules for the ∨ connective:\n```none\n                   Γ ⊢ φ\n ∨-Intro-Left   ———————————\n                 Γ ⊢ φ ∨ ψ\n\n                    Γ ⊢ ψ\n ∨-Intro-Right   ————————————\n                  Γ ⊢ φ ∨ ψ\n\n            Γ ⊢ φ ∨ ψ    Γ ⊢ φ → ρ    Γ ⊢ ψ → ρ\n ∨-Elim   ———————————————————————————————————————\n                         Γ ⊢ ρ\n```\n\n**Or Introduction** allows us to conclude `φ ∨ ψ` from one of its parts.\n\n**Or Elimination** says that if we know `Γ ⊢ φ ∨ ψ` then we know that `Γ` must\nentail either `φ` or `ψ`.\nIf we also know that both `φ` and `ψ` separately entail `ρ`, then we know that `Γ` must entail `ρ`.\n\n\nOr Example\n===\n\n**Example**: Show `{p∨q} ⊢ q∨p`\n\n**Proof**:\n- Apply `∨-Elim` with `φ=p`, `ψ=q` and `ρ = q∨p` to give three sub-goals\n    - Goal 1: `{p∨q} ⊢ p∨q`\n        - Apply `Axiom`\n    - Goal 2: `{p∨q} ⊢ p → q∨p`\n        - Apply `→-Intro` to get the sub-goal `{p∨q,p} ⊢ q∨p`\n        - Apply `∨-Intro-Right`\n    - Goal 2: `{p∨q} ⊢ q → q∨p`\n        - Apply `→-Intro` to get the sub-goal `{p∨q,q} ⊢ q∨p`\n        - Apply `∨-Intro-Left`\n\nExercise\n===\n\n<ex /> Prove `⊢ p ∧ q → p ∨ q` by hand in the format described in this slide deck\n\n\nEx Falso\n===\n\nFinally, we have the a rule for the ¬ connective:\n```none\n                  Γ ⊢ ⊥\n  False -Elim ————————————\n                  Γ ⊢ φ\n```\n\nwhich states that you can conclude anything if you have a proof of ⊥.\nThis rule is also know as **ex falso sequitur quodlibet** or just **ex falso**.\n\nExample with False\n===\n\n**Example:** ∅ ⊢ (p → q) → (¬q → ¬p)\n\n**Proof:**\n- Apply `→-Intro` twice to get `{p→q,¬q} ⊢ ¬p`\n- Recalling the definition of `¬` in terms of `→`, apply `→-Intro` again to get `{p→q,¬q,p} ⊢ ⊥`.\n- Expand the definition of `¬` again to get `{p→q,q→⊥,p} ⊢ ⊥`\n- Use `→-Elim` to get sub-goals\n    - Goal 1: `{p→q,q→⊥,p} ⊢ q→⊥`\n        - Apply Axiom\n    - Goal 2: `{p→q,q→⊥,p} ⊢ q`\n        - Apply `→-Elim` to get sub-goals\n            - Goal 2a: `{p→q,q→⊥,p} ⊢ p→q`\n                - Apply `Axiom`\n            - Goal 2b: `{p→q,q→⊥,p} ⊢ p`\n                - Apply `Axiom`\n\n\nProofs in General\n===\n\n**Def:** A **proof** of `Γ ⊢ φ` is a tree where\n- each node is a proof state form `Γ' ⊢ φ'`\n- each parent follows from its children via a a proof rule.\n\n**Observations**\n- Constructing this proof is a purely syntactic endeavor.\n- One can easily imagine an algorithm that does this automatically by\npattern matching the  against the `Γ`, `φ`, `ψ`, `ρ` in each inference rule\n- We can add more inference rules for Objects, functions, Quantifiers, etc.\n- As we add complexity, finding a proof goes from intractable to undecidable\n- But checking a proof is linear in the number of steps.\n\n\n\n<div class='fn'>E.g. \"This sentence is not provable in Lean\" can in principle\nbe formalized in Lean. Or the continuum hypothesis, once ZF is encoded in Lean.</div>\n\nExercises\n===\n\n<ex /> Prove both directions of `∨` distributing over `∧`\n- `⊢ p ∨ (q∧r) → (p∨q) ∧ (p∨r)`\n- `⊢ (p∨q) ∧ (p∨r) → p ∨ (q∧r)`\n\n<ex /> Prove the statement `(¬¬p) ↔ p` (by hand) in the format described in this slide deck.\nOne direction requires classical logic.\nFor that direction, formally state the law of the excluded\nmiddle as an inference rule and use the rule in your proof.\n\n\n\n\n\n\n\nReferences\n===\n\n- Morten Heine Sørensen, Pawel Urzyczyn. \"Lectures on the Curry-Howard Isomorphism\".\nElsevier. 1st Edition, Volume 149 - July 4, 2006.\n\n-/\n\n--hide\n"}},
+   "184": {"seq": {"highlights": [8, 178, 3, 180, 3, 182, 183, 6]}},
+   "183":
+   {"text":
+    {"str":
+     "  -- 'LeanW26.t' depends on axioms: [propext, Classical.choice, Quot.sound]"}},
+   "182": {"token": {"tok": 181}},
+   "180": {"token": {"tok": 179}},
+   "18": {"token": {"tok": 17}},
+   "178": {"span": {"info": [["info", 174]], "content": 177}},
+   "177": {"seq": {"highlights": [176, 6]}},
+   "176": {"token": {"tok": 175}},
+   "162":
+   {"seq":
+    {"highlights":
+     [150,
+      152,
+      3,
+      154,
+      3,
+      18,
+      156,
+      3,
+      28,
+      3,
+      30,
+      32,
+      3,
+      28,
+      3,
+      156,
+      3,
+      51,
+      3,
+      65,
+      156,
+      3,
+      158,
+      159,
+      161,
+      3,
+      156,
+      6]}},
+   "161": {"token": {"tok": 160}},
+   "16": {"token": {"tok": 15}},
+   "159": {"text": {"str": "\n  "}},
+   "158": {"token": {"tok": 157}},
+   "156": {"token": {"tok": 155}},
+   "154": {"token": {"tok": 153}},
+   "152": {"token": {"tok": 151}},
+   "150":
+   {"text":
+    {"str":
+     "\n\n/-\nIf and only if, `↔`, is shorthand for `→` in both directions\n```\np ↔ q  ≡  p → q ∧ q → p\n```\n\nConstructive Proofs\n===\n\nThe goal is this slide deck is to define a mathematical framework in which we\nprove statements by constructing proofs.\n\nIn particular, to prove\n\n- `p ∧ q`, construct a proof of p and another proof of `q`.\n- `p ∨ q`, construct a proof of p or we construct a proof of `q`.\n- `p → q`, supply a method for converting a proof of `p` into a proof of `q`\n- `¬p`, supply a method to convert a proof of `p` to a proof of `⊥`\n\n\n\nComparison to Classical Logic\n===\n\nWe have defined **intuitionistic** logic or **constructive logic**,\ndifferent from **classical logic**. In classical logic, the truth of a statement like\n```none\np ∨ ¬p\n```\nis guaranteed by the **law of the excluded middle**.\nIn constructive mathematics, you have to either\nconstruct a proof of `p` or construct a proof of `¬p`. As an example:\n\n> 1) The universe is infinite or the universe is finite.\n\nNeither option currently has a proof.\nClassically, we would still conclude it is true, but constructively\nwe are just stuck. Similarly,\n\n> 2) P = NP or P ≠ NP\n\n> 3) There are either a finite number of twin primes, or an infinite number of twin primes.\n\nThese statements may be proved some day, but for now,\nwe cannot conclude they are true using constructive mathematics.\n\nDouble Negation\n===\n\nSimilar to the law of the excluded middle is double negation:\n```\n¬¬p ↔ p\n```\nClassically, this is a tautology (a proposition that is always true).\nBut constructively, from a proof of \"it is not the case that p is not true\"\none cannot necessarily construct a proof that `p` is true.\n\nAs a result, `proof by contradiction` is not valid constructively,\nbecause in proof by contradiction one follows the procedure:\n```none\nTo prove `p`, assume `¬p` and derive `False`.\n```\nJust because we have a way to transform a proof of `¬p` into `False`\ndoes not mean we can have a construction of a proof of `p`.\n\n\nClassical Logic in Lean\n===\n\nAs an aside, Lean can reason both classically and constructively.\n\n-/\n\n"}},
+   "149": {"seq": {"highlights": [68, 148, 3, 20, 3, 90, 3, 126, 6]}},
+   "148": {"span": {"info": [["info", 144]], "content": 147}},
+   "147": {"seq": {"highlights": [146, 6]}},
+   "146": {"token": {"tok": 145}},
+   "141": {"seq": {"highlights": [36, 20, 3, 90, 3, 126]}},
+   "140": {"seq": {"highlights": [135, 139, 3, 126, 6]}},
+   "14":
+   {"text":
+    {"str":
+     "\n\n/-\nPropositional Logic\n===\n\nGoal\n===\n\nThe goal of this slide deck is to introduce the propositional logic as a formal mathematical\nobject. Although there are a few Lean examples here, most of this slide deck is\npencil and paper work.\n\nSpecifically we introduce\n- Logical contexts\n- Proof states\n- Inference rules\n- Formal proofs\n\nThe results presented here can be extended to any formal mathematical\nsystem, such as first order logic, higher order logic, type theory, etc.\n\n\n\n\nPropositions\n===\n\nA **proposition** is a statement that is either true or false. The following are examples:\n\n- It is raining outside.\n- All cats are animals.\n- Darth Vader is Luke's Father.\n- Four is greater than five.\n\nIn propositional logic, we assign **propositional variables** to represent\nthe value of these statements. So we might make the assignments:\n\n- p := It is raining outside.\n- q := All cats are animals.\n- r := Darth Vader is Luke's Father.\n- s := Four is greater than five.\n\nIn Lean, we declare propositional variables as follows: -/\n\n"}},
+   "139": {"span": {"info": [["info", 129]], "content": 138}},
+   "138": {"seq": {"highlights": [137, 6]}},
+   "137": {"token": {"tok": 136}},
+   "135":
+   {"text":
+    {"str":
+     "\n\n/-\nShorthand\n===\n\nWe also have the propositional `False` which denotes **absurdity**.\nIn _Intuitionistic Logic_, `¬p` is shorthand for\n\n```\np → False\n```\n-/\n\n"}},
+   "134": {"seq": {"highlights": [68, 133, 3, 126, 6]}},
+   "133": {"span": {"info": [["info", 129]], "content": 132}},
+   "132": {"seq": {"highlights": [131, 6]}},
+   "131": {"token": {"tok": 130}},
+   "13": {"seq": {"highlights": [8, 10, 3, 12, 6]}},
+   "127": {"seq": {"highlights": [36, 126, 3, 28, 3, 30]}},
+   "126": {"token": {"tok": 125}},
+   "124": {"seq": {"highlights": [68, 123, 3, 116, 6]}},
+   "123": {"span": {"info": [["info", 119]], "content": 122}},
+   "122": {"seq": {"highlights": [121, 6]}},
+   "121": {"token": {"tok": 120}},
+   "12": {"token": {"tok": 11}},
+   "117": {"seq": {"highlights": [36, 116, 3, 28, 3, 30]}},
+   "116": {"token": {"tok": 115}},
+   "114": {"seq": {"highlights": [68, 110, 3, 20, 3, 112, 3, 22, 113, 6]}},
+   "113": {"text": {"str": "            -- p if and only if q"}},
+   "112": {"token": {"tok": 111}},
+   "110": {"span": {"info": [["info", 106]], "content": 109}},
+   "109": {"seq": {"highlights": [108, 6]}},
+   "108": {"token": {"tok": 107}},
+   "103": {"seq": {"highlights": [36, 20, 3, 102, 3, 22]}},
+   "102": {"token": {"tok": 101}},
+   "100": {"seq": {"highlights": [68, 98, 3, 20, 3, 90, 3, 22, 99, 6]}},
+   "10": {"token": {"tok": 9}},
+   "0":
+   {"text":
+    {"str":
+     "--  Copyright (C) 2025  Eric Klavins\n--\n--  This program is free software: you can redistribute it and/or modify\n--  it under the terms of the GNU General Public License as published by\n--  the Free Software Foundation, either version 3 of the License, or\n--  (at your option) any later version.\n\n"}}}}}

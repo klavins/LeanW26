@@ -1,0 +1,624 @@
+{"items":
+ [{"range": null,
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 0},
+  {"range":
+   {"start": {"line": 1, "column": 1}, "end": {"line": 4, "column": 29}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["dumb_max"],
+   "code": 37},
+  {"range":
+   {"start": {"line": 6, "column": 1}, "end": {"line": 6, "column": 36}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 51},
+  {"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 9, "column": 17}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["max_eq"],
+   "code": 82},
+  {"range":
+   {"start": {"line": 11, "column": 1}, "end": {"line": 16, "column": 1}},
+   "kind": "Lean.Parser.Command.print",
+   "defines": [],
+   "code": 138},
+  {"range":
+   {"start": {"line": 13, "column": 1}, "end": {"line": 14, "column": 18}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 161},
+  {"range":
+   {"start": {"line": 16, "column": 1}, "end": {"line": 16, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 165}],
+ "data":
+ {"tokens":
+  {"94": {"kind": "unknown", "content": "},"},
+   "92":
+   {"kind": {"var": {"type": "Nat", "name": "_pp_uniq.3"}}, "content": "b"},
+   "90":
+   {"kind": {"var": {"type": "Nat", "name": "_pp_uniq.2"}}, "content": "a"},
+   "88": {"kind": "unknown", "content": "∀"},
+   "8": {"kind": {"var": {"type": "Nat", "name": "_uniq.2"}}, "content": "x"},
+   "78": {"kind": "unknown", "content": "]"},
+   "76": {"kind": "unknown", "content": "["},
+   "74":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-217",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "70":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-212",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "66":
+   {"kind":
+    {"const":
+     {"signature": "Eq.{u_1} {α : Sort u_1} : α → α → Prop",
+      "name": ["Eq"],
+      "isDef": false,
+      "docs":
+      "The equality relation. It has one introduction rule, `Eq.refl`.\nWe use `a = b` as notation for `Eq a b`.\nA fundamental property of equality is that it is an equivalence relation.\n```\nvariable (α : Type) (a b c d : α)\nvariable (hab : a = b) (hcb : c = b) (hcd : c = d)\n\nexample : a = d :=\n  Eq.trans (Eq.trans hab (Eq.symm hcb)) hcd\n```\nEquality is much more than an equivalence relation, however. It has the important property that every assertion\nrespects the equivalence, in the sense that we can substitute equal expressions without changing the truth value.\nThat is, given `h1 : a = b` and `h2 : p a`, we can construct a proof for `p b` using substitution: `Eq.subst h1 h2`.\nExample:\n```\nexample (α : Type) (a b : α) (p : α → Prop)\n        (h1 : a = b) (h2 : p a) : p b :=\n  Eq.subst h1 h2\n\nexample (α : Type) (a b : α) (p : α → Prop)\n    (h1 : a = b) (h2 : p a) : p b :=\n  h1 ▸ h2\n```\nThe triangle in the second presentation is a macro built on top of `Eq.subst` and `Eq.symm`, and you can enter it by typing `\\t`.\nFor more information: [Equality](https://lean-lang.org/theorem_proving_in_lean4/quantifiers_and_equality.html#equality)\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `=` in identifiers is `eq`."}},
+    "content": "="},
+   "62": {"kind": "unknown", "content": "}"},
+   "60":
+   {"kind": {"var": {"type": "Nat", "name": "_uniq.331"}}, "content": "b"},
+   "6": {"kind": "unknown", "content": "("},
+   "58":
+   {"kind": {"var": {"type": "Nat", "name": "_uniq.329"}}, "content": "a"},
+   "56": {"kind": "unknown", "content": "{"},
+   "54":
+   {"kind":
+    {"const":
+     {"signature": "max_eq {a b : Nat} : max a b = dumb_max a b",
+      "name": ["max_eq"],
+      "isDef": true,
+      "docs": null}},
+    "content": "max_eq"},
+   "52":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-157",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "49":
+   {"kind":
+    {"const":
+     {"signature": "rfl.{u} {α : Sort u} {a : α} : a = a",
+      "name": ["rfl"],
+      "isDef": false,
+      "docs":
+      "`rfl : a = a` is the unique constructor of the equality type. This is the\nsame as `Eq.refl` except that it takes `a` implicitly instead of explicitly.\n\nThis is a more powerful theorem than it may appear at first, because although\nthe statement of the theorem is `a = a`, Lean will allow anything that is\ndefinitionally equal to that type. So, for instance, `2 + 2 = 4` is proven in\nLean by `rfl`, because both sides are the same up to definitional equality.\n"}},
+    "content": "rfl"},
+   "47": {"kind": "unknown", "content": "="},
+   "45": {"kind": {"withType": {"type": "Nat"}}, "content": "10"},
+   "43": {"kind": {"withType": {"type": "Nat"}}, "content": "5"},
+   "41":
+   {"kind":
+    {"const":
+     {"signature": "dumb_max (x y : Nat) : Nat",
+      "name": ["dumb_max"],
+      "isDef": false,
+      "docs": null}},
+    "content": "dumb_max"},
+   "4":
+   {"kind":
+    {"const":
+     {"signature": "dumb_max (x y : Nat) : Nat",
+      "name": ["dumb_max"],
+      "isDef": true,
+      "docs": null}},
+    "content": "dumb_max"},
+   "39":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-120",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "35": {"kind": "unknown", "content": "-"},
+   "33":
+   {"kind":
+    {"const":
+     {"signature": "Max.max.{u} {α : Type u} [self : Max α] : α → α → α",
+      "name": ["Max", "max"],
+      "isDef": false,
+      "docs": "Returns the greater of its two arguments. "}},
+    "content": "max"},
+   "31":
+   {"kind": {"var": {"type": "Nat", "name": "_uniq.104"}}, "content": "y'"},
+   "29":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.let-61",
+      "name": ["Lean", "Parser", "Term", "let"],
+      "docs":
+      "`let` is used to declare a local definition. Example:\n```\nlet x := 1\nlet y := x + 1\nx + y\n```\nSince functions are first class citizens in Lean, you can use `let` to declare\nlocal functions too.\n```\nlet double := fun x => 2*x\ndouble (double 3)\n```\nFor recursive definitions, you should use `let rec`.\nYou can also perform pattern matching using `let`. For example,\nassume `p` has type `Nat × Nat`, then you can write\n```\nlet (x, y) := p\nx + y\n```\n\nThe *anaphoric let* `let := v` defines a variable called `this`.\n"}},
+    "content": "let"},
+   "27": {"kind": {"withType": {"type": "Nat"}}, "content": "10000000000000"},
+   "25": {"kind": "unknown", "content": "+"},
+   "23":
+   {"kind": {"var": {"type": "Nat", "name": "_uniq.57"}}, "content": "x'"},
+   "21":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.let-30",
+      "name": ["Lean", "Parser", "Term", "let"],
+      "docs":
+      "`let` is used to declare a local definition. Example:\n```\nlet x := 1\nlet y := x + 1\nx + y\n```\nSince functions are first class citizens in Lean, you can use `let` to declare\nlocal functions too.\n```\nlet double := fun x => 2*x\ndouble (double 3)\n```\nFor recursive definitions, you should use `let rec`.\nYou can also perform pattern matching using `let`. For example,\nassume `p` has type `Nat × Nat`, then you can write\n```\nlet (x, y) := p\nx + y\n```\n\nThe *anaphoric let* `let := v` defines a variable called `this`.\n"}},
+    "content": "let"},
+   "18": {"kind": "unknown", "content": ":="},
+   "163": {"kind": "unknown", "content": ""},
+   "16": {"kind": "unknown", "content": ")"},
+   "155": {"kind": "unknown", "content": "dumb_max_tactic"},
+   "151":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-280",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "144": {"kind": "unknown", "content": "10"},
+   "142": {"kind": "unknown", "content": "5"},
+   "14":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "Nat"},
+   "139":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-248",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "136": {"kind": "unknown", "content": "max_eq"},
+   "132":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.print-233",
+      "name": ["Lean", "Parser", "Command", "print"],
+      "docs": null}},
+    "content": "#print"},
+   "126":
+   {"kind":
+    {"const":
+     {"signature": "eq_self.{u_1} {α : Sort u_1} (a : α) : (a = a) = True",
+      "name": ["eq_self"],
+      "isDef": false,
+      "docs": null}},
+    "content": "eq_self"},
+   "124":
+   {"kind":
+    {"const":
+     {"signature": "Nat.add_sub_cancel (n m : Nat) : n + m - m = n",
+      "name": ["Nat", "add_sub_cancel"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Nat.add_sub_cancel"},
+   "121": {"kind": "unknown", "content": "10000000000000"},
+   "12": {"kind": "unknown", "content": ":"},
+   "119":
+   {"kind":
+    {"const":
+     {"signature":
+      "Nat.add_max_add_right (a b c : Nat) : max (a + c) (b + c) = max a b + c",
+      "name": ["Nat", "add_max_add_right"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Nat.add_max_add_right"},
+   "117":
+   {"kind":
+    {"const":
+     {"signature":
+      "HSub.hSub.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HSub α β γ] : α → β → γ",
+      "name": ["HSub", "hSub"],
+      "isDef": false,
+      "docs":
+      "`a - b` computes the difference of `a` and `b`.\nThe meaning of this notation is type-dependent.\n* For natural numbers, this operator saturates at 0: `a - b = 0` when `a ≤ b`. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `-` in identifiers is `sub` (when used as a binary operator)."}},
+    "content": "HSub.hSub"},
+   "115":
+   {"kind":
+    {"const":
+     {"signature":
+      "congrFun'.{u, v} {α : Sort u} {β : Sort v} {f g : α → β} (h : f = g) (a : α) : f a = g a",
+      "name": ["congrFun'"],
+      "isDef": false,
+      "docs": "Similar to `congrFun` but `β` does not depend on `α`. "}},
+    "content": "congrFun'"},
+   "112":
+   {"kind":
+    {"const":
+     {"signature": "Eq.{u_1} {α : Sort u_1} : α → α → Prop",
+      "name": ["Eq"],
+      "isDef": false,
+      "docs":
+      "The equality relation. It has one introduction rule, `Eq.refl`.\nWe use `a = b` as notation for `Eq a b`.\nA fundamental property of equality is that it is an equivalence relation.\n```\nvariable (α : Type) (a b c d : α)\nvariable (hab : a = b) (hcb : c = b) (hcd : c = d)\n\nexample : a = d :=\n  Eq.trans (Eq.trans hab (Eq.symm hcb)) hcd\n```\nEquality is much more than an equivalence relation, however. It has the important property that every assertion\nrespects the equivalence, in the sense that we can substitute equal expressions without changing the truth value.\nThat is, given `h1 : a = b` and `h2 : p a`, we can construct a proof for `p b` using substitution: `Eq.subst h1 h2`.\nExample:\n```\nexample (α : Type) (a b : α) (p : α → Prop)\n        (h1 : a = b) (h2 : p a) : p b :=\n  Eq.subst h1 h2\n\nexample (α : Type) (a b : α) (p : α → Prop)\n    (h1 : a = b) (h2 : p a) : p b :=\n  h1 ▸ h2\n```\nThe triangle in the second presentation is a macro built on top of `Eq.subst` and `Eq.symm`, and you can enter it by typing `\\t`.\nFor more information: [Equality](https://lean-lang.org/theorem_proving_in_lean4/quantifiers_and_equality.html#equality)\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `=` in identifiers is `eq`."}},
+    "content": "Eq"},
+   "110":
+   {"kind":
+    {"const":
+     {"signature":
+      "congrArg.{u, v} {α : Sort u} {β : Sort v} {a₁ a₂ : α} (f : α → β) (h : a₁ = a₂) : f a₁ = f a₂",
+      "name": ["congrArg"],
+      "isDef": false,
+      "docs":
+      "Congruence in the function argument: if `a₁ = a₂` then `f a₁ = f a₂` for\nany (nondependent) function `f`. This is more powerful than it might look at first, because\nyou can also use a lambda expression for `f` to prove that\n`<something containing a₁> = <something containing a₂>`. This function is used\ninternally by tactics like `congr` and `simp` to apply equalities inside\nsubterms.\n\nFor more information: [Equality](https://lean-lang.org/theorem_proving_in_lean4/quantifiers_and_equality.html#equality)\n"}},
+    "content": "congrArg"},
+   "107":
+   {"kind":
+    {"const":
+     {"signature":
+      "Eq.trans.{u} {α : Sort u} {a b c : α} (h₁ : a = b) (h₂ : b = c) : a = c",
+      "name": ["Eq", "trans"],
+      "isDef": false,
+      "docs":
+      "Equality is transitive: if `a = b` and `b = c` then `a = c`.\n\nBecause this is in the `Eq` namespace, if you have variables or expressions\n`h₁ : a = b` and `h₂ : b = c`, you can use `h₁.trans h₂ : a = c` as shorthand\nfor `Eq.trans h₁ h₂`.\n\nFor more information: [Equality](https://lean-lang.org/theorem_proving_in_lean4/quantifiers_and_equality.html#equality)\n"}},
+    "content": "Eq.trans"},
+   "104":
+   {"kind":
+    {"const":
+     {"signature": "of_eq_true {p : Prop} (h : p = True) : p",
+      "name": ["of_eq_true"],
+      "isDef": false,
+      "docs": null}},
+    "content": "of_eq_true"},
+   "102": {"kind": "unknown", "content": "=>"},
+   "100":
+   {"kind": {"keyword": {"occurrence": null, "name": null, "docs": null}},
+    "content": "fun"},
+   "10": {"kind": {"var": {"type": "Nat", "name": "_uniq.4"}}, "content": "y"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-0",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"}},
+  "nextKey": 166,
+  "messageContents":
+  {"99": {"text": "\n"},
+   "98": {"text": " :="},
+   "97": {"term": 96},
+   "87": {"text": " : "},
+   "86": {"text": "max_eq"},
+   "85": {"text": " "},
+   "84": {"text": "theorem"},
+   "83": {"text": ""},
+   "150": {"append": [83, 149]},
+   "149": {"append": [141, 99, 83, 148]},
+   "148": {"goal": 147},
+   "141": {"text": "unsolved goals"},
+   "131": {"append": [83, 130]},
+   "130": {"append": [83, 84, 85, 86, 83, 87, 97, 98, 99, 129]},
+   "129": {"term": 128}},
+  "goals":
+  {"69":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 65, "names": [58]}, {"typeAndVal": 65, "names": [60]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 68},
+   "147":
+   {"name": null, "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 146}},
+  "code":
+  {"96":
+   {"seq":
+    {"highlights":
+     [89,
+      3,
+      57,
+      91,
+      3,
+      93,
+      3,
+      13,
+      3,
+      15,
+      95,
+      3,
+      34,
+      3,
+      91,
+      3,
+      93,
+      3,
+      67,
+      3,
+      42,
+      3,
+      91,
+      3,
+      93]}},
+   "95": {"token": {"tok": 94}},
+   "93": {"token": {"tok": 92}},
+   "91": {"token": {"tok": 90}},
+   "9": {"token": {"tok": 8}},
+   "89": {"token": {"tok": 88}},
+   "82":
+   {"seq":
+    {"highlights":
+     [38,
+      53,
+      3,
+      55,
+      3,
+      57,
+      59,
+      3,
+      61,
+      3,
+      13,
+      3,
+      15,
+      63,
+      3,
+      13,
+      3,
+      34,
+      3,
+      59,
+      3,
+      61,
+      3,
+      48,
+      3,
+      42,
+      3,
+      59,
+      3,
+      61,
+      3,
+      19,
+      3,
+      73,
+      20,
+      81,
+      0]}},
+   "81":
+   {"tactics": {"startPos": 217, "info": [], "endPos": 231, "content": 80}},
+   "80": {"seq": {"highlights": [75, 77, 42, 79, 0]}},
+   "79": {"token": {"tok": 78}},
+   "77": {"token": {"tok": 76}},
+   "75": {"token": {"tok": 74}},
+   "73":
+   {"tactics": {"startPos": 212, "info": [69], "endPos": 214, "content": 72}},
+   "72": {"seq": {"highlights": [71, 0]}},
+   "71": {"token": {"tok": 70}},
+   "7": {"token": {"tok": 6}},
+   "68":
+   {"seq": {"highlights": [64, 34, 3, 59, 3, 61, 3, 67, 3, 42, 3, 59, 3, 61]}},
+   "67": {"token": {"tok": 66}},
+   "65": {"seq": {"highlights": [64, 15, 64]}},
+   "64": {"text": {"str": ""}},
+   "63": {"token": {"tok": 62}},
+   "61": {"token": {"tok": 60}},
+   "59": {"token": {"tok": 58}},
+   "57": {"token": {"tok": 56}},
+   "55": {"token": {"tok": 54}},
+   "53": {"token": {"tok": 52}},
+   "51":
+   {"seq":
+    {"highlights":
+     [38, 40, 3, 13, 3, 42, 3, 44, 3, 46, 3, 48, 3, 46, 3, 19, 3, 50, 0]}},
+   "50": {"token": {"tok": 49}},
+   "5": {"token": {"tok": 4}},
+   "48": {"token": {"tok": 47}},
+   "46": {"token": {"tok": 45}},
+   "44": {"token": {"tok": 43}},
+   "42": {"token": {"tok": 41}},
+   "40": {"token": {"tok": 39}},
+   "38": {"text": {"str": "\n\n"}},
+   "37":
+   {"seq":
+    {"highlights":
+     [2,
+      3,
+      5,
+      3,
+      7,
+      9,
+      3,
+      11,
+      3,
+      13,
+      3,
+      15,
+      17,
+      3,
+      19,
+      20,
+      22,
+      3,
+      24,
+      3,
+      19,
+      3,
+      9,
+      3,
+      26,
+      3,
+      28,
+      20,
+      30,
+      3,
+      32,
+      3,
+      19,
+      3,
+      11,
+      3,
+      26,
+      3,
+      28,
+      20,
+      34,
+      3,
+      24,
+      3,
+      32,
+      3,
+      36,
+      3,
+      28,
+      0]}},
+   "36": {"token": {"tok": 35}},
+   "34": {"token": {"tok": 33}},
+   "32": {"token": {"tok": 31}},
+   "30": {"token": {"tok": 29}},
+   "3": {"text": {"str": " "}},
+   "28": {"token": {"tok": 27}},
+   "26": {"token": {"tok": 25}},
+   "24": {"token": {"tok": 23}},
+   "22": {"token": {"tok": 21}},
+   "20": {"text": {"str": "\n  "}},
+   "2": {"token": {"tok": 1}},
+   "19": {"token": {"tok": 18}},
+   "17": {"token": {"tok": 16}},
+   "165": {"seq": {"highlights": [162, 164, 0]}},
+   "164": {"token": {"tok": 163}},
+   "162": {"text": {"str": "\n  sorry\n"}},
+   "161":
+   {"seq":
+    {"highlights":
+     [38, 140, 3, 13, 3, 42, 3, 44, 3, 46, 3, 48, 3, 46, 3, 19, 3, 160, 0]}},
+   "160": {"span": {"info": [["error", 150]], "content": 159}},
+   "159": {"seq": {"highlights": [154, 20, 158, 0]}},
+   "158":
+   {"tactics": {"startPos": 285, "info": [147], "endPos": 300, "content": 157}},
+   "157": {"seq": {"highlights": [156, 0]}},
+   "156": {"token": {"tok": 155}},
+   "154":
+   {"tactics": {"startPos": 280, "info": [147], "endPos": 282, "content": 153}},
+   "153": {"seq": {"highlights": [152, 0]}},
+   "152": {"token": {"tok": 151}},
+   "15": {"token": {"tok": 14}},
+   "146": {"seq": {"highlights": [64, 42, 3, 143, 3, 145, 3, 67, 3, 145]}},
+   "145": {"token": {"tok": 144}},
+   "143": {"token": {"tok": 142}},
+   "140": {"token": {"tok": 139}},
+   "138": {"seq": {"highlights": [38, 135, 3, 137, 0]}},
+   "137": {"token": {"tok": 136}},
+   "135": {"span": {"info": [["info", 131]], "content": 134}},
+   "134": {"seq": {"highlights": [133, 0]}},
+   "133": {"token": {"tok": 132}},
+   "13": {"token": {"tok": 12}},
+   "128":
+   {"seq":
+    {"highlights":
+     [101,
+      3,
+      57,
+      91,
+      3,
+      93,
+      63,
+      3,
+      103,
+      20,
+      105,
+      106,
+      7,
+      108,
+      109,
+      7,
+      111,
+      3,
+      7,
+      113,
+      3,
+      7,
+      34,
+      3,
+      91,
+      3,
+      93,
+      17,
+      17,
+      114,
+      7,
+      108,
+      3,
+      7,
+      116,
+      3,
+      7,
+      111,
+      3,
+      118,
+      3,
+      7,
+      120,
+      3,
+      91,
+      3,
+      93,
+      3,
+      122,
+      17,
+      17,
+      3,
+      122,
+      17,
+      123,
+      7,
+      125,
+      3,
+      7,
+      34,
+      3,
+      91,
+      3,
+      93,
+      17,
+      3,
+      122,
+      17,
+      17,
+      17,
+      109,
+      7,
+      127,
+      3,
+      7,
+      34,
+      3,
+      91,
+      3,
+      93,
+      17,
+      17,
+      17]}},
+   "127": {"token": {"tok": 126}},
+   "125": {"token": {"tok": 124}},
+   "123": {"text": {"str": "\n          "}},
+   "122": {"token": {"tok": 121}},
+   "120": {"token": {"tok": 119}},
+   "118": {"token": {"tok": 117}},
+   "116": {"token": {"tok": 115}},
+   "114": {"text": {"str": "\n        "}},
+   "113": {"token": {"tok": 112}},
+   "111": {"token": {"tok": 110}},
+   "11": {"token": {"tok": 10}},
+   "109": {"text": {"str": "\n      "}},
+   "108": {"token": {"tok": 107}},
+   "106": {"text": {"str": "\n    "}},
+   "105": {"token": {"tok": 104}},
+   "103": {"token": {"tok": 102}},
+   "101": {"token": {"tok": 100}},
+   "0": {"seq": {"highlights": []}}}}}

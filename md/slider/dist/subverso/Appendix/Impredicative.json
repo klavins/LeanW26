@@ -1,0 +1,452 @@
+{"items":
+ [{"range": null,
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 0},
+  {"range":
+   {"start": {"line": 1, "column": 1}, "end": {"line": 1, "column": 8}},
+   "kind": "Lean.Parser.Command.section",
+   "defines": [],
+   "code": 3},
+  {"range":
+   {"start": {"line": 2, "column": 3}, "end": {"line": 2, "column": 32}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["Set"],
+   "code": 26},
+  {"range":
+   {"start": {"line": 3, "column": 3}, "end": {"line": 3, "column": 36}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 37},
+  {"range":
+   {"start": {"line": 4, "column": 3}, "end": {"line": 4, "column": 29}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 60},
+  {"range":
+   {"start": {"line": 5, "column": 1}, "end": {"line": 5, "column": 4}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 64},
+  {"range":
+   {"start": {"line": 7, "column": 1}, "end": {"line": 7, "column": 8}},
+   "kind": "Lean.Parser.Command.section",
+   "defines": [],
+   "code": 68},
+  {"range":
+   {"start": {"line": 8, "column": 3}, "end": {"line": 8, "column": 33}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["Bet"],
+   "code": 75},
+  {"range":
+   {"start": {"line": 9, "column": 3}, "end": {"line": 9, "column": 36}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 86},
+  {"range":
+   {"start": {"line": 10, "column": 3}, "end": {"line": 10, "column": 21}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 100},
+  {"range":
+   {"start": {"line": 11, "column": 3}, "end": {"line": 11, "column": 29}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 117},
+  {"range":
+   {"start": {"line": 12, "column": 1}, "end": {"line": 12, "column": 4}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 120},
+  {"range":
+   {"start": {"line": 26, "column": 1}, "end": {"line": 26, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 124}],
+ "data":
+ {"tokens":
+  {"95":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-232",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "89":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type 1"},
+   "84":
+   {"kind":
+    {"const":
+     {"signature": "Bet (α : Type) : Type 1",
+      "name": ["Bet"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Bet"},
+   "82":
+   {"kind": {"var": {"type": "Bet α", "name": "_uniq.61"}}, "content": "B"},
+   "80":
+   {"kind": {"var": {"type": "Bet α", "name": "_uniq.59"}}, "content": "A"},
+   "8":
+   {"kind":
+    {"const":
+     {"signature": "Set (α : Type) : Type",
+      "name": ["Set"],
+      "isDef": true,
+      "docs": null}},
+    "content": "Set"},
+   "78":
+   {"kind": {"var": {"type": "Type", "name": "_uniq.57"}}, "content": "α"},
+   "76":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-194",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "73":
+   {"kind": {"var": {"type": "Type", "name": "_uniq.37"}}, "content": "α"},
+   "71":
+   {"kind":
+    {"const":
+     {"signature": "Bet (α : Type) : Type 1",
+      "name": ["Bet"],
+      "isDef": true,
+      "docs": null}},
+    "content": "Bet"},
+   "69":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-157",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "66":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.section-147",
+      "name": ["Lean", "Parser", "Command", "section"],
+      "docs":
+      "A `section`/`end` pair delimits the scope of `variable`, `include`, `open`, `set_option`, and `local`\ncommands. Sections can be nested. `section <id>` provides a label to the section that has to appear\nwith the matching `end`. In either case, the `end` can be omitted, in which case the section is\nclosed at the end of the file.\n"}},
+    "content": "section"},
+   "62":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-142",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "57": {"kind": {"var": {"type": "α", "name": "_uniq.28"}}, "content": "x"},
+   "53":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-84",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "5":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-10",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "43": {"kind": "unknown", "content": "),"},
+   "41": {"kind": {"var": {"type": "α", "name": "_pp_uniq.4"}}, "content": "x"},
+   "39": {"kind": "unknown", "content": "∀"},
+   "35":
+   {"kind":
+    {"const":
+     {"signature": "Set (α : Type) : Type",
+      "name": ["Set"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Set"},
+   "33":
+   {"kind": {"var": {"type": "Set α", "name": "_uniq.20"}}, "content": "B"},
+   "31":
+   {"kind": {"var": {"type": "Set α", "name": "_uniq.18"}}, "content": "A"},
+   "29":
+   {"kind": {"var": {"type": "Type", "name": "_uniq.16"}}, "content": "α"},
+   "27":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-46",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "24":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "The universe of propositions. `Prop ≡ Sort 0`.\n\nEvery proposition is propositionally equal to either `True` or `False`. "}},
+    "content": "Prop"},
+   "22": {"kind": "unknown", "content": "→"},
+   "20": {"kind": "unknown", "content": ":="},
+   "18": {"kind": "unknown", "content": ")"},
+   "16":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type"},
+   "14": {"kind": "unknown", "content": ":"},
+   "122": {"kind": "unknown", "content": ""},
+   "12": {"kind": {"var": {"type": "Type", "name": "_uniq.2"}}, "content": "α"},
+   "118":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-313",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "113": {"kind": "unknown", "content": ","},
+   "111": {"kind": {"var": {"type": "α", "name": "_uniq.73"}}, "content": "x"},
+   "107":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-273",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "10": {"kind": "unknown", "content": "("},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.section-0",
+      "name": ["Lean", "Parser", "Command", "section"],
+      "docs":
+      "A `section`/`end` pair delimits the scope of `variable`, `include`, `open`, `set_option`, and `local`\ncommands. Sections can be nested. `section <id>` provides a label to the section that has to appear\nwith the matching `end`. In either case, the `end` can be omitted, in which case the section is\nclosed at the end of the file.\n"}},
+    "content": "section"}},
+  "nextKey": 125,
+  "messageContents":
+  {"94": {"append": [38, 93]},
+   "93": {"append": [88, 47, 92]},
+   "92": {"term": 91},
+   "88": {"term": 87},
+   "52": {"append": [38, 51]},
+   "51": {"append": [46, 47, 50]},
+   "50": {"term": 49},
+   "47": {"text": " : "},
+   "46": {"term": 45},
+   "38": {"text": ""},
+   "106": {"append": [38, 105]},
+   "105": {"append": [102, 47, 104]},
+   "104": {"term": 103},
+   "102": {"term": 101}},
+  "goals": {},
+  "code":
+  {"99": {"text": {"str": "         -- Type 1"}},
+   "98": {"span": {"info": [["info", 94]], "content": 97}},
+   "97": {"seq": {"highlights": [96, 0]}},
+   "96": {"token": {"tok": 95}},
+   "91": {"seq": {"highlights": [48, 90, 48]}},
+   "90": {"token": {"tok": 89}},
+   "9": {"token": {"tok": 8}},
+   "87": {"seq": {"highlights": [48, 17, 7, 23, 7, 17]}},
+   "86":
+   {"seq":
+    {"highlights":
+     [4,
+      77,
+      7,
+      11,
+      79,
+      7,
+      15,
+      7,
+      17,
+      19,
+      7,
+      11,
+      81,
+      7,
+      83,
+      7,
+      15,
+      7,
+      85,
+      7,
+      79,
+      19,
+      0]}},
+   "85": {"token": {"tok": 84}},
+   "83": {"token": {"tok": 82}},
+   "81": {"token": {"tok": 80}},
+   "79": {"token": {"tok": 78}},
+   "77": {"token": {"tok": 76}},
+   "75":
+   {"seq":
+    {"highlights":
+     [4,
+      70,
+      7,
+      72,
+      7,
+      11,
+      74,
+      7,
+      15,
+      7,
+      17,
+      19,
+      7,
+      21,
+      7,
+      74,
+      7,
+      23,
+      7,
+      17,
+      0]}},
+   "74": {"token": {"tok": 73}},
+   "72": {"token": {"tok": 71}},
+   "70": {"token": {"tok": 69}},
+   "7": {"text": {"str": " "}},
+   "68": {"seq": {"highlights": [65, 67, 0]}},
+   "67": {"token": {"tok": 66}},
+   "65": {"text": {"str": "\n\n"}},
+   "64": {"seq": {"highlights": [61, 63, 0]}},
+   "63": {"token": {"tok": 62}},
+   "61": {"text": {"str": "\n"}},
+   "60":
+   {"seq":
+    {"highlights":
+     [4,
+      56,
+      7,
+      11,
+      58,
+      7,
+      15,
+      7,
+      30,
+      19,
+      7,
+      23,
+      7,
+      32,
+      7,
+      58,
+      7,
+      23,
+      7,
+      34,
+      7,
+      58,
+      59,
+      0]}},
+   "6": {"token": {"tok": 5}},
+   "59": {"text": {"str": " -- Prop, no universe bump"}},
+   "58": {"token": {"tok": 57}},
+   "56": {"span": {"info": [["info", 52]], "content": 55}},
+   "55": {"seq": {"highlights": [54, 0]}},
+   "54": {"token": {"tok": 53}},
+   "49": {"seq": {"highlights": [48, 25, 48]}},
+   "48": {"text": {"str": ""}},
+   "45":
+   {"seq":
+    {"highlights":
+     [40, 7, 11, 42, 7, 15, 7, 30, 44, 7, 32, 7, 42, 7, 23, 7, 34, 7, 42]}},
+   "44": {"token": {"tok": 43}},
+   "42": {"token": {"tok": 41}},
+   "40": {"token": {"tok": 39}},
+   "4": {"text": {"str": "\n  "}},
+   "37":
+   {"seq":
+    {"highlights":
+     [4,
+      28,
+      7,
+      11,
+      30,
+      7,
+      15,
+      7,
+      17,
+      19,
+      7,
+      11,
+      32,
+      7,
+      34,
+      7,
+      15,
+      7,
+      36,
+      7,
+      30,
+      19,
+      0]}},
+   "36": {"token": {"tok": 35}},
+   "34": {"token": {"tok": 33}},
+   "32": {"token": {"tok": 31}},
+   "30": {"token": {"tok": 29}},
+   "3": {"seq": {"highlights": [2, 0]}},
+   "28": {"token": {"tok": 27}},
+   "26":
+   {"seq":
+    {"highlights":
+     [4, 6, 7, 9, 7, 11, 13, 7, 15, 7, 17, 19, 21, 7, 13, 7, 23, 7, 25, 0]}},
+   "25": {"token": {"tok": 24}},
+   "23": {"token": {"tok": 22}},
+   "21": {"token": {"tok": 20}},
+   "2": {"token": {"tok": 1}},
+   "19": {"token": {"tok": 18}},
+   "17": {"token": {"tok": 16}},
+   "15": {"token": {"tok": 14}},
+   "13": {"token": {"tok": 12}},
+   "124": {"seq": {"highlights": [121, 123, 0]}},
+   "123": {"token": {"tok": 122}},
+   "121":
+   {"text":
+    {"str":
+     "\n\n\n/-\nFor types, the universe rule is\n\n  Π(x:Type u),Type v:Type(max(u,v))\n\nfor Prop it is\n\n  Π(x:Sort u),Prop:Prop\n\n\n-/\n"}},
+   "120": {"seq": {"highlights": [61, 119, 0]}},
+   "119": {"token": {"tok": 118}},
+   "117":
+   {"seq":
+    {"highlights":
+     [4,
+      110,
+      7,
+      40,
+      7,
+      112,
+      7,
+      15,
+      7,
+      79,
+      114,
+      115,
+      81,
+      7,
+      112,
+      7,
+      23,
+      7,
+      83,
+      7,
+      112,
+      116,
+      0]}},
+   "116": {"text": {"str": " -- Type"}},
+   "115": {"text": {"str": "  "}},
+   "114": {"token": {"tok": 113}},
+   "112": {"token": {"tok": 111}},
+   "110": {"span": {"info": [["info", 106]], "content": 109}},
+   "11": {"token": {"tok": 10}},
+   "109": {"seq": {"highlights": [108, 0]}},
+   "108": {"token": {"tok": 107}},
+   "103": {"seq": {"highlights": [48, 17, 48]}},
+   "101":
+   {"seq":
+    {"highlights":
+     [11, 42, 7, 15, 7, 79, 19, 7, 23, 7, 81, 7, 42, 7, 23, 7, 83, 7, 42]}},
+   "100": {"seq": {"highlights": [4, 98, 7, 17, 7, 23, 7, 17, 99, 0]}},
+   "0": {"seq": {"highlights": []}}}}}

@@ -1,0 +1,4304 @@
+{"items":
+ [{"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 8, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 7},
+  {"range":
+   {"start": {"line": 10, "column": 1}, "end": {"line": 10, "column": 18}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 13},
+  {"range":
+   {"start": {"line": 27, "column": 1}, "end": {"line": 27, "column": 15}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 19},
+  {"range":
+   {"start": {"line": 31, "column": 1}, "end": {"line": 31, "column": 24}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 37},
+  {"range":
+   {"start": {"line": 51, "column": 1}, "end": {"line": 51, "column": 28}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 46},
+  {"range":
+   {"start": {"line": 73, "column": 1}, "end": {"line": 73, "column": 27}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.prop_id"],
+   "code": 54},
+  {"range":
+   {"start": {"line": 75, "column": 1}, "end": {"line": 75, "column": 39}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.prop_id_thm"],
+   "code": 61},
+  {"range":
+   {"start": {"line": 77, "column": 1}, "end": {"line": 77, "column": 27}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 66},
+  {"range":
+   {"start": {"line": 81, "column": 1}, "end": {"line": 81, "column": 44}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.my_id"],
+   "code": 88},
+  {"range":
+   {"start": {"line": 83, "column": 1}, "end": {"line": 83, "column": 33}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 95},
+  {"range":
+   {"start": {"line": 87, "column": 1}, "end": {"line": 87, "column": 26}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 103},
+  {"range":
+   {"start": {"line": 97, "column": 1}, "end": {"line": 98, "column": 18}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 133},
+  {"range":
+   {"start": {"line": 100, "column": 1}, "end": {"line": 101, "column": 15}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 153},
+  {"range":
+   {"start": {"line": 108, "column": 1}, "end": {"line": 109, "column": 12}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 166},
+  {"range":
+   {"start": {"line": 111, "column": 1}, "end": {"line": 112, "column": 9}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 173},
+  {"range":
+   {"start": {"line": 131, "column": 1}, "end": {"line": 132, "column": 28}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.And.intro", "LeanW26.Temp.And"],
+   "code": 191},
+  {"range":
+   {"start": {"line": 163, "column": 1}, "end": {"line": 164, "column": 38}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 205},
+  {"range":
+   {"start": {"line": 179, "column": 1}, "end": {"line": 181, "column": 25}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.And.left"],
+   "code": 225},
+  {"range":
+   {"start": {"line": 183, "column": 1}, "end": {"line": 185, "column": 25}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.And.right"],
+   "code": 242},
+  {"range":
+   {"start": {"line": 193, "column": 1}, "end": {"line": 194, "column": 42}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 256},
+  {"range":
+   {"start": {"line": 206, "column": 1}, "end": {"line": 209, "column": 25}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 274},
+  {"range":
+   {"start": {"line": 233, "column": 1}, "end": {"line": 233, "column": 9}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 279},
+  {"range":
+   {"start": {"line": 234, "column": 1}, "end": {"line": 234, "column": 24}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 289},
+  {"range":
+   {"start": {"line": 238, "column": 1}, "end": {"line": 238, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 307},
+  {"range":
+   {"start": {"line": 246, "column": 1}, "end": {"line": 247, "column": 42}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 321},
+  {"range":
+   {"start": {"line": 249, "column": 1}, "end": {"line": 250, "column": 55}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 334},
+  {"range":
+   {"start": {"line": 252, "column": 1}, "end": {"line": 253, "column": 37}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 347},
+  {"range":
+   {"start": {"line": 257, "column": 1}, "end": {"line": 258, "column": 31}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 361},
+  {"range":
+   {"start": {"line": 270, "column": 1}, "end": {"line": 270, "column": 45}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 369},
+  {"range":
+   {"start": {"line": 273, "column": 1}, "end": {"line": 273, "column": 15}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 373},
+  {"range":
+   {"start": {"line": 288, "column": 1}, "end": {"line": 290, "column": 25}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.Or.inr", "LeanW26.Temp.Or.inl", "LeanW26.Temp.Or"],
+   "code": 395},
+  {"range":
+   {"start": {"line": 294, "column": 1}, "end": {"line": 295, "column": 29}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 405},
+  {"range":
+   {"start": {"line": 312, "column": 1}, "end": {"line": 315, "column": 24}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.Or.elim"],
+   "code": 433},
+  {"range":
+   {"start": {"line": 323, "column": 1}, "end": {"line": 327, "column": 28}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 455},
+  {"range":
+   {"start": {"line": 332, "column": 1}, "end": {"line": 336, "column": 25}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 475},
+  {"range":
+   {"start": {"line": 351, "column": 1}, "end": {"line": 351, "column": 44}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 483},
+  {"range":
+   {"start": {"line": 357, "column": 1}, "end": {"line": 357, "column": 9}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 487},
+  {"range":
+   {"start": {"line": 360, "column": 1}, "end": {"line": 360, "column": 15}},
+   "kind": "Lean.Parser.Command.print",
+   "defines": [],
+   "code": 506},
+  {"range":
+   {"start": {"line": 362, "column": 1}, "end": {"line": 362, "column": 40}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 513},
+  {"range":
+   {"start": {"line": 365, "column": 1}, "end": {"line": 365, "column": 15}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 516},
+  {"range":
+   {"start": {"line": 375, "column": 1}, "end": {"line": 375, "column": 23}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.False"],
+   "code": 522},
+  {"range":
+   {"start": {"line": 379, "column": 1}, "end": {"line": 379, "column": 39}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.Not"],
+   "code": 532},
+  {"range":
+   {"start": {"line": 383, "column": 1}, "end": {"line": 386, "column": 14}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 548},
+  {"range":
+   {"start": {"line": 400, "column": 1}, "end": {"line": 401, "column": 12}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Temp.False.elim"],
+   "code": 560},
+  {"range":
+   {"start": {"line": 405, "column": 1}, "end": {"line": 406, "column": 39}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 576},
+  {"range":
+   {"start": {"line": 410, "column": 1}, "end": {"line": 411, "column": 13}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 580},
+  {"range":
+   {"start": {"line": 434, "column": 1}, "end": {"line": 434, "column": 35}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 590},
+  {"range":
+   {"start": {"line": 438, "column": 1}, "end": {"line": 438, "column": 43}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 598},
+  {"range":
+   {"start": {"line": 442, "column": 1}, "end": {"line": 442, "column": 30}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 607},
+  {"range":
+   {"start": {"line": 470, "column": 1}, "end": {"line": 470, "column": 9}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 612},
+  {"range":
+   {"start": {"line": 473, "column": 1}, "end": {"line": 474, "column": 41}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 629},
+  {"range":
+   {"start": {"line": 494, "column": 1}, "end": {"line": 494, "column": 60}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 641},
+  {"range":
+   {"start": {"line": 502, "column": 1}, "end": {"line": 502, "column": 33}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 649},
+  {"range":
+   {"start": {"line": 503, "column": 1}, "end": {"line": 503, "column": 45}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 656},
+  {"range":
+   {"start": {"line": 504, "column": 1}, "end": {"line": 504, "column": 38}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 663},
+  {"range":
+   {"start": {"line": 505, "column": 1}, "end": {"line": 505, "column": 29}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 670},
+  {"range":
+   {"start": {"line": 506, "column": 1}, "end": {"line": 506, "column": 38}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 677},
+  {"range":
+   {"start": {"line": 507, "column": 1}, "end": {"line": 507, "column": 33}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 686},
+  {"range":
+   {"start": {"line": 508, "column": 1}, "end": {"line": 508, "column": 37}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 693},
+  {"range":
+   {"start": {"line": 516, "column": 1}, "end": {"line": 516, "column": 38}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 701},
+  {"range":
+   {"start": {"line": 538, "column": 1}, "end": {"line": 539, "column": 30}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Nor.intro", "LeanW26.Nor"],
+   "code": 717},
+  {"range":
+   {"start": {"line": 541, "column": 1}, "end": {"line": 541, "column": 64}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Nor.elim_left"],
+   "code": 732},
+  {"range":
+   {"start": {"line": 542, "column": 1}, "end": {"line": 542, "column": 65}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Nor.elim_right"],
+   "code": 747},
+  {"range":
+   {"start": {"line": 554, "column": 1}, "end": {"line": 554, "column": 34}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 755},
+  {"range":
+   {"start": {"line": 555, "column": 1}, "end": {"line": 555, "column": 40}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 762},
+  {"range":
+   {"start": {"line": 556, "column": 1}, "end": {"line": 556, "column": 40}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 769},
+  {"range":
+   {"start": {"line": 567, "column": 1}, "end": {"line": 567, "column": 12}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 773},
+  {"range":
+   {"start": {"line": 569, "column": 1}, "end": {"line": 569, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 777}],
+ "data":
+ {"tokens":
+  {"99":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "Nat"},
+   "97":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-2010",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "93":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.my_id.{u} {α : Sort u} (x : α) : α",
+      "name": ["LeanW26", "Temp", "my_id"],
+      "isDef": false,
+      "docs": null}},
+    "content": "my_id"},
+   "91": {"kind": {"var": {"type": "p", "name": "_uniq.126"}}, "content": "hp"},
+   "9":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-313",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"},
+   "89":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-1928",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "86": {"kind": {"var": {"type": "α", "name": "_uniq.78"}}, "content": "x"},
+   "84": {"kind": {"levelVar": {"name": ["u"]}}, "content": "u"},
+   "82":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "A specific universe in Lean's infinite hierarchy of universes. "}},
+    "content": "Sort"},
+   "80":
+   {"kind": {"var": {"type": "Sort u", "name": "_uniq.76"}}, "content": "α"},
+   "78": {"kind": "unknown", "content": "{"},
+   "775": {"kind": "unknown", "content": ""},
+   "771":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-12423",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "767":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-12238",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "763":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-12199",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "760":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-12193",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "76": {"kind": "unknown", "content": "}"},
+   "756":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-12154",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "753":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-12148",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "749":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-12117",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "745":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-11949",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "743":
+   {"kind": {"var": {"type": "Nor p q", "name": "_uniq.2066"}},
+    "content": "hnpq"},
+   "741":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.2064"}}, "content": "q"},
+   "74": {"kind": "unknown", "content": "u"},
+   "739":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.2062"}}, "content": "p"},
+   "735":
+   {"kind":
+    {"const":
+     {"signature":
+      "LeanW26.Nor.elim_right {p q : Prop} (hnpq : Nor p q) : Prop",
+      "name": ["LeanW26", "Nor", "elim_right"],
+      "isDef": true,
+      "docs": null}},
+    "content": "Nor.elim_right"},
+   "733":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-11890",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "730":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-11884",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "728":
+   {"kind": {"var": {"type": "Nor p q", "name": "_uniq.2032"}},
+    "content": "hnpq"},
+   "726":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.2030"}}, "content": "q"},
+   "724":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.2028"}}, "content": "p"},
+   "720":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Nor.elim_left {p q : Prop} (hnpq : Nor p q) : Prop",
+      "name": ["LeanW26", "Nor", "elim_left"],
+      "isDef": true,
+      "docs": null}},
+    "content": "Nor.elim_left"},
+   "72": {"kind": "unknown", "content": ".{"},
+   "718":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-11826",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "715":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Nor (p q : Prop) : Prop",
+      "name": ["LeanW26", "Nor"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Nor"},
+   "713":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Nor.intro {p q : Prop} : ¬p → ¬q → Nor p q",
+      "name": ["LeanW26", "Nor", "intro"],
+      "isDef": true,
+      "docs": null}},
+    "content": "intro"},
+   "711":
+   {"kind":
+    {"keyword": {"occurrence": "null-11783", "name": ["null"], "docs": null}},
+    "content": "where"},
+   "709":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1964"}}, "content": "q"},
+   "707":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1962"}}, "content": "p"},
+   "705":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Nor (p q : Prop) : Prop",
+      "name": ["LeanW26", "Nor"],
+      "isDef": true,
+      "docs": null}},
+    "content": "Nor"},
+   "703":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.inductive-11749",
+      "name": ["Lean", "Parser", "Command", "inductive"],
+      "docs":
+      "In Lean, every concrete type other than the universes\nand every type constructor other than dependent arrows\nis an instance of a general family of type constructions known as inductive types.\nIt is remarkable that it is possible to construct a substantial edifice of mathematics\nbased on nothing more than the type universes, dependent arrow types, and inductive types;\neverything else follows from those.\nIntuitively, an inductive type is built up from a specified list of constructors.\nFor example, `List α` is the list of elements of type `α`, and is defined as follows:\n```\ninductive List (α : Type u) where\n| nil\n| cons (head : α) (tail : List α)\n```\nA list of elements of type `α` is either the empty list, `nil`,\nor an element `head : α` followed by a list `tail : List α`.\nSee [Inductive types](https://lean-lang.org/theorem_proving_in_lean4/inductive_types.html)\nfor more information.\n"}},
+    "content": "inductive"},
+   "70":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.my_id.{u} {α : Sort u} (x : α) : α",
+      "name": ["LeanW26", "Temp", "my_id"],
+      "isDef": true,
+      "docs": null}},
+    "content": "my_id"},
+   "699":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-11169",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "695":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-11130",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "691":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-10952",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "687":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-10917",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "684":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-10911",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "682":
+   {"kind":
+    {"const":
+     {"signature": "False : Prop",
+      "name": ["False"],
+      "isDef": false,
+      "docs":
+      "`False` is the empty proposition. Thus, it has no introduction rules.\nIt represents a contradiction. `False` elimination rule, `False.rec`,\nexpresses the fact that anything follows from a contradiction.\nThis rule is sometimes called ex falso (short for ex falso sequitur quodlibet),\nor the principle of explosion.\nFor more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)\n"}},
+    "content": "False"},
+   "68":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1880",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "678":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-10880",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "675":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-10874",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "671":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-10835",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "668":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-10829",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "664":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-10802",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "661":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-10796",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "657":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-10755",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "654":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-10749",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "650":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-10700",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "647":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-10694",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "643":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-10661",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "64": {"kind": {"var": {"type": "p", "name": "_uniq.63"}}, "content": "hp"},
+   "639":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-10452",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "637":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1811"}}, "content": "q"},
+   "635":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1809"}}, "content": "p"},
+   "631":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-10388",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "627":
+   {"kind":
+    {"const":
+     {"signature": "False.elim.{u} {C : Sort u} (h : False) : C",
+      "name": ["False", "elim"],
+      "isDef": false,
+      "docs":
+      "`False.elim : False → C` says that from `False`, any desired proposition\n`C` holds. Also known as ex falso quodlibet (EFQ) or the principle of explosion.\n\nThe target type is actually `C : Sort u` which means it works for both\npropositions and types. When executed, this acts like an \"unreachable\"\ninstruction: it is **undefined behavior** to run, but it will probably print\n\"unreachable code\". (You would need to construct a proof of false to run it\nanyway, which you can only do using `sorry` or unsound axioms.)\n"}},
+    "content": "False.elim"},
+   "625":
+   {"kind": {"var": {"type": "¬p", "name": "_uniq.1740"}}, "content": "hnp"},
+   "623":
+   {"kind": {"var": {"type": "p", "name": "_uniq.1739"}}, "content": "hp"},
+   "621":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-10165",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "62":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-1773",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "619": {"kind": "unknown", "content": "¬"},
+   "617":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1708"}}, "content": "q"},
+   "615":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1706"}}, "content": "p"},
+   "613":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-10117",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "609":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-10063",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "605":
+   {"kind":
+    {"anonCtor":
+     {"signature": "Iff.intro {a b : Prop} (mp : a → b) (mpr : b → a) : a ↔ b",
+      "name": ["Iff", "intro"],
+      "docs": "If `a → b` and `b → a` then `a` and `b` are equivalent. "}},
+    "content": "⟩"},
+   "603":
+   {"kind":
+    {"anonCtor":
+     {"signature": "Iff.intro {a b : Prop} (mp : a → b) (mpr : b → a) : a ↔ b",
+      "name": ["Iff", "intro"],
+      "docs": "If `a → b` and `b → a` then `a` and `b` are equivalent. "}},
+    "content": ","},
+   "601":
+   {"kind":
+    {"anonCtor":
+     {"signature": "Iff.intro {a b : Prop} (mp : a → b) (mpr : b → a) : a ↔ b",
+      "name": ["Iff", "intro"],
+      "docs": "If `a → b` and `b → a` then `a` and `b` are equivalent. "}},
+    "content": "⟨"},
+   "599":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-9490",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "596":
+   {"kind":
+    {"const":
+     {"signature": "p → p",
+      "name": ["Iff", "mpr"],
+      "isDef": false,
+      "docs":
+      "Modus ponens for if and only if, reversed. If `a ↔ b` and `b`, then `a`. "}},
+    "content": "mpr"},
+   "594":
+   {"kind":
+    {"const":
+     {"signature": "p → p",
+      "name": ["Iff", "mp"],
+      "isDef": false,
+      "docs":
+      "Modus ponens for if and only if. If `a ↔ b` and `a`, then `b`. "}},
+    "content": "mp"},
+   "592":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-9434",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "59": {"kind": {"var": {"type": "p", "name": "_uniq.50"}}, "content": "hp"},
+   "588":
+   {"kind":
+    {"const":
+     {"signature": "id.{u} {α : Sort u} (a : α) : α",
+      "name": ["id"],
+      "isDef": false,
+      "docs":
+      "The identity function. `id` takes an implicit argument `α : Sort u`\n(a type in any universe), and an argument `a : α`, and returns `a`.\n\nAlthough this may look like a useless function, one application of the identity\nfunction is to explicitly put a type on an expression. If `e` has type `T`,\nand `T'` is definitionally equal to `T`, then `@id T' e` typechecks, and Lean\nknows that this expression has type `T'` rather than `T`. This can make a\ndifference for typeclass inference, since `T` and `T'` may have different\ntypeclass instances on them. `show T' from e` is sugar for an `@id T' e`\nexpression.\n"}},
+    "content": "id"},
+   "586":
+   {"kind":
+    {"const":
+     {"signature": "Iff.intro {a b : Prop} (mp : a → b) (mpr : b → a) : a ↔ b",
+      "name": ["Iff", "intro"],
+      "isDef": false,
+      "docs": "If `a → b` and `b → a` then `a` and `b` are equivalent. "}},
+    "content": "Iff.intro"},
+   "584": {"kind": "unknown", "content": "↔"},
+   "582":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-9386",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "578":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-9137",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "574":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.False.elim {p : Prop} (h : False) : p",
+      "name": ["LeanW26", "Temp", "False", "elim"],
+      "isDef": false,
+      "docs": null}},
+    "content": "False.elim"},
+   "572":
+   {"kind": {"var": {"type": "Not p", "name": "_uniq.1554"}}, "content": "hq"},
+   "570":
+   {"kind": {"var": {"type": "p", "name": "_uniq.1553"}}, "content": "hp"},
+   "57":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.prop_id_thm (p : Prop) (hp : p) : p",
+      "name": ["LeanW26", "Temp", "prop_id_thm"],
+      "isDef": true,
+      "docs": null}},
+    "content": "prop_id_thm"},
+   "568":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-9023",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "566":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1522"}}, "content": "q"},
+   "564":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1520"}}, "content": "p"},
+   "562":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-8975",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "558":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.nomatch-8889",
+      "name": ["Lean", "Parser", "Term", "nomatch"],
+      "docs":
+      "Empty match/ex falso. `nomatch e` is of arbitrary type `α : Sort u` if\nLean can show that an empty set of patterns is exhaustive given `e`'s type,\ne.g. because it has no constructors.\n"}},
+    "content": "nomatch"},
+   "556":
+   {"kind": {"var": {"type": "False", "name": "_uniq.1473"}}, "content": "h"},
+   "554":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1471"}}, "content": "p"},
+   "552":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.False.elim {p : Prop} (h : False) : p",
+      "name": ["LeanW26", "Temp", "False", "elim"],
+      "isDef": true,
+      "docs": null}},
+    "content": "False.elim"},
+   "550":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-8842",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "55":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-1733",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "546":
+   {"kind": {"var": {"type": "p", "name": "_uniq.1457"}}, "content": "hp"},
+   "544":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-8584",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "542":
+   {"kind": {"var": {"type": "Not q", "name": "_uniq.1454"}}, "content": "hq"},
+   "540":
+   {"kind": {"var": {"type": "p → q", "name": "_uniq.1450"}}, "content": "hpq"},
+   "538":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-8568",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "536":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.Not (p : Prop) : Prop",
+      "name": ["LeanW26", "Temp", "Not"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Not"},
+   "534":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-8521",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "530":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.False : Prop",
+      "name": ["LeanW26", "Temp", "False"],
+      "isDef": false,
+      "docs": null}},
+    "content": "False"},
+   "528":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1423"}}, "content": "p"},
+   "526":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.Not (p : Prop) : Prop",
+      "name": ["LeanW26", "Temp", "Not"],
+      "isDef": true,
+      "docs": null}},
+    "content": "Not"},
+   "524":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-8446",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "520":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.False : Prop",
+      "name": ["LeanW26", "Temp", "False"],
+      "isDef": true,
+      "docs": null}},
+    "content": "False"},
+   "52": {"kind": {"var": {"type": "p", "name": "_uniq.27"}}, "content": "hp"},
+   "518":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.inductive-8345",
+      "name": ["Lean", "Parser", "Command", "inductive"],
+      "docs":
+      "In Lean, every concrete type other than the universes\nand every type constructor other than dependent arrows\nis an instance of a general family of type constructions known as inductive types.\nIt is remarkable that it is possible to construct a substantial edifice of mathematics\nbased on nothing more than the type universes, dependent arrow types, and inductive types;\neverything else follows from those.\nIntuitively, an inductive type is built up from a specified list of constructors.\nFor example, `List α` is the list of elements of type `α`, and is defined as follows:\n```\ninductive List (α : Type u) where\n| nil\n| cons (head : α) (tail : List α)\n```\nA list of elements of type `α` is either the empty list, `nil`,\nor an element `head : α` followed by a list `tail : List α`.\nSee [Inductive types](https://lean-lang.org/theorem_proving_in_lean4/inductive_types.html)\nfor more information.\n"}},
+    "content": "inductive"},
+   "514":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-8141",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"},
+   "511":
+   {"kind":
+    {"const":
+     {"signature": "Or.inl {a b : Prop} (h : a) : a ∨ b",
+      "name": ["Or", "inl"],
+      "isDef": false,
+      "docs":
+      "`Or.inl` is \"left injection\" into an `Or`. If `h : a` then `Or.inl h : a ∨ b`. "}},
+    "content": "Or.inl"},
+   "509": {"kind": "unknown", "content": "∨"},
+   "507":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-8091",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "503":
+   {"kind":
+    {"const":
+     {"signature": "trivial : True",
+      "name": ["trivial"],
+      "isDef": false,
+      "docs":
+      "`True` is true, and `True.intro` (or more commonly, `trivial`)\nis the proof. "}},
+    "content": "trivial"},
+   "50":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.prop_id (p : Prop) (hp : p) : p",
+      "name": ["LeanW26", "Temp", "prop_id"],
+      "isDef": true,
+      "docs": null}},
+    "content": "prop_id"},
+   "499":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.print-8019",
+      "name": ["Lean", "Parser", "Command", "print"],
+      "docs": null}},
+    "content": "#print"},
+   "485":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-8000",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "481":
+   {"kind":
+    {"const":
+     {"signature": "True.intro : True",
+      "name": ["True", "intro"],
+      "isDef": false,
+      "docs":
+      "`True` is true, and `True.intro` (or more commonly, `trivial`)\nis the proof. "}},
+    "content": "True.intro"},
+   "48":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1705",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "479":
+   {"kind":
+    {"const":
+     {"signature": "True : Prop",
+      "name": ["True"],
+      "isDef": false,
+      "docs":
+      "`True` is a proposition and has only an introduction rule, `True.intro : True`.\nIn other words, `True` is simply true, and has a canonical proof, `True.intro`\nFor more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)\n"}},
+    "content": "True"},
+   "477":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-7899",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "473":
+   {"kind": {"var": {"type": "q", "name": "_uniq.1301"}}, "content": "hq"},
+   "471":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.Or.inr {p q : Prop} (h : q) : Or p q",
+      "name": ["LeanW26", "Temp", "Or", "inr"],
+      "isDef": false,
+      "docs": null}},
+    "content": ".inr"},
+   "469":
+   {"kind": {"var": {"type": "p", "name": "_uniq.1288"}}, "content": "hp"},
+   "467":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.Or.inl {p q : Prop} (h : p) : Or p q",
+      "name": ["LeanW26", "Temp", "Or", "inl"],
+      "isDef": false,
+      "docs": null}},
+    "content": ".inl"},
+   "465":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-7699",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "with"},
+   "463":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-7699",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "match"},
+   "461":
+   {"kind": {"var": {"type": "Or p q", "name": "_uniq.1277"}},
+    "content": "hpq"},
+   "459":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-7686",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "457":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-7653",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "452":
+   {"kind": {"var": {"type": "q", "name": "_uniq.1259"}}, "content": "hq"},
+   "450":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-7483",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "447":
+   {"kind": {"var": {"type": "p", "name": "_uniq.1252"}}, "content": "hp"},
+   "445":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-7418",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "441":
+   {"kind":
+    {"const":
+     {"signature":
+      "LeanW26.Temp.Or.elim {p q r : Prop} (hpq : Or p q) (hpr : p → r) (hqr : q → r) : r",
+      "name": ["LeanW26", "Temp", "Or", "elim"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Or.elim"},
+   "439":
+   {"kind": {"var": {"type": "Or p q", "name": "_uniq.1246"}},
+    "content": "hpq"},
+   "437":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-7335",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "435":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-7302",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "431":
+   {"kind": {"var": {"type": "q", "name": "_uniq.1137"}}, "content": "hq"},
+   "43": {"kind": "unknown", "content": ":="},
+   "429":
+   {"kind": {"var": {"type": "p", "name": "_uniq.1106"}}, "content": "hp"},
+   "427":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.Or.inl {p q : Prop} (h : p) : Or p q",
+      "name": ["LeanW26", "Temp", "Or", "inl"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Or.inl"},
+   "425":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-7133",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "with"},
+   "423":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-7133",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "match"},
+   "421":
+   {"kind": {"var": {"type": "q → r", "name": "_uniq.1081"}}, "content": "hqr"},
+   "419":
+   {"kind": {"var": {"type": "p → r", "name": "_uniq.1077"}}, "content": "hpr"},
+   "417":
+   {"kind": {"var": {"type": "Or p q", "name": "_uniq.1073"}},
+    "content": "hpq"},
+   "415":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1071"}}, "content": "r"},
+   "413":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1069"}}, "content": "q"},
+   "411":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.1067"}}, "content": "p"},
+   "41": {"kind": {"var": {"type": "p", "name": "_uniq.14"}}, "content": "hp"},
+   "409":
+   {"kind":
+    {"const":
+     {"signature":
+      "LeanW26.Temp.Or.elim {p q r : Prop} (hpq : Or p q) (hpr : p → r) (hqr : q → r) : r",
+      "name": ["LeanW26", "Temp", "Or", "elim"],
+      "isDef": true,
+      "docs": null}},
+    "content": "Or.elim"},
+   "407":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-7054",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "403":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.Or.inr {p q : Prop} (h : q) : Or p q",
+      "name": ["LeanW26", "Temp", "Or", "inr"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Or.inr"},
+   "401":
+   {"kind": {"var": {"type": "q", "name": "_uniq.1007"}}, "content": "hq"},
+   "4": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "399":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-6631",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "397":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-6597",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "393": {"kind": {"var": {"type": "q", "name": "_uniq.929"}}, "content": "h"},
+   "391":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.Or.inr {p q : Prop} (h : q) : Or p q",
+      "name": ["LeanW26", "Temp", "Or", "inr"],
+      "isDef": true,
+      "docs": null}},
+    "content": "inr"},
+   "39":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-1246",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "389":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.Or (p q : Prop) : Prop",
+      "name": ["LeanW26", "Temp", "Or"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Or"},
+   "387": {"kind": {"var": {"type": "p", "name": "_uniq.925"}}, "content": "h"},
+   "385":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.Or.inl {p q : Prop} (h : p) : Or p q",
+      "name": ["LeanW26", "Temp", "Or", "inl"],
+      "isDef": true,
+      "docs": null}},
+    "content": "inl"},
+   "383":
+   {"kind":
+    {"keyword": {"occurrence": "null-6519", "name": ["null"], "docs": null}},
+    "content": "where"},
+   "381":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.917"}}, "content": "q"},
+   "379":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.915"}}, "content": "p"},
+   "377":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.Or (p q : Prop) : Prop",
+      "name": ["LeanW26", "Temp", "Or"],
+      "isDef": true,
+      "docs": null}},
+    "content": "Or"},
+   "375":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.inductive-6486",
+      "name": ["Lean", "Parser", "Command", "inductive"],
+      "docs":
+      "In Lean, every concrete type other than the universes\nand every type constructor other than dependent arrows\nis an instance of a general family of type constructions known as inductive types.\nIt is remarkable that it is possible to construct a substantial edifice of mathematics\nbased on nothing more than the type universes, dependent arrow types, and inductive types;\neverything else follows from those.\nIntuitively, an inductive type is built up from a specified list of constructors.\nFor example, `List α` is the list of elements of type `α`, and is defined as follows:\n```\ninductive List (α : Type u) where\n| nil\n| cons (head : α) (tail : List α)\n```\nA list of elements of type `α` is either the empty list, `nil`,\nor an element `head : α` followed by a list `tail : List α`.\nSee [Inductive types](https://lean-lang.org/theorem_proving_in_lean4/inductive_types.html)\nfor more information.\n"}},
+    "content": "inductive"},
+   "371":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-6088",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"},
+   "367":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-6074",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "363":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-6025",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "359": {"kind": "unknown", "content": "⟩"},
+   "357":
+   {"kind": {"var": {"type": "q", "name": "_uniq.818"}}, "content": "hq"},
+   "355":
+   {"kind": {"var": {"type": "p", "name": "_uniq.817"}}, "content": "hp"},
+   "353": {"kind": "unknown", "content": "⟨"},
+   "351":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5885",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "35": {"kind": "unknown", "content": ")"},
+   "349":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-5846",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "345":
+   {"kind":
+    {"anonCtor":
+     {"signature": "And.intro {a b : Prop} (left : a) (right : b) : a ∧ b",
+      "name": ["And", "intro"],
+      "docs":
+      "`And.intro : a → b → a ∧ b` is the constructor for the And operation. "}},
+    "content": "⟩"},
+   "343":
+   {"kind":
+    {"anonCtor":
+     {"signature": "And.intro {a b : Prop} (left : a) (right : b) : a ∧ b",
+      "name": ["And", "intro"],
+      "docs":
+      "`And.intro : a → b → a ∧ b` is the constructor for the And operation. "}},
+    "content": ","},
+   "341":
+   {"kind":
+    {"anonCtor":
+     {"signature": "And.intro {a b : Prop} (left : a) (right : b) : a ∧ b",
+      "name": ["And", "intro"],
+      "docs":
+      "`And.intro : a → b → a ∧ b` is the constructor for the And operation. "}},
+    "content": "⟨"},
+   "339":
+   {"kind": {"var": {"type": "p ∧ q", "name": "_uniq.774"}}, "content": "hpq"},
+   "337":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5730",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "335":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-5691",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "332":
+   {"kind":
+    {"const":
+     {"signature": "p",
+      "name": ["And", "right"],
+      "isDef": false,
+      "docs":
+      "Extract the right conjunct from a conjunction. `h : a ∧ b` then\n`h.right`, also notated as `h.2`, is a proof of `b`. "}},
+    "content": "right"},
+   "330": {"kind": "unknown", "content": ","},
+   "33":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "The universe of propositions. `Prop ≡ Sort 0`.\n\nEvery proposition is propositionally equal to either `True` or `False`. "}},
+    "content": "Prop"},
+   "328":
+   {"kind":
+    {"const":
+     {"signature": "q",
+      "name": ["And", "left"],
+      "isDef": false,
+      "docs":
+      "Extract the left conjunct from a conjunction. `h : a ∧ b` then\n`h.left`, also notated as `h.1`, is a proof of `a`. "}},
+    "content": "left"},
+   "326":
+   {"kind": {"var": {"type": "p ∧ q", "name": "_uniq.754"}}, "content": "hpq"},
+   "324":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5637",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "322":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-5598",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "319":
+   {"kind":
+    {"const":
+     {"signature": "And.left {a b : Prop} (self : a ∧ b) : a",
+      "name": ["And", "left"],
+      "isDef": false,
+      "docs":
+      "Extract the left conjunct from a conjunction. `h : a ∧ b` then\n`h.left`, also notated as `h.1`, is a proof of `a`. "}},
+    "content": "left"},
+   "317":
+   {"kind":
+    {"const":
+     {"signature": "And.right {a b : Prop} (self : a ∧ b) : b",
+      "name": ["And", "right"],
+      "isDef": false,
+      "docs":
+      "Extract the right conjunct from a conjunction. `h : a ∧ b` then\n`h.right`, also notated as `h.2`, is a proof of `b`. "}},
+    "content": "right"},
+   "315":
+   {"kind":
+    {"const":
+     {"signature": "And.intro {a b : Prop} (left : a) (right : b) : a ∧ b",
+      "name": ["And", "intro"],
+      "isDef": false,
+      "docs":
+      "`And.intro : a → b → a ∧ b` is the constructor for the And operation. "}},
+    "content": "And.intro"},
+   "313":
+   {"kind": {"var": {"type": "p ∧ q", "name": "_uniq.734"}}, "content": "hpq"},
+   "311":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5557",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "31": {"kind": "unknown", "content": ":"},
+   "309":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-5518",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "304": {"kind": "unknown", "content": "∧"},
+   "300":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-5389",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "291":
+   {"kind":
+    {"const":
+     {"signature": "And (a b : Prop) : Prop",
+      "name": ["And"],
+      "isDef": false,
+      "docs":
+      "`And a b`, or `a ∧ b`, is the conjunction of propositions. It can be\nconstructed and destructed like a pair: if `ha : a` and `hb : b` then\n`⟨ha, hb⟩ : a ∧ b`, and if `h : a ∧ b` then `h.left : a` and `h.right : b`.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∧` in identifiers is `and`.\n\n * The recommended spelling of `/\\` in identifiers is `and` (prefer `∧` over `/\\`)."}},
+    "content": "∧"},
+   "29":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.592"}}, "content": "r"},
+   "287":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.2109"}}, "content": "r"},
+   "285":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.2107"}}, "content": "q"},
+   "283":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.2105"}}, "content": "p"},
+   "281":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-5354",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "276":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-5288",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "272":
+   {"kind": {"var": {"type": "p", "name": "_uniq.655"}}, "content": "hp"},
+   "270":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-4882",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "with"},
+   "27":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.590"}}, "content": "q"},
+   "268":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-4882",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "match"},
+   "266":
+   {"kind": {"var": {"type": "And p q", "name": "_uniq.634"}},
+    "content": "hpq"},
+   "264":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-4869",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "262":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.622"}}, "content": "q"},
+   "260":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.620"}}, "content": "p"},
+   "258":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-4825",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "254":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.And.left {p q : Prop} (hpq : And p q) : p",
+      "name": ["LeanW26", "Temp", "And", "left"],
+      "isDef": false,
+      "docs": null}},
+    "content": "left"},
+   "252":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.And.right {p q : Prop} (hpq : And p q) : q",
+      "name": ["LeanW26", "Temp", "And", "right"],
+      "isDef": false,
+      "docs": null}},
+    "content": "right"},
+   "250": {"kind": "unknown", "content": "."},
+   "25":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.588"}}, "content": "p"},
+   "248":
+   {"kind": {"var": {"type": "And p q", "name": "_uniq.599"}},
+    "content": "hpq"},
+   "246":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-4612",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "244":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-4573",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "240":
+   {"kind": {"var": {"type": "q", "name": "_uniq.516"}}, "content": "hq"},
+   "238":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-4441",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "with"},
+   "236":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-4441",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "match"},
+   "234":
+   {"kind": {"var": {"type": "And p q", "name": "_uniq.487"}},
+    "content": "hpq"},
+   "232":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.485"}}, "content": "q"},
+   "230":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.483"}}, "content": "p"},
+   "23": {"kind": "unknown", "content": "("},
+   "228":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.And.right {p q : Prop} (hpq : And p q) : q",
+      "name": ["LeanW26", "Temp", "And", "right"],
+      "isDef": true,
+      "docs": null}},
+    "content": "And.right"},
+   "226":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-4393",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "223": {"kind": "unknown", "content": "_"},
+   "221":
+   {"kind": {"var": {"type": "p", "name": "_uniq.396"}}, "content": "hp"},
+   "219":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-4352",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "with"},
+   "217":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-4352",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "match"},
+   "215":
+   {"kind": {"var": {"type": "And p q", "name": "_uniq.367"}},
+    "content": "hpq"},
+   "213":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.365"}}, "content": "q"},
+   "211":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.363"}}, "content": "p"},
+   "21":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-850",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "209":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.And.left {p q : Prop} (hpq : And p q) : p",
+      "name": ["LeanW26", "Temp", "And", "left"],
+      "isDef": true,
+      "docs": null}},
+    "content": "And.left"},
+   "207":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-4305",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "203":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.And.intro {p q : Prop} : p → q → And p q",
+      "name": ["LeanW26", "Temp", "And", "intro"],
+      "isDef": false,
+      "docs": null}},
+    "content": "And.intro"},
+   "201":
+   {"kind": {"var": {"type": "p", "name": "_uniq.350"}}, "content": "hp"},
+   "199":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3913",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "197":
+   {"kind": {"var": {"type": "q", "name": "_uniq.347"}}, "content": "hq"},
+   "195":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3903",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "193":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-3868",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "189":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.And (p q : Prop) : Prop",
+      "name": ["LeanW26", "Temp", "And"],
+      "isDef": false,
+      "docs": null}},
+    "content": "And"},
+   "187":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.And.intro {p q : Prop} : p → q → And p q",
+      "name": ["LeanW26", "Temp", "And", "intro"],
+      "isDef": true,
+      "docs": null}},
+    "content": "intro"},
+   "185": {"kind": "unknown", "content": "|"},
+   "183":
+   {"kind":
+    {"keyword": {"occurrence": "null-3152", "name": ["null"], "docs": null}},
+    "content": "where"},
+   "181":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.276"}}, "content": "q"},
+   "179":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.274"}}, "content": "p"},
+   "177":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Temp.And (p q : Prop) : Prop",
+      "name": ["LeanW26", "Temp", "And"],
+      "isDef": true,
+      "docs": null}},
+    "content": "And"},
+   "175":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.inductive-3118",
+      "name": ["Lean", "Parser", "Command", "inductive"],
+      "docs":
+      "In Lean, every concrete type other than the universes\nand every type constructor other than dependent arrows\nis an instance of a general family of type constructions known as inductive types.\nIt is remarkable that it is possible to construct a substantial edifice of mathematics\nbased on nothing more than the type universes, dependent arrow types, and inductive types;\neverything else follows from those.\nIntuitively, an inductive type is built up from a specified list of constructors.\nFor example, `List α` is the list of elements of type `α`, and is defined as follows:\n```\ninductive List (α : Type u) where\n| nil\n| cons (head : α) (tail : List α)\n```\nA list of elements of type `α` is either the empty list, `nil`,\nor an element `head : α` followed by a list `tail : List α`.\nSee [Inductive types](https://lean-lang.org/theorem_proving_in_lean4/inductive_types.html)\nfor more information.\n"}},
+    "content": "inductive"},
+   "171":
+   {"kind": {"var": {"type": "p", "name": "_uniq.251"}}, "content": "hp"},
+   "17": {"kind": "unknown", "content": "Temp"},
+   "169":
+   {"kind": {"var": {"type": "p → q", "name": "_uniq.249"}}, "content": "hpq"},
+   "167":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-2607",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "163":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-2537",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "161":
+   {"kind": {"var": {"type": "p", "name": "_uniq.219"}}, "content": "hp"},
+   "159":
+   {"kind": {"var": {"type": "p → q", "name": "_uniq.217"}}, "content": "hpq"},
+   "155":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-2491",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "15":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-779",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"},
+   "149":
+   {"kind": {"var": {"type": "q", "name": "_uniq.202"}}, "content": "hq"},
+   "138":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2335",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "136":
+   {"kind": {"var": {"type": "p", "name": "_uniq.194"}}, "content": "hp"},
+   "134":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-2303",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "130":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-2239",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "128": {"kind": "unknown", "content": "=>"},
+   "126":
+   {"kind": {"var": {"type": "q", "name": "_uniq.172"}}, "content": "hq"},
+   "124":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2229",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "121": {"kind": "unknown", "content": "→"},
+   "119":
+   {"kind": {"var": {"type": "p", "name": "_uniq.164"}}, "content": "hp"},
+   "115":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-2197",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "11": {"kind": "unknown", "content": "LeanW26"},
+   "108": {"kind": "unknown", "content": "sorry"},
+   "101": {"kind": {"withType": {"type": "ℕ"}}, "content": "10000001"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-297",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 778,
+  "messageContents":
+  {"498": {"append": [105, 497]},
+   "497": {"append": [105, 489, 490, 491, 105, 295, 493, 494, 142, 496]},
+   "496": {"term": 495},
+   "494": {"text": " :="},
+   "493": {"term": 492},
+   "491": {"text": "trivial"},
+   "490": {"text": " "},
+   "489": {"text": "theorem"},
+   "299": {"append": [105, 298]},
+   "298": {"append": [294, 295, 297]},
+   "297": {"term": 296},
+   "295": {"text": " : "},
+   "294": {"term": 293},
+   "148": {"append": [105, 147]},
+   "147": {"append": [140, 141, 112, 142, 142, 143, 144, 145, 146]},
+   "146": {"text": " false`"},
+   "145": {"text": "linter.unusedVariables"},
+   "144": {"text": "This linter can be disabled with `set_option "},
+   "143": {"text": "Note: "},
+   "142": {"text": "\n"},
+   "141": {"text": "hq"},
+   "140": {"text": "unused variable `"},
+   "114": {"append": [105, 113]},
+   "113": {"append": [106, 111, 112]},
+   "112": {"text": "`"},
+   "111": {"term": 110},
+   "106": {"text": "declaration uses `"},
+   "105": {"text": ""}},
+  "goals": {},
+  "code":
+  {"98": {"token": {"tok": 97}},
+   "96":
+   {"text": {"str": "\n\n/- Finally, example is not just for `Prop`: -/\n\n"}},
+   "95":
+   {"seq":
+    {"highlights":
+     [8,
+      90,
+      3,
+      24,
+      92,
+      3,
+      32,
+      3,
+      26,
+      36,
+      3,
+      32,
+      3,
+      26,
+      3,
+      44,
+      3,
+      94,
+      3,
+      92,
+      6]}},
+   "94": {"token": {"tok": 93}},
+   "92": {"token": {"tok": 91}},
+   "90": {"token": {"tok": 89}},
+   "88":
+   {"seq":
+    {"highlights":
+     [67,
+      69,
+      3,
+      71,
+      73,
+      75,
+      77,
+      3,
+      79,
+      81,
+      3,
+      32,
+      3,
+      83,
+      3,
+      85,
+      77,
+      3,
+      24,
+      87,
+      3,
+      32,
+      3,
+      81,
+      36,
+      3,
+      32,
+      3,
+      81,
+      3,
+      44,
+      3,
+      87,
+      6]}},
+   "87": {"token": {"tok": 86}},
+   "85": {"token": {"tok": 84}},
+   "83": {"token": {"tok": 82}},
+   "81": {"token": {"tok": 80}},
+   "8": {"text": {"str": "\n\n"}},
+   "79": {"token": {"tok": 78}},
+   "777": {"seq": {"highlights": [774, 776, 6]}},
+   "776": {"token": {"tok": 775}},
+   "774": {"text": {"str": "\n--unhide\n"}},
+   "773": {"seq": {"highlights": [770, 772, 3, 12, 6]}},
+   "772": {"token": {"tok": 771}},
+   "770":
+   {"text":
+    {"str":
+     "\n\n/-\nReferences\n===\n\n- Section 7.3 of [TPL](https://lean-lang.org/theorem_proving_in_lean4/inductive_types.html) describes how to define the propositional connectives.\n\n-/\n\n--hide\n"}},
+   "77": {"token": {"tok": 76}},
+   "769":
+   {"seq":
+    {"highlights":
+     [280,
+      766,
+      3,
+      32,
+      3,
+      620,
+      24,
+      284,
+      3,
+      510,
+      3,
+      286,
+      36,
+      3,
+      122,
+      3,
+      24,
+      716,
+      3,
+      284,
+      3,
+      286,
+      36,
+      3,
+      44,
+      3,
+      768,
+      6]}},
+   "768": {"token": {"tok": 767}},
+   "766": {"span": {"info": [["warning", 114]], "content": 765}},
+   "765": {"seq": {"highlights": [764, 6]}},
+   "764": {"token": {"tok": 763}},
+   "762":
+   {"seq":
+    {"highlights":
+     [280,
+      759,
+      3,
+      32,
+      3,
+      24,
+      716,
+      3,
+      284,
+      3,
+      286,
+      36,
+      3,
+      122,
+      3,
+      620,
+      24,
+      284,
+      3,
+      510,
+      3,
+      286,
+      36,
+      3,
+      44,
+      3,
+      761,
+      6]}},
+   "761": {"token": {"tok": 760}},
+   "759": {"span": {"info": [["warning", 114]], "content": 758}},
+   "758": {"seq": {"highlights": [757, 6]}},
+   "757": {"token": {"tok": 756}},
+   "755":
+   {"seq":
+    {"highlights":
+     [748,
+      752,
+      3,
+      32,
+      3,
+      620,
+      284,
+      3,
+      122,
+      3,
+      24,
+      716,
+      3,
+      284,
+      3,
+      284,
+      36,
+      3,
+      44,
+      3,
+      754,
+      6]}},
+   "754": {"token": {"tok": 753}},
+   "752": {"span": {"info": [["warning", 114]], "content": 751}},
+   "751": {"seq": {"highlights": [750, 6]}},
+   "750": {"token": {"tok": 749}},
+   "75": {"token": {"tok": 74}},
+   "748":
+   {"text":
+    {"str":
+     "\n\n/-\nExercise\n===\n\n<ex /> Use your `Nor` inference rules, and the regular inference rules from Lean's\npropopsitional logic, to prove the following examples.\n\n\n-/\n\n"}},
+   "747":
+   {"seq":
+    {"highlights":
+     [280,
+      734,
+      3,
+      738,
+      3,
+      79,
+      740,
+      3,
+      742,
+      3,
+      32,
+      3,
+      34,
+      77,
+      3,
+      24,
+      744,
+      3,
+      32,
+      3,
+      716,
+      3,
+      740,
+      3,
+      742,
+      36,
+      3,
+      32,
+      3,
+      34,
+      3,
+      44,
+      3,
+      746,
+      6]}},
+   "746": {"token": {"tok": 745}},
+   "744": {"token": {"tok": 743}},
+   "742": {"token": {"tok": 741}},
+   "740": {"token": {"tok": 739}},
+   "738": {"span": {"info": [["warning", 114]], "content": 737}},
+   "737": {"seq": {"highlights": [736, 6]}},
+   "736": {"token": {"tok": 735}},
+   "734": {"token": {"tok": 733}},
+   "732":
+   {"seq":
+    {"highlights":
+     [8,
+      719,
+      3,
+      723,
+      3,
+      79,
+      725,
+      3,
+      727,
+      3,
+      32,
+      3,
+      34,
+      77,
+      3,
+      24,
+      729,
+      3,
+      32,
+      3,
+      716,
+      3,
+      725,
+      3,
+      727,
+      36,
+      3,
+      32,
+      3,
+      34,
+      3,
+      44,
+      3,
+      731,
+      6]}},
+   "731": {"token": {"tok": 730}},
+   "73": {"token": {"tok": 72}},
+   "729": {"token": {"tok": 728}},
+   "727": {"token": {"tok": 726}},
+   "725": {"token": {"tok": 724}},
+   "723": {"span": {"info": [["warning", 114]], "content": 722}},
+   "722": {"seq": {"highlights": [721, 6]}},
+   "721": {"token": {"tok": 720}},
+   "719": {"token": {"tok": 718}},
+   "717":
+   {"seq":
+    {"highlights":
+     [702,
+      704,
+      3,
+      706,
+      3,
+      24,
+      708,
+      3,
+      710,
+      3,
+      32,
+      3,
+      34,
+      36,
+      3,
+      32,
+      3,
+      34,
+      3,
+      712,
+      123,
+      186,
+      3,
+      714,
+      3,
+      32,
+      3,
+      620,
+      708,
+      3,
+      122,
+      3,
+      620,
+      710,
+      3,
+      122,
+      3,
+      716,
+      3,
+      708,
+      3,
+      710,
+      6]}},
+   "716": {"token": {"tok": 715}},
+   "714": {"token": {"tok": 713}},
+   "712": {"token": {"tok": 711}},
+   "710": {"token": {"tok": 709}},
+   "71": {"token": {"tok": 70}},
+   "708": {"token": {"tok": 707}},
+   "706": {"token": {"tok": 705}},
+   "704": {"token": {"tok": 703}},
+   "702":
+   {"text":
+    {"str":
+     "\n\n/-\nExercise\n===\n\n<ex /> Consider the Not-Or operation also known as Nor. It has the following inference rules:\n```none\n             Γ ⊢ ¬p   Γ ⊢ ¬q\n  Nor-Intro ———————————————————\n               Γ ⊢ Nor p q\n\n\n                 Γ ⊢ Nor p q                          Γ ⊢ Nor p q\n  Nor-Elim-Left ——————————————         Nor-Elim-Right —————————————\n                   Γ ⊢ ¬p                                Γ ⊢ ¬q\n\n```\nDefine these in Lean. Here is a start:\n\n-/\n\n"}},
+   "701":
+   {"seq":
+    {"highlights":
+     [694,
+      698,
+      3,
+      32,
+      3,
+      24,
+      284,
+      3,
+      122,
+      3,
+      286,
+      36,
+      3,
+      122,
+      3,
+      24,
+      620,
+      284,
+      3,
+      510,
+      3,
+      286,
+      36,
+      3,
+      44,
+      3,
+      700,
+      6]}},
+   "700": {"token": {"tok": 699}},
+   "7": {"seq": {"highlights": [0, 2, 3, 5, 6]}},
+   "698": {"span": {"info": [["warning", 114]], "content": 697}},
+   "697": {"seq": {"highlights": [696, 6]}},
+   "696": {"token": {"tok": 695}},
+   "694":
+   {"text":
+    {"str":
+     "\n\n/-\n<ex /> This one requires the law of the excluded middle, which can be\nused with `Classical.em`. The way to do this one is to do Or-elimination\non `Classical.em p`.\n-/\n\n"}},
+   "693":
+   {"seq":
+    {"highlights":
+     [280,
+      690,
+      3,
+      32,
+      3,
+      284,
+      3,
+      305,
+      3,
+      683,
+      3,
+      585,
+      3,
+      683,
+      3,
+      44,
+      3,
+      692,
+      6]}},
+   "692": {"token": {"tok": 691}},
+   "690": {"span": {"info": [["warning", 114]], "content": 689}},
+   "69": {"token": {"tok": 68}},
+   "689": {"seq": {"highlights": [688, 6]}},
+   "688": {"token": {"tok": 687}},
+   "686":
+   {"seq":
+    {"highlights":
+     [280,
+      681,
+      3,
+      32,
+      3,
+      284,
+      3,
+      510,
+      3,
+      683,
+      3,
+      585,
+      3,
+      284,
+      3,
+      44,
+      3,
+      685,
+      6]}},
+   "685": {"token": {"tok": 684}},
+   "683": {"token": {"tok": 682}},
+   "681": {"span": {"info": [["warning", 114]], "content": 680}},
+   "680": {"seq": {"highlights": [679, 6]}},
+   "679": {"token": {"tok": 678}},
+   "677":
+   {"seq":
+    {"highlights":
+     [280,
+      674,
+      3,
+      32,
+      3,
+      24,
+      620,
+      284,
+      3,
+      510,
+      3,
+      286,
+      36,
+      3,
+      122,
+      3,
+      24,
+      284,
+      3,
+      122,
+      3,
+      286,
+      36,
+      3,
+      44,
+      3,
+      676,
+      6]}},
+   "676": {"token": {"tok": 675}},
+   "674": {"span": {"info": [["warning", 114]], "content": 673}},
+   "673": {"seq": {"highlights": [672, 6]}},
+   "672": {"token": {"tok": 671}},
+   "670":
+   {"seq":
+    {"highlights":
+     [280,
+      667,
+      3,
+      32,
+      3,
+      620,
+      24,
+      284,
+      3,
+      305,
+      3,
+      620,
+      284,
+      36,
+      3,
+      44,
+      3,
+      669,
+      6]}},
+   "67":
+   {"text":
+    {"str":
+     "\n\n/- Also, `prop_id` is really just a special case of the identity function. -/\n\n"}},
+   "669": {"token": {"tok": 668}},
+   "667": {"span": {"info": [["warning", 114]], "content": 666}},
+   "666": {"seq": {"highlights": [665, 6]}},
+   "665": {"token": {"tok": 664}},
+   "663":
+   {"seq":
+    {"highlights":
+     [280,
+      660,
+      3,
+      32,
+      3,
+      620,
+      24,
+      284,
+      3,
+      510,
+      3,
+      286,
+      36,
+      3,
+      585,
+      3,
+      620,
+      284,
+      3,
+      305,
+      3,
+      620,
+      286,
+      3,
+      44,
+      3,
+      662,
+      6]}},
+   "662": {"token": {"tok": 661}},
+   "660": {"span": {"info": [["warning", 114]], "content": 659}},
+   "66":
+   {"seq":
+    {"highlights":
+     [8, 63, 3, 24, 65, 3, 32, 3, 26, 36, 3, 32, 3, 26, 3, 44, 3, 65, 6]}},
+   "659": {"seq": {"highlights": [658, 6]}},
+   "658": {"token": {"tok": 657}},
+   "656":
+   {"seq":
+    {"highlights":
+     [280,
+      653,
+      3,
+      32,
+      3,
+      24,
+      284,
+      3,
+      510,
+      3,
+      286,
+      36,
+      3,
+      510,
+      3,
+      288,
+      3,
+      585,
+      3,
+      284,
+      3,
+      510,
+      3,
+      24,
+      286,
+      3,
+      510,
+      3,
+      288,
+      36,
+      3,
+      44,
+      3,
+      655,
+      6]}},
+   "655": {"token": {"tok": 654}},
+   "653": {"span": {"info": [["warning", 114]], "content": 652}},
+   "652": {"seq": {"highlights": [651, 6]}},
+   "651": {"token": {"tok": 650}},
+   "65": {"token": {"tok": 64}},
+   "649":
+   {"seq":
+    {"highlights":
+     [642,
+      646,
+      3,
+      32,
+      3,
+      284,
+      3,
+      510,
+      3,
+      286,
+      3,
+      585,
+      3,
+      286,
+      3,
+      510,
+      3,
+      284,
+      3,
+      44,
+      3,
+      648,
+      6]}},
+   "648": {"token": {"tok": 647}},
+   "646": {"span": {"info": [["warning", 114]], "content": 645}},
+   "645": {"seq": {"highlights": [644, 6]}},
+   "644": {"token": {"tok": 643}},
+   "642":
+   {"text":
+    {"str":
+     "\n\n/-\n<ex /> Do all these proofs, which are borrowed from the [Theorem Proving in Lean Book](https://lean-lang.org/theorem_proving_in_lean4/title_page.html). Use only term level proofs. No tactics.\n\n\n -/\n\n"}},
+   "641":
+   {"seq":
+    {"highlights":
+     [630,
+      634,
+      3,
+      24,
+      636,
+      3,
+      638,
+      3,
+      32,
+      3,
+      34,
+      36,
+      3,
+      32,
+      3,
+      24,
+      636,
+      3,
+      585,
+      3,
+      638,
+      36,
+      3,
+      585,
+      3,
+      24,
+      636,
+      3,
+      122,
+      3,
+      638,
+      36,
+      3,
+      305,
+      3,
+      24,
+      638,
+      3,
+      122,
+      3,
+      636,
+      36,
+      3,
+      44,
+      3,
+      640,
+      6]}},
+   "640": {"token": {"tok": 639}},
+   "638": {"token": {"tok": 637}},
+   "636": {"token": {"tok": 635}},
+   "634": {"span": {"info": [["warning", 114]], "content": 633}},
+   "633": {"seq": {"highlights": [632, 6]}},
+   "632": {"token": {"tok": 631}},
+   "630":
+   {"text":
+    {"str":
+     "\n\n/-\n<div class='fn'>\n  <a href=\"https://github.com/leanprover/lean4/blob/master/src/Init/Notation.lean\">\n  Lean's core notation</a></div>\n\n-/\n\n\n\n\n/-\nExercise\n===\n\n<ex /> Show\n\n-/\n\n"}},
+   "63": {"token": {"tok": 62}},
+   "629":
+   {"seq":
+    {"highlights":
+     [488,
+      614,
+      3,
+      24,
+      616,
+      3,
+      618,
+      3,
+      32,
+      3,
+      34,
+      36,
+      3,
+      32,
+      3,
+      24,
+      616,
+      3,
+      305,
+      3,
+      24,
+      620,
+      616,
+      36,
+      36,
+      3,
+      122,
+      3,
+      618,
+      3,
+      44,
+      123,
+      622,
+      3,
+      354,
+      3,
+      624,
+      331,
+      3,
+      626,
+      3,
+      360,
+      3,
+      129,
+      3,
+      628,
+      3,
+      24,
+      626,
+      3,
+      624,
+      36,
+      6]}},
+   "628": {"token": {"tok": 627}},
+   "626": {"token": {"tok": 625}},
+   "624": {"token": {"tok": 623}},
+   "622": {"token": {"tok": 621}},
+   "620": {"token": {"tok": 619}},
+   "618": {"token": {"tok": 617}},
+   "616": {"token": {"tok": 615}},
+   "614": {"token": {"tok": 613}},
+   "612": {"seq": {"highlights": [608, 610, 3, 18, 611, 6]}},
+   "611": {"text": {"str": " -- start using Lean's propositions"}},
+   "610": {"token": {"tok": 609}},
+   "61":
+   {"seq":
+    {"highlights":
+     [8,
+      56,
+      3,
+      58,
+      3,
+      24,
+      60,
+      3,
+      32,
+      3,
+      26,
+      36,
+      3,
+      32,
+      3,
+      26,
+      3,
+      44,
+      3,
+      60,
+      6]}},
+   "608":
+   {"text":
+    {"str":
+     "\n\n\n\n\n\n/-\nNotation\n===\n\nLean defines notation like `∨` and `∧` for logic to make it look like math.\nWe won't redo that entire infrastructure here.\nBut to give a sense of it, here is how Lean defines infix\nnotation for `Or`, `And`, and `Not` notation.\n\n```hs\ninfixr:30 \" ∨ \"  => Or\ninfixr:35 \" ∧ \"   => And\ninfixr:50 \" ↔ \"   => Iff\nnotation:max \"¬\" p:40 => Not p\n```\n\nThe numbers define the precedence of the operations. So `v` has lower precedence than `∧`,\nwhich has lower precedence than `¬`.\n\nNow we can write: -/\n\n--hide\n"}},
+   "607":
+   {"seq":
+    {"highlights":
+     [591,
+      600,
+      3,
+      32,
+      3,
+      284,
+      3,
+      585,
+      3,
+      284,
+      3,
+      44,
+      3,
+      602,
+      3,
+      589,
+      604,
+      3,
+      589,
+      3,
+      606,
+      6]}},
+   "606": {"token": {"tok": 605}},
+   "604": {"token": {"tok": 603}},
+   "602": {"token": {"tok": 601}},
+   "600": {"token": {"tok": 599}},
+   "60": {"token": {"tok": 59}},
+   "6": {"seq": {"highlights": []}},
+   "598":
+   {"seq":
+    {"highlights":
+     [591,
+      593,
+      3,
+      32,
+      3,
+      284,
+      3,
+      585,
+      3,
+      284,
+      3,
+      44,
+      3,
+      79,
+      3,
+      595,
+      3,
+      44,
+      3,
+      589,
+      331,
+      3,
+      597,
+      3,
+      44,
+      3,
+      589,
+      3,
+      77,
+      6]}},
+   "597": {"token": {"tok": 596}},
+   "595": {"token": {"tok": 594}},
+   "593": {"token": {"tok": 592}},
+   "591": {"text": {"str": "\n\n/- or -/\n\n"}},
+   "590":
+   {"seq":
+    {"highlights":
+     [581,
+      583,
+      3,
+      32,
+      3,
+      284,
+      3,
+      585,
+      3,
+      284,
+      3,
+      44,
+      3,
+      587,
+      3,
+      589,
+      3,
+      589,
+      6]}},
+   "589": {"token": {"tok": 588}},
+   "587": {"token": {"tok": 586}},
+   "585": {"token": {"tok": 584}},
+   "583": {"token": {"tok": 582}},
+   "581":
+   {"text":
+    {"str":
+     "\n\n\n\n\n/-\nIf and only iff\n===\n\nIf and only if is defined inductively as\n```lean\nstructure Iff (p q : Prop) : Prop where\n  intro ::\n  mp : p → q\n  mpr : q → p\n```\n\nwith notation `p ↔ q`.\n\nFor example:\n\n-/\n\n"}},
+   "580":
+   {"seq":
+    {"highlights":
+     [577, 579, 3, 32, 3, 531, 3, 122, 3, 480, 3, 44, 123, 575, 6]}},
+   "58": {"token": {"tok": 57}},
+   "579": {"token": {"tok": 578}},
+   "577":
+   {"text":
+    {"str":
+     "\n\n/- This elimination rule provides another way to prove the example: -/\n\n"}},
+   "576":
+   {"seq":
+    {"highlights":
+     [561,
+      563,
+      3,
+      24,
+      565,
+      3,
+      567,
+      3,
+      32,
+      3,
+      34,
+      36,
+      3,
+      32,
+      3,
+      190,
+      3,
+      565,
+      3,
+      24,
+      537,
+      3,
+      565,
+      36,
+      3,
+      122,
+      3,
+      567,
+      3,
+      44,
+      123,
+      569,
+      3,
+      354,
+      3,
+      571,
+      331,
+      3,
+      573,
+      3,
+      360,
+      3,
+      129,
+      3,
+      575,
+      3,
+      24,
+      573,
+      3,
+      571,
+      36,
+      6]}},
+   "575": {"token": {"tok": 574}},
+   "573": {"token": {"tok": 572}},
+   "571": {"token": {"tok": 570}},
+   "569": {"token": {"tok": 568}},
+   "567": {"token": {"tok": 566}},
+   "565": {"token": {"tok": 564}},
+   "563": {"token": {"tok": 562}},
+   "561":
+   {"text":
+    {"str":
+     "\n\n/- Here is an example proof that from False you can conclude anything: -/\n\n"}},
+   "560":
+   {"seq":
+    {"highlights":
+     [549,
+      551,
+      3,
+      553,
+      3,
+      79,
+      555,
+      3,
+      32,
+      3,
+      34,
+      77,
+      3,
+      24,
+      557,
+      3,
+      32,
+      3,
+      531,
+      36,
+      3,
+      32,
+      3,
+      555,
+      3,
+      44,
+      123,
+      559,
+      3,
+      557,
+      6]}},
+   "56": {"token": {"tok": 55}},
+   "559": {"token": {"tok": 558}},
+   "557": {"token": {"tok": 556}},
+   "555": {"token": {"tok": 554}},
+   "553": {"token": {"tok": 552}},
+   "551": {"token": {"tok": 550}},
+   "549":
+   {"text":
+    {"str":
+     "\n\n/-\nFalse Elimination\n===\n\nTo define the elimination rule for `False`\n```\n           Γ ⊢ ⊥\n  ⊥-Elim ——————————\n           Γ ⊢ p\n```\nwe take advantage of the fact that `False` was defined inductively. -/\n\n"}},
+   "548":
+   {"seq":
+    {"highlights":
+     [533,
+      535,
+      3,
+      32,
+      3,
+      24,
+      284,
+      3,
+      122,
+      3,
+      286,
+      36,
+      3,
+      122,
+      3,
+      24,
+      537,
+      3,
+      286,
+      3,
+      122,
+      3,
+      537,
+      3,
+      284,
+      36,
+      3,
+      44,
+      123,
+      539,
+      3,
+      541,
+      3,
+      543,
+      3,
+      129,
+      123,
+      545,
+      3,
+      547,
+      3,
+      129,
+      123,
+      543,
+      3,
+      24,
+      541,
+      3,
+      547,
+      36,
+      6]}},
+   "547": {"token": {"tok": 546}},
+   "545": {"token": {"tok": 544}},
+   "543": {"token": {"tok": 542}},
+   "541": {"token": {"tok": 540}},
+   "54":
+   {"seq":
+    {"highlights":
+     [47, 49, 3, 51, 3, 24, 53, 3, 32, 3, 26, 36, 3, 44, 3, 53, 6]}},
+   "539": {"token": {"tok": 538}},
+   "537": {"token": {"tok": 536}},
+   "535": {"token": {"tok": 534}},
+   "533": {"text": {"str": "\n\n/- Here is an example proof: -/\n\n"}},
+   "532":
+   {"seq":
+    {"highlights":
+     [523,
+      525,
+      3,
+      527,
+      3,
+      24,
+      529,
+      3,
+      32,
+      3,
+      34,
+      36,
+      3,
+      32,
+      3,
+      34,
+      3,
+      44,
+      3,
+      529,
+      3,
+      122,
+      3,
+      531,
+      6]}},
+   "531": {"token": {"tok": 530}},
+   "53": {"token": {"tok": 52}},
+   "529": {"token": {"tok": 528}},
+   "527": {"token": {"tok": 526}},
+   "525": {"token": {"tok": 524}},
+   "523":
+   {"text":
+    {"str":
+     "\n\n/- From `False` we get the `Not` connective, which is *syntactic sugar*. -/\n\n"}},
+   "522": {"seq": {"highlights": [517, 519, 3, 521, 3, 32, 3, 34, 6]}},
+   "521": {"token": {"tok": 520}},
+   "519": {"token": {"tok": 518}},
+   "517":
+   {"text":
+    {"str":
+     "\n--unhide\n\n/-\nFalse is Inductive\n===\n\nFinally, we have `False`, which has no introduction rule, kind of like `Empty`,\nexcept we add the requirement that `False` is also type of `Prop`.  -/\n\n"}},
+   "516": {"seq": {"highlights": [370, 515, 3, 18, 6]}},
+   "515": {"token": {"tok": 514}},
+   "513":
+   {"seq":
+    {"highlights":
+     [8, 508, 3, 32, 3, 480, 3, 510, 3, 480, 3, 44, 3, 512, 3, 504, 6]}},
+   "512": {"token": {"tok": 511}},
+   "510": {"token": {"tok": 509}},
+   "51": {"token": {"tok": 50}},
+   "508": {"token": {"tok": 507}},
+   "506": {"seq": {"highlights": [488, 502, 3, 504, 505, 6]}},
+   "505":
+   {"text":
+    {"str": "                 -- theorem trivial : True := True.intro"}},
+   "504": {"token": {"tok": 503}},
+   "502": {"span": {"info": [["info", 498]], "content": 501}},
+   "501": {"seq": {"highlights": [500, 6]}},
+   "500": {"token": {"tok": 499}},
+   "5": {"token": {"tok": 4}},
+   "495": {"seq": {"highlights": [107, 482, 107]}},
+   "492": {"seq": {"highlights": [107, 480, 107]}},
+   "49": {"token": {"tok": 48}},
+   "488": {"text": {"str": "\n--unhide\n\n"}},
+   "487": {"seq": {"highlights": [484, 486, 3, 18, 6]}},
+   "486": {"token": {"tok": 485}},
+   "484":
+   {"text":
+    {"str":
+     "\n\n/- Or, using Lean's notation and definitons -/\n\n\n--hide\n"}},
+   "483":
+   {"seq":
+    {"highlights":
+     [476, 478, 3, 32, 3, 390, 3, 480, 3, 480, 3, 44, 3, 428, 3, 482, 6]}},
+   "482": {"token": {"tok": 481}},
+   "480": {"token": {"tok": 479}},
+   "478": {"token": {"tok": 477}},
+   "476":
+   {"text":
+    {"str":
+     "\n\n/-\nTrue is Inductive\n===\n`True` is defined inductively as\n```lean\ninductive True : Prop where\n  | intro : True\n```\n\nfor example:\n\n-/\n\n"}},
+   "475":
+   {"seq":
+    {"highlights":
+     [456,
+      458,
+      3,
+      32,
+      3,
+      390,
+      3,
+      284,
+      3,
+      286,
+      3,
+      122,
+      3,
+      390,
+      3,
+      286,
+      3,
+      284,
+      3,
+      44,
+      123,
+      460,
+      3,
+      462,
+      3,
+      129,
+      123,
+      464,
+      3,
+      462,
+      3,
+      466,
+      123,
+      186,
+      3,
+      468,
+      3,
+      470,
+      3,
+      129,
+      3,
+      404,
+      3,
+      470,
+      123,
+      186,
+      3,
+      472,
+      3,
+      474,
+      3,
+      129,
+      3,
+      428,
+      3,
+      474,
+      6]}},
+   "474": {"token": {"tok": 473}},
+   "472": {"token": {"tok": 471}},
+   "470": {"token": {"tok": 469}},
+   "47":
+   {"text":
+    {"str":
+     "\n\n/- Putting your cursor at the beginning of the second like, you will see\n```\nhp : p\n⊢ p\n```\nWhich says, given we have a proof `hp` of `p`, we need show `p`.\nThis is easy, we just use `hp` itself.\n\n\nAside: def, theorem, example, lemma\n===\n\nBy the CHI, note that `def` and `theorem`\nare essentially the same from a type theory point of few. And `example` is\njust a definition without a name.\n\nSo in the above we could write:\n\n-/\n\n"}},
+   "468": {"token": {"tok": 467}},
+   "466": {"token": {"tok": 465}},
+   "464": {"token": {"tok": 463}},
+   "462": {"token": {"tok": 461}},
+   "460": {"token": {"tok": 459}},
+   "46":
+   {"seq":
+    {"highlights":
+     [38, 40, 3, 24, 42, 3, 32, 3, 26, 36, 3, 32, 3, 26, 3, 44, 45, 42, 6]}},
+   "458": {"token": {"tok": 457}},
+   "456":
+   {"text":
+    {"str":
+     "\n\n/- Once again, the elimination rule is just a convenience.\nThe proof could have been written with `match`. -/\n\n"}},
+   "455":
+   {"seq":
+    {"highlights":
+     [434,
+      436,
+      3,
+      32,
+      3,
+      390,
+      3,
+      284,
+      3,
+      286,
+      3,
+      122,
+      3,
+      390,
+      3,
+      286,
+      3,
+      284,
+      3,
+      44,
+      123,
+      438,
+      3,
+      440,
+      3,
+      129,
+      3,
+      442,
+      443,
+      440,
+      444,
+      443,
+      24,
+      446,
+      3,
+      448,
+      3,
+      129,
+      3,
+      404,
+      3,
+      448,
+      36,
+      449,
+      443,
+      24,
+      451,
+      3,
+      453,
+      3,
+      129,
+      3,
+      428,
+      3,
+      453,
+      36,
+      454,
+      6]}},
+   "454": {"text": {"str": "               -- ⊢ q → (q ∨ p)"}},
+   "453": {"token": {"tok": 452}},
+   "451": {"token": {"tok": 450}},
+   "45": {"text": {"str": "  "}},
+   "449": {"text": {"str": "               -- ⊢ p → (q ∨ p)"}},
+   "448": {"token": {"tok": 447}},
+   "446": {"token": {"tok": 445}},
+   "444": {"text": {"str": "                                 -- ⊢ p ∨ q"}},
+   "443": {"text": {"str": "\n      "}},
+   "442": {"token": {"tok": 441}},
+   "440": {"token": {"tok": 439}},
+   "44": {"token": {"tok": 43}},
+   "438": {"token": {"tok": 437}},
+   "436": {"token": {"tok": 435}},
+   "434":
+   {"text":
+    {"str":
+     "\n\n/-\nExample of and Or-Elim Proof\n===\n\nHere is an example proof using or introduction and elimination. -/\n\n"}},
+   "433":
+   {"seq":
+    {"highlights":
+     [406,
+      408,
+      3,
+      410,
+      3,
+      79,
+      412,
+      3,
+      414,
+      3,
+      416,
+      3,
+      32,
+      3,
+      34,
+      77,
+      3,
+      24,
+      418,
+      3,
+      32,
+      3,
+      390,
+      3,
+      412,
+      3,
+      414,
+      36,
+      3,
+      24,
+      420,
+      3,
+      32,
+      3,
+      412,
+      3,
+      122,
+      3,
+      416,
+      36,
+      3,
+      24,
+      422,
+      3,
+      32,
+      3,
+      414,
+      3,
+      122,
+      3,
+      416,
+      36,
+      3,
+      44,
+      123,
+      424,
+      3,
+      418,
+      3,
+      426,
+      123,
+      186,
+      3,
+      428,
+      3,
+      430,
+      3,
+      129,
+      3,
+      420,
+      3,
+      430,
+      123,
+      186,
+      3,
+      404,
+      3,
+      432,
+      3,
+      129,
+      3,
+      422,
+      3,
+      432,
+      6]}},
+   "432": {"token": {"tok": 431}},
+   "430": {"token": {"tok": 429}},
+   "428": {"token": {"tok": 427}},
+   "426": {"token": {"tok": 425}},
+   "424": {"token": {"tok": 423}},
+   "422": {"token": {"tok": 421}},
+   "420": {"token": {"tok": 419}},
+   "42": {"token": {"tok": 41}},
+   "418": {"token": {"tok": 417}},
+   "416": {"token": {"tok": 415}},
+   "414": {"token": {"tok": 413}},
+   "412": {"token": {"tok": 411}},
+   "410": {"token": {"tok": 409}},
+   "408": {"token": {"tok": 407}},
+   "406":
+   {"text":
+    {"str":
+     "\n\n/-\nOr Elimination\n===\n\nRecall the inference rule\n```none\n           Γ,p ⊢ r    Γ,q ⊢ r    Γ ⊢ p ∨ q\n  ∨-Elim ————————————————————————————————————\n                       Γ ⊢ r\n```\n\nIt allows us to prove `r` given proofs that `p → r`, `q → r` and `p ∨ q`.\n\nWe can define this rule in Lean with: -/\n\n"}},
+   "405":
+   {"seq":
+    {"highlights":
+     [396,
+      398,
+      3,
+      32,
+      3,
+      190,
+      3,
+      284,
+      3,
+      286,
+      3,
+      122,
+      3,
+      390,
+      3,
+      284,
+      3,
+      286,
+      3,
+      44,
+      123,
+      400,
+      3,
+      354,
+      3,
+      224,
+      331,
+      3,
+      402,
+      3,
+      360,
+      3,
+      129,
+      3,
+      404,
+      3,
+      402,
+      6]}},
+   "404": {"token": {"tok": 403}},
+   "402": {"token": {"tok": 401}},
+   "400": {"token": {"tok": 399}},
+   "40": {"token": {"tok": 39}},
+   "398": {"token": {"tok": 397}},
+   "396": {"text": {"str": "\n\n/- For example,  -/\n\n"}},
+   "395":
+   {"seq":
+    {"highlights":
+     [374,
+      376,
+      3,
+      378,
+      3,
+      24,
+      380,
+      3,
+      382,
+      3,
+      32,
+      3,
+      34,
+      36,
+      3,
+      32,
+      3,
+      34,
+      3,
+      384,
+      123,
+      186,
+      3,
+      386,
+      3,
+      24,
+      388,
+      3,
+      32,
+      3,
+      380,
+      36,
+      3,
+      32,
+      3,
+      390,
+      3,
+      380,
+      3,
+      382,
+      123,
+      186,
+      3,
+      392,
+      3,
+      24,
+      394,
+      3,
+      32,
+      3,
+      382,
+      36,
+      3,
+      32,
+      3,
+      390,
+      3,
+      380,
+      3,
+      382,
+      6]}},
+   "394": {"token": {"tok": 393}},
+   "392": {"token": {"tok": 391}},
+   "390": {"token": {"tok": 389}},
+   "388": {"token": {"tok": 387}},
+   "386": {"token": {"tok": 385}},
+   "384": {"token": {"tok": 383}},
+   "382": {"token": {"tok": 381}},
+   "380": {"token": {"tok": 379}},
+   "38":
+   {"text":
+    {"str":
+     "\n\n/- We begin by reviewing what we have previous covered about propositional logic. -/\n\n/-\nThe Axiom Rule\n===\n\nNot to be confused with Lean's `axiom` keyword.\n\nAs discussed in the slide deck on Propositional Logic, the Axiom Rule is\n\n```none\n  AX  ——————————\n       Γ,φ ⊢ φ\n```\nHere is a proof of `{hp:p} ⊢ p` in Lean using the Axiom rule: -/\n\n\n\n"}},
+   "378": {"token": {"tok": 377}},
+   "376": {"token": {"tok": 375}},
+   "374":
+   {"text":
+    {"str":
+     "\n--unhide\n\n/-\nOr is Inductive\n===\n\nTo introduce new `Or` propositions, we use the two introduction rules\n```none\n                 Γ ⊢ p                              Γ ⊢ p\n ∨-Intro-Left ———————————          ∨-Intro-Right ————————————\n               Γ ⊢ p ∨ q                          Γ ⊢ p ∨ q\n```\nIn Lean, we have -/\n\n"}},
+   "373": {"seq": {"highlights": [370, 372, 3, 18, 6]}},
+   "372": {"token": {"tok": 371}},
+   "370": {"text": {"str": "\n\n--hide\n"}},
+   "37":
+   {"seq":
+    {"highlights": [20, 22, 3, 24, 26, 3, 28, 3, 30, 3, 32, 3, 34, 36, 6]}},
+   "369":
+   {"seq":
+    {"highlights":
+     [362,
+      366,
+      3,
+      32,
+      3,
+      284,
+      3,
+      305,
+      3,
+      24,
+      286,
+      3,
+      305,
+      3,
+      288,
+      36,
+      3,
+      122,
+      3,
+      24,
+      284,
+      3,
+      305,
+      3,
+      286,
+      36,
+      3,
+      305,
+      3,
+      288,
+      3,
+      44,
+      3,
+      368,
+      6]}},
+   "368": {"token": {"tok": 367}},
+   "366": {"span": {"info": [["warning", 114]], "content": 365}},
+   "365": {"seq": {"highlights": [364, 6]}},
+   "364": {"token": {"tok": 363}},
+   "362":
+   {"text":
+    {"str":
+     "\n\n\n\n/-\nExercise\n===\n\n<ex /> Show the following using a term level proof without using the library.\n\n-/\n\n"}},
+   "361":
+   {"seq":
+    {"highlights":
+     [348,
+      350,
+      3,
+      32,
+      3,
+      24,
+      284,
+      3,
+      305,
+      3,
+      286,
+      36,
+      3,
+      122,
+      3,
+      24,
+      286,
+      3,
+      305,
+      3,
+      284,
+      36,
+      3,
+      44,
+      123,
+      352,
+      3,
+      354,
+      3,
+      356,
+      331,
+      3,
+      358,
+      3,
+      360,
+      3,
+      129,
+      3,
+      342,
+      3,
+      358,
+      344,
+      3,
+      356,
+      3,
+      346,
+      6]}},
+   "360": {"token": {"tok": 359}},
+   "36": {"token": {"tok": 35}},
+   "358": {"token": {"tok": 357}},
+   "356": {"token": {"tok": 355}},
+   "354": {"token": {"tok": 353}},
+   "352": {"token": {"tok": 351}},
+   "350": {"token": {"tok": 349}},
+   "348":
+   {"text":
+    {"str":
+     "\n\n/- You can match the the parts of a structure in the argument to `fun`: -/\n\n"}},
+   "347":
+   {"seq":
+    {"highlights":
+     [8,
+      336,
+      3,
+      32,
+      3,
+      24,
+      284,
+      3,
+      305,
+      3,
+      286,
+      36,
+      3,
+      122,
+      3,
+      24,
+      286,
+      3,
+      305,
+      3,
+      284,
+      36,
+      3,
+      44,
+      123,
+      338,
+      3,
+      340,
+      3,
+      129,
+      3,
+      342,
+      3,
+      340,
+      251,
+      318,
+      344,
+      3,
+      340,
+      251,
+      320,
+      3,
+      346,
+      6]}},
+   "346": {"token": {"tok": 345}},
+   "344": {"token": {"tok": 343}},
+   "342": {"token": {"tok": 341}},
+   "340": {"token": {"tok": 339}},
+   "34": {"token": {"tok": 33}},
+   "338": {"token": {"tok": 337}},
+   "336": {"token": {"tok": 335}},
+   "334":
+   {"seq":
+    {"highlights":
+     [8,
+      323,
+      3,
+      32,
+      3,
+      24,
+      284,
+      3,
+      305,
+      3,
+      286,
+      36,
+      3,
+      122,
+      3,
+      24,
+      286,
+      3,
+      305,
+      3,
+      284,
+      36,
+      3,
+      44,
+      123,
+      325,
+      3,
+      327,
+      3,
+      129,
+      3,
+      79,
+      3,
+      329,
+      3,
+      44,
+      3,
+      327,
+      251,
+      318,
+      331,
+      3,
+      333,
+      3,
+      44,
+      45,
+      327,
+      251,
+      320,
+      3,
+      77,
+      6]}},
+   "333": {"token": {"tok": 332}},
+   "331": {"token": {"tok": 330}},
+   "329": {"token": {"tok": 328}},
+   "327": {"token": {"tok": 326}},
+   "325": {"token": {"tok": 324}},
+   "323": {"token": {"tok": 322}},
+   "321":
+   {"seq":
+    {"highlights":
+     [308,
+      310,
+      3,
+      32,
+      3,
+      24,
+      284,
+      3,
+      305,
+      3,
+      286,
+      36,
+      3,
+      122,
+      3,
+      24,
+      286,
+      3,
+      305,
+      3,
+      284,
+      36,
+      3,
+      44,
+      123,
+      312,
+      3,
+      314,
+      3,
+      129,
+      3,
+      316,
+      3,
+      314,
+      251,
+      318,
+      3,
+      314,
+      251,
+      320,
+      6]}},
+   "320": {"token": {"tok": 319}},
+   "32": {"token": {"tok": 31}},
+   "318": {"token": {"tok": 317}},
+   "316": {"token": {"tok": 315}},
+   "314": {"token": {"tok": 313}},
+   "312": {"token": {"tok": 311}},
+   "310": {"token": {"tok": 309}},
+   "308":
+   {"text":
+    {"str":
+     "\n\n/-\nStructures\n===\nWith Lean's `And` defined as a structure we can do\n-/\n\n"}},
+   "307": {"seq": {"highlights": [290, 303, 3, 284, 3, 305, 3, 286, 306, 6]}},
+   "306": {"text": {"str": "                        --p ∧ q : Prop"}},
+   "305": {"token": {"tok": 304}},
+   "303": {"span": {"info": [["info", 299]], "content": 302}},
+   "302": {"seq": {"highlights": [301, 6]}},
+   "301": {"token": {"tok": 300}},
+   "30": {"token": {"tok": 29}},
+   "3": {"text": {"str": " "}},
+   "296": {"seq": {"highlights": [107, 34, 107]}},
+   "293": {"seq": {"highlights": [107, 284, 3, 292, 3, 286]}},
+   "292": {"token": {"tok": 291}},
+   "290": {"text": {"str": "\n--unhide\n\n\n"}},
+   "289":
+   {"seq":
+    {"highlights":
+     [280, 282, 3, 24, 284, 3, 286, 3, 288, 3, 32, 3, 34, 36, 6]}},
+   "288": {"token": {"tok": 287}},
+   "286": {"token": {"tok": 285}},
+   "284": {"token": {"tok": 283}},
+   "282": {"token": {"tok": 281}},
+   "280": {"text": {"str": "\n"}},
+   "28": {"token": {"tok": 27}},
+   "279": {"seq": {"highlights": [275, 277, 3, 18, 278, 6]}},
+   "278":
+   {"text":
+    {"str": " -- stop using our temporary namespace and use Lean's And"}},
+   "277": {"token": {"tok": 276}},
+   "275":
+   {"text":
+    {"str":
+     "\n\n/- You can view `match` as a generic elimination rule. -/\n\n\n/-\nLean's And\n===\n\nLean's And is actually defined as a structure:\n```lean\nstructure And (a b : Prop) : Prop where\n  intro ::\n  left : a\n  right : b\n```\n\nThe `intro ::` part renames the introduction rule `intro` instead of the default `mk`.\n\nLean defines infix notation `∧`. So you can write\n\n-/\n\n--hide\n"}},
+   "274":
+   {"seq":
+    {"highlights":
+     [257,
+      259,
+      3,
+      24,
+      261,
+      3,
+      263,
+      3,
+      32,
+      3,
+      34,
+      36,
+      3,
+      32,
+      3,
+      24,
+      190,
+      3,
+      261,
+      3,
+      263,
+      36,
+      3,
+      122,
+      3,
+      261,
+      3,
+      44,
+      123,
+      265,
+      3,
+      267,
+      3,
+      129,
+      123,
+      269,
+      3,
+      267,
+      3,
+      271,
+      123,
+      186,
+      3,
+      204,
+      3,
+      273,
+      3,
+      224,
+      3,
+      129,
+      3,
+      273,
+      6]}},
+   "273": {"token": {"tok": 272}},
+   "271": {"token": {"tok": 270}},
+   "269": {"token": {"tok": 268}},
+   "267": {"token": {"tok": 266}},
+   "265": {"token": {"tok": 264}},
+   "263": {"token": {"tok": 262}},
+   "261": {"token": {"tok": 260}},
+   "26": {"token": {"tok": 25}},
+   "259": {"token": {"tok": 258}},
+   "257":
+   {"text":
+    {"str":
+     "\n\n\n\n\n/-\nMatch is Enough\n===\n\nThe elimination rules above are a _convenience_ we defined to make the proof look\nmore like propositional logic. We could also have written: -/\n\n"}},
+   "256":
+   {"seq":
+    {"highlights":
+     [243,
+      245,
+      3,
+      32,
+      3,
+      24,
+      190,
+      3,
+      26,
+      3,
+      28,
+      36,
+      3,
+      122,
+      3,
+      24,
+      190,
+      3,
+      28,
+      3,
+      26,
+      36,
+      3,
+      44,
+      123,
+      247,
+      3,
+      249,
+      3,
+      129,
+      3,
+      204,
+      3,
+      249,
+      251,
+      253,
+      3,
+      249,
+      251,
+      255,
+      6]}},
+   "255": {"token": {"tok": 254}},
+   "253": {"token": {"tok": 252}},
+   "251": {"token": {"tok": 250}},
+   "249": {"token": {"tok": 248}},
+   "247": {"token": {"tok": 246}},
+   "245": {"token": {"tok": 244}},
+   "243":
+   {"text":
+    {"str":
+     "\n\n/-\nProofs with And-Elimination\n===\n\nWith these inference rules, we can do more proofs: -/\n\n"}},
+   "242":
+   {"seq":
+    {"highlights":
+     [8,
+      227,
+      3,
+      229,
+      3,
+      79,
+      231,
+      3,
+      233,
+      3,
+      32,
+      3,
+      34,
+      77,
+      3,
+      24,
+      235,
+      3,
+      32,
+      3,
+      190,
+      3,
+      231,
+      3,
+      233,
+      36,
+      3,
+      44,
+      123,
+      237,
+      3,
+      235,
+      3,
+      239,
+      123,
+      186,
+      3,
+      204,
+      3,
+      224,
+      3,
+      241,
+      3,
+      129,
+      3,
+      241,
+      6]}},
+   "241": {"token": {"tok": 240}},
+   "24": {"token": {"tok": 23}},
+   "239": {"token": {"tok": 238}},
+   "237": {"token": {"tok": 236}},
+   "235": {"token": {"tok": 234}},
+   "233": {"token": {"tok": 232}},
+   "231": {"token": {"tok": 230}},
+   "229": {"token": {"tok": 228}},
+   "227": {"token": {"tok": 226}},
+   "225":
+   {"seq":
+    {"highlights":
+     [206,
+      208,
+      3,
+      210,
+      3,
+      79,
+      212,
+      3,
+      214,
+      3,
+      32,
+      3,
+      34,
+      77,
+      3,
+      24,
+      216,
+      3,
+      32,
+      3,
+      190,
+      3,
+      212,
+      3,
+      214,
+      36,
+      3,
+      44,
+      123,
+      218,
+      3,
+      216,
+      3,
+      220,
+      123,
+      186,
+      3,
+      204,
+      3,
+      222,
+      3,
+      224,
+      3,
+      129,
+      3,
+      222,
+      6]}},
+   "224": {"token": {"tok": 223}},
+   "222": {"token": {"tok": 221}},
+   "220": {"token": {"tok": 219}},
+   "22": {"token": {"tok": 21}},
+   "218": {"token": {"tok": 217}},
+   "216": {"token": {"tok": 215}},
+   "214": {"token": {"tok": 213}},
+   "212": {"token": {"tok": 211}},
+   "210": {"token": {"tok": 209}},
+   "208": {"token": {"tok": 207}},
+   "206":
+   {"text":
+    {"str":
+     "\n\n\n/-\nAnd Elimination\n===\n\nThe elimination rules for `And` are\n```none\n                Γ ⊢ p ∧ q                          Γ ⊢ p ∧ q\n  ∧-Elim-Left ——————————————         ∧-Elim-Right —————————————\n                  Γ ⊢ p                              Γ ⊢ q\n```\nwhich we can write in Lean as -/\n\n"}},
+   "205":
+   {"seq":
+    {"highlights":
+     [192,
+      194,
+      3,
+      32,
+      3,
+      28,
+      3,
+      122,
+      3,
+      26,
+      3,
+      122,
+      3,
+      190,
+      3,
+      26,
+      3,
+      28,
+      3,
+      44,
+      123,
+      196,
+      3,
+      198,
+      3,
+      129,
+      3,
+      200,
+      3,
+      202,
+      3,
+      129,
+      3,
+      204,
+      3,
+      202,
+      3,
+      198,
+      6]}},
+   "204": {"token": {"tok": 203}},
+   "202": {"token": {"tok": 201}},
+   "200": {"token": {"tok": 199}},
+   "20":
+   {"text":
+    {"str": "\n\n/- And we define some variables to use throughout. -/\n\n"}},
+   "2": {"token": {"tok": 1}},
+   "198": {"token": {"tok": 197}},
+   "196": {"token": {"tok": 195}},
+   "194": {"token": {"tok": 193}},
+   "192":
+   {"text":
+    {"str":
+     "\n\n/- You can think of `h : And p q` as\n- `h` has type `And p q`\n- `h` is evidence that the type `And p q` is not empty\n- `h` is a proof of the proposition `And p q`.\n\nProof of a Simple Proposition\n===\n\nConsider the proposition\n```lean\nq → p → And p q\n```\n\nAs a type, this proposition is a function from `q` to `p` to `And p q`.\nThus, we know that an element of this type has the form\n```lean\nfun hq => fun hp => sorry\n```\n\nFor the body of this lambda abstraction, we need to *introduce* an `And` type,\nwhich requires proofs of `q` and `p` respectively. Using the inductive definition of `And` we get\n```lean\nfun hq hp => And.intro hp hq\n```\n\nThe complete proof is then:\n-/\n\n\n"}},
+   "191":
+   {"seq":
+    {"highlights":
+     [174,
+      176,
+      3,
+      178,
+      3,
+      24,
+      180,
+      3,
+      182,
+      3,
+      32,
+      3,
+      34,
+      36,
+      3,
+      32,
+      3,
+      34,
+      3,
+      184,
+      123,
+      186,
+      3,
+      188,
+      3,
+      32,
+      3,
+      180,
+      3,
+      122,
+      3,
+      182,
+      3,
+      122,
+      3,
+      190,
+      3,
+      180,
+      3,
+      182,
+      6]}},
+   "190": {"token": {"tok": 189}},
+   "19": {"seq": {"highlights": [14, 16, 3, 18, 6]}},
+   "188": {"token": {"tok": 187}},
+   "186": {"token": {"tok": 185}},
+   "184": {"token": {"tok": 183}},
+   "182": {"token": {"tok": 181}},
+   "180": {"token": {"tok": 179}},
+   "18": {"token": {"tok": 17}},
+   "178": {"token": {"tok": 177}},
+   "176": {"token": {"tok": 175}},
+   "174":
+   {"text":
+    {"str":
+     "\n\n/-\nAnd is an Inductive Type\n===\n\nRecall the inference rule\n```none\n              Γ ⊢ p   Γ ⊢ q\n    ∧-Intro ———————————————————\n                Γ ⊢ p ∧ q\n```\n\nIt states that whenever we know propositions `p` and `q`, then we know `p ∧ q`.\nFrom the point of view of types,\nit says that if `p` and `q` are of type `Prop`, then so is `p ∧ q`.\n\nWe can write this as an inductive type definition as follows. -/\n\n"}},
+   "173":
+   {"seq":
+    {"highlights":
+     [8,
+      168,
+      3,
+      24,
+      170,
+      3,
+      32,
+      3,
+      26,
+      3,
+      122,
+      3,
+      28,
+      36,
+      3,
+      24,
+      172,
+      3,
+      32,
+      3,
+      26,
+      36,
+      3,
+      32,
+      3,
+      28,
+      3,
+      44,
+      123,
+      170,
+      3,
+      172,
+      6]}},
+   "172": {"token": {"tok": 171}},
+   "170": {"token": {"tok": 169}},
+   "168": {"token": {"tok": 167}},
+   "166":
+   {"seq":
+    {"highlights":
+     [154,
+      158,
+      3,
+      24,
+      160,
+      3,
+      32,
+      3,
+      26,
+      3,
+      122,
+      3,
+      28,
+      36,
+      3,
+      24,
+      162,
+      3,
+      32,
+      3,
+      26,
+      36,
+      3,
+      32,
+      3,
+      28,
+      3,
+      44,
+      123,
+      160,
+      3,
+      164,
+      165,
+      6]}},
+   "165":
+   {"text":
+    {"str": "                                 -- goal for the `sorry` is `p`"}},
+   "164": {"token": {"tok": 163}},
+   "162": {"token": {"tok": 161}},
+   "160": {"token": {"tok": 159}},
+   "16": {"token": {"tok": 15}},
+   "158": {"span": {"info": [["warning", 114]], "content": 157}},
+   "157": {"seq": {"highlights": [156, 6]}},
+   "156": {"token": {"tok": 155}},
+   "154":
+   {"text":
+    {"str":
+     "\n\n/-\n**`→-Elim` is lambda application:** When you see function (with type `A → B`) in a context\nyou can apply it to get a simpler goal.\n-/\n\n"}},
+   "153":
+   {"seq":
+    {"highlights":
+     [8,
+      135,
+      3,
+      24,
+      137,
+      3,
+      32,
+      3,
+      26,
+      36,
+      3,
+      32,
+      3,
+      28,
+      3,
+      122,
+      3,
+      26,
+      3,
+      44,
+      123,
+      139,
+      3,
+      152,
+      3,
+      129,
+      3,
+      137,
+      6]}},
+   "152": {"span": {"info": [["warning", 148]], "content": 151}},
+   "151": {"seq": {"highlights": [150, 6]}},
+   "150": {"token": {"tok": 149}},
+   "14":
+   {"text":
+    {"str":
+     "\n\n/-\nPropositional Connectives\n===\n\nOverview\n===\nInductive types capture all of propositional logic, first order logic, and more.\n\nInstead of defining _and_, _or_ and the other logical connectives as\nbuilt-in operators in CIC, they are just defined terms of more primitive inductive types.\n\nIn this slide deck we redefine the connectives, to understand how they work.\nTo avoid naming conflicts with Lean's standard library, we open a namespace.\n-/\n\n"}},
+   "139": {"token": {"tok": 138}},
+   "137": {"token": {"tok": 136}},
+   "135": {"token": {"tok": 134}},
+   "133":
+   {"seq":
+    {"highlights":
+     [104,
+      118,
+      3,
+      24,
+      120,
+      3,
+      32,
+      3,
+      26,
+      36,
+      3,
+      32,
+      3,
+      28,
+      3,
+      122,
+      3,
+      26,
+      3,
+      44,
+      123,
+      125,
+      3,
+      127,
+      3,
+      129,
+      3,
+      131,
+      132,
+      6]}},
+   "132":
+   {"text":
+    {"str": "                           -- goal for the `sorry` is `p`"}},
+   "131": {"token": {"tok": 130}},
+   "13": {"seq": {"highlights": [8, 10, 3, 12, 6]}},
+   "129": {"token": {"tok": 128}},
+   "127": {"token": {"tok": 126}},
+   "125": {"token": {"tok": 124}},
+   "123": {"text": {"str": "\n  "}},
+   "122": {"token": {"tok": 121}},
+   "120": {"token": {"tok": 119}},
+   "12": {"token": {"tok": 11}},
+   "118": {"span": {"info": [["warning", 114]], "content": 117}},
+   "117": {"seq": {"highlights": [116, 6]}},
+   "116": {"token": {"tok": 115}},
+   "110": {"seq": {"highlights": [107, 109, 107]}},
+   "109": {"token": {"tok": 108}},
+   "107": {"text": {"str": ""}},
+   "104":
+   {"text":
+    {"str":
+     "\n\n/-\nImplication in Lean\n===\n\n**`→-Intro` is lambda abstraction:** Whenever you see a goal of the form `A → B`, you\nwrite a lambda to get a simpler goal.\n-/\n\n"}},
+   "103": {"seq": {"highlights": [96, 98, 3, 32, 3, 100, 3, 44, 3, 102, 6]}},
+   "102": {"token": {"tok": 101}},
+   "100": {"token": {"tok": 99}},
+   "10": {"token": {"tok": 9}},
+   "0":
+   {"text":
+    {"str":
+     "--  Copyright (C) 2025  Eric Klavins\n--\n--  This program is free software: you can redistribute it and/or modify\n--  it under the terms of the GNU General Public License as published by\n--  the Free Software Foundation, either version 3 of the License, or\n--  (at your option) any later version.\n\n"}}}}}

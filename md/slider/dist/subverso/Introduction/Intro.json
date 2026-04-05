@@ -1,0 +1,75 @@
+{"items":
+ [{"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 8, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 7},
+  {"range":
+   {"start": {"line": 10, "column": 1}, "end": {"line": 253, "column": 1}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 13},
+  {"range":
+   {"start": {"line": 251, "column": 1}, "end": {"line": 251, "column": 12}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 17},
+  {"range":
+   {"start": {"line": 253, "column": 1}, "end": {"line": 253, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 21}],
+ "data":
+ {"tokens":
+  {"9":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-313",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"},
+   "4": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "19": {"kind": "unknown", "content": ""},
+   "15":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-8507",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "11": {"kind": "unknown", "content": "LeanW26"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-297",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 22,
+  "messageContents": {},
+  "goals": {},
+  "code":
+  {"8": {"text": {"str": "\n\n"}},
+   "7": {"seq": {"highlights": [0, 2, 3, 5, 6]}},
+   "6": {"seq": {"highlights": []}},
+   "5": {"token": {"tok": 4}},
+   "3": {"text": {"str": " "}},
+   "21": {"seq": {"highlights": [18, 20, 6]}},
+   "20": {"token": {"tok": 19}},
+   "2": {"token": {"tok": 1}},
+   "18": {"text": {"str": "\n--unhide\n"}},
+   "17": {"seq": {"highlights": [14, 16, 3, 12, 6]}},
+   "16": {"token": {"tok": 15}},
+   "14":
+   {"text":
+    {"str":
+     "\n\n/-\nIntroduction\n===\n\nWhat is this Course About?\n===\n\nThe representation and manipulation of mathematical knowledge symbolically\n  - Foundations of Mathematics\n  - Automated reasoning\n  - The L∃∀N proof assistant\n\nSpecific Topics\n  - Type theory\n  - The Curry-Howard Isomorphism\n  - Representation of mathematical objects\n  - Meta-level programming about mathematics\n  - Applications\n\nWhy Now?\n===\n\n- The theory underlying proof assistants is mature and active\n    - Basis: Calculus of Inductive Constructions (CIC)\n    - Advanced: [HOTT](https://homotopytypetheory.org/)\n- The software and tooling has improved considerably\n    - Implementation tradeoffs in CIC optimized\n    - Improved modularity\n    - IDE support\n    - Multiple options: L∃∀N, Rocq, Agda, ...\n- Major projects like [Mathlib](https://github.com/leanprover-community/mathlib4), [SciLean](https://github.com/lecopivo/SciLean), [FLT](https://lean-lang.org/use-cases/flt/), [LTE](https://leanprover-community.github.io/blog/posts/lte-final/), ...\n    - Adoption by well known mathematicians like [Terrence Tao](https://github.com/teorth/analysis)\n    - Potentially a major change in publishing\n- LLMs\n    - make advanced programming tractable for mortals\n    - can auto-formalize mathematical text into L∃∀N\n\n\nProof Assistants and Math\n===\n\n[The Liquid Tensor Experiment](https://leanprover-community.github.io/blog/posts/lte-final/)\n- Peter Scholze worried there could be some subtle gap in his result on Condensed Sets with Dustin Clausen.\n- He posed a challenge: Encode it in Lean.\n- A group of volunteers led by Johan Commelin produced a Lean version of the main theorem in six months.\n\n> I find it absolutely insane that interactive proof assistants are now at the level that, within a very reasonable time span, they can formally verify difficult original research.\n>\n> — Peter Scholze\n\n<div class='fn'>Nature 595, 18-19 (2021), doi: https://doi.org/10.1038/d41586-021-01627-2</div>\n\nFormalized Mathematics\n===\n\nThe Mathlib project and others have formalized even more.\n\n<div><small><pre>\n> ls Mathlib\nAlgebra                 Data                    LinearAlgebra           RingTheory\nAlgebraicGeometry       Deprecated              Logic                   SetTheory\nAlgebraicTopology       Dynamics                Mathport                Std\nAnalysis                FieldTheory             MeasureTheory           Tactic\nCategoryTheory          Geometry                ModelTheory             Tactic.lean\nCombinatorics           GroupTheory             NumberTheory            Testing\nComputability           InformationTheory       Order                   Topology\nCondensed               Init.lean               Probability             Util\nControl                 Lean                    RepresentationTheory\n\n> find Mathlib -name '*.lean' -print0 | xargs -0 wc -l | tail -1\n  615506 total\n</pre>\n</small></div>\n\nSeems like a lot, but _Web of Knowledge_ lists a total of 1,342,406 mathematics papers since 1900.\n\n<div class='fn'>\nhttps://github.com/leanprover-community/mathlib4<br>\nhttps://strathmaths.wordpress.com/2013/04/17/how-much-mathematics-is-there\n</div>\n\n\n\nMath and AI\n===\n\nLLMs\n- Great at generating text, images, and designs.\n- Not grounded in reality or logic.\n\n<img src='img/brain.jpg' class='img-up-right' width=40%></img>\n\nIntegration\n- However if you put Lean and an LLM into a feedback<br>\nloop, you get a sort of left-brain / right-brain system, <br>\nwhich is increasingly powerful.\n\nAs a learning tool\n- The combination of LLMs and Lean, even without integration, will make\nadvanced mathematics more accessible than ever.\n- Use wisely : [AI in Papers](https://ai-math.zulipchat.com/#narrow/channel/539992-Web-public-channel---AI-Math/topic/Best.20practices.20for.20incorporating.20AI.20etc.2E.20in.20papers/near/546518354), [AI Generated Papers](https://categorytheory.zulipchat.com/#narrow/channel/229111-community.3A-general/topic/AI-generated.20papers/near/546399334)\n\nAI Companies\n- [DeepMind / AlphaProof](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/),\n[Aristotle] (https://aristotle.harmonic.fun/),\n[Axiom](https://axiommath.ai/),\n[Math, Inc](https://www.math.inc/),\n[DeepSeek Prover](https://prover-v2.com/),\n...\n\n\n\n\n\n\nUse of AI\n===\n\nCurrent State\n- GPT, Gemini, DeepSeek etc. are good at generating / fixing Lean code. Aristotle is quite good.\n- Most of the exercises in this course can be solved by an AI with some back and forth.\n\nLimitations\n- Formalizing a new area of mathematics is harder because it involved\n*defining* the framework,not just proving theorems.\n- The choice of representation affects the difficulty of proof.\n\nLearning something\n- Just because an AI answered your question, doesn't mean you understand the answer\n- If you want to build new tools, including new AIs, based on Lean (or similar tools),\nyou need to know those tools.\n\nCourse Details\n===\n\nTopics\n- Type theory\n- Logic, numbers, sets, relations, ...\n- Various mathematical topics\n- Domain specific languages\n- Meta-programming\n- Interfacing L∃∀N to other languages\n\nHomework: 60%\n- Each slide deck has exercises interspersed and at the end\n- Exercises are due as a standalone Lean file in canvas 1 week after the deck is completed in class\n\nProject: 40%\n- Lean centered project that builds on the ideas in this course\n   - Formalization, language design, applications, tools, ...\n- Rubric TBA\n\nClassroom Etiquette\n===\n\nWe have undergraduate and graduate students from four different departments!\n\nSome students are new to this area, others have been actively working in it.\n\nPlease\n- Respect each other\n- Ask questions\n- Make space for others\n- Don't spray beta\n\n\nLean W26 Slides\n===\n\nWhat you are seeing is compiled from Lean code using my own custom slide\nenvironment called `Slider`. This tool is not ready for production, so it may\nnot work on every browser, etc. I use Chrome.\n\nSlides are under construction\n- Some topics I am converting from last year's format\n- Some I have written all the code for, but not made into slides\n- All slides will be marked as _under construction_ until a few days before we cover them\n\nThe slides are on the web at:\n- [https://faculty.washington.edu/klavins/LeanW26/dist](https://faculty.washington.edu/klavins/LeanW26/dist)\n\nThe source code to the slides are at:\n- [https://github.com/klavins/LeanW26](https://github.com/klavins/LeanW26)\n- Clone this repo and following along in class\n- Do `git update` *before* each class meeting\n\nIf you find errors, please submit an issue at\n- [https://github.com/klavins/LeanW26/issues](https://github.com/klavins/LeanW26/issues)\n\nResources\n===\n\nCourse Materials\n- Canvas\n\nSupplementary Texts\n- Morten Heine Sørensen, Pawel Urzyczyn.\n**Lectures on the Curry-Howard Isomorphism**.\nElsevier. 1st Edition, Volume 149 - July 4, 2006.\n- **Homotopy Type Theory: Univalent Foundations of Mathematics**.\nThe Univalent Foundations Program Institute for Advanced Study.\n[https://homotopytypetheory.org/book/](https://homotopytypetheory.org/book/).\n- Steve Awodey, **Category Theory**, Oxford University Press. 2nd Edition. 2010.\n\nLean\n- <a href=\"https://lean-lang.org/theorem_proving_in_lean4/\" target=\"other\">\n  Theorem Proving in Lean\n  </a>\n- <a href=\"https://lean-lang.org/functional_programming_in_lean/\" target=\"other\">\n  Lean Programming Book\n  </a>\n- <a href=\"https://leanprover-community.github.io/lean4-metaprogramming-book/\" target=\"other\">\n  Lean Metaprogramming\n  </a>\n- <a href=\"https://leanprover-community.github.io/mathematics_in_lean\" target=\"other\">\n  Mathematics in Lean\n  </a>\n- <a href=\"https://loogle.lean-lang.org/\" target=\"other\">\n Loogle\n </a> — Google for Lean\n- <a href=\"https://leanprover.zulipchat.com/\" target=\"other\">\n  Zulip Chat\n  </a> — Discussion groups\n\n-/\n\n/-\nAcknowledgements\n===\n\nI would like to acknowledge the students who took my special topics course offered the\nWinter of 2025 at the University of Washington. We all learned Lean together. At first,\nI was a few weeks ahead, and by the end of the course I was a few weeks behind.\n Much of the material here was developed in response to their questions and ideas.\n\n-/\n\n\n--hide\n"}},
+   "13": {"seq": {"highlights": [8, 10, 3, 12, 6]}},
+   "12": {"token": {"tok": 11}},
+   "10": {"token": {"tok": 9}},
+   "0":
+   {"text":
+    {"str":
+     "--  Copyright (C) 2025  Eric Klavins\n--\n--  This program is free software: you can redistribute it and/or modify\n--  it under the terms of the GNU General Public License as published by\n--  the Free Software Foundation, either version 3 of the License, or\n--  (at your option) any later version.\n\n"}}}}}

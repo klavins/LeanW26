@@ -1,0 +1,1403 @@
+{"items":
+ [{"range":
+   {"start": {"line": 1, "column": 1}, "end": {"line": 1, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 6},
+  {"range":
+   {"start": {"line": 3, "column": 1}, "end": {"line": 3, "column": 11}},
+   "kind": "Lean.Parser.Command.universe",
+   "defines": [],
+   "code": 12},
+  {"range":
+   {"start": {"line": 4, "column": 1}, "end": {"line": 4, "column": 22}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 28},
+  {"range":
+   {"start": {"line": 6, "column": 1}, "end": {"line": 6, "column": 59}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["te"],
+   "code": 63},
+  {"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 12, "column": 2}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["te_equiv"],
+   "code": 179},
+  {"range":
+   {"start": {"line": 14, "column": 1}, "end": {"line": 17, "column": 2}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["te_setoid"],
+   "code": 194},
+  {"range":
+   {"start": {"line": 19, "column": 1}, "end": {"line": 19, "column": 77}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["respects"],
+   "code": 213},
+  {"range":
+   {"start": {"line": 21, "column": 1}, "end": {"line": 21, "column": 77}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["pre_neg"],
+   "code": 232},
+  {"range":
+   {"start": {"line": 23, "column": 1}, "end": {"line": 27, "column": 8}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["te_neg_respects"],
+   "code": 299},
+  {"range":
+   {"start": {"line": 28, "column": 1}, "end": {"line": 28, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 302}],
+ "data":
+ {"tokens":
+  {"99":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.310"}}, "content": "x"},
+   "97":
+   {"kind":
+    {"const":
+     {"signature": "∀ {x y : ℕ → α}, te x y → te y x",
+      "name": ["Equivalence", "symm"],
+      "isDef": false,
+      "docs":
+      "An equivalence relation is symmetric: `r x y` implies `r y x` "}},
+    "content": "symm"},
+   "95":
+   {"kind":
+    {"anonCtor":
+     {"signature":
+      "Exists.intro.{u} {α : Sort u} {p : α → Prop} (w : α) (h : p w) : Exists p",
+      "name": ["Exists", "intro"],
+      "docs":
+      "Existential introduction. If `a : α` and `h : p a`,\nthen `⟨a, h⟩` is a proof that `∃ x : α, p x`. "}},
+    "content": "⟩"},
+   "93":
+   {"kind":
+    {"const":
+     {"signature": "rfl.{u} {α : Sort u} {a : α} : a = a",
+      "name": ["rfl"],
+      "isDef": false,
+      "docs":
+      "`rfl : a = a` is the unique constructor of the equality type. This is the\nsame as `Eq.refl` except that it takes `a` implicitly instead of explicitly.\n\nThis is a more powerful theorem than it may appear at first, because although\nthe statement of the theorem is `a = a`, Lean will allow anything that is\ndefinitionally equal to that type. So, for instance, `2 + 2 = 4` is proven in\nLean by `rfl`, because both sides are the same up to definitional equality.\n"}},
+    "content": "rfl"},
+   "91": {"kind": "unknown", "content": "=>"},
+   "89": {"kind": "unknown", "content": "_"},
+   "87":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-218",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "85":
+   {"kind":
+    {"anonCtor":
+     {"signature":
+      "Exists.intro.{u} {α : Sort u} {p : α → Prop} (w : α) (h : p w) : Exists p",
+      "name": ["Exists", "intro"],
+      "docs":
+      "Existential introduction. If `a : α` and `h : p a`,\nthen `⟨a, h⟩` is a proof that `∃ x : α, p x`. "}},
+    "content": ","},
+   "83": {"kind": {"withType": {"type": "ℕ"}}, "content": "0"},
+   "81":
+   {"kind":
+    {"anonCtor":
+     {"signature":
+      "Exists.intro.{u} {α : Sort u} {p : α → Prop} (w : α) (h : p w) : Exists p",
+      "name": ["Exists", "intro"],
+      "docs":
+      "Existential introduction. If `a : α` and `h : p a`,\nthen `⟨a, h⟩` is a proof that `∃ x : α, p x`. "}},
+    "content": "⟨"},
+   "8":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.universe-16",
+      "name": ["Lean", "Parser", "Command", "universe"],
+      "docs":
+      "Declares one or more universe variables.\n\n`universe u v`\n\n`Prop`, `Type`, `Type u` and `Sort u` are types that classify other types, also known as\n*universes*. In `Type u` and `Sort u`, the variable `u` stands for the universe's *level*, and a\nuniverse at level `u` can only classify universes that are at levels lower than `u`. For more\ndetails on type universes, please refer to [the relevant chapter of Theorem Proving in Lean][tpil\nuniverses].\n\nJust as type arguments allow polymorphic definitions to be used at many different types, universe\nparameters, represented by universe variables, allow a definition to be used at any required level.\nWhile Lean mostly handles universe levels automatically, declaring them explicitly can provide more\ncontrol when writing signatures. The `universe` keyword allows the declared universe variables to be\nused in a collection of definitions, and Lean will ensure that these definitions use them\nconsistently.\n\n[tpil universes]: https://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#types-as-objects\n(Type universes on Theorem Proving in Lean)\n\n```lean\n/- Explicit type-universe parameter. -/\ndef id₁.{u} (α : Type u) (a : α) := a\n\n/- Implicit type-universe parameter, equivalent to `id₁`.\n  Requires option `autoImplicit true`, which is the default. -/\ndef id₂ (α : Type u) (a : α) := a\n\n/- Explicit standalone universe variable declaration, equivalent to `id₁` and `id₂`. -/\nuniverse u\ndef id₃ (α : Type u) (a : α) := a\n```\n\nOn a more technical note, using a universe variable only in the right-hand side of a definition\ncauses an error if the universe has not been declared previously.\n\n```lean\ndef L₁.{u} := List (Type u)\n\n-- def L₂ := List (Type u) -- error: `unknown universe level 'u'`\n\nuniverse u\ndef L₃ := List (Type u)\n```\n\n## Examples\n\n```lean\nuniverse u v w\n\nstructure Pair (α : Type u) (β : Type v) : Type (max u v) where\n  a : α\n  b : β\n\n#check Pair.{v, w}\n-- Pair : Type v → Type w → Type (max v w)\n```\n"}},
+    "content": "universe"},
+   "79":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.260"}}, "content": "x"},
+   "77":
+   {"kind":
+    {"const":
+     {"signature": "∀ (x : ℕ → α), ∃ m, ∀ n > m, x n = x n",
+      "name": ["Equivalence", "refl"],
+      "isDef": false,
+      "docs": "An equivalence relation is reflexive: `r x x` "}},
+    "content": "refl"},
+   "74": {"kind": "unknown", "content": "α"},
+   "72":
+   {"kind":
+    {"const":
+     {"signature": "te.{u} {α : Type u} (σ₁ σ₂ : ℕ → α) : Prop",
+      "name": ["te"],
+      "isDef": false,
+      "docs": null}},
+    "content": "te"},
+   "70":
+   {"kind":
+    {"const":
+     {"signature": "Equivalence.{u} {α : Sort u} (r : α → α → Prop) : Prop",
+      "name": ["Equivalence"],
+      "isDef": false,
+      "docs":
+      "An equivalence relation `r : α → α → Prop` is a relation that is\n\n* reflexive: `r x x`,\n* symmetric: `r x y` implies `r y x`, and\n* transitive: `r x y` and `r y z` implies `r x z`.\n\nEquality is an equivalence relation, and equivalence relations share many of the properties of\nequality.\n"}},
+    "content": "Equivalence"},
+   "68":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.232"}}, "content": "α"},
+   "66":
+   {"kind":
+    {"const":
+     {"signature": "te_equiv.{u} {α : Type u} : Equivalence te",
+      "name": ["te_equiv"],
+      "isDef": true,
+      "docs": null}},
+    "content": "te_equiv"},
+   "64":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.instance-132",
+      "name": ["Lean", "Parser", "Command", "instance"],
+      "docs": null}},
+    "content": "instance"},
+   "61": {"kind": "unknown", "content": "="},
+   "59": {"kind": "unknown", "content": ">"},
+   "57": {"kind": {"var": {"type": "ℕ", "name": "_uniq.24"}}, "content": "n"},
+   "55": {"kind": "unknown", "content": "∀"},
+   "53": {"kind": "unknown", "content": ","},
+   "51": {"kind": {"var": {"type": "ℕ", "name": "_uniq.21"}}, "content": "m"},
+   "49": {"kind": "unknown", "content": "∃"},
+   "47": {"kind": "unknown", "content": ":="},
+   "45":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "The universe of propositions. `Prop ≡ Sort 0`.\n\nEvery proposition is propositionally equal to either `True` or `False`. "}},
+    "content": "Prop"},
+   "43": {"kind": "unknown", "content": ")"},
+   "41": {"kind": "unknown", "content": "→"},
+   "39": {"kind": "unknown", "content": "ℕ"},
+   "37":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.12"}}, "content": "σ₂"},
+   "35":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.8"}}, "content": "σ₁"},
+   "33": {"kind": "unknown", "content": "("},
+   "31":
+   {"kind":
+    {"const":
+     {"signature": "te.{u} {α : Type u} (σ₁ σ₂ : ℕ → α) : Prop",
+      "name": ["te"],
+      "isDef": true,
+      "docs": null}},
+    "content": "te"},
+   "300": {"kind": "unknown", "content": ""},
+   "3": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "295":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Aesop.Frontend.Parser.aesopTactic-822",
+      "name": ["Aesop", "Frontend", "Parser", "aesopTactic"],
+      "docs":
+      "`aesop <clause>*` tries to solve the current goal by applying a set of rules\nregistered with the `@[aesop]` attribute. See [its\nREADME](https://github.com/JLimperg/aesop#readme) for a tutorial and a\nreference.\n\nThe variant `aesop?` prints the proof it found as a `Try this` suggestion.\n\nClauses can be used to customise the behaviour of an Aesop call. Available\nclauses are:\n\n- `(add <phase> <priority> <builder> <rule>)` adds a rule. `<phase>` is\n  `unsafe`, `safe` or `norm`. `<priority>` is a percentage for unsafe rules and\n  an integer for safe and norm rules. `<rule>` is the name of a declaration or\n  local hypothesis. `<builder>` is the rule builder used to turn `<rule>` into\n  an Aesop rule. Example: `(add unsafe 50% apply Or.inl)`.\n- `(erase <rule>)` disables a globally registered Aesop rule. Example: `(erase\n  Aesop.BuiltinRules.assumption)`.\n- `(rule_sets := [<ruleset>,*])` enables or disables named sets of rules for\n  this Aesop call. Example: `(rule_sets := [-builtin, MyRuleSet])`.\n- `(config { <opt> := <value> })` adjusts Aesop's search options. See\n  `Aesop.Options`.\n- `(simp_config { <opt> := <value> })` adjusts options for Aesop's built-in\n  `simp` rule. The given options are directly passed to `simp`. For example,\n  `(simp_config := { zeta := false })` makes Aesop use\n  `simp (config := { zeta := false })`.\n"}},
+    "content": "aesop"},
+   "291":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-806",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "29":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-51",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "287":
+   {"kind":
+    {"const":
+     {"signature": "Neg.neg.{u} {α : Type u} [self : Neg α] : α → α",
+      "name": ["Neg", "neg"],
+      "isDef": false,
+      "docs":
+      "`-a` computes the negative or opposite of `a`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `-` in identifiers is `neg` (when used as a unary operator)."}},
+    "content": "-"},
+   "285":
+   {"kind":
+    {"const":
+     {"signature": "LT.lt.{u} {α : Type u} [self : LT α] : α → α → Prop",
+      "name": ["LT", "lt"],
+      "isDef": false,
+      "docs":
+      "The less-than relation: `x < y` \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `<` in identifiers is `lt`."}},
+    "content": "<"},
+   "283": {"kind": "unknown", "content": "),"},
+   "279":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Mathlib.Tactic.useSyntax-798",
+      "name": ["Mathlib", "Tactic", "useSyntax"],
+      "docs":
+      "`use e₁, e₂, ⋯` is similar to `exists`, but unlike `exists` it is equivalent to applying the tactic\n`refine ⟨e₁, e₂, ⋯, ?_, ⋯, ?_⟩` with any number of placeholders (rather than just one) and\nthen trying to close goals associated to the placeholders with a configurable discharger (rather\nthan just `try trivial`).\n\nExamples:\n\n```lean\nexample : ∃ x : Nat, x = x := by use 42\n\nexample : ∃ x : Nat, ∃ y : Nat, x = y := by use 42, 42\n\nexample : Nonempty Nat := by use 5\n\nexample : Nonempty (PNat ≃ Nat) := by\n  use PNat.natPred, Nat.succPNat\n  · exact PNat.succPNat_natPred\n  · intro; rfl\n```\n\n`use! e₁, e₂, ⋯` is similar but it applies constructors everywhere rather than just for\ngoals that correspond to the last argument of a constructor. This gives the effect that\nnested constructors are being flattened out, with the supplied values being used along the\nleaves and nodes of the tree of constructors.\nWith `use!` one can feed in each `42` one at a time:\n\n```lean\nexample : ∃ n : {n : Nat // n % 2 = 0}, n.val > 10 := by use! 20; simp\n\nexample : ∃ p : Nat × Nat, p.1 = p.2 := by use! (42, 42)\n```\n\nThe second line makes use of the fact that `use!` tries refining with the argument before\napplying a constructor. Also note that `use`/`use!` by default uses a tactic\ncalled `use_discharger` to discharge goals, so `use! 42` will close the goal in this example since\n`use_discharger` applies `rfl`, which as a consequence solves for the other `Nat` metavariable.\n\nThese tactics take an optional discharger to handle remaining explicit `Prop` constructor arguments.\nBy default it is `use (discharger := try with_reducible use_discharger) e₁, e₂, ⋯`.\nTo turn off the discharger and keep all goals, use `(discharger := skip)`.\nTo allow \"heavy refls\", use `(discharger := try use_discharger)`.\n"}},
+    "content": "use"},
+   "268":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.49805"}}, "content": "n"},
+   "267":
+   {"kind": {"var": {"type": "∀ n > m, σ n = τ n", "name": "_uniq.35991"}},
+    "content": "h"},
+   "266":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.35990"}}, "content": "m"},
+   "26": {"kind": "unknown", "content": "}"},
+   "259":
+   {"kind":
+    {"const":
+     {"signature":
+      "HasEquiv.Equiv.{u, v} {α : Sort u} [self : HasEquiv α] : α → α → Sort v",
+      "name": ["HasEquiv", "Equiv"],
+      "isDef": false,
+      "docs":
+      "`x ≈ y` says that `x` and `y` are equivalent. Because this is a typeclass,\nthe notion of equivalence is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `≈` in identifiers is `equiv`."}},
+    "content": "≈"},
+   "258":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.35943"}}, "content": "τ"},
+   "255":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.35940"}}, "content": "σ"},
+   "253":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.intro-771",
+      "name": ["Lean", "Parser", "Tactic", "intro"],
+      "docs":
+      "Introduces one or more hypotheses, optionally naming and/or pattern-matching them.\nFor each hypothesis to be introduced, the remaining main goal's target type must\nbe a `let` or function type.\n\n* `intro` by itself introduces one anonymous hypothesis, which can be accessed\n  by e.g. `assumption`. It is equivalent to `intro _`.\n* `intro x y` introduces two hypotheses and names them. Individual hypotheses\n  can be anonymized via `_`, given a type ascription, or matched against a pattern:\n  ```lean\n  -- ... ⊢ α × β → ...\n  intro (a, b)\n  -- ..., a : α, b : β ⊢ ...\n  ```\n* `intro rfl` is short for `intro h; subst h`, if `h` is an equality where the left-hand or right-hand side\n  is a variable.\n* Alternatively, `intro` can be combined with pattern matching much like `fun`:\n  ```lean\n  intro\n  | n + 1, 0 => tac\n  | ...\n  ```\n"}},
+    "content": "intro"},
+   "249":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-766",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "245":
+   {"kind":
+    {"const":
+     {"signature": "pre_neg.{u} {α : Type u} [hn : Neg α] (σ : ℕ → α) : ℕ → α",
+      "name": ["pre_neg"],
+      "isDef": false,
+      "docs": null}},
+    "content": "pre_neg"},
+   "243":
+   {"kind": {"var": {"type": "Neg α", "name": "_uniq.35938"}},
+    "content": "inst✝"},
+   "241": {"kind": "unknown", "content": "pre_neg"},
+   "24": {"kind": {"levelVar": {"name": ["u"]}}, "content": "u"},
+   "239":
+   {"kind":
+    {"const":
+     {"signature": "respects.{u} {α : Type u} [Setoid α] (f : α → α) : Prop",
+      "name": ["respects"],
+      "isDef": false,
+      "docs": null}},
+    "content": "respects"},
+   "237":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.35632"}}, "content": "α"},
+   "235":
+   {"kind":
+    {"const":
+     {"signature":
+      "te_neg_respects.{u} {α : Type u} [Neg α] : respects pre_neg",
+      "name": ["te_neg_respects"],
+      "isDef": true,
+      "docs": null}},
+    "content": "te_neg_respects"},
+   "233":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-678",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "230": {"kind": "unknown", "content": "-"},
+   "228":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.35548"}}, "content": "n"},
+   "226":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-660",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "224":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.35533"}}, "content": "σ"},
+   "222":
+   {"kind":
+    {"const":
+     {"signature": "Neg.{u} (α : Type u) : Type u",
+      "name": ["Neg"],
+      "isDef": false,
+      "docs":
+      "The notation typeclass for negation.\nThis enables the notation `-a : α` where `a : α`.\n"}},
+    "content": "Neg"},
+   "220":
+   {"kind": {"var": {"type": "Neg α", "name": "_uniq.35529"}}, "content": "hn"},
+   "22":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type"},
+   "218":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.35526"}}, "content": "α"},
+   "216":
+   {"kind":
+    {"const":
+     {"signature": "pre_neg.{u} {α : Type u} [hn : Neg α] (σ : ℕ → α) : ℕ → α",
+      "name": ["pre_neg"],
+      "isDef": true,
+      "docs": null}},
+    "content": "pre_neg"},
+   "214":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-586",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "211": {"kind": "unknown", "content": "≈"},
+   "209":
+   {"kind": {"var": {"type": "α", "name": "_uniq.35446"}}, "content": "y"},
+   "207":
+   {"kind": {"var": {"type": "α", "name": "_uniq.35443"}}, "content": "x"},
+   "205":
+   {"kind": {"var": {"type": "α → α", "name": "_uniq.35433"}}, "content": "f"},
+   "203": {"kind": "unknown", "content": "]"},
+   "201": {"kind": "unknown", "content": "["},
+   "20": {"kind": "unknown", "content": ":"},
+   "199":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.35426"}}, "content": "α"},
+   "197":
+   {"kind":
+    {"const":
+     {"signature": "respects.{u} {α : Type u} [Setoid α] (f : α → α) : Prop",
+      "name": ["respects"],
+      "isDef": true,
+      "docs": null}},
+    "content": "respects"},
+   "195":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-494",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "192":
+   {"kind":
+    {"const":
+     {"signature": "te_equiv.{u} {α : Type u} : Equivalence te",
+      "name": ["te_equiv"],
+      "isDef": false,
+      "docs": null}},
+    "content": "te_equiv"},
+   "190":
+   {"kind":
+    {"const":
+     {"signature": "Equivalence te",
+      "name": ["Setoid", "iseqv"],
+      "isDef": false,
+      "docs": "The relation `x ≈ y` is an equivalence relation. "}},
+    "content": "iseqv"},
+   "188":
+   {"kind":
+    {"const":
+     {"signature": "(ℕ → α) → (ℕ → α) → Prop",
+      "name": ["Setoid", "r"],
+      "isDef": false,
+      "docs":
+      "`x ≈ y` is the distinguished equivalence relation of a setoid. "}},
+    "content": "r"},
+   "186":
+   {"kind":
+    {"const":
+     {"signature": "Setoid.{u} (α : Sort u) : Sort (max 1 u)",
+      "name": ["Setoid"],
+      "isDef": false,
+      "docs":
+      "A setoid is a type with a distinguished equivalence relation, denoted `≈`.\n\nThe `Quotient` type constructor requires a `Setoid` instance.\n"}},
+    "content": "Setoid"},
+   "184":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.35338"}}, "content": "α"},
+   "182":
+   {"kind":
+    {"const":
+     {"signature": "te_setoid.{u} {α : Type u} : Setoid (ℕ → α)",
+      "name": ["te_setoid"],
+      "isDef": true,
+      "docs": null}},
+    "content": "te_setoid"},
+   "180":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.instance-400",
+      "name": ["Lean", "Parser", "Command", "instance"],
+      "docs": null}},
+    "content": "instance"},
+   "18":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.35524"}}, "content": "α"},
+   "175":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Aesop.Frontend.Parser.aesopTactic-387",
+      "name": ["Aesop", "Frontend", "Parser", "aesopTactic"],
+      "docs":
+      "`aesop <clause>*` tries to solve the current goal by applying a set of rules\nregistered with the `@[aesop]` attribute. See [its\nREADME](https://github.com/JLimperg/aesop#readme) for a tutorial and a\nreference.\n\nThe variant `aesop?` prints the proof it found as a `Try this` suggestion.\n\nClauses can be used to customise the behaviour of an Aesop call. Available\nclauses are:\n\n- `(add <phase> <priority> <builder> <rule>)` adds a rule. `<phase>` is\n  `unsafe`, `safe` or `norm`. `<priority>` is a percentage for unsafe rules and\n  an integer for safe and norm rules. `<rule>` is the name of a declaration or\n  local hypothesis. `<builder>` is the rule builder used to turn `<rule>` into\n  an Aesop rule. Example: `(add unsafe 50% apply Or.inl)`.\n- `(erase <rule>)` disables a globally registered Aesop rule. Example: `(erase\n  Aesop.BuiltinRules.assumption)`.\n- `(rule_sets := [<ruleset>,*])` enables or disables named sets of rules for\n  this Aesop call. Example: `(rule_sets := [-builtin, MyRuleSet])`.\n- `(config { <opt> := <value> })` adjusts Aesop's search options. See\n  `Aesop.Options`.\n- `(simp_config { <opt> := <value> })` adjusts options for Aesop's built-in\n  `simp` rule. The given options are directly passed to `simp`. For example,\n  `(simp_config := { zeta := false })` makes Aesop use\n  `simp (config := { zeta := false })`.\n"}},
+    "content": "aesop"},
+   "171":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-384",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "167":
+   {"kind":
+    {"const":
+     {"signature": "Max.max.{u} {α : Type u} [self : Max α] : α → α → α",
+      "name": ["Max", "max"],
+      "isDef": false,
+      "docs": "Returns the greater of its two arguments. "}},
+    "content": "max"},
+   "164":
+   {"kind": {"var": {"type": "te y z", "name": "_uniq.548"}}, "content": "x✝"},
+   "161":
+   {"kind": {"var": {"type": "te x y", "name": "_uniq.499"}}, "content": "x✝¹"},
+   "16": {"kind": "unknown", "content": "{"},
+   "159": {"kind": "unknown", "content": "⊔"},
+   "157":
+   {"kind": {"var": {"type": "∀ n > m₂, y n = z n", "name": "_uniq.588"}},
+    "content": "h₂"},
+   "155":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.587"}}, "content": "m₂"},
+   "153":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-339",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "151":
+   {"kind": {"var": {"type": "∀ n > m₁, x n = y n", "name": "_uniq.542"}},
+    "content": "h₁"},
+   "149":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.541"}}, "content": "m₁"},
+   "147":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-313",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "145":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.496"}}, "content": "z"},
+   "143":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.493"}}, "content": "y"},
+   "141":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.489"}}, "content": "x"},
+   "14":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-27",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "139":
+   {"kind":
+    {"const":
+     {"signature": "∀ {x y z : ℕ → α}, te x y → te y z → te x z",
+      "name": ["Equivalence", "trans"],
+      "isDef": false,
+      "docs":
+      "An equivalence relation is transitive: `r x y` and `r y z` implies `r x z` "}},
+    "content": "trans"},
+   "135":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Aesop.Frontend.Parser.aesopTactic-283",
+      "name": ["Aesop", "Frontend", "Parser", "aesopTactic"],
+      "docs":
+      "`aesop <clause>*` tries to solve the current goal by applying a set of rules\nregistered with the `@[aesop]` attribute. See [its\nREADME](https://github.com/JLimperg/aesop#readme) for a tutorial and a\nreference.\n\nThe variant `aesop?` prints the proof it found as a `Try this` suggestion.\n\nClauses can be used to customise the behaviour of an Aesop call. Available\nclauses are:\n\n- `(add <phase> <priority> <builder> <rule>)` adds a rule. `<phase>` is\n  `unsafe`, `safe` or `norm`. `<priority>` is a percentage for unsafe rules and\n  an integer for safe and norm rules. `<rule>` is the name of a declaration or\n  local hypothesis. `<builder>` is the rule builder used to turn `<rule>` into\n  an Aesop rule. Example: `(add unsafe 50% apply Or.inl)`.\n- `(erase <rule>)` disables a globally registered Aesop rule. Example: `(erase\n  Aesop.BuiltinRules.assumption)`.\n- `(rule_sets := [<ruleset>,*])` enables or disables named sets of rules for\n  this Aesop call. Example: `(rule_sets := [-builtin, MyRuleSet])`.\n- `(config { <opt> := <value> })` adjusts Aesop's search options. See\n  `Aesop.Options`.\n- `(simp_config { <opt> := <value> })` adjusts options for Aesop's built-in\n  `simp` rule. The given options are directly passed to `simp`. For example,\n  `(simp_config := { zeta := false })` makes Aesop use\n  `simp (config := { zeta := false })`.\n"}},
+    "content": "aesop"},
+   "131":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-280",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "126":
+   {"kind":
+    {"const":
+     {"signature": "Eq.{u_1} {α : Sort u_1} : α → α → Prop",
+      "name": ["Eq"],
+      "isDef": false,
+      "docs":
+      "The equality relation. It has one introduction rule, `Eq.refl`.\nWe use `a = b` as notation for `Eq a b`.\nA fundamental property of equality is that it is an equivalence relation.\n```\nvariable (α : Type) (a b c d : α)\nvariable (hab : a = b) (hcb : c = b) (hcd : c = d)\n\nexample : a = d :=\n  Eq.trans (Eq.trans hab (Eq.symm hcb)) hcd\n```\nEquality is much more than an equivalence relation, however. It has the important property that every assertion\nrespects the equivalence, in the sense that we can substitute equal expressions without changing the truth value.\nThat is, given `h1 : a = b` and `h2 : p a`, we can construct a proof for `p b` using substitution: `Eq.subst h1 h2`.\nExample:\n```\nexample (α : Type) (a b : α) (p : α → Prop)\n        (h1 : a = b) (h2 : p a) : p b :=\n  Eq.subst h1 h2\n\nexample (α : Type) (a b : α) (p : α → Prop)\n    (h1 : a = b) (h2 : p a) : p b :=\n  h1 ▸ h2\n```\nThe triangle in the second presentation is a macro built on top of `Eq.subst` and `Eq.symm`, and you can enter it by typing `\\t`.\nFor more information: [Equality](https://lean-lang.org/theorem_proving_in_lean4/quantifiers_and_equality.html#equality)\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `=` in identifiers is `eq`."}},
+    "content": "="},
+   "124":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.35524"}}, "content": "n"},
+   "121":
+   {"kind": {"var": {"type": "te x y", "name": "_uniq.316"}}, "content": "x✝"},
+   "118":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "ℕ"},
+   "115":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type u"},
+   "113":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.35524"}},
+    "content": "α✝"},
+   "111": {"kind": "unknown", "content": "⟩"},
+   "109":
+   {"kind": {"var": {"type": "∀ n > m, x n = y n", "name": "_uniq.356"}},
+    "content": "h"},
+   "107": {"kind": {"var": {"type": "ℕ", "name": "_uniq.355"}}, "content": "m"},
+   "105": {"kind": "unknown", "content": "⟨"},
+   "103":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-254",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "101":
+   {"kind": {"var": {"type": "ℕ → α", "name": "_uniq.313"}}, "content": "y"},
+   "10": {"kind": "unknown", "content": "u"},
+   "0":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-0",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 303,
+  "messageContents": {},
+  "goals":
+  {"290":
+   {"name": "h",
+    "hypotheses":
+    [{"typeAndVal": 117, "names": [237]},
+     {"typeAndVal": 244, "names": [243]},
+     {"typeAndVal": 257, "names": [255]},
+     {"typeAndVal": 257, "names": [258]},
+     {"typeAndVal": 123, "names": [266]},
+     {"typeAndVal": 271, "names": [267]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 289},
+   "278":
+   {"name": "h",
+    "hypotheses":
+    [{"typeAndVal": 117, "names": [237]},
+     {"typeAndVal": 244, "names": [243]},
+     {"typeAndVal": 257, "names": [255]},
+     {"typeAndVal": 257, "names": [258]},
+     {"typeAndVal": 123, "names": [266]},
+     {"typeAndVal": 271, "names": [267]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 277},
+   "273":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 117, "names": [237]},
+     {"typeAndVal": 244, "names": [243]},
+     {"typeAndVal": 257, "names": [255]},
+     {"typeAndVal": 257, "names": [258]},
+     {"typeAndVal": 123, "names": [266]},
+     {"typeAndVal": 271, "names": [267]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 272},
+   "263":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 117, "names": [237]},
+     {"typeAndVal": 244, "names": [243]},
+     {"typeAndVal": 257, "names": [255]},
+     {"typeAndVal": 257, "names": [258]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 262},
+   "248":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 117, "names": [237]}, {"typeAndVal": 244, "names": [243]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 247},
+   "170":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 117, "names": [113]},
+     {"typeAndVal": 117, "names": [68]},
+     {"typeAndVal": 120, "names": [141]},
+     {"typeAndVal": 120, "names": [143]},
+     {"typeAndVal": 120, "names": [145]},
+     {"typeAndVal": 162, "names": [161]},
+     {"typeAndVal": 123, "names": [149]},
+     {"typeAndVal": 163, "names": [151]},
+     {"typeAndVal": 165, "names": [164]},
+     {"typeAndVal": 123, "names": [155]},
+     {"typeAndVal": 166, "names": [157]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 169},
+   "130":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 117, "names": [113]},
+     {"typeAndVal": 117, "names": [68]},
+     {"typeAndVal": 120, "names": [99]},
+     {"typeAndVal": 120, "names": [101]},
+     {"typeAndVal": 122, "names": [121]},
+     {"typeAndVal": 123, "names": [107]},
+     {"typeAndVal": 128, "names": [109]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 129}},
+  "code":
+  {"98": {"token": {"tok": 97}},
+   "96": {"token": {"tok": 95}},
+   "94": {"token": {"tok": 93}},
+   "92": {"token": {"tok": 91}},
+   "90": {"token": {"tok": 89}},
+   "9": {"token": {"tok": 8}},
+   "88": {"token": {"tok": 87}},
+   "86": {"token": {"tok": 85}},
+   "84": {"token": {"tok": 83}},
+   "82": {"token": {"tok": 81}},
+   "80": {"token": {"tok": 79}},
+   "78": {"token": {"tok": 77}},
+   "76": {"text": {"str": "\n  "}},
+   "75": {"token": {"tok": 74}},
+   "73": {"token": {"tok": 72}},
+   "71": {"token": {"tok": 70}},
+   "7": {"text": {"str": "\n\n"}},
+   "69": {"token": {"tok": 68}},
+   "67": {"token": {"tok": 66}},
+   "65": {"token": {"tok": 64}},
+   "63":
+   {"seq":
+    {"highlights":
+     [7,
+      30,
+      2,
+      32,
+      2,
+      34,
+      36,
+      2,
+      38,
+      2,
+      21,
+      2,
+      40,
+      2,
+      42,
+      2,
+      19,
+      44,
+      2,
+      21,
+      2,
+      46,
+      2,
+      48,
+      2,
+      50,
+      2,
+      52,
+      54,
+      2,
+      56,
+      2,
+      58,
+      2,
+      60,
+      2,
+      52,
+      54,
+      2,
+      36,
+      2,
+      58,
+      2,
+      62,
+      2,
+      38,
+      2,
+      58,
+      5]}},
+   "62": {"token": {"tok": 61}},
+   "60": {"token": {"tok": 59}},
+   "6": {"seq": {"highlights": [1, 2, 4, 5]}},
+   "58": {"token": {"tok": 57}},
+   "56": {"token": {"tok": 55}},
+   "54": {"token": {"tok": 53}},
+   "52": {"token": {"tok": 51}},
+   "50": {"token": {"tok": 49}},
+   "5": {"seq": {"highlights": []}},
+   "48": {"token": {"tok": 47}},
+   "46": {"token": {"tok": 45}},
+   "44": {"token": {"tok": 43}},
+   "42": {"token": {"tok": 41}},
+   "40": {"token": {"tok": 39}},
+   "4": {"token": {"tok": 3}},
+   "38": {"token": {"tok": 37}},
+   "36": {"token": {"tok": 35}},
+   "34": {"token": {"tok": 33}},
+   "32": {"token": {"tok": 31}},
+   "302": {"seq": {"highlights": [13, 301, 5]}},
+   "301": {"token": {"tok": 300}},
+   "30": {"token": {"tok": 29}},
+   "299":
+   {"seq":
+    {"highlights":
+     [7,
+      234,
+      2,
+      236,
+      2,
+      17,
+      238,
+      2,
+      21,
+      2,
+      23,
+      2,
+      25,
+      27,
+      2,
+      202,
+      223,
+      2,
+      238,
+      204,
+      2,
+      21,
+      2,
+      240,
+      2,
+      34,
+      75,
+      2,
+      48,
+      2,
+      40,
+      2,
+      42,
+      2,
+      238,
+      44,
+      2,
+      242,
+      2,
+      48,
+      2,
+      252,
+      76,
+      254,
+      2,
+      256,
+      2,
+      265,
+      2,
+      276,
+      76,
+      282,
+      76,
+      294,
+      76,
+      298,
+      5]}},
+   "298":
+   {"tactics": {"startPos": 822, "info": [], "endPos": 827, "content": 297}},
+   "297": {"seq": {"highlights": [296, 5]}},
+   "296": {"token": {"tok": 295}},
+   "294":
+   {"tactics": {"startPos": 806, "info": [290], "endPos": 819, "content": 293}},
+   "293": {"seq": {"highlights": [292, 202, 246, 204, 5]}},
+   "292": {"token": {"tok": 291}},
+   "289":
+   {"seq":
+    {"highlights":
+     [56,
+      2,
+      34,
+      269,
+      2,
+      21,
+      2,
+      119,
+      284,
+      2,
+      270,
+      2,
+      286,
+      2,
+      269,
+      2,
+      42,
+      2,
+      288,
+      256,
+      2,
+      269,
+      2,
+      127,
+      2,
+      288,
+      261,
+      2,
+      269]}},
+   "288": {"token": {"tok": 287}},
+   "286": {"token": {"tok": 285}},
+   "284": {"token": {"tok": 283}},
+   "282":
+   {"tactics": {"startPos": 798, "info": [278], "endPos": 803, "content": 281}},
+   "281": {"seq": {"highlights": [280, 2, 270, 5]}},
+   "280": {"token": {"tok": 279}},
+   "28":
+   {"seq": {"highlights": [13, 15, 2, 17, 19, 2, 21, 2, 23, 2, 25, 27, 5]}},
+   "277":
+   {"seq":
+    {"highlights":
+     [56,
+      2,
+      269,
+      2,
+      60,
+      2,
+      270,
+      54,
+      2,
+      246,
+      2,
+      256,
+      2,
+      269,
+      2,
+      127,
+      2,
+      246,
+      2,
+      261,
+      2,
+      269]}},
+   "276":
+   {"tactics": {"startPos": 783, "info": [273], "endPos": 795, "content": 275}},
+   "275": {"seq": {"highlights": [106, 2, 270, 54, 2, 274, 2, 112, 5]}},
+   "274": {"token": {"tok": 267}},
+   "272": {"seq": {"highlights": [114, 246, 2, 256, 2, 260, 2, 246, 2, 261]}},
+   "271":
+   {"seq":
+    {"highlights":
+     [56, 2, 269, 2, 60, 2, 270, 54, 2, 256, 2, 269, 2, 127, 2, 261, 2, 269]}},
+   "270": {"token": {"tok": 266}},
+   "27": {"token": {"tok": 26}},
+   "269": {"token": {"tok": 268}},
+   "265":
+   {"tactics": {"startPos": 780, "info": [263], "endPos": 782, "content": 264}},
+   "264": {"seq": {"highlights": [261, 5]}},
+   "262":
+   {"seq":
+    {"highlights":
+     [114,
+      256,
+      2,
+      260,
+      2,
+      261,
+      2,
+      42,
+      2,
+      246,
+      2,
+      256,
+      2,
+      260,
+      2,
+      246,
+      2,
+      261]}},
+   "261": {"token": {"tok": 258}},
+   "260": {"token": {"tok": 259}},
+   "257": {"seq": {"highlights": [114, 119, 2, 42, 2, 238]}},
+   "256": {"token": {"tok": 255}},
+   "254": {"token": {"tok": 253}},
+   "252":
+   {"tactics": {"startPos": 766, "info": [248], "endPos": 768, "content": 251}},
+   "251": {"seq": {"highlights": [250, 5]}},
+   "250": {"token": {"tok": 249}},
+   "25": {"token": {"tok": 24}},
+   "247": {"seq": {"highlights": [114, 240, 2, 246]}},
+   "246": {"token": {"tok": 245}},
+   "244": {"seq": {"highlights": [114, 223, 2, 238]}},
+   "242": {"token": {"tok": 241}},
+   "240": {"token": {"tok": 239}},
+   "238": {"token": {"tok": 237}},
+   "236": {"token": {"tok": 235}},
+   "234": {"token": {"tok": 233}},
+   "232":
+   {"seq":
+    {"highlights":
+     [7,
+      215,
+      2,
+      217,
+      2,
+      17,
+      219,
+      2,
+      21,
+      2,
+      23,
+      2,
+      25,
+      27,
+      2,
+      202,
+      221,
+      2,
+      21,
+      2,
+      223,
+      2,
+      219,
+      204,
+      2,
+      34,
+      225,
+      2,
+      21,
+      2,
+      40,
+      2,
+      42,
+      2,
+      219,
+      44,
+      2,
+      21,
+      2,
+      40,
+      2,
+      42,
+      2,
+      219,
+      2,
+      48,
+      2,
+      227,
+      2,
+      229,
+      2,
+      92,
+      2,
+      231,
+      34,
+      225,
+      2,
+      229,
+      44,
+      5]}},
+   "231": {"token": {"tok": 230}},
+   "23": {"token": {"tok": 22}},
+   "229": {"token": {"tok": 228}},
+   "227": {"token": {"tok": 226}},
+   "225": {"token": {"tok": 224}},
+   "223": {"token": {"tok": 222}},
+   "221": {"token": {"tok": 220}},
+   "219": {"token": {"tok": 218}},
+   "217": {"token": {"tok": 216}},
+   "215": {"token": {"tok": 214}},
+   "213":
+   {"seq":
+    {"highlights":
+     [7,
+      196,
+      2,
+      198,
+      2,
+      17,
+      200,
+      2,
+      21,
+      2,
+      23,
+      2,
+      25,
+      27,
+      2,
+      202,
+      187,
+      2,
+      200,
+      204,
+      2,
+      34,
+      206,
+      2,
+      21,
+      2,
+      200,
+      2,
+      42,
+      2,
+      200,
+      44,
+      2,
+      48,
+      2,
+      56,
+      2,
+      208,
+      2,
+      210,
+      54,
+      2,
+      208,
+      2,
+      212,
+      2,
+      210,
+      2,
+      42,
+      2,
+      206,
+      2,
+      208,
+      2,
+      212,
+      2,
+      206,
+      2,
+      210,
+      5]}},
+   "212": {"token": {"tok": 211}},
+   "210": {"token": {"tok": 209}},
+   "21": {"token": {"tok": 20}},
+   "208": {"token": {"tok": 207}},
+   "206": {"token": {"tok": 205}},
+   "204": {"token": {"tok": 203}},
+   "202": {"token": {"tok": 201}},
+   "200": {"token": {"tok": 199}},
+   "2": {"text": {"str": " "}},
+   "198": {"token": {"tok": 197}},
+   "196": {"token": {"tok": 195}},
+   "194":
+   {"seq":
+    {"highlights":
+     [7,
+      181,
+      2,
+      183,
+      2,
+      17,
+      185,
+      2,
+      21,
+      2,
+      23,
+      2,
+      25,
+      27,
+      2,
+      21,
+      2,
+      187,
+      2,
+      34,
+      40,
+      2,
+      42,
+      2,
+      185,
+      44,
+      2,
+      48,
+      2,
+      17,
+      76,
+      189,
+      2,
+      48,
+      2,
+      73,
+      54,
+      76,
+      191,
+      2,
+      48,
+      2,
+      193,
+      13,
+      27,
+      5]}},
+   "193": {"token": {"tok": 192}},
+   "191": {"token": {"tok": 190}},
+   "19": {"token": {"tok": 18}},
+   "189": {"token": {"tok": 188}},
+   "187": {"token": {"tok": 186}},
+   "185": {"token": {"tok": 184}},
+   "183": {"token": {"tok": 182}},
+   "181": {"token": {"tok": 180}},
+   "179":
+   {"seq":
+    {"highlights":
+     [7,
+      65,
+      2,
+      67,
+      2,
+      17,
+      69,
+      2,
+      21,
+      2,
+      23,
+      2,
+      25,
+      27,
+      2,
+      21,
+      2,
+      71,
+      2,
+      34,
+      73,
+      2,
+      34,
+      75,
+      2,
+      48,
+      2,
+      69,
+      44,
+      44,
+      2,
+      48,
+      2,
+      17,
+      76,
+      78,
+      2,
+      80,
+      2,
+      48,
+      2,
+      82,
+      2,
+      84,
+      86,
+      2,
+      88,
+      2,
+      90,
+      2,
+      90,
+      2,
+      92,
+      2,
+      94,
+      2,
+      96,
+      54,
+      76,
+      98,
+      2,
+      17,
+      100,
+      2,
+      102,
+      27,
+      2,
+      48,
+      2,
+      104,
+      2,
+      106,
+      2,
+      108,
+      54,
+      110,
+      2,
+      112,
+      2,
+      92,
+      2,
+      82,
+      2,
+      108,
+      86,
+      2,
+      134,
+      2,
+      138,
+      2,
+      96,
+      54,
+      76,
+      140,
+      2,
+      17,
+      142,
+      2,
+      144,
+      2,
+      146,
+      27,
+      2,
+      48,
+      2,
+      148,
+      2,
+      106,
+      2,
+      150,
+      54,
+      2,
+      152,
+      2,
+      112,
+      2,
+      92,
+      2,
+      154,
+      2,
+      106,
+      2,
+      156,
+      54,
+      2,
+      158,
+      2,
+      112,
+      2,
+      92,
+      2,
+      82,
+      2,
+      150,
+      2,
+      160,
+      2,
+      156,
+      86,
+      2,
+      174,
+      2,
+      178,
+      2,
+      96,
+      13,
+      27,
+      5]}},
+   "178":
+   {"tactics": {"startPos": 387, "info": [], "endPos": 392, "content": 177}},
+   "177": {"seq": {"highlights": [176, 5]}},
+   "176": {"token": {"tok": 175}},
+   "174":
+   {"tactics": {"startPos": 384, "info": [170], "endPos": 386, "content": 173}},
+   "173": {"seq": {"highlights": [172, 5]}},
+   "172": {"token": {"tok": 171}},
+   "17": {"token": {"tok": 16}},
+   "169":
+   {"seq":
+    {"highlights":
+     [56,
+      2,
+      125,
+      2,
+      60,
+      2,
+      168,
+      2,
+      150,
+      2,
+      156,
+      54,
+      2,
+      142,
+      2,
+      125,
+      2,
+      127,
+      2,
+      146,
+      2,
+      125]}},
+   "168": {"token": {"tok": 167}},
+   "166":
+   {"seq":
+    {"highlights":
+     [56, 2, 125, 2, 60, 2, 156, 54, 2, 144, 2, 125, 2, 127, 2, 146, 2, 125]}},
+   "165": {"seq": {"highlights": [114, 73, 2, 144, 2, 146]}},
+   "163":
+   {"seq":
+    {"highlights":
+     [56, 2, 125, 2, 60, 2, 150, 54, 2, 142, 2, 125, 2, 127, 2, 144, 2, 125]}},
+   "162": {"seq": {"highlights": [114, 73, 2, 142, 2, 144]}},
+   "160": {"token": {"tok": 159}},
+   "158": {"token": {"tok": 157}},
+   "156": {"token": {"tok": 155}},
+   "154": {"token": {"tok": 153}},
+   "152": {"token": {"tok": 151}},
+   "150": {"token": {"tok": 149}},
+   "15": {"token": {"tok": 14}},
+   "148": {"token": {"tok": 147}},
+   "146": {"token": {"tok": 145}},
+   "144": {"token": {"tok": 143}},
+   "142": {"token": {"tok": 141}},
+   "140": {"token": {"tok": 139}},
+   "138":
+   {"tactics": {"startPos": 283, "info": [], "endPos": 288, "content": 137}},
+   "137": {"seq": {"highlights": [136, 5]}},
+   "136": {"token": {"tok": 135}},
+   "134":
+   {"tactics": {"startPos": 280, "info": [130], "endPos": 282, "content": 133}},
+   "133": {"seq": {"highlights": [132, 5]}},
+   "132": {"token": {"tok": 131}},
+   "13": {"text": {"str": "\n"}},
+   "129":
+   {"seq":
+    {"highlights":
+     [56, 2, 125, 2, 60, 2, 108, 54, 2, 102, 2, 125, 2, 127, 2, 100, 2, 125]}},
+   "128":
+   {"seq":
+    {"highlights":
+     [56, 2, 125, 2, 60, 2, 108, 54, 2, 100, 2, 125, 2, 127, 2, 102, 2, 125]}},
+   "127": {"token": {"tok": 126}},
+   "125": {"token": {"tok": 124}},
+   "123": {"seq": {"highlights": [114, 119, 114]}},
+   "122": {"seq": {"highlights": [114, 73, 2, 100, 2, 102]}},
+   "120": {"seq": {"highlights": [114, 119, 2, 42, 2, 69]}},
+   "12": {"seq": {"highlights": [7, 9, 2, 11, 5]}},
+   "119": {"token": {"tok": 118}},
+   "117": {"seq": {"highlights": [114, 116, 114]}},
+   "116": {"token": {"tok": 115}},
+   "114": {"text": {"str": ""}},
+   "112": {"token": {"tok": 111}},
+   "110": {"token": {"tok": 109}},
+   "11": {"token": {"tok": 10}},
+   "108": {"token": {"tok": 107}},
+   "106": {"token": {"tok": 105}},
+   "104": {"token": {"tok": 103}},
+   "102": {"token": {"tok": 101}},
+   "100": {"token": {"tok": 99}},
+   "1": {"token": {"tok": 0}}}}}

@@ -1,0 +1,87 @@
+{"items":
+ [{"range":
+   {"start": {"line": 1, "column": 1}, "end": {"line": 1, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 6},
+  {"range":
+   {"start": {"line": 3, "column": 1}, "end": {"line": 3, "column": 11}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 31},
+  {"range":
+   {"start": {"line": 4, "column": 1}, "end": {"line": 4, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 35}],
+ "data":
+ {"tokens":
+  {"33": {"kind": "unknown", "content": ""},
+   "3": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "29": {"kind": "unknown", "content": "+"},
+   "27": {"kind": {"withType": {"type": "ℕ"}}, "content": "1"},
+   "23":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-16",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "17":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "ℕ"},
+   "12":
+   {"kind":
+    {"const":
+     {"signature":
+      "HAdd.hAdd.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HAdd α β γ] : α → β → γ",
+      "name": ["HAdd", "hAdd"],
+      "isDef": false,
+      "docs":
+      "`a + b` computes the sum of `a` and `b`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `+` in identifiers is `add`."}},
+    "content": "+"},
+   "10": {"kind": "unknown", "content": "1"},
+   "0":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-0",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 36,
+  "messageContents":
+  {"8": {"text": ""},
+   "22": {"append": [8, 21]},
+   "21": {"append": [15, 16, 20]},
+   "20": {"term": 19},
+   "16": {"text": " : "},
+   "15": {"term": 14}},
+  "goals": {},
+  "code":
+  {"9": {"text": {"str": ""}},
+   "7": {"text": {"str": "\n\n"}},
+   "6": {"seq": {"highlights": [1, 2, 4, 5]}},
+   "5": {"seq": {"highlights": []}},
+   "4": {"token": {"tok": 3}},
+   "35": {"seq": {"highlights": [32, 34, 5]}},
+   "34": {"token": {"tok": 33}},
+   "32": {"text": {"str": "\n"}},
+   "31": {"seq": {"highlights": [7, 26, 2, 28, 30, 28, 5]}},
+   "30": {"token": {"tok": 29}},
+   "28": {"token": {"tok": 27}},
+   "26": {"span": {"info": [["info", 22]], "content": 25}},
+   "25": {"seq": {"highlights": [24, 5]}},
+   "24": {"token": {"tok": 23}},
+   "2": {"text": {"str": " "}},
+   "19": {"seq": {"highlights": [9, 18, 9]}},
+   "18": {"token": {"tok": 17}},
+   "14": {"seq": {"highlights": [9, 11, 2, 13, 2, 11]}},
+   "13": {"token": {"tok": 12}},
+   "11": {"token": {"tok": 10}},
+   "1": {"token": {"tok": 0}}}}}

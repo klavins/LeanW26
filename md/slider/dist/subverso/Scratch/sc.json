@@ -1,0 +1,1534 @@
+{"items":
+ [{"range":
+   {"start": {"line": 1, "column": 1}, "end": {"line": 1, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 6},
+  {"range":
+   {"start": {"line": 3, "column": 1}, "end": {"line": 3, "column": 34}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 48},
+  {"range":
+   {"start": {"line": 5, "column": 1}, "end": {"line": 5, "column": 25}},
+   "kind": "Lean.Parser.Command.print",
+   "defines": [],
+   "code": 136},
+  {"range":
+   {"start": {"line": 7, "column": 1}, "end": {"line": 19, "column": 1}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["p"],
+   "code": 336},
+  {"range":
+   {"start": {"line": 19, "column": 1}, "end": {"line": 19, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 340}],
+ "data":
+ {"tokens":
+  {"98": {"kind": "unknown", "content": "∀"},
+   "96": {"kind": "unknown", "content": "=>"},
+   "94":
+   {"kind": {"var": {"type": "ι → P", "name": "_pp_uniq.17"}}, "content": "p"},
+   "92":
+   {"kind": {"keyword": {"occurrence": null, "name": null, "docs": null}},
+    "content": "fun"},
+   "86":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "The universe of propositions. `Prop ≡ Sort 0`.\n\nEvery proposition is propositionally equal to either `True` or `False`. "}},
+    "content": "Prop"},
+   "84":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type u_4"},
+   "82":
+   {"kind": {"var": {"type": "Type u_4", "name": "_pp_uniq.16"}},
+    "content": "ι"},
+   "80":
+   {"kind":
+    {"const":
+     {"signature":
+      "AddTorsor.{u_1, u_2} (G : outParam (Type u_1)) (P : Type u_2) [AddGroup G] : Type (max u_1 u_2)",
+      "name": ["AddTorsor"],
+      "isDef": false,
+      "docs":
+      "An `AddTorsor G P` gives a structure to the nonempty type `P`,\nacted on by an `AddGroup G` with a transitive and free action given\nby the `+ᵥ` operation and a corresponding subtraction given by the\n`-ᵥ` operation. In the case of a vector space, it is an affine\nspace. "}},
+    "content": "AddTorsor"},
+   "78":
+   {"kind": {"var": {"type": "AddCommGroup V", "name": "_pp_uniq.10"}},
+    "content": "inst_1"},
+   "76":
+   {"kind": {"var": {"type": "Ring k", "name": "_pp_uniq.8"}},
+    "content": "inst"},
+   "73":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type u_3"},
+   "71":
+   {"kind": {"var": {"type": "Type u_3", "name": "_pp_uniq.6"}},
+    "content": "P"},
+   "68": {"kind": "unknown", "content": "}"},
+   "66":
+   {"kind": {"var": {"type": "Type u_2", "name": "_pp_uniq.4"}},
+    "content": "V"},
+   "64": {"kind": "unknown", "content": "{"},
+   "62": {"kind": "unknown", "content": "→"},
+   "60":
+   {"kind": {"var": {"type": "Type u_1", "name": "_pp_uniq.2"}},
+    "content": "k"},
+   "46":
+   {"kind":
+    {"const":
+     {"signature":
+      "Geometry.SimplicialComplex.{u_1, u_2} (𝕜 : Type u_1) (E : Type u_2) [Ring 𝕜] [PartialOrder 𝕜] [AddCommGroup E]\n  [Module 𝕜 E] : Type u_2",
+      "name": ["Geometry", "SimplicialComplex"],
+      "isDef": false,
+      "docs":
+      "A simplicial complex in a `𝕜`-module is a collection of simplices which glue nicely together.\nNote that the textbook meaning of \"glue nicely\" is given in\n`Geometry.SimplicialComplex.disjoint_or_exists_inter_eq_convexHull`. It is mostly useless, as\n`Geometry.SimplicialComplex.convexHull_inter_convexHull` is enough for all purposes. "}},
+    "content": "Geometry.SimplicialComplex"},
+   "42":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-16",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "37":
+   {"kind":
+    {"const":
+     {"signature":
+      "Module.{u, v} (R : Type u) (M : Type v) [Semiring R] [AddCommMonoid M] : Type (max u v)",
+      "name": ["Module"],
+      "isDef": false,
+      "docs":
+      "A module is a generalization of vector spaces to a scalar semiring.\nIt consists of a scalar semiring `R` and an additive monoid of \"vectors\" `M`,\nconnected by a \"scalar multiplication\" operation `r • x : M`\n(where `r : R` and `x : M`) with some natural associativity and\ndistributivity axioms similar to those on a ring. "}},
+    "content": "Module"},
+   "34":
+   {"kind":
+    {"const":
+     {"signature": "AddCommGroup.{u} (G : Type u) : Type u",
+      "name": ["AddCommGroup"],
+      "isDef": false,
+      "docs":
+      "An additive commutative group is an additive group with commutative `(+)`. "}},
+    "content": "AddCommGroup"},
+   "338": {"kind": "unknown", "content": ""},
+   "332":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.tacticSorry-335",
+      "name": ["Lean", "Parser", "Tactic", "tacticSorry"],
+      "docs":
+      "The `sorry` tactic is a temporary placeholder for an incomplete tactic proof,\nclosing the main goal using `exact sorry`.\n\nThis is intended for stubbing-out incomplete parts of a proof while still having a syntactically correct proof skeleton.\nLean will give a warning whenever a proof uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a theorem depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n"}},
+    "content": "sorry"},
+   "327":
+   {"kind":
+    {"const":
+     {"signature":
+      "StarConvex.{u_4, u_5} (𝕜 : Type u_4) {E : Type u_5} [Semiring 𝕜] [PartialOrder 𝕜] [AddCommMonoid E] [SMul 𝕜 E] (x : E)\n  (s : Set E) : Prop",
+      "name": ["StarConvex"],
+      "isDef": false,
+      "docs":
+      "Star-convexity of sets. `s` is star-convex at `x` if every segment from `x` to a point in `s` is\ncontained in `s`. "}},
+    "content": "StarConvex"},
+   "325":
+   {"kind":
+    {"const":
+     {"signature":
+      "Convex.{u_1, u_2} (𝕜 : Type u_1) {E : Type u_2} [Semiring 𝕜] [PartialOrder 𝕜] [AddCommMonoid E] [SMul 𝕜 E] (s : Set E) :\n  Prop",
+      "name": ["Convex"],
+      "isDef": false,
+      "docs": "Convexity of sets. "}},
+    "content": "Convex"},
+   "323":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-295",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "32":
+   {"kind":
+    {"const":
+     {"signature": "PartialOrder.{u_2} (α : Type u_2) : Type u_2",
+      "name": ["PartialOrder"],
+      "isDef": false,
+      "docs":
+      "A partial order is a reflexive, transitive, antisymmetric relation `≤`. "}},
+    "content": "PartialOrder"},
+   "319":
+   {"kind":
+    {"var":
+     {"type":
+      "{ b //\n  ↑C2 ⊆ b ∧ ∀ ⦃x : ℤ⦄, x ∈ b → ∀ ⦃y : ℤ⦄, y ∈ b → ∀ ⦃a b_1 : ℤ⦄, 0 ≤ a → 0 ≤ b_1 → a + b_1 = 1 → a * x + b_1 * y ∈ b }",
+      "name": "_uniq.247269"}},
+    "content": "b"},
+   "317": {"kind": "unknown", "content": "⋂"},
+   "315":
+   {"kind":
+    {"var":
+     {"type":
+      "{ b //\n  ↑C1 ⊆ b ∧ ∀ ⦃x : ℤ⦄, x ∈ b → ∀ ⦃y : ℤ⦄, y ∈ b → ∀ ⦃a b_1 : ℤ⦄, 0 ≤ a → 0 ≤ b_1 → a + b_1 = 1 → a * x + b_1 * y ∈ b }",
+      "name": "_uniq.247250"}},
+    "content": "b"},
+   "313": {"kind": "unknown", "content": "(⋂"},
+   "311":
+   {"kind":
+    {"const":
+     {"signature":
+      "HMul.hMul.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HMul α β γ] : α → β → γ",
+      "name": ["HMul", "hMul"],
+      "isDef": false,
+      "docs":
+      "`a * b` computes the product of `a` and `b`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `*` in identifiers is `mul`."}},
+    "content": "*"},
+   "309":
+   {"kind":
+    {"const":
+     {"signature":
+      "HAdd.hAdd.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HAdd α β γ] : α → β → γ",
+      "name": ["HAdd", "hAdd"],
+      "isDef": false,
+      "docs":
+      "`a + b` computes the sum of `a` and `b`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `+` in identifiers is `add`."}},
+    "content": "+"},
+   "307":
+   {"kind":
+    {"const":
+     {"signature": "LE.le.{u} {α : Type u} [self : LE α] : α → α → Prop",
+      "name": ["LE", "le"],
+      "isDef": false,
+      "docs":
+      "The less-equal relation: `x ≤ y` \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `≤` in identifiers is `le`.\n\n * The recommended spelling of `<=` in identifiers is `le` (prefer `≤` over `<=`)."}},
+    "content": "≤"},
+   "305":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.247281"}}, "content": "b"},
+   "303":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.247279"}}, "content": "a_4"},
+   "301":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.247275"}}, "content": "y"},
+   "30": {"kind": "unknown", "content": "]"},
+   "3": {"kind": {"moduleName": {"name": ["mathlib"]}}, "content": "mathlib"},
+   "299": {"kind": "unknown", "content": "⦄,"},
+   "297":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.247271"}}, "content": "x"},
+   "295": {"kind": "unknown", "content": "⦃"},
+   "293": {"kind": "unknown", "content": "(∀"},
+   "291":
+   {"kind":
+    {"const":
+     {"signature": "Set.{u} (α : Type u) : Type u",
+      "name": ["Set"],
+      "isDef": false,
+      "docs":
+      "A set is a collection of elements of some type `α`.\n\nAlthough `Set` is defined as `α → Prop`, this is an implementation detail which should not be\nrelied on. Instead, `setOf` and membership of a set (`∈`) should be used to convert between sets\nand predicates.\n"}},
+    "content": "Set"},
+   "289":
+   {"kind": {"var": {"type": "Set ℤ", "name": "_uniq.247218"}}, "content": "a"},
+   "282":
+   {"kind": {"var": {"type": "C2 ∈ sorry", "name": "_uniq.3706"}},
+    "content": "t"},
+   "28":
+   {"kind":
+    {"const":
+     {"signature": "Ring.{u} (R : Type u) : Type u",
+      "name": ["Ring"],
+      "isDef": false,
+      "docs":
+      "A `Ring` is a `Semiring` with negation making it an additive group. "}},
+    "content": "Ring"},
+   "279":
+   {"kind": {"var": {"type": "C1 ∈ sorry", "name": "_uniq.3703"}},
+    "content": "s"},
+   "277":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.intro-281",
+      "name": ["Lean", "Parser", "Tactic", "intro"],
+      "docs":
+      "Introduces one or more hypotheses, optionally naming and/or pattern-matching them.\nFor each hypothesis to be introduced, the remaining main goal's target type must\nbe a `let` or function type.\n\n* `intro` by itself introduces one anonymous hypothesis, which can be accessed\n  by e.g. `assumption`. It is equivalent to `intro _`.\n* `intro x y` introduces two hypotheses and names them. Individual hypotheses\n  can be anonymized via `_`, given a type ascription, or matched against a pattern:\n  ```lean\n  -- ... ⊢ α × β → ...\n  intro (a, b)\n  -- ..., a : α, b : β ⊢ ...\n  ```\n* `intro rfl` is short for `intro h; subst h`, if `h` is an equality where the left-hand or right-hand side\n  is a variable.\n* Alternatively, `intro` can be combined with pattern matching much like `fun`:\n  ```lean\n  intro\n  | n + 1, 0 => tac\n  | ...\n  ```\n"}},
+    "content": "intro"},
+   "273":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-274",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "269":
+   {"kind":
+    {"const":
+     {"signature": "Inter.inter.{u} {α : Type u} [self : Inter α] : α → α → α",
+      "name": ["Inter", "inter"],
+      "isDef": false,
+      "docs":
+      "`a ∩ b` is the intersection of `a` and `b`. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∩` in identifiers is `inter`."}},
+    "content": ")"},
+   "267":
+   {"kind":
+    {"const":
+     {"signature": "Inter.inter.{u} {α : Type u} [self : Inter α] : α → α → α",
+      "name": ["Inter", "inter"],
+      "isDef": false,
+      "docs":
+      "`a ∩ b` is the intersection of `a` and `b`. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∩` in identifiers is `inter`."}},
+    "content": "("},
+   "265":
+   {"kind":
+    {"const":
+     {"signature": "Inter.inter.{u} {α : Type u} [self : Inter α] : α → α → α",
+      "name": ["Inter", "inter"],
+      "isDef": false,
+      "docs":
+      "`a ∩ b` is the intersection of `a` and `b`. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∩` in identifiers is `inter`."}},
+    "content": "∩"},
+   "263": {"kind": "unknown", "content": "↑"},
+   "261":
+   {"kind":
+    {"const":
+     {"signature":
+      "convexHull.{u_1, u_2} (𝕜 : Type u_1) {E : Type u_2} [Semiring 𝕜] [PartialOrder 𝕜] [AddCommMonoid E] [Module 𝕜 E] :\n  ClosureOperator (Set E)",
+      "name": ["convexHull"],
+      "isDef": false,
+      "docs":
+      "The convex hull of a set `s` is the minimal convex set that includes `s`. "}},
+    "content": "convexHull"},
+   "26": {"kind": "unknown", "content": "["},
+   "259":
+   {"kind": {"var": {"type": "Finset ℤ", "name": "_uniq.342"}},
+    "content": "C2"},
+   "257":
+   {"kind": {"var": {"type": "Finset ℤ", "name": "_uniq.339"}},
+    "content": "C1"},
+   "255":
+   {"kind":
+    {"const":
+     {"signature":
+      "∀ {C1 C2 : Finset ℤ}, C1 ∈ sorry → C2 ∈ sorry → (convexHull ℤ) ↑C1 ∩ (convexHull ℤ) ↑C2 ⊆ (convexHull ℤ) (↑C1 ∩ ↑C2)",
+      "name": ["Geometry", "SimplicialComplex", "inter_subset_convexHull"],
+      "isDef": false,
+      "docs": null}},
+    "content": "inter_subset_convexHull"},
+   "247":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Aesop.Frontend.Parser.aesopTactic-231",
+      "name": ["Aesop", "Frontend", "Parser", "aesopTactic"],
+      "docs":
+      "`aesop <clause>*` tries to solve the current goal by applying a set of rules\nregistered with the `@[aesop]` attribute. See [its\nREADME](https://github.com/JLimperg/aesop#readme) for a tutorial and a\nreference.\n\nThe variant `aesop?` prints the proof it found as a `Try this` suggestion.\n\nClauses can be used to customise the behaviour of an Aesop call. Available\nclauses are:\n\n- `(add <phase> <priority> <builder> <rule>)` adds a rule. `<phase>` is\n  `unsafe`, `safe` or `norm`. `<priority>` is a percentage for unsafe rules and\n  an integer for safe and norm rules. `<rule>` is the name of a declaration or\n  local hypothesis. `<builder>` is the rule builder used to turn `<rule>` into\n  an Aesop rule. Example: `(add unsafe 50% apply Or.inl)`.\n- `(erase <rule>)` disables a globally registered Aesop rule. Example: `(erase\n  Aesop.BuiltinRules.assumption)`.\n- `(rule_sets := [<ruleset>,*])` enables or disables named sets of rules for\n  this Aesop call. Example: `(rule_sets := [-builtin, MyRuleSet])`.\n- `(config { <opt> := <value> })` adjusts Aesop's search options. See\n  `Aesop.Options`.\n- `(simp_config { <opt> := <value> })` adjusts options for Aesop's built-in\n  `simp` rule. The given options are directly passed to `simp`. For example,\n  `(simp_config := { zeta := false })` makes Aesop use\n  `simp (config := { zeta := false })`.\n"}},
+    "content": "aesop"},
+   "242":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-228",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "24":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type u_2"},
+   "238": {"kind": "unknown", "content": "},"},
+   "236":
+   {"kind": {"var": {"type": "Finset ℤ", "name": "_uniq.247220"}},
+    "content": "t"},
+   "234":
+   {"kind": {"var": {"type": "Finset ℤ", "name": "_uniq.247218"}},
+    "content": "s"},
+   "226":
+   {"kind":
+    {"const":
+     {"signature": "Finset.Nonempty.{u_1} {α : Type u_1} (s : Finset α) : Prop",
+      "name": ["Finset", "Nonempty"],
+      "isDef": false,
+      "docs":
+      "The property `s.Nonempty` expresses the fact that the finset `s` is not empty. It should be used\nin theorem assumptions instead of `∃ x, x ∈ s` or `s ≠ ∅` as it gives access to a nice API thanks\nto the dot notation. "}},
+    "content": "Nonempty"},
+   "225":
+   {"kind": {"var": {"type": "t.Nonempty", "name": "_uniq.753"}},
+    "content": "a_2"},
+   "222":
+   {"kind":
+    {"const":
+     {"signature":
+      "HasSubset.Subset.{u} {α : Type u} [self : HasSubset α] : α → α → Prop",
+      "name": ["HasSubset", "Subset"],
+      "isDef": false,
+      "docs":
+      "Subset relation: `a ⊆ b`  \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `⊆` in identifiers is `subset`."}},
+    "content": "⊆"},
+   "220":
+   {"kind": {"var": {"type": "t ⊆ s", "name": "_uniq.752"}}, "content": "a_1"},
+   "22":
+   {"kind": {"var": {"type": "Type u_2", "name": "_pp_uniq.2"}},
+    "content": "E"},
+   "217":
+   {"kind": {"var": {"type": "s ∈ sorry ()", "name": "_uniq.751"}},
+    "content": "a"},
+   "214":
+   {"kind":
+    {"const":
+     {"signature": "Int : Type",
+      "name": ["Int"],
+      "isDef": false,
+      "docs":
+      "The integers.\n\nThis type is special-cased by the compiler and overridden with an efficient implementation. The\nruntime has a special representation for `Int` that stores “small” signed numbers directly, while\nlarger numbers use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)). A “small number” is an integer that can be encoded with one fewer bits\nthan the platform's pointer size (i.e. 63 bits on 64-bit architectures and 31 bits on 32-bit\narchitectures).\n"}},
+    "content": "ℤ"},
+   "213":
+   {"kind": {"var": {"type": "Finset ℤ", "name": "_uniq.518"}}, "content": "t"},
+   "212":
+   {"kind": {"var": {"type": "Finset ℤ", "name": "_uniq.517"}}, "content": "s"},
+   "210":
+   {"kind":
+    {"const":
+     {"signature":
+      "∀ {s t : Finset ℤ}, s ∈ sorry → t ⊆ s → t.Nonempty → t ∈ sorry",
+      "name": ["Geometry", "SimplicialComplex", "down_closed"],
+      "isDef": false,
+      "docs":
+      "faces are downward closed: a non-empty subset of its spanning vertices spans another face "}},
+    "content": "down_closed"},
+   "208":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.sorry-205",
+      "name": ["Lean", "Parser", "Term", "sorry"],
+      "docs":
+      "The `sorry` term is a temporary placeholder for a missing proof or value.\n\nThe syntax is intended for stubbing-out incomplete parts of a value or proof while still having a syntactically correct skeleton.\nLean will give a warning whenever a declaration uses `sorry`, so you aren't likely to miss it,\nbut you can double check if a declaration depends on `sorry` by looking for `sorryAx` in the output\nof the `#print axioms my_thm` command, the axiom used by the implementation of `sorry`.\n\n\"Go to definition\" on `sorry` in the Infoview will go to the source position where it was introduced, if such information is available.\n\nEach `sorry` is guaranteed to be unique, so for example the following fails:\n```lean\nexample : (sorry : Nat) = sorry := rfl -- fails\n```\n\nSee also the `sorry` tactic, which is short for `exact sorry`.\n"}},
+    "content": "sorry"},
+   "206":
+   {"kind":
+    {"const":
+     {"signature":
+      "∀ {s : Finset ℤ}, s ∈ sorry → AffineIndependent ℤ Subtype.val",
+      "name": ["Geometry", "SimplicialComplex", "indep"],
+      "isDef": false,
+      "docs":
+      "the vertices in each face are affine independent: this is an implementation detail "}},
+    "content": "indep"},
+   "20": {"kind": "unknown", "content": ")"},
+   "198":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Aesop.Frontend.Parser.aesopTactic-187",
+      "name": ["Aesop", "Frontend", "Parser", "aesopTactic"],
+      "docs":
+      "`aesop <clause>*` tries to solve the current goal by applying a set of rules\nregistered with the `@[aesop]` attribute. See [its\nREADME](https://github.com/JLimperg/aesop#readme) for a tutorial and a\nreference.\n\nThe variant `aesop?` prints the proof it found as a `Try this` suggestion.\n\nClauses can be used to customise the behaviour of an Aesop call. Available\nclauses are:\n\n- `(add <phase> <priority> <builder> <rule>)` adds a rule. `<phase>` is\n  `unsafe`, `safe` or `norm`. `<priority>` is a percentage for unsafe rules and\n  an integer for safe and norm rules. `<rule>` is the name of a declaration or\n  local hypothesis. `<builder>` is the rule builder used to turn `<rule>` into\n  an Aesop rule. Example: `(add unsafe 50% apply Or.inl)`.\n- `(erase <rule>)` disables a globally registered Aesop rule. Example: `(erase\n  Aesop.BuiltinRules.assumption)`.\n- `(rule_sets := [<ruleset>,*])` enables or disables named sets of rules for\n  this Aesop call. Example: `(rule_sets := [-builtin, MyRuleSet])`.\n- `(config { <opt> := <value> })` adjusts Aesop's search options. See\n  `Aesop.Options`.\n- `(simp_config { <opt> := <value> })` adjusts options for Aesop's built-in\n  `simp` rule. The given options are directly passed to `simp`. For example,\n  `(simp_config := { zeta := false })` makes Aesop use\n  `simp (config := { zeta := false })`.\n"}},
+    "content": "aesop"},
+   "190":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-184",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "186": {"kind": "unknown", "content": "∉"},
+   "18":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type u_1"},
+   "179":
+   {"kind":
+    {"const":
+     {"signature": "False : Prop",
+      "name": ["False"],
+      "isDef": false,
+      "docs":
+      "`False` is the empty proposition. Thus, it has no introduction rules.\nIt represents a contradiction. `False` elimination rule, `False.rec`,\nexpresses the fact that anything follows from a contradiction.\nThis rule is sometimes called ex falso (short for ex falso sequitur quodlibet),\nor the principle of explosion.\nFor more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)\n"}},
+    "content": "False"},
+   "176":
+   {"kind":
+    {"const":
+     {"signature": "Unit.unit : Unit",
+      "name": ["Unit", "unit"],
+      "isDef": false,
+      "docs":
+      "The only element of the unit type.\n\nIt can be written as an empty tuple: `()`.\n"}},
+    "content": ")"},
+   "174":
+   {"kind":
+    {"const":
+     {"signature": "Unit.unit : Unit",
+      "name": ["Unit", "unit"],
+      "isDef": false,
+      "docs":
+      "The only element of the unit type.\n\nIt can be written as an empty tuple: `()`.\n"}},
+    "content": "("},
+   "172": {"kind": "unknown", "content": "sorry"},
+   "170":
+   {"kind":
+    {"const":
+     {"signature":
+      "Membership.mem.{u, v} {α : outParam (Type u)} {γ : Type v} [self : Membership α γ] : γ → α → Prop",
+      "name": ["Membership", "mem"],
+      "isDef": false,
+      "docs":
+      "The membership relation `a ∈ s : Prop` where `a : α`, `s : γ`. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∈` in identifiers is `mem`."}},
+    "content": "∈"},
+   "168":
+   {"kind":
+    {"const":
+     {"signature":
+      "EmptyCollection.emptyCollection.{u} {α : Type u} [self : EmptyCollection α] : α",
+      "name": ["EmptyCollection", "emptyCollection"],
+      "isDef": false,
+      "docs":
+      "`∅` or `{}` is the empty set or empty collection.\nIt is supported by the `EmptyCollection` typeclass. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `{}` in identifiers is `empty`.\n\n * The recommended spelling of `∅` in identifiers is `empty`."}},
+    "content": "∅"},
+   "167":
+   {"kind": {"var": {"type": "∅ ∈ sorry ()", "name": "_uniq.476"}},
+    "content": "a"},
+   "164":
+   {"kind":
+    {"const":
+     {"signature": "∅ ∉ sorry",
+      "name": ["Geometry", "SimplicialComplex", "empty_notMem"],
+      "isDef": false,
+      "docs": "the empty set is not a face: hence, all faces are non-empty "}},
+    "content": "empty_notMem"},
+   "162": {"kind": "unknown", "content": "4"},
+   "160": {"kind": "unknown", "content": "2"},
+   "16": {"kind": "unknown", "content": ":"},
+   "158": {"kind": "unknown", "content": "1"},
+   "154": {"kind": "unknown", "content": "closure_of"},
+   "145":
+   {"kind":
+    {"const":
+     {"signature": "Set (Finset ℤ)",
+      "name": ["Geometry", "SimplicialComplex", "faces"],
+      "isDef": false,
+      "docs":
+      "the faces of this simplicial complex: currently, given by their spanning vertices "}},
+    "content": "faces"},
+   "143": {"kind": "unknown", "content": ":="},
+   "141": {"kind": "unknown", "content": "ℤ"},
+   "14":
+   {"kind": {"var": {"type": "Type u_1", "name": "_pp_uniq.1"}},
+    "content": "𝕜"},
+   "139":
+   {"kind":
+    {"const":
+     {"signature": "p : Geometry.SimplicialComplex ℤ ℤ",
+      "name": ["p"],
+      "isDef": true,
+      "docs": null}},
+    "content": "p"},
+   "137":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-77",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "134":
+   {"kind":
+    {"const":
+     {"signature":
+      "AffineIndependent.{u_1, u_2, u_3, u_4} (k : Type u_1) {V : Type u_2} {P : Type u_3} [Ring k] [AddCommGroup V]\n  [Module k V] [AddTorsor V P] {ι : Type u_4} (p : ι → P) : Prop",
+      "name": ["AffineIndependent"],
+      "isDef": false,
+      "docs":
+      "An indexed family is said to be affinely independent if no\nnontrivial weighted subtractions (where the sum of weights is 0) are\n0. "}},
+    "content": "AffineIndependent"},
+   "130":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.print-51",
+      "name": ["Lean", "Parser", "Command", "print"],
+      "docs": null}},
+    "content": "#print"},
+   "124":
+   {"kind": {"var": {"type": "ι", "name": "_pp_uniq.27"}}, "content": "i"},
+   "122":
+   {"kind":
+    {"const":
+     {"signature":
+      "Finset.weightedVSub.{u_1, u_2, u_3, u_4} {k : Type u_1} {V : Type u_2} {P : Type u_3} [Ring k] [AddCommGroup V]\n  [Module k V] [S : AddTorsor V P] {ι : Type u_4} (s : Finset ι) (p : ι → P) : (ι → k) →ₗ[k] V",
+      "name": ["Finset", "weightedVSub"],
+      "isDef": false,
+      "docs":
+      "A weighted sum of the results of subtracting a default base point\nfrom the given points, as a linear map on the weights.  This is\nintended to be used when the sum of the weights is 0; that condition\nis specified as a hypothesis on those lemmas that require it. "}},
+    "content": "weightedVSub"},
+   "120": {"kind": "unknown", "content": "."},
+   "12": {"kind": "unknown", "content": "("},
+   "118": {"kind": "unknown", "content": "0"},
+   "116":
+   {"kind":
+    {"const":
+     {"signature": "Eq.{u_1} {α : Sort u_1} : α → α → Prop",
+      "name": ["Eq"],
+      "isDef": false,
+      "docs":
+      "The equality relation. It has one introduction rule, `Eq.refl`.\nWe use `a = b` as notation for `Eq a b`.\nA fundamental property of equality is that it is an equivalence relation.\n```\nvariable (α : Type) (a b c d : α)\nvariable (hab : a = b) (hcb : c = b) (hcd : c = d)\n\nexample : a = d :=\n  Eq.trans (Eq.trans hab (Eq.symm hcb)) hcd\n```\nEquality is much more than an equivalence relation, however. It has the important property that every assertion\nrespects the equivalence, in the sense that we can substitute equal expressions without changing the truth value.\nThat is, given `h1 : a = b` and `h2 : p a`, we can construct a proof for `p b` using substitution: `Eq.subst h1 h2`.\nExample:\n```\nexample (α : Type) (a b : α) (p : α → Prop)\n        (h1 : a = b) (h2 : p a) : p b :=\n  Eq.subst h1 h2\n\nexample (α : Type) (a b : α) (p : α → Prop)\n    (h1 : a = b) (h2 : p a) : p b :=\n  h1 ▸ h2\n```\nThe triangle in the second presentation is a macro built on top of `Eq.subst` and `Eq.symm`, and you can enter it by typing `\\t`.\nFor more information: [Equality](https://lean-lang.org/theorem_proving_in_lean4/quantifiers_and_equality.html#equality)\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `=` in identifiers is `eq`."}},
+    "content": "="},
+   "114": {"kind": "unknown", "content": ","},
+   "112": {"kind": "unknown", "content": "∈"},
+   "110":
+   {"kind": {"var": {"type": "ι", "name": "_pp_uniq.39"}}, "content": "i"},
+   "108": {"kind": "unknown", "content": "∑"},
+   "106": {"kind": "unknown", "content": "),"},
+   "104":
+   {"kind": {"var": {"type": "ι → k", "name": "_pp_uniq.21"}}, "content": "w"},
+   "102":
+   {"kind":
+    {"const":
+     {"signature": "Finset.{u_4} (α : Type u_4) : Type u_4",
+      "name": ["Finset"],
+      "isDef": false,
+      "docs":
+      "`Finset α` is the type of finite sets of elements of `α`. It is implemented\nas a multiset (a list up to permutation) which has no duplicate elements. "}},
+    "content": "Finset"},
+   "100":
+   {"kind": {"var": {"type": "Finset ι", "name": "_pp_uniq.19"}},
+    "content": "s"},
+   "10":
+   {"kind":
+    {"const":
+     {"signature":
+      "Geometry.SimplicialComplex.{u_1, u_2} (𝕜 : Type u_1) (E : Type u_2) [Ring 𝕜] [PartialOrder 𝕜] [AddCommGroup E]\n  [Module 𝕜 E] : Type u_2",
+      "name": ["Geometry", "SimplicialComplex"],
+      "isDef": false,
+      "docs":
+      "A simplicial complex in a `𝕜`-module is a collection of simplices which glue nicely together.\nNote that the textbook meaning of \"glue nicely\" is given in\n`Geometry.SimplicialComplex.disjoint_or_exists_inter_eq_convexHull`. It is mostly useless, as\n`Geometry.SimplicialComplex.convexHull_inter_convexHull` is enough for all purposes. "}},
+    "content": "Geometry.SimplicialComplex.{u_1, u_2}"},
+   "0":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-0",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 341,
+  "messageContents":
+  {"91": {"text": "\n"},
+   "90": {"text": " :="},
+   "89": {"term": 88},
+   "8": {"text": ""},
+   "59": {"text": " : "},
+   "58": {"text": "}"},
+   "57": {"text": "u_4"},
+   "56": {"text": "u_3"},
+   "55": {"text": "u_2"},
+   "54": {"text": ", "},
+   "53": {"text": "u_1"},
+   "52": {"text": ".{"},
+   "51": {"text": "AffineIndependent"},
+   "50": {"text": " "},
+   "49": {"text": "def"},
+   "41": {"append": [8, 40]},
+   "40": {"term": 39},
+   "233": {"append": [8, 232]},
+   "232": {"append": [166, 91, 8, 231]},
+   "231": {"goal": 230},
+   "197": {"append": [8, 196]},
+   "196": {"append": [194, 195]},
+   "195": {"text": "failed to prove the goal after exhaustive search."},
+   "194": {"text": "aesop: "},
+   "185": {"append": [8, 184]},
+   "184": {"append": [166, 91, 8, 183]},
+   "183": {"goal": 182},
+   "166": {"text": "unsolved goals"},
+   "153": {"append": [8, 152]},
+   "152": {"append": [147, 148, 149, 150, 151, 8, 8, 8]},
+   "151": {"text": "`"},
+   "150": {"text": "closure_of"},
+   "149": {"text": " `"},
+   "148": {"text": "identifier"},
+   "147": {"text": "Unknown "},
+   "129": {"append": [8, 128]},
+   "128":
+   {"append":
+    [8, 49, 50, 51, 52, 53, 54, 55, 54, 56, 54, 57, 58, 59, 89, 90, 91, 127]},
+   "127": {"term": 126}},
+  "goals":
+  {"322":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 216, "names": [257]},
+     {"typeAndVal": 216, "names": [259]},
+     {"typeAndVal": 281, "names": [279]},
+     {"typeAndVal": 283, "names": [282]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 321},
+   "285":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 216, "names": [257]},
+     {"typeAndVal": 216, "names": [259]},
+     {"typeAndVal": 281, "names": [279]},
+     {"typeAndVal": 283, "names": [282]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 284},
+   "272":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 216, "names": [257]}, {"typeAndVal": 216, "names": [259]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 271},
+   "246":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 216, "names": [212]},
+     {"typeAndVal": 216, "names": [213]},
+     {"typeAndVal": 219, "names": [217]},
+     {"typeAndVal": 224, "names": [220]},
+     {"typeAndVal": 228, "names": [225]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 229},
+   "241":
+   {"name": null, "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 240},
+   "230":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 216, "names": [212, 213]},
+     {"typeAndVal": 219, "names": [217]},
+     {"typeAndVal": 224, "names": [220]},
+     {"typeAndVal": 228, "names": [225]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 229},
+   "189":
+   {"name": null, "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 188},
+   "182":
+   {"name": "h",
+    "hypotheses": [{"typeAndVal": 178, "names": [167]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 181}},
+  "code":
+  {"99": {"token": {"tok": 98}},
+   "97": {"token": {"tok": 96}},
+   "95": {"token": {"tok": 94}},
+   "93": {"token": {"tok": 92}},
+   "9": {"text": {"str": ""}},
+   "88":
+   {"seq":
+    {"highlights":
+     [13,
+      61,
+      2,
+      17,
+      2,
+      19,
+      21,
+      2,
+      63,
+      36,
+      65,
+      67,
+      2,
+      17,
+      2,
+      25,
+      69,
+      2,
+      63,
+      70,
+      65,
+      72,
+      2,
+      17,
+      2,
+      74,
+      69,
+      2,
+      63,
+      75,
+      27,
+      77,
+      2,
+      17,
+      2,
+      29,
+      2,
+      61,
+      31,
+      2,
+      63,
+      2,
+      27,
+      79,
+      2,
+      17,
+      2,
+      35,
+      2,
+      67,
+      31,
+      2,
+      63,
+      2,
+      27,
+      38,
+      2,
+      61,
+      2,
+      67,
+      31,
+      2,
+      63,
+      2,
+      27,
+      81,
+      2,
+      67,
+      2,
+      72,
+      31,
+      2,
+      63,
+      2,
+      65,
+      83,
+      2,
+      17,
+      2,
+      85,
+      69,
+      2,
+      63,
+      2,
+      13,
+      83,
+      2,
+      63,
+      2,
+      72,
+      21,
+      2,
+      63,
+      2,
+      87]}},
+   "87": {"token": {"tok": 86}},
+   "85": {"token": {"tok": 84}},
+   "83": {"token": {"tok": 82}},
+   "81": {"token": {"tok": 80}},
+   "79": {"token": {"tok": 78}},
+   "77": {"token": {"tok": 76}},
+   "75": {"text": {"str": "\n      "}},
+   "74": {"token": {"tok": 73}},
+   "72": {"token": {"tok": 71}},
+   "70": {"text": {"str": "\n    "}},
+   "7": {"text": {"str": "\n\n"}},
+   "69": {"token": {"tok": 68}},
+   "67": {"token": {"tok": 66}},
+   "65": {"token": {"tok": 64}},
+   "63": {"token": {"tok": 62}},
+   "61": {"token": {"tok": 60}},
+   "6": {"seq": {"highlights": [1, 2, 4, 5]}},
+   "5": {"seq": {"highlights": []}},
+   "48": {"seq": {"highlights": [7, 45, 2, 47, 5]}},
+   "47": {"token": {"tok": 46}},
+   "45": {"span": {"info": [["info", 41]], "content": 44}},
+   "44": {"seq": {"highlights": [43, 5]}},
+   "43": {"token": {"tok": 42}},
+   "4": {"token": {"tok": 3}},
+   "39":
+   {"seq":
+    {"highlights":
+     [9,
+      11,
+      2,
+      13,
+      15,
+      2,
+      17,
+      2,
+      19,
+      21,
+      2,
+      13,
+      23,
+      2,
+      17,
+      2,
+      25,
+      21,
+      2,
+      27,
+      29,
+      2,
+      15,
+      31,
+      2,
+      27,
+      33,
+      2,
+      15,
+      31,
+      2,
+      27,
+      35,
+      2,
+      23,
+      31,
+      36,
+      27,
+      38,
+      2,
+      15,
+      2,
+      23,
+      31,
+      2,
+      17,
+      2,
+      25]}},
+   "38": {"token": {"tok": 37}},
+   "36": {"text": {"str": "\n  "}},
+   "35": {"token": {"tok": 34}},
+   "340": {"seq": {"highlights": [337, 339, 5]}},
+   "339": {"token": {"tok": 338}},
+   "337": {"text": {"str": "\n"}},
+   "336":
+   {"seq":
+    {"highlights":
+     [7,
+      138,
+      2,
+      140,
+      2,
+      17,
+      2,
+      47,
+      2,
+      142,
+      2,
+      142,
+      2,
+      144,
+      2,
+      65,
+      36,
+      146,
+      2,
+      144,
+      2,
+      157,
+      2,
+      65,
+      65,
+      119,
+      115,
+      159,
+      115,
+      161,
+      69,
+      115,
+      65,
+      159,
+      115,
+      161,
+      115,
+      163,
+      69,
+      69,
+      115,
+      36,
+      165,
+      2,
+      144,
+      2,
+      205,
+      115,
+      36,
+      207,
+      2,
+      144,
+      2,
+      209,
+      36,
+      211,
+      2,
+      144,
+      2,
+      254,
+      36,
+      256,
+      2,
+      65,
+      258,
+      2,
+      260,
+      69,
+      2,
+      144,
+      2,
+      276,
+      70,
+      278,
+      2,
+      280,
+      2,
+      288,
+      70,
+      330,
+      331,
+      335,
+      7,
+      69,
+      5]}},
+   "335":
+   {"tactics": {"startPos": 335, "info": [], "endPos": 340, "content": 334}},
+   "334": {"seq": {"highlights": [333, 5]}},
+   "333": {"token": {"tok": 332}},
+   "331": {"text": {"str": "\n\n    "}},
+   "330":
+   {"tactics": {"startPos": 295, "info": [322], "endPos": 329, "content": 329}},
+   "33": {"token": {"tok": 32}},
+   "329": {"seq": {"highlights": [324, 27, 262, 115, 326, 115, 328, 31, 5]}},
+   "328": {"token": {"tok": 327}},
+   "326": {"token": {"tok": 325}},
+   "324": {"token": {"tok": 323}},
+   "321":
+   {"seq":
+    {"highlights":
+     [99,
+      2,
+      13,
+      290,
+      2,
+      17,
+      2,
+      292,
+      2,
+      215,
+      107,
+      36,
+      264,
+      258,
+      2,
+      266,
+      2,
+      264,
+      260,
+      2,
+      223,
+      2,
+      290,
+      2,
+      63,
+      70,
+      294,
+      2,
+      296,
+      298,
+      2,
+      17,
+      2,
+      215,
+      300,
+      2,
+      298,
+      2,
+      171,
+      2,
+      290,
+      2,
+      63,
+      2,
+      99,
+      2,
+      296,
+      302,
+      2,
+      17,
+      2,
+      215,
+      300,
+      2,
+      302,
+      2,
+      171,
+      2,
+      290,
+      2,
+      63,
+      2,
+      99,
+      2,
+      296,
+      304,
+      2,
+      306,
+      2,
+      17,
+      2,
+      215,
+      300,
+      2,
+      119,
+      2,
+      308,
+      2,
+      304,
+      2,
+      63,
+      2,
+      119,
+      2,
+      308,
+      2,
+      306,
+      2,
+      63,
+      2,
+      304,
+      2,
+      310,
+      2,
+      306,
+      2,
+      117,
+      2,
+      159,
+      2,
+      63,
+      2,
+      304,
+      2,
+      312,
+      2,
+      298,
+      2,
+      310,
+      2,
+      306,
+      2,
+      312,
+      2,
+      302,
+      2,
+      171,
+      2,
+      290,
+      21,
+      2,
+      63,
+      75,
+      314,
+      2,
+      316,
+      115,
+      2,
+      264,
+      316,
+      21,
+      2,
+      266,
+      2,
+      318,
+      2,
+      320,
+      115,
+      2,
+      264,
+      320,
+      2,
+      223,
+      2,
+      290]}},
+   "320": {"token": {"tok": 319}},
+   "318": {"token": {"tok": 317}},
+   "316": {"token": {"tok": 315}},
+   "314": {"token": {"tok": 313}},
+   "312": {"token": {"tok": 311}},
+   "310": {"token": {"tok": 309}},
+   "31": {"token": {"tok": 30}},
+   "308": {"token": {"tok": 307}},
+   "306": {"token": {"tok": 305}},
+   "304": {"token": {"tok": 303}},
+   "302": {"token": {"tok": 301}},
+   "300": {"token": {"tok": 299}},
+   "298": {"token": {"tok": 297}},
+   "296": {"token": {"tok": 295}},
+   "294": {"token": {"tok": 293}},
+   "292": {"token": {"tok": 291}},
+   "290": {"token": {"tok": 289}},
+   "29": {"token": {"tok": 28}},
+   "288":
+   {"tactics": {"startPos": 289, "info": [285], "endPos": 290, "content": 287}},
+   "287": {"seq": {"highlights": [286, 5]}},
+   "286": {"token": {"tok": 282}},
+   "284":
+   {"seq":
+    {"highlights":
+     [13,
+      262,
+      2,
+      215,
+      21,
+      2,
+      264,
+      258,
+      2,
+      266,
+      2,
+      13,
+      262,
+      2,
+      215,
+      21,
+      2,
+      264,
+      260,
+      2,
+      223,
+      2,
+      13,
+      262,
+      2,
+      215,
+      21,
+      2,
+      268,
+      264,
+      258,
+      2,
+      266,
+      2,
+      264,
+      260,
+      270]}},
+   "283": {"seq": {"highlights": [9, 260, 2, 171, 2, 173]}},
+   "281": {"seq": {"highlights": [9, 258, 2, 171, 2, 173]}},
+   "280": {"token": {"tok": 279}},
+   "278": {"token": {"tok": 277}},
+   "276":
+   {"tactics": {"startPos": 274, "info": [272], "endPos": 276, "content": 275}},
+   "275": {"seq": {"highlights": [274, 5]}},
+   "274": {"token": {"tok": 273}},
+   "271":
+   {"seq":
+    {"highlights":
+     [9,
+      258,
+      2,
+      171,
+      2,
+      173,
+      2,
+      63,
+      2,
+      260,
+      2,
+      171,
+      2,
+      173,
+      2,
+      63,
+      2,
+      13,
+      262,
+      2,
+      215,
+      21,
+      2,
+      264,
+      258,
+      2,
+      266,
+      2,
+      13,
+      262,
+      2,
+      215,
+      21,
+      2,
+      264,
+      260,
+      2,
+      223,
+      2,
+      13,
+      262,
+      2,
+      215,
+      21,
+      2,
+      268,
+      264,
+      258,
+      2,
+      266,
+      2,
+      264,
+      260,
+      270]}},
+   "270": {"token": {"tok": 269}},
+   "27": {"token": {"tok": 26}},
+   "268": {"token": {"tok": 267}},
+   "266": {"token": {"tok": 265}},
+   "264": {"token": {"tok": 263}},
+   "262": {"token": {"tok": 261}},
+   "260": {"token": {"tok": 259}},
+   "258": {"token": {"tok": 257}},
+   "256": {"token": {"tok": 255}},
+   "254": {"span": {"info": [["error", 233]], "content": 253}},
+   "253": {"seq": {"highlights": [245, 2, 252, 5]}},
+   "252": {"span": {"info": [["warning", 197]], "content": 251}},
+   "251": {"seq": {"highlights": [250, 5]}},
+   "250":
+   {"tactics": {"startPos": 231, "info": [246], "endPos": 236, "content": 249}},
+   "25": {"token": {"tok": 24}},
+   "249": {"seq": {"highlights": [248, 5]}},
+   "248": {"token": {"tok": 247}},
+   "245":
+   {"tactics": {"startPos": 228, "info": [241], "endPos": 230, "content": 244}},
+   "244": {"seq": {"highlights": [243, 5]}},
+   "243": {"token": {"tok": 242}},
+   "240":
+   {"seq":
+    {"highlights":
+     [99,
+      2,
+      65,
+      235,
+      2,
+      237,
+      2,
+      17,
+      2,
+      103,
+      2,
+      215,
+      239,
+      2,
+      235,
+      2,
+      171,
+      2,
+      173,
+      2,
+      63,
+      2,
+      237,
+      2,
+      223,
+      2,
+      235,
+      2,
+      63,
+      2,
+      237,
+      121,
+      227,
+      2,
+      63,
+      2,
+      237,
+      2,
+      171,
+      2,
+      173]}},
+   "239": {"token": {"tok": 238}},
+   "237": {"token": {"tok": 236}},
+   "235": {"token": {"tok": 234}},
+   "23": {"token": {"tok": 22}},
+   "229": {"seq": {"highlights": [9, 221, 2, 171, 2, 173, 2, 175, 177]}},
+   "228": {"seq": {"highlights": [9, 221, 9, 121, 227]}},
+   "227": {"token": {"tok": 226}},
+   "224": {"seq": {"highlights": [9, 221, 2, 223, 2, 218]}},
+   "223": {"token": {"tok": 222}},
+   "221": {"token": {"tok": 213}},
+   "219": {"seq": {"highlights": [9, 218, 2, 171, 2, 173, 2, 175, 177]}},
+   "218": {"token": {"tok": 212}},
+   "216": {"seq": {"highlights": [9, 103, 2, 215]}},
+   "215": {"token": {"tok": 214}},
+   "211": {"token": {"tok": 210}},
+   "21": {"token": {"tok": 20}},
+   "209": {"token": {"tok": 208}},
+   "207": {"token": {"tok": 206}},
+   "205": {"span": {"info": [["error", 185]], "content": 204}},
+   "204": {"seq": {"highlights": [193, 2, 203, 5]}},
+   "203": {"span": {"info": [["warning", 197]], "content": 202}},
+   "202": {"seq": {"highlights": [201, 5]}},
+   "201":
+   {"tactics": {"startPos": 187, "info": [182], "endPos": 192, "content": 200}},
+   "200": {"seq": {"highlights": [199, 5]}},
+   "2": {"text": {"str": " "}},
+   "199": {"token": {"tok": 198}},
+   "193":
+   {"tactics": {"startPos": 184, "info": [189], "endPos": 186, "content": 192}},
+   "192": {"seq": {"highlights": [191, 5]}},
+   "191": {"token": {"tok": 190}},
+   "19": {"token": {"tok": 18}},
+   "188": {"seq": {"highlights": [9, 169, 2, 187, 2, 173]}},
+   "187": {"token": {"tok": 186}},
+   "181": {"seq": {"highlights": [9, 180, 9]}},
+   "180": {"token": {"tok": 179}},
+   "178": {"seq": {"highlights": [9, 169, 2, 171, 2, 173, 2, 175, 177]}},
+   "177": {"token": {"tok": 176}},
+   "175": {"token": {"tok": 174}},
+   "173": {"token": {"tok": 172}},
+   "171": {"token": {"tok": 170}},
+   "17": {"token": {"tok": 16}},
+   "169": {"token": {"tok": 168}},
+   "165": {"token": {"tok": 164}},
+   "163": {"token": {"tok": 162}},
+   "161": {"token": {"tok": 160}},
+   "159": {"token": {"tok": 158}},
+   "157": {"span": {"info": [["error", 153]], "content": 156}},
+   "156": {"seq": {"highlights": [155, 5]}},
+   "155": {"token": {"tok": 154}},
+   "15": {"token": {"tok": 14}},
+   "146": {"token": {"tok": 145}},
+   "144": {"token": {"tok": 143}},
+   "142": {"token": {"tok": 141}},
+   "140": {"token": {"tok": 139}},
+   "138": {"token": {"tok": 137}},
+   "136": {"seq": {"highlights": [7, 133, 2, 135, 5]}},
+   "135": {"token": {"tok": 134}},
+   "133": {"span": {"info": [["info", 129]], "content": 132}},
+   "132": {"seq": {"highlights": [131, 5]}},
+   "131": {"token": {"tok": 130}},
+   "13": {"token": {"tok": 12}},
+   "126":
+   {"seq":
+    {"highlights":
+     [93,
+      2,
+      61,
+      2,
+      65,
+      67,
+      69,
+      2,
+      65,
+      72,
+      69,
+      2,
+      27,
+      29,
+      2,
+      61,
+      31,
+      2,
+      27,
+      35,
+      2,
+      67,
+      31,
+      2,
+      27,
+      38,
+      2,
+      61,
+      2,
+      67,
+      31,
+      2,
+      27,
+      81,
+      2,
+      67,
+      2,
+      72,
+      31,
+      2,
+      65,
+      83,
+      69,
+      2,
+      95,
+      2,
+      97,
+      36,
+      99,
+      2,
+      13,
+      101,
+      2,
+      17,
+      2,
+      103,
+      2,
+      83,
+      21,
+      2,
+      13,
+      105,
+      2,
+      17,
+      2,
+      83,
+      2,
+      63,
+      2,
+      61,
+      107,
+      2,
+      109,
+      2,
+      111,
+      2,
+      113,
+      2,
+      101,
+      115,
+      2,
+      105,
+      2,
+      111,
+      2,
+      117,
+      2,
+      119,
+      2,
+      63,
+      2,
+      13,
+      101,
+      121,
+      123,
+      2,
+      95,
+      21,
+      2,
+      105,
+      2,
+      117,
+      2,
+      119,
+      2,
+      63,
+      2,
+      99,
+      2,
+      125,
+      2,
+      113,
+      2,
+      101,
+      115,
+      2,
+      105,
+      2,
+      125,
+      2,
+      117,
+      2,
+      119]}},
+   "125": {"token": {"tok": 124}},
+   "123": {"token": {"tok": 122}},
+   "121": {"token": {"tok": 120}},
+   "119": {"token": {"tok": 118}},
+   "117": {"token": {"tok": 116}},
+   "115": {"token": {"tok": 114}},
+   "113": {"token": {"tok": 112}},
+   "111": {"token": {"tok": 110}},
+   "11": {"token": {"tok": 10}},
+   "109": {"token": {"tok": 108}},
+   "107": {"token": {"tok": 106}},
+   "105": {"token": {"tok": 104}},
+   "103": {"token": {"tok": 102}},
+   "101": {"token": {"tok": 100}},
+   "1": {"token": {"tok": 0}}}}}

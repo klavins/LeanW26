@@ -1,0 +1,4488 @@
+{"items":
+ [{"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 8, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 7},
+  {"range":
+   {"start": {"line": 10, "column": 1}, "end": {"line": 10, "column": 25}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 13},
+  {"range":
+   {"start": {"line": 24, "column": 1}, "end": {"line": 24, "column": 12}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 32},
+  {"range":
+   {"start": {"line": 28, "column": 1}, "end": {"line": 28, "column": 19}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 44},
+  {"range":
+   {"start": {"line": 29, "column": 1}, "end": {"line": 29, "column": 28}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 58},
+  {"range":
+   {"start": {"line": 30, "column": 1}, "end": {"line": 30, "column": 28}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 67},
+  {"range":
+   {"start": {"line": 31, "column": 1}, "end": {"line": 31, "column": 37}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 76},
+  {"range":
+   {"start": {"line": 44, "column": 1}, "end": {"line": 44, "column": 8}},
+   "kind": "Lean.Parser.Command.section",
+   "defines": [],
+   "code": 80},
+  {"range":
+   {"start": {"line": 47, "column": 1}, "end": {"line": 47, "column": 14}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.A"],
+   "code": 88},
+  {"range":
+   {"start": {"line": 48, "column": 1}, "end": {"line": 48, "column": 21}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.B"],
+   "code": 93},
+  {"range":
+   {"start": {"line": 49, "column": 1}, "end": {"line": 49, "column": 15}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.C"],
+   "code": 102},
+  {"range":
+   {"start": {"line": 54, "column": 1}, "end": {"line": 54, "column": 17}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 114},
+  {"range":
+   {"start": {"line": 57, "column": 1}, "end": {"line": 57, "column": 4}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 118},
+  {"range":
+   {"start": {"line": 64, "column": 1}, "end": {"line": 64, "column": 8}},
+   "kind": "Lean.Parser.Command.section",
+   "defines": [],
+   "code": 122},
+  {"range":
+   {"start": {"line": 77, "column": 1}, "end": {"line": 77, "column": 17}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 131},
+  {"range":
+   {"start": {"line": 78, "column": 1}, "end": {"line": 78, "column": 21}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 137},
+  {"range":
+   {"start": {"line": 80, "column": 1}, "end": {"line": 80, "column": 9}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 149},
+  {"range":
+   {"start": {"line": 81, "column": 1}, "end": {"line": 81, "column": 9}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 161},
+  {"range":
+   {"start": {"line": 92, "column": 1}, "end": {"line": 92, "column": 11}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 172},
+  {"range":
+   {"start": {"line": 93, "column": 1}, "end": {"line": 93, "column": 15}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 182},
+  {"range":
+   {"start": {"line": 94, "column": 1}, "end": {"line": 94, "column": 19}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 192},
+  {"range":
+   {"start": {"line": 111, "column": 1}, "end": {"line": 111, "column": 24}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 212},
+  {"range":
+   {"start": {"line": 112, "column": 1}, "end": {"line": 112, "column": 45}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 235},
+  {"range":
+   {"start": {"line": 121, "column": 1}, "end": {"line": 121, "column": 47}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 249},
+  {"range":
+   {"start": {"line": 125, "column": 1}, "end": {"line": 125, "column": 38}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 261},
+  {"range":
+   {"start": {"line": 137, "column": 1}, "end": {"line": 137, "column": 34}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.inc₁"],
+   "code": 275},
+  {"range":
+   {"start": {"line": 138, "column": 1}, "end": {"line": 138, "column": 35}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.inc₂"],
+   "code": 284},
+  {"range":
+   {"start": {"line": 140, "column": 1}, "end": {"line": 140, "column": 13}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 298},
+  {"range":
+   {"start": {"line": 141, "column": 1}, "end": {"line": 141, "column": 13}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 305},
+  {"range":
+   {"start": {"line": 142, "column": 1}, "end": {"line": 142, "column": 33}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 314},
+  {"range":
+   {"start": {"line": 155, "column": 1}, "end": {"line": 155, "column": 20}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 320},
+  {"range":
+   {"start": {"line": 156, "column": 1}, "end": {"line": 156, "column": 56}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.r₁"],
+   "code": 333},
+  {"range":
+   {"start": {"line": 160, "column": 1}, "end": {"line": 160, "column": 26}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.r₂"],
+   "code": 345},
+  {"range":
+   {"start": {"line": 164, "column": 1}, "end": {"line": 164, "column": 15}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.r₃"],
+   "code": 353},
+  {"range":
+   {"start": {"line": 166, "column": 1}, "end": {"line": 166, "column": 10}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 368},
+  {"range":
+   {"start": {"line": 221, "column": 1}, "end": {"line": 221, "column": 29}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 376},
+  {"range":
+   {"start": {"line": 222, "column": 1}, "end": {"line": 222, "column": 27}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.h₁"],
+   "code": 385},
+  {"range":
+   {"start": {"line": 223, "column": 1}, "end": {"line": 223, "column": 48}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.h₂"],
+   "code": 398},
+  {"range":
+   {"start": {"line": 225, "column": 1}, "end": {"line": 225, "column": 9}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 408},
+  {"range":
+   {"start": {"line": 226, "column": 1}, "end": {"line": 226, "column": 10}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 423},
+  {"range":
+   {"start": {"line": 227, "column": 1}, "end": {"line": 227, "column": 10}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 440},
+  {"range":
+   {"start": {"line": 228, "column": 1}, "end": {"line": 228, "column": 12}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 450},
+  {"range":
+   {"start": {"line": 229, "column": 1}, "end": {"line": 229, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 460},
+  {"range":
+   {"start": {"line": 230, "column": 1}, "end": {"line": 230, "column": 19}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 470},
+  {"range":
+   {"start": {"line": 241, "column": 1}, "end": {"line": 241, "column": 49}},
+   "kind": "Lean.Parser.Command.check_failure",
+   "defines": [],
+   "code": 526},
+  {"range":
+   {"start": {"line": 247, "column": 1}, "end": {"line": 247, "column": 32}},
+   "kind": "Lean.Parser.Command.check_failure",
+   "defines": [],
+   "code": 556},
+  {"range":
+   {"start": {"line": 279, "column": 1}, "end": {"line": 279, "column": 4}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 560},
+  {"range":
+   {"start": {"line": 288, "column": 1}, "end": {"line": 288, "column": 37}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 591},
+  {"range":
+   {"start": {"line": 292, "column": 1}, "end": {"line": 292, "column": 29}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 626},
+  {"range":
+   {"start": {"line": 296, "column": 1}, "end": {"line": 296, "column": 22}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 652},
+  {"range":
+   {"start": {"line": 300, "column": 1}, "end": {"line": 300, "column": 28}},
+   "kind": "Lean.Parser.Command.check_failure",
+   "defines": [],
+   "code": 690},
+  {"range":
+   {"start": {"line": 331, "column": 1}, "end": {"line": 331, "column": 32}},
+   "kind": "Lean.Parser.Command.check_failure",
+   "defines": [],
+   "code": 719},
+  {"range":
+   {"start": {"line": 401, "column": 1}, "end": {"line": 401, "column": 17}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 725},
+  {"range":
+   {"start": {"line": 403, "column": 1}, "end": {"line": 403, "column": 43}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 742},
+  {"range":
+   {"start": {"line": 405, "column": 1}, "end": {"line": 406, "column": 41}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 766},
+  {"range":
+   {"start": {"line": 408, "column": 1}, "end": {"line": 409, "column": 44}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 789},
+  {"range":
+   {"start": {"line": 473, "column": 1}, "end": {"line": 473, "column": 14}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.α"],
+   "code": 795},
+  {"range":
+   {"start": {"line": 474, "column": 1}, "end": {"line": 474, "column": 50}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.c₀"],
+   "code": 815},
+  {"range":
+   {"start": {"line": 475, "column": 1}, "end": {"line": 475, "column": 44}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.c₁"],
+   "code": 828},
+  {"range":
+   {"start": {"line": 476, "column": 1}, "end": {"line": 476, "column": 48}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.c₂"],
+   "code": 841},
+  {"range":
+   {"start": {"line": 477, "column": 1}, "end": {"line": 477, "column": 52}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.c₃"],
+   "code": 854},
+  {"range":
+   {"start": {"line": 481, "column": 1}, "end": {"line": 481, "column": 10}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 872},
+  {"range":
+   {"start": {"line": 485, "column": 1}, "end": {"line": 485, "column": 25}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.N"],
+   "code": 878},
+  {"range":
+   {"start": {"line": 500, "column": 1}, "end": {"line": 500, "column": 51}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.succ"],
+   "code": 894},
+  {"range":
+   {"start": {"line": 516, "column": 1}, "end": {"line": 516, "column": 33}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 915},
+  {"range":
+   {"start": {"line": 517, "column": 1}, "end": {"line": 517, "column": 33}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 929},
+  {"range":
+   {"start": {"line": 532, "column": 1}, "end": {"line": 532, "column": 44}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.add"],
+   "code": 945},
+  {"range":
+   {"start": {"line": 534, "column": 1}, "end": {"line": 534, "column": 34}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 959},
+  {"range":
+   {"start": {"line": 535, "column": 1}, "end": {"line": 535, "column": 50}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 973},
+  {"range":
+   {"start": {"line": 539, "column": 1}, "end": {"line": 539, "column": 43}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.mul"],
+   "code": 990},
+  {"range":
+   {"start": {"line": 541, "column": 1}, "end": {"line": 541, "column": 34}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 1004},
+  {"range":
+   {"start": {"line": 550, "column": 1}, "end": {"line": 551, "column": 49}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.ifzero"],
+   "code": 1031},
+  {"range":
+   {"start": {"line": 553, "column": 1}, "end": {"line": 553, "column": 40}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 1045},
+  {"range":
+   {"start": {"line": 554, "column": 1}, "end": {"line": 554, "column": 40}},
+   "kind": "Lean.reduceCmd",
+   "defines": [],
+   "code": 1057},
+  {"range":
+   {"start": {"line": 567, "column": 1}, "end": {"line": 568, "column": 6}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Simple.one_plus_one_is_two"],
+   "code": 1068},
+  {"range":
+   {"start": {"line": 612, "column": 1}, "end": {"line": 612, "column": 20}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 1076},
+  {"range":
+   {"start": {"line": 613, "column": 1}, "end": {"line": 613, "column": 12}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 1085},
+  {"range":
+   {"start": {"line": 614, "column": 1}, "end": {"line": 614, "column": 9}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 1094},
+  {"range":
+   {"start": {"line": 627, "column": 1}, "end": {"line": 627, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 1104},
+  {"range":
+   {"start": {"line": 631, "column": 1}, "end": {"line": 632, "column": 15}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 1114},
+  {"range":
+   {"start": {"line": 634, "column": 1}, "end": {"line": 635, "column": 30}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 1129},
+  {"range":
+   {"start": {"line": 714, "column": 1}, "end": {"line": 714, "column": 19}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 1133},
+  {"range":
+   {"start": {"line": 716, "column": 1}, "end": {"line": 716, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 1137}],
+ "data":
+ {"tokens":
+  {"998":
+   {"kind":
+    {"keyword": {"occurrence": "null-12690", "name": ["null"], "docs": null}},
+    "content": "types"},
+   "994":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-12682",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "988":
+   {"kind": {"var": {"type": "α", "name": "_uniq.3653"}}, "content": "x"},
+   "986":
+   {"kind": {"var": {"type": "α → α", "name": "_uniq.3650"}}, "content": "f"},
+   "984":
+   {"kind": {"var": {"type": "N", "name": "_uniq.3647"}}, "content": "n"},
+   "982":
+   {"kind": {"var": {"type": "N", "name": "_uniq.3645"}}, "content": "m"},
+   "980":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-12650",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "98":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.A : Type 1",
+      "name": ["LeanW26", "Simple", "A"],
+      "isDef": false,
+      "docs": null}},
+    "content": "A"},
+   "977":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.mul (m n : N) (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "mul"],
+      "isDef": true,
+      "docs": null}},
+    "content": "mul"},
+   "975":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-12638",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "971":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.c₁ (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "c₁"],
+      "isDef": false,
+      "docs": null}},
+    "content": "c₁"},
+   "969":
+   {"kind":
+    {"keyword": {"occurrence": "null-12554", "name": ["null"], "docs": null}},
+    "content": "true"},
+   "967":
+   {"kind":
+    {"keyword": {"occurrence": "null-12554", "name": ["null"], "docs": null}},
+    "content": "types"},
+   "963":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-12546",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "96":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.C : Type 1",
+      "name": ["LeanW26", "Simple", "C"],
+      "isDef": true,
+      "docs": null}},
+    "content": "C"},
+   "957":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.add (m n : N) (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "add"],
+      "isDef": false,
+      "docs": null}},
+    "content": "add"},
+   "955":
+   {"kind":
+    {"keyword": {"occurrence": "null-12516", "name": ["null"], "docs": null}},
+    "content": "true"},
+   "953":
+   {"kind":
+    {"keyword": {"occurrence": "null-12516", "name": ["null"], "docs": null}},
+    "content": "types"},
+   "949":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-12508",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "943":
+   {"kind": {"var": {"type": "α", "name": "_uniq.3566"}}, "content": "x"},
+   "941":
+   {"kind": {"var": {"type": "α → α", "name": "_uniq.3563"}}, "content": "f"},
+   "94":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1070",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "939":
+   {"kind": {"var": {"type": "N", "name": "_uniq.3560"}}, "content": "n"},
+   "937":
+   {"kind": {"var": {"type": "N", "name": "_uniq.3558"}}, "content": "m"},
+   "935":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-12474",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "933":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.add (m n : N) (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "add"],
+      "isDef": true,
+      "docs": null}},
+    "content": "add"},
+   "931":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-12463",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "927":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.c₃ (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "c₃"],
+      "isDef": false,
+      "docs": null}},
+    "content": "c₃"},
+   "925":
+   {"kind":
+    {"keyword": {"occurrence": "null-12350", "name": ["null"], "docs": null}},
+    "content": "true"},
+   "923":
+   {"kind":
+    {"keyword": {"occurrence": "null-12350", "name": ["null"], "docs": null}},
+    "content": "types"},
+   "919":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-12342",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "913":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.c₀ (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "c₀"],
+      "isDef": false,
+      "docs": null}},
+    "content": "c₀"},
+   "911":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.succ (m : N) (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "succ"],
+      "isDef": false,
+      "docs": null}},
+    "content": "succ"},
+   "91":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.B : Type 1",
+      "name": ["LeanW26", "Simple", "B"],
+      "isDef": true,
+      "docs": null}},
+    "content": "B"},
+   "909":
+   {"kind":
+    {"keyword": {"occurrence": "null-12315", "name": ["null"], "docs": null}},
+    "content": "true"},
+   "907":
+   {"kind":
+    {"keyword": {"occurrence": "null-12315", "name": ["null"], "docs": null}},
+    "content": "types"},
+   "903":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-12307",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "9":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-313",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"},
+   "898":
+   {"kind": {"var": {"type": "α", "name": "_pp_uniq.8"}}, "content": "x"},
+   "896":
+   {"kind": {"var": {"type": "α → α", "name": "_pp_uniq.6"}}, "content": "f"},
+   "892":
+   {"kind": {"var": {"type": "α", "name": "_uniq.3505"}}, "content": "x"},
+   "890":
+   {"kind": {"var": {"type": "α → α", "name": "_uniq.3501"}}, "content": "f"},
+   "89":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1047",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "888":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.N : Type 1",
+      "name": ["LeanW26", "Simple", "N"],
+      "isDef": false,
+      "docs": null}},
+    "content": "N"},
+   "886":
+   {"kind": {"var": {"type": "N", "name": "_uniq.3497"}}, "content": "m"},
+   "884":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-11730",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "882":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.succ (m : N) (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "succ"],
+      "isDef": true,
+      "docs": null}},
+    "content": "succ"},
+   "880":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-11718",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "876":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.N : Type 1",
+      "name": ["LeanW26", "Simple", "N"],
+      "isDef": true,
+      "docs": null}},
+    "content": "N"},
+   "874":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-11562",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "869":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.c₂ (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "c₂"],
+      "isDef": false,
+      "docs": null}},
+    "content": "c₂"},
+   "865":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-11462",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "860":
+   {"kind": {"var": {"type": "α", "name": "_pp_uniq.4"}}, "content": "x"},
+   "86": {"kind": "unknown", "content": ":="},
+   "858":
+   {"kind": {"var": {"type": "α → α", "name": "_pp_uniq.2"}}, "content": "f"},
+   "856":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.c₂ (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "c₂"],
+      "isDef": false,
+      "docs": null}},
+    "content": "LeanW26.Simple.c₂"},
+   "852":
+   {"kind": {"var": {"type": "α", "name": "_uniq.3453"}}, "content": "x"},
+   "850":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-11389",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "848":
+   {"kind": {"var": {"type": "α → α", "name": "_uniq.3449"}}, "content": "f"},
+   "846":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-11364",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "844":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.c₃ (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "c₃"],
+      "isDef": true,
+      "docs": null}},
+    "content": "c₃"},
+   "842":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-11352",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "84":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.A : Type 1",
+      "name": ["LeanW26", "Simple", "A"],
+      "isDef": true,
+      "docs": null}},
+    "content": "A"},
+   "839":
+   {"kind": {"var": {"type": "α", "name": "_uniq.3424"}}, "content": "x"},
+   "837":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-11335",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "835":
+   {"kind": {"var": {"type": "α → α", "name": "_uniq.3420"}}, "content": "f"},
+   "833":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-11310",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "831":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.c₂ (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "c₂"],
+      "isDef": true,
+      "docs": null}},
+    "content": "c₂"},
+   "829":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-11298",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "826":
+   {"kind": {"var": {"type": "α", "name": "_uniq.3395"}}, "content": "x"},
+   "824":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-11285",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "822":
+   {"kind": {"var": {"type": "α → α", "name": "_uniq.3391"}}, "content": "f"},
+   "820":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-11260",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "82":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1033",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "818":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.c₁ (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "c₁"],
+      "isDef": true,
+      "docs": null}},
+    "content": "c₁"},
+   "816":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-11248",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "813":
+   {"kind": {"var": {"type": "α", "name": "_uniq.3366"}}, "content": "x"},
+   "811":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-11228",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "809":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.α : Type 1",
+      "name": ["LeanW26", "Simple", "α"],
+      "isDef": false,
+      "docs": null}},
+    "content": "α"},
+   "805":
+   {"kind": {"var": {"type": "α → α", "name": "_uniq.3363"}}, "content": "f"},
+   "800":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-11203",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "798":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.c₀ (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "c₀"],
+      "isDef": true,
+      "docs": null}},
+    "content": "c₀"},
+   "796":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-11191",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "793":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.α : Type 1",
+      "name": ["LeanW26", "Simple", "α"],
+      "isDef": true,
+      "docs": null}},
+    "content": "α"},
+   "791":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-11176",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "786":
+   {"kind": {"var": {"type": "A", "name": "_uniq.3338"}}, "content": "y"},
+   "784":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-9389",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "781":
+   {"kind": {"var": {"type": "A", "name": "_uniq.3333"}}, "content": "y"},
+   "78":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.section-1015",
+      "name": ["Lean", "Parser", "Command", "section"],
+      "docs":
+      "A `section`/`end` pair delimits the scope of `variable`, `include`, `open`, `set_option`, and `local`\ncommands. Sections can be nested. `section <id>` provides a label to the section that has to appear\nwith the matching `end`. In either case, the `end` can be omitted, in which case the section is\nclosed at the end of the file.\n"}},
+    "content": "section"},
+   "779":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-9345",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "777":
+   {"kind": {"var": {"type": "A → A", "name": "_uniq.3330"}}, "content": "g"},
+   "775":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-9324",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "773":
+   {"kind":
+    {"keyword": {"occurrence": "null-9309", "name": ["null"], "docs": null}},
+    "content": "true"},
+   "771":
+   {"kind":
+    {"keyword": {"occurrence": "null-9309", "name": ["null"], "docs": null}},
+    "content": "types"},
+   "767":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-9301",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "763":
+   {"kind": {"var": {"type": "A", "name": "_uniq.3311"}}, "content": "y"},
+   "761":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-9256",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "758":
+   {"kind": {"var": {"type": "A", "name": "_uniq.3306"}}, "content": "y"},
+   "756":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-9213",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "754":
+   {"kind": {"var": {"type": "A → A", "name": "_uniq.3303"}}, "content": "g"},
+   "752":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-9192",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "750":
+   {"kind":
+    {"keyword": {"occurrence": "null-9177", "name": ["null"], "docs": null}},
+    "content": "true"},
+   "748":
+   {"kind":
+    {"keyword": {"occurrence": "null-9177", "name": ["null"], "docs": null}},
+    "content": "types"},
+   "744":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-9169",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "739":
+   {"kind": {"var": {"type": "A", "name": "_uniq.3294"}}, "content": "y"},
+   "737":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-9133",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "735":
+   {"kind":
+    {"keyword": {"occurrence": "null-9118", "name": ["null"], "docs": null}},
+    "content": "true"},
+   "733":
+   {"kind":
+    {"keyword": {"occurrence": "null-9118", "name": ["null"], "docs": null}},
+    "content": "types"},
+   "729":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-9110",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "723":
+   {"kind": {"var": {"type": "A", "name": "_uniq.3850"}}, "content": "x"},
+   "721":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-9092",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "72":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-780",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "713": {"kind": "unknown", "content": "M"},
+   "706": {"kind": "unknown", "content": "_"},
+   "704":
+   {"kind": {"var": {"type": "?m.1", "name": "_uniq.2832"}}, "content": "M"},
+   "702":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check_failure-7584",
+      "name": ["Lean", "Parser", "Command", "check_failure"],
+      "docs": null}},
+    "content": "#check_failure"},
+   "694": {"kind": "unknown", "content": "?m.3"},
+   "692":
+   {"kind": {"var": {"type": "?m.1", "name": "_pp_uniq.1"}}, "content": "M"},
+   "676":
+   {"kind": {"var": {"type": "?m.5 g", "name": "_uniq.2370"}}, "content": "y"},
+   "674":
+   {"kind": {"var": {"type": "?m.1", "name": "_uniq.2367"}}, "content": "g"},
+   "672": {"kind": "unknown", "content": "λ"},
+   "670":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check_failure-6788",
+      "name": ["Lean", "Parser", "Command", "check_failure"],
+      "docs": null}},
+    "content": "#check_failure"},
+   "664": {"kind": "unknown", "content": "?m.6"},
+   "662": {"kind": "unknown", "content": "?m.5"},
+   "660": {"kind": "unknown", "content": "?m.1"},
+   "656":
+   {"kind": {"var": {"type": "?m.5 g", "name": "_pp_uniq.3"}}, "content": "y"},
+   "654":
+   {"kind": {"var": {"type": "?m.1", "name": "_pp_uniq.2"}}, "content": "g"},
+   "650":
+   {"kind": {"var": {"type": "?m.9 x", "name": "_uniq.1974"}}, "content": "y"},
+   "648":
+   {"kind": {"var": {"type": "?m.7", "name": "_uniq.1971"}}, "content": "x"},
+   "646":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-6700",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "642":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-6693",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "636": {"kind": "unknown", "content": "?m.10"},
+   "634": {"kind": "unknown", "content": "?m.9"},
+   "632":
+   {"kind": {"var": {"type": "?m.9 x", "name": "_pp_uniq.6"}}, "content": "y"},
+   "63":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-748",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "628":
+   {"kind": {"var": {"type": "?m.9 x", "name": "_pp_uniq.3"}}, "content": "y"},
+   "623":
+   {"kind": {"var": {"type": "?m.11 x", "name": "_uniq.1576"}}, "content": "y"},
+   "621":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-6566",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "619":
+   {"kind": {"var": {"type": "?m.7", "name": "_uniq.1573"}}, "content": "x"},
+   "617":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-6557",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "613":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-6550",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "607": {"kind": "unknown", "content": "?m.12"},
+   "605": {"kind": "unknown", "content": "?m.11"},
+   "603":
+   {"kind": {"var": {"type": "?m.11 x", "name": "_pp_uniq.6"}}, "content": "y"},
+   "601": {"kind": "unknown", "content": "?m.7"},
+   "599":
+   {"kind": {"var": {"type": "?m.7", "name": "_pp_uniq.4"}}, "content": "x"},
+   "595":
+   {"kind": {"var": {"type": "?m.11 x", "name": "_pp_uniq.3"}}, "content": "y"},
+   "593":
+   {"kind": {"var": {"type": "?m.7", "name": "_pp_uniq.2"}}, "content": "x"},
+   "588":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.1528"}}, "content": "y"},
+   "586":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-6423",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "584": {"kind": "unknown", "content": "ℕ"},
+   "582":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.1526"}}, "content": "x"},
+   "580":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-6408",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "576":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-6401",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "570":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "ℕ"},
+   "566":
+   {"kind":
+    {"const":
+     {"signature":
+      "HAdd.hAdd.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HAdd α β γ] : α → β → γ",
+      "name": ["HAdd", "hAdd"],
+      "isDef": false,
+      "docs":
+      "`a + b` computes the sum of `a` and `b`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `+` in identifiers is `add`."}},
+    "content": "+"},
+   "564":
+   {"kind": {"var": {"type": "ℕ", "name": "_pp_uniq.3"}}, "content": "y"},
+   "562":
+   {"kind": {"var": {"type": "ℕ", "name": "_pp_uniq.2"}}, "content": "x"},
+   "56": {"kind": "unknown", "content": ")"},
+   "558":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-6295",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "550": {"kind": "unknown", "content": "q"},
+   "540":
+   {"kind": {"var": {"type": "A", "name": "_uniq.1516"}}, "content": "y"},
+   "54": {"kind": "unknown", "content": "("},
+   "538":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5506",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "536":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check_failure-5491",
+      "name": ["Lean", "Parser", "Command", "check_failure"],
+      "docs": null}},
+    "content": "#check_failure"},
+   "530": {"kind": "unknown", "content": "?m.2"},
+   "520": {"kind": "unknown", "content": "y"},
+   "508":
+   {"kind": {"var": {"type": "A", "name": "_uniq.1411"}}, "content": "y"},
+   "50":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-716",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "496":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5354",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "494":
+   {"kind": {"var": {"type": "A", "name": "_uniq.1409"}}, "content": "g"},
+   "492":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-5339",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "490":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check_failure-5324",
+      "name": ["Lean", "Parser", "Command", "check_failure"],
+      "docs": null}},
+    "content": "#check_failure"},
+   "484": {"kind": "unknown", "content": "?m.4"},
+   "482":
+   {"kind": {"var": {"type": "A", "name": "_pp_uniq.3"}}, "content": "y"},
+   "480":
+   {"kind": {"var": {"type": "A", "name": "_pp_uniq.2"}}, "content": "g"},
+   "476": {"kind": "unknown", "content": "sorry"},
+   "474":
+   {"kind": {"var": {"type": "A", "name": "_pp_uniq.7"}}, "content": "y"},
+   "472":
+   {"kind": {"var": {"type": "A", "name": "_pp_uniq.6"}}, "content": "g"},
+   "465":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-5119",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "455":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-5076",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "445":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-5041",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "437":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.h₂ (g : A → A) (y : A) : A",
+      "name": ["LeanW26", "Simple", "h₂"],
+      "isDef": false,
+      "docs": null}},
+    "content": "h₂"},
+   "433":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-4986",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "428":
+   {"kind": {"var": {"type": "A", "name": "_pp_uniq.4"}}, "content": "y"},
+   "426":
+   {"kind": {"var": {"type": "A → A", "name": "_pp_uniq.2"}}, "content": "g"},
+   "424":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.h₂ (g : A → A) (y : A) : A",
+      "name": ["LeanW26", "Simple", "h₂"],
+      "isDef": false,
+      "docs": null}},
+    "content": "LeanW26.Simple.h₂"},
+   "420":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.h₁ (y : A) : A",
+      "name": ["LeanW26", "Simple", "h₁"],
+      "isDef": false,
+      "docs": null}},
+    "content": "h₁"},
+   "416":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-4945",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "411":
+   {"kind": {"var": {"type": "A", "name": "_pp_uniq.1"}}, "content": "y"},
+   "409":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.h₁ (y : A) : A",
+      "name": ["LeanW26", "Simple", "h₁"],
+      "isDef": false,
+      "docs": null}},
+    "content": "LeanW26.Simple.h₁"},
+   "403":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-4912",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "40":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-695",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "4": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "396":
+   {"kind": {"var": {"type": "A", "name": "_uniq.1276"}}, "content": "y"},
+   "394":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-4892",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "392":
+   {"kind": {"var": {"type": "A → A", "name": "_uniq.1273"}}, "content": "g"},
+   "390":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-4871",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "388":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.h₂ (g : A → A) (y : A) : A",
+      "name": ["LeanW26", "Simple", "h₂"],
+      "isDef": true,
+      "docs": null}},
+    "content": "h₂"},
+   "386":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-4859",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "383":
+   {"kind": {"var": {"type": "A", "name": "_uniq.1245"}}, "content": "y"},
+   "381":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-4842",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "379":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.h₁ (y : A) : A",
+      "name": ["LeanW26", "Simple", "h₁"],
+      "isDef": true,
+      "docs": null}},
+    "content": "h₁"},
+   "377":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-4830",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "374":
+   {"kind": {"var": {"type": "A → A", "name": "_uniq.1406"}}, "content": "f"},
+   "372":
+   {"kind": {"var": {"type": "A", "name": "_uniq.1402"}}, "content": "x"},
+   "370":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-4799",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "365":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.r₃ (a : Type) : Type",
+      "name": ["LeanW26", "Simple", "r₃"],
+      "isDef": false,
+      "docs": null}},
+    "content": "r₃"},
+   "361":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-3410",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "356":
+   {"kind": {"var": {"type": "Type", "name": "_pp_uniq.1"}}, "content": "a"},
+   "354":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.r₃ (a : Type) : Type",
+      "name": ["LeanW26", "Simple", "r₃"],
+      "isDef": false,
+      "docs": null}},
+    "content": "LeanW26.Simple.r₃"},
+   "351":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.r₂ (x : Type) : Type",
+      "name": ["LeanW26", "Simple", "r₂"],
+      "isDef": false,
+      "docs": null}},
+    "content": "r₂"},
+   "349":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.r₃ (a : Type) : Type",
+      "name": ["LeanW26", "Simple", "r₃"],
+      "isDef": true,
+      "docs": null}},
+    "content": "r₃"},
+   "347":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-3390",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "343":
+   {"kind": {"var": {"type": "Type", "name": "_uniq.1182"}}, "content": "x"},
+   "341":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3345",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "34": {"kind": "unknown", "content": "→"},
+   "339":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.r₁ (g : Type → Type) (x : Type) : Type",
+      "name": ["LeanW26", "Simple", "r₁"],
+      "isDef": false,
+      "docs": null}},
+    "content": "r₁"},
+   "337":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.r₂ (x : Type) : Type",
+      "name": ["LeanW26", "Simple", "r₂"],
+      "isDef": true,
+      "docs": null}},
+    "content": "r₂"},
+   "335":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-3327",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "331":
+   {"kind": {"var": {"type": "Type", "name": "_uniq.1155"}}, "content": "x"},
+   "329":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3216",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "327":
+   {"kind": {"var": {"type": "Type → Type", "name": "_uniq.1153"}},
+    "content": "g"},
+   "325":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3189",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "323":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.r₁ (g : Type → Type) (x : Type) : Type",
+      "name": ["LeanW26", "Simple", "r₁"],
+      "isDef": true,
+      "docs": null}},
+    "content": "r₁"},
+   "321":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-3177",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "318":
+   {"kind": {"var": {"type": "Type", "name": "_uniq.1400"}}, "content": "a"},
+   "316":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-3157",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "312": {"kind": {"var": {"type": "ℕ", "name": "_uniq.824"}}, "content": "x"},
+   "310":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3079",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "306":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-3072",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "303":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.inc₂ (x : ℕ) : ℕ",
+      "name": ["LeanW26", "Simple", "inc₂"],
+      "isDef": false,
+      "docs": null}},
+    "content": "inc₂"},
+   "299":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-3057",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "296": {"kind": {"withType": {"type": "ℕ"}}, "content": "3"},
+   "294":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.inc₁ (x : ℕ) : ℕ",
+      "name": ["LeanW26", "Simple", "inc₁"],
+      "isDef": false,
+      "docs": null}},
+    "content": "inc₁"},
+   "290":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-3042",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "285": {"kind": "unknown", "content": "4"},
+   "282": {"kind": {"var": {"type": "ℕ", "name": "_uniq.314"}}, "content": "x"},
+   "280":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3018",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "28":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-600",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "278":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.inc₂ (x : ℕ) : ℕ",
+      "name": ["LeanW26", "Simple", "inc₂"],
+      "isDef": true,
+      "docs": null}},
+    "content": "inc₂"},
+   "276":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-3004",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "273": {"kind": {"withType": {"type": "ℕ"}}, "content": "1"},
+   "271": {"kind": "unknown", "content": "+"},
+   "269":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "Nat"},
+   "267": {"kind": {"var": {"type": "ℕ", "name": "_uniq.190"}}, "content": "x"},
+   "265":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.inc₁ (x : ℕ) : ℕ",
+      "name": ["LeanW26", "Simple", "inc₁"],
+      "isDef": true,
+      "docs": null}},
+    "content": "inc₁"},
+   "263":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2968",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "259": {"kind": {"var": {"type": "A", "name": "_uniq.173"}}, "content": "y"},
+   "257":
+   {"kind": {"var": {"type": "A → A", "name": "_uniq.170"}}, "content": "g"},
+   "255":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2808",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "251":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2801",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "247": {"kind": {"var": {"type": "A", "name": "_uniq.151"}}, "content": "y"},
+   "245":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2717",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "243":
+   {"kind": {"var": {"type": "A → A", "name": "_uniq.148"}}, "content": "g"},
+   "241":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2695",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "237":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2688",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "233": {"kind": {"var": {"type": "A", "name": "_uniq.129"}}, "content": "y"},
+   "231":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2314",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "229":
+   {"kind": {"var": {"type": "A → A", "name": "_uniq.126"}}, "content": "g"},
+   "227":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2293",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "223":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2286",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "22":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type 1"},
+   "215":
+   {"kind": {"var": {"type": "A", "name": "_pp_uniq.8"}}, "content": "y"},
+   "213":
+   {"kind": {"var": {"type": "A → A", "name": "_pp_uniq.6"}}, "content": "g"},
+   "210": {"kind": {"var": {"type": "A", "name": "_uniq.113"}}, "content": "y"},
+   "208":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2269",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "204":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2262",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "198": {"kind": "unknown", "content": "=>"},
+   "196":
+   {"kind": {"var": {"type": "A", "name": "_pp_uniq.2"}}, "content": "y"},
+   "194":
+   {"kind": {"keyword": {"occurrence": null, "name": null, "docs": null}},
+    "content": "fun"},
+   "187":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1928",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "177":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1894",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "17":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type"},
+   "167":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1860",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "156":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1610",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "144":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1587",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "134":
+   {"kind": {"var": {"type": "A → A", "name": "_uniq.1397"}}, "content": "f"},
+   "132":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-1515",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "128": {"kind": "unknown", "content": ":"},
+   "126":
+   {"kind": {"var": {"type": "A", "name": "_uniq.1393"}}, "content": "x"},
+   "124":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-1450",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "120":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.section-1259",
+      "name": ["Lean", "Parser", "Command", "section"],
+      "docs":
+      "A `section`/`end` pair delimits the scope of `variable`, `include`, `open`, `set_option`, and `local`\ncommands. Sections can be nested. `section <id>` provides a label to the section that has to appear\nwith the matching `end`. In either case, the `end` can be omitted, in which case the section is\nclosed at the end of the file.\n"}},
+    "content": "section"},
+   "116":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-1235",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "1135": {"kind": "unknown", "content": ""},
+   "1131":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-16842",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "1127":
+   {"kind": {"var": {"type": "p → q", "name": "_uniq.3896"}}, "content": "hpq"},
+   "1125":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-14634",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "1123":
+   {"kind": {"var": {"type": "p", "name": "_uniq.3893"}}, "content": "hp"},
+   "1121":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-14624",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "1119":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.3875"}}, "content": "q"},
+   "1117":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.3873"}}, "content": "p"},
+   "1115":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-14574",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "1112":
+   {"kind": {"var": {"type": "p", "name": "_uniq.3864"}}, "content": "hp"},
+   "1110":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-14560",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "1108":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.3854"}}, "content": "p"},
+   "1106":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-14526",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "1100":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-14419",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "110":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1206",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "11": {"kind": "unknown", "content": "LeanW26.Simple"},
+   "1090":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-14083",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "1081":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-14071",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "1074":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "The universe of propositions. `Prop ≡ Sort 0`.\n\nEvery proposition is propositionally equal to either `True` or `False`. "}},
+    "content": "Prop"},
+   "1072":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.3852"}}, "content": "p"},
+   "1070":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-14051",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "1066":
+   {"kind":
+    {"const":
+     {"signature": "rfl.{u} {α : Sort u} {a : α} : a = a",
+      "name": ["rfl"],
+      "isDef": false,
+      "docs":
+      "`rfl : a = a` is the unique constructor of the equality type. This is the\nsame as `Eq.refl` except that it takes `a` implicitly instead of explicitly.\n\nThis is a more powerful theorem than it may appear at first, because although\nthe statement of the theorem is `a = a`, Lean will allow anything that is\ndefinitionally equal to that type. So, for instance, `2 + 2 = 4` is proven in\nLean by `rfl`, because both sides are the same up to definitional equality.\n"}},
+    "content": "rfl"},
+   "1063": {"kind": "unknown", "content": "="},
+   "1061":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.one_plus_one_is_two : add c₁ c₁ = c₂",
+      "name": ["LeanW26", "Simple", "one_plus_one_is_two"],
+      "isDef": true,
+      "docs": null}},
+    "content": "one_plus_one_is_two"},
+   "1059":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-13003",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "1055":
+   {"kind":
+    {"keyword": {"occurrence": "null-12939", "name": ["null"], "docs": null}},
+    "content": "true"},
+   "1053":
+   {"kind":
+    {"keyword": {"occurrence": "null-12939", "name": ["null"], "docs": null}},
+    "content": "types"},
+   "1049":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-12931",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "1043":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.ifzero (m n p : N) (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "ifzero"],
+      "isDef": false,
+      "docs": null}},
+    "content": "ifzero"},
+   "1041":
+   {"kind":
+    {"keyword": {"occurrence": "null-12893", "name": ["null"], "docs": null}},
+    "content": "true"},
+   "104":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.C : Type 1",
+      "name": ["LeanW26", "Simple", "C"],
+      "isDef": false,
+      "docs": null}},
+    "content": "C"},
+   "1039":
+   {"kind":
+    {"keyword": {"occurrence": "null-12893", "name": ["null"], "docs": null}},
+    "content": "types"},
+   "1035":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.reduceCmd-12885",
+      "name": ["Lean", "reduceCmd"],
+      "docs":
+      "`#reduce <expression>` reduces the expression `<expression>` to its normal form. This\ninvolves applying reduction rules until no further reduction is possible.\n\nBy default, proofs and types within the expression are not reduced. Use modifiers\n`(proofs := true)`  and `(types := true)` to reduce them.\nRecall that propositions are types in Lean.\n\n**Warning:** This can be a computationally expensive operation,\nespecially for complex expressions.\n\nConsider using `#eval <expression>` for simple evaluation/execution\nof expressions.\n"}},
+    "content": "#reduce"},
+   "1027":
+   {"kind": {"var": {"type": "α", "name": "_uniq.3716"}}, "content": "y"},
+   "1025":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-12852",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "1022":
+   {"kind": {"var": {"type": "α", "name": "_uniq.3713"}}, "content": "x"},
+   "1020":
+   {"kind": {"var": {"type": "α → α", "name": "_uniq.3710"}}, "content": "f"},
+   "1018":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-12824",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "1016":
+   {"kind": {"var": {"type": "N", "name": "_uniq.3707"}}, "content": "p"},
+   "1014":
+   {"kind": {"var": {"type": "N", "name": "_uniq.3705"}}, "content": "n"},
+   "1012":
+   {"kind": {"var": {"type": "N", "name": "_uniq.3703"}}, "content": "m"},
+   "1010":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-12806",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "1008":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.ifzero (m n p : N) (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "ifzero"],
+      "isDef": true,
+      "docs": null}},
+    "content": "ifzero"},
+   "1006":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-12792",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "1002":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.mul (m n : N) (f : α → α) (x : α) : α",
+      "name": ["LeanW26", "Simple", "mul"],
+      "isDef": false,
+      "docs": null}},
+    "content": "mul"},
+   "1000":
+   {"kind":
+    {"keyword": {"occurrence": "null-12690", "name": ["null"], "docs": null}},
+    "content": "true"},
+   "100":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Simple.B : Type 1",
+      "name": ["LeanW26", "Simple", "B"],
+      "isDef": false,
+      "docs": null}},
+    "content": "B"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-297",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 1138,
+  "messageContents":
+  {"993": {"append": [15, 992]},
+   "992": {"term": 991},
+   "962": {"append": [15, 961]},
+   "961": {"term": 960},
+   "948": {"append": [15, 947]},
+   "947": {"term": 946},
+   "918": {"append": [15, 917]},
+   "917": {"term": 916},
+   "902": {"append": [15, 901]},
+   "901": {"term": 900},
+   "864": {"append": [15, 863]},
+   "863": {"term": 862},
+   "804": {"append": [15, 803]},
+   "803": {"append": [498, 802, 500, 501, 501, 502, 503, 504, 505]},
+   "802": {"text": "f"},
+   "743": {"append": [15, 201]},
+   "728": {"append": [15, 727]},
+   "727": {"term": 726},
+   "712": {"append": [15, 711]},
+   "711":
+   {"append":
+    [512, 513, 709, 15, 501, 516, 513, 683, 501, 501, 502, 517, 513, 710, 15]},
+   "710": {"text": "M"},
+   "71": {"append": [15, 70]},
+   "709": {"term": 708},
+   "701": {"append": [15, 700]},
+   "700": {"append": [697, 21, 699]},
+   "70": {"append": [69, 21, 25]},
+   "699": {"term": 698},
+   "697": {"term": 696},
+   "69": {"term": 68},
+   "685": {"append": [15, 684]},
+   "684":
+   {"append":
+    [512, 513, 681, 15, 501, 516, 513, 683, 501, 501, 502, 517, 513, 499, 15]},
+   "683": {"term": 682},
+   "681": {"term": 680},
+   "669": {"append": [15, 668]},
+   "668": {"append": [659, 21, 667]},
+   "667": {"term": 666},
+   "659": {"term": 658},
+   "641": {"append": [15, 640]},
+   "640": {"append": [631, 21, 639]},
+   "639": {"term": 638},
+   "631": {"term": 630},
+   "62": {"append": [15, 61]},
+   "612": {"append": [15, 611]},
+   "611": {"append": [598, 21, 610]},
+   "610": {"term": 609},
+   "61": {"append": [60, 21, 25]},
+   "60": {"term": 59},
+   "598": {"term": 597},
+   "575": {"append": [15, 574]},
+   "574": {"append": [569, 21, 573]},
+   "573": {"term": 572},
+   "569": {"term": 568},
+   "549": {"append": [15, 548]},
+   "548": {"append": [544, 545, 546, 547, 500, 15, 15, 15]},
+   "547": {"text": "q"},
+   "546": {"text": " `"},
+   "545": {"text": "identifier"},
+   "544": {"text": "Unknown "},
+   "535": {"append": [15, 534]},
+   "534": {"append": [529, 21, 533]},
+   "533": {"term": 532},
+   "529": {"term": 528},
+   "519": {"append": [15, 518]},
+   "518":
+   {"append":
+    [512, 513, 515, 15, 501, 516, 513, 141, 501, 501, 502, 517, 513, 499, 15]},
+   "517":
+   {"text":
+    "Expected a function because this term is being applied to the argument"},
+   "516": {"text": "but this term has type"},
+   "515": {"term": 514},
+   "513": {"text": "\n  "},
+   "512": {"text": "Function expected at"},
+   "507": {"append": [15, 506]},
+   "506": {"append": [498, 499, 500, 501, 501, 502, 503, 504, 505]},
+   "505": {"text": " false`"},
+   "504": {"text": "linter.unusedVariables"},
+   "503": {"text": "This linter can be disabled with `set_option "},
+   "502": {"text": "Note: "},
+   "501": {"text": "\n"},
+   "500": {"text": "`"},
+   "499": {"text": "y"},
+   "498": {"text": "unused variable `"},
+   "49": {"append": [15, 48]},
+   "489": {"append": [15, 488]},
+   "488": {"append": [479, 21, 487]},
+   "487": {"term": 486},
+   "48": {"append": [47, 21, 25]},
+   "479": {"term": 478},
+   "47": {"term": 46},
+   "464": {"append": [15, 463]},
+   "463": {"append": [462, 21, 141]},
+   "462": {"term": 461},
+   "454": {"append": [15, 453]},
+   "453": {"append": [452, 21, 153]},
+   "452": {"term": 451},
+   "444": {"append": [15, 443]},
+   "443": {"append": [442, 21, 141]},
+   "442": {"term": 441},
+   "432": {"append": [15, 431]},
+   "431": {"term": 430},
+   "415": {"append": [15, 414]},
+   "414": {"term": 413},
+   "402": {"append": [15, 401]},
+   "401": {"append": [400, 21, 141]},
+   "400": {"term": 399},
+   "39": {"append": [15, 38]},
+   "38": {"append": [37, 21, 25]},
+   "37": {"term": 36},
+   "360": {"append": [15, 359]},
+   "359": {"term": 358},
+   "289": {"append": [15, 288]},
+   "288": {"term": 287},
+   "27": {"append": [15, 26]},
+   "26": {"append": [20, 21, 25]},
+   "25": {"term": 24},
+   "222": {"append": [15, 221]},
+   "221": {"append": [218, 21, 220]},
+   "220": {"term": 219},
+   "218": {"term": 217},
+   "21": {"text": " : "},
+   "203": {"append": [15, 202]},
+   "202": {"append": [201, 21, 153]},
+   "201": {"term": 200},
+   "20": {"term": 19},
+   "186": {"append": [15, 185]},
+   "185": {"append": [184, 21, 141]},
+   "184": {"term": 183},
+   "176": {"append": [15, 175]},
+   "175": {"append": [174, 21, 141]},
+   "174": {"term": 173},
+   "166": {"append": [15, 165]},
+   "165": {"append": [164, 21, 141]},
+   "164": {"term": 163},
+   "155": {"append": [15, 154]},
+   "154": {"append": [151, 21, 153]},
+   "153": {"term": 152},
+   "151": {"term": 150},
+   "15": {"text": ""},
+   "143": {"append": [15, 142]},
+   "142": {"append": [139, 21, 141]},
+   "141": {"term": 140},
+   "139": {"term": 138},
+   "1099": {"append": [15, 1098]},
+   "1098": {"append": [1097, 21, 1078]},
+   "1097": {"term": 1096},
+   "109": {"append": [15, 108]},
+   "1089": {"append": [15, 1088]},
+   "1088": {"append": [1087, 21, 1078]},
+   "1087": {"term": 1086},
+   "1080": {"append": [15, 1079]},
+   "108": {"append": [107, 21, 25]},
+   "1079": {"append": [1078, 21, 20]},
+   "1078": {"term": 1077},
+   "107": {"term": 106},
+   "1048": {"append": [15, 1047]},
+   "1047": {"term": 1046},
+   "1034": {"append": [15, 1033]},
+   "1033": {"term": 1032}},
+  "goals": {},
+  "code":
+  {"999": {"token": {"tok": 998}},
+   "997": {"span": {"info": [["info", 993]], "content": 996}},
+   "996": {"seq": {"highlights": [995, 6]}},
+   "995": {"token": {"tok": 994}},
+   "991":
+   {"seq":
+    {"highlights":
+     [195,
+      3,
+      897,
+      3,
+      899,
+      3,
+      199,
+      3,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      899,
+      57,
+      57,
+      57,
+      57,
+      57]}},
+   "990":
+   {"seq":
+    {"highlights":
+     [974,
+      976,
+      3,
+      978,
+      3,
+      87,
+      979,
+      981,
+      3,
+      55,
+      983,
+      3,
+      985,
+      3,
+      129,
+      3,
+      889,
+      57,
+      3,
+      987,
+      3,
+      989,
+      3,
+      199,
+      3,
+      983,
+      3,
+      55,
+      985,
+      3,
+      987,
+      57,
+      3,
+      989,
+      6]}},
+   "99": {"token": {"tok": 98}},
+   "989": {"token": {"tok": 988}},
+   "987": {"token": {"tok": 986}},
+   "985": {"token": {"tok": 984}},
+   "983": {"token": {"tok": 982}},
+   "981": {"token": {"tok": 980}},
+   "979": {"text": {"str": "  "}},
+   "978": {"token": {"tok": 977}},
+   "976": {"token": {"tok": 975}},
+   "974": {"text": {"str": "\n\n/- And here is multiplication: -/\n\n"}},
+   "973":
+   {"seq":
+    {"highlights":
+     [45,
+      966,
+      3,
+      55,
+      968,
+      3,
+      87,
+      3,
+      970,
+      57,
+      3,
+      958,
+      3,
+      55,
+      912,
+      3,
+      928,
+      57,
+      3,
+      55,
+      958,
+      3,
+      972,
+      3,
+      870,
+      57,
+      6]}},
+   "972": {"token": {"tok": 971}},
+   "970": {"token": {"tok": 969}},
+   "97": {"token": {"tok": 96}},
+   "968": {"token": {"tok": 967}},
+   "966": {"span": {"info": [["info", 962]], "content": 965}},
+   "965": {"seq": {"highlights": [964, 6]}},
+   "964": {"token": {"tok": 963}},
+   "960":
+   {"seq":
+    {"highlights":
+     [195,
+      3,
+      897,
+      3,
+      899,
+      3,
+      199,
+      3,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      899,
+      57,
+      57,
+      57,
+      57,
+      57,
+      57]}},
+   "959":
+   {"seq":
+    {"highlights":
+     [8, 952, 3, 55, 954, 3, 87, 3, 956, 57, 3, 958, 3, 928, 3, 870, 6]}},
+   "958": {"token": {"tok": 957}},
+   "956": {"token": {"tok": 955}},
+   "954": {"token": {"tok": 953}},
+   "952": {"span": {"info": [["info", 948]], "content": 951}},
+   "951": {"seq": {"highlights": [950, 6]}},
+   "950": {"token": {"tok": 949}},
+   "95": {"token": {"tok": 94}},
+   "946":
+   {"seq":
+    {"highlights":
+     [195,
+      3,
+      897,
+      3,
+      899,
+      3,
+      199,
+      3,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      899,
+      57,
+      57,
+      57,
+      57]}},
+   "945":
+   {"seq":
+    {"highlights":
+     [930,
+      932,
+      3,
+      934,
+      3,
+      87,
+      3,
+      936,
+      3,
+      55,
+      938,
+      3,
+      940,
+      3,
+      129,
+      3,
+      889,
+      57,
+      3,
+      942,
+      3,
+      944,
+      3,
+      199,
+      3,
+      938,
+      3,
+      942,
+      3,
+      55,
+      940,
+      3,
+      942,
+      3,
+      944,
+      57,
+      6]}},
+   "944": {"token": {"tok": 943}},
+   "942": {"token": {"tok": 941}},
+   "940": {"token": {"tok": 939}},
+   "938": {"token": {"tok": 937}},
+   "936": {"token": {"tok": 935}},
+   "934": {"token": {"tok": 933}},
+   "932": {"token": {"tok": 931}},
+   "930":
+   {"text":
+    {"str":
+     "\n\n\n\n\n\n\n\n\n/-\nAddition and Multiplication\n===\n\nWe can also add two numbers together: -/\n\n"}},
+   "93":
+   {"seq": {"highlights": [45, 90, 3, 92, 3, 87, 3, 18, 3, 35, 3, 18, 6]}},
+   "929":
+   {"seq":
+    {"highlights":
+     [45, 922, 3, 55, 924, 3, 87, 3, 926, 3, 57, 3, 912, 3, 928, 6]}},
+   "928": {"token": {"tok": 927}},
+   "926": {"token": {"tok": 925}},
+   "924": {"token": {"tok": 923}},
+   "922": {"span": {"info": [["info", 918]], "content": 921}},
+   "921": {"seq": {"highlights": [920, 6]}},
+   "920": {"token": {"tok": 919}},
+   "92": {"token": {"tok": 91}},
+   "916":
+   {"seq":
+    {"highlights":
+     [195,
+      3,
+      897,
+      3,
+      899,
+      3,
+      199,
+      3,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      899,
+      57,
+      57,
+      57]}},
+   "915":
+   {"seq":
+    {"highlights":
+     [895, 906, 3, 55, 908, 3, 87, 3, 910, 3, 57, 3, 912, 3, 914, 6]}},
+   "914": {"token": {"tok": 913}},
+   "912": {"token": {"tok": 911}},
+   "910": {"token": {"tok": 909}},
+   "908": {"token": {"tok": 907}},
+   "906": {"span": {"info": [["info", 902]], "content": 905}},
+   "905": {"seq": {"highlights": [904, 6]}},
+   "904": {"token": {"tok": 903}},
+   "900":
+   {"seq": {"highlights": [195, 3, 897, 3, 899, 3, 199, 3, 897, 3, 899]}},
+   "90": {"token": {"tok": 89}},
+   "899": {"token": {"tok": 898}},
+   "897": {"token": {"tok": 896}},
+   "895":
+   {"text":
+    {"str":
+     "\n\n/- To see how this works, let's apply `succ to c₀`.\nNote for clarity we use the dummy variables `g` and `y` in `c₀`\ninstead of `f` and `x`.\n\n```lean\n  succ c₀ = ( λ m => λ f => λ x => f (m f x) ) ( λ g => λ y => y )\n          —β—> λ f => λ x => f ( ( λ g => λ y => y ) f x )\n                          [note, g is not used, so f x disappears]\n          —β—> λ f => λ x => f ( ( λ y => y ) x )\n          —β—> λ f => λ x => f x = c₁\n```\n\nThis is a lot of work, so let's let Lean do this for us: -/\n\n"}},
+   "894":
+   {"seq":
+    {"highlights":
+     [879,
+      881,
+      3,
+      883,
+      3,
+      87,
+      3,
+      885,
+      3,
+      55,
+      887,
+      3,
+      129,
+      3,
+      889,
+      57,
+      3,
+      55,
+      891,
+      3,
+      129,
+      3,
+      810,
+      3,
+      35,
+      3,
+      810,
+      57,
+      3,
+      893,
+      3,
+      199,
+      3,
+      891,
+      3,
+      55,
+      887,
+      3,
+      891,
+      3,
+      893,
+      57,
+      6]}},
+   "893": {"token": {"tok": 892}},
+   "891": {"token": {"tok": 890}},
+   "889": {"token": {"tok": 888}},
+   "887": {"token": {"tok": 886}},
+   "885": {"token": {"tok": 884}},
+   "883": {"token": {"tok": 882}},
+   "881": {"token": {"tok": 880}},
+   "88": {"seq": {"highlights": [81, 83, 3, 85, 3, 87, 3, 18, 6]}},
+   "879":
+   {"text":
+    {"str":
+     "\n\n\n\n\n\n\n\n\n/-\nArithmetic\n===\n\nWe can define functions on numbers. For example, the successor function is defined below. -/\n\n"}},
+   "878":
+   {"seq":
+    {"highlights":
+     [873,
+      875,
+      3,
+      877,
+      3,
+      87,
+      3,
+      55,
+      810,
+      3,
+      35,
+      3,
+      810,
+      57,
+      3,
+      35,
+      3,
+      810,
+      3,
+      35,
+      3,
+      810,
+      6]}},
+   "877": {"token": {"tok": 876}},
+   "875": {"token": {"tok": 874}},
+   "873":
+   {"text":
+    {"str": "\n\n/- For convenience, let's give this type a name: -/\n\n"}},
+   "872": {"seq": {"highlights": [855, 868, 3, 870, 871, 6]}},
+   "871": {"text": {"str": "      -- (α → α) → α → α"}},
+   "870": {"token": {"tok": 869}},
+   "87": {"token": {"tok": 86}},
+   "868": {"span": {"info": [["info", 864]], "content": 867}},
+   "867": {"seq": {"highlights": [866, 6]}},
+   "866": {"token": {"tok": 865}},
+   "862":
+   {"seq":
+    {"highlights":
+     [16,
+      857,
+      3,
+      55,
+      859,
+      3,
+      129,
+      3,
+      810,
+      3,
+      35,
+      3,
+      810,
+      57,
+      3,
+      55,
+      861,
+      3,
+      129,
+      3,
+      810,
+      57,
+      3,
+      129,
+      3,
+      810]}},
+   "861": {"token": {"tok": 860}},
+   "859": {"token": {"tok": 858}},
+   "857": {"token": {"tok": 856}},
+   "855":
+   {"text":
+    {"str": "\n\n/- You can check the type of a Church numeral: -/\n\n"}},
+   "854":
+   {"seq":
+    {"highlights":
+     [45,
+      843,
+      3,
+      845,
+      3,
+      87,
+      3,
+      847,
+      3,
+      55,
+      3,
+      849,
+      3,
+      129,
+      3,
+      810,
+      3,
+      35,
+      3,
+      810,
+      3,
+      57,
+      3,
+      199,
+      3,
+      851,
+      3,
+      853,
+      3,
+      199,
+      3,
+      849,
+      3,
+      55,
+      849,
+      3,
+      55,
+      849,
+      3,
+      853,
+      57,
+      57,
+      6]}},
+   "853": {"token": {"tok": 852}},
+   "851": {"token": {"tok": 850}},
+   "85": {"token": {"tok": 84}},
+   "849": {"token": {"tok": 848}},
+   "847": {"token": {"tok": 846}},
+   "845": {"token": {"tok": 844}},
+   "843": {"token": {"tok": 842}},
+   "841":
+   {"seq":
+    {"highlights":
+     [45,
+      830,
+      3,
+      832,
+      3,
+      87,
+      3,
+      834,
+      3,
+      55,
+      3,
+      836,
+      3,
+      129,
+      3,
+      810,
+      3,
+      35,
+      3,
+      810,
+      3,
+      57,
+      3,
+      199,
+      3,
+      838,
+      3,
+      840,
+      3,
+      199,
+      3,
+      836,
+      3,
+      55,
+      836,
+      3,
+      840,
+      57,
+      6]}},
+   "840": {"token": {"tok": 839}},
+   "838": {"token": {"tok": 837}},
+   "836": {"token": {"tok": 835}},
+   "834": {"token": {"tok": 833}},
+   "832": {"token": {"tok": 831}},
+   "830": {"token": {"tok": 829}},
+   "83": {"token": {"tok": 82}},
+   "828":
+   {"seq":
+    {"highlights":
+     [45,
+      817,
+      3,
+      819,
+      3,
+      87,
+      3,
+      821,
+      3,
+      55,
+      3,
+      823,
+      3,
+      129,
+      3,
+      810,
+      3,
+      35,
+      3,
+      810,
+      3,
+      57,
+      3,
+      199,
+      3,
+      825,
+      3,
+      827,
+      3,
+      199,
+      3,
+      823,
+      3,
+      827,
+      6]}},
+   "827": {"token": {"tok": 826}},
+   "825": {"token": {"tok": 824}},
+   "823": {"token": {"tok": 822}},
+   "821": {"token": {"tok": 820}},
+   "819": {"token": {"tok": 818}},
+   "817": {"token": {"tok": 816}},
+   "815":
+   {"seq":
+    {"highlights":
+     [45,
+      797,
+      3,
+      799,
+      3,
+      87,
+      3,
+      801,
+      3,
+      55,
+      3,
+      808,
+      3,
+      129,
+      3,
+      810,
+      3,
+      35,
+      3,
+      810,
+      3,
+      57,
+      3,
+      199,
+      3,
+      812,
+      3,
+      55,
+      3,
+      814,
+      3,
+      129,
+      3,
+      810,
+      3,
+      57,
+      3,
+      199,
+      3,
+      814,
+      6]}},
+   "814": {"token": {"tok": 813}},
+   "812": {"token": {"tok": 811}},
+   "810": {"token": {"tok": 809}},
+   "81": {"text": {"str": "\n--unhide\n\n"}},
+   "808": {"span": {"info": [["warning", 804]], "content": 807}},
+   "807": {"seq": {"highlights": [806, 6]}},
+   "806": {"token": {"tok": 805}},
+   "801": {"token": {"tok": 800}},
+   "80": {"seq": {"highlights": [77, 79, 6]}},
+   "8": {"text": {"str": "\n\n"}},
+   "799": {"token": {"tok": 798}},
+   "797": {"token": {"tok": 796}},
+   "795": {"seq": {"highlights": [790, 792, 3, 794, 3, 87, 3, 18, 6]}},
+   "794": {"token": {"tok": 793}},
+   "792": {"token": {"tok": 791}},
+   "790":
+   {"text":
+    {"str":
+     "\n\n\n/-<div class='fn'>The <tt>#reduce</tt> directive needs permission to be aggressive,\nwhich we can do using the <tt>(types := true)</tt> option.</div>-/\n\n\n\n\n\n/-\nProperties of the Simply Typed Lambda Calculus\n===\n\nSome interesting observations are in order. We won't prove these here, but they are good to know:\n\n- **Uniqueness of Types** Every term has exacly one type.\n\n- **Subject Reduction Lemma** If `M₁ : α` and `M₁ —β—> M₂` then `M₂ : α.`\nThat is, beta reduction does't change the type of expressions. It just simplifies them.\n\n- **Church-Rosser Theorem** If `M —β—> N₁` and `M —β—> N₂` then there is some `N₃`\nsuch that `N₁ —β—> N₃` and `N₂ —β—> N₃`.\nThat is, it doesn't matter what order you β-reduce an expression's\nsub-expressions in, you always end up with the same term.\n\n- **Strong Normalization** β-reduction eventually stops at an irreducible term.\nThis is a very strong statement. In most programming languages,\nyou can write infinite loops. But not in the simply typed lambda calculus!\n\n-/\n\n\n/-\nExercises\n===\n\n<ex /> In the Simply Typed λ-Calculus, the proof that β-reduction is strongly\nnormalizing shows that every step of β-reduction reduces the following measure:\n\n```text\n          1                       if M is a variable\nSize(M) = 1 + Size(M₁) + Size(M₂) if M = M₁ M₂\n          1 + Size(M')            if M = λ x . M'\n```\n\nwhere `M` is an expression.\n\nSuppose `x : A`. Define a λ-calculus expression `M` such that `Size(M) = 5` and\n`M` β-reduces to `x`.\n\n-/\n\n\n\n/-\nExample: The Church Numerals\n===\n\nYou can program arithmetic in the λ-calculus.\n\nChurch devised the following scheme to represent numbers,\nwhere `c₀` is the Church Numeral for `0` and so on. -/\n\n"}},
+   "79": {"token": {"tok": 78}},
+   "789":
+   {"seq":
+    {"highlights":
+     [8,
+      770,
+      3,
+      55,
+      772,
+      87,
+      774,
+      57,
+      3,
+      55,
+      776,
+      3,
+      55,
+      778,
+      3,
+      129,
+      3,
+      99,
+      3,
+      35,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      780,
+      3,
+      55,
+      782,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      778,
+      3,
+      782,
+      57,
+      783,
+      55,
+      785,
+      3,
+      55,
+      787,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      787,
+      57,
+      3,
+      724,
+      788,
+      6]}},
+   "788": {"text": {"str": "          -- x"}},
+   "787": {"token": {"tok": 786}},
+   "785": {"token": {"tok": 784}},
+   "783": {"text": {"str": "\n                       "}},
+   "782": {"token": {"tok": 781}},
+   "780": {"token": {"tok": 779}},
+   "778": {"token": {"tok": 777}},
+   "776": {"token": {"tok": 775}},
+   "774": {"token": {"tok": 773}},
+   "772": {"token": {"tok": 771}},
+   "770": {"span": {"info": [["info", 728]], "content": 769}},
+   "77":
+   {"text":
+    {"str":
+     "\n\n/- Arrow `→` associates to the right. So the second expression\nabove is equivalent to `Type → Type → Type`. -/\n\n\n/-\nType Variables\n===\n\nYou define type variables using `def` -/\n\n--hide\n"}},
+   "769": {"seq": {"highlights": [768, 6]}},
+   "768": {"token": {"tok": 767}},
+   "766":
+   {"seq":
+    {"highlights":
+     [8,
+      747,
+      3,
+      55,
+      749,
+      87,
+      751,
+      57,
+      3,
+      55,
+      753,
+      3,
+      55,
+      755,
+      3,
+      129,
+      3,
+      99,
+      3,
+      35,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      757,
+      3,
+      55,
+      759,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      755,
+      3,
+      759,
+      57,
+      760,
+      55,
+      762,
+      3,
+      55,
+      764,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      764,
+      57,
+      765,
+      6]}},
+   "765": {"text": {"str": "             -- fun y => y"}},
+   "764": {"token": {"tok": 763}},
+   "762": {"token": {"tok": 761}},
+   "760": {"text": {"str": "\n                      "}},
+   "76":
+   {"seq":
+    {"highlights":
+     [45,
+      75,
+      3,
+      55,
+      18,
+      3,
+      35,
+      3,
+      18,
+      57,
+      3,
+      35,
+      3,
+      55,
+      18,
+      3,
+      35,
+      3,
+      18,
+      57,
+      6]}},
+   "759": {"token": {"tok": 758}},
+   "757": {"token": {"tok": 756}},
+   "755": {"token": {"tok": 754}},
+   "753": {"token": {"tok": 752}},
+   "751": {"token": {"tok": 750}},
+   "75": {"span": {"info": [["info", 71]], "content": 74}},
+   "749": {"token": {"tok": 748}},
+   "747": {"span": {"info": [["info", 743]], "content": 746}},
+   "746": {"seq": {"highlights": [745, 6]}},
+   "745": {"token": {"tok": 744}},
+   "742":
+   {"seq":
+    {"highlights":
+     [8,
+      732,
+      3,
+      55,
+      734,
+      87,
+      736,
+      57,
+      3,
+      55,
+      738,
+      3,
+      55,
+      740,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      740,
+      57,
+      3,
+      724,
+      741,
+      6]}},
+   "741": {"text": {"str": "           -- x"}},
+   "740": {"token": {"tok": 739}},
+   "74": {"seq": {"highlights": [73, 6]}},
+   "738": {"token": {"tok": 737}},
+   "736": {"token": {"tok": 735}},
+   "734": {"token": {"tok": 733}},
+   "732": {"span": {"info": [["info", 728]], "content": 731}},
+   "731": {"seq": {"highlights": [730, 6]}},
+   "730": {"token": {"tok": 729}},
+   "73": {"token": {"tok": 72}},
+   "726": {"seq": {"highlights": [16, 724, 16]}},
+   "725": {"seq": {"highlights": [720, 722, 3, 55, 724, 3, 129, 3, 99, 57, 6]}},
+   "724": {"token": {"tok": 723}},
+   "722": {"token": {"tok": 721}},
+   "720":
+   {"text":
+    {"str":
+     "\n\n/-\nExercises\n===\n\n<ex /> Create a context and goal state in Lean that matches:\n```text\n{ a : A, b : B, f : A → B }  ⊢  f a : B\n```\n\n\n-/\n\n/-\nFree Variables\n===\nIn an expression such as\n\n```lean\nfun (y : A) => f y\n```\n\nthe variable `f` is not bound to an enclosing lambda. In this case it is called **free**.\n\nThe variable `y` on the other hand is **bound**.\n\nFree variables have to be declared in Lean for expressions to use them.\nAnd they have to have types consistent to how they are used.\nWhen this is done properly, you will see the free variable declarations\nin the context part of Lean's results. -/\n\n\n\n\n/-\nBeta Reduction\n===\n\nAn abstraction can be **applied** to another term to produce a new term.\nThis is called β-reduction. It is defined like this:\n\n```\n(fun (x:α) => M) N   —β—>   M[x:=N]\n```\n\nThe notation `M[x:=N]` means: take all `free` occurances of `x` in `M` and\nreplace them with the expression `N`.\n\nWe have to be careful that `N` does not use the variable `x` freely.\n\nLean does this internally for us The bound version of `x` above is,\ninternally, a completely unique variable that is just displayed as `x` for our convenience.\n\nBeta Reduction in Lean\n===\n\nTo apply β-reduction in Lean, you can use the `#reduce` directive. For example,\n\n```\n(fun g => fun y => g y) f   —β—>  fun y => f y\n```\n\nis obtained by replacing `g` in `g y` with `f`, as the rule describes.\n\nYou can have Lean do this for you using the `#reduce` directive.\n\n\n-/\n\n"}},
+   "719": {"seq": {"highlights": [691, 718, 6]}},
+   "718": {"span": {"info": [["info", 701]], "content": 717}},
+   "717":
+   {"seq":
+    {"highlights":
+     [703, 3, 55, 673, 3, 55, 705, 129, 707, 57, 3, 199, 3, 716, 57, 6]}},
+   "716": {"span": {"info": [["info", 712]], "content": 715}},
+   "715": {"seq": {"highlights": [705, 3, 714, 6]}},
+   "714": {"token": {"tok": 713}},
+   "708": {"seq": {"highlights": [16, 705, 16]}},
+   "707": {"token": {"tok": 706}},
+   "705": {"token": {"tok": 704}},
+   "703": {"token": {"tok": 702}},
+   "7": {"seq": {"highlights": [0, 2, 3, 5, 6]}},
+   "698":
+   {"seq":
+    {"highlights": [55, 693, 3, 129, 3, 661, 57, 3, 35, 3, 485, 3, 693]}},
+   "696": {"seq": {"highlights": [195, 3, 693, 3, 199, 3, 695]}},
+   "695": {"token": {"tok": 694}},
+   "693": {"token": {"tok": 692}},
+   "691":
+   {"text":
+    {"str":
+     "\n\n/- In the above, there are any number of ways types could be assigned to g and y, so Lean\ncomplains that it can't assign types to them.\n\n\n\nSelf Application is Untypeable\n===\n\nDropping types for the moment, define the term\n```\nΩ := λ x => x x\n```\nand consider `Ω` applied to itself:\n```\n(λ x => x x) (λ x => x x)       —β—>       (λ x => x x) (λ x => x x)\n```\nproducing an infinite loop. Suppose you could give `M M` a type, say `α`.\nThen `M` has to be a function `M : τ → σ`\n\nBut since `M` is operating on itself, `M` has to be of type τ:\n```\nM : τ\n```\nSo `M `has two different types, which is not possible. Lean is not able to find\na type for `x`. The placeholder symbol `_` is used by Lean as a way to ask the type\nchecker to infer a type.\n\n-/\n\n"}},
+   "690": {"seq": {"highlights": [653, 689, 6]}},
+   "689": {"span": {"info": [["info", 669]], "content": 688}},
+   "688":
+   {"seq": {"highlights": [671, 3, 673, 3, 675, 3, 679, 3, 199, 3, 687, 6]}},
+   "687": {"span": {"info": [["info", 685]], "content": 686}},
+   "686": {"seq": {"highlights": [675, 3, 521, 6]}},
+   "682": {"seq": {"highlights": [16, 661, 16]}},
+   "680": {"seq": {"highlights": [16, 675, 16]}},
+   "68":
+   {"seq":
+    {"highlights": [55, 18, 3, 35, 3, 18, 57, 3, 35, 3, 18, 3, 35, 3, 18]}},
+   "679": {"span": {"info": [["warning", 507]], "content": 678}},
+   "678": {"seq": {"highlights": [677, 6]}},
+   "677": {"token": {"tok": 676}},
+   "675": {"token": {"tok": 674}},
+   "673": {"token": {"tok": 672}},
+   "671": {"token": {"tok": 670}},
+   "67":
+   {"seq":
+    {"highlights": [45, 66, 3, 55, 18, 3, 35, 3, 18, 57, 3, 35, 3, 18, 6]}},
+   "666":
+   {"seq":
+    {"highlights":
+     [55,
+      655,
+      3,
+      129,
+      3,
+      661,
+      57,
+      3,
+      35,
+      3,
+      55,
+      657,
+      3,
+      129,
+      3,
+      663,
+      3,
+      655,
+      57,
+      3,
+      35,
+      3,
+      665,
+      3,
+      655,
+      3,
+      657]}},
+   "665": {"token": {"tok": 664}},
+   "663": {"token": {"tok": 662}},
+   "661": {"token": {"tok": 660}},
+   "66": {"span": {"info": [["info", 62]], "content": 65}},
+   "658": {"seq": {"highlights": [195, 3, 655, 3, 657, 3, 199, 3, 485]}},
+   "657": {"token": {"tok": 656}},
+   "655": {"token": {"tok": 654}},
+   "653":
+   {"text":
+    {"str":
+     "\n\n/- We can't leave out all of the type information though. Consider: -/\n\n"}},
+   "652":
+   {"seq":
+    {"highlights":
+     [627, 645, 3, 647, 3, 649, 3, 651, 3, 199, 3, 649, 272, 651, 6]}},
+   "651": {"token": {"tok": 650}},
+   "65": {"seq": {"highlights": [64, 6]}},
+   "649": {"token": {"tok": 648}},
+   "647": {"token": {"tok": 646}},
+   "645": {"span": {"info": [["info", 641]], "content": 644}},
+   "644": {"seq": {"highlights": [643, 6]}},
+   "643": {"token": {"tok": 642}},
+   "64": {"token": {"tok": 63}},
+   "638":
+   {"seq":
+    {"highlights":
+     [55,
+      600,
+      3,
+      129,
+      3,
+      602,
+      57,
+      3,
+      35,
+      3,
+      55,
+      633,
+      3,
+      129,
+      3,
+      635,
+      3,
+      600,
+      57,
+      3,
+      35,
+      3,
+      637,
+      3,
+      600,
+      3,
+      633]}},
+   "637": {"token": {"tok": 636}},
+   "635": {"token": {"tok": 634}},
+   "633": {"token": {"tok": 632}},
+   "630":
+   {"seq":
+    {"highlights": [195, 3, 594, 3, 629, 3, 199, 3, 594, 3, 567, 3, 629]}},
+   "629": {"token": {"tok": 628}},
+   "627":
+   {"text":
+    {"str":
+     "\n\n/- You can also combine sequential abstractions as in -/\n\n"}},
+   "626":
+   {"seq":
+    {"highlights":
+     [592,
+      616,
+      3,
+      618,
+      3,
+      620,
+      3,
+      199,
+      3,
+      622,
+      3,
+      624,
+      3,
+      199,
+      3,
+      620,
+      272,
+      624,
+      625,
+      6]}},
+   "625":
+   {"text": {"str": "          -- (x : ?m.7) → (y : ?m.11 x) → ?m.12 x y"}},
+   "624": {"token": {"tok": 623}},
+   "622": {"token": {"tok": 621}},
+   "620": {"token": {"tok": 619}},
+   "618": {"token": {"tok": 617}},
+   "616": {"span": {"info": [["info", 612]], "content": 615}},
+   "615": {"seq": {"highlights": [614, 6]}},
+   "614": {"token": {"tok": 613}},
+   "609":
+   {"seq":
+    {"highlights":
+     [55,
+      600,
+      3,
+      129,
+      3,
+      602,
+      57,
+      3,
+      35,
+      3,
+      55,
+      604,
+      3,
+      129,
+      3,
+      606,
+      3,
+      600,
+      57,
+      3,
+      35,
+      3,
+      608,
+      3,
+      600,
+      3,
+      604]}},
+   "608": {"token": {"tok": 607}},
+   "606": {"token": {"tok": 605}},
+   "604": {"token": {"tok": 603}},
+   "602": {"token": {"tok": 601}},
+   "600": {"token": {"tok": 599}},
+   "6": {"seq": {"highlights": []}},
+   "597":
+   {"seq":
+    {"highlights": [195, 3, 594, 3, 596, 3, 199, 3, 594, 3, 567, 3, 596]}},
+   "596": {"token": {"tok": 595}},
+   "594": {"token": {"tok": 593}},
+   "592":
+   {"text":
+    {"str":
+     "\n\n/- But Lean can often figure out the types from the context. So this is fine: -/\n\n"}},
+   "591":
+   {"seq":
+    {"highlights":
+     [561,
+      579,
+      3,
+      581,
+      3,
+      55,
+      583,
+      129,
+      585,
+      57,
+      3,
+      199,
+      3,
+      587,
+      3,
+      55,
+      589,
+      129,
+      585,
+      57,
+      3,
+      199,
+      3,
+      583,
+      272,
+      589,
+      590,
+      6]}},
+   "590": {"text": {"str": "   -- ℕ → ℕ → ℕ"}},
+   "59": {"seq": {"highlights": [55, 18, 3, 35, 3, 18, 57, 3, 35, 3, 18]}},
+   "589": {"token": {"tok": 588}},
+   "587": {"token": {"tok": 586}},
+   "585": {"token": {"tok": 584}},
+   "583": {"token": {"tok": 582}},
+   "581": {"token": {"tok": 580}},
+   "58":
+   {"seq":
+    {"highlights": [45, 53, 3, 18, 3, 35, 3, 55, 18, 3, 35, 3, 18, 57, 6]}},
+   "579": {"span": {"info": [["info", 575]], "content": 578}},
+   "578": {"seq": {"highlights": [577, 6]}},
+   "577": {"token": {"tok": 576}},
+   "572": {"seq": {"highlights": [16, 571, 3, 35, 3, 571, 3, 35, 3, 571]}},
+   "571": {"token": {"tok": 570}},
+   "57": {"token": {"tok": 56}},
+   "568":
+   {"seq":
+    {"highlights": [195, 3, 563, 3, 565, 3, 199, 3, 563, 3, 567, 3, 565]}},
+   "567": {"token": {"tok": 566}},
+   "565": {"token": {"tok": 564}},
+   "563": {"token": {"tok": 562}},
+   "561":
+   {"text":
+    {"str":
+     "\n--unhide\n\n/-\nType Inference\n===\n\nThe full syntax of a λ expression in Lean might look like this: -/\n\n"}},
+   "560": {"seq": {"highlights": [557, 559, 6]}},
+   "559": {"token": {"tok": 558}},
+   "557":
+   {"text":
+    {"str":
+     "\n\n/- about which Lean complains because `q` has not been declared in the present context. -/\n\n\n/-\nJudgments and Contexts\n===\n\nWhen you hover over a `#check` directive, Lean shows the results of the type derivation\nas what is called a **judgment**. It is an expression in two parts separated by a\n**turnstile** `⊢`. For example: `#check h₁ x` produces\n\n```lean\n  x : A\n  f : A → A\n  ⊢ A\n```\n\nBefore the turnstile is the **context**, a list of all the variables\nintroduced so far. After the turnstile is the **goal state**,\nin this case is `A`, which is the type of `(h₁ x)`.\n\nIn the literature, this written:\n\n```text\n{ x : A, f : A → A }  ⊢  h₁ x : A\n```\n\nwhich reads: \"If x has type A and f has type A → A, then we can derive f x has type A\". -/\n\n--hide\n"}},
+   "556": {"seq": {"highlights": [527, 555, 6]}},
+   "555": {"span": {"info": [["info", 535]], "content": 554}},
+   "554":
+   {"seq":
+    {"highlights":
+     [537, 3, 539, 3, 55, 543, 3, 129, 3, 99, 57, 3, 199, 3, 553, 6]}},
+   "553": {"span": {"info": [["info", 549]], "content": 552}},
+   "552": {"seq": {"highlights": [551, 6]}},
+   "551": {"token": {"tok": 550}},
+   "55": {"token": {"tok": 54}},
+   "543": {"span": {"info": [["warning", 507]], "content": 542}},
+   "542": {"seq": {"highlights": [541, 6]}},
+   "541": {"token": {"tok": 540}},
+   "539": {"token": {"tok": 538}},
+   "537": {"token": {"tok": 536}},
+   "532":
+   {"seq": {"highlights": [55, 412, 3, 129, 3, 99, 57, 3, 35, 3, 531, 3, 412]}},
+   "531": {"token": {"tok": 530}},
+   "53": {"span": {"info": [["info", 49]], "content": 52}},
+   "528": {"seq": {"highlights": [195, 3, 483, 3, 199, 3, 477]}},
+   "527":
+   {"text":
+    {"str":
+     "\n\n/- because `g` is not declared to be a function type and therefore cannot be applied to `y`.\n\nAnother example is -/\n\n"}},
+   "526": {"seq": {"highlights": [471, 525, 6]}},
+   "525": {"span": {"info": [["info", 489]], "content": 524}},
+   "524":
+   {"seq":
+    {"highlights":
+     [491,
+      3,
+      493,
+      3,
+      55,
+      495,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      497,
+      3,
+      55,
+      511,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      523,
+      6]}},
+   "523": {"span": {"info": [["info", 519]], "content": 522}},
+   "522": {"seq": {"highlights": [495, 3, 521, 6]}},
+   "521": {"token": {"tok": 520}},
+   "52": {"seq": {"highlights": [51, 6]}},
+   "514": {"seq": {"highlights": [16, 495, 16]}},
+   "511": {"span": {"info": [["warning", 507]], "content": 510}},
+   "510": {"seq": {"highlights": [509, 6]}},
+   "51": {"token": {"tok": 50}},
+   "509": {"token": {"tok": 508}},
+   "5": {"token": {"tok": 4}},
+   "497": {"token": {"tok": 496}},
+   "495": {"token": {"tok": 494}},
+   "493": {"token": {"tok": 492}},
+   "491": {"token": {"tok": 490}},
+   "486":
+   {"seq":
+    {"highlights":
+     [55, 481, 3, 483, 3, 129, 3, 99, 57, 3, 35, 3, 485, 3, 481, 3, 483]}},
+   "485": {"token": {"tok": 484}},
+   "483": {"token": {"tok": 482}},
+   "481": {"token": {"tok": 480}},
+   "478": {"seq": {"highlights": [195, 3, 473, 3, 475, 3, 199, 3, 477]}},
+   "477": {"token": {"tok": 476}},
+   "475": {"token": {"tok": 474}},
+   "473": {"token": {"tok": 472}},
+   "471":
+   {"text":
+    {"str":
+     "\n\n\n\n/-\nType Errors\n===\n\nThe typed lambda calculus disallows expressions that do not follow typing rules.\nFor example, the following expression produces a type error -/\n\n"}},
+   "470":
+   {"seq":
+    {"highlights": [45, 468, 3, 438, 3, 421, 3, 55, 375, 3, 373, 57, 469, 6]}},
+   "469": {"text": {"str": "         --> A"}},
+   "468": {"span": {"info": [["info", 464]], "content": 467}},
+   "467": {"seq": {"highlights": [466, 6]}},
+   "466": {"token": {"tok": 465}},
+   "461": {"seq": {"highlights": [16, 438, 3, 421, 3, 55, 375, 3, 373, 57]}},
+   "460": {"seq": {"highlights": [45, 458, 3, 438, 3, 421, 459, 6]}},
+   "46": {"seq": {"highlights": [16, 18, 3, 35, 3, 18, 3, 35, 3, 18]}},
+   "459": {"text": {"str": "               --> A → A"}},
+   "458": {"span": {"info": [["info", 454]], "content": 457}},
+   "457": {"seq": {"highlights": [456, 6]}},
+   "456": {"token": {"tok": 455}},
+   "451": {"seq": {"highlights": [16, 438, 3, 421]}},
+   "450": {"seq": {"highlights": [45, 448, 3, 421, 3, 373, 449, 6]}},
+   "45": {"text": {"str": "\n"}},
+   "449": {"text": {"str": "                --> A"}},
+   "448": {"span": {"info": [["info", 444]], "content": 447}},
+   "447": {"seq": {"highlights": [446, 6]}},
+   "446": {"token": {"tok": 445}},
+   "441": {"seq": {"highlights": [16, 421, 3, 373]}},
+   "440": {"seq": {"highlights": [45, 436, 3, 438, 439, 6]}},
+   "44": {"seq": {"highlights": [33, 43, 3, 18, 3, 35, 3, 18, 6]}},
+   "439": {"text": {"str": "                  --> (A → A) → A → A"}},
+   "438": {"token": {"tok": 437}},
+   "436": {"span": {"info": [["info", 432]], "content": 435}},
+   "435": {"seq": {"highlights": [434, 6]}},
+   "434": {"token": {"tok": 433}},
+   "430":
+   {"seq":
+    {"highlights":
+     [16,
+      425,
+      3,
+      55,
+      427,
+      3,
+      129,
+      3,
+      99,
+      3,
+      35,
+      3,
+      99,
+      57,
+      3,
+      55,
+      429,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      129,
+      3,
+      99]}},
+   "43": {"span": {"info": [["info", 39]], "content": 42}},
+   "429": {"token": {"tok": 428}},
+   "427": {"token": {"tok": 426}},
+   "425": {"token": {"tok": 424}},
+   "423": {"seq": {"highlights": [45, 419, 3, 421, 422, 6]}},
+   "422": {"text": {"str": "                  --> A → A"}},
+   "421": {"token": {"tok": 420}},
+   "42": {"seq": {"highlights": [41, 6]}},
+   "419": {"span": {"info": [["info", 415]], "content": 418}},
+   "418": {"seq": {"highlights": [417, 6]}},
+   "417": {"token": {"tok": 416}},
+   "413":
+   {"seq":
+    {"highlights": [16, 410, 3, 55, 412, 3, 129, 3, 99, 57, 3, 129, 3, 99]}},
+   "412": {"token": {"tok": 411}},
+   "410": {"token": {"tok": 409}},
+   "41": {"token": {"tok": 40}},
+   "408": {"seq": {"highlights": [8, 406, 3, 373, 407, 6]}},
+   "407": {"text": {"str": "                   --> A"}},
+   "406": {"span": {"info": [["info", 402]], "content": 405}},
+   "405": {"seq": {"highlights": [404, 6]}},
+   "404": {"token": {"tok": 403}},
+   "399": {"seq": {"highlights": [16, 373, 16]}},
+   "398":
+   {"seq":
+    {"highlights":
+     [45,
+      387,
+      3,
+      389,
+      3,
+      87,
+      3,
+      391,
+      3,
+      55,
+      393,
+      3,
+      129,
+      3,
+      99,
+      3,
+      35,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      395,
+      3,
+      55,
+      397,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      393,
+      3,
+      397,
+      6]}},
+   "397": {"token": {"tok": 396}},
+   "395": {"token": {"tok": 394}},
+   "393": {"token": {"tok": 392}},
+   "391": {"token": {"tok": 390}},
+   "389": {"token": {"tok": 388}},
+   "387": {"token": {"tok": 386}},
+   "385":
+   {"seq":
+    {"highlights":
+     [45,
+      378,
+      3,
+      380,
+      3,
+      87,
+      3,
+      382,
+      3,
+      55,
+      384,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      384,
+      6]}},
+   "384": {"token": {"tok": 383}},
+   "382": {"token": {"tok": 381}},
+   "380": {"token": {"tok": 379}},
+   "378": {"token": {"tok": 377}},
+   "376":
+   {"seq":
+    {"highlights":
+     [369,
+      371,
+      3,
+      55,
+      373,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      55,
+      375,
+      3,
+      129,
+      3,
+      99,
+      3,
+      35,
+      3,
+      99,
+      57,
+      6]}},
+   "375": {"token": {"tok": 374}},
+   "373": {"token": {"tok": 372}},
+   "371": {"token": {"tok": 370}},
+   "369":
+   {"text":
+    {"str":
+     "\n\n/- In this example, `r₂` is a curried expression:\nIt has \"ingested\" a function `(fun x => x)` and can then apply this function\nto subsequent arguments.\n\n<div class='fn'>Currying is named after the Logician Haskell Curry, who\nstudied Electrical Engineering at MIT in the 1920s (although he eventually\nswitched to Physics).</fn>\n\n -/\n\n\n/-\nExercises\n===\n\n<ex /> Show that `→` is not associative by defining lambda calculus expressions with types\n- `Type → (Type → Type)`\n- `(Type → Type) → Type`\n\nUse `#check` to make sure your functions have the desired types.\n\n\n<ex /> The function `String.append` has the type `String → String → String`.\nDefine a new function `prepend_label` that prepends the string \"STRING: \"\nto its argument by combining with `String.append`. Test your function.\n\n-/\n\n\n\n\n/-\nType Derivation\n===\n\nAll **terms have types**. These can be found using these **derivation rules**:\n\n- **VAR**: Variables are declared either globally to have a given type\n(using Lean's variable command) or are bound in a λ-expression.\n\n- **ABST**: The type of an abstraction is always of the form `A → B`\nwhere `A` is the type of the argument and `B` is the type of the result.\n\n- **APPL** If `f : A → B` and `x : A`, then the type of the application of `f`\nto `x is B`.\n\n\nLean's Type Derivation\n===\n\n\nWe see the types Lean derives using `#check`. -/\n\n"}},
+   "368": {"seq": {"highlights": [8, 364, 3, 366, 367, 6]}},
+   "367": {"text": {"str": " -- Type"}},
+   "366": {"token": {"tok": 365}},
+   "364": {"span": {"info": [["info", 360]], "content": 363}},
+   "363": {"seq": {"highlights": [362, 6]}},
+   "362": {"token": {"tok": 361}},
+   "36": {"seq": {"highlights": [16, 18, 3, 35, 3, 18]}},
+   "358":
+   {"seq":
+    {"highlights": [16, 355, 3, 55, 357, 3, 129, 3, 18, 57, 3, 129, 3, 18]}},
+   "357": {"token": {"tok": 356}},
+   "355": {"token": {"tok": 354}},
+   "353": {"seq": {"highlights": [346, 348, 3, 350, 3, 87, 3, 352, 3, 319, 6]}},
+   "352": {"token": {"tok": 351}},
+   "350": {"token": {"tok": 349}},
+   "35": {"token": {"tok": 34}},
+   "348": {"token": {"tok": 347}},
+   "346": {"text": {"str": "\n\n/- Which we can apply again -/\n\n"}},
+   "345":
+   {"seq":
+    {"highlights":
+     [334,
+      336,
+      3,
+      338,
+      3,
+      87,
+      3,
+      340,
+      3,
+      55,
+      342,
+      3,
+      344,
+      3,
+      199,
+      3,
+      344,
+      57,
+      6]}},
+   "344": {"token": {"tok": 343}},
+   "342": {"token": {"tok": 341}},
+   "340": {"token": {"tok": 339}},
+   "338": {"token": {"tok": 337}},
+   "336": {"token": {"tok": 335}},
+   "334":
+   {"text":
+    {"str":
+     "\n\n/- If we apply the abstraction to particular function, then we get another function. -/\n\n"}},
+   "333":
+   {"seq":
+    {"highlights":
+     [45,
+      322,
+      3,
+      324,
+      3,
+      87,
+      3,
+      326,
+      3,
+      55,
+      328,
+      3,
+      129,
+      3,
+      18,
+      3,
+      35,
+      3,
+      18,
+      57,
+      3,
+      199,
+      3,
+      330,
+      3,
+      55,
+      332,
+      129,
+      3,
+      18,
+      57,
+      3,
+      199,
+      3,
+      328,
+      3,
+      332,
+      6]}},
+   "332": {"token": {"tok": 331}},
+   "330": {"token": {"tok": 329}},
+   "33":
+   {"text":
+    {"str":
+     "\n\n/- One constructs new types using the arrow → as in the following examples: -/\n\n"}},
+   "328": {"token": {"tok": 327}},
+   "326": {"token": {"tok": 325}},
+   "324": {"token": {"tok": 323}},
+   "322": {"token": {"tok": 321}},
+   "320": {"seq": {"highlights": [315, 317, 3, 55, 319, 3, 129, 3, 18, 57, 6]}},
+   "32": {"seq": {"highlights": [14, 31, 3, 18, 6]}},
+   "319": {"token": {"tok": 318}},
+   "317": {"token": {"tok": 316}},
+   "315":
+   {"text":
+    {"str":
+     "\n\n\n\n\n\n\n/-\nCurrying\n===\n\nConsider the abstraction -/\n\n"}},
+   "314":
+   {"seq":
+    {"highlights":
+     [45,
+      309,
+      3,
+      55,
+      311,
+      3,
+      55,
+      313,
+      3,
+      129,
+      3,
+      270,
+      57,
+      3,
+      199,
+      3,
+      313,
+      3,
+      272,
+      3,
+      274,
+      57,
+      3,
+      297,
+      6]}},
+   "313": {"token": {"tok": 312}},
+   "311": {"token": {"tok": 310}},
+   "31": {"span": {"info": [["info", 27]], "content": 30}},
+   "309": {"span": {"info": [["info", 289]], "content": 308}},
+   "308": {"seq": {"highlights": [307, 6]}},
+   "307": {"token": {"tok": 306}},
+   "305": {"seq": {"highlights": [45, 302, 3, 304, 3, 297, 6]}},
+   "304": {"token": {"tok": 303}},
+   "302": {"span": {"info": [["info", 289]], "content": 301}},
+   "301": {"seq": {"highlights": [300, 6]}},
+   "300": {"token": {"tok": 299}},
+   "30": {"seq": {"highlights": [29, 6]}},
+   "3": {"text": {"str": " "}},
+   "298": {"seq": {"highlights": [8, 293, 3, 295, 3, 297, 6]}},
+   "297": {"token": {"tok": 296}},
+   "295": {"token": {"tok": 294}},
+   "293": {"span": {"info": [["info", 289]], "content": 292}},
+   "292": {"seq": {"highlights": [291, 6]}},
+   "291": {"token": {"tok": 290}},
+   "29": {"token": {"tok": 28}},
+   "287": {"seq": {"highlights": [16, 286, 16]}},
+   "286": {"token": {"tok": 285}},
+   "284":
+   {"seq":
+    {"highlights":
+     [45,
+      277,
+      3,
+      279,
+      3,
+      87,
+      3,
+      281,
+      3,
+      55,
+      283,
+      3,
+      129,
+      3,
+      270,
+      57,
+      3,
+      199,
+      3,
+      283,
+      3,
+      272,
+      3,
+      274,
+      6]}},
+   "283": {"token": {"tok": 282}},
+   "281": {"token": {"tok": 280}},
+   "279": {"token": {"tok": 278}},
+   "277": {"token": {"tok": 276}},
+   "275":
+   {"seq":
+    {"highlights":
+     [262,
+      264,
+      3,
+      266,
+      3,
+      55,
+      268,
+      3,
+      129,
+      3,
+      270,
+      57,
+      3,
+      129,
+      3,
+      270,
+      3,
+      87,
+      3,
+      268,
+      3,
+      272,
+      3,
+      274,
+      6]}},
+   "274": {"token": {"tok": 273}},
+   "272": {"token": {"tok": 271}},
+   "270": {"token": {"tok": 269}},
+   "268": {"token": {"tok": 267}},
+   "266": {"token": {"tok": 265}},
+   "264": {"token": {"tok": 263}},
+   "262":
+   {"text":
+    {"str":
+     "\n\n\n\n\n/-\nEquivalence with `def`\n===\n\nA lambda abstraction is an unamed function.\nTo give your functions names and use `def`. -/\n\n"}},
+   "261":
+   {"seq":
+    {"highlights":
+     [250,
+      254,
+      3,
+      256,
+      3,
+      55,
+      258,
+      3,
+      129,
+      3,
+      99,
+      3,
+      35,
+      3,
+      99,
+      57,
+      3,
+      55,
+      260,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      258,
+      3,
+      260,
+      6]}},
+   "260": {"token": {"tok": 259}},
+   "258": {"token": {"tok": 257}},
+   "256": {"token": {"tok": 255}},
+   "254": {"span": {"info": [["info", 222]], "content": 253}},
+   "253": {"seq": {"highlights": [252, 6]}},
+   "252": {"token": {"tok": 251}},
+   "250":
+   {"text":
+    {"str":
+     "\n\n/- We abbreviate a chained lamdba abstractions by writing: -/\n\n"}},
+   "249":
+   {"seq":
+    {"highlights":
+     [236,
+      240,
+      3,
+      242,
+      3,
+      55,
+      244,
+      3,
+      129,
+      3,
+      99,
+      3,
+      35,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      55,
+      246,
+      3,
+      55,
+      248,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      244,
+      3,
+      248,
+      57,
+      6]}},
+   "248": {"token": {"tok": 247}},
+   "246": {"token": {"tok": 245}},
+   "244": {"token": {"tok": 243}},
+   "242": {"token": {"tok": 241}},
+   "240": {"span": {"info": [["info", 222]], "content": 239}},
+   "24": {"seq": {"highlights": [16, 23, 16]}},
+   "239": {"seq": {"highlights": [238, 6]}},
+   "238": {"token": {"tok": 237}},
+   "236":
+   {"text":
+    {"str":
+     "\n\n/- In the first example, the abstraction defines a function that simply returns its argument.\nIn the second example, the abstraction defines a function that takes another\nfunction `g` and returns yet another abstraction that takes an object `y` and\nreturns `g` applied to `y`.\n\nParentheses group to the right, so the second example is equivalent to: -/\n\n"}},
+   "235":
+   {"seq":
+    {"highlights":
+     [45,
+      226,
+      3,
+      228,
+      3,
+      55,
+      230,
+      3,
+      129,
+      3,
+      99,
+      3,
+      35,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      232,
+      3,
+      55,
+      234,
+      3,
+      129,
+      3,
+      99,
+      57,
+      3,
+      199,
+      3,
+      230,
+      3,
+      234,
+      6]}},
+   "234": {"token": {"tok": 233}},
+   "232": {"token": {"tok": 231}},
+   "230": {"token": {"tok": 229}},
+   "23": {"token": {"tok": 22}},
+   "228": {"token": {"tok": 227}},
+   "226": {"span": {"info": [["info", 222]], "content": 225}},
+   "225": {"seq": {"highlights": [224, 6]}},
+   "224": {"token": {"tok": 223}},
+   "219":
+   {"seq":
+    {"highlights": [55, 99, 3, 35, 3, 99, 57, 3, 35, 3, 99, 3, 35, 3, 99]}},
+   "217":
+   {"seq": {"highlights": [195, 3, 214, 3, 216, 3, 199, 3, 214, 3, 216]}},
+   "216": {"token": {"tok": 215}},
+   "214": {"token": {"tok": 213}},
+   "212":
+   {"seq":
+    {"highlights":
+     [193, 207, 3, 209, 3, 55, 211, 3, 129, 3, 99, 57, 3, 199, 3, 211, 6]}},
+   "211": {"token": {"tok": 210}},
+   "209": {"token": {"tok": 208}},
+   "207": {"span": {"info": [["info", 203]], "content": 206}},
+   "206": {"seq": {"highlights": [205, 6]}},
+   "205": {"token": {"tok": 204}},
+   "200": {"seq": {"highlights": [195, 3, 197, 3, 199, 3, 197]}},
+   "2": {"token": {"tok": 1}},
+   "199": {"token": {"tok": 198}},
+   "197": {"token": {"tok": 196}},
+   "195": {"token": {"tok": 194}},
+   "193":
+   {"text":
+    {"str":
+     "\n\n/- are all applications of terms to terms. -/\n\n\n\n\n\n/-\nTerms: Abstractions\n===\n\n**Abstractions** have the form `λ (x : τ) => e` where `τ` is a type and `e` is a term.\nThe variable `x` in this expression is said to be **bound** to the abstraction.\n\nThe following are terms in the λ-calculus:  -/\n\n"}},
+   "192":
+   {"seq":
+    {"highlights":
+     [45, 190, 3, 135, 3, 55, 135, 3, 55, 135, 3, 127, 57, 57, 191, 6]}},
+   "191": {"text": {"str": "           -- A"}},
+   "190": {"span": {"info": [["info", 186]], "content": 189}},
+   "19": {"seq": {"highlights": [16, 18, 16]}},
+   "189": {"seq": {"highlights": [188, 6]}},
+   "188": {"token": {"tok": 187}},
+   "183":
+   {"seq": {"highlights": [16, 135, 3, 55, 135, 3, 55, 135, 3, 127, 57, 57]}},
+   "182":
+   {"seq": {"highlights": [45, 180, 3, 135, 3, 55, 135, 3, 127, 57, 181, 6]}},
+   "181": {"text": {"str": "               -- A"}},
+   "180": {"span": {"info": [["info", 176]], "content": 179}},
+   "18": {"token": {"tok": 17}},
+   "179": {"seq": {"highlights": [178, 6]}},
+   "178": {"token": {"tok": 177}},
+   "173": {"seq": {"highlights": [16, 135, 3, 55, 135, 3, 127, 57]}},
+   "172": {"seq": {"highlights": [162, 170, 3, 135, 3, 127, 171, 6]}},
+   "171": {"text": {"str": "                   -- A"}},
+   "170": {"span": {"info": [["info", 166]], "content": 169}},
+   "169": {"seq": {"highlights": [168, 6]}},
+   "168": {"token": {"tok": 167}},
+   "163": {"seq": {"highlights": [16, 135, 3, 127]}},
+   "162":
+   {"text":
+    {"str":
+     "\n\n/-  Here. `x` is a simple object with type `A`, while `f` is an function type from `A` into `A`.\n\n\nTerms : Applications\n===\n\n**Applications** have the form `e₁ e₁` where `e₁` and `e₂` are terms.\nFor example, -/\n\n"}},
+   "161": {"seq": {"highlights": [45, 159, 3, 135, 160, 6]}},
+   "160": {"text": {"str": "          -- A → A"}},
+   "16": {"text": {"str": ""}},
+   "159": {"span": {"info": [["info", 155]], "content": 158}},
+   "158": {"seq": {"highlights": [157, 6]}},
+   "157": {"token": {"tok": 156}},
+   "152": {"seq": {"highlights": [16, 99, 3, 35, 3, 99]}},
+   "150": {"seq": {"highlights": [16, 135, 16]}},
+   "149": {"seq": {"highlights": [8, 147, 3, 127, 148, 6]}},
+   "148": {"text": {"str": "          -- A"}},
+   "147": {"span": {"info": [["info", 143]], "content": 146}},
+   "146": {"seq": {"highlights": [145, 6]}},
+   "145": {"token": {"tok": 144}},
+   "140": {"seq": {"highlights": [16, 99, 16]}},
+   "14":
+   {"text":
+    {"str":
+     "\n\n\n/-\nSimple Types\n===\n\nThe Simply Typed Lambda Calculus\n===\n\nThe `simply typed lambda calculus` is an extremely simple programming language\nthat nevertheless captures the essence of computation. We assume a base type.\nIn Lean the base type is called `Type`. -/\n\n"}},
+   "138": {"seq": {"highlights": [16, 127, 16]}},
+   "137":
+   {"seq":
+    {"highlights":
+     [45, 133, 3, 55, 135, 3, 129, 3, 99, 3, 35, 3, 99, 57, 136, 6]}},
+   "136": {"text": {"str": "           -- declare a function f from A into A"}},
+   "135": {"token": {"tok": 134}},
+   "133": {"token": {"tok": 132}},
+   "131":
+   {"seq": {"highlights": [123, 125, 3, 55, 127, 3, 129, 3, 99, 57, 130, 6]}},
+   "130": {"text": {"str": "               -- declare a variable x of type a"}},
+   "13": {"seq": {"highlights": [8, 10, 3, 12, 6]}},
+   "129": {"token": {"tok": 128}},
+   "127": {"token": {"tok": 126}},
+   "125": {"token": {"tok": 124}},
+   "123":
+   {"text":
+    {"str":
+     "\n--unhide\n\n/-\nTerms : Variables\n===\n\nNext, we define the terms of the lambda calculus.\n\nWe start with **variables**, for example `x` and `f`,\nwhich we declare in Lean as follows: -/\n\n\n"}},
+   "122": {"seq": {"highlights": [119, 121, 6]}},
+   "121": {"token": {"tok": 120}},
+   "12": {"token": {"tok": 11}},
+   "119": {"text": {"str": "\n--unhide\n\n\n\n\n--hide\n"}},
+   "118": {"seq": {"highlights": [115, 117, 6]}},
+   "117": {"token": {"tok": 116}},
+   "115": {"text": {"str": "\n\n--hide\n"}},
+   "114":
+   {"seq": {"highlights": [103, 113, 3, 99, 3, 35, 3, 101, 3, 35, 3, 105, 6]}},
+   "1137": {"seq": {"highlights": [1134, 1136, 6]}},
+   "1136": {"token": {"tok": 1135}},
+   "1134": {"text": {"str": "\n--unhide\n"}},
+   "1133": {"seq": {"highlights": [1130, 1132, 3, 12, 6]}},
+   "1132": {"token": {"tok": 1131}},
+   "1130":
+   {"text":
+    {"str":
+     "\n\n\n\n--hide\n\n/-\nLooking Ahead: The Curry Howard Isomorphism\n===\n\nThe most important problem in using type theory for proofs is INHABITATION,\nfollowed by TYPE CHECKING. We will see later the following\nremarkable fact, called the Curry-Howard correspondence, which says that in\nthe judgement `Γ ⊢ M : σ`,\n\n  `Γ` can be considered a set of givens or assumptions\n  `σ` can be considered a mathematical statement like a theorem or lemma\n  `M` can be considered a proof of the theorem assuming the statements in `Γ`.\n\nThus, type checking amounts to checking that `M` is a proof of `σ`,\nwhich is a relatively straightforward problem.\n\nThis is why tools like Lean are called `proof assistants`. They check to make sure\nyour proofs are correct.\n\nOn the other hand, type inhabitation amounts to finding a proof of σ.\n\n\nFunctions and Implication Again\n===\n\nGoing a step further, we'll see that an abstraction\n```lean\nfun p : σ => q\n```\nwhich may have type\n```lean\nσ → τ\n```\nis the general form of a proof of the statement `σ → τ` where `→` means \"implies\".\nIt can be thought of as a transformation taking a proof of `σ`, which one assumes\nis available, and returning a proof of `τ`, which is thought of as a goal to be\nproved. Writing the details of what `q` is amounts to programming.\n\nBy building on it, as Lean and similar tools do, one can encode an astonishingly\nlarge set of all of mathematics, and presumably knowledge in general.\nWe'll learn how to take advantage of the Curry-Howard correspondence soon.\n\n -/\n\n\n--unhide\n\n\n/-\nExercises\n===\n\n<ex /> The following λ-calculus expressions do not type check in Lean.\n\n```lean\n  fun x y => x y\n  fun x y z => x y z\n  fun x y => y (y (y x))\n  fun x y z => (y x) z\n```\n\nRewrite them by giving the variables types. Use #check to make sure they work.\n\n<ex /> The [Wikipedia Page](https://en.wikipedia.org/wiki/Church_encoding) on\nChurch Encodings shows how to define various other types and operations using\nonly the Simply Typed Lambda Calculus. Choose an interesting example,\nshow how to define it in Lean, and test it on a few examples. In your solution,\nmake sure to write a few sentences about what you have done.\n\n-/\n\n\n--hide\n"}},
+   "113": {"span": {"info": [["info", 109]], "content": 112}},
+   "1129":
+   {"seq":
+    {"highlights":
+     [8,
+      1116,
+      3,
+      55,
+      1118,
+      3,
+      1120,
+      3,
+      129,
+      3,
+      1075,
+      57,
+      3,
+      129,
+      3,
+      1118,
+      3,
+      35,
+      3,
+      55,
+      1118,
+      3,
+      35,
+      3,
+      1120,
+      57,
+      3,
+      35,
+      3,
+      1120,
+      3,
+      87,
+      1065,
+      1122,
+      3,
+      1124,
+      3,
+      199,
+      3,
+      1126,
+      3,
+      1128,
+      3,
+      199,
+      3,
+      1128,
+      3,
+      1124,
+      6]}},
+   "1128": {"token": {"tok": 1127}},
+   "1126": {"token": {"tok": 1125}},
+   "1124": {"token": {"tok": 1123}},
+   "1122": {"token": {"tok": 1121}},
+   "1120": {"token": {"tok": 1119}},
+   "112": {"seq": {"highlights": [111, 6]}},
+   "1118": {"token": {"tok": 1117}},
+   "1116": {"token": {"tok": 1115}},
+   "1114":
+   {"seq":
+    {"highlights":
+     [1105,
+      1107,
+      3,
+      55,
+      1109,
+      3,
+      129,
+      3,
+      1075,
+      57,
+      3,
+      129,
+      3,
+      1109,
+      3,
+      35,
+      3,
+      1109,
+      3,
+      87,
+      1065,
+      1111,
+      3,
+      1113,
+      3,
+      199,
+      3,
+      1113,
+      6]}},
+   "1113": {"token": {"tok": 1112}},
+   "1111": {"token": {"tok": 1110}},
+   "111": {"token": {"tok": 110}},
+   "1109": {"token": {"tok": 1108}},
+   "1107": {"token": {"tok": 1106}},
+   "1105":
+   {"text":
+    {"str":
+     "\n\n/- Armed with the lambda calculus and we can now prove theorems involving implication: -/\n\n"}},
+   "1104": {"seq": {"highlights": [1095, 1103, 3, 1073, 3, 35, 3, 1073, 6]}},
+   "1103": {"span": {"info": [["info", 1099]], "content": 1102}},
+   "1102": {"seq": {"highlights": [1101, 6]}},
+   "1101": {"token": {"tok": 1100}},
+   "1096": {"seq": {"highlights": [16, 1073, 3, 35, 3, 1073]}},
+   "1095":
+   {"text":
+    {"str":
+     "\n\n/- If p is of type Prop, then an element `hp : p` is evidence that the\ntype `p` is not empty. Alternatively, you can think of hp as a `proof` of `p`.\n\n\n\nLooking Ahead: Arrow Types on Props are Implications\n===\n\nArrow types which above denoted functions, can be\nthought of as denoting **implication** if Prop is involved.  -/\n\n"}},
+   "1094": {"seq": {"highlights": [45, 1093, 3, 1073, 6]}},
+   "1093": {"span": {"info": [["info", 1089]], "content": 1092}},
+   "1092": {"seq": {"highlights": [1091, 6]}},
+   "1091": {"token": {"tok": 1090}},
+   "1086": {"seq": {"highlights": [16, 1073, 16]}},
+   "1085": {"seq": {"highlights": [45, 1084, 3, 1075, 6]}},
+   "1084": {"span": {"info": [["info", 1080]], "content": 1083}},
+   "1083": {"seq": {"highlights": [1082, 6]}},
+   "1082": {"token": {"tok": 1081}},
+   "1077": {"seq": {"highlights": [16, 1075, 16]}},
+   "1076":
+   {"seq": {"highlights": [1069, 1071, 3, 55, 1073, 3, 129, 3, 1075, 57, 6]}},
+   "1075": {"token": {"tok": 1074}},
+   "1073": {"token": {"tok": 1072}},
+   "1071": {"token": {"tok": 1070}},
+   "1069":
+   {"text":
+    {"str":
+     "\n\n/- You can prove this by the reflexive property of equality (`rfl`)\nbecause two λ-expressions that beta reduce to the same thing are\nconsidered **definitionally equal**.\n\nArithmetic with the Simply Typed λ-Calculus illustrates its power. In fact,\nwe'll show it can represent a fragment of logic called _intuitionist propositional\nlogic`. And, clearly, you can do arithmetic.\n\nHowever:\n- It does not have quantification (e.g. Π types)\n- Church numeral like constructions do not have an induction principle that is part of the language\n\nTo represent _more_ mathematics _more_ elegantly, we need more types! -/\n\n\n\n\n\n/-\nExercises\n===\n\n<ex /> Define a lambda abstraction, called double, that takes a Church numeral\nand doubles it. Evaluate it on a few examples.\n\n-/\n\n\n\n\n\n\n\n\n/-\nLooking Ahead: Proposition\n===\n\nLean has a special type called Prop which stands for **Proposition**.\nIt treats this type somewhat differently than all other types, but in\nmost ways it ist just another type. -/\n\n"}},
+   "1068":
+   {"seq":
+    {"highlights":
+     [1058,
+      1060,
+      3,
+      1062,
+      3,
+      129,
+      3,
+      958,
+      3,
+      972,
+      3,
+      972,
+      3,
+      1064,
+      3,
+      870,
+      3,
+      87,
+      1065,
+      1067,
+      6]}},
+   "1067": {"token": {"tok": 1066}},
+   "1065": {"text": {"str": "\n  "}},
+   "1064": {"token": {"tok": 1063}},
+   "1062": {"token": {"tok": 1061}},
+   "1060": {"token": {"tok": 1059}},
+   "106": {"seq": {"highlights": [16, 99, 3, 35, 3, 101, 3, 35, 3, 105]}},
+   "1058": {"text": {"str": "\n\n\n\n\n\n\n\n/-\n1+1 = 2\n===\n-/\n\n"}},
+   "1057":
+   {"seq":
+    {"highlights":
+     [45,
+      1052,
+      3,
+      55,
+      1054,
+      3,
+      87,
+      3,
+      1056,
+      57,
+      3,
+      1044,
+      3,
+      870,
+      3,
+      972,
+      3,
+      928,
+      6]}},
+   "1056": {"token": {"tok": 1055}},
+   "1054": {"token": {"tok": 1053}},
+   "1052": {"span": {"info": [["info", 1048]], "content": 1051}},
+   "1051": {"seq": {"highlights": [1050, 6]}},
+   "1050": {"token": {"tok": 1049}},
+   "105": {"token": {"tok": 104}},
+   "1046":
+   {"seq":
+    {"highlights":
+     [195,
+      3,
+      897,
+      3,
+      899,
+      3,
+      199,
+      3,
+      897,
+      3,
+      55,
+      897,
+      3,
+      55,
+      897,
+      3,
+      899,
+      57,
+      57]}},
+   "1045":
+   {"seq":
+    {"highlights":
+     [8,
+      1038,
+      3,
+      55,
+      1040,
+      3,
+      87,
+      3,
+      1042,
+      57,
+      3,
+      1044,
+      3,
+      870,
+      3,
+      914,
+      3,
+      928,
+      6]}},
+   "1044": {"token": {"tok": 1043}},
+   "1042": {"token": {"tok": 1041}},
+   "1040": {"token": {"tok": 1039}},
+   "1038": {"span": {"info": [["info", 1034]], "content": 1037}},
+   "1037": {"seq": {"highlights": [1036, 6]}},
+   "1036": {"token": {"tok": 1035}},
+   "1032":
+   {"seq":
+    {"highlights":
+     [195, 3, 897, 3, 899, 3, 199, 3, 897, 3, 55, 897, 3, 899, 57]}},
+   "1031":
+   {"seq":
+    {"highlights":
+     [1005,
+      1007,
+      3,
+      1009,
+      3,
+      87,
+      3,
+      1011,
+      3,
+      55,
+      1013,
+      3,
+      1015,
+      3,
+      1017,
+      129,
+      3,
+      889,
+      57,
+      3,
+      199,
+      3,
+      1019,
+      3,
+      1021,
+      3,
+      1023,
+      3,
+      199,
+      1024,
+      1015,
+      3,
+      55,
+      1026,
+      3,
+      55,
+      3,
+      1030,
+      3,
+      129,
+      3,
+      707,
+      3,
+      57,
+      3,
+      199,
+      3,
+      1017,
+      3,
+      1021,
+      3,
+      1023,
+      57,
+      3,
+      55,
+      1013,
+      3,
+      1021,
+      3,
+      1023,
+      57,
+      6]}},
+   "1030": {"span": {"info": [["warning", 507]], "content": 1029}},
+   "103":
+   {"text":
+    {"str":
+     "\n\n/- Which looks a bit more like what you would see in a textbook on type theory.\nNow you can construct more types. -/\n\n"}},
+   "1029": {"seq": {"highlights": [1028, 6]}},
+   "1028": {"token": {"tok": 1027}},
+   "1026": {"token": {"tok": 1025}},
+   "1024": {"text": {"str": "\n              "}},
+   "1023": {"token": {"tok": 1022}},
+   "1021": {"token": {"tok": 1020}},
+   "102":
+   {"seq": {"highlights": [45, 95, 3, 97, 3, 87, 3, 99, 3, 35, 3, 101, 6]}},
+   "1019": {"token": {"tok": 1018}},
+   "1017": {"token": {"tok": 1016}},
+   "1015": {"token": {"tok": 1014}},
+   "1013": {"token": {"tok": 1012}},
+   "1011": {"token": {"tok": 1010}},
+   "101": {"token": {"tok": 100}},
+   "1009": {"token": {"tok": 1008}},
+   "1007": {"token": {"tok": 1006}},
+   "1005":
+   {"text":
+    {"str":
+     "\n\n\n/-\nBooleans and If Statements\n===\n\nWe can encode an if-statement: -/\n\n"}},
+   "1004":
+   {"seq":
+    {"highlights":
+     [8, 997, 3, 55, 999, 3, 87, 3, 1001, 57, 3, 1003, 3, 928, 3, 870, 6]}},
+   "1003": {"token": {"tok": 1002}},
+   "1001": {"token": {"tok": 1000}},
+   "10": {"token": {"tok": 9}},
+   "0":
+   {"text":
+    {"str":
+     "--  Copyright (C) 2025  Eric Klavins\n--\n--  This program is free software: you can redistribute it and/or modify\n--  it under the terms of the GNU General Public License as published by\n--  the Free Software Foundation, either version 3 of the License, or\n--  (at your option) any later version.\n\n"}}}}}

@@ -1,0 +1,23 @@
+{"items":
+ [{"range": null,
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 0},
+  {"range":
+   {"start": {"line": 14, "column": 1}, "end": {"line": 14, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 4}],
+ "data":
+ {"tokens": {"2": {"kind": "unknown", "content": ""}},
+  "nextKey": 5,
+  "messageContents": {},
+  "goals": {},
+  "code":
+  {"4": {"seq": {"highlights": [1, 3, 0]}},
+   "3": {"token": {"tok": 2}},
+   "1":
+   {"text":
+    {"str":
+     "--  Copyright (C) 2025  Eric Klavins\n--\n--  This program is free software: you can redistribute it and/or modify\n--  it under the terms of the GNU General Public License as published by\n--  the Free Software Foundation, either version 3 of the License, or\n--  (at your option) any later version.\n\n--notdone\n\n/-\nTodo!\n===\n-/\n"}},
+   "0": {"seq": {"highlights": []}}}}}

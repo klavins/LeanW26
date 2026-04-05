@@ -1,0 +1,3214 @@
+{"items":
+ [{"range":
+   {"start": {"line": 1, "column": 1}, "end": {"line": 1, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 6},
+  {"range":
+   {"start": {"line": 5, "column": 1}, "end": {"line": 5, "column": 31}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["Spin.dn", "Spin.up", "Spin"],
+   "code": 20},
+  {"range":
+   {"start": {"line": 6, "column": 1}, "end": {"line": 6, "column": 10}},
+   "kind": "Lean.Parser.Command.open",
+   "defines": [],
+   "code": 26},
+  {"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 10, "column": 13}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["Spin.toggle"],
+   "code": 45},
+  {"range":
+   {"start": {"line": 12, "column": 1}, "end": {"line": 12, "column": 10}},
+   "kind": "Lean.Parser.Command.open",
+   "defines": [],
+   "code": 48},
+  {"range":
+   {"start": {"line": 14, "column": 1}, "end": {"line": 14, "column": 28}},
+   "kind": "Lean.Parser.Command.mixfix",
+   "defines": [],
+   "code": 57},
+  {"range":
+   {"start": {"line": 16, "column": 1}, "end": {"line": 16, "column": 45}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["toggle_up"],
+   "code": 76},
+  {"range":
+   {"start": {"line": 18, "column": 1}, "end": {"line": 18, "column": 45}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["toggle_dn"],
+   "code": 83},
+  {"range":
+   {"start": {"line": 20, "column": 1}, "end": {"line": 21, "column": 20}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["toggle_toggle"],
+   "code": 138},
+  {"range":
+   {"start": {"line": 23, "column": 1}, "end": {"line": 23, "column": 39}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 154},
+  {"range":
+   {"start": {"line": 28, "column": 1}, "end": {"line": 31, "column": 14}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["op"],
+   "code": 176},
+  {"range":
+   {"start": {"line": 33, "column": 1}, "end": {"line": 33, "column": 21}},
+   "kind": "Lean.Parser.Command.mixfix",
+   "defines": [],
+   "code": 185},
+  {"range":
+   {"start": {"line": 35, "column": 1}, "end": {"line": 36, "column": 18}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["op_up_left"],
+   "code": 217},
+  {"range":
+   {"start": {"line": 38, "column": 1}, "end": {"line": 39, "column": 18}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["op_up_right"],
+   "code": 245},
+  {"range":
+   {"start": {"line": 41, "column": 1}, "end": {"line": 42, "column": 18}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["op_dn_left"],
+   "code": 275},
+  {"range":
+   {"start": {"line": 44, "column": 1}, "end": {"line": 45, "column": 18}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["op_dn_right"],
+   "code": 303},
+  {"range":
+   {"start": {"line": 47, "column": 1}, "end": {"line": 48, "column": 19}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["toggle_op_left"],
+   "code": 341},
+  {"range":
+   {"start": {"line": 51, "column": 1}, "end": {"line": 52, "column": 19}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["assoc"],
+   "code": 380},
+  {"range":
+   {"start": {"line": 55, "column": 1}, "end": {"line": 56, "column": 19}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["com"],
+   "code": 412},
+  {"range":
+   {"start": {"line": 58, "column": 1}, "end": {"line": 59, "column": 25}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["toggle_op_right"],
+   "code": 441},
+  {"range":
+   {"start": {"line": 61, "column": 1}, "end": {"line": 61, "column": 67}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["inv_cancel_right"],
+   "code": 469},
+  {"range":
+   {"start": {"line": 63, "column": 1}, "end": {"line": 63, "column": 74}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["inv_cancel_left"],
+   "code": 490},
+  {"range":
+   {"start": {"line": 67, "column": 1}, "end": {"line": 67, "column": 31}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["shift"],
+   "code": 503},
+  {"range":
+   {"start": {"line": 79, "column": 1}, "end": {"line": 82, "column": 14}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["shift_zero"],
+   "code": 540},
+  {"range":
+   {"start": {"line": 84, "column": 1}, "end": {"line": 88, "column": 11}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["shift_add"],
+   "code": 589},
+  {"range":
+   {"start": {"line": 90, "column": 1}, "end": {"line": 95, "column": 41}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": [],
+   "code": 659},
+  {"range":
+   {"start": {"line": 96, "column": 1}, "end": {"line": 96, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 662}],
+ "data":
+ {"tokens":
+  {"98":
+   {"kind":
+    {"const":
+     {"signature": "Spin.toggle : Spin → Spin",
+      "name": ["Spin", "toggle"],
+      "isDef": false,
+      "docs": null}},
+    "content": "⁻¹"},
+   "94": {"kind": "unknown", "content": "}"},
+   "92":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.6939"}}, "content": "x"},
+   "90": {"kind": "unknown", "content": "{"},
+   "88":
+   {"kind":
+    {"const":
+     {"signature": "toggle_toggle {x : Spin} : x ⁻¹ ⁻¹ = x",
+      "name": ["toggle_toggle"],
+      "isDef": true,
+      "docs": null}},
+    "content": "toggle_toggle"},
+   "86":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-268",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "84":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Attr.simp-262",
+      "name": ["Lean", "Parser", "Attr", "simp"],
+      "docs":
+      "Theorems tagged with the `simp` attribute are used by the simplifier\n(i.e., the `simp` tactic, and its variants) to simplify expressions occurring in your goals.\nWe call theorems tagged with the `simp` attribute \"simp theorems\" or \"simp lemmas\".\nLean maintains a database/index containing all active simp theorems.\nHere is an example of a simp theorem.\n```lean\n@[simp] theorem ne_eq (a b : α) : (a ≠ b) = Not (a = b) := rfl\n```\nThis simp theorem instructs the simplifier to replace instances of the term\n`a ≠ b` (e.g. `x + 0 ≠ y`) with `Not (a = b)` (e.g., `Not (x + 0 = y)`).\nThe simplifier applies simp theorems in one direction only:\nif `A = B` is a simp theorem, then `simp` replaces `A`s with `B`s,\nbut it doesn't replace `B`s with `A`s. Hence a simp theorem should have the\nproperty that its right-hand side is \"simpler\" than its left-hand side.\nIn particular, `=` and `↔` should not be viewed as symmetric operators in this situation.\nThe following would be a terrible simp theorem (if it were even allowed):\n```lean\n@[simp] lemma mul_right_inv_bad (a : G) : 1 = a * a⁻¹ := ...\n```\nReplacing 1 with a * a⁻¹ is not a sensible default direction to travel.\nEven worse would be a theorem that causes expressions to grow without bound,\ncausing simp to loop forever.\n\nBy default the simplifier applies `simp` theorems to an expression `e`\nafter its sub-expressions have been simplified.\nWe say it performs a bottom-up simplification.\nYou can instruct the simplifier to apply a theorem before its sub-expressions\nhave been simplified by using the modifier `↓`. Here is an example\n```lean\n@[simp↓] theorem not_and_eq (p q : Prop) : (¬ (p ∧ q)) = (¬p ∨ ¬q) :=\n```\n\nYou can instruct the simplifier to rewrite the lemma from right-to-left:\n```lean\nattribute @[simp ←] and_assoc\n```\n\nWhen multiple simp theorems are applicable, the simplifier uses the one with highest priority.\nThe equational theorems of functions are applied at very low priority (100 and below).\nIf there are several with the same priority, it is uses the \"most recent one\". Example:\n```lean\n@[simp high] theorem cond_true (a b : α) : cond true a b = a := rfl\n@[simp low+1] theorem or_true (p : Prop) : (p ∨ True) = True :=\n  propext <| Iff.intro (fun _ => trivial) (fun _ => Or.inr trivial)\n@[simp 100] theorem ite_self {d : Decidable c} (a : α) : ite c a a = a := by\n  cases d <;> rfl\n```\n"}},
+    "content": "simp"},
+   "81":
+   {"kind":
+    {"const":
+     {"signature": "toggle_dn : dn ⁻¹ = up",
+      "name": ["toggle_dn"],
+      "isDef": true,
+      "docs": null}},
+    "content": "toggle_dn"},
+   "8":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.inductive-18",
+      "name": ["Lean", "Parser", "Command", "inductive"],
+      "docs":
+      "In Lean, every concrete type other than the universes\nand every type constructor other than dependent arrows\nis an instance of a general family of type constructions known as inductive types.\nIt is remarkable that it is possible to construct a substantial edifice of mathematics\nbased on nothing more than the type universes, dependent arrow types, and inductive types;\neverything else follows from those.\nIntuitively, an inductive type is built up from a specified list of constructors.\nFor example, `List α` is the list of elements of type `α`, and is defined as follows:\n```\ninductive List (α : Type u) where\n| nil\n| cons (head : α) (tail : List α)\n```\nA list of elements of type `α` is either the empty list, `nil`,\nor an element `head : α` followed by a list `tail : List α`.\nSee [Inductive types](https://lean-lang.org/theorem_proving_in_lean4/inductive_types.html)\nfor more information.\n"}},
+    "content": "inductive"},
+   "79":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-219",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "77":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Attr.simp-213",
+      "name": ["Lean", "Parser", "Attr", "simp"],
+      "docs":
+      "Theorems tagged with the `simp` attribute are used by the simplifier\n(i.e., the `simp` tactic, and its variants) to simplify expressions occurring in your goals.\nWe call theorems tagged with the `simp` attribute \"simp theorems\" or \"simp lemmas\".\nLean maintains a database/index containing all active simp theorems.\nHere is an example of a simp theorem.\n```lean\n@[simp] theorem ne_eq (a b : α) : (a ≠ b) = Not (a = b) := rfl\n```\nThis simp theorem instructs the simplifier to replace instances of the term\n`a ≠ b` (e.g. `x + 0 ≠ y`) with `Not (a = b)` (e.g., `Not (x + 0 = y)`).\nThe simplifier applies simp theorems in one direction only:\nif `A = B` is a simp theorem, then `simp` replaces `A`s with `B`s,\nbut it doesn't replace `B`s with `A`s. Hence a simp theorem should have the\nproperty that its right-hand side is \"simpler\" than its left-hand side.\nIn particular, `=` and `↔` should not be viewed as symmetric operators in this situation.\nThe following would be a terrible simp theorem (if it were even allowed):\n```lean\n@[simp] lemma mul_right_inv_bad (a : G) : 1 = a * a⁻¹ := ...\n```\nReplacing 1 with a * a⁻¹ is not a sensible default direction to travel.\nEven worse would be a theorem that causes expressions to grow without bound,\ncausing simp to loop forever.\n\nBy default the simplifier applies `simp` theorems to an expression `e`\nafter its sub-expressions have been simplified.\nWe say it performs a bottom-up simplification.\nYou can instruct the simplifier to apply a theorem before its sub-expressions\nhave been simplified by using the modifier `↓`. Here is an example\n```lean\n@[simp↓] theorem not_and_eq (p q : Prop) : (¬ (p ∧ q)) = (¬p ∨ ¬q) :=\n```\n\nYou can instruct the simplifier to rewrite the lemma from right-to-left:\n```lean\nattribute @[simp ←] and_assoc\n```\n\nWhen multiple simp theorems are applicable, the simplifier uses the one with highest priority.\nThe equational theorems of functions are applied at very low priority (100 and below).\nIf there are several with the same priority, it is uses the \"most recent one\". Example:\n```lean\n@[simp high] theorem cond_true (a b : α) : cond true a b = a := rfl\n@[simp low+1] theorem or_true (p : Prop) : (p ∨ True) = True :=\n  propext <| Iff.intro (fun _ => trivial) (fun _ => Or.inr trivial)\n@[simp 100] theorem ite_self {d : Decidable c} (a : α) : ite c a a = a := by\n  cases d <;> rfl\n```\n"}},
+    "content": "simp"},
+   "74":
+   {"kind":
+    {"const":
+     {"signature": "rfl.{u} {α : Sort u} {a : α} : a = a",
+      "name": ["rfl"],
+      "isDef": false,
+      "docs":
+      "`rfl : a = a` is the unique constructor of the equality type. This is the\nsame as `Eq.refl` except that it takes `a` implicitly instead of explicitly.\n\nThis is a more powerful theorem than it may appear at first, because although\nthe statement of the theorem is `a = a`, Lean will allow anything that is\ndefinitionally equal to that type. So, for instance, `2 + 2 = 4` is proven in\nLean by `rfl`, because both sides are the same up to definitional equality.\n"}},
+    "content": "rfl"},
+   "72": {"kind": "unknown", "content": ":="},
+   "70": {"kind": "unknown", "content": "="},
+   "68": {"kind": "unknown", "content": "⁻¹"},
+   "660": {"kind": "unknown", "content": ""},
+   "66":
+   {"kind":
+    {"const":
+     {"signature": "toggle_up : up ⁻¹ = dn",
+      "name": ["toggle_up"],
+      "isDef": true,
+      "docs": null}},
+    "content": "toggle_up"},
+   "655":
+   {"kind":
+    {"const":
+     {"signature":
+      "Function.rightInverse_iff_comp.{u_1, u_2} {α : Sort u_1} {β : Sort u_2} {f : α → β} {g : β → α} :\n  Function.RightInverse f g ↔ g ∘ f = id",
+      "name": ["Function", "rightInverse_iff_comp"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Function.rightInverse_iff_comp"},
+   "653":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-2107",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "648":
+   {"kind":
+    {"const":
+     {"signature":
+      "Function.leftInverse_iff_comp.{u_1, u_2} {α : Sort u_1} {β : Sort u_2} {f : α → β} {g : β → α} :\n  Function.LeftInverse f g ↔ f ∘ g = id",
+      "name": ["Function", "leftInverse_iff_comp"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Function.leftInverse_iff_comp"},
+   "646":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-2066",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "642": {"kind": "unknown", "content": "·"},
+   "64":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-170",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "638":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.constructor-2049",
+      "name": ["Lean", "Parser", "Tactic", "constructor"],
+      "docs":
+      "If the main goal's target type is an inductive type, `constructor` solves it with\nthe first matching constructor, or else fails.\n"}},
+    "content": "constructor"},
+   "630": {"kind": "unknown", "content": "-"},
+   "628":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Mathlib.Tactic.useSyntax-2032",
+      "name": ["Mathlib", "Tactic", "useSyntax"],
+      "docs":
+      "`use e₁, e₂, ⋯` is similar to `exists`, but unlike `exists` it is equivalent to applying the tactic\n`refine ⟨e₁, e₂, ⋯, ?_, ⋯, ?_⟩` with any number of placeholders (rather than just one) and\nthen trying to close goals associated to the placeholders with a configurable discharger (rather\nthan just `try trivial`).\n\nExamples:\n\n```lean\nexample : ∃ x : Nat, x = x := by use 42\n\nexample : ∃ x : Nat, ∃ y : Nat, x = y := by use 42, 42\n\nexample : Nonempty Nat := by use 5\n\nexample : Nonempty (PNat ≃ Nat) := by\n  use PNat.natPred, Nat.succPNat\n  · exact PNat.succPNat_natPred\n  · intro; rfl\n```\n\n`use! e₁, e₂, ⋯` is similar but it applies constructors everywhere rather than just for\ngoals that correspond to the last argument of a constructor. This gives the effect that\nnested constructors are being flattened out, with the supplied values being used along the\nleaves and nodes of the tree of constructors.\nWith `use!` one can feed in each `42` one at a time:\n\n```lean\nexample : ∃ n : {n : Nat // n % 2 = 0}, n.val > 10 := by use! 20; simp\n\nexample : ∃ p : Nat × Nat, p.1 = p.2 := by use! (42, 42)\n```\n\nThe second line makes use of the fact that `use!` tries refining with the argument before\napplying a constructor. Also note that `use`/`use!` by default uses a tactic\ncalled `use_discharger` to discharge goals, so `use! 42` will close the goal in this example since\n`use_discharger` applies `rfl`, which as a consequence solves for the other `Nat` metavariable.\n\nThese tactics take an optional discharger to handle remaining explicit `Prop` constructor arguments.\nBy default it is `use (discharger := try with_reducible use_discharger) e₁, e₂, ⋯`.\nTo turn off the discharger and keep all goals, use `(discharger := skip)`.\nTo allow \"heavy refls\", use `(discharger := try use_discharger)`.\n"}},
+    "content": "use"},
+   "624":
+   {"kind":
+    {"const":
+     {"signature": "Neg.neg.{u} {α : Type u} [self : Neg α] : α → α",
+      "name": ["Neg", "neg"],
+      "isDef": false,
+      "docs":
+      "`-a` computes the negative or opposite of `a`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `-` in identifiers is `neg` (when used as a unary operator)."}},
+    "content": ")"},
+   "622":
+   {"kind":
+    {"const":
+     {"signature": "Neg.neg.{u} {α : Type u} [self : Neg α] : α → α",
+      "name": ["Neg", "neg"],
+      "isDef": false,
+      "docs":
+      "`-a` computes the negative or opposite of `a`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `-` in identifiers is `neg` (when used as a unary operator)."}},
+    "content": "-"},
+   "620":
+   {"kind":
+    {"const":
+     {"signature": "Neg.neg.{u} {α : Type u} [self : Neg α] : α → α",
+      "name": ["Neg", "neg"],
+      "isDef": false,
+      "docs":
+      "`-a` computes the negative or opposite of `a`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `-` in identifiers is `neg` (when used as a unary operator)."}},
+    "content": "("},
+   "62": {"kind": "unknown", "content": "]"},
+   "616":
+   {"kind":
+    {"const":
+     {"signature":
+      "Function.bijective_iff_has_inverse.{u, v} {α : Sort u} {β : Sort v} {f : α → β} :\n  Function.Bijective f ↔ ∃ g, Function.LeftInverse g f ∧ Function.RightInverse g f",
+      "name": ["Function", "bijective_iff_has_inverse"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Function.bijective_iff_has_inverse"},
+   "614":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.rwSeq-1991",
+      "name": ["Lean", "Parser", "Tactic", "rwSeq"],
+      "docs":
+      "`rw` is like `rewrite`, but also tries to close the goal by \"cheap\" (reducible) `rfl` afterwards.\n"}},
+    "content": "rw"},
+   "610":
+   {"kind":
+    {"const":
+     {"signature":
+      "Function.RightInverse.{u_1, u_2} {α : Sort u_1} {β : Sort u_2} (g : β → α) (f : α → β) : Prop",
+      "name": ["Function", "RightInverse"],
+      "isDef": false,
+      "docs":
+      "`RightInverse g f` means that `g` is a right inverse to `f`. That is, `f ∘ g = id`. "}},
+    "content": "Function.RightInverse"},
+   "608":
+   {"kind":
+    {"const":
+     {"signature": "And (a b : Prop) : Prop",
+      "name": ["And"],
+      "isDef": false,
+      "docs":
+      "`And a b`, or `a ∧ b`, is the conjunction of propositions. It can be\nconstructed and destructed like a pair: if `ha : a` and `hb : b` then\n`⟨ha, hb⟩ : a ∧ b`, and if `h : a ∧ b` then `h.left : a` and `h.right : b`.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∧` in identifiers is `and`.\n\n * The recommended spelling of `/\\` in identifiers is `and` (prefer `∧` over `/\\`)."}},
+    "content": "∧"},
+   "606":
+   {"kind":
+    {"const":
+     {"signature":
+      "Function.LeftInverse.{u_1, u_2} {α : Sort u_1} {β : Sort u_2} (g : β → α) (f : α → β) : Prop",
+      "name": ["Function", "LeftInverse"],
+      "isDef": false,
+      "docs":
+      "`LeftInverse g f` means that `g` is a left inverse to `f`. That is, `g ∘ f = id`. "}},
+    "content": "Function.LeftInverse"},
+   "604":
+   {"kind": {"var": {"type": "ℤ → ℤ", "name": "_uniq.19060"}}, "content": "g"},
+   "602": {"kind": "unknown", "content": "∃"},
+   "60":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Attr.simp-164",
+      "name": ["Lean", "Parser", "Attr", "simp"],
+      "docs":
+      "Theorems tagged with the `simp` attribute are used by the simplifier\n(i.e., the `simp` tactic, and its variants) to simplify expressions occurring in your goals.\nWe call theorems tagged with the `simp` attribute \"simp theorems\" or \"simp lemmas\".\nLean maintains a database/index containing all active simp theorems.\nHere is an example of a simp theorem.\n```lean\n@[simp] theorem ne_eq (a b : α) : (a ≠ b) = Not (a = b) := rfl\n```\nThis simp theorem instructs the simplifier to replace instances of the term\n`a ≠ b` (e.g. `x + 0 ≠ y`) with `Not (a = b)` (e.g., `Not (x + 0 = y)`).\nThe simplifier applies simp theorems in one direction only:\nif `A = B` is a simp theorem, then `simp` replaces `A`s with `B`s,\nbut it doesn't replace `B`s with `A`s. Hence a simp theorem should have the\nproperty that its right-hand side is \"simpler\" than its left-hand side.\nIn particular, `=` and `↔` should not be viewed as symmetric operators in this situation.\nThe following would be a terrible simp theorem (if it were even allowed):\n```lean\n@[simp] lemma mul_right_inv_bad (a : G) : 1 = a * a⁻¹ := ...\n```\nReplacing 1 with a * a⁻¹ is not a sensible default direction to travel.\nEven worse would be a theorem that causes expressions to grow without bound,\ncausing simp to loop forever.\n\nBy default the simplifier applies `simp` theorems to an expression `e`\nafter its sub-expressions have been simplified.\nWe say it performs a bottom-up simplification.\nYou can instruct the simplifier to apply a theorem before its sub-expressions\nhave been simplified by using the modifier `↓`. Here is an example\n```lean\n@[simp↓] theorem not_and_eq (p q : Prop) : (¬ (p ∧ q)) = (¬p ∨ ¬q) :=\n```\n\nYou can instruct the simplifier to rewrite the lemma from right-to-left:\n```lean\nattribute @[simp ←] and_assoc\n```\n\nWhen multiple simp theorems are applicable, the simplifier uses the one with highest priority.\nThe equational theorems of functions are applied at very low priority (100 and below).\nIf there are several with the same priority, it is uses the \"most recent one\". Example:\n```lean\n@[simp high] theorem cond_true (a b : α) : cond true a b = a := rfl\n@[simp low+1] theorem or_true (p : Prop) : (p ∨ True) = True :=\n  propext <| Iff.intro (fun _ => trivial) (fun _ => Or.inr trivial)\n@[simp 100] theorem ite_self {d : Decidable c} (a : α) : ite c a a = a := by\n  cases d <;> rfl\n```\n"}},
+    "content": "simp"},
+   "598":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-1986",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "594":
+   {"kind":
+    {"const":
+     {"signature":
+      "Function.Bijective.{u₁, u₂} {α : Sort u₁} {β : Sort u₂} (f : α → β) : Prop",
+      "name": ["Function", "Bijective"],
+      "isDef": false,
+      "docs":
+      "A function is called bijective if it is both injective and surjective. "}},
+    "content": "Function.Bijective"},
+   "592":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.18519"}}, "content": "k"},
+   "590":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-1940",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "585":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Mathlib.Tactic.linarith-1930",
+      "name": ["Mathlib", "Tactic", "linarith"],
+      "docs":
+      "`linarith` attempts to find a contradiction between hypotheses that are linear (in)equalities.\nEquivalently, it can prove a linear inequality by assuming its negation and proving `False`.\n\nIn theory, `linarith` should prove any goal that is true in the theory of linear arithmetic over\nthe rationals. While there is some special handling for non-dense orders like `Nat` and `Int`,\nthis tactic is not complete for these theories and will not prove every true goal. It will solve\ngoals over arbitrary types that instantiate `CommRing`, `LinearOrder` and `IsStrictOrderedRing`.\n\nAn example:\n```lean\nexample (x y z : ℚ) (h1 : 2*x < 3*y) (h2 : -4*x + 2*z < 0)\n        (h3 : 12*y - 4* z < 0) : False := by\n  linarith\n```\n\n`linarith` will use all appropriate hypotheses and the negation of the goal, if applicable.\nDisequality hypotheses require case splitting and are not normally considered\n(see the `splitNe` option below).\n\n`linarith [t1, t2, t3]` will additionally use proof terms `t1, t2, t3`.\n\n`linarith only [h1, h2, h3, t1, t2, t3]` will use only the goal (if relevant), local hypotheses\n`h1`, `h2`, `h3`, and proofs `t1`, `t2`, `t3`. It will ignore the rest of the local context.\n\n`linarith!` will use a stronger reducibility setting to try to identify atoms. For example,\n```lean\nexample (x : ℚ) : id x ≥ x := by\n  linarith\n```\nwill fail, because `linarith` will not identify `x` and `id x`. `linarith!` will.\nThis can sometimes be expensive.\n\n`linarith (config := { .. })` takes a config object with five\noptional arguments:\n* `discharger` specifies a tactic to be used for reducing an algebraic equation in the\n  proof stage. The default is `ring`. Other options include `simp` for basic\n  problems.\n* `transparency` controls how hard `linarith` will try to match atoms to each other. By default\n  it will only unfold `reducible` definitions.\n* If `splitHypotheses` is true, `linarith` will split conjunctions in the context into separate\n  hypotheses.\n* If `splitNe` is `true`, `linarith` will case split on disequality hypotheses.\n  For a given `x ≠ y` hypothesis, `linarith` is run with both `x < y` and `x > y`,\n  and so this runs linarith exponentially many times with respect to the number of\n  disequality hypotheses. (`false` by default.)\n* If `exfalso` is `false`, `linarith` will fail when the goal is neither an inequality nor `False`.\n  (`true` by default.)\n* If `minimize` is `false`, `linarith?` will report all hypotheses appearing in its initial\n  proof without attempting to drop redundancies. (`true` by default.)\n* `restrict_type` (not yet implemented in mathlib4)\n  will only use hypotheses that are inequalities over `tp`. This is useful\n  if you have e.g. both integer- and rational-valued inequalities in the local context, which can\n  sometimes confuse the tactic.\n\nA variant, `nlinarith`, does some basic preprocessing to handle some nonlinear goals.\n\nThe option `set_option trace.linarith true` will trace certain intermediate stages of the `linarith`\nroutine.\n"}},
+    "content": "linarith"},
+   "581":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-1916",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "58": {"kind": "unknown", "content": "@["},
+   "575":
+   {"kind":
+    {"keyword":
+     {"occurrence": "tacticFunext___-1905",
+      "name": ["tacticFunext___"],
+      "docs":
+      "Apply function extensionality and introduce new hypotheses.\nThe tactic `funext` will keep applying the `funext` lemma until the goal target is not reducible to\n```\n  |-  ((fun x => ...) = (fun x => ...))\n```\nThe variant `funext h₁ ... hₙ` applies `funext` `n` times, and uses the given identifiers to name the new hypotheses.\nPatterns can be used like in the `intro` tactic. Example, given a goal\n```\n  |-  ((fun x : Nat × Bool => ...) = (fun x => ...))\n```\n`funext (a, b)` applies `funext` once and performs pattern matching on the newly introduced pair.\n"}},
+    "content": "funext"},
+   "570":
+   {"kind":
+    {"const":
+     {"signature":
+      "Function.comp.{u, v, w} {α : Sort u} {β : Sort v} {δ : Sort w} (f : β → δ) (g : α → β) : α → δ",
+      "name": ["Function", "comp"],
+      "isDef": false,
+      "docs":
+      "Function composition, usually written with the infix operator `∘`. A new function is created from\ntwo existing functions, where one function's output is used as input to the other.\n\nExamples:\n * `Function.comp List.reverse (List.drop 2) [3, 2, 4, 1] = [1, 4]`\n * `(List.reverse ∘ List.drop 2) [3, 2, 4, 1] = [1, 4]`\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∘` in identifiers is `comp`."}},
+    "content": ")"},
+   "568":
+   {"kind":
+    {"const":
+     {"signature":
+      "Function.comp.{u, v, w} {α : Sort u} {β : Sort v} {δ : Sort w} (f : β → δ) (g : α → β) : α → δ",
+      "name": ["Function", "comp"],
+      "isDef": false,
+      "docs":
+      "Function composition, usually written with the infix operator `∘`. A new function is created from\ntwo existing functions, where one function's output is used as input to the other.\n\nExamples:\n * `Function.comp List.reverse (List.drop 2) [3, 2, 4, 1] = [1, 4]`\n * `(List.reverse ∘ List.drop 2) [3, 2, 4, 1] = [1, 4]`\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∘` in identifiers is `comp`."}},
+    "content": "("},
+   "567":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.16292"}}, "content": "x"},
+   "563":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-1900",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "559":
+   {"kind":
+    {"const":
+     {"signature":
+      "HAdd.hAdd.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HAdd α β γ] : α → β → γ",
+      "name": ["HAdd", "hAdd"],
+      "isDef": false,
+      "docs":
+      "`a + b` computes the sum of `a` and `b`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `+` in identifiers is `add`."}},
+    "content": ")"},
+   "557":
+   {"kind":
+    {"const":
+     {"signature":
+      "HAdd.hAdd.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HAdd α β γ] : α → β → γ",
+      "name": ["HAdd", "hAdd"],
+      "isDef": false,
+      "docs":
+      "`a + b` computes the sum of `a` and `b`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `+` in identifiers is `add`."}},
+    "content": "+"},
+   "555":
+   {"kind":
+    {"const":
+     {"signature":
+      "HAdd.hAdd.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HAdd α β γ] : α → β → γ",
+      "name": ["HAdd", "hAdd"],
+      "isDef": false,
+      "docs":
+      "`a + b` computes the sum of `a` and `b`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `+` in identifiers is `add`."}},
+    "content": "("},
+   "553":
+   {"kind":
+    {"const":
+     {"signature":
+      "Function.comp.{u, v, w} {α : Sort u} {β : Sort v} {δ : Sort w} (f : β → δ) (g : α → β) : α → δ",
+      "name": ["Function", "comp"],
+      "isDef": false,
+      "docs":
+      "Function composition, usually written with the infix operator `∘`. A new function is created from\ntwo existing functions, where one function's output is used as input to the other.\n\nExamples:\n * `Function.comp List.reverse (List.drop 2) [3, 2, 4, 1] = [1, 4]`\n * `(List.reverse ∘ List.drop 2) [3, 2, 4, 1] = [1, 4]`\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `∘` in identifiers is `comp`."}},
+    "content": "∘"},
+   "551": {"kind": "unknown", "content": "∘"},
+   "55":
+   {"kind":
+    {"const":
+     {"signature": "Spin.toggle : Spin → Spin",
+      "name": ["Spin", "toggle"],
+      "isDef": false,
+      "docs": null}},
+    "content": "toggle"},
+   "549":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.16207"}}, "content": "k"},
+   "547":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.16204"}}, "content": "j"},
+   "545":
+   {"kind":
+    {"const":
+     {"signature": "shift_add {j k : ℤ} : shift k ∘ shift j = shift (j + k)",
+      "name": ["shift_add"],
+      "isDef": true,
+      "docs": null}},
+    "content": "shift_add"},
+   "543":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-1837",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "541":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Attr.simp-1831",
+      "name": ["Lean", "Parser", "Attr", "simp"],
+      "docs":
+      "Theorems tagged with the `simp` attribute are used by the simplifier\n(i.e., the `simp` tactic, and its variants) to simplify expressions occurring in your goals.\nWe call theorems tagged with the `simp` attribute \"simp theorems\" or \"simp lemmas\".\nLean maintains a database/index containing all active simp theorems.\nHere is an example of a simp theorem.\n```lean\n@[simp] theorem ne_eq (a b : α) : (a ≠ b) = Not (a = b) := rfl\n```\nThis simp theorem instructs the simplifier to replace instances of the term\n`a ≠ b` (e.g. `x + 0 ≠ y`) with `Not (a = b)` (e.g., `Not (x + 0 = y)`).\nThe simplifier applies simp theorems in one direction only:\nif `A = B` is a simp theorem, then `simp` replaces `A`s with `B`s,\nbut it doesn't replace `B`s with `A`s. Hence a simp theorem should have the\nproperty that its right-hand side is \"simpler\" than its left-hand side.\nIn particular, `=` and `↔` should not be viewed as symmetric operators in this situation.\nThe following would be a terrible simp theorem (if it were even allowed):\n```lean\n@[simp] lemma mul_right_inv_bad (a : G) : 1 = a * a⁻¹ := ...\n```\nReplacing 1 with a * a⁻¹ is not a sensible default direction to travel.\nEven worse would be a theorem that causes expressions to grow without bound,\ncausing simp to loop forever.\n\nBy default the simplifier applies `simp` theorems to an expression `e`\nafter its sub-expressions have been simplified.\nWe say it performs a bottom-up simplification.\nYou can instruct the simplifier to apply a theorem before its sub-expressions\nhave been simplified by using the modifier `↓`. Here is an example\n```lean\n@[simp↓] theorem not_and_eq (p q : Prop) : (¬ (p ∧ q)) = (¬p ∨ ¬q) :=\n```\n\nYou can instruct the simplifier to rewrite the lemma from right-to-left:\n```lean\nattribute @[simp ←] and_assoc\n```\n\nWhen multiple simp theorems are applicable, the simplifier uses the one with highest priority.\nThe equational theorems of functions are applied at very low priority (100 and below).\nIf there are several with the same priority, it is uses the \"most recent one\". Example:\n```lean\n@[simp high] theorem cond_true (a b : α) : cond true a b = a := rfl\n@[simp low+1] theorem or_true (p : Prop) : (p ∨ True) = True :=\n  propext <| Iff.intro (fun _ => trivial) (fun _ => Or.inr trivial)\n@[simp 100] theorem ite_self {d : Decidable c} (a : α) : ite c a a = a := by\n  cases d <;> rfl\n```\n"}},
+    "content": "simp"},
+   "536":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-1816",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "532":
+   {"kind":
+    {"keyword":
+     {"occurrence": "tacticFunext___-1805",
+      "name": ["tacticFunext___"],
+      "docs":
+      "Apply function extensionality and introduce new hypotheses.\nThe tactic `funext` will keep applying the `funext` lemma until the goal target is not reducible to\n```\n  |-  ((fun x => ...) = (fun x => ...))\n```\nThe variant `funext h₁ ... hₙ` applies `funext` `n` times, and uses the given identifiers to name the new hypotheses.\nPatterns can be used like in the `intro` tactic. Example, given a goal\n```\n  |-  ((fun x : Nat × Bool => ...) = (fun x => ...))\n```\n`funext (a, b)` applies `funext` once and performs pattern matching on the newly introduced pair.\n"}},
+    "content": "funext"},
+   "53": {"kind": {"str": {"string": " ⁻¹ "}}, "content": "\" ⁻¹ \""},
+   "526":
+   {"kind":
+    {"const":
+     {"signature": "Int : Type",
+      "name": ["Int"],
+      "isDef": false,
+      "docs":
+      "The integers.\n\nThis type is special-cased by the compiler and overridden with an efficient implementation. The\nruntime has a special representation for `Int` that stores “small” signed numbers directly, while\nlarger numbers use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)). A “small number” is an integer that can be encoded with one fewer bits\nthan the platform's pointer size (i.e. 63 bits on 64-bit architectures and 31 bits on 32-bit\narchitectures).\n"}},
+    "content": "ℤ"},
+   "525":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.16134"}}, "content": "x"},
+   "521":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-1800",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "517": {"kind": "unknown", "content": "0"},
+   "515":
+   {"kind":
+    {"const":
+     {"signature": "id.{u} {α : Sort u} (a : α) : α",
+      "name": ["id"],
+      "isDef": false,
+      "docs":
+      "The identity function. `id` takes an implicit argument `α : Sort u`\n(a type in any universe), and an argument `a : α`, and returns `a`.\n\nAlthough this may look like a useless function, one application of the identity\nfunction is to explicitly put a type on an expression. If `e` has type `T`,\nand `T'` is definitionally equal to `T`, then `@id T' e` typechecks, and Lean\nknows that this expression has type `T'` rather than `T`. This can make a\ndifference for typeclass inference, since `T` and `T'` may have different\ntypeclass instances on them. `show T' from e` is sugar for an `@id T' e`\nexpression.\n"}},
+    "content": "id"},
+   "513": {"kind": {"withType": {"type": "ℤ"}}, "content": "0"},
+   "511":
+   {"kind":
+    {"const":
+     {"signature": "shift (k x : ℤ) : ℤ",
+      "name": ["shift"],
+      "isDef": false,
+      "docs": null}},
+    "content": "shift"},
+   "51": {"kind": "unknown", "content": "95"},
+   "509":
+   {"kind":
+    {"const":
+     {"signature": "shift_zero : shift 0 = id",
+      "name": ["shift_zero"],
+      "isDef": true,
+      "docs": null}},
+    "content": "shift_zero"},
+   "507":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-1763",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "505":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Attr.simp-1757",
+      "name": ["Lean", "Parser", "Attr", "simp"],
+      "docs":
+      "Theorems tagged with the `simp` attribute are used by the simplifier\n(i.e., the `simp` tactic, and its variants) to simplify expressions occurring in your goals.\nWe call theorems tagged with the `simp` attribute \"simp theorems\" or \"simp lemmas\".\nLean maintains a database/index containing all active simp theorems.\nHere is an example of a simp theorem.\n```lean\n@[simp] theorem ne_eq (a b : α) : (a ≠ b) = Not (a = b) := rfl\n```\nThis simp theorem instructs the simplifier to replace instances of the term\n`a ≠ b` (e.g. `x + 0 ≠ y`) with `Not (a = b)` (e.g., `Not (x + 0 = y)`).\nThe simplifier applies simp theorems in one direction only:\nif `A = B` is a simp theorem, then `simp` replaces `A`s with `B`s,\nbut it doesn't replace `B`s with `A`s. Hence a simp theorem should have the\nproperty that its right-hand side is \"simpler\" than its left-hand side.\nIn particular, `=` and `↔` should not be viewed as symmetric operators in this situation.\nThe following would be a terrible simp theorem (if it were even allowed):\n```lean\n@[simp] lemma mul_right_inv_bad (a : G) : 1 = a * a⁻¹ := ...\n```\nReplacing 1 with a * a⁻¹ is not a sensible default direction to travel.\nEven worse would be a theorem that causes expressions to grow without bound,\ncausing simp to loop forever.\n\nBy default the simplifier applies `simp` theorems to an expression `e`\nafter its sub-expressions have been simplified.\nWe say it performs a bottom-up simplification.\nYou can instruct the simplifier to apply a theorem before its sub-expressions\nhave been simplified by using the modifier `↓`. Here is an example\n```lean\n@[simp↓] theorem not_and_eq (p q : Prop) : (¬ (p ∧ q)) = (¬p ∨ ¬q) :=\n```\n\nYou can instruct the simplifier to rewrite the lemma from right-to-left:\n```lean\nattribute @[simp ←] and_assoc\n```\n\nWhen multiple simp theorems are applicable, the simplifier uses the one with highest priority.\nThe equational theorems of functions are applied at very low priority (100 and below).\nIf there are several with the same priority, it is uses the \"most recent one\". Example:\n```lean\n@[simp high] theorem cond_true (a b : α) : cond true a b = a := rfl\n@[simp low+1] theorem or_true (p : Prop) : (p ∨ True) = True :=\n  propext <| Iff.intro (fun _ => trivial) (fun _ => Or.inr trivial)\n@[simp 100] theorem ite_self {d : Decidable c} (a : α) : ite c a a = a := by\n  cases d <;> rfl\n```\n"}},
+    "content": "simp"},
+   "501": {"kind": "unknown", "content": "+"},
+   "499": {"kind": "unknown", "content": "ℤ"},
+   "497":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.15979"}}, "content": "x"},
+   "495":
+   {"kind": {"var": {"type": "ℤ", "name": "_uniq.15977"}}, "content": "k"},
+   "493":
+   {"kind":
+    {"const":
+     {"signature": "shift (k x : ℤ) : ℤ",
+      "name": ["shift"],
+      "isDef": true,
+      "docs": null}},
+    "content": "shift"},
+   "491":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1500",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "49":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.postfix-130",
+      "name": ["Lean", "Parser", "Command", "postfix"],
+      "docs":
+      "`postfix:prec \"op\" => f` is equivalent to `notation:prec x:prec \"op\" => f x`.\n"}},
+    "content": "postfix"},
+   "486":
+   {"kind":
+    {"const":
+     {"signature": "inv_cancel_right {x : Spin} : x o x ⁻¹ = dn",
+      "name": ["inv_cancel_right"],
+      "isDef": false,
+      "docs": null}},
+    "content": "inv_cancel_right"},
+   "484":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.rwSeq-1472",
+      "name": ["Lean", "Parser", "Tactic", "rwSeq"],
+      "docs":
+      "`rw` is like `rewrite`, but also tries to close the goal by \"cheap\" (reducible) `rfl` afterwards.\n"}},
+    "content": "rw"},
+   "480":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-1469",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "476":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1450", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "474":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.15654"}}, "content": "x"},
+   "472":
+   {"kind":
+    {"const":
+     {"signature": "inv_cancel_left {x : Spin} : x ⁻¹ o x = dn",
+      "name": ["inv_cancel_left"],
+      "isDef": true,
+      "docs": null}},
+    "content": "inv_cancel_left"},
+   "470":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-1420",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "465":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-1414",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "460":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.cases-1402",
+      "name": ["Lean", "Parser", "Tactic", "cases"],
+      "docs":
+      "Assuming `x` is a variable in the local context with an inductive type,\n`cases x` splits the main goal, producing one goal for each constructor of the\ninductive type, in which the target is replaced by a general instance of that constructor.\nIf the type of an element in the local context depends on `x`,\nthat element is reverted and reintroduced afterward,\nso that the case split affects that hypothesis as well.\n`cases` detects unreachable cases and closes them automatically.\n\nFor example, given `n : Nat` and a goal with a hypothesis `h : P n` and target `Q n`,\n`cases n` produces one goal with hypothesis `h : P 0` and target `Q 0`,\nand one goal with hypothesis `h : P (Nat.succ a)` and target `Q (Nat.succ a)`.\nHere the name `a` is chosen automatically and is not accessible.\nYou can use `with` to provide the variables names for each constructor.\n- `cases e`, where `e` is an expression instead of a variable, generalizes `e` in the goal,\n  and then cases on the resulting variable.\n- Given `as : List α`, `cases as with | nil => tac₁ | cons a as' => tac₂`,\n  uses tactic `tac₁` for the `nil` case, and `tac₂` for the `cons` case,\n  and `a` and `as'` are used as names for the new variables introduced.\n- `cases h : e`, where `e` is a variable or an expression,\n  performs cases on `e` as above, but also adds a hypothesis `h : e = ...` to each goal,\n  where `...` is the constructor instance for that particular case.\n"}},
+    "content": "cases"},
+   "46":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.open-119",
+      "name": ["Lean", "Parser", "Command", "open"],
+      "docs":
+      "Makes names from other namespaces visible without writing the namespace prefix.\n\nNames that are made available with `open` are visible within the current `section` or `namespace`\nblock. This makes referring to (type) definitions and theorems easier, but note that it can also\nmake [scoped instances], notations, and attributes from a different namespace available.\n\nThe `open` command can be used in a few different ways:\n\n* `open Some.Namespace.Path1 Some.Namespace.Path2` makes all non-protected names in\n  `Some.Namespace.Path1` and `Some.Namespace.Path2` available without the prefix, so that\n  `Some.Namespace.Path1.x` and `Some.Namespace.Path2.y` can be referred to by writing only `x` and\n  `y`.\n\n* `open Some.Namespace.Path hiding def1 def2` opens all non-protected names in `Some.Namespace.Path`\n  except `def1` and `def2`.\n\n* `open Some.Namespace.Path (def1 def2)` only makes `Some.Namespace.Path.def1` and\n  `Some.Namespace.Path.def2` available without the full prefix, so `Some.Namespace.Path.def3` would\n  be unaffected.\n\n  This works even if `def1` and `def2` are `protected`.\n\n* `open Some.Namespace.Path renaming def1 → def1', def2 → def2'` same as `open Some.Namespace.Path\n  (def1 def2)` but `def1`/`def2`'s names are changed to `def1'`/`def2'`.\n\n  This works even if `def1` and `def2` are `protected`.\n\n* `open scoped Some.Namespace.Path1 Some.Namespace.Path2` **only** opens [scoped instances],\n  notations, and attributes from `Namespace1` and `Namespace2`; it does **not** make any other name\n  available.\n\n* `open <any of the open shapes above> in` makes the names `open`-ed visible only in the next\n  command or expression.\n\n[scoped instance]: https://lean-lang.org/theorem_proving_in_lean4/type_classes.html#scoped-instances\n(Scoped instances in Theorem Proving in Lean)\n\n\n## Examples\n\n```lean\n/-- SKI combinators https://en.wikipedia.org/wiki/SKI_combinator_calculus -/\nnamespace Combinator.Calculus\n  def I (a : α) : α := a\n  def K (a : α) : β → α := fun _ => a\n  def S (x : α → β → γ) (y : α → β) (z : α) : γ := x z (y z)\nend Combinator.Calculus\n\nsection\n  -- open everything under `Combinator.Calculus`, *i.e.* `I`, `K` and `S`,\n  -- until the section ends\n  open Combinator.Calculus\n\n  theorem SKx_eq_K : S K x = I := rfl\nend\n\n-- open everything under `Combinator.Calculus` only for the next command (the next `theorem`, here)\nopen Combinator.Calculus in\ntheorem SKx_eq_K' : S K x = I := rfl\n\nsection\n  -- open only `S` and `K` under `Combinator.Calculus`\n  open Combinator.Calculus (S K)\n\n  theorem SKxy_eq_y : S K x y = y := rfl\n\n  -- `I` is not in scope, we have to use its full path\n  theorem SKxy_eq_Iy : S K x y = Combinator.Calculus.I y := rfl\nend\n\nsection\n  open Combinator.Calculus\n    renaming\n      I → identity,\n      K → konstant\n\n  #check identity\n  #check konstant\nend\n\nsection\n  open Combinator.Calculus\n    hiding S\n\n  #check I\n  #check K\nend\n\nsection\n  namespace Demo\n    inductive MyType\n    | val\n\n    namespace N1\n      scoped infix:68 \" ≋ \" => BEq.beq\n\n      scoped instance : BEq MyType where\n        beq _ _ := true\n\n      def Alias := MyType\n    end N1\n  end Demo\n\n  -- bring `≋` and the instance in scope, but not `Alias`\n  open scoped Demo.N1\n\n  #check Demo.MyType.val == Demo.MyType.val\n  #check Demo.MyType.val ≋ Demo.MyType.val\n  -- #check Alias -- unknown identifier 'Alias'\nend\n```\n"}},
+    "content": "open"},
+   "452":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-1399",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "448":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1380", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "446":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.15282"}}, "content": "x"},
+   "444":
+   {"kind":
+    {"const":
+     {"signature": "inv_cancel_right {x : Spin} : x o x ⁻¹ = dn",
+      "name": ["inv_cancel_right"],
+      "isDef": true,
+      "docs": null}},
+    "content": "inv_cancel_right"},
+   "442":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-1349",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "437":
+   {"kind":
+    {"const":
+     {"signature": "com {x y : Spin} : x o y = y o x",
+      "name": ["com"],
+      "isDef": false,
+      "docs": null}},
+    "content": "com"},
+   "435":
+   {"kind":
+    {"const":
+     {"signature": "toggle_op_left {x y : Spin} : (x o y) ⁻¹ = x ⁻¹ o y",
+      "name": ["toggle_op_left"],
+      "isDef": false,
+      "docs": null}},
+    "content": "toggle_op_left"},
+   "433": {"kind": "unknown", "content": "["},
+   "431":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.rwSeq-1325",
+      "name": ["Lean", "Parser", "Tactic", "rwSeq"],
+      "docs":
+      "`rw` is like `rewrite`, but also tries to close the goal by \"cheap\" (reducible) `rfl` afterwards.\n"}},
+    "content": "rw"},
+   "43":
+   {"kind":
+    {"const":
+     {"signature": "Spin.dn : Spin",
+      "name": ["Spin", "dn"],
+      "isDef": false,
+      "docs": null}},
+    "content": "dn"},
+   "427":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-1320",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "423":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1306", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "421":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1292", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "419":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.14953"}}, "content": "y"},
+   "417":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.14950"}}, "content": "x"},
+   "415":
+   {"kind":
+    {"const":
+     {"signature": "toggle_op_right {x y : Spin} : (x o y) ⁻¹ = y o x ⁻¹",
+      "name": ["toggle_op_right"],
+      "isDef": true,
+      "docs": null}},
+    "content": "toggle_op_right"},
+   "413":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-1259",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "41": {"kind": "unknown", "content": "=>"},
+   "408":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-1253",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "403":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.cases-1241",
+      "name": ["Lean", "Parser", "Tactic", "cases"],
+      "docs":
+      "Assuming `x` is a variable in the local context with an inductive type,\n`cases x` splits the main goal, producing one goal for each constructor of the\ninductive type, in which the target is replaced by a general instance of that constructor.\nIf the type of an element in the local context depends on `x`,\nthat element is reverted and reintroduced afterward,\nso that the case split affects that hypothesis as well.\n`cases` detects unreachable cases and closes them automatically.\n\nFor example, given `n : Nat` and a goal with a hypothesis `h : P n` and target `Q n`,\n`cases n` produces one goal with hypothesis `h : P 0` and target `Q 0`,\nand one goal with hypothesis `h : P (Nat.succ a)` and target `Q (Nat.succ a)`.\nHere the name `a` is chosen automatically and is not accessible.\nYou can use `with` to provide the variables names for each constructor.\n- `cases e`, where `e` is an expression instead of a variable, generalizes `e` in the goal,\n  and then cases on the resulting variable.\n- Given `as : List α`, `cases as with | nil => tac₁ | cons a as' => tac₂`,\n  uses tactic `tac₁` for the `nil` case, and `tac₂` for the `cons` case,\n  and `a` and `as'` are used as names for the new variables introduced.\n- `cases h : e`, where `e` is a variable or an expression,\n  performs cases on `e` as above, but also adds a hypothesis `h : e = ...` to each goal,\n  where `...` is the constructor instance for that particular case.\n"}},
+    "content": "cases"},
+   "395":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-1236",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "391":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1227", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "39":
+   {"kind":
+    {"const":
+     {"signature": "Spin.up : Spin",
+      "name": ["Spin", "up"],
+      "isDef": false,
+      "docs": null}},
+    "content": "up"},
+   "389":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1219", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "387":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.14877"}}, "content": "y"},
+   "385":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.14874"}}, "content": "x"},
+   "383":
+   {"kind":
+    {"const":
+     {"signature": "com {x y : Spin} : x o y = y o x",
+      "name": ["com"],
+      "isDef": true,
+      "docs": null}},
+    "content": "com"},
+   "381":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-1199",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "376":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-1166",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "371":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.cases-1154",
+      "name": ["Lean", "Parser", "Tactic", "cases"],
+      "docs":
+      "Assuming `x` is a variable in the local context with an inductive type,\n`cases x` splits the main goal, producing one goal for each constructor of the\ninductive type, in which the target is replaced by a general instance of that constructor.\nIf the type of an element in the local context depends on `x`,\nthat element is reverted and reintroduced afterward,\nso that the case split affects that hypothesis as well.\n`cases` detects unreachable cases and closes them automatically.\n\nFor example, given `n : Nat` and a goal with a hypothesis `h : P n` and target `Q n`,\n`cases n` produces one goal with hypothesis `h : P 0` and target `Q 0`,\nand one goal with hypothesis `h : P (Nat.succ a)` and target `Q (Nat.succ a)`.\nHere the name `a` is chosen automatically and is not accessible.\nYou can use `with` to provide the variables names for each constructor.\n- `cases e`, where `e` is an expression instead of a variable, generalizes `e` in the goal,\n  and then cases on the resulting variable.\n- Given `as : List α`, `cases as with | nil => tac₁ | cons a as' => tac₂`,\n  uses tactic `tac₁` for the `nil` case, and `tac₂` for the `cons` case,\n  and `a` and `as'` are used as names for the new variables introduced.\n- `cases h : e`, where `e` is a variable or an expression,\n  performs cases on `e` as above, but also adds a hypothesis `h : e = ...` to each goal,\n  where `...` is the constructor instance for that particular case.\n"}},
+    "content": "cases"},
+   "363":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-1149",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "36": {"kind": "unknown", "content": "→"},
+   "359":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1134", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "357":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1135", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "355":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1125", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "353":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1120", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "351":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.14797"}}, "content": "z"},
+   "349":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.14794"}}, "content": "y"},
+   "347":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.14791"}}, "content": "x"},
+   "345":
+   {"kind":
+    {"const":
+     {"signature": "assoc {x y z : Spin} : x o (y o z) = (x o y) o z",
+      "name": ["assoc"],
+      "isDef": true,
+      "docs": null}},
+    "content": "assoc"},
+   "343":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-1096",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "34":
+   {"kind":
+    {"const":
+     {"signature": "Spin : Type",
+      "name": ["Spin"],
+      "isDef": false,
+      "docs": null}},
+    "content": "Spin"},
+   "337":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-1063",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "332":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.cases-1051",
+      "name": ["Lean", "Parser", "Tactic", "cases"],
+      "docs":
+      "Assuming `x` is a variable in the local context with an inductive type,\n`cases x` splits the main goal, producing one goal for each constructor of the\ninductive type, in which the target is replaced by a general instance of that constructor.\nIf the type of an element in the local context depends on `x`,\nthat element is reverted and reintroduced afterward,\nso that the case split affects that hypothesis as well.\n`cases` detects unreachable cases and closes them automatically.\n\nFor example, given `n : Nat` and a goal with a hypothesis `h : P n` and target `Q n`,\n`cases n` produces one goal with hypothesis `h : P 0` and target `Q 0`,\nand one goal with hypothesis `h : P (Nat.succ a)` and target `Q (Nat.succ a)`.\nHere the name `a` is chosen automatically and is not accessible.\nYou can use `with` to provide the variables names for each constructor.\n- `cases e`, where `e` is an expression instead of a variable, generalizes `e` in the goal,\n  and then cases on the resulting variable.\n- Given `as : List α`, `cases as with | nil => tac₁ | cons a as' => tac₂`,\n  uses tactic `tac₁` for the `nil` case, and `tac₂` for the `cons` case,\n  and `a` and `as'` are used as names for the new variables introduced.\n- `cases h : e`, where `e` is a variable or an expression,\n  performs cases on `e` as above, but also adds a hypothesis `h : e = ...` to each goal,\n  where `...` is the constructor instance for that particular case.\n"}},
+    "content": "cases"},
+   "324":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-1046",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "320":
+   {"kind":
+    {"const":
+     {"signature": "op (x y : Spin) : Spin",
+      "name": ["op"],
+      "isDef": false,
+      "docs": null}},
+    "content": ")"},
+   "32": {"kind": "unknown", "content": ":"},
+   "318":
+   {"kind":
+    {"const":
+     {"signature": "op (x y : Spin) : Spin",
+      "name": ["op"],
+      "isDef": false,
+      "docs": null}},
+    "content": "("},
+   "316":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1032", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "314":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-1018", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "312":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.14408"}}, "content": "y"},
+   "310":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.14405"}}, "content": "x"},
+   "308":
+   {"kind":
+    {"const":
+     {"signature": "toggle_op_left {x y : Spin} : (x o y) ⁻¹ = x ⁻¹ o y",
+      "name": ["toggle_op_left"],
+      "isDef": true,
+      "docs": null}},
+    "content": "toggle_op_left"},
+   "306":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-986",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "304":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Attr.simp-980",
+      "name": ["Lean", "Parser", "Attr", "simp"],
+      "docs":
+      "Theorems tagged with the `simp` attribute are used by the simplifier\n(i.e., the `simp` tactic, and its variants) to simplify expressions occurring in your goals.\nWe call theorems tagged with the `simp` attribute \"simp theorems\" or \"simp lemmas\".\nLean maintains a database/index containing all active simp theorems.\nHere is an example of a simp theorem.\n```lean\n@[simp] theorem ne_eq (a b : α) : (a ≠ b) = Not (a = b) := rfl\n```\nThis simp theorem instructs the simplifier to replace instances of the term\n`a ≠ b` (e.g. `x + 0 ≠ y`) with `Not (a = b)` (e.g., `Not (x + 0 = y)`).\nThe simplifier applies simp theorems in one direction only:\nif `A = B` is a simp theorem, then `simp` replaces `A`s with `B`s,\nbut it doesn't replace `B`s with `A`s. Hence a simp theorem should have the\nproperty that its right-hand side is \"simpler\" than its left-hand side.\nIn particular, `=` and `↔` should not be viewed as symmetric operators in this situation.\nThe following would be a terrible simp theorem (if it were even allowed):\n```lean\n@[simp] lemma mul_right_inv_bad (a : G) : 1 = a * a⁻¹ := ...\n```\nReplacing 1 with a * a⁻¹ is not a sensible default direction to travel.\nEven worse would be a theorem that causes expressions to grow without bound,\ncausing simp to loop forever.\n\nBy default the simplifier applies `simp` theorems to an expression `e`\nafter its sub-expressions have been simplified.\nWe say it performs a bottom-up simplification.\nYou can instruct the simplifier to apply a theorem before its sub-expressions\nhave been simplified by using the modifier `↓`. Here is an example\n```lean\n@[simp↓] theorem not_and_eq (p q : Prop) : (¬ (p ∧ q)) = (¬p ∨ ¬q) :=\n```\n\nYou can instruct the simplifier to rewrite the lemma from right-to-left:\n```lean\nattribute @[simp ←] and_assoc\n```\n\nWhen multiple simp theorems are applicable, the simplifier uses the one with highest priority.\nThe equational theorems of functions are applied at very low priority (100 and below).\nIf there are several with the same priority, it is uses the \"most recent one\". Example:\n```lean\n@[simp high] theorem cond_true (a b : α) : cond true a b = a := rfl\n@[simp low+1] theorem or_true (p : Prop) : (p ∨ True) = True :=\n  propext <| Iff.intro (fun _ => trivial) (fun _ => Or.inr trivial)\n@[simp 100] theorem ite_self {d : Decidable c} (a : α) : ite c a a = a := by\n  cases d <;> rfl\n```\n"}},
+    "content": "simp"},
+   "30":
+   {"kind":
+    {"const":
+     {"signature": "Spin.toggle : Spin → Spin",
+      "name": ["Spin", "toggle"],
+      "isDef": true,
+      "docs": null}},
+    "content": "Spin.toggle"},
+   "3": {"kind": {"moduleName": {"name": ["mathlib"]}}, "content": "mathlib"},
+   "299":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.tacticRfl-973",
+      "name": ["Lean", "Parser", "Tactic", "tacticRfl"],
+      "docs":
+      "This tactic applies to a goal whose target has the form `x ~ x`,\nwhere `~` is equality, heterogeneous equality or any relation that\nhas a reflexivity lemma tagged with the attribute @[refl].\n"}},
+    "content": "rfl"},
+   "294":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.cases-961",
+      "name": ["Lean", "Parser", "Tactic", "cases"],
+      "docs":
+      "Assuming `x` is a variable in the local context with an inductive type,\n`cases x` splits the main goal, producing one goal for each constructor of the\ninductive type, in which the target is replaced by a general instance of that constructor.\nIf the type of an element in the local context depends on `x`,\nthat element is reverted and reintroduced afterward,\nso that the case split affects that hypothesis as well.\n`cases` detects unreachable cases and closes them automatically.\n\nFor example, given `n : Nat` and a goal with a hypothesis `h : P n` and target `Q n`,\n`cases n` produces one goal with hypothesis `h : P 0` and target `Q 0`,\nand one goal with hypothesis `h : P (Nat.succ a)` and target `Q (Nat.succ a)`.\nHere the name `a` is chosen automatically and is not accessible.\nYou can use `with` to provide the variables names for each constructor.\n- `cases e`, where `e` is an expression instead of a variable, generalizes `e` in the goal,\n  and then cases on the resulting variable.\n- Given `as : List α`, `cases as with | nil => tac₁ | cons a as' => tac₂`,\n  uses tactic `tac₁` for the `nil` case, and `tac₂` for the `cons` case,\n  and `a` and `as'` are used as names for the new variables introduced.\n- `cases h : e`, where `e` is a variable or an expression,\n  performs cases on `e` as above, but also adds a hypothesis `h : e = ...` to each goal,\n  where `...` is the constructor instance for that particular case.\n"}},
+    "content": "cases"},
+   "288":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-956",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "284":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-937", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "282":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.14128"}}, "content": "x"},
+   "280":
+   {"kind":
+    {"const":
+     {"signature": "op_dn_right {x : Spin} : x o dn = x ⁻¹",
+      "name": ["op_dn_right"],
+      "isDef": true,
+      "docs": null}},
+    "content": "op_dn_right"},
+   "28":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-60",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "278":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-911",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "276":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Attr.simp-905",
+      "name": ["Lean", "Parser", "Attr", "simp"],
+      "docs":
+      "Theorems tagged with the `simp` attribute are used by the simplifier\n(i.e., the `simp` tactic, and its variants) to simplify expressions occurring in your goals.\nWe call theorems tagged with the `simp` attribute \"simp theorems\" or \"simp lemmas\".\nLean maintains a database/index containing all active simp theorems.\nHere is an example of a simp theorem.\n```lean\n@[simp] theorem ne_eq (a b : α) : (a ≠ b) = Not (a = b) := rfl\n```\nThis simp theorem instructs the simplifier to replace instances of the term\n`a ≠ b` (e.g. `x + 0 ≠ y`) with `Not (a = b)` (e.g., `Not (x + 0 = y)`).\nThe simplifier applies simp theorems in one direction only:\nif `A = B` is a simp theorem, then `simp` replaces `A`s with `B`s,\nbut it doesn't replace `B`s with `A`s. Hence a simp theorem should have the\nproperty that its right-hand side is \"simpler\" than its left-hand side.\nIn particular, `=` and `↔` should not be viewed as symmetric operators in this situation.\nThe following would be a terrible simp theorem (if it were even allowed):\n```lean\n@[simp] lemma mul_right_inv_bad (a : G) : 1 = a * a⁻¹ := ...\n```\nReplacing 1 with a * a⁻¹ is not a sensible default direction to travel.\nEven worse would be a theorem that causes expressions to grow without bound,\ncausing simp to loop forever.\n\nBy default the simplifier applies `simp` theorems to an expression `e`\nafter its sub-expressions have been simplified.\nWe say it performs a bottom-up simplification.\nYou can instruct the simplifier to apply a theorem before its sub-expressions\nhave been simplified by using the modifier `↓`. Here is an example\n```lean\n@[simp↓] theorem not_and_eq (p q : Prop) : (¬ (p ∧ q)) = (¬p ∨ ¬q) :=\n```\n\nYou can instruct the simplifier to rewrite the lemma from right-to-left:\n```lean\nattribute @[simp ←] and_assoc\n```\n\nWhen multiple simp theorems are applicable, the simplifier uses the one with highest priority.\nThe equational theorems of functions are applied at very low priority (100 and below).\nIf there are several with the same priority, it is uses the \"most recent one\". Example:\n```lean\n@[simp high] theorem cond_true (a b : α) : cond true a b = a := rfl\n@[simp low+1] theorem or_true (p : Prop) : (p ∨ True) = True :=\n  propext <| Iff.intro (fun _ => trivial) (fun _ => Or.inr trivial)\n@[simp 100] theorem ite_self {d : Decidable c} (a : α) : ite c a a = a := by\n  cases d <;> rfl\n```\n"}},
+    "content": "simp"},
+   "271":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.tacticRfl-898",
+      "name": ["Lean", "Parser", "Tactic", "tacticRfl"],
+      "docs":
+      "This tactic applies to a goal whose target has the form `x ~ x`,\nwhere `~` is equality, heterogeneous equality or any relation that\nhas a reflexivity lemma tagged with the attribute @[refl].\n"}},
+    "content": "rfl"},
+   "266":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.cases-886",
+      "name": ["Lean", "Parser", "Tactic", "cases"],
+      "docs":
+      "Assuming `x` is a variable in the local context with an inductive type,\n`cases x` splits the main goal, producing one goal for each constructor of the\ninductive type, in which the target is replaced by a general instance of that constructor.\nIf the type of an element in the local context depends on `x`,\nthat element is reverted and reintroduced afterward,\nso that the case split affects that hypothesis as well.\n`cases` detects unreachable cases and closes them automatically.\n\nFor example, given `n : Nat` and a goal with a hypothesis `h : P n` and target `Q n`,\n`cases n` produces one goal with hypothesis `h : P 0` and target `Q 0`,\nand one goal with hypothesis `h : P (Nat.succ a)` and target `Q (Nat.succ a)`.\nHere the name `a` is chosen automatically and is not accessible.\nYou can use `with` to provide the variables names for each constructor.\n- `cases e`, where `e` is an expression instead of a variable, generalizes `e` in the goal,\n  and then cases on the resulting variable.\n- Given `as : List α`, `cases as with | nil => tac₁ | cons a as' => tac₂`,\n  uses tactic `tac₁` for the `nil` case, and `tac₂` for the `cons` case,\n  and `a` and `as'` are used as names for the new variables introduced.\n- `cases h : e`, where `e` is a variable or an expression,\n  performs cases on `e` as above, but also adds a hypothesis `h : e = ...` to each goal,\n  where `...` is the constructor instance for that particular case.\n"}},
+    "content": "cases"},
+   "258":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-881",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "254":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-862", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "252":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.13851"}}, "content": "x"},
+   "250":
+   {"kind":
+    {"const":
+     {"signature": "op_dn_left {x : Spin} : dn o x = x ⁻¹",
+      "name": ["op_dn_left"],
+      "isDef": true,
+      "docs": null}},
+    "content": "op_dn_left"},
+   "248":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-837",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "246":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Attr.simp-831",
+      "name": ["Lean", "Parser", "Attr", "simp"],
+      "docs":
+      "Theorems tagged with the `simp` attribute are used by the simplifier\n(i.e., the `simp` tactic, and its variants) to simplify expressions occurring in your goals.\nWe call theorems tagged with the `simp` attribute \"simp theorems\" or \"simp lemmas\".\nLean maintains a database/index containing all active simp theorems.\nHere is an example of a simp theorem.\n```lean\n@[simp] theorem ne_eq (a b : α) : (a ≠ b) = Not (a = b) := rfl\n```\nThis simp theorem instructs the simplifier to replace instances of the term\n`a ≠ b` (e.g. `x + 0 ≠ y`) with `Not (a = b)` (e.g., `Not (x + 0 = y)`).\nThe simplifier applies simp theorems in one direction only:\nif `A = B` is a simp theorem, then `simp` replaces `A`s with `B`s,\nbut it doesn't replace `B`s with `A`s. Hence a simp theorem should have the\nproperty that its right-hand side is \"simpler\" than its left-hand side.\nIn particular, `=` and `↔` should not be viewed as symmetric operators in this situation.\nThe following would be a terrible simp theorem (if it were even allowed):\n```lean\n@[simp] lemma mul_right_inv_bad (a : G) : 1 = a * a⁻¹ := ...\n```\nReplacing 1 with a * a⁻¹ is not a sensible default direction to travel.\nEven worse would be a theorem that causes expressions to grow without bound,\ncausing simp to loop forever.\n\nBy default the simplifier applies `simp` theorems to an expression `e`\nafter its sub-expressions have been simplified.\nWe say it performs a bottom-up simplification.\nYou can instruct the simplifier to apply a theorem before its sub-expressions\nhave been simplified by using the modifier `↓`. Here is an example\n```lean\n@[simp↓] theorem not_and_eq (p q : Prop) : (¬ (p ∧ q)) = (¬p ∨ ¬q) :=\n```\n\nYou can instruct the simplifier to rewrite the lemma from right-to-left:\n```lean\nattribute @[simp ←] and_assoc\n```\n\nWhen multiple simp theorems are applicable, the simplifier uses the one with highest priority.\nThe equational theorems of functions are applied at very low priority (100 and below).\nIf there are several with the same priority, it is uses the \"most recent one\". Example:\n```lean\n@[simp high] theorem cond_true (a b : α) : cond true a b = a := rfl\n@[simp low+1] theorem or_true (p : Prop) : (p ∨ True) = True :=\n  propext <| Iff.intro (fun _ => trivial) (fun _ => Or.inr trivial)\n@[simp 100] theorem ite_self {d : Decidable c} (a : α) : ite c a a = a := by\n  cases d <;> rfl\n```\n"}},
+    "content": "simp"},
+   "241":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.tacticRfl-824",
+      "name": ["Lean", "Parser", "Tactic", "tacticRfl"],
+      "docs":
+      "This tactic applies to a goal whose target has the form `x ~ x`,\nwhere `~` is equality, heterogeneous equality or any relation that\nhas a reflexivity lemma tagged with the attribute @[refl].\n"}},
+    "content": "rfl"},
+   "24": {"kind": "unknown", "content": "Spin"},
+   "236":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.cases-812",
+      "name": ["Lean", "Parser", "Tactic", "cases"],
+      "docs":
+      "Assuming `x` is a variable in the local context with an inductive type,\n`cases x` splits the main goal, producing one goal for each constructor of the\ninductive type, in which the target is replaced by a general instance of that constructor.\nIf the type of an element in the local context depends on `x`,\nthat element is reverted and reintroduced afterward,\nso that the case split affects that hypothesis as well.\n`cases` detects unreachable cases and closes them automatically.\n\nFor example, given `n : Nat` and a goal with a hypothesis `h : P n` and target `Q n`,\n`cases n` produces one goal with hypothesis `h : P 0` and target `Q 0`,\nand one goal with hypothesis `h : P (Nat.succ a)` and target `Q (Nat.succ a)`.\nHere the name `a` is chosen automatically and is not accessible.\nYou can use `with` to provide the variables names for each constructor.\n- `cases e`, where `e` is an expression instead of a variable, generalizes `e` in the goal,\n  and then cases on the resulting variable.\n- Given `as : List α`, `cases as with | nil => tac₁ | cons a as' => tac₂`,\n  uses tactic `tac₁` for the `nil` case, and `tac₂` for the `cons` case,\n  and `a` and `as'` are used as names for the new variables introduced.\n- `cases h : e`, where `e` is a variable or an expression,\n  performs cases on `e` as above, but also adds a hypothesis `h : e = ...` to each goal,\n  where `...` is the constructor instance for that particular case.\n"}},
+    "content": "cases"},
+   "230":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-807",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "226":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-793", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "224":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.13770"}}, "content": "x"},
+   "222":
+   {"kind":
+    {"const":
+     {"signature": "op_up_right {x : Spin} : x o up = x",
+      "name": ["op_up_right"],
+      "isDef": true,
+      "docs": null}},
+    "content": "op_up_right"},
+   "220":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-767",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "22":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.open-49",
+      "name": ["Lean", "Parser", "Command", "open"],
+      "docs":
+      "Makes names from other namespaces visible without writing the namespace prefix.\n\nNames that are made available with `open` are visible within the current `section` or `namespace`\nblock. This makes referring to (type) definitions and theorems easier, but note that it can also\nmake [scoped instances], notations, and attributes from a different namespace available.\n\nThe `open` command can be used in a few different ways:\n\n* `open Some.Namespace.Path1 Some.Namespace.Path2` makes all non-protected names in\n  `Some.Namespace.Path1` and `Some.Namespace.Path2` available without the prefix, so that\n  `Some.Namespace.Path1.x` and `Some.Namespace.Path2.y` can be referred to by writing only `x` and\n  `y`.\n\n* `open Some.Namespace.Path hiding def1 def2` opens all non-protected names in `Some.Namespace.Path`\n  except `def1` and `def2`.\n\n* `open Some.Namespace.Path (def1 def2)` only makes `Some.Namespace.Path.def1` and\n  `Some.Namespace.Path.def2` available without the full prefix, so `Some.Namespace.Path.def3` would\n  be unaffected.\n\n  This works even if `def1` and `def2` are `protected`.\n\n* `open Some.Namespace.Path renaming def1 → def1', def2 → def2'` same as `open Some.Namespace.Path\n  (def1 def2)` but `def1`/`def2`'s names are changed to `def1'`/`def2'`.\n\n  This works even if `def1` and `def2` are `protected`.\n\n* `open scoped Some.Namespace.Path1 Some.Namespace.Path2` **only** opens [scoped instances],\n  notations, and attributes from `Namespace1` and `Namespace2`; it does **not** make any other name\n  available.\n\n* `open <any of the open shapes above> in` makes the names `open`-ed visible only in the next\n  command or expression.\n\n[scoped instance]: https://lean-lang.org/theorem_proving_in_lean4/type_classes.html#scoped-instances\n(Scoped instances in Theorem Proving in Lean)\n\n\n## Examples\n\n```lean\n/-- SKI combinators https://en.wikipedia.org/wiki/SKI_combinator_calculus -/\nnamespace Combinator.Calculus\n  def I (a : α) : α := a\n  def K (a : α) : β → α := fun _ => a\n  def S (x : α → β → γ) (y : α → β) (z : α) : γ := x z (y z)\nend Combinator.Calculus\n\nsection\n  -- open everything under `Combinator.Calculus`, *i.e.* `I`, `K` and `S`,\n  -- until the section ends\n  open Combinator.Calculus\n\n  theorem SKx_eq_K : S K x = I := rfl\nend\n\n-- open everything under `Combinator.Calculus` only for the next command (the next `theorem`, here)\nopen Combinator.Calculus in\ntheorem SKx_eq_K' : S K x = I := rfl\n\nsection\n  -- open only `S` and `K` under `Combinator.Calculus`\n  open Combinator.Calculus (S K)\n\n  theorem SKxy_eq_y : S K x y = y := rfl\n\n  -- `I` is not in scope, we have to use its full path\n  theorem SKxy_eq_Iy : S K x y = Combinator.Calculus.I y := rfl\nend\n\nsection\n  open Combinator.Calculus\n    renaming\n      I → identity,\n      K → konstant\n\n  #check identity\n  #check konstant\nend\n\nsection\n  open Combinator.Calculus\n    hiding S\n\n  #check I\n  #check K\nend\n\nsection\n  namespace Demo\n    inductive MyType\n    | val\n\n    namespace N1\n      scoped infix:68 \" ≋ \" => BEq.beq\n\n      scoped instance : BEq MyType where\n        beq _ _ := true\n\n      def Alias := MyType\n    end N1\n  end Demo\n\n  -- bring `≋` and the instance in scope, but not `Alias`\n  open scoped Demo.N1\n\n  #check Demo.MyType.val == Demo.MyType.val\n  #check Demo.MyType.val ≋ Demo.MyType.val\n  -- #check Alias -- unknown identifier 'Alias'\nend\n```\n"}},
+    "content": "open"},
+   "218":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Attr.simp-761",
+      "name": ["Lean", "Parser", "Attr", "simp"],
+      "docs":
+      "Theorems tagged with the `simp` attribute are used by the simplifier\n(i.e., the `simp` tactic, and its variants) to simplify expressions occurring in your goals.\nWe call theorems tagged with the `simp` attribute \"simp theorems\" or \"simp lemmas\".\nLean maintains a database/index containing all active simp theorems.\nHere is an example of a simp theorem.\n```lean\n@[simp] theorem ne_eq (a b : α) : (a ≠ b) = Not (a = b) := rfl\n```\nThis simp theorem instructs the simplifier to replace instances of the term\n`a ≠ b` (e.g. `x + 0 ≠ y`) with `Not (a = b)` (e.g., `Not (x + 0 = y)`).\nThe simplifier applies simp theorems in one direction only:\nif `A = B` is a simp theorem, then `simp` replaces `A`s with `B`s,\nbut it doesn't replace `B`s with `A`s. Hence a simp theorem should have the\nproperty that its right-hand side is \"simpler\" than its left-hand side.\nIn particular, `=` and `↔` should not be viewed as symmetric operators in this situation.\nThe following would be a terrible simp theorem (if it were even allowed):\n```lean\n@[simp] lemma mul_right_inv_bad (a : G) : 1 = a * a⁻¹ := ...\n```\nReplacing 1 with a * a⁻¹ is not a sensible default direction to travel.\nEven worse would be a theorem that causes expressions to grow without bound,\ncausing simp to loop forever.\n\nBy default the simplifier applies `simp` theorems to an expression `e`\nafter its sub-expressions have been simplified.\nWe say it performs a bottom-up simplification.\nYou can instruct the simplifier to apply a theorem before its sub-expressions\nhave been simplified by using the modifier `↓`. Here is an example\n```lean\n@[simp↓] theorem not_and_eq (p q : Prop) : (¬ (p ∧ q)) = (¬p ∨ ¬q) :=\n```\n\nYou can instruct the simplifier to rewrite the lemma from right-to-left:\n```lean\nattribute @[simp ←] and_assoc\n```\n\nWhen multiple simp theorems are applicable, the simplifier uses the one with highest priority.\nThe equational theorems of functions are applied at very low priority (100 and below).\nIf there are several with the same priority, it is uses the \"most recent one\". Example:\n```lean\n@[simp high] theorem cond_true (a b : α) : cond true a b = a := rfl\n@[simp low+1] theorem or_true (p : Prop) : (p ∨ True) = True :=\n  propext <| Iff.intro (fun _ => trivial) (fun _ => Or.inr trivial)\n@[simp 100] theorem ite_self {d : Decidable c} (a : α) : ite c a a = a := by\n  cases d <;> rfl\n```\n"}},
+    "content": "simp"},
+   "213":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.tacticRfl-754",
+      "name": ["Lean", "Parser", "Tactic", "tacticRfl"],
+      "docs":
+      "This tactic applies to a goal whose target has the form `x ~ x`,\nwhere `~` is equality, heterogeneous equality or any relation that\nhas a reflexivity lemma tagged with the attribute @[refl].\n"}},
+    "content": "rfl"},
+   "208":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.cases-742",
+      "name": ["Lean", "Parser", "Tactic", "cases"],
+      "docs":
+      "Assuming `x` is a variable in the local context with an inductive type,\n`cases x` splits the main goal, producing one goal for each constructor of the\ninductive type, in which the target is replaced by a general instance of that constructor.\nIf the type of an element in the local context depends on `x`,\nthat element is reverted and reintroduced afterward,\nso that the case split affects that hypothesis as well.\n`cases` detects unreachable cases and closes them automatically.\n\nFor example, given `n : Nat` and a goal with a hypothesis `h : P n` and target `Q n`,\n`cases n` produces one goal with hypothesis `h : P 0` and target `Q 0`,\nand one goal with hypothesis `h : P (Nat.succ a)` and target `Q (Nat.succ a)`.\nHere the name `a` is chosen automatically and is not accessible.\nYou can use `with` to provide the variables names for each constructor.\n- `cases e`, where `e` is an expression instead of a variable, generalizes `e` in the goal,\n  and then cases on the resulting variable.\n- Given `as : List α`, `cases as with | nil => tac₁ | cons a as' => tac₂`,\n  uses tactic `tac₁` for the `nil` case, and `tac₂` for the `cons` case,\n  and `a` and `as'` are used as names for the new variables introduced.\n- `cases h : e`, where `e` is a variable or an expression,\n  performs cases on `e` as above, but also adds a hypothesis `h : e = ...` to each goal,\n  where `...` is the constructor instance for that particular case.\n"}},
+    "content": "cases"},
+   "200":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-737",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "196":
+   {"kind":
+    {"const":
+     {"signature": "op (x y : Spin) : Spin",
+      "name": ["op"],
+      "isDef": false,
+      "docs": null}},
+    "content": "o"},
+   "194":
+   {"kind":
+    {"keyword":
+     {"occurrence": "term_O_-723", "name": ["term_O_"], "docs": null}},
+    "content": "o"},
+   "192":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.13689"}}, "content": "x"},
+   "190":
+   {"kind":
+    {"const":
+     {"signature": "op_up_left {x : Spin} : up o x = x",
+      "name": ["op_up_left"],
+      "isDef": true,
+      "docs": null}},
+    "content": "op_up_left"},
+   "188":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.theorem-698",
+      "name": ["Lean", "Parser", "Command", "theorem"],
+      "docs": null}},
+    "content": "theorem"},
+   "186":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Attr.simp-692",
+      "name": ["Lean", "Parser", "Attr", "simp"],
+      "docs":
+      "Theorems tagged with the `simp` attribute are used by the simplifier\n(i.e., the `simp` tactic, and its variants) to simplify expressions occurring in your goals.\nWe call theorems tagged with the `simp` attribute \"simp theorems\" or \"simp lemmas\".\nLean maintains a database/index containing all active simp theorems.\nHere is an example of a simp theorem.\n```lean\n@[simp] theorem ne_eq (a b : α) : (a ≠ b) = Not (a = b) := rfl\n```\nThis simp theorem instructs the simplifier to replace instances of the term\n`a ≠ b` (e.g. `x + 0 ≠ y`) with `Not (a = b)` (e.g., `Not (x + 0 = y)`).\nThe simplifier applies simp theorems in one direction only:\nif `A = B` is a simp theorem, then `simp` replaces `A`s with `B`s,\nbut it doesn't replace `B`s with `A`s. Hence a simp theorem should have the\nproperty that its right-hand side is \"simpler\" than its left-hand side.\nIn particular, `=` and `↔` should not be viewed as symmetric operators in this situation.\nThe following would be a terrible simp theorem (if it were even allowed):\n```lean\n@[simp] lemma mul_right_inv_bad (a : G) : 1 = a * a⁻¹ := ...\n```\nReplacing 1 with a * a⁻¹ is not a sensible default direction to travel.\nEven worse would be a theorem that causes expressions to grow without bound,\ncausing simp to loop forever.\n\nBy default the simplifier applies `simp` theorems to an expression `e`\nafter its sub-expressions have been simplified.\nWe say it performs a bottom-up simplification.\nYou can instruct the simplifier to apply a theorem before its sub-expressions\nhave been simplified by using the modifier `↓`. Here is an example\n```lean\n@[simp↓] theorem not_and_eq (p q : Prop) : (¬ (p ∧ q)) = (¬p ∨ ¬q) :=\n```\n\nYou can instruct the simplifier to rewrite the lemma from right-to-left:\n```lean\nattribute @[simp ←] and_assoc\n```\n\nWhen multiple simp theorems are applicable, the simplifier uses the one with highest priority.\nThe equational theorems of functions are applied at very low priority (100 and below).\nIf there are several with the same priority, it is uses the \"most recent one\". Example:\n```lean\n@[simp high] theorem cond_true (a b : α) : cond true a b = a := rfl\n@[simp low+1] theorem or_true (p : Prop) : (p ∨ True) = True :=\n  propext <| Iff.intro (fun _ => trivial) (fun _ => Or.inr trivial)\n@[simp 100] theorem ite_self {d : Decidable c} (a : α) : ite c a a = a := by\n  cases d <;> rfl\n```\n"}},
+    "content": "simp"},
+   "183":
+   {"kind":
+    {"const":
+     {"signature": "op (x y : Spin) : Spin",
+      "name": ["op"],
+      "isDef": false,
+      "docs": null}},
+    "content": "op"},
+   "181": {"kind": {"str": {"string": " o "}}, "content": "\" o \""},
+   "18":
+   {"kind":
+    {"const":
+     {"signature": "Spin.dn : Spin",
+      "name": ["Spin", "dn"],
+      "isDef": true,
+      "docs": null}},
+    "content": "dn"},
+   "179": {"kind": "unknown", "content": "75"},
+   "177":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.infix-668",
+      "name": ["Lean", "Parser", "Command", "infix"],
+      "docs":
+      "`infix:prec \"op\" => f` is equivalent to `notation:prec x:prec1 \"op\" y:prec1 => f x y`, where `prec1 := prec + 1`.\n"}},
+    "content": "infix"},
+   "174": {"kind": "unknown", "content": "_"},
+   "172":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-605",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "with"},
+   "170": {"kind": "unknown", "content": ","},
+   "168":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.match-605",
+      "name": ["Lean", "Parser", "Term", "match"],
+      "docs":
+      "Pattern matching. `match e, ... with | p, ... => f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... => f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" <|> \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo <|> \"bar\") ...\n```\nthey are not.\n"}},
+    "content": "match"},
+   "166": {"kind": "unknown", "content": ")"},
+   "164":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.7634"}}, "content": "y"},
+   "162":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.7632"}}, "content": "x"},
+   "160": {"kind": "unknown", "content": "("},
+   "16":
+   {"kind":
+    {"const":
+     {"signature": "Spin.up : Spin",
+      "name": ["Spin", "up"],
+      "isDef": true,
+      "docs": null}},
+    "content": "up"},
+   "158":
+   {"kind":
+    {"const":
+     {"signature": "op (x y : Spin) : Spin",
+      "name": ["op"],
+      "isDef": true,
+      "docs": null}},
+    "content": "op"},
+   "156":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-575",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "149":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simp-415",
+      "name": ["Lean", "Parser", "Tactic", "simp"],
+      "docs":
+      "The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or\nnon-dependent hypotheses. It has many variants:\n- `simp` simplifies the main goal target using lemmas tagged with the attribute `[simp]`.\n- `simp [h₁, h₂, ..., hₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]` and the given `hᵢ`'s, where the `hᵢ`'s are expressions.-\n- If an `hᵢ` is a defined constant `f`, then `f` is unfolded. If `f` has equational lemmas associated\n  with it (and is not a projection or a `reducible` definition), these are used to rewrite with `f`.\n- `simp [*]` simplifies the main goal target using the lemmas tagged with the\n  attribute `[simp]` and all hypotheses.\n- `simp only [h₁, h₂, ..., hₙ]` is like `simp [h₁, h₂, ..., hₙ]` but does not use `[simp]` lemmas.\n- `simp [-id₁, ..., -idₙ]` simplifies the main goal target using the lemmas tagged\n  with the attribute `[simp]`, but removes the ones named `idᵢ`.\n- `simp at h₁ h₂ ... hₙ` simplifies the hypotheses `h₁ : T₁` ... `hₙ : Tₙ`. If\n  the target or another hypothesis depends on `hᵢ`, a new simplified hypothesis\n  `hᵢ` is introduced, but the old one remains in the local context.\n- `simp at *` simplifies all the hypotheses and the target.\n- `simp [*] at *` simplifies target and all (propositional) hypotheses using the\n  other hypotheses.\n"}},
+    "content": "simp"},
+   "145":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-412",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "141":
+   {"kind": {"var": {"type": "Spin", "name": "_uniq.7310"}}, "content": "x"},
+   "14": {"kind": "unknown", "content": "|"},
+   "139":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.example-369",
+      "name": ["Lean", "Parser", "Command", "example"],
+      "docs": null}},
+    "content": "example"},
+   "131":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.simpTrace-332",
+      "name": ["Lean", "Parser", "Tactic", "simpTrace"],
+      "docs":
+      "`simp?` takes the same arguments as `simp`, but reports an equivalent call to `simp only`\nthat would be sufficient to close the goal. This is useful for reducing the size of the simp\nset in a local invocation to speed up processing.\n```\nexample (x : Nat) : (if True then x + 2 else 3) = x + 2 := by\n  simp? -- prints \"Try this: simp only [ite_true]\"\n```\n\nThis command can also be used in `simp_all` and `dsimp`.\n"}},
+    "content": "simp?"},
+   "12":
+   {"kind":
+    {"keyword": {"occurrence": "null-33", "name": ["null"], "docs": null}},
+    "content": "where"},
+   "116": {"kind": "unknown", "content": "<;>"},
+   "112":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Tactic.cases-320",
+      "name": ["Lean", "Parser", "Tactic", "cases"],
+      "docs":
+      "Assuming `x` is a variable in the local context with an inductive type,\n`cases x` splits the main goal, producing one goal for each constructor of the\ninductive type, in which the target is replaced by a general instance of that constructor.\nIf the type of an element in the local context depends on `x`,\nthat element is reverted and reintroduced afterward,\nso that the case split affects that hypothesis as well.\n`cases` detects unreachable cases and closes them automatically.\n\nFor example, given `n : Nat` and a goal with a hypothesis `h : P n` and target `Q n`,\n`cases n` produces one goal with hypothesis `h : P 0` and target `Q 0`,\nand one goal with hypothesis `h : P (Nat.succ a)` and target `Q (Nat.succ a)`.\nHere the name `a` is chosen automatically and is not accessible.\nYou can use `with` to provide the variables names for each constructor.\n- `cases e`, where `e` is an expression instead of a variable, generalizes `e` in the goal,\n  and then cases on the resulting variable.\n- Given `as : List α`, `cases as with | nil => tac₁ | cons a as' => tac₂`,\n  uses tactic `tac₁` for the `nil` case, and `tac₂` for the `cons` case,\n  and `a` and `as'` are used as names for the new variables introduced.\n- `cases h : e`, where `e` is a variable or an expression,\n  performs cases on `e` as above, but also adds a hypothesis `h : e = ...` to each goal,\n  where `...` is the constructor instance for that particular case.\n"}},
+    "content": "cases"},
+   "104":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.byTactic-315",
+      "name": ["Lean", "Parser", "Term", "byTactic"],
+      "docs":
+      "`by tac` constructs a term of the expected type by running the tactic(s) `tac`. "}},
+    "content": "by"},
+   "100":
+   {"kind":
+    {"const":
+     {"signature": "Eq.{u_1} {α : Sort u_1} : α → α → Prop",
+      "name": ["Eq"],
+      "isDef": false,
+      "docs":
+      "The equality relation. It has one introduction rule, `Eq.refl`.\nWe use `a = b` as notation for `Eq a b`.\nA fundamental property of equality is that it is an equivalence relation.\n```\nvariable (α : Type) (a b c d : α)\nvariable (hab : a = b) (hcb : c = b) (hcd : c = d)\n\nexample : a = d :=\n  Eq.trans (Eq.trans hab (Eq.symm hcb)) hcd\n```\nEquality is much more than an equivalence relation, however. It has the important property that every assertion\nrespects the equivalence, in the sense that we can substitute equal expressions without changing the truth value.\nThat is, given `h1 : a = b` and `h2 : p a`, we can construct a proof for `p b` using substitution: `Eq.subst h1 h2`.\nExample:\n```\nexample (α : Type) (a b : α) (p : α → Prop)\n        (h1 : a = b) (h2 : p a) : p b :=\n  Eq.subst h1 h2\n\nexample (α : Type) (a b : α) (p : α → Prop)\n    (h1 : a = b) (h2 : p a) : p b :=\n  h1 ▸ h2\n```\nThe triangle in the second presentation is a macro built on top of `Eq.subst` and `Eq.symm`, and you can enter it by typing `\\t`.\nFor more information: [Equality](https://lean-lang.org/theorem_proving_in_lean4/quantifiers_and_equality.html#equality)\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `=` in identifiers is `eq`."}},
+    "content": "="},
+   "10":
+   {"kind":
+    {"const":
+     {"signature": "Spin : Type",
+      "name": ["Spin"],
+      "isDef": true,
+      "docs": null}},
+    "content": "Spin"},
+   "0":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-0",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 663,
+  "messageContents":
+  {"130": {"append": [120, 129]},
+   "129": {"append": [121, 120, 120, 122, 120, 123, 124, 120, 128, 120]},
+   "128": {"text": "simp only [toggle_up, toggle_dn]"},
+   "127": {"append": [120, 126]},
+   "126": {"append": [121, 120, 120, 122, 120, 123, 124, 120, 125, 120]},
+   "125": {"text": "simp only [toggle_dn, toggle_up]"},
+   "124": {"text": " "},
+   "123": {"text": "[apply]"},
+   "122": {"text": "\n  "},
+   "121": {"text": "Try this:"},
+   "120": {"text": ""}},
+  "goals":
+  {"637":
+   {"name": "h.right",
+    "hypotheses": [{"typeAndVal": 528, "names": [592]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 636},
+   "635":
+   {"name": "h.left",
+    "hypotheses": [{"typeAndVal": 528, "names": [592]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 634},
+   "627":
+   {"name": "h",
+    "hypotheses": [{"typeAndVal": 528, "names": [592]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 626},
+   "613":
+   {"name": null,
+    "hypotheses": [{"typeAndVal": 528, "names": [592]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 612},
+   "597":
+   {"name": null,
+    "hypotheses": [{"typeAndVal": 528, "names": [592]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 596},
+   "580":
+   {"name": "h",
+    "hypotheses":
+    [{"typeAndVal": 528, "names": [547]},
+     {"typeAndVal": 528, "names": [549]},
+     {"typeAndVal": 528, "names": [567]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 579},
+   "574":
+   {"name": "h",
+    "hypotheses":
+    [{"typeAndVal": 528, "names": [547]},
+     {"typeAndVal": 528, "names": [549]},
+     {"typeAndVal": 528, "names": [567]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 573},
+   "562":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 528, "names": [547]}, {"typeAndVal": 528, "names": [549]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 561},
+   "531":
+   {"name": "h",
+    "hypotheses": [{"typeAndVal": 528, "names": [525]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 530},
+   "520":
+   {"name": null, "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 519},
+   "479":
+   {"name": null,
+    "hypotheses": [{"typeAndVal": 97, "names": [474]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 478},
+   "459":
+   {"name": "dn", "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 458},
+   "457":
+   {"name": "up", "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 456},
+   "451":
+   {"name": null,
+    "hypotheses": [{"typeAndVal": 97, "names": [446]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 450},
+   "426":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 97, "names": [417]}, {"typeAndVal": 97, "names": [419]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 425},
+   "402":
+   {"name": "dn",
+    "hypotheses": [{"typeAndVal": 97, "names": [387]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 401},
+   "400":
+   {"name": "up",
+    "hypotheses": [{"typeAndVal": 97, "names": [387]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 399},
+   "394":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 97, "names": [385]}, {"typeAndVal": 97, "names": [387]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 393},
+   "370":
+   {"name": "dn",
+    "hypotheses":
+    [{"typeAndVal": 97, "names": [349]}, {"typeAndVal": 97, "names": [351]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 369},
+   "368":
+   {"name": "up",
+    "hypotheses":
+    [{"typeAndVal": 97, "names": [349]}, {"typeAndVal": 97, "names": [351]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 367},
+   "362":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 97, "names": [347]},
+     {"typeAndVal": 97, "names": [349]},
+     {"typeAndVal": 97, "names": [351]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 361},
+   "331":
+   {"name": "dn",
+    "hypotheses": [{"typeAndVal": 97, "names": [312]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 330},
+   "329":
+   {"name": "up",
+    "hypotheses": [{"typeAndVal": 97, "names": [312]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 328},
+   "323":
+   {"name": null,
+    "hypotheses":
+    [{"typeAndVal": 97, "names": [310]}, {"typeAndVal": 97, "names": [312]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 322},
+   "293":
+   {"name": "up", "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 292},
+   "287":
+   {"name": null,
+    "hypotheses": [{"typeAndVal": 97, "names": [282]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 286},
+   "265":
+   {"name": "dn", "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 264},
+   "263":
+   {"name": "up", "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 262},
+   "257":
+   {"name": null,
+    "hypotheses": [{"typeAndVal": 97, "names": [252]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 256},
+   "235":
+   {"name": "dn", "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 234},
+   "229":
+   {"name": null,
+    "hypotheses": [{"typeAndVal": 97, "names": [224]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 228},
+   "207":
+   {"name": "dn", "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 206},
+   "205":
+   {"name": "up", "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 204},
+   "199":
+   {"name": null,
+    "hypotheses": [{"typeAndVal": 97, "names": [192]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 198},
+   "144":
+   {"name": null,
+    "hypotheses": [{"typeAndVal": 97, "names": [141]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 143},
+   "111":
+   {"name": "dn", "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 110},
+   "109":
+   {"name": "up", "hypotheses": [], "goalPrefix": "⊢ ", "conclusion": 108},
+   "103":
+   {"name": null,
+    "hypotheses": [{"typeAndVal": 97, "names": [92]}],
+    "goalPrefix": "⊢ ",
+    "conclusion": 102}},
+  "code":
+  {"99": {"token": {"tok": 98}},
+   "97": {"seq": {"highlights": [96, 35, 96]}},
+   "96": {"text": {"str": ""}},
+   "95": {"token": {"tok": 94}},
+   "93": {"token": {"tok": 92}},
+   "91": {"token": {"tok": 90}},
+   "9": {"token": {"tok": 8}},
+   "89": {"token": {"tok": 88}},
+   "87": {"token": {"tok": 86}},
+   "85": {"token": {"tok": 84}},
+   "83":
+   {"seq":
+    {"highlights":
+     [27,
+      59,
+      78,
+      63,
+      2,
+      80,
+      2,
+      82,
+      2,
+      33,
+      2,
+      44,
+      69,
+      2,
+      71,
+      2,
+      40,
+      2,
+      73,
+      2,
+      75,
+      5]}},
+   "82": {"token": {"tok": 81}},
+   "80": {"token": {"tok": 79}},
+   "78": {"token": {"tok": 77}},
+   "76":
+   {"seq":
+    {"highlights":
+     [27,
+      59,
+      61,
+      63,
+      2,
+      65,
+      2,
+      67,
+      2,
+      33,
+      2,
+      40,
+      69,
+      2,
+      71,
+      2,
+      44,
+      2,
+      73,
+      2,
+      75,
+      5]}},
+   "75": {"token": {"tok": 74}},
+   "73": {"token": {"tok": 72}},
+   "71": {"token": {"tok": 70}},
+   "7": {"text": {"str": "\n\n\n\n"}},
+   "69": {"token": {"tok": 68}},
+   "67": {"token": {"tok": 66}},
+   "662": {"seq": {"highlights": [21, 661, 5]}},
+   "661": {"token": {"tok": 660}},
+   "659":
+   {"seq":
+    {"highlights":
+     [27,
+      591,
+      2,
+      91,
+      593,
+      95,
+      2,
+      33,
+      2,
+      595,
+      2,
+      161,
+      512,
+      2,
+      593,
+      167,
+      2,
+      73,
+      2,
+      601,
+      38,
+      619,
+      38,
+      633,
+      38,
+      641,
+      38,
+      645,
+      2,
+      651,
+      38,
+      652,
+      2,
+      658,
+      5]}},
+   "658":
+   {"tactics": {"startPos": 2107, "info": [], "endPos": 2143, "content": 657}},
+   "657": {"seq": {"highlights": [654, 434, 656, 63, 5]}},
+   "656": {"token": {"tok": 655}},
+   "654": {"token": {"tok": 653}},
+   "652":
+   {"tactics":
+    {"startPos": 2104, "info": [637], "endPos": 2106, "content": 644}},
+   "651":
+   {"tactics": {"startPos": 2066, "info": [], "endPos": 2101, "content": 650}},
+   "650": {"seq": {"highlights": [647, 434, 649, 63, 5]}},
+   "65": {"token": {"tok": 64}},
+   "649": {"token": {"tok": 648}},
+   "647": {"token": {"tok": 646}},
+   "645":
+   {"tactics":
+    {"startPos": 2063, "info": [635], "endPos": 2065, "content": 644}},
+   "644": {"seq": {"highlights": [643, 5]}},
+   "643": {"token": {"tok": 642}},
+   "641":
+   {"tactics":
+    {"startPos": 2049, "info": [635, 637], "endPos": 2060, "content": 640}},
+   "640": {"seq": {"highlights": [639, 5]}},
+   "639": {"token": {"tok": 638}},
+   "636":
+   {"seq":
+    {"highlights":
+     [96,
+      611,
+      2,
+      161,
+      512,
+      2,
+      621,
+      623,
+      593,
+      625,
+      167,
+      2,
+      161,
+      512,
+      2,
+      593,
+      167]}},
+   "634":
+   {"seq":
+    {"highlights":
+     [96,
+      607,
+      2,
+      161,
+      512,
+      2,
+      621,
+      623,
+      593,
+      625,
+      167,
+      2,
+      161,
+      512,
+      2,
+      593,
+      167]}},
+   "633":
+   {"tactics":
+    {"startPos": 2032, "info": [627], "endPos": 2046, "content": 632}},
+   "632": {"seq": {"highlights": [629, 2, 512, 2, 161, 631, 593, 167, 5]}},
+   "631": {"token": {"tok": 630}},
+   "63": {"token": {"tok": 62}},
+   "629": {"token": {"tok": 628}},
+   "626":
+   {"seq":
+    {"highlights":
+     [96,
+      607,
+      2,
+      161,
+      512,
+      2,
+      621,
+      623,
+      593,
+      625,
+      167,
+      2,
+      161,
+      512,
+      2,
+      593,
+      167,
+      2,
+      609,
+      2,
+      611,
+      2,
+      161,
+      512,
+      2,
+      621,
+      623,
+      593,
+      625,
+      167,
+      2,
+      161,
+      512,
+      2,
+      593,
+      167]}},
+   "625": {"token": {"tok": 624}},
+   "623": {"token": {"tok": 622}},
+   "621": {"token": {"tok": 620}},
+   "619":
+   {"tactics":
+    {"startPos": 1991, "info": [613], "endPos": 2029, "content": 618}},
+   "618": {"seq": {"highlights": [615, 434, 617, 63, 5]}},
+   "617": {"token": {"tok": 616}},
+   "615": {"token": {"tok": 614}},
+   "612":
+   {"seq":
+    {"highlights":
+     [603,
+      2,
+      605,
+      171,
+      2,
+      607,
+      2,
+      605,
+      2,
+      161,
+      512,
+      2,
+      593,
+      167,
+      2,
+      609,
+      2,
+      611,
+      2,
+      605,
+      2,
+      161,
+      512,
+      2,
+      593,
+      167]}},
+   "611": {"token": {"tok": 610}},
+   "61": {"token": {"tok": 60}},
+   "609": {"token": {"tok": 608}},
+   "607": {"token": {"tok": 606}},
+   "605": {"token": {"tok": 604}},
+   "603": {"token": {"tok": 602}},
+   "601":
+   {"tactics":
+    {"startPos": 1986, "info": [597], "endPos": 1988, "content": 600}},
+   "600": {"seq": {"highlights": [599, 5]}},
+   "6": {"seq": {"highlights": [1, 2, 4, 5]}},
+   "599": {"token": {"tok": 598}},
+   "596": {"seq": {"highlights": [96, 595, 2, 161, 512, 2, 593, 167]}},
+   "595": {"token": {"tok": 594}},
+   "593": {"token": {"tok": 592}},
+   "591": {"token": {"tok": 590}},
+   "59": {"token": {"tok": 58}},
+   "589":
+   {"seq":
+    {"highlights":
+     [27,
+      59,
+      542,
+      63,
+      21,
+      544,
+      2,
+      546,
+      2,
+      91,
+      548,
+      2,
+      550,
+      95,
+      2,
+      33,
+      2,
+      512,
+      2,
+      550,
+      2,
+      552,
+      2,
+      512,
+      2,
+      548,
+      2,
+      71,
+      2,
+      512,
+      2,
+      161,
+      548,
+      502,
+      550,
+      167,
+      2,
+      73,
+      2,
+      566,
+      38,
+      578,
+      38,
+      584,
+      38,
+      588,
+      5]}},
+   "588":
+   {"tactics": {"startPos": 1930, "info": [], "endPos": 1938, "content": 587}},
+   "587": {"seq": {"highlights": [586, 5]}},
+   "586": {"token": {"tok": 585}},
+   "584":
+   {"tactics":
+    {"startPos": 1916, "info": [580], "endPos": 1927, "content": 583}},
+   "583": {"seq": {"highlights": [582, 434, 512, 63, 5]}},
+   "582": {"token": {"tok": 581}},
+   "579":
+   {"seq":
+    {"highlights":
+     [96,
+      572,
+      2,
+      558,
+      2,
+      548,
+      2,
+      558,
+      2,
+      550,
+      2,
+      101,
+      2,
+      572,
+      2,
+      558,
+      2,
+      556,
+      548,
+      2,
+      558,
+      2,
+      550,
+      560]}},
+   "578":
+   {"tactics":
+    {"startPos": 1905, "info": [574], "endPos": 1913, "content": 577}},
+   "577": {"seq": {"highlights": [576, 2, 572, 5]}},
+   "576": {"token": {"tok": 575}},
+   "573":
+   {"seq":
+    {"highlights":
+     [569,
+      512,
+      2,
+      550,
+      2,
+      554,
+      2,
+      512,
+      2,
+      548,
+      571,
+      2,
+      572,
+      2,
+      101,
+      2,
+      512,
+      2,
+      556,
+      548,
+      2,
+      558,
+      2,
+      550,
+      560,
+      2,
+      572]}},
+   "572": {"token": {"tok": 567}},
+   "571": {"token": {"tok": 570}},
+   "57": {"seq": {"highlights": [27, 50, 33, 52, 2, 54, 2, 42, 2, 56, 5]}},
+   "569": {"token": {"tok": 568}},
+   "566":
+   {"tactics":
+    {"startPos": 1900, "info": [562], "endPos": 1902, "content": 565}},
+   "565": {"seq": {"highlights": [564, 5]}},
+   "564": {"token": {"tok": 563}},
+   "561":
+   {"seq":
+    {"highlights":
+     [96,
+      512,
+      2,
+      550,
+      2,
+      554,
+      2,
+      512,
+      2,
+      548,
+      2,
+      101,
+      2,
+      512,
+      2,
+      556,
+      548,
+      2,
+      558,
+      2,
+      550,
+      560]}},
+   "560": {"token": {"tok": 559}},
+   "56": {"token": {"tok": 55}},
+   "558": {"token": {"tok": 557}},
+   "556": {"token": {"tok": 555}},
+   "554": {"token": {"tok": 553}},
+   "552": {"token": {"tok": 551}},
+   "550": {"token": {"tok": 549}},
+   "548": {"token": {"tok": 547}},
+   "546": {"token": {"tok": 545}},
+   "544": {"token": {"tok": 543}},
+   "542": {"token": {"tok": 541}},
+   "540":
+   {"seq":
+    {"highlights":
+     [504,
+      59,
+      506,
+      63,
+      21,
+      508,
+      2,
+      510,
+      2,
+      33,
+      2,
+      512,
+      2,
+      514,
+      2,
+      71,
+      2,
+      516,
+      2,
+      73,
+      2,
+      524,
+      38,
+      535,
+      38,
+      539,
+      5]}},
+   "54": {"token": {"tok": 53}},
+   "539":
+   {"tactics": {"startPos": 1816, "info": [], "endPos": 1827, "content": 538}},
+   "538": {"seq": {"highlights": [537, 434, 512, 63, 5]}},
+   "537": {"token": {"tok": 536}},
+   "535":
+   {"tactics":
+    {"startPos": 1805, "info": [531], "endPos": 1813, "content": 534}},
+   "534": {"seq": {"highlights": [533, 2, 529, 5]}},
+   "533": {"token": {"tok": 532}},
+   "530":
+   {"seq": {"highlights": [96, 512, 2, 518, 2, 529, 2, 101, 2, 516, 2, 529]}},
+   "529": {"token": {"tok": 525}},
+   "528": {"seq": {"highlights": [96, 527, 96]}},
+   "527": {"token": {"tok": 526}},
+   "524":
+   {"tactics":
+    {"startPos": 1800, "info": [520], "endPos": 1802, "content": 523}},
+   "523": {"seq": {"highlights": [522, 5]}},
+   "522": {"token": {"tok": 521}},
+   "52": {"token": {"tok": 51}},
+   "519": {"seq": {"highlights": [96, 512, 2, 518, 2, 101, 2, 516]}},
+   "518": {"token": {"tok": 517}},
+   "516": {"token": {"tok": 515}},
+   "514": {"token": {"tok": 513}},
+   "512": {"token": {"tok": 511}},
+   "510": {"token": {"tok": 509}},
+   "508": {"token": {"tok": 507}},
+   "506": {"token": {"tok": 505}},
+   "504":
+   {"text":
+    {"str":
+     "\n\n-- @[simp]\n-- theorem shift_inv_right {k} : shift k ∘ shift (-k) = id := by\n--   funext x\n--   simp[shift]\n\n-- @[simp]\n-- theorem shift_inv_left {k} : shift (-k) ∘ shift k = id := by\n--   funext x\n--   simp[shift]\n\n"}},
+   "503":
+   {"seq":
+    {"highlights":
+     [7,
+      492,
+      2,
+      494,
+      2,
+      161,
+      496,
+      2,
+      498,
+      2,
+      33,
+      2,
+      500,
+      167,
+      2,
+      33,
+      2,
+      500,
+      2,
+      73,
+      2,
+      498,
+      502,
+      496,
+      5]}},
+   "502": {"token": {"tok": 501}},
+   "500": {"token": {"tok": 499}},
+   "50": {"token": {"tok": 49}},
+   "5": {"seq": {"highlights": []}},
+   "498": {"token": {"tok": 497}},
+   "496": {"token": {"tok": 495}},
+   "494": {"token": {"tok": 493}},
+   "492": {"token": {"tok": 491}},
+   "490":
+   {"seq":
+    {"highlights":
+     [27,
+      471,
+      2,
+      473,
+      2,
+      91,
+      475,
+      95,
+      2,
+      33,
+      2,
+      475,
+      69,
+      2,
+      477,
+      2,
+      475,
+      2,
+      71,
+      2,
+      44,
+      2,
+      73,
+      2,
+      483,
+      2,
+      489,
+      5]}},
+   "489":
+   {"tactics": {"startPos": 1472, "info": [], "endPos": 1496, "content": 488}},
+   "488": {"seq": {"highlights": [485, 434, 438, 171, 487, 63, 5]}},
+   "487": {"token": {"tok": 486}},
+   "485": {"token": {"tok": 484}},
+   "483":
+   {"tactics":
+    {"startPos": 1469, "info": [479], "endPos": 1471, "content": 482}},
+   "482": {"seq": {"highlights": [481, 5]}},
+   "481": {"token": {"tok": 480}},
+   "48": {"seq": {"highlights": [27, 47, 2, 25, 5]}},
+   "478":
+   {"seq": {"highlights": [96, 475, 2, 99, 2, 197, 2, 475, 2, 101, 2, 44]}},
+   "477": {"token": {"tok": 476}},
+   "475": {"token": {"tok": 474}},
+   "473": {"token": {"tok": 472}},
+   "471": {"token": {"tok": 470}},
+   "47": {"token": {"tok": 46}},
+   "469":
+   {"seq":
+    {"highlights":
+     [27,
+      443,
+      2,
+      445,
+      2,
+      91,
+      447,
+      95,
+      2,
+      33,
+      2,
+      447,
+      2,
+      449,
+      2,
+      447,
+      69,
+      2,
+      71,
+      2,
+      44,
+      2,
+      73,
+      2,
+      455,
+      2,
+      463,
+      2,
+      464,
+      2,
+      468,
+      5]}},
+   "468":
+   {"tactics": {"startPos": 1414, "info": [], "endPos": 1418, "content": 467}},
+   "467": {"seq": {"highlights": [466, 5]}},
+   "466": {"token": {"tok": 465}},
+   "464":
+   {"tactics":
+    {"startPos": 1410, "info": [457, 459], "endPos": 1413, "content": 118}},
+   "463":
+   {"tactics":
+    {"startPos": 1402, "info": [457, 459], "endPos": 1409, "content": 462}},
+   "462": {"seq": {"highlights": [461, 2, 447, 5]}},
+   "461": {"token": {"tok": 460}},
+   "458":
+   {"seq": {"highlights": [96, 44, 2, 197, 2, 44, 2, 99, 2, 101, 2, 44]}},
+   "456":
+   {"seq": {"highlights": [96, 40, 2, 197, 2, 40, 2, 99, 2, 101, 2, 44]}},
+   "455":
+   {"tactics":
+    {"startPos": 1399, "info": [451], "endPos": 1401, "content": 454}},
+   "454": {"seq": {"highlights": [453, 5]}},
+   "453": {"token": {"tok": 452}},
+   "450":
+   {"seq": {"highlights": [96, 447, 2, 197, 2, 447, 2, 99, 2, 101, 2, 44]}},
+   "45":
+   {"seq":
+    {"highlights":
+     [27,
+      29,
+      2,
+      31,
+      2,
+      33,
+      2,
+      35,
+      2,
+      37,
+      2,
+      35,
+      38,
+      15,
+      2,
+      40,
+      2,
+      42,
+      2,
+      44,
+      38,
+      15,
+      2,
+      44,
+      2,
+      42,
+      2,
+      40,
+      5]}},
+   "449": {"token": {"tok": 448}},
+   "447": {"token": {"tok": 446}},
+   "445": {"token": {"tok": 444}},
+   "443": {"token": {"tok": 442}},
+   "441":
+   {"seq":
+    {"highlights":
+     [27,
+      414,
+      2,
+      416,
+      2,
+      91,
+      418,
+      2,
+      420,
+      95,
+      2,
+      33,
+      2,
+      161,
+      418,
+      2,
+      422,
+      2,
+      420,
+      167,
+      69,
+      2,
+      71,
+      2,
+      420,
+      2,
+      424,
+      2,
+      418,
+      69,
+      2,
+      73,
+      2,
+      430,
+      38,
+      440,
+      5]}},
+   "440":
+   {"tactics": {"startPos": 1325, "info": [], "endPos": 1347, "content": 439}},
+   "44": {"token": {"tok": 43}},
+   "439": {"seq": {"highlights": [432, 434, 436, 171, 438, 63, 5]}},
+   "438": {"token": {"tok": 437}},
+   "436": {"token": {"tok": 435}},
+   "434": {"token": {"tok": 433}},
+   "432": {"token": {"tok": 431}},
+   "430":
+   {"tactics":
+    {"startPos": 1320, "info": [426], "endPos": 1322, "content": 429}},
+   "429": {"seq": {"highlights": [428, 5]}},
+   "428": {"token": {"tok": 427}},
+   "425":
+   {"seq":
+    {"highlights":
+     [319,
+      418,
+      2,
+      197,
+      2,
+      420,
+      321,
+      2,
+      99,
+      2,
+      101,
+      2,
+      420,
+      2,
+      197,
+      2,
+      418,
+      2,
+      99]}},
+   "424": {"token": {"tok": 423}},
+   "422": {"token": {"tok": 421}},
+   "420": {"token": {"tok": 419}},
+   "42": {"token": {"tok": 41}},
+   "418": {"token": {"tok": 417}},
+   "416": {"token": {"tok": 415}},
+   "414": {"token": {"tok": 413}},
+   "412":
+   {"seq":
+    {"highlights":
+     [342,
+      382,
+      2,
+      384,
+      2,
+      91,
+      386,
+      2,
+      388,
+      95,
+      2,
+      33,
+      2,
+      386,
+      2,
+      390,
+      2,
+      388,
+      2,
+      71,
+      2,
+      388,
+      2,
+      392,
+      2,
+      386,
+      2,
+      73,
+      2,
+      398,
+      38,
+      406,
+      2,
+      407,
+      2,
+      411,
+      5]}},
+   "411":
+   {"tactics": {"startPos": 1253, "info": [], "endPos": 1257, "content": 410}},
+   "410": {"seq": {"highlights": [409, 5]}},
+   "409": {"token": {"tok": 408}},
+   "407":
+   {"tactics":
+    {"startPos": 1249, "info": [400, 402], "endPos": 1252, "content": 118}},
+   "406":
+   {"tactics":
+    {"startPos": 1241, "info": [400, 402], "endPos": 1248, "content": 405}},
+   "405": {"seq": {"highlights": [404, 2, 386, 5]}},
+   "404": {"token": {"tok": 403}},
+   "401":
+   {"seq":
+    {"highlights": [96, 44, 2, 197, 2, 388, 2, 101, 2, 388, 2, 197, 2, 44]}},
+   "40": {"token": {"tok": 39}},
+   "4": {"token": {"tok": 3}},
+   "399":
+   {"seq":
+    {"highlights": [96, 40, 2, 197, 2, 388, 2, 101, 2, 388, 2, 197, 2, 40]}},
+   "398":
+   {"tactics":
+    {"startPos": 1236, "info": [394], "endPos": 1238, "content": 397}},
+   "397": {"seq": {"highlights": [396, 5]}},
+   "396": {"token": {"tok": 395}},
+   "393":
+   {"seq":
+    {"highlights": [96, 386, 2, 197, 2, 388, 2, 101, 2, 388, 2, 197, 2, 386]}},
+   "392": {"token": {"tok": 391}},
+   "390": {"token": {"tok": 389}},
+   "388": {"token": {"tok": 387}},
+   "386": {"token": {"tok": 385}},
+   "384": {"token": {"tok": 383}},
+   "382": {"token": {"tok": 381}},
+   "380":
+   {"seq":
+    {"highlights":
+     [342,
+      344,
+      2,
+      346,
+      2,
+      91,
+      348,
+      2,
+      350,
+      2,
+      352,
+      95,
+      2,
+      33,
+      2,
+      348,
+      2,
+      354,
+      2,
+      161,
+      350,
+      2,
+      356,
+      2,
+      352,
+      167,
+      2,
+      71,
+      2,
+      161,
+      348,
+      2,
+      358,
+      2,
+      350,
+      167,
+      2,
+      360,
+      2,
+      352,
+      2,
+      73,
+      2,
+      366,
+      38,
+      374,
+      2,
+      375,
+      2,
+      379,
+      5]}},
+   "38": {"text": {"str": "\n  "}},
+   "379":
+   {"tactics": {"startPos": 1166, "info": [], "endPos": 1170, "content": 378}},
+   "378": {"seq": {"highlights": [377, 5]}},
+   "377": {"token": {"tok": 376}},
+   "375":
+   {"tactics":
+    {"startPos": 1162, "info": [368, 370], "endPos": 1165, "content": 118}},
+   "374":
+   {"tactics":
+    {"startPos": 1154, "info": [368, 370], "endPos": 1161, "content": 373}},
+   "373": {"seq": {"highlights": [372, 2, 348, 5]}},
+   "372": {"token": {"tok": 371}},
+   "37": {"token": {"tok": 36}},
+   "369":
+   {"seq":
+    {"highlights":
+     [96,
+      44,
+      2,
+      197,
+      2,
+      319,
+      350,
+      2,
+      197,
+      2,
+      352,
+      321,
+      2,
+      101,
+      2,
+      319,
+      44,
+      2,
+      197,
+      2,
+      350,
+      321,
+      2,
+      197,
+      2,
+      352]}},
+   "367":
+   {"seq":
+    {"highlights":
+     [96,
+      40,
+      2,
+      197,
+      2,
+      319,
+      350,
+      2,
+      197,
+      2,
+      352,
+      321,
+      2,
+      101,
+      2,
+      319,
+      40,
+      2,
+      197,
+      2,
+      350,
+      321,
+      2,
+      197,
+      2,
+      352]}},
+   "366":
+   {"tactics":
+    {"startPos": 1149, "info": [362], "endPos": 1151, "content": 365}},
+   "365": {"seq": {"highlights": [364, 5]}},
+   "364": {"token": {"tok": 363}},
+   "361":
+   {"seq":
+    {"highlights":
+     [96,
+      348,
+      2,
+      197,
+      2,
+      319,
+      350,
+      2,
+      197,
+      2,
+      352,
+      321,
+      2,
+      101,
+      2,
+      319,
+      348,
+      2,
+      197,
+      2,
+      350,
+      321,
+      2,
+      197,
+      2,
+      352]}},
+   "360": {"token": {"tok": 359}},
+   "358": {"token": {"tok": 357}},
+   "356": {"token": {"tok": 355}},
+   "354": {"token": {"tok": 353}},
+   "352": {"token": {"tok": 351}},
+   "350": {"token": {"tok": 349}},
+   "35": {"token": {"tok": 34}},
+   "348": {"token": {"tok": 347}},
+   "346": {"token": {"tok": 345}},
+   "344": {"token": {"tok": 343}},
+   "342": {"text": {"str": "\n\n-- Don't @[simp] this one!\n"}},
+   "341":
+   {"seq":
+    {"highlights":
+     [27,
+      59,
+      305,
+      63,
+      2,
+      307,
+      2,
+      309,
+      2,
+      91,
+      311,
+      2,
+      313,
+      95,
+      2,
+      33,
+      2,
+      161,
+      311,
+      2,
+      315,
+      2,
+      313,
+      167,
+      69,
+      2,
+      71,
+      2,
+      311,
+      69,
+      2,
+      317,
+      2,
+      313,
+      2,
+      73,
+      2,
+      327,
+      38,
+      335,
+      2,
+      336,
+      2,
+      340,
+      5]}},
+   "340":
+   {"tactics": {"startPos": 1063, "info": [], "endPos": 1067, "content": 339}},
+   "339": {"seq": {"highlights": [338, 5]}},
+   "338": {"token": {"tok": 337}},
+   "336":
+   {"tactics":
+    {"startPos": 1059, "info": [329, 331], "endPos": 1062, "content": 118}},
+   "335":
+   {"tactics":
+    {"startPos": 1051, "info": [329, 331], "endPos": 1058, "content": 334}},
+   "334": {"seq": {"highlights": [333, 2, 311, 5]}},
+   "333": {"token": {"tok": 332}},
+   "330":
+   {"seq":
+    {"highlights":
+     [319,
+      44,
+      2,
+      197,
+      2,
+      313,
+      321,
+      2,
+      99,
+      2,
+      101,
+      2,
+      44,
+      2,
+      99,
+      2,
+      197,
+      2,
+      313]}},
+   "33": {"token": {"tok": 32}},
+   "328":
+   {"seq":
+    {"highlights":
+     [319,
+      40,
+      2,
+      197,
+      2,
+      313,
+      321,
+      2,
+      99,
+      2,
+      101,
+      2,
+      40,
+      2,
+      99,
+      2,
+      197,
+      2,
+      313]}},
+   "327":
+   {"tactics":
+    {"startPos": 1046, "info": [323], "endPos": 1048, "content": 326}},
+   "326": {"seq": {"highlights": [325, 5]}},
+   "325": {"token": {"tok": 324}},
+   "322":
+   {"seq":
+    {"highlights":
+     [319,
+      311,
+      2,
+      197,
+      2,
+      313,
+      321,
+      2,
+      99,
+      2,
+      101,
+      2,
+      311,
+      2,
+      99,
+      2,
+      197,
+      2,
+      313]}},
+   "321": {"token": {"tok": 320}},
+   "319": {"token": {"tok": 318}},
+   "317": {"token": {"tok": 316}},
+   "315": {"token": {"tok": 314}},
+   "313": {"token": {"tok": 312}},
+   "311": {"token": {"tok": 310}},
+   "31": {"token": {"tok": 30}},
+   "309": {"token": {"tok": 308}},
+   "307": {"token": {"tok": 306}},
+   "305": {"token": {"tok": 304}},
+   "303":
+   {"seq":
+    {"highlights":
+     [27,
+      59,
+      277,
+      63,
+      2,
+      279,
+      2,
+      281,
+      2,
+      91,
+      283,
+      95,
+      2,
+      33,
+      2,
+      283,
+      2,
+      285,
+      2,
+      44,
+      2,
+      71,
+      2,
+      283,
+      69,
+      2,
+      73,
+      2,
+      291,
+      38,
+      297,
+      2,
+      298,
+      2,
+      302,
+      5]}},
+   "302":
+   {"tactics": {"startPos": 973, "info": [], "endPos": 976, "content": 301}},
+   "301": {"seq": {"highlights": [300, 5]}},
+   "300": {"token": {"tok": 299}},
+   "298":
+   {"tactics":
+    {"startPos": 969, "info": [293, 265], "endPos": 972, "content": 118}},
+   "297":
+   {"tactics":
+    {"startPos": 961, "info": [293, 265], "endPos": 968, "content": 296}},
+   "296": {"seq": {"highlights": [295, 2, 283, 5]}},
+   "295": {"token": {"tok": 294}},
+   "292":
+   {"seq": {"highlights": [96, 40, 2, 197, 2, 44, 2, 101, 2, 40, 2, 99]}},
+   "291":
+   {"tactics": {"startPos": 956, "info": [287], "endPos": 958, "content": 290}},
+   "290": {"seq": {"highlights": [289, 5]}},
+   "29": {"token": {"tok": 28}},
+   "289": {"token": {"tok": 288}},
+   "286":
+   {"seq": {"highlights": [96, 283, 2, 197, 2, 44, 2, 101, 2, 283, 2, 99]}},
+   "285": {"token": {"tok": 284}},
+   "283": {"token": {"tok": 282}},
+   "281": {"token": {"tok": 280}},
+   "279": {"token": {"tok": 278}},
+   "277": {"token": {"tok": 276}},
+   "275":
+   {"seq":
+    {"highlights":
+     [27,
+      59,
+      247,
+      63,
+      2,
+      249,
+      2,
+      251,
+      2,
+      91,
+      253,
+      95,
+      2,
+      33,
+      2,
+      44,
+      2,
+      255,
+      2,
+      253,
+      2,
+      71,
+      2,
+      253,
+      69,
+      2,
+      73,
+      2,
+      261,
+      38,
+      269,
+      2,
+      270,
+      2,
+      274,
+      5]}},
+   "274":
+   {"tactics": {"startPos": 898, "info": [], "endPos": 901, "content": 273}},
+   "273": {"seq": {"highlights": [272, 5]}},
+   "272": {"token": {"tok": 271}},
+   "270":
+   {"tactics":
+    {"startPos": 894, "info": [263, 265], "endPos": 897, "content": 118}},
+   "27": {"text": {"str": "\n\n"}},
+   "269":
+   {"tactics":
+    {"startPos": 886, "info": [263, 265], "endPos": 893, "content": 268}},
+   "268": {"seq": {"highlights": [267, 2, 253, 5]}},
+   "267": {"token": {"tok": 266}},
+   "264":
+   {"seq": {"highlights": [96, 44, 2, 197, 2, 44, 2, 101, 2, 44, 2, 99]}},
+   "262":
+   {"seq": {"highlights": [96, 44, 2, 197, 2, 40, 2, 101, 2, 40, 2, 99]}},
+   "261":
+   {"tactics": {"startPos": 881, "info": [257], "endPos": 883, "content": 260}},
+   "260": {"seq": {"highlights": [259, 5]}},
+   "26": {"seq": {"highlights": [21, 23, 2, 25, 5]}},
+   "259": {"token": {"tok": 258}},
+   "256":
+   {"seq": {"highlights": [96, 44, 2, 197, 2, 253, 2, 101, 2, 253, 2, 99]}},
+   "255": {"token": {"tok": 254}},
+   "253": {"token": {"tok": 252}},
+   "251": {"token": {"tok": 250}},
+   "25": {"token": {"tok": 24}},
+   "249": {"token": {"tok": 248}},
+   "247": {"token": {"tok": 246}},
+   "245":
+   {"seq":
+    {"highlights":
+     [27,
+      59,
+      219,
+      63,
+      2,
+      221,
+      2,
+      223,
+      2,
+      91,
+      225,
+      95,
+      2,
+      33,
+      2,
+      225,
+      2,
+      227,
+      2,
+      40,
+      2,
+      71,
+      2,
+      225,
+      2,
+      73,
+      2,
+      233,
+      38,
+      239,
+      2,
+      240,
+      2,
+      244,
+      5]}},
+   "244":
+   {"tactics": {"startPos": 824, "info": [], "endPos": 827, "content": 243}},
+   "243": {"seq": {"highlights": [242, 5]}},
+   "242": {"token": {"tok": 241}},
+   "240":
+   {"tactics":
+    {"startPos": 820, "info": [205, 235], "endPos": 823, "content": 118}},
+   "239":
+   {"tactics":
+    {"startPos": 812, "info": [205, 235], "endPos": 819, "content": 238}},
+   "238": {"seq": {"highlights": [237, 2, 225, 5]}},
+   "237": {"token": {"tok": 236}},
+   "234": {"seq": {"highlights": [96, 44, 2, 197, 2, 40, 2, 101, 2, 44]}},
+   "233":
+   {"tactics": {"startPos": 807, "info": [229], "endPos": 809, "content": 232}},
+   "232": {"seq": {"highlights": [231, 5]}},
+   "231": {"token": {"tok": 230}},
+   "23": {"token": {"tok": 22}},
+   "228": {"seq": {"highlights": [96, 225, 2, 197, 2, 40, 2, 101, 2, 225]}},
+   "227": {"token": {"tok": 226}},
+   "225": {"token": {"tok": 224}},
+   "223": {"token": {"tok": 222}},
+   "221": {"token": {"tok": 220}},
+   "219": {"token": {"tok": 218}},
+   "217":
+   {"seq":
+    {"highlights":
+     [27,
+      59,
+      187,
+      63,
+      2,
+      189,
+      2,
+      191,
+      2,
+      91,
+      193,
+      95,
+      2,
+      33,
+      2,
+      40,
+      2,
+      195,
+      2,
+      193,
+      2,
+      71,
+      2,
+      193,
+      2,
+      73,
+      2,
+      203,
+      38,
+      211,
+      2,
+      212,
+      2,
+      216,
+      5]}},
+   "216":
+   {"tactics": {"startPos": 754, "info": [], "endPos": 757, "content": 215}},
+   "215": {"seq": {"highlights": [214, 5]}},
+   "214": {"token": {"tok": 213}},
+   "212":
+   {"tactics":
+    {"startPos": 750, "info": [205, 207], "endPos": 753, "content": 118}},
+   "211":
+   {"tactics":
+    {"startPos": 742, "info": [205, 207], "endPos": 749, "content": 210}},
+   "210": {"seq": {"highlights": [209, 2, 193, 5]}},
+   "21": {"text": {"str": "\n"}},
+   "209": {"token": {"tok": 208}},
+   "206": {"seq": {"highlights": [96, 40, 2, 197, 2, 44, 2, 101, 2, 44]}},
+   "204": {"seq": {"highlights": [96, 40, 2, 197, 2, 40, 2, 101, 2, 40]}},
+   "203":
+   {"tactics": {"startPos": 737, "info": [199], "endPos": 739, "content": 202}},
+   "202": {"seq": {"highlights": [201, 5]}},
+   "201": {"token": {"tok": 200}},
+   "20":
+   {"seq": {"highlights": [7, 9, 2, 11, 2, 13, 2, 15, 2, 17, 2, 15, 2, 19, 5]}},
+   "2": {"text": {"str": " "}},
+   "198": {"seq": {"highlights": [96, 40, 2, 197, 2, 193, 2, 101, 2, 193]}},
+   "197": {"token": {"tok": 196}},
+   "195": {"token": {"tok": 194}},
+   "193": {"token": {"tok": 192}},
+   "191": {"token": {"tok": 190}},
+   "19": {"token": {"tok": 18}},
+   "189": {"token": {"tok": 188}},
+   "187": {"token": {"tok": 186}},
+   "185": {"seq": {"highlights": [27, 178, 33, 180, 2, 182, 2, 42, 2, 184, 5]}},
+   "184": {"token": {"tok": 183}},
+   "182": {"token": {"tok": 181}},
+   "180": {"token": {"tok": 179}},
+   "178": {"token": {"tok": 177}},
+   "176":
+   {"seq":
+    {"highlights":
+     [155,
+      157,
+      2,
+      159,
+      2,
+      161,
+      163,
+      2,
+      165,
+      2,
+      33,
+      2,
+      35,
+      167,
+      2,
+      33,
+      2,
+      35,
+      2,
+      73,
+      2,
+      169,
+      2,
+      163,
+      171,
+      2,
+      165,
+      2,
+      173,
+      38,
+      15,
+      2,
+      40,
+      171,
+      44,
+      2,
+      42,
+      2,
+      44,
+      38,
+      15,
+      2,
+      44,
+      171,
+      40,
+      2,
+      42,
+      2,
+      44,
+      38,
+      15,
+      2,
+      175,
+      171,
+      175,
+      2,
+      42,
+      2,
+      40,
+      5]}},
+   "175": {"token": {"tok": 174}},
+   "173": {"token": {"tok": 172}},
+   "171": {"token": {"tok": 170}},
+   "17": {"token": {"tok": 16}},
+   "169": {"token": {"tok": 168}},
+   "167": {"token": {"tok": 166}},
+   "165": {"token": {"tok": 164}},
+   "163": {"token": {"tok": 162}},
+   "161": {"token": {"tok": 160}},
+   "159": {"token": {"tok": 158}},
+   "157": {"token": {"tok": 156}},
+   "155":
+   {"text":
+    {"str":
+     "\n\n/- It is important to use implicit arguments for `{x : Spin}` because otherwise\nthe theorems are not purly equalities or iffs.  -/\n\n"}},
+   "154":
+   {"seq":
+    {"highlights":
+     [27,
+      140,
+      2,
+      91,
+      142,
+      95,
+      2,
+      33,
+      2,
+      142,
+      69,
+      69,
+      69,
+      2,
+      71,
+      2,
+      142,
+      69,
+      2,
+      73,
+      2,
+      148,
+      2,
+      152,
+      153,
+      5]}},
+   "153": {"text": {"str": " -- uses toggle_toggle"}},
+   "152":
+   {"tactics": {"startPos": 415, "info": [], "endPos": 419, "content": 151}},
+   "151": {"seq": {"highlights": [150, 5]}},
+   "150": {"token": {"tok": 149}},
+   "15": {"token": {"tok": 14}},
+   "148":
+   {"tactics": {"startPos": 412, "info": [144], "endPos": 414, "content": 147}},
+   "147": {"seq": {"highlights": [146, 5]}},
+   "146": {"token": {"tok": 145}},
+   "143":
+   {"seq":
+    {"highlights": [96, 142, 2, 99, 2, 99, 2, 99, 2, 101, 2, 142, 2, 99]}},
+   "142": {"token": {"tok": 141}},
+   "140": {"token": {"tok": 139}},
+   "138":
+   {"seq":
+    {"highlights":
+     [27,
+      59,
+      85,
+      63,
+      2,
+      87,
+      2,
+      89,
+      2,
+      91,
+      93,
+      95,
+      2,
+      33,
+      2,
+      93,
+      69,
+      69,
+      2,
+      71,
+      2,
+      93,
+      2,
+      73,
+      2,
+      107,
+      38,
+      115,
+      2,
+      119,
+      2,
+      136,
+      137,
+      5]}},
+   "137": {"text": {"str": "  -- uses toggle_up, toggle_dn"}},
+   "136": {"span": {"info": [["info", 127], ["info", 130]], "content": 135}},
+   "135": {"seq": {"highlights": [134, 5]}},
+   "134":
+   {"tactics": {"startPos": 332, "info": [], "endPos": 337, "content": 133}},
+   "133": {"seq": {"highlights": [132, 5]}},
+   "132": {"token": {"tok": 131}},
+   "13": {"token": {"tok": 12}},
+   "119":
+   {"tactics":
+    {"startPos": 328, "info": [109, 111], "endPos": 331, "content": 118}},
+   "118": {"seq": {"highlights": [117, 5]}},
+   "117": {"token": {"tok": 116}},
+   "115":
+   {"tactics":
+    {"startPos": 320, "info": [109, 111], "endPos": 327, "content": 114}},
+   "114": {"seq": {"highlights": [113, 2, 93, 5]}},
+   "113": {"token": {"tok": 112}},
+   "110": {"seq": {"highlights": [96, 44, 2, 99, 2, 99, 2, 101, 2, 44]}},
+   "11": {"token": {"tok": 10}},
+   "108": {"seq": {"highlights": [96, 40, 2, 99, 2, 99, 2, 101, 2, 40]}},
+   "107":
+   {"tactics": {"startPos": 315, "info": [103], "endPos": 317, "content": 106}},
+   "106": {"seq": {"highlights": [105, 5]}},
+   "105": {"token": {"tok": 104}},
+   "102": {"seq": {"highlights": [96, 93, 2, 99, 2, 99, 2, 101, 2, 93]}},
+   "101": {"token": {"tok": 100}},
+   "1": {"token": {"tok": 0}}}}}

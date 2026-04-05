@@ -1,0 +1,1263 @@
+{"items":
+ [{"range":
+   {"start": {"line": 8, "column": 1}, "end": {"line": 8, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 7},
+  {"range":
+   {"start": {"line": 10, "column": 1}, "end": {"line": 10, "column": 28}},
+   "kind": "Lean.Parser.Command.namespace",
+   "defines": [],
+   "code": 13},
+  {"range":
+   {"start": {"line": 69, "column": 1}, "end": {"line": 69, "column": 12}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 33},
+  {"range":
+   {"start": {"line": 71, "column": 1}, "end": {"line": 71, "column": 12}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 45},
+  {"range":
+   {"start": {"line": 72, "column": 1}, "end": {"line": 72, "column": 14}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 54},
+  {"range":
+   {"start": {"line": 74, "column": 1}, "end": {"line": 74, "column": 15}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 72},
+  {"range":
+   {"start": {"line": 76, "column": 1}, "end": {"line": 76, "column": 24}},
+   "kind": "Lean.Parser.Command.check_failure",
+   "defines": [],
+   "code": 90},
+  {"range":
+   {"start": {"line": 89, "column": 1}, "end": {"line": 89, "column": 13}},
+   "kind": "Lean.Parser.Command.universe",
+   "defines": [],
+   "code": 98},
+  {"range":
+   {"start": {"line": 90, "column": 1}, "end": {"line": 90, "column": 34}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Universes.f1"],
+   "code": 115},
+  {"range":
+   {"start": {"line": 94, "column": 1}, "end": {"line": 94, "column": 38}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Universes.f2"],
+   "code": 131},
+  {"range":
+   {"start": {"line": 100, "column": 1}, "end": {"line": 100, "column": 10}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 149},
+  {"range":
+   {"start": {"line": 101, "column": 1}, "end": {"line": 101, "column": 14}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 163},
+  {"range":
+   {"start": {"line": 102, "column": 1}, "end": {"line": 102, "column": 26}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 175},
+  {"range":
+   {"start": {"line": 111, "column": 1}, "end": {"line": 111, "column": 21}},
+   "kind": "Lean.Parser.Command.check_failure",
+   "defines": [],
+   "code": 213},
+  {"range":
+   {"start": {"line": 133, "column": 1}, "end": {"line": 133, "column": 28}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Universes.my_id"],
+   "code": 221},
+  {"range":
+   {"start": {"line": 135, "column": 1}, "end": {"line": 135, "column": 13}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 238},
+  {"range":
+   {"start": {"line": 136, "column": 1}, "end": {"line": 136, "column": 20}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 250},
+  {"range":
+   {"start": {"line": 141, "column": 1}, "end": {"line": 141, "column": 19}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 261},
+  {"range":
+   {"start": {"line": 159, "column": 1}, "end": {"line": 159, "column": 18}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 281},
+  {"range":
+   {"start": {"line": 160, "column": 1}, "end": {"line": 160, "column": 22}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 300},
+  {"range":
+   {"start": {"line": 164, "column": 1}, "end": {"line": 164, "column": 12}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 320},
+  {"range":
+   {"start": {"line": 165, "column": 1}, "end": {"line": 165, "column": 23}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 338},
+  {"range":
+   {"start": {"line": 179, "column": 1}, "end": {"line": 180, "column": 32}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Universes.MyProd"],
+   "code": 355},
+  {"range":
+   {"start": {"line": 186, "column": 1}, "end": {"line": 187, "column": 30}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["LeanW26.Universes.MyPropProd"],
+   "code": 369},
+  {"range":
+   {"start": {"line": 222, "column": 1}, "end": {"line": 222, "column": 39}},
+   "kind": "Lean.Parser.Command.variable",
+   "defines": [],
+   "code": 379},
+  {"range":
+   {"start": {"line": 223, "column": 1}, "end": {"line": 284, "column": 1}},
+   "kind": "Lean.Parser.Command.check",
+   "defines": [],
+   "code": 397},
+  {"range":
+   {"start": {"line": 282, "column": 1}, "end": {"line": 282, "column": 22}},
+   "kind": "Lean.Parser.Command.end",
+   "defines": [],
+   "code": 401},
+  {"range":
+   {"start": {"line": 284, "column": 1}, "end": {"line": 284, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 405}],
+ "data":
+ {"tokens":
+  {"99":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1872",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "96": {"kind": "unknown", "content": "v"},
+   "94": {"kind": "unknown", "content": "u"},
+   "92":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.universe-1859",
+      "name": ["Lean", "Parser", "Command", "universe"],
+      "docs":
+      "Declares one or more universe variables.\n\n`universe u v`\n\n`Prop`, `Type`, `Type u` and `Sort u` are types that classify other types, also known as\n*universes*. In `Type u` and `Sort u`, the variable `u` stands for the universe's *level*, and a\nuniverse at level `u` can only classify universes that are at levels lower than `u`. For more\ndetails on type universes, please refer to [the relevant chapter of Theorem Proving in Lean][tpil\nuniverses].\n\nJust as type arguments allow polymorphic definitions to be used at many different types, universe\nparameters, represented by universe variables, allow a definition to be used at any required level.\nWhile Lean mostly handles universe levels automatically, declaring them explicitly can provide more\ncontrol when writing signatures. The `universe` keyword allows the declared universe variables to be\nused in a collection of definitions, and Lean will ensure that these definitions use them\nconsistently.\n\n[tpil universes]: https://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#types-as-objects\n(Type universes on Theorem Proving in Lean)\n\n```lean\n/- Explicit type-universe parameter. -/\ndef id₁.{u} (α : Type u) (a : α) := a\n\n/- Implicit type-universe parameter, equivalent to `id₁`.\n  Requires option `autoImplicit true`, which is the default. -/\ndef id₂ (α : Type u) (a : α) := a\n\n/- Explicit standalone universe variable declaration, equivalent to `id₁` and `id₂`. -/\nuniverse u\ndef id₃ (α : Type u) (a : α) := a\n```\n\nOn a more technical note, using a universe variable only in the right-hand side of a definition\ncauses an error if the universe has not been declared previously.\n\n```lean\ndef L₁.{u} := List (Type u)\n\n-- def L₂ := List (Type u) -- error: `unknown universe level 'u'`\n\nuniverse u\ndef L₃ := List (Type u)\n```\n\n## Examples\n\n```lean\nuniverse u v w\n\nstructure Pair (α : Type u) (β : Type v) : Type (max u v) where\n  a : α\n  b : β\n\n#check Pair.{v, w}\n-- Pair : Type v → Type w → Type (max v w)\n```\n"}},
+    "content": "universe"},
+   "9":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.namespace-313",
+      "name": ["Lean", "Parser", "Command", "namespace"],
+      "docs":
+      "`namespace <id>` opens a section with label `<id>` that influences naming and name resolution inside\nthe section:\n* Declarations names are prefixed: `def seventeen : ℕ := 17` inside a namespace `Nat` is given the\n  full name `Nat.seventeen`.\n* Names introduced by `export` declarations are also prefixed by the identifier.\n* All names starting with `<id>.` become available in the namespace without the prefix. These names\n  are preferred over names introduced by outer namespaces or `open`.\n* Within a namespace, declarations can be `protected`, which excludes them from the effects of\n  opening the namespace.\n\nAs with `section`, namespaces can be nested and the scope of a namespace is terminated by a\ncorresponding `end <id>` or the end of the file.\n\n`namespace` also acts like `section` in delimiting the scope of `variable`, `open`, and other scoped commands.\n"}},
+    "content": "namespace"},
+   "85": {"kind": {"levelConst": {"i": 100}}, "content": "100"},
+   "73":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check_failure-1565",
+      "name": ["Lean", "Parser", "Command", "check_failure"],
+      "docs": null}},
+    "content": "#check_failure"},
+   "69": {"kind": {"levelConst": {"i": 12}}, "content": "12"},
+   "65":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1530",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "59":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type 13"},
+   "55":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type 12"},
+   "51": {"kind": {"levelConst": {"i": 0}}, "content": "0"},
+   "47":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1496",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "403": {"kind": "unknown", "content": ""},
+   "40":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1463",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "4": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "399":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.end-5942",
+      "name": ["Lean", "Parser", "Command", "end"],
+      "docs":
+      "`end` closes a `section` or `namespace` scope. If the scope is named `<id>`, it has to be closed\nwith `end <id>`. The `end` command is optional at the end of a file.\n"}},
+    "content": "end"},
+   "394": {"kind": {"var": {"type": "α", "name": "_uniq.995"}}, "content": "x"},
+   "390":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-4635",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "384":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "A specific universe in Lean's infinite hierarchy of universes. "}},
+    "content": "Sort (imax u v)"},
+   "380":
+   {"kind": {"var": {"type": "α", "name": "_pp_uniq.1"}}, "content": "x"},
+   "377":
+   {"kind": {"var": {"type": "α → Sort v", "name": "_uniq.987"}},
+    "content": "β"},
+   "375":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "A specific universe in Lean's infinite hierarchy of universes. "}},
+    "content": "Sort"},
+   "373":
+   {"kind": {"var": {"type": "Sort u", "name": "_uniq.983"}}, "content": "α"},
+   "371":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.variable-4591",
+      "name": ["Lean", "Parser", "Command", "variable"],
+      "docs":
+      "Declares one or more typed variables, or modifies whether already-declared variables are\n  implicit.\n\nIntroduces variables that can be used in definitions within the same `namespace` or `section` block.\nWhen a definition mentions a variable, Lean will add it as an argument of the definition. This is\nuseful in particular when writing many definitions that have parameters in common (see below for an\nexample).\n\nVariable declarations have the same flexibility as regular function parameters. In particular they\ncan be [explicit, implicit][binder docs], or [instance implicit][tpil classes] (in which case they\ncan be anonymous). This can be changed, for instance one can turn explicit variable `x` into an\nimplicit one with `variable {x}`. Note that currently, you should avoid changing how variables are\nbound and declare new variables at the same time; see [issue 2789] for more on this topic.\n\nIn *theorem bodies* (i.e. proofs), variables are not included based on usage in order to ensure that\nchanges to the proof cannot change the statement of the overall theorem. Instead, variables are only\navailable to the proof if they have been mentioned in the theorem header or in an `include` command\nor are instance implicit and depend only on such variables.\n\nSee [*Variables and Sections* from Theorem Proving in Lean][tpil vars] for a more detailed\ndiscussion.\n\n[tpil vars]:\nhttps://lean-lang.org/theorem_proving_in_lean4/dependent_type_theory.html#variables-and-sections\n(Variables and Sections on Theorem Proving in Lean) [tpil classes]:\nhttps://lean-lang.org/theorem_proving_in_lean4/type_classes.html (Type classes on Theorem Proving in\nLean) [binder docs]:\nhttps://leanprover-community.github.io/mathlib4_docs/Lean/Expr.html#Lean.BinderInfo (Documentation\nfor the BinderInfo type) [issue 2789]: https://github.com/leanprover/lean4/issues/2789 (Issue 2789\non github)\n\n## Examples\n\n```lean\nsection\n  variable\n    {α : Type u}      -- implicit\n    (a : α)           -- explicit\n    [instBEq : BEq α] -- instance implicit, named\n    [Hashable α]      -- instance implicit, anonymous\n\n  def isEqual (b : α) : Bool :=\n    a == b\n\n  #check isEqual\n  -- isEqual.{u} {α : Type u} (a : α) [instBEq : BEq α] (b : α) : Bool\n\n  variable\n    {a} -- `a` is implicit now\n\n  def eqComm {b : α} := a == b ↔ b == a\n\n  #check eqComm\n  -- eqComm.{u} {α : Type u} {a : α} [instBEq : BEq α] {b : α} : Prop\nend\n```\n\nThe following shows a typical use of `variable` to factor out definition arguments:\n\n```lean\nvariable (Src : Type)\n\nstructure Logger where\n  trace : List (Src × String)\n#check Logger\n-- Logger (Src : Type) : Type\n\nnamespace Logger\n  -- switch `Src : Type` to be implicit until the `end Logger`\n  variable {Src}\n\n  def empty : Logger Src where\n    trace := []\n  #check empty\n  -- Logger.empty {Src : Type} : Logger Src\n\n  variable (log : Logger Src)\n\n  def len :=\n    log.trace.length\n  #check len\n  -- Logger.len {Src : Type} (log : Logger Src) : Nat\n\n  variable (src : Src) [BEq Src]\n\n  -- at this point all of `log`, `src`, `Src` and the `BEq` instance can all become arguments\n\n  def filterSrc :=\n    log.trace.filterMap\n      fun (src', str') => if src' == src then some str' else none\n  #check filterSrc\n  -- Logger.filterSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : List String\n\n  def lenSrc :=\n    log.filterSrc src |>.length\n  #check lenSrc\n  -- Logger.lenSrc {Src : Type} (log : Logger Src) (src : Src) [inst✝ : BEq Src] : Nat\nend Logger\n```\n\nThe following example demonstrates availability of variables in proofs:\n```lean\nvariable\n  {α : Type}    -- available in the proof as indirectly mentioned through `a`\n  [ToString α]  -- available in the proof as `α` is included\n  (a : α)       -- available in the proof as mentioned in the header\n  {β : Type}    -- not available in the proof\n  [ToString β]  -- not available in the proof\n\ntheorem ex : a = a := rfl\n```\nAfter elaboration of the proof, the following warning will be generated to highlight the unused\nhypothesis:\n```\nincluded section variable '[ToString α]' is not used in 'ex', consider excluding it\n```\nIn such cases, the offending variable declaration should be moved down or into a section so that\nonly theorems that do depend on it follow it until the end of the section.\n"}},
+    "content": "variable"},
+   "367":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.964"}}, "content": "X"},
+   "365": {"kind": "unknown", "content": "∀"},
+   "363":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.958"}}, "content": "β"},
+   "361":
+   {"kind": {"var": {"type": "Prop", "name": "_uniq.956"}}, "content": "α"},
+   "359":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Universes.MyPropProd (α β : Prop) : Prop",
+      "name": ["LeanW26", "Universes", "MyPropProd"],
+      "isDef": true,
+      "docs": null}},
+    "content": "MyPropProd"},
+   "357":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-3726",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "353": {"kind": "unknown", "content": ","},
+   "351":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.937"}}, "content": "X"},
+   "349": {"kind": "unknown", "content": "Π"},
+   "346":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.931"}}, "content": "β"},
+   "344":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.929"}}, "content": "α"},
+   "342":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Universes.MyProd.{u} (α β : Type u) : Type (u + 1)",
+      "name": ["LeanW26", "Universes", "MyProd"],
+      "isDef": true,
+      "docs": null}},
+    "content": "MyProd"},
+   "340":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-3579",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "34":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type 1"},
+   "335": {"kind": "unknown", "content": "×"},
+   "331":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-3326",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "325":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type (max (u + 1) (v + 1))"},
+   "321":
+   {"kind":
+    {"const":
+     {"signature": "Prod.{u, v} (α : Type u) (β : Type v) : Type (max u v)",
+      "name": ["Prod"],
+      "isDef": false,
+      "docs":
+      "The product type, usually written `α × β`. Product types are also called pair or tuple types.\nElements of this type are pairs in which the first element is an `α` and the second element is a\n`β`.\n\nProducts nest to the right, so `(x, y, z) : α × β × γ` is equivalent to `(x, (y, z)) : α × (β × γ)`.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `×` in identifiers is `Prod`."}},
+    "content": "×"},
+   "317":
+   {"kind":
+    {"const":
+     {"signature": "Prod.{u, v} (α : Type u) (β : Type v) : Type (max u v)",
+      "name": ["Prod"],
+      "isDef": false,
+      "docs":
+      "The product type, usually written `α × β`. Product types are also called pair or tuple types.\nElements of this type are pairs in which the first element is an `α` and the second element is a\n`β`.\n\nProducts nest to the right, so `(x, y, z) : α × β × γ` is equivalent to `(x, (y, z)) : α × (β × γ)`.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `×` in identifiers is `Prod`."}},
+    "content": "Prod"},
+   "313":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-3262",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "308":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type v"},
+   "306":
+   {"kind": {"var": {"type": "Type v", "name": "_pp_uniq.2"}}, "content": "β"},
+   "304":
+   {"kind": {"var": {"type": "Type u", "name": "_pp_uniq.1"}}, "content": "α"},
+   "302":
+   {"kind":
+    {"const":
+     {"signature": "Prod.{u, v} (α : Type u) (β : Type v) : Type (max u v)",
+      "name": ["Prod"],
+      "isDef": false,
+      "docs":
+      "The product type, usually written `α × β`. Product types are also called pair or tuple types.\nElements of this type are pairs in which the first element is an `α` and the second element is a\n`β`.\n\nProducts nest to the right, so `(x, y, z) : α × β × γ` is equivalent to `(x, (y, z)) : α × (β × γ)`.\n\n\nConventions for notations in identifiers:\n\n * The recommended spelling of `×` in identifiers is `Prod`."}},
+    "content": "Prod.{u, v}"},
+   "298": {"kind": {"levelVar": {"name": ["v"]}}, "content": "v"},
+   "296": {"kind": {"levelOp": {"which": "max"}}, "content": "max"},
+   "292":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-3220",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "286":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type ((max u v) + 1)"},
+   "282":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type (max u v)"},
+   "28":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-1431",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "279": {"kind": {"levelConst": {"i": 1}}, "content": "1"},
+   "277": {"kind": {"levelOp": {"which": "+"}}, "content": "+"},
+   "273":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-3202",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "267":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type (u + 2)"},
+   "263":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type (u + 1)"},
+   "256":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2870",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "245":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2766",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "239":
+   {"kind":
+    {"const":
+     {"signature": "String : Type",
+      "name": ["String"],
+      "isDef": false,
+      "docs":
+      "A string is a sequence of Unicode scalar values.\n\nAt runtime, strings are represented by [dynamic arrays](https://en.wikipedia.org/wiki/Dynamic_array)\nof bytes using the UTF-8 encoding. Both the size in bytes (`String.utf8ByteSize`) and in characters\n(`String.length`) are cached and take constant time. Many operations on strings perform in-place\nmodifications when the reference to the string is unique.\n"}},
+    "content": "String"},
+   "235":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Universes.my_id.{u} (x : Type u) : Type u",
+      "name": ["LeanW26", "Universes", "my_id"],
+      "isDef": false,
+      "docs": null}},
+    "content": "my_id"},
+   "231":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2724",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "226":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type u"},
+   "224":
+   {"kind": {"var": {"type": "Type u", "name": "_pp_uniq.1"}}, "content": "x"},
+   "222":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Universes.my_id.{u} (x : Type u) : Type u",
+      "name": ["LeanW26", "Universes", "my_id"],
+      "isDef": false,
+      "docs": null}},
+    "content": "LeanW26.Universes.my_id.{u}"},
+   "22":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type"},
+   "219":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.910"}}, "content": "x"},
+   "217":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Universes.my_id.{u} (x : Type u) : Type u",
+      "name": ["LeanW26", "Universes", "my_id"],
+      "isDef": true,
+      "docs": null}},
+    "content": "my_id"},
+   "215":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2695",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "197": {"kind": "unknown", "content": "→"},
+   "195":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type ?u.25"},
+   "187":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check_failure-2392",
+      "name": ["Lean", "Parser", "Command", "check_failure"],
+      "docs": null}},
+    "content": "#check_failure"},
+   "181":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type u_1"},
+   "177": {"kind": "unknown", "content": "sorry"},
+   "170":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2175",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "17":
+   {"kind":
+    {"sort":
+     {"doc?":
+      "The universe of propositions. `Prop ≡ Sort 0`.\n\nEvery proposition is propositionally equal to either `True` or `False`. "}},
+    "content": "Prop"},
+   "164":
+   {"kind":
+    {"const":
+     {"signature": "List.{u} (α : Type u) : Type u",
+      "name": ["List"],
+      "isDef": false,
+      "docs":
+      "Linked lists: ordered lists, in which each element has a reference to the next element.\n\nMost operations on linked lists take time proportional to the length of the list, because each\nelement must be traversed to find the next element.\n\n`List α` is isomorphic to `Array α`, but they are useful for different things:\n* `List α` is easier for reasoning, and `Array α` is modeled as a wrapper around `List α`.\n* `List α` works well as a persistent data structure, when many copies of the tail are shared. When\n  the value is not shared, `Array α` will have better performance because it can do destructive\n  updates.\n"}},
+    "content": "List"},
+   "160":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "Nat"},
+   "156":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2114",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "150":
+   {"kind":
+    {"const":
+     {"signature": "Nat : Type",
+      "name": ["Nat"],
+      "isDef": false,
+      "docs":
+      "The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n"}},
+    "content": "ℕ"},
+   "146":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Universes.f2.{w} (x : Type w) : Type w",
+      "name": ["LeanW26", "Universes", "f2"],
+      "isDef": false,
+      "docs": null}},
+    "content": "f2"},
+   "142":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.check-2059",
+      "name": ["Lean", "Parser", "Command", "check"],
+      "docs": null}},
+    "content": "#check"},
+   "137":
+   {"kind":
+    {"sort":
+     {"doc?": "A type universe. `Type ≡ Type 0`, `Type u ≡ Sort (u + 1)`. "}},
+    "content": "Type w"},
+   "135":
+   {"kind": {"var": {"type": "Type w", "name": "_pp_uniq.1"}}, "content": "x"},
+   "133":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Universes.f2.{w} (x : Type w) : Type w",
+      "name": ["LeanW26", "Universes", "f2"],
+      "isDef": false,
+      "docs": null}},
+    "content": "LeanW26.Universes.f2.{w}"},
+   "129": {"kind": {"levelVar": {"name": ["w"]}}, "content": "w"},
+   "127":
+   {"kind": {"var": {"type": "Type w", "name": "_uniq.15"}}, "content": "x"},
+   "125": {"kind": "unknown", "content": "}"},
+   "123": {"kind": "unknown", "content": "w"},
+   "121": {"kind": "unknown", "content": ".{"},
+   "119":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Universes.f2.{w} (x : Type w) : Type w",
+      "name": ["LeanW26", "Universes", "f2"],
+      "isDef": true,
+      "docs": null}},
+    "content": "f2"},
+   "117":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1946",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "113": {"kind": "unknown", "content": ":="},
+   "111": {"kind": "unknown", "content": ")"},
+   "11": {"kind": "unknown", "content": "LeanW26.Universes"},
+   "109": {"kind": {"levelVar": {"name": ["u"]}}, "content": "u"},
+   "107": {"kind": "unknown", "content": ":"},
+   "105":
+   {"kind": {"var": {"type": "Type u", "name": "_uniq.7"}}, "content": "x"},
+   "103": {"kind": "unknown", "content": "("},
+   "101":
+   {"kind":
+    {"const":
+     {"signature": "LeanW26.Universes.f1.{u} (x : Type u) : Type u",
+      "name": ["LeanW26", "Universes", "f1"],
+      "isDef": true,
+      "docs": null}},
+    "content": "f1"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-297",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 406,
+  "messageContents":
+  {"84": {"append": [15, 83]},
+   "83": {"append": [75, 76, 77, 78, 79, 80, 80, 81, 82]},
+   "82":
+   {"text":
+    "This code is probably misusing universe levels, since they are usually small natural numbers. If you are confident this is not the case, you can increase the limit using `set_option maxUniverseOffset <limit>`"},
+   "81": {"text": "Note: "},
+   "80": {"text": "\n"},
+   "79": {"text": "`"},
+   "78": {"text": "32"},
+   "77": {"text": "` exceeds maximum offset `"},
+   "76": {"text": "100"},
+   "75": {"text": "Universe level offset `"},
+   "64": {"append": [15, 63]},
+   "63": {"append": [58, 21, 62]},
+   "62": {"term": 61},
+   "58": {"term": 57},
+   "39": {"append": [15, 38]},
+   "389": {"append": [15, 388]},
+   "388": {"append": [383, 21, 387]},
+   "387": {"term": 386},
+   "383": {"term": 382},
+   "38": {"append": [25, 21, 37]},
+   "37": {"term": 36},
+   "330": {"append": [15, 329]},
+   "329": {"append": [324, 21, 328]},
+   "328": {"term": 327},
+   "324": {"term": 323},
+   "312": {"append": [15, 311]},
+   "311": {"term": 310},
+   "291": {"append": [15, 290]},
+   "290": {"append": [285, 21, 289]},
+   "289": {"term": 288},
+   "285": {"term": 284},
+   "272": {"append": [15, 271]},
+   "271": {"append": [266, 21, 270]},
+   "270": {"term": 269},
+   "27": {"append": [15, 26]},
+   "266": {"term": 265},
+   "26": {"append": [20, 21, 25]},
+   "255": {"append": [15, 254]},
+   "254": {"append": [253, 21, 37]},
+   "253": {"term": 252},
+   "25": {"term": 24},
+   "244": {"append": [15, 243]},
+   "243": {"append": [242, 21, 25]},
+   "242": {"term": 241},
+   "230": {"append": [15, 229]},
+   "229": {"term": 228},
+   "21": {"text": " : "},
+   "208": {"append": [15, 207]},
+   "207":
+   {"append":
+    [189,
+     190,
+     191,
+     193,
+     15,
+     80,
+     15,
+     194,
+     191,
+     200,
+     15,
+     80,
+     201,
+     191,
+     203,
+     15,
+     80,
+     15,
+     204,
+     191,
+     206,
+     15]},
+   "206": {"term": 205},
+   "204": {"text": "in the application"},
+   "203": {"term": 202},
+   "201": {"text": "but is expected to have type"},
+   "200": {"term": 199},
+   "20": {"term": 19},
+   "194": {"text": "has type"},
+   "193": {"term": 192},
+   "191": {"text": "\n  "},
+   "190": {"text": "argument"},
+   "189": {"text": "Application type mismatch: The "},
+   "186": {"append": [15, 185]},
+   "185": {"append": [180, 21, 184]},
+   "184": {"term": 183},
+   "180": {"term": 179},
+   "169": {"append": [15, 168]},
+   "168": {"append": [167, 21, 37]},
+   "167": {"term": 166},
+   "155": {"append": [15, 154]},
+   "154": {"append": [153, 21, 25]},
+   "153": {"term": 152},
+   "15": {"text": ""},
+   "141": {"append": [15, 140]},
+   "140": {"term": 139}},
+  "goals": {},
+  "code":
+  {"98": {"seq": {"highlights": [91, 93, 3, 95, 3, 97, 6]}},
+   "97": {"token": {"tok": 96}},
+   "95": {"token": {"tok": 94}},
+   "93": {"token": {"tok": 92}},
+   "91":
+   {"text":
+    {"str":
+     "\n                        -- exceeds maximum offset `32`\n\n/- Most math does not require many universe levels,\nbut various categorical constructions do.  -/\n\n/-\nUniverse Variables\n===\n\nYou can declare universes with the universe keyword:\n-/\n\n"}},
+   "90": {"seq": {"highlights": [8, 74, 3, 23, 3, 88, 89, 6]}},
+   "89": {"text": {"str": " -- Universe level offset `100`"}},
+   "88": {"span": {"info": [["info", 84]], "content": 87}},
+   "87": {"seq": {"highlights": [86, 6]}},
+   "86": {"token": {"tok": 85}},
+   "8": {"text": {"str": "\n\n"}},
+   "74": {"token": {"tok": 73}},
+   "72": {"seq": {"highlights": [8, 68, 3, 23, 3, 70, 71, 6]}},
+   "71": {"text": {"str": "         -- Type 13"}},
+   "70": {"token": {"tok": 69}},
+   "7": {"seq": {"highlights": [0, 2, 3, 5, 6]}},
+   "68": {"span": {"info": [["info", 64]], "content": 67}},
+   "67": {"seq": {"highlights": [66, 6]}},
+   "66": {"token": {"tok": 65}},
+   "61": {"seq": {"highlights": [16, 60, 16]}},
+   "60": {"token": {"tok": 59}},
+   "6": {"seq": {"highlights": []}},
+   "57": {"seq": {"highlights": [16, 56, 16]}},
+   "56": {"token": {"tok": 55}},
+   "54": {"seq": {"highlights": [46, 50, 3, 23, 3, 52, 53, 6]}},
+   "53": {"text": {"str": "          -- Type 1"}},
+   "52": {"token": {"tok": 51}},
+   "50": {"span": {"info": [["info", 39]], "content": 49}},
+   "5": {"token": {"tok": 4}},
+   "49": {"seq": {"highlights": [48, 6]}},
+   "48": {"token": {"tok": 47}},
+   "46": {"text": {"str": "\n"}},
+   "45": {"seq": {"highlights": [8, 43, 3, 23, 44, 6]}},
+   "44": {"text": {"str": "            -- Type 1"}},
+   "43": {"span": {"info": [["info", 39]], "content": 42}},
+   "42": {"seq": {"highlights": [41, 6]}},
+   "41": {"token": {"tok": 40}},
+   "405": {"seq": {"highlights": [402, 404, 6]}},
+   "404": {"token": {"tok": 403}},
+   "402": {"text": {"str": "\n--unhide\n"}},
+   "401": {"seq": {"highlights": [398, 400, 3, 12, 6]}},
+   "400": {"token": {"tok": 399}},
+   "398":
+   {"text":
+    {"str":
+     "\n\n/-\nIf `α := Type 2` and `β x := Type 3`:\n```\n#check (Π x : α, β x)           -- Type 3\n```\nIf `α := Type 2` and `β x := Prop` then\n```\n#check (Π x : α, β x)           -- Prop, equiv to ∀ x, β x\n```\n-/\n\n/-\nReferences\n===\n\nUniverse hierarchies appear to have been introduced by Per Martin-Löf in\n\n> Per Martin-Löf, An Intuitionistic Theory of Types: Predicative Part,\n*Studies in Logic and the Foundations of Mathematics*, Volume 80, 1975, Pages 73-118. [Link](https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0049237X08719451)\n\n-/\n\n/-\nExercises\n===\n\n<ex/> What is the type of `Type u ⊕ Type v`?\n\n<ex/> Define\n```lean\ndef TypeList := List Type\n```\nWhich of the following are ok in Lean? Why?\n```\ndef A : TypeList := []\ndef A : TypeList := [TypeList]\ndef A : TypeList := [ℕ,ℚ]\ndef A : TypeList := [ℕ,ℕ×Type]\ndef A : TypeList := [ℕ,List ℕ]\ndef A : TypeList := [ℕ,ℕ×Prop]\ndef A : TypeList := [ℕ,A]\n```\n\n<ex /> What if we change TypeList to\n```\ndef TypeList.{w} := List (Type w)\n```\nwhich of the above work when refactored with this new definition? Why?\n\n<ex/> Why doesn't this function type check?\n```lean\ndef f (n : ℕ) := if n = 0 then Type 0 else Type 1\n```\nHow would you fix it?\n-/\n\n--hide\n"}},
+   "397":
+   {"seq":
+    {"highlights":
+     [46,
+      393,
+      3,
+      104,
+      350,
+      3,
+      395,
+      3,
+      108,
+      3,
+      374,
+      354,
+      3,
+      378,
+      3,
+      395,
+      112,
+      396,
+      6]}},
+   "396": {"text": {"str": "                   -- Sort (imax u v)"}},
+   "395": {"token": {"tok": 394}},
+   "393": {"span": {"info": [["info", 389]], "content": 392}},
+   "392": {"seq": {"highlights": [391, 6]}},
+   "391": {"token": {"tok": 390}},
+   "386": {"seq": {"highlights": [16, 385, 16]}},
+   "385": {"token": {"tok": 384}},
+   "382":
+   {"seq":
+    {"highlights": [104, 381, 3, 108, 3, 374, 112, 3, 198, 3, 378, 3, 381]}},
+   "381": {"token": {"tok": 380}},
+   "379":
+   {"seq":
+    {"highlights":
+     [370,
+      372,
+      3,
+      104,
+      374,
+      3,
+      108,
+      3,
+      376,
+      3,
+      110,
+      112,
+      3,
+      104,
+      378,
+      3,
+      108,
+      3,
+      374,
+      3,
+      198,
+      3,
+      376,
+      3,
+      299,
+      112,
+      6]}},
+   "378": {"token": {"tok": 377}},
+   "376": {"token": {"tok": 375}},
+   "374": {"token": {"tok": 373}},
+   "372": {"token": {"tok": 371}},
+   "370":
+   {"text":
+    {"str":
+     "\n\n/- This is because `Prop` is impredicative in Lean, unlike all other types. -/\n\n/-\nHow `Prop` Avoids Paradoxes\n===\n\nEven though `Prop` is impredicative, the language is carefully designed to avoid\nallowing paradoxes.\n\nThis is achieved via ***proof irrelevance***: All proofs `h : p` where `p : Prop` are equivalent.\n\nThe result is that propositions cannot depend on the particular way a proof is written,\nand so lack the expressive power to encode Girard's paradox.\n\n-/\n\n\n/-\nMore Type Arithmetic\n===\n\nBecause `Prop` is impredicative, sometimes you need a version of `max`\nexcept when the codomain of a function is `Prop`. Then you can use `imax`\n```lean\nimax u v := if v = 0 then 0 else max u v\n#check Type (imax 1 0)   -- 0\n#check Type (imax 0 1)   -- 1\n```\n-/\n\n\n/- For example, -/\n\n"}},
+   "369":
+   {"seq":
+    {"highlights":
+     [356,
+      358,
+      3,
+      360,
+      3,
+      104,
+      362,
+      3,
+      364,
+      3,
+      108,
+      3,
+      18,
+      112,
+      3,
+      108,
+      3,
+      18,
+      3,
+      114,
+      348,
+      366,
+      3,
+      368,
+      3,
+      108,
+      3,
+      18,
+      354,
+      3,
+      104,
+      362,
+      3,
+      198,
+      3,
+      364,
+      3,
+      198,
+      3,
+      368,
+      112,
+      3,
+      198,
+      3,
+      368,
+      6]}},
+   "368": {"token": {"tok": 367}},
+   "366": {"token": {"tok": 365}},
+   "364": {"token": {"tok": 363}},
+   "362": {"token": {"tok": 361}},
+   "360": {"token": {"tok": 359}},
+   "36": {"seq": {"highlights": [16, 35, 16]}},
+   "358": {"token": {"tok": 357}},
+   "356":
+   {"text":
+    {"str":
+     "\n\n/-\nHowever, with `Prop` you *ca*n make such definitions.\n-/\n\n"}},
+   "355":
+   {"seq":
+    {"highlights":
+     [339,
+      341,
+      3,
+      343,
+      3,
+      104,
+      345,
+      3,
+      347,
+      3,
+      108,
+      3,
+      23,
+      3,
+      110,
+      112,
+      3,
+      108,
+      3,
+      23,
+      3,
+      104,
+      110,
+      278,
+      280,
+      112,
+      3,
+      114,
+      348,
+      350,
+      3,
+      352,
+      3,
+      108,
+      3,
+      23,
+      3,
+      110,
+      354,
+      3,
+      104,
+      345,
+      3,
+      198,
+      3,
+      347,
+      3,
+      198,
+      3,
+      352,
+      112,
+      3,
+      198,
+      3,
+      352,
+      6]}},
+   "354": {"token": {"tok": 353}},
+   "352": {"token": {"tok": 351}},
+   "350": {"token": {"tok": 349}},
+   "35": {"token": {"tok": 34}},
+   "348": {"text": {"str": "\n  "}},
+   "347": {"token": {"tok": 346}},
+   "345": {"token": {"tok": 344}},
+   "343": {"token": {"tok": 342}},
+   "341": {"token": {"tok": 340}},
+   "339":
+   {"text":
+    {"str":
+     "\n\n\n\n/-\nProp is Impredicative\n===\n\nGenerally you cannot have a type built from other types live in the same unvierse level.\n\nFor example, if you change `u+1` to `u` below, you get a type error.\n\n-/\n\n"}},
+   "338":
+   {"seq":
+    {"highlights": [46, 334, 3, 23, 3, 110, 3, 336, 3, 23, 3, 299, 337, 6]}},
+   "337": {"text": {"str": "  --  Type (max (u + 1) (v + 1))"}},
+   "336": {"token": {"tok": 335}},
+   "334": {"span": {"info": [["info", 330]], "content": 333}},
+   "333": {"seq": {"highlights": [332, 6]}},
+   "332": {"token": {"tok": 331}},
+   "33": {"seq": {"highlights": [14, 31, 3, 18, 32, 6]}},
+   "327": {"seq": {"highlights": [16, 326, 16]}},
+   "326": {"token": {"tok": 325}},
+   "323": {"seq": {"highlights": [16, 227, 3, 322, 3, 309]}},
+   "322": {"token": {"tok": 321}},
+   "320": {"seq": {"highlights": [301, 316, 3, 318, 319, 6]}},
+   "32": {"text": {"str": "            -- Type"}},
+   "319": {"text": {"str": "             -- Type u → Type v → Type (max u v)"}},
+   "318": {"token": {"tok": 317}},
+   "316": {"span": {"info": [["info", 312]], "content": 315}},
+   "315": {"seq": {"highlights": [314, 6]}},
+   "314": {"token": {"tok": 313}},
+   "310":
+   {"seq":
+    {"highlights":
+     [16,
+      303,
+      3,
+      104,
+      305,
+      3,
+      108,
+      3,
+      227,
+      112,
+      3,
+      104,
+      307,
+      3,
+      108,
+      3,
+      309,
+      112,
+      3,
+      108,
+      3,
+      283]}},
+   "31": {"span": {"info": [["info", 27]], "content": 30}},
+   "309": {"token": {"tok": 308}},
+   "307": {"token": {"tok": 306}},
+   "305": {"token": {"tok": 304}},
+   "303": {"token": {"tok": 302}},
+   "301": {"text": {"str": "\n\n/- For example -/\n\n"}},
+   "300":
+   {"seq":
+    {"highlights": [46, 295, 3, 23, 3, 104, 297, 3, 110, 3, 299, 112, 6]}},
+   "30": {"seq": {"highlights": [29, 6]}},
+   "3": {"text": {"str": " "}},
+   "299": {"token": {"tok": 298}},
+   "297": {"token": {"tok": 296}},
+   "295": {"span": {"info": [["info", 291]], "content": 294}},
+   "294": {"seq": {"highlights": [293, 6]}},
+   "293": {"token": {"tok": 292}},
+   "29": {"token": {"tok": 28}},
+   "288": {"seq": {"highlights": [16, 287, 16]}},
+   "287": {"token": {"tok": 286}},
+   "284": {"seq": {"highlights": [16, 283, 16]}},
+   "283": {"token": {"tok": 282}},
+   "281":
+   {"seq": {"highlights": [262, 276, 3, 23, 3, 104, 110, 278, 280, 112, 6]}},
+   "280": {"token": {"tok": 279}},
+   "278": {"token": {"tok": 277}},
+   "276": {"span": {"info": [["info", 272]], "content": 275}},
+   "275": {"seq": {"highlights": [274, 6]}},
+   "274": {"token": {"tok": 273}},
+   "269": {"seq": {"highlights": [16, 268, 16]}},
+   "268": {"token": {"tok": 267}},
+   "265": {"seq": {"highlights": [16, 264, 16]}},
+   "264": {"token": {"tok": 263}},
+   "262":
+   {"text":
+    {"str":
+     "\n\n/-\nIf the type of `Type → Type` were `Type`, then `Type` would contain a function\nwhose domain and codomain are both `Type`, meaning it would contain an element\nthat refers to itself.\n-/\n\n/-\nType Arithmetic\n===\n\nYou can\n- Add natural numbers to universes\n- Take the max of two universes\n\n-/\n\n"}},
+   "261": {"seq": {"highlights": [251, 259, 3, 23, 3, 198, 3, 23, 260, 6]}},
+   "260": {"text": {"str": "       -- Type 1"}},
+   "259": {"span": {"info": [["info", 255]], "content": 258}},
+   "258": {"seq": {"highlights": [257, 6]}},
+   "257": {"token": {"tok": 256}},
+   "252": {"seq": {"highlights": [16, 23, 3, 198, 3, 23]}},
+   "251":
+   {"text":
+    {"str":
+     "\n\n/-\nSince `Type → Type` is a type, it must have a type. -/\n\n"}},
+   "250": {"seq": {"highlights": [46, 248, 3, 236, 3, 240, 249, 6]}},
+   "249": {"text": {"str": "      -- Type → Type"}},
+   "248": {"span": {"info": [["info", 244]], "content": 247}},
+   "247": {"seq": {"highlights": [246, 6]}},
+   "246": {"token": {"tok": 245}},
+   "241": {"seq": {"highlights": [16, 236, 3, 240]}},
+   "240": {"token": {"tok": 239}},
+   "24": {"seq": {"highlights": [16, 23, 16]}},
+   "238": {"seq": {"highlights": [8, 234, 3, 236, 237, 6]}},
+   "237": {"text": {"str": "             -- Type → Type"}},
+   "236": {"token": {"tok": 235}},
+   "234": {"span": {"info": [["info", 230]], "content": 233}},
+   "233": {"seq": {"highlights": [232, 6]}},
+   "232": {"token": {"tok": 231}},
+   "23": {"token": {"tok": 22}},
+   "228":
+   {"seq":
+    {"highlights":
+     [16, 223, 3, 104, 225, 3, 108, 3, 227, 112, 3, 108, 3, 227]}},
+   "227": {"token": {"tok": 226}},
+   "225": {"token": {"tok": 224}},
+   "223": {"token": {"tok": 222}},
+   "221":
+   {"seq":
+    {"highlights":
+     [214,
+      216,
+      3,
+      218,
+      3,
+      104,
+      220,
+      3,
+      108,
+      3,
+      23,
+      3,
+      110,
+      112,
+      3,
+      114,
+      3,
+      220,
+      6]}},
+   "220": {"token": {"tok": 219}},
+   "218": {"token": {"tok": 217}},
+   "216": {"token": {"tok": 215}},
+   "214":
+   {"text":
+    {"str":
+     "\n\n/- Gives\n\n```lean\nApplication type mismatch: The argument\n  f2\nhas type\n  Type ?u.27 → Type ?u.27\nbut is expected to have type\n  Type ?u.27\nin the application\n  f2 f2\n```\n-/\n\n/-\nFunction Types\n===\nFunctions have type `Type u → Type v` for some universe levels `u` and `v`.\n-/\n\n"}},
+   "213": {"seq": {"highlights": [176, 212, 6]}},
+   "212": {"span": {"info": [["info", 186]], "content": 211}},
+   "211": {"seq": {"highlights": [188, 3, 147, 3, 210, 6]}},
+   "210": {"span": {"info": [["info", 208]], "content": 209}},
+   "209": {"seq": {"highlights": [147, 6]}},
+   "205": {"seq": {"highlights": [16, 147, 3, 147]}},
+   "202": {"seq": {"highlights": [16, 196, 16]}},
+   "2": {"token": {"tok": 1}},
+   "199": {"seq": {"highlights": [16, 196, 3, 198, 3, 196]}},
+   "198": {"token": {"tok": 197}},
+   "196": {"token": {"tok": 195}},
+   "192": {"seq": {"highlights": [16, 147, 16]}},
+   "19": {"seq": {"highlights": [16, 18, 16]}},
+   "188": {"token": {"tok": 187}},
+   "183": {"seq": {"highlights": [16, 182, 16]}},
+   "182": {"token": {"tok": 181}},
+   "18": {"token": {"tok": 17}},
+   "179": {"seq": {"highlights": [16, 147, 3, 178]}},
+   "178": {"token": {"tok": 177}},
+   "176":
+   {"text":
+    {"str":
+     "\n                                  -- own types as elements\n\n/-\nSelf Application Does not Work\n===\n\nYou can't apply `f2` to itself: -/\n\n"}},
+   "175":
+   {"seq":
+    {"highlights":
+     [46, 173, 3, 147, 3, 104, 165, 3, 104, 23, 3, 52, 112, 112, 174, 6]}},
+   "174":
+   {"text":
+    {"str": "         -- Type 1, since Lists of type can't have their"}},
+   "173": {"span": {"info": [["info", 169]], "content": 172}},
+   "172": {"seq": {"highlights": [171, 6]}},
+   "171": {"token": {"tok": 170}},
+   "166": {"seq": {"highlights": [16, 147, 3, 104, 165, 3, 23, 112]}},
+   "165": {"token": {"tok": 164}},
+   "163": {"seq": {"highlights": [46, 159, 3, 147, 3, 161, 162, 6]}},
+   "162": {"text": {"str": "                     -- Type (since Nat : Type)"}},
+   "161": {"token": {"tok": 160}},
+   "16": {"text": {"str": ""}},
+   "159": {"span": {"info": [["info", 155]], "content": 158}},
+   "158": {"seq": {"highlights": [157, 6]}},
+   "157": {"token": {"tok": 156}},
+   "152": {"seq": {"highlights": [16, 147, 3, 151]}},
+   "151": {"token": {"tok": 150}},
+   "149": {"seq": {"highlights": [132, 145, 3, 147, 148, 6]}},
+   "148": {"text": {"str": "                         -- Type v → Type v"}},
+   "147": {"token": {"tok": 146}},
+   "145": {"span": {"info": [["info", 141]], "content": 144}},
+   "144": {"seq": {"highlights": [143, 6]}},
+   "143": {"token": {"tok": 142}},
+   "14":
+   {"text":
+    {"str":
+     "\n\n/-\nUniverses\n===\n\nRussell's Paradox\n===\n\nLet `S` be the set of all sets that are not members of themselves.\n\nIf `S ∈ S` then by definition `S ∉ S`.\n\nIf `S ∉ S` then by definition `S ∈ S`.\n\nSet Theory, this is avoided by only allowing set definitions\nto refer only to existing sets.\n\n-/\n\n/-\nGirard's Paradox\n===\n\nSimilarly, if you allow type definitions to quantify over all types (including\nthemselves), you end up with a paradox.\n\nAllowing quantification over the thing being defined is called *Impredicativity*.\n\nMost type theories disallow impredicativity for general types, but does allow it for a\nspecial type `Prop`, as we shall see.\n\n-/\n\n/-\nUniverse Hierarchy\n===\n\nLean, and most Type Theories, define a hierarchy of universes\n\n    - Sort 0 = Prop\n    - Sort 1 = Type 0 = Type\n    - Sort 2 = Type 1\n    ...\n\nAll types have types:\n\n    - Prop : Sort 1          (read: Prop \"has type\" Sort 1)\n    - Type u : Type u+1\n\nNow expressions don't quantify over all types,\nthey quantify over types in lower universe levels.\n\nTypes in Lean\n===\n\nYou can use `#check` to check types\n-/\n\n"}},
+   "139":
+   {"seq":
+    {"highlights":
+     [16, 134, 3, 104, 136, 3, 108, 3, 138, 112, 3, 108, 3, 138]}},
+   "138": {"token": {"tok": 137}},
+   "136": {"token": {"tok": 135}},
+   "134": {"token": {"tok": 133}},
+   "132":
+   {"text":
+    {"str":
+     "\n\n/-\nA function with a universe variable is then *universe polymorphic*\n-/\n\n"}},
+   "131":
+   {"seq":
+    {"highlights":
+     [116,
+      118,
+      3,
+      120,
+      122,
+      124,
+      126,
+      3,
+      104,
+      128,
+      3,
+      108,
+      3,
+      23,
+      3,
+      130,
+      112,
+      3,
+      108,
+      3,
+      23,
+      3,
+      130,
+      3,
+      114,
+      3,
+      128,
+      6]}},
+   "130": {"token": {"tok": 129}},
+   "13": {"seq": {"highlights": [8, 10, 3, 12, 6]}},
+   "128": {"token": {"tok": 127}},
+   "126": {"token": {"tok": 125}},
+   "124": {"token": {"tok": 123}},
+   "122": {"token": {"tok": 121}},
+   "120": {"token": {"tok": 119}},
+   "12": {"token": {"tok": 11}},
+   "118": {"token": {"tok": 117}},
+   "116": {"text": {"str": "\n\n/- Or you can use the dot notation -/\n\n"}},
+   "115":
+   {"seq":
+    {"highlights":
+     [46,
+      100,
+      3,
+      102,
+      3,
+      104,
+      106,
+      3,
+      108,
+      3,
+      23,
+      3,
+      110,
+      112,
+      3,
+      108,
+      3,
+      23,
+      3,
+      110,
+      3,
+      114,
+      3,
+      106,
+      6]}},
+   "114": {"token": {"tok": 113}},
+   "112": {"token": {"tok": 111}},
+   "110": {"token": {"tok": 109}},
+   "108": {"token": {"tok": 107}},
+   "106": {"token": {"tok": 105}},
+   "104": {"token": {"tok": 103}},
+   "102": {"token": {"tok": 101}},
+   "100": {"token": {"tok": 99}},
+   "10": {"token": {"tok": 9}},
+   "0":
+   {"text":
+    {"str":
+     "--  Copyright (C) 2025  Eric Klavins\n--\n--  This program is free software: you can redistribute it and/or modify\n--  it under the terms of the GNU General Public License as published by\n--  the Free Software Foundation, either version 3 of the License, or\n--  (at your option) any later version.\n\n"}}}}}

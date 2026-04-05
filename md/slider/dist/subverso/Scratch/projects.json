@@ -1,0 +1,2094 @@
+{"items":
+ [{"range":
+   {"start": {"line": 77, "column": 1}, "end": {"line": 77, "column": 15}},
+   "kind": "Lean.Parser.Module.header",
+   "defines": [],
+   "code": 7},
+  {"range":
+   {"start": {"line": 80, "column": 1}, "end": {"line": 80, "column": 24}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["M"],
+   "code": 19},
+  {"range":
+   {"start": {"line": 83, "column": 1}, "end": {"line": 86, "column": 9}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["h"],
+   "code": 46},
+  {"range":
+   {"start": {"line": 88, "column": 1}, "end": {"line": 89, "column": 67}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["dot"],
+   "code": 84},
+  {"range":
+   {"start": {"line": 92, "column": 1}, "end": {"line": 92, "column": 39}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["f"],
+   "code": 100},
+  {"range":
+   {"start": {"line": 94, "column": 1}, "end": {"line": 94, "column": 25}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 120},
+  {"range":
+   {"start": {"line": 99, "column": 1}, "end": {"line": 101, "column": 45}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["step"],
+   "code": 146},
+  {"range":
+   {"start": {"line": 104, "column": 1}, "end": {"line": 105, "column": 67}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["full_step"],
+   "code": 172},
+  {"range":
+   {"start": {"line": 110, "column": 1}, "end": {"line": 116, "column": 2}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["example_data"],
+   "code": 179},
+  {"range":
+   {"start": {"line": 119, "column": 1}, "end": {"line": 128, "column": 2}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["example_data_2"],
+   "code": 185},
+  {"range":
+   {"start": {"line": 131, "column": 1}, "end": {"line": 131, "column": 23}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["W0"],
+   "code": 191},
+  {"range":
+   {"start": {"line": 132, "column": 1}, "end": {"line": 132, "column": 36}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["W1"],
+   "code": 202},
+  {"range":
+   {"start": {"line": 133, "column": 1}, "end": {"line": 133, "column": 36}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["W2"],
+   "code": 209},
+  {"range":
+   {"start": {"line": 134, "column": 1}, "end": {"line": 134, "column": 36}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["W3"],
+   "code": 216},
+  {"range":
+   {"start": {"line": 135, "column": 1}, "end": {"line": 135, "column": 36}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["W4"],
+   "code": 223},
+  {"range":
+   {"start": {"line": 136, "column": 1}, "end": {"line": 136, "column": 9}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 230},
+  {"range":
+   {"start": {"line": 137, "column": 1}, "end": {"line": 137, "column": 9}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 237},
+  {"range":
+   {"start": {"line": 138, "column": 1}, "end": {"line": 138, "column": 9}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 244},
+  {"range":
+   {"start": {"line": 139, "column": 1}, "end": {"line": 139, "column": 9}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 251},
+  {"range":
+   {"start": {"line": 141, "column": 1}, "end": {"line": 141, "column": 53}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 266},
+  {"range":
+   {"start": {"line": 142, "column": 1}, "end": {"line": 142, "column": 53}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 277},
+  {"range":
+   {"start": {"line": 143, "column": 1}, "end": {"line": 143, "column": 53}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 288},
+  {"range":
+   {"start": {"line": 144, "column": 1}, "end": {"line": 144, "column": 53}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 297},
+  {"range":
+   {"start": {"line": 147, "column": 1}, "end": {"line": 147, "column": 25}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["W0_2"],
+   "code": 303},
+  {"range":
+   {"start": {"line": 148, "column": 1}, "end": {"line": 148, "column": 42}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["W1_2"],
+   "code": 312},
+  {"range":
+   {"start": {"line": 149, "column": 1}, "end": {"line": 149, "column": 42}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["W2_2"],
+   "code": 319},
+  {"range":
+   {"start": {"line": 150, "column": 1}, "end": {"line": 150, "column": 42}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["W3_2"],
+   "code": 326},
+  {"range":
+   {"start": {"line": 151, "column": 1}, "end": {"line": 151, "column": 42}},
+   "kind": "Lean.Parser.Command.declaration",
+   "defines": ["W4_2"],
+   "code": 333},
+  {"range":
+   {"start": {"line": 152, "column": 1}, "end": {"line": 152, "column": 11}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 340},
+  {"range":
+   {"start": {"line": 153, "column": 1}, "end": {"line": 153, "column": 11}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 347},
+  {"range":
+   {"start": {"line": 154, "column": 1}, "end": {"line": 154, "column": 11}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 355},
+  {"range":
+   {"start": {"line": 155, "column": 1}, "end": {"line": 162, "column": 1}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 364},
+  {"range":
+   {"start": {"line": 158, "column": 1}, "end": {"line": 158, "column": 57}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 376},
+  {"range":
+   {"start": {"line": 159, "column": 1}, "end": {"line": 159, "column": 57}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 385},
+  {"range":
+   {"start": {"line": 160, "column": 1}, "end": {"line": 160, "column": 57}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 394},
+  {"range":
+   {"start": {"line": 161, "column": 1}, "end": {"line": 161, "column": 57}},
+   "kind": "Lean.Parser.Command.eval",
+   "defines": [],
+   "code": 407},
+  {"range":
+   {"start": {"line": 162, "column": 1}, "end": {"line": 162, "column": 1}},
+   "kind": "Lean.Parser.Command.eoi",
+   "defines": [],
+   "code": 410}],
+ "data":
+ {"tokens":
+  {"98":
+   {"kind":
+    {"const":
+     {"signature": "dot (w x : Array Float) : Float",
+      "name": ["dot"],
+      "isDef": false,
+      "docs": null}},
+    "content": "dot"},
+   "96":
+   {"kind":
+    {"const":
+     {"signature": "h (x : Float) : Float",
+      "name": ["h"],
+      "isDef": false,
+      "docs": null}},
+    "content": "h"},
+   "94":
+   {"kind":
+    {"const":
+     {"signature": "M : Type", "name": ["M"], "isDef": false, "docs": null}},
+    "content": "M"},
+   "92":
+   {"kind": {"var": {"type": "M", "name": "_uniq.12193"}}, "content": "x"},
+   "90":
+   {"kind": {"var": {"type": "M", "name": "_uniq.12191"}}, "content": "w"},
+   "9":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.abbrev-1094",
+      "name": ["Lean", "Parser", "Command", "abbrev"],
+      "docs": null}},
+    "content": "abbrev"},
+   "88":
+   {"kind":
+    {"const":
+     {"signature": "f (w x : M) : Float",
+      "name": ["f"],
+      "isDef": true,
+      "docs": null}},
+    "content": "f"},
+   "86":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1393",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "82": {"kind": "unknown", "content": "0.0"},
+   "80": {"kind": "unknown", "content": "*"},
+   "78": {"kind": "unknown", "content": "!"},
+   "76": {"kind": "unknown", "content": "]"},
+   "74": {"kind": "unknown", "content": "["},
+   "72": {"kind": "unknown", "content": "+"},
+   "70": {"kind": "unknown", "content": "=>"},
+   "68": {"kind": {"var": {"type": "ℕ", "name": "_uniq.134"}}, "content": "i"},
+   "66":
+   {"kind": {"var": {"type": "Float", "name": "_uniq.131"}}, "content": "acc"},
+   "64":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-1315",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "62":
+   {"kind":
+    {"const":
+     {"signature":
+      "List.foldl.{u, v} {α : Type u} {β : Type v} (f : α → β → α) (init : α) : List β → α",
+      "name": ["List", "foldl"],
+      "isDef": false,
+      "docs":
+      "Folds a function over a list from the left, accumulating a value starting with `init`. The\naccumulated value is combined with the each element of the list in order, using `f`.\n\nExamples:\n * `[a, b, c].foldl f z  = f (f (f z a) b) c`\n * `[1, 2, 3].foldl (· ++ toString ·) \"\" = \"123\"`\n * `[1, 2, 3].foldl (s!\"({·} {·})\") \"\" = \"((( 1) 2) 3)\"`\n"}},
+    "content": "foldl"},
+   "60":
+   {"kind":
+    {"const":
+     {"signature": "Array.size.{u} {α : Type u} (a : Array α) : ℕ",
+      "name": ["Array", "size"],
+      "isDef": false,
+      "docs":
+      "Gets the number of elements stored in an array.\n\nThis is a cached value, so it is `O(1)` to access. The space allocated for an array, referred to as\nits _capacity_, is at least as large as its size, but may be larger. The capacity of an array is an\ninternal detail that's not observable by Lean code.\n"}},
+    "content": "size"},
+   "58": {"kind": "unknown", "content": "."},
+   "56":
+   {"kind":
+    {"const":
+     {"signature": "List.range (n : ℕ) : List ℕ",
+      "name": ["List", "range"],
+      "isDef": false,
+      "docs":
+      "Returns a list of the numbers from `0` to `n` exclusive, in increasing order.\n\n`O(n)`.\n\nExamples:\n* `range 5 = [0, 1, 2, 3, 4]`\n* `range 0 = []`\n* `range 2 = [0, 1]`\n"}},
+    "content": "List.range"},
+   "54":
+   {"kind": {"var": {"type": "Array Float", "name": "_uniq.111"}},
+    "content": "x"},
+   "52":
+   {"kind": {"var": {"type": "Array Float", "name": "_uniq.108"}},
+    "content": "w"},
+   "50":
+   {"kind":
+    {"const":
+     {"signature": "dot (w x : Array Float) : Float",
+      "name": ["dot"],
+      "isDef": true,
+      "docs": null}},
+    "content": "dot"},
+   "48":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1247",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "44":
+   {"kind":
+    {"keyword":
+     {"occurrence": "termIfThenElse-1219",
+      "name": ["termIfThenElse"],
+      "docs":
+      "`if c then t else e` is notation for `ite c t e`, \"if-then-else\", which decides to\nreturn `t` or `e` depending on whether `c` is true or false. The explicit argument\n`c : Prop` does not have any actual computational content, but there is an additional\n`[Decidable c]` argument synthesized by typeclass inference which actually\ndetermines how to evaluate `c` to true or false. Write `if h : c then t else e`\ninstead for a \"dependent if-then-else\" `dite`, which allows `t`/`e` to use the fact\nthat `c` is true/false.\n"}},
+    "content": "else"},
+   "42": {"kind": {"withType": {"type": "Float"}}, "content": "1"},
+   "408": {"kind": "unknown", "content": ""},
+   "405":
+   {"kind":
+    {"const":
+     {"signature": "W4_2 : M", "name": ["W4_2"], "isDef": false, "docs": null}},
+    "content": "W4_2"},
+   "403":
+   {"kind": {"var": {"type": "M × Float", "name": "_uniq.70230"}},
+    "content": "datum"},
+   "401":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3248",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "40":
+   {"kind":
+    {"keyword":
+     {"occurrence": "termIfThenElse-1219",
+      "name": ["termIfThenElse"],
+      "docs":
+      "`if c then t else e` is notation for `ite c t e`, \"if-then-else\", which decides to\nreturn `t` or `e` depending on whether `c` is true or false. The explicit argument\n`c : Prop` does not have any actual computational content, but there is an additional\n`[Decidable c]` argument synthesized by typeclass inference which actually\ndetermines how to evaluate `c` to true or false. Write `if h : c then t else e`\ninstead for a \"dependent if-then-else\" `dite`, which allows `t`/`e` to use the fact\nthat `c` is true/false.\n"}},
+    "content": "then"},
+   "4": {"kind": {"moduleName": {"name": ["Mathlib"]}}, "content": "Mathlib"},
+   "397":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-3222",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "392":
+   {"kind": {"var": {"type": "M × Float", "name": "_uniq.66503"}},
+    "content": "datum"},
+   "390":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3191",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "386":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-3165",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "383":
+   {"kind": {"var": {"type": "M × Float", "name": "_uniq.62776"}},
+    "content": "datum"},
+   "381":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3134",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "38": {"kind": {"withType": {"type": "Float"}}, "content": "0"},
+   "377":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-3108",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "374":
+   {"kind": {"var": {"type": "M × Float", "name": "_uniq.59049"}},
+    "content": "datum"},
+   "372":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-3077",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "368":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-3051",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "362": {"kind": "unknown", "content": "W4_2"},
+   "36": {"kind": "unknown", "content": ">"},
+   "358":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-3038",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "350":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-3003",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "343":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-2992",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "34":
+   {"kind":
+    {"keyword":
+     {"occurrence": "termIfThenElse-1219",
+      "name": ["termIfThenElse"],
+      "docs":
+      "`if c then t else e` is notation for `ite c t e`, \"if-then-else\", which decides to\nreturn `t` or `e` depending on whether `c` is true or false. The explicit argument\n`c : Prop` does not have any actual computational content, but there is an additional\n`[Decidable c]` argument synthesized by typeclass inference which actually\ndetermines how to evaluate `c` to true or false. Write `if h : c then t else e`\ninstead for a \"dependent if-then-else\" `dite`, which allows `t`/`e` to use the fact\nthat `c` is true/false.\n"}},
+    "content": "if"},
+   "336":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-2981",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "331":
+   {"kind":
+    {"const":
+     {"signature": "W3_2 : M", "name": ["W3_2"], "isDef": false, "docs": null}},
+    "content": "W3_2"},
+   "329":
+   {"kind":
+    {"const":
+     {"signature": "W4_2 : M", "name": ["W4_2"], "isDef": true, "docs": null}},
+    "content": "W4_2"},
+   "327":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2939",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "324":
+   {"kind":
+    {"const":
+     {"signature": "W2_2 : M", "name": ["W2_2"], "isDef": false, "docs": null}},
+    "content": "W2_2"},
+   "322":
+   {"kind":
+    {"const":
+     {"signature": "W3_2 : M", "name": ["W3_2"], "isDef": true, "docs": null}},
+    "content": "W3_2"},
+   "320":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2897",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "317":
+   {"kind":
+    {"const":
+     {"signature": "W1_2 : M", "name": ["W1_2"], "isDef": false, "docs": null}},
+    "content": "W1_2"},
+   "315":
+   {"kind":
+    {"const":
+     {"signature": "W2_2 : M", "name": ["W2_2"], "isDef": true, "docs": null}},
+    "content": "W2_2"},
+   "313":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2855",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "310":
+   {"kind":
+    {"const":
+     {"signature": "example_data_2 : List (M × Float)",
+      "name": ["example_data_2"],
+      "isDef": false,
+      "docs": null}},
+    "content": "example_data_2"},
+   "31": {"kind": "unknown", "content": ")"},
+   "308":
+   {"kind":
+    {"const":
+     {"signature": "W0_2 : Array Float",
+      "name": ["W0_2"],
+      "isDef": false,
+      "docs": null}},
+    "content": "W0_2"},
+   "306":
+   {"kind":
+    {"const":
+     {"signature": "W1_2 : M", "name": ["W1_2"], "isDef": true, "docs": null}},
+    "content": "W1_2"},
+   "304":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2813",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "301":
+   {"kind":
+    {"const":
+     {"signature": "W0_2 : Array Float",
+      "name": ["W0_2"],
+      "isDef": true,
+      "docs": null}},
+    "content": "W0_2"},
+   "299":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2788",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "295":
+   {"kind": {"var": {"type": "M × Float", "name": "_uniq.40547"}},
+    "content": "datum"},
+   "293":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2719",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "29": {"kind": "unknown", "content": ":"},
+   "289":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-2695",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "286":
+   {"kind": {"var": {"type": "M × Float", "name": "_uniq.36820"}},
+    "content": "datum"},
+   "284":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2666",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "280":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-2642",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "275":
+   {"kind": {"var": {"type": "M × Float", "name": "_uniq.33093"}},
+    "content": "datum"},
+   "273":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2613",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "27":
+   {"kind": {"var": {"type": "Float", "name": "_uniq.6"}}, "content": "x"},
+   "269":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-2589",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "264":
+   {"kind":
+    {"const":
+     {"signature":
+      "Prod.fst.{u, v} {α : Type u} {β : Type v} (self : α × β) : α",
+      "name": ["Prod", "fst"],
+      "isDef": false,
+      "docs": "The first element of a pair. "}},
+    "content": "fst"},
+   "262":
+   {"kind": {"var": {"type": "M × Float", "name": "_uniq.29366"}},
+    "content": "datum"},
+   "260":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-2560",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "258":
+   {"kind":
+    {"const":
+     {"signature":
+      "List.map.{u_1, u_2} {α : Type u_1} {β : Type u_2} (f : α → β) (l : List α) : List β",
+      "name": ["List", "map"],
+      "isDef": false,
+      "docs":
+      "Applies a function to each element of the list, returning the resulting list of values.\n\n`O(|l|)`.\n\nExamples:\n* `[a, b, c].map f = [f a, f b, f c]`\n* `[].map Nat.succ = []`\n* `[\"one\", \"two\", \"three\"].map (·.length) = [3, 3, 5]`\n* `[\"one\", \"two\", \"three\"].map (·.reverse) = [\"eno\", \"owt\", \"eerht\"]`\n"}},
+    "content": "map"},
+   "254":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-2536",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "25": {"kind": "unknown", "content": "("},
+   "249":
+   {"kind":
+    {"const":
+     {"signature": "W4 : M", "name": ["W4"], "isDef": false, "docs": null}},
+    "content": "W4"},
+   "245":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-2526",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "240":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-2517",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "233":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-2508",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "23":
+   {"kind":
+    {"const":
+     {"signature": "h (x : Float) : Float",
+      "name": ["h"],
+      "isDef": true,
+      "docs": null}},
+    "content": "h"},
+   "226":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-2499",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "221":
+   {"kind":
+    {"const":
+     {"signature": "W3 : M", "name": ["W3"], "isDef": false, "docs": null}},
+    "content": "W3"},
+   "219":
+   {"kind":
+    {"const":
+     {"signature": "W4 : M", "name": ["W4"], "isDef": true, "docs": null}},
+    "content": "W4"},
+   "217":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2463",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "214":
+   {"kind":
+    {"const":
+     {"signature": "W2 : M", "name": ["W2"], "isDef": false, "docs": null}},
+    "content": "W2"},
+   "212":
+   {"kind":
+    {"const":
+     {"signature": "W3 : M", "name": ["W3"], "isDef": true, "docs": null}},
+    "content": "W3"},
+   "210":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2427",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "21":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1188",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "207":
+   {"kind":
+    {"const":
+     {"signature": "W1 : M", "name": ["W1"], "isDef": false, "docs": null}},
+    "content": "W1"},
+   "205":
+   {"kind":
+    {"const":
+     {"signature": "W2 : M", "name": ["W2"], "isDef": true, "docs": null}},
+    "content": "W2"},
+   "203":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2391",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "200":
+   {"kind":
+    {"const":
+     {"signature": "example_data : List (M × Float)",
+      "name": ["example_data"],
+      "isDef": false,
+      "docs": null}},
+    "content": "example_data"},
+   "198":
+   {"kind":
+    {"const":
+     {"signature": "W0 : Array Float",
+      "name": ["W0"],
+      "isDef": false,
+      "docs": null}},
+    "content": "W0"},
+   "196":
+   {"kind":
+    {"const":
+     {"signature": "full_step (w : M) (data : List (M × Float)) : M",
+      "name": ["full_step"],
+      "isDef": false,
+      "docs": null}},
+    "content": "full_step"},
+   "194":
+   {"kind":
+    {"const":
+     {"signature": "W1 : M", "name": ["W1"], "isDef": true, "docs": null}},
+    "content": "W1"},
+   "192":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2355",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "189":
+   {"kind":
+    {"const":
+     {"signature": "W0 : Array Float",
+      "name": ["W0"],
+      "isDef": true,
+      "docs": null}},
+    "content": "W0"},
+   "187":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2332",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "183":
+   {"kind":
+    {"const":
+     {"signature": "example_data_2 : List (M × Float)",
+      "name": ["example_data_2"],
+      "isDef": true,
+      "docs": null}},
+    "content": "example_data_2"},
+   "181":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-2092",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "176":
+   {"kind":
+    {"const":
+     {"signature": "example_data : List (M × Float)",
+      "name": ["example_data"],
+      "isDef": true,
+      "docs": null}},
+    "content": "example_data"},
+   "174":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1918",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "170": {"kind": "unknown", "content": "0.25"},
+   "17":
+   {"kind":
+    {"const":
+     {"signature": "Float : Type",
+      "name": ["Float"],
+      "isDef": false,
+      "docs":
+      "64-bit floating-point numbers.\n\n`Float` corresponds to the IEEE 754 *binary64* format (`double` in C or `f64` in Rust).\nFloating-point numbers are a finite representation of a subset of the real numbers, extended with\nextra “sentinel” values that represent undefined and infinite results as well as separate positive\nand negative zeroes. Arithmetic on floating-point numbers approximates the corresponding operations\non the real numbers by rounding the results to numbers that are representable, propagating error and\ninfinite values.\n\nFloating-point numbers include [subnormal numbers](https://en.wikipedia.org/wiki/Subnormal_number).\nTheir special values are:\n * `NaN`, which denotes a class of “not a number” values that result from operations such as\n   dividing zero by zero, and\n * `Inf` and `-Inf`, which represent positive and infinities that result from dividing non-zero\n   values by zero.\n"}},
+    "content": "Float"},
+   "168":
+   {"kind":
+    {"const":
+     {"signature": "step (w x : M) (d r : Float) : M",
+      "name": ["step"],
+      "isDef": false,
+      "docs": null}},
+    "content": "step"},
+   "166":
+   {"kind": {"var": {"type": "Float", "name": "_uniq.13192"}},
+    "content": "label"},
+   "164":
+   {"kind": {"var": {"type": "M", "name": "_uniq.13191"}}, "content": "row"},
+   "162":
+   {"kind": {"var": {"type": "M", "name": "_uniq.13159"}}, "content": "wcur"},
+   "160":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-1820",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "158": {"kind": "unknown", "content": "×"},
+   "156":
+   {"kind":
+    {"const":
+     {"signature": "List.{u} (α : Type u) : Type u",
+      "name": ["List"],
+      "isDef": false,
+      "docs":
+      "Linked lists: ordered lists, in which each element has a reference to the next element.\n\nMost operations on linked lists take time proportional to the length of the list, because each\nelement must be traversed to find the next element.\n\n`List α` is isomorphic to `Array α`, but they are useful for different things:\n* `List α` is easier for reasoning, and `Array α` is modeled as a wrapper around `List α`.\n* `List α` works well as a persistent data structure, when many copies of the tail are shared. When\n  the value is not shared, `Array α` will have better performance because it can do destructive\n  updates.\n"}},
+    "content": "List"},
+   "154":
+   {"kind": {"var": {"type": "List (M × Float)", "name": "_uniq.13141"}},
+    "content": "data"},
+   "152":
+   {"kind": {"var": {"type": "M", "name": "_uniq.13136"}}, "content": "w"},
+   "150":
+   {"kind":
+    {"const":
+     {"signature": "full_step (w : M) (data : List (M × Float)) : M",
+      "name": ["full_step"],
+      "isDef": true,
+      "docs": null}},
+    "content": "full_step"},
+   "15":
+   {"kind":
+    {"const":
+     {"signature": "Array.{u} (α : Type u) : Type u",
+      "name": ["Array"],
+      "isDef": false,
+      "docs":
+      "`Array α` is the type of [dynamic arrays](https://en.wikipedia.org/wiki/Dynamic_array) with elements\nfrom `α`. This type has special support in the runtime.\n\nArrays perform best when unshared. As long as there is never more than one reference to an array,\nall updates will be performed _destructively_. This results in performance comparable to mutable\narrays in imperative programming languages.\n\nAn array has a size and a capacity. The size is the number of elements present in the array, while\nthe capacity is the amount of memory currently allocated for elements. The size is accessible via\n`Array.size`, but the capacity is not observable from Lean code. `Array.emptyWithCapacity n` creates\nan array which is equal to `#[]`, but internally allocates an array of capacity `n`. When the size\nexceeds the capacity, allocation is required to grow the array.\n\nFrom the point of view of proofs, `Array α` is just a wrapper around `List α`.\n"}},
+    "content": "Array"},
+   "148":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1750",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "144":
+   {"kind": {"var": {"type": "Float", "name": "_uniq.12631"}}, "content": "wi"},
+   "142":
+   {"kind": {"var": {"type": "ℕ", "name": "_uniq.12628"}}, "content": "i"},
+   "140":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.fun-1645",
+      "name": ["Lean", "Parser", "Term", "fun"],
+      "docs": null}},
+    "content": "fun"},
+   "138":
+   {"kind":
+    {"const":
+     {"signature":
+      "Array.mapIdx.{u, v} {α : Type u} {β : Type v} (f : ℕ → α → β) (as : Array α) : Array β",
+      "name": ["Array", "mapIdx"],
+      "isDef": false,
+      "docs":
+      "Applies a function to each element of the array along with the index at which that element is found,\nreturning the array of results.\n\n`Array.mapFinIdx` is a variant that additionally provides the function with a proof that the index\nis valid.\n"}},
+    "content": "mapIdx"},
+   "136":
+   {"kind": {"var": {"type": "Float", "name": "_uniq.12617"}},
+    "content": "change"},
+   "134":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Term.let-1601",
+      "name": ["Lean", "Parser", "Term", "let"],
+      "docs":
+      "`let` is used to declare a local definition. Example:\n```\nlet x := 1\nlet y := x + 1\nx + y\n```\nSince functions are first class citizens in Lean, you can use `let` to declare\nlocal functions too.\n```\nlet double := fun x => 2*x\ndouble (double 3)\n```\nFor recursive definitions, you should use `let rec`.\nYou can also perform pattern matching using `let`. For example,\nassume `p` has type `Nat × Nat`, then you can write\n```\nlet (x, y) := p\nx + y\n```\n\nThe *anaphoric let* `let := v` defines a variable called `this`.\n"}},
+    "content": "let"},
+   "132":
+   {"kind": {"var": {"type": "Float", "name": "_uniq.12530"}}, "content": "r"},
+   "130":
+   {"kind": {"var": {"type": "Float", "name": "_uniq.12528"}}, "content": "d"},
+   "13": {"kind": "unknown", "content": ":="},
+   "128":
+   {"kind": {"var": {"type": "M", "name": "_uniq.12526"}}, "content": "x"},
+   "126":
+   {"kind": {"var": {"type": "M", "name": "_uniq.12524"}}, "content": "w"},
+   "124":
+   {"kind":
+    {"const":
+     {"signature": "step (w x : M) (d r : Float) : M",
+      "name": ["step"],
+      "isDef": true,
+      "docs": null}},
+    "content": "step"},
+   "122":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.definition-1559",
+      "name": ["Lean", "Parser", "Command", "definition"],
+      "docs": null}},
+    "content": "def"},
+   "118": {"kind": {"withType": {"type": "Float"}}, "content": "3"},
+   "116": {"kind": "unknown", "content": "-"},
+   "114": {"kind": {"withType": {"type": "Float"}}, "content": "2"},
+   "112": {"kind": "unknown", "content": ","},
+   "110": {"kind": "unknown", "content": "#["},
+   "11":
+   {"kind":
+    {"const":
+     {"signature": "M : Type", "name": ["M"], "isDef": true, "docs": null}},
+    "content": "M"},
+   "108":
+   {"kind":
+    {"const":
+     {"signature": "f (w x : M) : Float",
+      "name": ["f"],
+      "isDef": false,
+      "docs": null}},
+    "content": "f"},
+   "104":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Command.eval-1433",
+      "name": ["Lean", "Parser", "Command", "eval"],
+      "docs":
+      "`#eval e` evaluates the expression `e` by compiling and evaluating it.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n"}},
+    "content": "#eval"},
+   "1":
+   {"kind":
+    {"keyword":
+     {"occurrence": "Lean.Parser.Module.import-1038",
+      "name": ["Lean", "Parser", "Module", "import"],
+      "docs": null}},
+    "content": "import"}},
+  "nextKey": 411,
+  "messageContents":
+  {"396": {"append": [101, 395]},
+   "395":
+   {"text":
+    "[0.000000, 0.000000, 1.000000, 1.000000, 1.000000, 1.000000, 1.000000, 1.000000]"},
+   "367": {"append": [101, 366]},
+   "366":
+   {"text":
+    "[1.000000, 1.000000, 1.000000, 1.000000, 1.000000, 1.000000, 1.000000, 1.000000]"},
+   "357": {"append": [101, 356]},
+   "356": {"text": "#[0.000000, -0.500000, 1.000000]"},
+   "349": {"append": [101, 348]},
+   "348": {"text": "#[0.000000, -0.250000, 1.000000]"},
+   "342": {"append": [101, 341]},
+   "341": {"text": "#[0.000000, 0.000000, 1.000000]"},
+   "335": {"append": [101, 334]},
+   "334": {"text": "#[0.000000, 0.000000, 1.500000]"},
+   "279": {"append": [101, 278]},
+   "278": {"text": "[1.000000, 0.000000, 0.000000, 1.000000, 0.000000]"},
+   "268": {"append": [101, 267]},
+   "267": {"text": "[1.000000, 1.000000, 0.000000, 1.000000, 0.000000]"},
+   "253": {"append": [101, 252]},
+   "252": {"text": "[1.000000, 0.000000, 0.000000, 1.000000, 1.000000]"},
+   "239": {"append": [101, 238]},
+   "238": {"text": "#[-1.000000, 1.250000, 0.500000]"},
+   "232": {"append": [101, 231]},
+   "231": {"text": "#[-0.750000, 1.000000, 1.000000]"},
+   "225": {"append": [101, 224]},
+   "224": {"text": "#[-1.000000, 0.500000, 1.250000]"},
+   "103": {"append": [101, 102]},
+   "102": {"text": "0.000000"},
+   "101": {"text": ""}},
+  "goals": {},
+  "code":
+  {"99": {"token": {"tok": 98}},
+   "97": {"token": {"tok": 96}},
+   "95": {"token": {"tok": 94}},
+   "93": {"token": {"tok": 92}},
+   "91": {"token": {"tok": 90}},
+   "89": {"token": {"tok": 88}},
+   "87": {"token": {"tok": 86}},
+   "85": {"text": {"str": "\n\n-- manually calculates a \"dot product\"\n"}},
+   "84":
+   {"seq":
+    {"highlights":
+     [47,
+      49,
+      3,
+      51,
+      3,
+      26,
+      53,
+      3,
+      55,
+      3,
+      30,
+      3,
+      16,
+      3,
+      18,
+      32,
+      3,
+      30,
+      3,
+      18,
+      3,
+      14,
+      33,
+      26,
+      57,
+      3,
+      53,
+      59,
+      61,
+      32,
+      59,
+      63,
+      3,
+      26,
+      65,
+      3,
+      67,
+      3,
+      69,
+      3,
+      71,
+      3,
+      67,
+      3,
+      73,
+      3,
+      53,
+      75,
+      69,
+      77,
+      79,
+      3,
+      81,
+      3,
+      55,
+      75,
+      69,
+      77,
+      79,
+      32,
+      3,
+      83,
+      6]}},
+   "83": {"token": {"tok": 82}},
+   "81": {"token": {"tok": 80}},
+   "8": {"text": {"str": "\n\n--defines M as a 1D array of type float\n"}},
+   "79": {"token": {"tok": 78}},
+   "77": {"token": {"tok": 76}},
+   "75": {"token": {"tok": 74}},
+   "73": {"token": {"tok": 72}},
+   "71": {"token": {"tok": 70}},
+   "7": {"seq": {"highlights": [0, 2, 3, 5, 6]}},
+   "69": {"token": {"tok": 68}},
+   "67": {"token": {"tok": 66}},
+   "65": {"token": {"tok": 64}},
+   "63": {"token": {"tok": 62}},
+   "61": {"token": {"tok": 60}},
+   "6": {"seq": {"highlights": []}},
+   "59": {"token": {"tok": 58}},
+   "57": {"token": {"tok": 56}},
+   "55": {"token": {"tok": 54}},
+   "53": {"token": {"tok": 52}},
+   "51": {"token": {"tok": 50}},
+   "5": {"token": {"tok": 4}},
+   "49": {"token": {"tok": 48}},
+   "47": {"text": {"str": "\n\n"}},
+   "46":
+   {"seq":
+    {"highlights":
+     [20,
+      22,
+      3,
+      24,
+      3,
+      26,
+      28,
+      3,
+      30,
+      3,
+      18,
+      32,
+      3,
+      30,
+      3,
+      18,
+      3,
+      14,
+      33,
+      35,
+      3,
+      28,
+      3,
+      37,
+      3,
+      39,
+      33,
+      41,
+      3,
+      43,
+      33,
+      45,
+      3,
+      39,
+      6]}},
+   "45": {"token": {"tok": 44}},
+   "43": {"token": {"tok": 42}},
+   "410": {"seq": {"highlights": [178, 409, 6]}},
+   "41": {"token": {"tok": 40}},
+   "409": {"token": {"tok": 408}},
+   "407":
+   {"seq":
+    {"highlights":
+     [178,
+      400,
+      3,
+      311,
+      59,
+      259,
+      3,
+      26,
+      402,
+      3,
+      404,
+      3,
+      71,
+      3,
+      109,
+      3,
+      406,
+      3,
+      404,
+      59,
+      265,
+      32,
+      6]}},
+   "406": {"token": {"tok": 405}},
+   "404": {"token": {"tok": 403}},
+   "402": {"token": {"tok": 401}},
+   "400": {"span": {"info": [["info", 396]], "content": 399}},
+   "399": {"seq": {"highlights": [398, 6]}},
+   "398": {"token": {"tok": 397}},
+   "394":
+   {"seq":
+    {"highlights":
+     [178,
+      389,
+      3,
+      311,
+      59,
+      259,
+      3,
+      26,
+      391,
+      3,
+      393,
+      3,
+      71,
+      3,
+      109,
+      3,
+      332,
+      3,
+      393,
+      59,
+      265,
+      32,
+      6]}},
+   "393": {"token": {"tok": 392}},
+   "391": {"token": {"tok": 390}},
+   "39": {"token": {"tok": 38}},
+   "389": {"span": {"info": [["info", 367]], "content": 388}},
+   "388": {"seq": {"highlights": [387, 6]}},
+   "387": {"token": {"tok": 386}},
+   "385":
+   {"seq":
+    {"highlights":
+     [178,
+      380,
+      3,
+      311,
+      59,
+      259,
+      3,
+      26,
+      382,
+      3,
+      384,
+      3,
+      71,
+      3,
+      109,
+      3,
+      325,
+      3,
+      384,
+      59,
+      265,
+      32,
+      6]}},
+   "384": {"token": {"tok": 383}},
+   "382": {"token": {"tok": 381}},
+   "380": {"span": {"info": [["info", 367]], "content": 379}},
+   "379": {"seq": {"highlights": [378, 6]}},
+   "378": {"token": {"tok": 377}},
+   "376":
+   {"seq":
+    {"highlights":
+     [365,
+      371,
+      3,
+      311,
+      59,
+      259,
+      3,
+      26,
+      373,
+      3,
+      375,
+      3,
+      71,
+      3,
+      109,
+      3,
+      318,
+      3,
+      375,
+      59,
+      265,
+      32,
+      6]}},
+   "375": {"token": {"tok": 374}},
+   "373": {"token": {"tok": 372}},
+   "371": {"span": {"info": [["info", 367]], "content": 370}},
+   "370": {"seq": {"highlights": [369, 6]}},
+   "37": {"token": {"tok": 36}},
+   "369": {"token": {"tok": 368}},
+   "365": {"text": {"str": "\n\n\n"}},
+   "364": {"seq": {"highlights": [178, 361, 3, 363, 6]}},
+   "363": {"token": {"tok": 362}},
+   "361": {"span": {"info": [["info", 357]], "content": 360}},
+   "360": {"seq": {"highlights": [359, 6]}},
+   "359": {"token": {"tok": 358}},
+   "355": {"seq": {"highlights": [178, 353, 3, 332, 354, 6]}},
+   "354": {"text": {"str": " -- converges here, why?"}},
+   "353": {"span": {"info": [["info", 349]], "content": 352}},
+   "352": {"seq": {"highlights": [351, 6]}},
+   "351": {"token": {"tok": 350}},
+   "35": {"token": {"tok": 34}},
+   "347": {"seq": {"highlights": [178, 346, 3, 325, 6]}},
+   "346": {"span": {"info": [["info", 342]], "content": 345}},
+   "345": {"seq": {"highlights": [344, 6]}},
+   "344": {"token": {"tok": 343}},
+   "340": {"seq": {"highlights": [178, 339, 3, 318, 6]}},
+   "339": {"span": {"info": [["info", 335]], "content": 338}},
+   "338": {"seq": {"highlights": [337, 6]}},
+   "337": {"token": {"tok": 336}},
+   "333":
+   {"seq":
+    {"highlights": [178, 328, 3, 330, 3, 14, 3, 197, 3, 332, 3, 311, 6]}},
+   "332": {"token": {"tok": 331}},
+   "330": {"token": {"tok": 329}},
+   "33": {"text": {"str": "\n  "}},
+   "328": {"token": {"tok": 327}},
+   "326":
+   {"seq":
+    {"highlights": [178, 321, 3, 323, 3, 14, 3, 197, 3, 325, 3, 311, 6]}},
+   "325": {"token": {"tok": 324}},
+   "323": {"token": {"tok": 322}},
+   "321": {"token": {"tok": 320}},
+   "32": {"token": {"tok": 31}},
+   "319":
+   {"seq":
+    {"highlights": [178, 314, 3, 316, 3, 14, 3, 197, 3, 318, 3, 311, 6]}},
+   "318": {"token": {"tok": 317}},
+   "316": {"token": {"tok": 315}},
+   "314": {"token": {"tok": 313}},
+   "312":
+   {"seq":
+    {"highlights": [178, 305, 3, 307, 3, 14, 3, 197, 3, 309, 3, 311, 6]}},
+   "311": {"token": {"tok": 310}},
+   "309": {"token": {"tok": 308}},
+   "307": {"token": {"tok": 306}},
+   "305": {"token": {"tok": 304}},
+   "303":
+   {"seq":
+    {"highlights":
+     [298,
+      300,
+      3,
+      302,
+      3,
+      14,
+      3,
+      26,
+      111,
+      39,
+      113,
+      39,
+      113,
+      115,
+      77,
+      30,
+      95,
+      32,
+      6]}},
+   "302": {"token": {"tok": 301}},
+   "300": {"token": {"tok": 299}},
+   "30": {"token": {"tok": 29}},
+   "3": {"text": {"str": " "}},
+   "298": {"text": {"str": "\n\n-- not linearly separable calculations\n"}},
+   "297":
+   {"seq":
+    {"highlights":
+     [178,
+      292,
+      3,
+      201,
+      59,
+      259,
+      3,
+      26,
+      294,
+      3,
+      296,
+      3,
+      71,
+      3,
+      109,
+      3,
+      250,
+      3,
+      296,
+      59,
+      265,
+      32,
+      6]}},
+   "296": {"token": {"tok": 295}},
+   "294": {"token": {"tok": 293}},
+   "292": {"span": {"info": [["info", 279]], "content": 291}},
+   "291": {"seq": {"highlights": [290, 6]}},
+   "290": {"token": {"tok": 289}},
+   "288":
+   {"seq":
+    {"highlights":
+     [178,
+      283,
+      3,
+      201,
+      59,
+      259,
+      3,
+      26,
+      285,
+      3,
+      287,
+      3,
+      71,
+      3,
+      109,
+      3,
+      222,
+      3,
+      287,
+      59,
+      265,
+      32,
+      6]}},
+   "287": {"token": {"tok": 286}},
+   "285": {"token": {"tok": 284}},
+   "283": {"span": {"info": [["info", 279]], "content": 282}},
+   "282": {"seq": {"highlights": [281, 6]}},
+   "281": {"token": {"tok": 280}},
+   "28": {"token": {"tok": 27}},
+   "277":
+   {"seq":
+    {"highlights":
+     [178,
+      272,
+      3,
+      201,
+      59,
+      259,
+      3,
+      26,
+      274,
+      3,
+      276,
+      3,
+      71,
+      3,
+      109,
+      3,
+      215,
+      3,
+      276,
+      59,
+      265,
+      32,
+      6]}},
+   "276": {"token": {"tok": 275}},
+   "274": {"token": {"tok": 273}},
+   "272": {"span": {"info": [["info", 268]], "content": 271}},
+   "271": {"seq": {"highlights": [270, 6]}},
+   "270": {"token": {"tok": 269}},
+   "266":
+   {"seq":
+    {"highlights":
+     [47,
+      257,
+      3,
+      201,
+      59,
+      259,
+      3,
+      26,
+      261,
+      3,
+      263,
+      3,
+      71,
+      3,
+      109,
+      3,
+      208,
+      3,
+      263,
+      59,
+      265,
+      32,
+      6]}},
+   "265": {"token": {"tok": 264}},
+   "263": {"token": {"tok": 262}},
+   "261": {"token": {"tok": 260}},
+   "26": {"token": {"tok": 25}},
+   "259": {"token": {"tok": 258}},
+   "257": {"span": {"info": [["info", 253]], "content": 256}},
+   "256": {"seq": {"highlights": [255, 6]}},
+   "255": {"token": {"tok": 254}},
+   "251": {"seq": {"highlights": [178, 248, 3, 250, 6]}},
+   "250": {"token": {"tok": 249}},
+   "248": {"span": {"info": [["info", 239]], "content": 247}},
+   "247": {"seq": {"highlights": [246, 6]}},
+   "246": {"token": {"tok": 245}},
+   "244": {"seq": {"highlights": [178, 243, 3, 222, 6]}},
+   "243": {"span": {"info": [["info", 239]], "content": 242}},
+   "242": {"seq": {"highlights": [241, 6]}},
+   "241": {"token": {"tok": 240}},
+   "24": {"token": {"tok": 23}},
+   "237": {"seq": {"highlights": [178, 236, 3, 215, 6]}},
+   "236": {"span": {"info": [["info", 232]], "content": 235}},
+   "235": {"seq": {"highlights": [234, 6]}},
+   "234": {"token": {"tok": 233}},
+   "230": {"seq": {"highlights": [178, 229, 3, 208, 6]}},
+   "229": {"span": {"info": [["info", 225]], "content": 228}},
+   "228": {"seq": {"highlights": [227, 6]}},
+   "227": {"token": {"tok": 226}},
+   "223":
+   {"seq":
+    {"highlights": [178, 218, 3, 220, 3, 14, 3, 197, 3, 222, 3, 201, 6]}},
+   "222": {"token": {"tok": 221}},
+   "220": {"token": {"tok": 219}},
+   "22": {"token": {"tok": 21}},
+   "218": {"token": {"tok": 217}},
+   "216":
+   {"seq":
+    {"highlights": [178, 211, 3, 213, 3, 14, 3, 197, 3, 215, 3, 201, 6]}},
+   "215": {"token": {"tok": 214}},
+   "213": {"token": {"tok": 212}},
+   "211": {"token": {"tok": 210}},
+   "209":
+   {"seq":
+    {"highlights": [178, 204, 3, 206, 3, 14, 3, 197, 3, 208, 3, 201, 6]}},
+   "208": {"token": {"tok": 207}},
+   "206": {"token": {"tok": 205}},
+   "204": {"token": {"tok": 203}},
+   "202":
+   {"seq":
+    {"highlights": [178, 193, 3, 195, 3, 14, 3, 197, 3, 199, 3, 201, 6]}},
+   "201": {"token": {"tok": 200}},
+   "20":
+   {"text":
+    {"str":
+     "\n\n-- gives binary output based on the w ⬝ x + b part of the function\n"}},
+   "2": {"token": {"tok": 1}},
+   "199": {"token": {"tok": 198}},
+   "197": {"token": {"tok": 196}},
+   "195": {"token": {"tok": 194}},
+   "193": {"token": {"tok": 192}},
+   "191":
+   {"seq":
+    {"highlights":
+     [186,
+      188,
+      3,
+      190,
+      3,
+      14,
+      3,
+      26,
+      111,
+      39,
+      113,
+      39,
+      113,
+      115,
+      77,
+      30,
+      95,
+      32,
+      6]}},
+   "190": {"token": {"tok": 189}},
+   "19": {"seq": {"highlights": [8, 10, 3, 12, 3, 14, 3, 16, 3, 18, 6]}},
+   "188": {"token": {"tok": 187}},
+   "186": {"text": {"str": "\n\n-- linearly separable calculations\n"}},
+   "185":
+   {"seq":
+    {"highlights":
+     [180,
+      182,
+      3,
+      184,
+      3,
+      30,
+      3,
+      157,
+      3,
+      26,
+      95,
+      3,
+      159,
+      3,
+      18,
+      32,
+      3,
+      14,
+      3,
+      75,
+      33,
+      26,
+      111,
+      115,
+      113,
+      3,
+      119,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      39,
+      32,
+      113,
+      33,
+      26,
+      111,
+      115,
+      113,
+      3,
+      115,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      43,
+      32,
+      113,
+      33,
+      26,
+      111,
+      115,
+      113,
+      3,
+      43,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      39,
+      32,
+      113,
+      33,
+      26,
+      111,
+      115,
+      113,
+      3,
+      39,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      43,
+      32,
+      113,
+      33,
+      26,
+      111,
+      117,
+      115,
+      113,
+      3,
+      117,
+      119,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      43,
+      32,
+      113,
+      33,
+      26,
+      111,
+      117,
+      115,
+      113,
+      3,
+      117,
+      115,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      39,
+      32,
+      113,
+      33,
+      26,
+      111,
+      117,
+      115,
+      113,
+      3,
+      117,
+      43,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      43,
+      32,
+      113,
+      33,
+      26,
+      111,
+      117,
+      115,
+      113,
+      3,
+      39,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      43,
+      32,
+      178,
+      77,
+      6]}},
+   "184": {"token": {"tok": 183}},
+   "182": {"token": {"tok": 181}},
+   "180": {"text": {"str": "\n\n-- not linearly separable data\n"}},
+   "18": {"token": {"tok": 17}},
+   "179":
+   {"seq":
+    {"highlights":
+     [173,
+      175,
+      3,
+      177,
+      3,
+      30,
+      3,
+      157,
+      3,
+      26,
+      95,
+      3,
+      159,
+      3,
+      18,
+      32,
+      3,
+      14,
+      3,
+      75,
+      33,
+      26,
+      111,
+      43,
+      113,
+      3,
+      115,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      43,
+      32,
+      113,
+      33,
+      26,
+      111,
+      115,
+      113,
+      3,
+      43,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      39,
+      32,
+      113,
+      33,
+      26,
+      111,
+      119,
+      113,
+      3,
+      117,
+      43,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      39,
+      32,
+      113,
+      33,
+      26,
+      111,
+      117,
+      119,
+      113,
+      3,
+      115,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      43,
+      32,
+      113,
+      33,
+      26,
+      111,
+      117,
+      43,
+      113,
+      3,
+      117,
+      115,
+      113,
+      3,
+      43,
+      77,
+      113,
+      3,
+      39,
+      32,
+      178,
+      77,
+      6]}},
+   "178": {"text": {"str": "\n"}},
+   "177": {"token": {"tok": 176}},
+   "175": {"token": {"tok": 174}},
+   "173":
+   {"text": {"str": "\n\n--- TESTING ---\n\n-- linearly separable data\n"}},
+   "172":
+   {"seq":
+    {"highlights":
+     [147,
+      149,
+      3,
+      151,
+      3,
+      26,
+      153,
+      3,
+      30,
+      3,
+      95,
+      32,
+      3,
+      26,
+      155,
+      3,
+      30,
+      3,
+      157,
+      3,
+      26,
+      95,
+      3,
+      159,
+      3,
+      18,
+      32,
+      32,
+      3,
+      30,
+      3,
+      95,
+      3,
+      14,
+      33,
+      155,
+      59,
+      63,
+      3,
+      26,
+      161,
+      3,
+      163,
+      3,
+      26,
+      165,
+      113,
+      3,
+      167,
+      32,
+      3,
+      71,
+      3,
+      169,
+      3,
+      163,
+      3,
+      165,
+      3,
+      167,
+      3,
+      171,
+      32,
+      3,
+      153,
+      6]}},
+   "171": {"token": {"tok": 170}},
+   "169": {"token": {"tok": 168}},
+   "167": {"token": {"tok": 166}},
+   "165": {"token": {"tok": 164}},
+   "163": {"token": {"tok": 162}},
+   "161": {"token": {"tok": 160}},
+   "16": {"token": {"tok": 15}},
+   "159": {"token": {"tok": 158}},
+   "157": {"token": {"tok": 156}},
+   "155": {"token": {"tok": 154}},
+   "153": {"token": {"tok": 152}},
+   "151": {"token": {"tok": 150}},
+   "149": {"token": {"tok": 148}},
+   "147":
+   {"text":
+    {"str":
+     "\n\n-- iterates through each piece of data, updating the weights each time\n"}},
+   "146":
+   {"seq":
+    {"highlights":
+     [121,
+      123,
+      3,
+      125,
+      3,
+      26,
+      127,
+      3,
+      129,
+      3,
+      30,
+      3,
+      95,
+      32,
+      3,
+      26,
+      131,
+      3,
+      133,
+      3,
+      30,
+      3,
+      18,
+      32,
+      3,
+      30,
+      3,
+      95,
+      3,
+      14,
+      33,
+      135,
+      3,
+      137,
+      3,
+      14,
+      3,
+      133,
+      3,
+      81,
+      3,
+      26,
+      131,
+      3,
+      117,
+      3,
+      26,
+      109,
+      3,
+      127,
+      3,
+      129,
+      32,
+      32,
+      33,
+      127,
+      59,
+      139,
+      3,
+      26,
+      141,
+      3,
+      143,
+      3,
+      145,
+      3,
+      71,
+      3,
+      145,
+      3,
+      73,
+      3,
+      137,
+      3,
+      81,
+      3,
+      129,
+      75,
+      143,
+      77,
+      79,
+      32,
+      6]}},
+   "145": {"token": {"tok": 144}},
+   "143": {"token": {"tok": 142}},
+   "141": {"token": {"tok": 140}},
+   "14": {"token": {"tok": 13}},
+   "139": {"token": {"tok": 138}},
+   "137": {"token": {"tok": 136}},
+   "135": {"token": {"tok": 134}},
+   "133": {"token": {"tok": 132}},
+   "131": {"token": {"tok": 130}},
+   "129": {"token": {"tok": 128}},
+   "127": {"token": {"tok": 126}},
+   "125": {"token": {"tok": 124}},
+   "123": {"token": {"tok": 122}},
+   "121":
+   {"text":
+    {"str":
+     "\n\n-- w is old weight vector, x is data, d is desired output (0 or 1),\n-- output is new weight vector\n\n"}},
+   "120":
+   {"seq":
+    {"highlights":
+     [47,
+      107,
+      3,
+      109,
+      3,
+      111,
+      43,
+      113,
+      115,
+      77,
+      3,
+      111,
+      115,
+      113,
+      117,
+      119,
+      113,
+      115,
+      77,
+      6]}},
+   "12": {"token": {"tok": 11}},
+   "119": {"token": {"tok": 118}},
+   "117": {"token": {"tok": 116}},
+   "115": {"token": {"tok": 114}},
+   "113": {"token": {"tok": 112}},
+   "111": {"token": {"tok": 110}},
+   "109": {"token": {"tok": 108}},
+   "107": {"span": {"info": [["info", 103]], "content": 106}},
+   "106": {"seq": {"highlights": [105, 6]}},
+   "105": {"token": {"tok": 104}},
+   "100":
+   {"seq":
+    {"highlights":
+     [85,
+      87,
+      3,
+      89,
+      3,
+      26,
+      91,
+      3,
+      93,
+      3,
+      30,
+      3,
+      95,
+      32,
+      3,
+      30,
+      3,
+      18,
+      3,
+      14,
+      3,
+      97,
+      3,
+      26,
+      99,
+      3,
+      91,
+      3,
+      93,
+      32,
+      6]}},
+   "10": {"token": {"tok": 9}},
+   "0":
+   {"text":
+    {"str":
+     "/-\n\n\nBashir Abdel-Fattah\n- Synthetic Differential Geometry\n\nAlexandra Aiello\n- SK\n\nDhruv Bhatia\n- Resultants\n- https://github.com/dhruvbhatia00/CPolynomial\n\nSimon Chess\n- CSLib\n\nHarry Cui\n- Signal processing\n\nAdam Friesz\n- Sequential Digital Systems\n- https://github.com/frieszadam/formal-hdl\n\nLuz Gomez\n-- https://github.com/luzelenag123/EE598_Final_Project\n\nNat Hurtig\n-- Machine Knitting\n-- https://github.com/nhurtig/lean-category\n\nBrian Ko\n-- Backward Curriculum RL\n\nJoe Leuschen\n-- LIT\n-- https://github.com/jleuschen17/LTI_Lean\n\nAlex Lipson\n-- HOTT?\n\nNavya Mangipudi\n-- FSMs / sequential logic\n\nNels Martin\n-- RL\n-- https://github.com/nelsmartin/RL-Dojo\n\nTheodore Meek\n-- Tactics for ML?\n\nAnjali Pal\n-- E-Graphs\n-- https://github.com/ajpal/lean-egraph\n\nJoeseph Rogge\n-- https://github.com/joyjoie/LeanW26_Final ?\n\nJianxu Shangguan\n-- Finite Automata\n\nSukhman Singh\n-- Poly\n\nEvan Wang\n-- Verify Rust Linked List\n\nSimon Wang\n-- BFS\n-- https://github.com/SimonW412/EE598_Final\n\n\nRyan Zambratta\n-- https://github.com/rtzam/rincon\n\n\n-/\n"}}}}}
