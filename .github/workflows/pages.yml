@@ -14,11 +14,13 @@
       environment:
         name: github-pages
         url: ${{ steps.deployment.outputs.page_url }}
-      steps:                                                                                                                                   
+      steps:
         - uses: actions/checkout@v4
-        - uses: actions/configure-pages@v4                                                                                                     
+        - run: touch md/slider/dist/.nojekyll
+        - uses: actions/configure-pages@v4
         - uses: actions/upload-pages-artifact@v3
-          with:                                                                                                                                
+          with:
             path: md/slider/dist
+            include-hidden-files: true
         - id: deployment                                                                                                                       
           uses: actions/deploy-pages@v4
