@@ -1,6 +1,6 @@
 - Affine form: w · x + b. 
-```lean
-def affine {n : Nat} (w x : Vector Float n) (b : Float) : Float :=
+
+<div class="lean-code" data-start-line="9" data-end-line="105"><pre><code>def affine {n : Nat} (w x : Vector Float n) (b : Float) : Float :=
   dot w x + b
 
 
@@ -8,7 +8,7 @@ def affine {n : Nat} (w x : Vector Float n) (b : Float) : Float :=
 
 -- -- gives binary output based on the w ⬝ x + b part of the function
 -- def h (x : M 1 1) : ℚ :=
---   if x 0 0 > 0 -- 0 0 means 0th row, 0th column
+--   if x 0 0 &gt; 0 -- 0 0 means 0th row, 0th column
 --   then 1
 --   else 0
 
@@ -44,7 +44,7 @@ def affine {n : Nat} (w x : Vector Float n) (b : Float) : Float :=
 -- #eval step w2 x2 0 0.5
 
 -- def full_step {n : ℕ} (w : M 1 n) (data : List (M 1 n × Fin 2)) : M 1 n :=
---   data.foldl (fun wcur (row, label) => step wcur row label 0.5) w
+--   data.foldl (fun wcur (row, label) =&gt; step wcur row label 0.5) w
 
 -- -- linearly separable data
 -- def example_data : List (M 1 4 × Fin 2) := {
@@ -96,8 +96,8 @@ def affine {n : Nat} (w x : Vector Float n) (b : Float) : Float :=
 -- -- def W3_2 := full_step W2_2 example_data_2
 -- -- #eval W1_2
 -- -- #eval W2_2
--- -- #eval W3_2 -- why doesn't this one load?
-```
+-- -- #eval W3_2 -- why doesn&#x27;t this one load?</code></pre></div>
+
 
 License
 ===

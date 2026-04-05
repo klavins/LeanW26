@@ -8,16 +8,16 @@ The Simply Typed Lambda Calculus
 The `simply typed lambda calculus` is an extremely simple programming language
 that nevertheless captures the essence of computation. We assume a base type.
 In Lean the base type is called `Type`. 
-```lean
-#check Type
-```
+
+<div class="lean-code" data-start-line="24" data-end-line="24"><pre><code>#check Type</code></pre></div>
+
  One constructs new types using the arrow → as in the following examples: 
-```lean
-#check Type → Type
+
+<div class="lean-code" data-start-line="28" data-end-line="31"><pre><code>#check Type → Type
 #check Type → (Type → Type)
 #check (Type → Type) → Type
-#check (Type → Type) → (Type → Type)
-```
+#check (Type → Type) → (Type → Type)</code></pre></div>
+
  Arrow `→` associates to the right. So the second expression
 above is equivalent to `Type → Type → Type`. 
 
@@ -25,19 +25,19 @@ Type Variables
 ===
 
 You define type variables using `def` 
-```lean
---hide
+
+<div class="lean-code" data-start-line="43" data-end-line="49"><pre><code>--hide
 section
 --unhide
 
 def A := Type
 def B := Type → Type
-def C := A → B
-```
+def C := A → B</code></pre></div>
+
  Which looks a bit more like what you would see in a textbook on type theory.
 Now you can construct more types. 
-```lean
-#check A → B → C
+
+<div class="lean-code" data-start-line="54" data-end-line="65"><pre><code>#check A → B → C
 
 --hide
 end
@@ -48,8 +48,8 @@ end
 
 --hide
 section
---unhide
-```
+--unhide</code></pre></div>
+
 
 Terms : Variables
 ===
@@ -58,13 +58,13 @@ Next, we define the terms of the lambda calculus.
 
 We start with **variables**, for example `x` and `f`,
 which we declare in Lean as follows: 
-```lean
-variable (x : A)               -- declare a variable x of type a
+
+<div class="lean-code" data-start-line="77" data-end-line="81"><pre><code>variable (x : A)               -- declare a variable x of type a
 variable (f : A → A)           -- declare a function f from A into A
 
 #check x          -- A
-#check f          -- A → A
-```
+#check f          -- A → A</code></pre></div>
+
   Here. `x` is a simple object with type `A`, while `f` is an function type from `A` into `A`.
 
 
@@ -73,11 +73,11 @@ Terms : Applications
 
 **Applications** have the form `e₁ e₁` where `e₁` and `e₂` are terms.
 For example, 
-```lean
-#check f x                   -- A
+
+<div class="lean-code" data-start-line="92" data-end-line="94"><pre><code>#check f x                   -- A
 #check f (f x)               -- A
-#check f (f (f x))           -- A
-```
+#check f (f (f x))           -- A</code></pre></div>
+
  are all applications of terms to terms. 
 
 Terms: Abstractions
@@ -87,56 +87,56 @@ Terms: Abstractions
 The variable `x` in this expression is said to be **bound** to the abstraction.
 
 The following are terms in the λ-calculus:  
-```lean
-#check fun (y : A) => y
-#check fun (g : A → A) => fun (y : A) => g y
-```
+
+<div class="lean-code" data-start-line="111" data-end-line="112"><pre><code>#check fun (y : A) =&gt; y
+#check fun (g : A → A) =&gt; fun (y : A) =&gt; g y</code></pre></div>
+
  In the first example, the abstraction defines a function that simply returns its argument.
 In the second example, the abstraction defines a function that takes another
 function `g` and returns yet another abstraction that takes an object `y` and
 returns `g` applied to `y`.
 
 Parentheses group to the right, so the second example is equivalent to: 
-```lean
-#check fun (g : A → A) => (fun (y : A) => g y)
-```
+
+<div class="lean-code" data-start-line="121" data-end-line="121"><pre><code>#check fun (g : A → A) =&gt; (fun (y : A) =&gt; g y)</code></pre></div>
+
  We abbreviate a chained lamdba abstractions by writing: 
-```lean
-#check fun (g : A → A) (y : A) => g y
-```
+
+<div class="lean-code" data-start-line="125" data-end-line="125"><pre><code>#check fun (g : A → A) (y : A) =&gt; g y</code></pre></div>
+
 
 Equivalence with `def`
 ===
 
 A lambda abstraction is an unamed function.
 To give your functions names and use `def`. 
-```lean
-def inc₁ (x : Nat) : Nat := x + 1
-def inc₂ := fun (x : Nat) => x + 1
+
+<div class="lean-code" data-start-line="137" data-end-line="142"><pre><code>def inc₁ (x : Nat) : Nat := x + 1
+def inc₂ := fun (x : Nat) =&gt; x + 1
 
 #eval inc₁ 3
 #eval inc₂ 3
-#eval (fun (x : Nat) => x + 1) 3
-```
+#eval (fun (x : Nat) =&gt; x + 1) 3</code></pre></div>
+
 
 Currying
 ===
 
 Consider the abstraction 
-```lean
-variable (a : Type)
-def r₁ := fun (g : Type → Type) => fun (x: Type) => g x
-```
- If we apply the abstraction to particular function, then we get another function. 
-```lean
-def r₂ := r₁ (fun x => x)
-```
- Which we can apply again 
-```lean
-def r₃ := r₂ a
 
-#check r₃ -- Type
-```
+<div class="lean-code" data-start-line="155" data-end-line="156"><pre><code>variable (a : Type)
+def r₁ := fun (g : Type → Type) =&gt; fun (x: Type) =&gt; g x</code></pre></div>
+
+ If we apply the abstraction to particular function, then we get another function. 
+
+<div class="lean-code" data-start-line="160" data-end-line="160"><pre><code>def r₂ := r₁ (fun x =&gt; x)</code></pre></div>
+
+ Which we can apply again 
+
+<div class="lean-code" data-start-line="164" data-end-line="166"><pre><code>def r₃ := r₂ a
+
+#check r₃ -- Type</code></pre></div>
+
  In this example, `r₂` is a curried expression:
 It has "ingested" a function `(fun x => x)` and can then apply this function
 to subsequent arguments.
@@ -183,33 +183,33 @@ Lean's Type Derivation
 
 
 We see the types Lean derives using `#check`. 
-```lean
-variable (x : A) (f : A → A)
-def h₁ := fun (y : A) => y
-def h₂ := fun (g : A → A) => fun (y : A) => g y
 
-#check x                   --> A
-#check h₁                  --> A → A
-#check h₂                  --> (A → A) → A → A
-#check h₁ x                --> A
-#check h₂ h₁               --> A → A
-#check h₂ h₁ (f x)         --> A
-```
+<div class="lean-code" data-start-line="221" data-end-line="230"><pre><code>variable (x : A) (f : A → A)
+def h₁ := fun (y : A) =&gt; y
+def h₂ := fun (g : A → A) =&gt; fun (y : A) =&gt; g y
+
+#check x                   --&gt; A
+#check h₁                  --&gt; A → A
+#check h₂                  --&gt; (A → A) → A → A
+#check h₁ x                --&gt; A
+#check h₂ h₁               --&gt; A → A
+#check h₂ h₁ (f x)         --&gt; A</code></pre></div>
+
 
 Type Errors
 ===
 
 The typed lambda calculus disallows expressions that do not follow typing rules.
 For example, the following expression produces a type error 
-```lean
-#check_failure fun (g : A) => fun (y : A) => g y
-```
+
+<div class="lean-code" data-start-line="241" data-end-line="241"><pre><code>#check_failure fun (g : A) =&gt; fun (y : A) =&gt; g y</code></pre></div>
+
  because `g` is not declared to be a function type and therefore cannot be applied to `y`.
 
 Another example is 
-```lean
-#check_failure fun (y : A) => q
-```
+
+<div class="lean-code" data-start-line="247" data-end-line="247"><pre><code>#check_failure fun (y : A) =&gt; q</code></pre></div>
+
  about which Lean complains because `q` has not been declared in the present context. 
 
 Judgments and Contexts
@@ -236,31 +236,31 @@ In the literature, this written:
 ```
 
 which reads: "If x has type A and f has type A → A, then we can derive f x has type A". 
-```lean
---hide
+
+<div class="lean-code" data-start-line="278" data-end-line="280"><pre><code>--hide
 end
---unhide
-```
+--unhide</code></pre></div>
+
 
 Type Inference
 ===
 
 The full syntax of a λ expression in Lean might look like this: 
-```lean
-#check fun (x:ℕ) => fun (y:ℕ) => x+y   -- ℕ → ℕ → ℕ
-```
+
+<div class="lean-code" data-start-line="288" data-end-line="288"><pre><code>#check fun (x:ℕ) =&gt; fun (y:ℕ) =&gt; x+y   -- ℕ → ℕ → ℕ</code></pre></div>
+
  But Lean can often figure out the types from the context. So this is fine: 
-```lean
-#check fun x => fun y => x+y          -- (x : ?m.7) → (y : ?m.11 x) → ?m.12 x y
-```
+
+<div class="lean-code" data-start-line="292" data-end-line="292"><pre><code>#check fun x =&gt; fun y =&gt; x+y          -- (x : ?m.7) → (y : ?m.11 x) → ?m.12 x y</code></pre></div>
+
  You can also combine sequential abstractions as in 
-```lean
-#check fun x y => x+y
-```
+
+<div class="lean-code" data-start-line="296" data-end-line="296"><pre><code>#check fun x y =&gt; x+y</code></pre></div>
+
  We can't leave out all of the type information though. Consider: 
-```lean
-#check_failure λ g y => g y
-```
+
+<div class="lean-code" data-start-line="300" data-end-line="300"><pre><code>#check_failure λ g y =&gt; g y</code></pre></div>
+
  In the above, there are any number of ways types could be assigned to g and y, so Lean
 complains that it can't assign types to them.
 
@@ -289,9 +289,9 @@ a type for `x`. The placeholder symbol `_` is used by Lean as a way to ask the t
 checker to infer a type.
 
 
-```lean
-#check_failure (λ (M:_) => M M)
-```
+
+<div class="lean-code" data-start-line="331" data-end-line="331"><pre><code>#check_failure (λ (M:_) =&gt; M M)</code></pre></div>
+
 
 Exercises
 ===
@@ -354,17 +354,17 @@ You can have Lean do this for you using the `#reduce` directive.
 
 
 
-```lean
-variable (x : A)
 
-#reduce (types:=true) (fun (y : A) => y) x           -- x
+<div class="lean-code" data-start-line="401" data-end-line="409"><pre><code>variable (x : A)
 
-#reduce (types:=true) (fun (g : A → A) => fun (y : A) => g y)
-                      (fun (y : A) => y)             -- fun y => y
+#reduce (types:=true) (fun (y : A) =&gt; y) x           -- x
 
-#reduce (types:=true) (fun (g : A → A) => fun (y : A) => g y)
-                       (fun (y : A) => y) x          -- x
-```
+#reduce (types:=true) (fun (g : A → A) =&gt; fun (y : A) =&gt; g y)
+                      (fun (y : A) =&gt; y)             -- fun y =&gt; y
+
+#reduce (types:=true) (fun (g : A → A) =&gt; fun (y : A) =&gt; g y)
+                       (fun (y : A) =&gt; y) x          -- x</code></pre></div>
+
 <div class='fn'>The <tt>#reduce</tt> directive needs permission to be aggressive,
 which we can do using the <tt>(types := true)</tt> option.</div>
 
@@ -415,29 +415,29 @@ You can program arithmetic in the λ-calculus.
 
 Church devised the following scheme to represent numbers,
 where `c₀` is the Church Numeral for `0` and so on. 
-```lean
-def α := Type
-def c₀ := fun ( f : α → α ) => fun ( x : α ) => x
-def c₁ := fun ( f : α → α ) => fun x => f x
-def c₂ := fun ( f : α → α ) => fun x => f (f x)
-def c₃ := fun ( f : α → α ) => fun x => f (f (f x))
-```
+
+<div class="lean-code" data-start-line="473" data-end-line="477"><pre><code>def α := Type
+def c₀ := fun ( f : α → α ) =&gt; fun ( x : α ) =&gt; x
+def c₁ := fun ( f : α → α ) =&gt; fun x =&gt; f x
+def c₂ := fun ( f : α → α ) =&gt; fun x =&gt; f (f x)
+def c₃ := fun ( f : α → α ) =&gt; fun x =&gt; f (f (f x))</code></pre></div>
+
  You can check the type of a Church numeral: 
-```lean
-#check c₂      -- (α → α) → α → α
-```
+
+<div class="lean-code" data-start-line="481" data-end-line="481"><pre><code>#check c₂      -- (α → α) → α → α</code></pre></div>
+
  For convenience, let's give this type a name: 
-```lean
-def N := (α → α) → α → α
-```
+
+<div class="lean-code" data-start-line="485" data-end-line="485"><pre><code>def N := (α → α) → α → α</code></pre></div>
+
 
 Arithmetic
 ===
 
 We can define functions on numbers. For example, the successor function is defined below. 
-```lean
-def succ := fun (m : N) (f : α → α) x => f (m f x)
-```
+
+<div class="lean-code" data-start-line="500" data-end-line="500"><pre><code>def succ := fun (m : N) (f : α → α) x =&gt; f (m f x)</code></pre></div>
+
  To see how this works, let's apply `succ to c₀`.
 Note for clarity we use the dummy variables `g` and `y` in `c₀`
 instead of `f` and `x`.
@@ -451,47 +451,47 @@ instead of `f` and `x`.
 ```
 
 This is a lot of work, so let's let Lean do this for us: 
-```lean
-#reduce (types := true ) succ c₀
-#reduce (types := true ) succ c₃
-```
+
+<div class="lean-code" data-start-line="516" data-end-line="517"><pre><code>#reduce (types := true ) succ c₀
+#reduce (types := true ) succ c₃</code></pre></div>
+
 
 Addition and Multiplication
 ===
 
 We can also add two numbers together: 
-```lean
-def add := fun (m n : N) f x => m f (n f x)
+
+<div class="lean-code" data-start-line="532" data-end-line="535"><pre><code>def add := fun (m n : N) f x =&gt; m f (n f x)
 
 #reduce (types := true) add c₃ c₂
-#reduce (types := true) add (succ c₃) (add c₁ c₂)
-```
- And here is multiplication: 
-```lean
-def mul :=  fun (m n : N) f x => m (n f) x
+#reduce (types := true) add (succ c₃) (add c₁ c₂)</code></pre></div>
 
-#reduce (types := true) mul c₃ c₂
-```
+ And here is multiplication: 
+
+<div class="lean-code" data-start-line="539" data-end-line="541"><pre><code>def mul :=  fun (m n : N) f x =&gt; m (n f) x
+
+#reduce (types := true) mul c₃ c₂</code></pre></div>
+
 
 Booleans and If Statements
 ===
 
 We can encode an if-statement: 
-```lean
-def ifzero := fun (m n p: N) => fun f x =>
-              n (fun ( y : _ ) => p f x) (m f x)
+
+<div class="lean-code" data-start-line="550" data-end-line="554"><pre><code>def ifzero := fun (m n p: N) =&gt; fun f x =&gt;
+              n (fun ( y : _ ) =&gt; p f x) (m f x)
 
 #reduce (types := true) ifzero c₂ c₀ c₃
-#reduce (types := true) ifzero c₂ c₁ c₃
-```
+#reduce (types := true) ifzero c₂ c₁ c₃</code></pre></div>
+
 
 1+1 = 2
 ===
 
-```lean
-theorem one_plus_one_is_two : add c₁ c₁ = c₂ :=
-  rfl
-```
+
+<div class="lean-code" data-start-line="567" data-end-line="568"><pre><code>theorem one_plus_one_is_two : add c₁ c₁ = c₂ :=
+  rfl</code></pre></div>
+
  You can prove this by the reflexive property of equality (`rfl`)
 because two λ-expressions that beta reduce to the same thing are
 considered **definitionally equal**.
@@ -520,11 +520,11 @@ Looking Ahead: Proposition
 Lean has a special type called Prop which stands for **Proposition**.
 It treats this type somewhat differently than all other types, but in
 most ways it ist just another type. 
-```lean
-variable (p : Prop)
+
+<div class="lean-code" data-start-line="612" data-end-line="614"><pre><code>variable (p : Prop)
 #check Prop
-#check p
-```
+#check p</code></pre></div>
+
  If p is of type Prop, then an element `hp : p` is evidence that the
 type `p` is not empty. Alternatively, you can think of hp as a `proof` of `p`.
 
@@ -535,21 +535,21 @@ Looking Ahead: Arrow Types on Props are Implications
 
 Arrow types which above denoted functions, can be
 thought of as denoting **implication** if Prop is involved.  
-```lean
-#check p → p
-```
+
+<div class="lean-code" data-start-line="627" data-end-line="627"><pre><code>#check p → p</code></pre></div>
+
  Armed with the lambda calculus and we can now prove theorems involving implication: 
-```lean
-example (p : Prop) : p → p :=
-  fun hp => hp
+
+<div class="lean-code" data-start-line="631" data-end-line="639"><pre><code>example (p : Prop) : p → p :=
+  fun hp =&gt; hp
 
 example (p q : Prop) : p → (p → q) → q :=
-  fun hp => fun hpq => hpq hp
+  fun hp =&gt; fun hpq =&gt; hpq hp
 
 
 
---hide
-```
+--hide</code></pre></div>
+
 
 Looking Ahead: The Curry Howard Isomorphism
 ===
@@ -593,9 +593,9 @@ large set of all of mathematics, and presumably knowledge in general.
 We'll learn how to take advantage of the Curry-Howard correspondence soon.
 
  
-```lean
---unhide
-```
+
+<div class="lean-code" data-start-line="686" data-end-line="686"><pre><code>--unhide</code></pre></div>
+
 
 Exercises
 ===
@@ -618,11 +618,11 @@ show how to define it in Lean, and test it on a few examples. In your solution,
 make sure to write a few sentences about what you have done.
 
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="713" data-end-line="715"><pre><code>--hide
 end LeanW26.Simple
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

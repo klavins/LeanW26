@@ -41,19 +41,19 @@ The λ-Calculus in Lean
 In Lean you can write lambda calculus statements and reduce them, for example:
 
 
-```lean
-def f1 := λ x ↦ x+1
+
+<div class="lean-code" data-start-line="57" data-end-line="61"><pre><code>def f1 := λ x ↦ x+1
 def g1 := λ x ↦ λ y ↦ 2*x-y
 
 #reduce f1 2         -- 3
-#reduce g1 2 3       -- 1
-```
+#reduce g1 2 3       -- 1</code></pre></div>
+
  Note: The Lean Powers have recently decreed that `λ` and `↦` should be written as `fun` and `=>`.
 So, we'll use syntax like: 
-```lean
-def f2 := fun x => x+1
-def g2 := fun x y => 2*x-y
-```
+
+<div class="lean-code" data-start-line="66" data-end-line="67"><pre><code>def f2 := fun x =&gt; x+1
+def g2 := fun x y =&gt; 2*x-y</code></pre></div>
+
 
 Exercises
 ===
@@ -159,21 +159,21 @@ The Simply-Typed Lambda Calculus
 
 In the expressions we wrote above, the types were inferred, but we can write them out.
 
-```lean
-def f3 : Nat → Nat := fun (x : Nat) => x+1
-def g3 : Nat → Nat → Nat := fun (x y : Nat) => 2*x-y
-```
+
+<div class="lean-code" data-start-line="176" data-end-line="177"><pre><code>def f3 : Nat → Nat := fun (x : Nat) =&gt; x+1
+def g3 : Nat → Nat → Nat := fun (x y : Nat) =&gt; 2*x-y</code></pre></div>
+
 
 However, `Nat` is not a *simple* type (it is an *inductive* type).
 
 In the next section we'll look at what exactly is `Type` and come back to
 the lambda calculus in the following section.
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="186" data-end-line="188"><pre><code>--hide
 end LeanW26.LambdaCalculus
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

@@ -86,17 +86,17 @@ E.g, if your last name is Turing, name your project `EE598_Turing`.
 <ex/> Create a new file `HW_I_2.lean` so that it has the code:
 
 
-```lean
-import Mathlib.Tactic.Linarith
+
+<div class="lean-code" data-start-line="99" data-end-line="107"><pre><code>import Mathlib.Tactic.Linarith
 
 #eval 1+2
 
 example (x y z : ℚ)
-        (h1 : 2*x < 3*y)
-        (h2 : -4*x + 2*z < 0)
-        (h3 : 12*y - 4* z < 0) : False := by
-  grind
-```
+        (h1 : 2*x &lt; 3*y)
+        (h2 : -4*x + 2*z &lt; 0)
+        (h3 : 12*y - 4* z &lt; 0) : False := by
+  grind</code></pre></div>
+
 
 
 Open the Lean Infoview (`∀` menu) and check the results.
@@ -152,12 +152,12 @@ Type Checking
 
 L∃∀N is based on type theory. This means that every term has a very well-defined type.
 To find the type of an expression, use #check. The result will show up in the Infoview.  
-```lean
-#check 1
-#check "1"
-#check ∃ (x : Nat), x < 0
-#check fun x => x+1
-```
+
+<div class="lean-code" data-start-line="165" data-end-line="168"><pre><code>#check 1
+#check &quot;1&quot;
+#check ∃ (x : Nat), x &lt; 0
+#check fun x =&gt; x+1</code></pre></div>
+
 
 Exercises
 ===
@@ -169,22 +169,22 @@ Evaluation
 
 You can use Lean to evaluate expressions using the `#eval` command. The result
 will show up in the Infoview. 
-```lean
-#eval 1+1
-#eval "hello".append " world"
-#eval if 2 > 2 then "the universe has a problem" else "everything is ok"
-#eval Nat.Prime 1013
-```
+
+<div class="lean-code" data-start-line="182" data-end-line="185"><pre><code>#eval 1+1
+#eval &quot;hello&quot;.append &quot; world&quot;
+#eval if 2 &gt; 2 then &quot;the universe has a problem&quot; else &quot;everything is ok&quot;
+#eval Nat.Prime 1013</code></pre></div>
+
 
 Proofs
 ===
 
 We will go into proofs in great detail later. For now, know that you can
 state theorems using the `theorem` keyword. 
-```lean
-theorem my_amazing_result (p : Prop) : p → p :=
-  fun h => h
-```
+
+<div class="lean-code" data-start-line="194" data-end-line="195"><pre><code>theorem my_amazing_result (p : Prop) : p → p :=
+  fun h =&gt; h</code></pre></div>
+
  In this expression,
 
 ```text
@@ -196,24 +196,24 @@ theorem my_amazing_result (p : Prop) : p → p :=
 ```
 
 You can use your theorems to prove other theorems: 
-```lean
-theorem a_less_amazing_result : True → True := by
-  apply my_amazing_result
-```
+
+<div class="lean-code" data-start-line="209" data-end-line="210"><pre><code>theorem a_less_amazing_result : True → True := by
+  apply my_amazing_result</code></pre></div>
+
 
 Examples vs Proofs
 ===
 
 Results don't have to be named, which is useful for trying things
 out or when you don't need the result again. 
-```lean
-example (p : Prop) : p → p :=
-  fun h => h
+
+<div class="lean-code" data-start-line="219" data-end-line="224"><pre><code>example (p : Prop) : p → p :=
+  fun h =&gt; h
 
 example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) :=
   fun ⟨ hpq, hqr ⟩ hp
-    => hqr (hpq hp)
-```
+    =&gt; hqr (hpq hp)</code></pre></div>
+
 
 The Tactic Language and `sorry`
 ===
@@ -221,19 +221,19 @@ The Tactic Language and `sorry`
 The examples above use fairly low level Lean expressions to prove statements.
 Lean provides a higher level DSL (domain specific language) for proving.
 You enter the Tactic DSL using `by`. 
-```lean
-example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
-  sorry
-```
+
+<div class="lean-code" data-start-line="235" data-end-line="236"><pre><code>example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
+  sorry</code></pre></div>
+
  which can be built up part by part into 
-```lean
-example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
+
+<div class="lean-code" data-start-line="240" data-end-line="245"><pre><code>example (p q r : Prop) : (p → q) ∧ (q → r) → (p → r) := by
   intro ⟨ hpq, hqr ⟩
   intro hp
   have hq : q := hpq hp
   have hr : r := hqr hq
-  exact hr
-```
+  exact hr</code></pre></div>
+
  Don't worry if none of this makes sense. We'll go into all the gory details later.
 
 Exercises
@@ -252,15 +252,15 @@ L∃∀N is programmed in L∃∀N (and then compiled).
 If you are not familiar with functional programming: you will be by then end of this course.
 
 Here is an example program: 
-```lean
-def remove_zeros (L : List ℕ) : List ℕ := match L with
-  | [] => List.nil
-  | x::Q => if x = 0 then remove_zeros Q else x::(remove_zeros Q)
+
+<div class="lean-code" data-start-line="269" data-end-line="275"><pre><code>def remove_zeros (L : List ℕ) : List ℕ := match L with
+  | [] =&gt; List.nil
+  | x::Q =&gt; if x = 0 then remove_zeros Q else x::(remove_zeros Q)
 
 #check remove_zeros
 
-#eval remove_zeros [1,2,3,0,5,0,0]     -- [1,2,3,5]
-```
+#eval remove_zeros [1,2,3,0,5,0,0]     -- [1,2,3,5]</code></pre></div>
+
  Note the similarity between `def` and `theorem`. The latter is
 simply a special kind of definition. 
 

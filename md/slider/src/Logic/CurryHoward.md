@@ -173,21 +173,21 @@ we use the type `Prop`, from Lean's standard library.
 
 We will start by declaring two variables of type Prop. We use curly braces here
 instead of parentheses for reasons we will explain later. 
-```lean
-variable {A C : Prop}
-```
+
+<div class="lean-code" data-start-line="193" data-end-line="193"><pre><code>variable {A C : Prop}</code></pre></div>
+
  To prove a proposition like`A → A`, we define the identity function from `A` into `A`,
 showing the proposition considered as a type is occupied. 
-```lean
-def my_theorem : A → A :=
-  fun proof_of_A : A => proof_of_A
-```
+
+<div class="lean-code" data-start-line="197" data-end-line="198"><pre><code>def my_theorem : A → A :=
+  fun proof_of_A : A =&gt; proof_of_A</code></pre></div>
+
  We have called the bound variable in the lambda expression `proof`, but you could call the bound
 variable anything you like. A common scheme is to refer to a proof of `x` by `hx`. 
-```lean
-def my_theorem' : A → A :=
-  fun hA : A => hA
-```
+
+<div class="lean-code" data-start-line="203" data-end-line="204"><pre><code>def my_theorem&#x27; : A → A :=
+  fun hA : A =&gt; hA</code></pre></div>
+
 
 Applying Theorems to Prove Other Theorems
 ===
@@ -197,44 +197,44 @@ but requires the type of the function being defined to be `Prop`.
 
 As another example, we prove the other proposition we encountered above.
 Here we call the bound variables pca for "proof of c → a" and pc for "proof of c".  
-```lean
-theorem another_theorem : (C → A) → C → A :=
-  fun hca : C → A =>
-  fun hc : C =>
-  hca hc
-```
+
+<div class="lean-code" data-start-line="217" data-end-line="220"><pre><code>theorem another_theorem : (C → A) → C → A :=
+  fun hca : C → A =&gt;
+  fun hc : C =&gt;
+  hca hc</code></pre></div>
+
  Or we can use our first theorem to prove the second theorem. Notice
 how `my_theorem` acts as a function from proofs to proofs. 
-```lean
-theorem another_theorem_v2 : (C → A) → C → A :=
-  fun h : C → A => my_theorem h
-```
+
+<div class="lean-code" data-start-line="225" data-end-line="226"><pre><code>theorem another_theorem_v2 : (C → A) → C → A :=
+  fun h : C → A =&gt; my_theorem h</code></pre></div>
+
 
 Another Example
 ===
 
-```lean
-theorem t1 : A → C → A :=
-  fun ha : A =>
-  fun hc : C =>                                -- Notice that hc is not used
+
+<div class="lean-code" data-start-line="233" data-end-line="245"><pre><code>theorem t1 : A → C → A :=
+  fun ha : A =&gt;
+  fun hc : C =&gt;                                -- Notice that hc is not used
   ha
 
 theorem t2 : A → C → A :=
-  fun ha hc  => ha                             -- We can use fun with two arguments
+  fun ha hc  =&gt; ha                             -- We can use fun with two arguments
 
 theorem t3 : A → C → A :=
-  fun ha _ => ha                               -- We can tell Lean we know hc is not used
+  fun ha _ =&gt; ha                               -- We can tell Lean we know hc is not used
 
 example : A → C → A :=                         -- We can state and prove an unnamed theorem
-  fun ha _ => ha                               -- using the `example` keyword
-```
+  fun ha _ =&gt; ha                               -- using the `example` keyword</code></pre></div>
+
 
 Note that the `example` keyword does not require its type
 to be `Prop`. For example:
 
-```lean
-example : ℕ := 1
-```
+
+<div class="lean-code" data-start-line="252" data-end-line="252"><pre><code>example : ℕ := 1</code></pre></div>
+
  Whereas `theorem` does require its type to be `Prop`. 
 
 Negation
@@ -245,30 +245,30 @@ Negation
 inductive False where
 ```
 That is, there are no terms of type False. 
-```lean
---hide
+
+<div class="lean-code" data-start-line="267" data-end-line="273"><pre><code>--hide
 variable (p q : Prop)
 --unhide
 
 example : False → p :=
-  fun hf => nomatch hf     -- there is no work to do because there is
-                           -- nothing to match.
-```
+  fun hf =&gt; nomatch hf     -- there is no work to do because there is
+                           -- nothing to match.</code></pre></div>
+
 
 In type theory, *a match with no cases may have any type*.
 
 To use this pattern, recall that `¬p` is the same as `p → False`
 (a function type).
 
-```lean
-example : p → ¬p → q :=
-  fun ha =>                        -- ha : p
-  fun hna =>                       -- hna : (p → False)
+
+<div class="lean-code" data-start-line="282" data-end-line="288"><pre><code>example : p → ¬p → q :=
+  fun ha =&gt;                        -- ha : p
+  fun hna =&gt;                       -- hna : (p → False)
   nomatch hna ha                   -- hna ha = False
 
 example : (p → q) → (¬q → ¬p) :=
-  fun hpq nq hp => nomatch nq (hpq hp)
-```
+  fun hpq nq hp =&gt; nomatch nq (hpq hp)</code></pre></div>
+
 
 
 We will show how all the other connectives work in the next slide deck.
@@ -278,26 +278,26 @@ Variable Declarations
 
 If we write
 
-```lean
-def thm1 (A : Prop) : A → A :=
-  fun h : A => h
-```
+
+<div class="lean-code" data-start-line="302" data-end-line="303"><pre><code>def thm1 (A : Prop) : A → A :=
+  fun h : A =&gt; h</code></pre></div>
+
  vs 
-```lean
-def thm2 {A : Prop} : A → A :=
-  fun h : A => h
-```
+
+<div class="lean-code" data-start-line="307" data-end-line="308"><pre><code>def thm2 {A : Prop} : A → A :=
+  fun h : A =&gt; h</code></pre></div>
+
  We get the same theorem. But in the latter we are asking Lean to infer the type, which is
 usually more convenient. For example: 
-```lean
-example : (p → q) → (p → q) :=
-  fun hpq => thm1 (p → q) hpq
-```
+
+<div class="lean-code" data-start-line="313" data-end-line="314"><pre><code>example : (p → q) → (p → q) :=
+  fun hpq =&gt; thm1 (p → q) hpq</code></pre></div>
+
  vs 
-```lean
-example : (p → q) → (p → q) :=
-  fun hpq => thm2 hpq           -- Lean infers A is p → q
-```
+
+<div class="lean-code" data-start-line="318" data-end-line="319"><pre><code>example : (p → q) → (p → q) :=
+  fun hpq =&gt; thm2 hpq           -- Lean infers A is p → q</code></pre></div>
+
 
 Exercises
 ===
@@ -305,14 +305,14 @@ Exercises
 <ex /> Prove the following using only lambda expressions and (possibly) `nomatch`.
 
 
-```lean
-variable (P Q : Prop)
+
+<div class="lean-code" data-start-line="329" data-end-line="334"><pre><code>variable (P Q : Prop)
 
 example : P → P → P → P := sorry
 example : (P → Q) → (¬Q → ¬P) := sorry
 example : ¬p → (p → q) := sorry
-example : (∀ x, x > 0) → (∀ y, y > 0) := sorry
-```
+example : (∀ x, x &gt; 0) → (∀ y, y &gt; 0) := sorry</code></pre></div>
+
 
 References
 ===
@@ -323,11 +323,11 @@ Elsevier. 1st Edition, Volume 149 - July 4, 2006.
   - Chapter 4 describes Intuitionistic Propositional Logic
 
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="349" data-end-line="351"><pre><code>--hide
 end LeanW26
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

@@ -1,4 +1,13 @@
 
+<div class="lean-code" data-start-line="1" data-end-line="7"><pre><code>universe u
+
+def idPi : Π (α : Type u), α → α := fun _ x =&gt; x
+
+def idForall : ∀ (α : Type u), α → α := fun _ x =&gt; x
+
+def idAscii : forall (α : Type u), α → α := fun _ x =&gt; x</code></pre></div>
+
+
 License
 ===
 

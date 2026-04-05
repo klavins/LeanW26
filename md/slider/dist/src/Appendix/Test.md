@@ -1,4 +1,9 @@
 
+<div class="lean-code" data-start-line="1" data-end-line="3"><pre><code>import Mathlib
+
+#check 1+1</code></pre></div>
+
+
 License
 ===
 

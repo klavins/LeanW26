@@ -32,31 +32,31 @@ To approach these questions, we will:
 Kripke Structures
 ===
 
-```lean
-structure Kripke where
+
+<div class="lean-code" data-start-line="69" data-end-line="72"><pre><code>structure Kripke where
   states : Type                      -- The type of states (e.g. numbers)
-  next : states → Set states        -- Given a state, what's the next state?
-  label : states → Set Prop         -- Given a state, what is true of the state?
-```
+  next : states → Set states        -- Given a state, what&#x27;s the next state?
+  label : states → Set Prop         -- Given a state, what is true of the state?</code></pre></div>
+
 
 Microwave State
 ===
 
-```lean
-inductive MWState where
+
+<div class="lean-code" data-start-line="79" data-end-line="85"><pre><code>inductive MWState where
   | one
   | two
   | three
   deriving Repr
 
-open MWState
-```
+open MWState</code></pre></div>
+
 
 Properties of States
 ===
 
-```lean
-inductive closed : Prop where
+
+<div class="lean-code" data-start-line="93" data-end-line="109"><pre><code>inductive closed : Prop where
   | a : closed
 
 inductive off : Prop where
@@ -72,25 +72,25 @@ theorem closed_ne_off : closed ≠ off := by
 
 -- open MWProp
 
--- #check ({off} : Set Prop)
-```
+-- #check ({off} : Set Prop)</code></pre></div>
+
 
 Microwave Kripke
 ===
 
-```lean
-def MW : Kripke := {
+
+<div class="lean-code" data-start-line="116" data-end-line="126"><pre><code>def MW : Kripke := {
   states := MWState,
-  next  := fun s => match s with
-    | one   => {two, three}
-    | two   => {one}
-    | three => {one},
-  label := fun s => match s with
-    | one   => {closed,off}
-    | two   => {off}
-    | three => {closed}
-}
-```
+  next  := fun s =&gt; match s with
+    | one   =&gt; {two, three}
+    | two   =&gt; {one}
+    | three =&gt; {one},
+  label := fun s =&gt; match s with
+    | one   =&gt; {closed,off}
+    | two   =&gt; {off}
+    | three =&gt; {closed}
+}</code></pre></div>
+
 
 Traces
 ===
@@ -107,64 +107,64 @@ Some of this is inspired by
   https://github.com/GaloisInc/lean-protocol-support/
 
 
-```lean
-universe u
 
-def Trace (T : Type u) : Type u := Nat -> T
+<div class="lean-code" data-start-line="149" data-end-line="154"><pre><code>universe u
+
+def Trace (T : Type u) : Type u := Nat -&gt; T
 
 -- example: the microwave does nothing forever
-def M : Trace MWState := fun _ => one
-```
+def M : Trace MWState := fun _ =&gt; one</code></pre></div>
+
 
 Sequence Properties
 ===
 
-```lean
-def tProp (T : Type u) := Set (Trace T)
+
+<div class="lean-code" data-start-line="173" data-end-line="190"><pre><code>def tProp (T : Type u) := Set (Trace T)
 
 
 -- Example: Sequences that are definitely one at step 10
-def N10 : tProp MWState := λ τ => τ 10 = one
+def N10 : tProp MWState := λ τ =&gt; τ 10 = one
 
 -- Example: Sequences that are one at some point
-def EV1 : tProp MWState :=  λ τ => ∃ n, τ n = one
+def EV1 : tProp MWState :=  λ τ =&gt; ∃ n, τ n = one
 
 -- Example: Sequences that are always one
-def AL1 : tProp MWState :=  λ τ => ∀ n, τ n = one
+def AL1 : tProp MWState :=  λ τ =&gt; ∀ n, τ n = one
 
 -- Example: Sequences that are never two
-def NVT : tProp MWState :=  λ τ => ∀ n, τ n ≠ two
+def NVT : tProp MWState :=  λ τ =&gt; ∀ n, τ n ≠ two
 
 -- **Exercise** Define a sequence that is always three immediately
 -- after it is two
-def TAT : tProp MWState := λ τ => ∀ n, τ n = two → τ (n+1) = three
-```
+def TAT : tProp MWState := λ τ =&gt; ∀ n, τ n = two → τ (n+1) = three</code></pre></div>
+
 
 tProp is a Set
 ===
 
-```lean
-#check_failure EV1 ∩ AL1
+
+<div class="lean-code" data-start-line="210" data-end-line="219"><pre><code>#check_failure EV1 ∩ AL1
 
 instance {T: Type u} : Inter (tProp T) := ⟨ Set.inter ⟩    -- ∩
 instance {T: Type u} : Union (tProp T) := ⟨ Set.union ⟩    -- ∪
-instance {T: Type u} : HasSubset (tProp T) :=  ⟨λ S T => ∀ a, S a → T a⟩ -- ⊆
+instance {T: Type u} : HasSubset (tProp T) :=  ⟨λ S T =&gt; ∀ a, S a → T a⟩ -- ⊆
 instance {T: Type u} : Membership (Trace T) (tProp T) := ⟨ id ⟩
 instance {T: Type u} : EmptyCollection (tProp T) :=  ⟨ { _x | False } ⟩
-instance {T: Type u} : HasCompl (tProp T) :=  ⟨ λ S => { x | ¬S x } ⟩
+instance {T: Type u} : HasCompl (tProp T) :=  ⟨ λ S =&gt; { x | ¬S x } ⟩
 
-#check EV1 ∩ AL1
-```
+#check EV1 ∩ AL1</code></pre></div>
+
 
 Combining Properties
 ===
 
 The simplest way to combine sequence properties is with set operations. 
-```lean
-#check EV1 ∩ NVT  --- Evenually one and never two
+
+<div class="lean-code" data-start-line="239" data-end-line="253"><pre><code>#check EV1 ∩ NVT  --- Evenually one and never two
 #check EV1 ∪ NVT  --- Evenually one or never two
 
-#check EV1 (λ _ => one)
+#check EV1 (λ _ =&gt; one)
 
 -- If every state is a one, then eventually the state is one
 example : AL1 ⊆ EV1 := by
@@ -175,8 +175,8 @@ example : AL1 ⊆ EV1 := by
 example : N10 ⊆ EV1 := by
   intro x h
   simp_all[N10,EV1]
-  use 10
-```
+  use 10</code></pre></div>
+
 
 The Shift Operator
 ===
@@ -186,17 +186,17 @@ Takes a Trace τ = ⟨ τ₀, τ₁, τ₂, τ₃, τ₄, τ₅, ... ⟩  and re
   shift τ 3 = ⟨ τ₃, τ₄, τ₅, ... ⟩
 
 
-```lean
-@[simp]
+
+<div class="lean-code" data-start-line="290" data-end-line="292"><pre><code>@[simp]
 def shift {T: Type u} (τ : Trace T) (i : Nat) :=
-  λ (n : Nat) => τ (n + i)
-```
+  λ (n : Nat) =&gt; τ (n + i)</code></pre></div>
+
 
 Theorems about Shift
 ===
 
-```lean
-theorem s_compose {T: Type} {τ : Trace T} {i j: ℕ}
+
+<div class="lean-code" data-start-line="313" data-end-line="328"><pre><code>theorem s_compose {T: Type} {τ : Trace T} {i j: ℕ}
   : shift (shift τ i) j = shift τ (i+j) := by
   apply funext
   intro n
@@ -211,22 +211,22 @@ theorem s_swap {T: Type} {τ : Trace T} {i j: ℕ}
   intro n
   simp
   have : n + j + i = n + i + j := by linarith
-  simp[this]
-```
+  simp[this]</code></pre></div>
+
 
 Now and Later
 ===
 
-```lean
-@[simp]
+
+<div class="lean-code" data-start-line="349" data-end-line="371"><pre><code>@[simp]
 def later {T : Type u} (P : Set T) (n: Nat) : tProp T :=
-  λ τ => P (τ n)
+  λ τ =&gt; P (τ n)
 
 @[simp]
-def now {T : Type u} (P: T -> Prop) : tProp T := later P 0
+def now {T : Type u} (P: T -&gt; Prop) : tProp T := later P 0
 
 @[simp]
-def is (x : MWState) := λ y => y=x
+def is (x : MWState) := λ y =&gt; y=x
 
 #check later (is one) 3          -- the state is one at step 3
 #check now (is two)              -- the current state is two
@@ -240,17 +240,17 @@ example (τ:Trace MWState)
 example (n:ℕ) (τ:Trace MWState)
   : AL1 τ → later (is one) n τ := by
   intro h
-  exact h n
-```
+  exact h n</code></pre></div>
+
 
 Next
 ===
 
-```lean
--- P holds n steps in the future -/
+
+<div class="lean-code" data-start-line="383" data-end-line="403"><pre><code>-- P holds n steps in the future -/
 @[simp]
 def argnext {T : Type u} (n : Nat) (P : tProp T) : tProp T
-  := λ τ => P (shift τ n)
+  := λ τ =&gt; P (shift τ n)
 
 -- P holds in the next step
 @[simp]
@@ -258,7 +258,7 @@ def next {T : Type u} : tProp T → tProp T := argnext 1
 
 -- example trajectory: 1 1 ... 1 2 2 2 ...
 def τ12 : Trace MWState :=
-  λ n => if n < 10 then one else two
+  λ n =&gt; if n &lt; 10 then one else two
 
 example : argnext 10 (now (is two)) τ12 := by rfl
 
@@ -267,21 +267,21 @@ example : next (later (is two) 9) τ12 := by rfl
 -- **Exericse** Show the following
 example {n:ℕ} : argnext (n+1) (now P) = next (later P n) := by
   funext τ
-  simp
-```
+  simp</code></pre></div>
+
 
 Always
 ===
 
-```lean
-@[simp]
+
+<div class="lean-code" data-start-line="421" data-end-line="436"><pre><code>@[simp]
 def always {T: Type u} (P : tProp T) : tProp T :=
-  λ (τ : Trace T) => ∀ n , P (shift τ n)
+  λ (τ : Trace T) =&gt; ∀ n , P (shift τ n)
 
 example : ¬always (now (is one)) τ12 := by
   intro h1
   simp[τ12] at h1
-  have h2 : 10 < 10 := h1 10
+  have h2 : 10 &lt; 10 := h1 10
   apply (lt_self_iff_false 10).mp h2
 
 -- **Exercise** Prove the following:
@@ -289,56 +289,56 @@ example {τ:Trace MWState}:
   always (now (is three)) τ → ¬(now (is two)) τ := by
   intro h1 h2
   --have h3 := h1 0
-  simp_all
-```
+  simp_all</code></pre></div>
+
 
 EVENTUALLY
 ===
 
-```lean
-@[simp]
+
+<div class="lean-code" data-start-line="462" data-end-line="477"><pre><code>@[simp]
 def eventually {T: Type u} (P : tProp T) : tProp T :=
-  λ (τ : Trace T) => ∃ n, P (shift τ n)
+  λ (τ : Trace T) =&gt; ∃ n, P (shift τ n)
 
 example : eventually (now (is two)) τ12 := by
   use 10
   simp[eventually,now,later,shift,is,one,τ12]
 
-def τ1212 : Trace MWState := λ n => if n%2 = 0 then two else one
+def τ1212 : Trace MWState := λ n =&gt; if n%2 = 0 then two else one
 
 example : always (eventually (later (is two) 1)) τ1212 := by
   intro k
   simp[is,τ1212]
   use k+1
   have : 1 + (k + 1) + k = 2*(k+1) := by linarith
-  simp[this]
-```
+  simp[this]</code></pre></div>
+
 
 Another Eventually Example
 ===
 
-```lean
--- **Exercise** Hint: Use Set.subset_setOf.mpr and Set.mem_def
+
+<div class="lean-code" data-start-line="489" data-end-line="494"><pre><code>-- **Exercise** Hint: Use Set.subset_setOf.mpr and Set.mem_def
 theorem subset_event {T: Type u} {P Q: tProp T}
   : P ⊆ Q → eventually P ⊆ eventually Q := by
   intro hpq τ ⟨ n, h ⟩
   use n
-  exact hpq (shift τ n) h
-```
+  exact hpq (shift τ n) h</code></pre></div>
+
 
 Implication
 ===
 
-```lean
-def implies {T : Type u} (P Q : Set T) : Set T :=
-  λ x => P x → Q x
-```
+
+<div class="lean-code" data-start-line="511" data-end-line="512"><pre><code>def implies {T : Type u} (P Q : Set T) : Set T :=
+  λ x =&gt; P x → Q x</code></pre></div>
+
 
 Tautologies
 ===
 
-```lean
-def satisfies {T : Type u} (τ : Trace T) (p : tProp T) := p τ
+
+<div class="lean-code" data-start-line="536" data-end-line="550"><pre><code>def satisfies {T : Type u} (τ : Trace T) (p : tProp T) := p τ
 
 def tautology {T : Type u} (p : tProp T) := ∀ τ , p τ
 
@@ -352,8 +352,8 @@ theorem always_eventually {T : Type u} (A : tProp T)
   : tautology (implies (always A) (eventually A)) :=  by
   intro τ h
   use 0
-  exact h 0
-```
+  exact h 0</code></pre></div>
+
  Many more theorems can be stated and proved 
 
 Verifying Properties of Kripke Structures
@@ -388,18 +388,18 @@ A trajectory σ `Respects` a Kripke structure if:
   3) τ respects M.next and σ respects M.label
 
 
-```lean
-def Trajectory := Trace (Set Prop)
+
+<div class="lean-code" data-start-line="611" data-end-line="614"><pre><code>def Trajectory := Trace (Set Prop)
 
 -- Example trajectory. Does not actually respect MW
-def idle : Trajectory := λ _ => {off}
-```
+def idle : Trajectory := λ _ =&gt; {off}</code></pre></div>
+
 
 Trajectory Properties
 ===
 
-```lean
-def kProp := tProp (Set Prop)
+
+<div class="lean-code" data-start-line="634" data-end-line="642"><pre><code>def kProp := tProp (Set Prop)
 
 instance : HasSubset kProp  := ⟨ Set.Subset ⟩
 instance : Union kProp := ⟨ Set.union ⟩
@@ -407,8 +407,8 @@ instance : Membership Trajectory kProp where mem P σ := P σ
 instance : Inter kProp := ⟨ Set.inter ⟩
 
 -- Example: Always Off
-def AO : kProp := λ σ => ∀ n, σ n off
-```
+def AO : kProp := λ σ =&gt; ∀ n, σ n off</code></pre></div>
+
 
 Satisfaction
 ===
@@ -416,8 +416,8 @@ Satisfaction
 Here we define what it means for an individual trajectory to respect the transition and labeling function of a Kripke structure.
 
 And we define satisifaction to mean that all trajectories in a kProp respect a Kripke Structure. 
-```lean
-@[simp]
+
+<div class="lean-code" data-start-line="666" data-end-line="674"><pre><code>@[simp]
 def respects (M : Kripke) (σ : Trajectory) : Prop :=
   ∃ (τ : Trace M.states),
   ∀ (n : Nat),
@@ -425,20 +425,20 @@ def respects (M : Kripke) (σ : Trajectory) : Prop :=
 
 @[simp]
 def k_satisfies (M : Kripke) (φ : kProp) :=
-  ∀ (σ : Trajectory) , respects M σ → φ σ
-```
+  ∀ (σ : Trajectory) , respects M σ → φ σ</code></pre></div>
+
 
 You Never Have to Turn on the Microware
 ===
 
-```lean
--- **Exercise** Complete the following proof
+
+<div class="lean-code" data-start-line="689" data-end-line="756"><pre><code>-- **Exercise** Complete the following proof
 example : k_satisfies MW AO := by
   simp
   intro σ τ h
   intro n
   have ⟨ htraj, hlabel ⟩ := h n
-  have ⟨ htraj', hlabel' ⟩ := h (n+1)
+  have ⟨ htraj&#x27;, hlabel&#x27; ⟩ := h (n+1)
 
   cases hs : τ n
 
@@ -456,16 +456,16 @@ example : k_satisfies MW AO := by
 
   -- three
   . simp_all[hs,MW,hs,htraj]
-    -- AAHHH! THIS ISN'T ACTUALLY TRUE!
+    -- AAHHH! THIS ISN&#x27;T ACTUALLY TRUE!
     sorry
 
 
--- Here's a quick and ditry proof that the opposite of the above is true.
+-- Here&#x27;s a quick and ditry proof that the opposite of the above is true.
 -- It could be cleaned up a lot!
 example : ¬k_satisfies MW AO := by
   simp
-  let σ : Trajectory := (λ n => if n%2 = 0 then {closed,off} else {closed})
-  let τ : Trace MWState := (λ n => if n%2 = 0 then one else three)
+  let σ : Trajectory := (λ n =&gt; if n%2 = 0 then {closed,off} else {closed})
+  let τ : Trace MWState := (λ n =&gt; if n%2 = 0 then one else three)
   use σ
   apply And.intro
   . use τ
@@ -491,35 +491,35 @@ example : ¬k_satisfies MW AO := by
         simp[h10]
   . intro h
     simp_all[AO]
-    have h' := h 1
-    simp at h'
+    have h&#x27; := h 1
+    simp at h&#x27;
     have : σ 1 = {closed} := by exact rfl
-    simp[this] at h'
-    apply Set.mem_def.mpr at h'
-    simp[Set.mem_insert_iff] at h'
+    simp[this] at h&#x27;
+    apply Set.mem_def.mpr at h&#x27;
+    simp[Set.mem_insert_iff] at h&#x27;
     have h10 := closed_ne_off
     simp at h10
-    exact h10 (id (Iff.symm h'))
-```
+    exact h10 (id (Iff.symm h&#x27;))</code></pre></div>
+
 
 Atomic
 ===
 
 In logic and atopic proposition is one that cannot be broken down further. In temporal logic, that is taken to mean a proposition that is true at the initial state of a trajectory. 
-```lean
-def atomic (p : Prop) : kProp :=
-  λ (σ : Trajectory ) => p ∈ (σ 0)
 
-def AO' : kProp := always (atomic off)
+<div class="lean-code" data-start-line="771" data-end-line="776"><pre><code>def atomic (p : Prop) : kProp :=
+  λ (σ : Trajectory ) =&gt; p ∈ (σ 0)
+
+def AO&#x27; : kProp := always (atomic off)
 def EO  : kProp := eventually (atomic off)
-def AEO : kProp := always (eventually (atomic off))
-```
+def AEO : kProp := always (eventually (atomic off))</code></pre></div>
+
 
 Example Theorem
 ===
 
-```lean
-lemma always_union {M:Kripke} {p q: Prop}
+
+<div class="lean-code" data-start-line="798" data-end-line="822"><pre><code>lemma always_union {M:Kripke} {p q: Prop}
   : ( ∀ state , p ∈ M.label state ∨ q ∈ M.label state )
   → k_satisfies M (always (atomic p ∪ atomic q)) := by
 
@@ -529,12 +529,12 @@ lemma always_union {M:Kripke} {p q: Prop}
     have ⟨ _, in_label ⟩ := traj_details n
     have h1 := h (τ n)
     cases h1 with
-    | inl h2 => (exact Or.inl (by
+    | inl h2 =&gt; (exact Or.inl (by
       apply Set.mem_setOf.mpr
       simp[in_label]
       exact h2
     ))
-    | inr h3 => (exact Or.inr (by
+    | inr h3 =&gt; (exact Or.inr (by
       apply Set.mem_setOf.mpr
       simp[in_label]
       exact h3
@@ -543,28 +543,28 @@ lemma always_union {M:Kripke} {p q: Prop}
 
 
 
-notation:65 lhs:65 " ⊨ " rhs:66 => k_satisfies lhs rhs
-```
+notation:65 lhs:65 &quot; ⊨ &quot; rhs:66 =&gt; k_satisfies lhs rhs</code></pre></div>
+
 
 Theorem Application
 ===
 
-```lean
-example : MW ⊨ (always (atomic off ∪ atomic closed)) := by
+
+<div class="lean-code" data-start-line="830" data-end-line="837"><pre><code>example : MW ⊨ (always (atomic off ∪ atomic closed)) := by
   exact always_union (by
     intro x
     cases x
     . exact Or.inl (Set.mem_insert_of_mem closed rfl)
     . exact Or.inl rfl
     . exact Or.inr rfl
-  )
-```
+  )</code></pre></div>
+
 
 Other Examples
 ===
 
-```lean
-example : MW ⊨ (always (eventually (atomic off))) := by
+
+<div class="lean-code" data-start-line="852" data-end-line="879"><pre><code>example : MW ⊨ (always (eventually (atomic off))) := by
   intro σ h k
   unfold eventually
   obtain ⟨ τ, h1 ⟩ := h
@@ -591,14 +591,14 @@ example : MW ⊨ (always (eventually (atomic off))) := by
 
 
 example : MW ⊨ (always (eventually (atomic (¬off)))) := by
-  sorry
-```
+  sorry</code></pre></div>
+
 
 Tautologies Again
 ===
 
-```lean
-def k_tautology (p : kProp) := ∀ M : Kripke, k_satisfies M p
+
+<div class="lean-code" data-start-line="901" data-end-line="915"><pre><code>def k_tautology (p : kProp) := ∀ M : Kripke, k_satisfies M p
 
 theorem atomic_inter {p q: Prop}
   : k_tautology (implies (atomic p ∩ atomic q) (atomic p)) := by
@@ -612,8 +612,8 @@ theorem atomic_inter {p q: Prop}
 -- **Exercise** Prove the following
 theorem atomic_union {p q: Prop}
   : k_tautology (implies (atomic p) (atomic p ∪ atomic q)) :=
-  sorry
-```
+  sorry</code></pre></div>
+
 
 Conclusion
 ===
@@ -627,11 +627,11 @@ LTL can be extended to CTL = Computation Tree Logic, which includes branching (a
 Avanced model checking algorithms do not use theorem proving (yet). Instead they rely on explicitly enumerating states and trajectories, using clever pruning strategies to hand systems with `millions` of states.
 
 For example: https://spinroot.com/spin/whatispin.html 
-```lean
---hide
+
+<div class="lean-code" data-start-line="940" data-end-line="942"><pre><code>--hide
 end LeanW26
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

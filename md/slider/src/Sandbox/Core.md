@@ -1,4 +1,9 @@
 
+<div class="lean-code" data-start-line="1" data-end-line="3"><pre><code>theorem x {p: Prop}: p ∨ ¬p := by grind
+
+#print axioms x -- &#x27;x&#x27; depends on axioms: [propext, Classical.choice, Quot.sound]</code></pre></div>
+
+
 License
 ===
 

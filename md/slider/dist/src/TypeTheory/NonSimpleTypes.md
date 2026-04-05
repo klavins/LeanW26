@@ -60,15 +60,15 @@ quantifies over types, like `λ` quantifies over terms.
 
 For example,
 
-```lean
-universe u
 
-def id1 : Π (α : Type u), α → α := fun _ x => x
-def id2 : Π {α : Type u}, α → α := fun x => x
-def id3 {α : Type u} := fun (x : α) => x
-def id4 : (α : Type u) → α → α := fun (_ : Type u) => fun x => x
-def id5 : ∀ α, α → α := fun _ => fun x => x
-```
+<div class="lean-code" data-start-line="75" data-end-line="81"><pre><code>universe u
+
+def id1 : Π (α : Type u), α → α := fun _ x =&gt; x
+def id2 : Π {α : Type u}, α → α := fun x =&gt; x
+def id3 {α : Type u} := fun (x : α) =&gt; x
+def id4 : (α : Type u) → α → α := fun (_ : Type u) =&gt; fun x =&gt; x
+def id5 : ∀ α, α → α := fun _ =&gt; fun x =&gt; x</code></pre></div>
+
 
 Notes:
 - `Π` and `∀` are defined as syntactic sugar for `forall`
@@ -84,42 +84,42 @@ A **parameterized** type has a constructor taking another type as a parameter.
 
 The standard example is List.
 
-```lean
-inductive MyList {α : Type} where
+
+<div class="lean-code" data-start-line="100" data-end-line="102"><pre><code>inductive MyList {α : Type} where
   | nil : MyList
-  | cons : α → MyList → MyList
-```
+  | cons : α → MyList → MyList</code></pre></div>
+
 
 Note that the constructor for MyList is polymorphic, as one would expect:
 
-```lean
-#check MyList.cons    -- {α : Type} → α → MyList → MyList
-```
+
+<div class="lean-code" data-start-line="108" data-end-line="108"><pre><code>#check MyList.cons    -- {α : Type} → α → MyList → MyList</code></pre></div>
+
 
 Dependent types
 ===
 
 A **dependent** type depends on a term. A vector of a given length
 is an example. 
-```lean
-inductive Vec (α : Type u) : Nat → Type u where
+
+<div class="lean-code" data-start-line="118" data-end-line="120"><pre><code>inductive Vec (α : Type u) : Nat → Type u where
   | nil  : Vec α 0
-  | cons {n} :  α → Vec α n → Vec α (n + 1)
-```
+  | cons {n} :  α → Vec α n → Vec α (n + 1)</code></pre></div>
+
 
 Here is a polymorphic function that adds two vectors together.
 
-```lean
-def Vec.add {α : Type u} [Add α] {n : Nat} (x y : Vec α n)
+
+<div class="lean-code" data-start-line="126" data-end-line="130"><pre><code>def Vec.add {α : Type u} [Add α] {n : Nat} (x y : Vec α n)
   : Vec α n :=
   match x, y with
-  | nil, nil => nil
-  | cons a w, cons b z => cons (a+b) (Vec.add w z)
-```
+  | nil, nil =&gt; nil
+  | cons a w, cons b z =&gt; cons (a+b) (Vec.add w z)</code></pre></div>
+
  The notation [Add α] ensures that α is a type that has addition (See Type classes)
-```lean
-#check_failure Vec.add (Vec.nil.cons 1) ((Vec.nil.cons 1).cons 2)
-```
+
+<div class="lean-code" data-start-line="135" data-end-line="135"><pre><code>#check_failure Vec.add (Vec.nil.cons 1) ((Vec.nil.cons 1).cons 2)</code></pre></div>
+
 
 Aside
 ===
@@ -156,11 +156,11 @@ it's type?
 <ex/> Consider the dependent type
 
 
-```lean
-def chooseType : Bool → Type
-| true  => Nat
-| false => String
-```
+
+<div class="lean-code" data-start-line="176" data-end-line="178"><pre><code>def chooseType : Bool → Type
+| true  =&gt; Nat
+| false =&gt; String</code></pre></div>
+
  Create a function `f : b → chooseType b`. 
 
 Sigma Types
@@ -178,24 +178,24 @@ For example, to carry around a length and a default vector of that
 length, we could do:
 
 
-```lean
-#check Sigma.mk 0 Vec.nil
-#check Sigma.mk 1 (Vec.nil.cons 0)
-```
+
+<div class="lean-code" data-start-line="198" data-end-line="199"><pre><code>#check Sigma.mk 0 Vec.nil
+#check Sigma.mk 1 (Vec.nil.cons 0)</code></pre></div>
+
 
 A Function on Sigma Types
 ===
 
 Lean provides the notation `Σ` for Sigma types.
 
-```lean
-def Vec.default (n : Nat) : Σ (n:Nat), Vec Nat n := match n with
-  | 0 => Sigma.mk 0 Vec.nil
-  | n+1 => let v := (Vec.default n)
+
+<div class="lean-code" data-start-line="208" data-end-line="213"><pre><code>def Vec.default (n : Nat) : Σ (n:Nat), Vec Nat n := match n with
+  | 0 =&gt; Sigma.mk 0 Vec.nil
+  | n+1 =&gt; let v := (Vec.default n)
            Sigma.mk (v.fst+1) (v.snd.cons 0)
 
-#check Vec.default 3 --- (n : ℕ) × Vec ℕ n
-```
+#check Vec.default 3 --- (n : ℕ) × Vec ℕ n</code></pre></div>
+
 
 Exercises
 ===
@@ -208,9 +208,9 @@ that takes a Sigma value representing a length and a vector of that length
 and returns the vector turned into a list.
 
 
-```lean
---hide
-```
+
+<div class="lean-code" data-start-line="229" data-end-line="229"><pre><code>--hide</code></pre></div>
+
 
 Inductive Arguments
 ===
@@ -258,24 +258,24 @@ Declaring an inductive type extends the kernel with its full inductive schema:
 the type, constructors, and **recursor**, which is the inductive principle for
 that type. For example,
 
-```lean
-#check Nat.rec   -- {motive : Nat → Sort u} →
+
+<div class="lean-code" data-start-line="278" data-end-line="281"><pre><code>#check Nat.rec   -- {motive : Nat → Sort u} →
                  -- motive Nat.zero →
                  -- (∀ n : Nat, motive n → motive n.succ) →
-                 -- ∀ t : Nat, motive t
-```
+                 -- ∀ t : Nat, motive t</code></pre></div>
+
  You will recognize this as being the induction principle for the natural numbers. If `Sort u`
 were Prop, then `motive` would be a predicate on the natural numbers.
 
 You also get a way to show terms constructed differently are different. 
-```lean
-#check Nat.noConfusion -- {P : Sort u} →
+
+<div class="lean-code" data-start-line="288" data-end-line="293"><pre><code>#check Nat.noConfusion -- {P : Sort u} →
                        -- {x1 x2 : Nat} →
                        -- x1 = x2 →
                        -- Nat.noConfusionType P x1 x2
 
-#check Nat.noConfusionType -- Sort u → ℕ → ℕ → Sort u
-```
+#check Nat.noConfusionType -- Sort u → ℕ → ℕ → Sort u</code></pre></div>
+
 
 We will later use `noConfusion` to prove statements like `m.succ ≠ m.succ.succ`.
 
@@ -289,8 +289,8 @@ Derived Recursors
 ===
 Lean also defines the following variants in terms of `.rec`.
 
-```lean
-#check Nat.recOn   -- {motive : Nat → Sort u} →
+
+<div class="lean-code" data-start-line="310" data-end-line="320"><pre><code>#check Nat.recOn   -- {motive : Nat → Sort u} →
                    -- ∀ t : Nat,
                    --   motive Nat.zero →
                    --   (∀ n : Nat, motive n → motive n.succ) →
@@ -300,8 +300,8 @@ Lean also defines the following variants in terms of `.rec`.
                    -- ∀ t : Nat,
                    --   motive Nat.zero →
                    --   (∀ a : Nat, motive a.succ) →
-                   --   motive t
-```
+                   --   motive t</code></pre></div>
+
 
 
 <div class='fn'>
@@ -320,43 +320,43 @@ Non-recursive Inductive Types
 When a type isn't recursive, as in:
 
 
-```lean
-inductive ThreeVal where | one | two | three
-```
+
+<div class="lean-code" data-start-line="343" data-end-line="343"><pre><code>inductive ThreeVal where | one | two | three</code></pre></div>
+
 
 The `.casesOn` instance is particularly simple.
 
-```lean
-#check ThreeVal.casesOn
+
+<div class="lean-code" data-start-line="349" data-end-line="352"><pre><code>#check ThreeVal.casesOn
   -- {motive : ThreeVal → Sort u} → ∀ t : ThreeVal,
   -- motive ThreeVal.one → motive ThreeVal.two →
-  -- motive ThreeVal.three → motive t
-```
+  -- motive ThreeVal.three → motive t</code></pre></div>
+
  For example: 
-```lean
-def ThreeVal.toNat (x : ThreeVal) : Nat :=
+
+<div class="lean-code" data-start-line="356" data-end-line="359"><pre><code>def ThreeVal.toNat (x : ThreeVal) : Nat :=
   ThreeVal.casesOn x 1 2 3
 
-#eval ThreeVal.one.toNat     -- 1
-```
+#eval ThreeVal.one.toNat     -- 1</code></pre></div>
+
  We can explicitly state the motive using the `@` operator to make the implicit
 argument explicit: 
-```lean
-def ThreeVal.toNat' (x : ThreeVal) : Nat :=
-  @ThreeVal.casesOn (fun _ => Nat) x 1 2 3
-```
+
+<div class="lean-code" data-start-line="364" data-end-line="365"><pre><code>def ThreeVal.toNat&#x27; (x : ThreeVal) : Nat :=
+  @ThreeVal.casesOn (fun _ =&gt; Nat) x 1 2 3</code></pre></div>
+
 
 Recursive Definitions with the Recursor
 ===
 
 When we write a recursive function with `match`
 
-```lean
-def even (n : Nat) : Bool :=
+
+<div class="lean-code" data-start-line="375" data-end-line="378"><pre><code>def even (n : Nat) : Bool :=
   match n with
-  | .zero => true
-  | .succ k => ¬even k
-```
+  | .zero =&gt; true
+  | .succ k =&gt; ¬even k</code></pre></div>
+
  Lean internally compiles this to a recursor definition, we can see with `#print even`:
 ```lean
 def LeanW26.NonSimpleTypes.even : ℕ → Bool :=
@@ -370,9 +370,9 @@ fun n ↦
 
 Note that there is no recursive call here. In fact, we can write
 
-```lean
-def even' (n : Nat) : Bool := Nat.recOn n true (fun _ ih => ¬ih)
-```
+
+<div class="lean-code" data-start-line="394" data-end-line="394"><pre><code>def even&#x27; (n : Nat) : Bool := Nat.recOn n true (fun _ ih =&gt; ¬ih)</code></pre></div>
+
 
 To define the same function.
 <div class='fn'>See <a href="https://leanprover.github.io/theorem_proving_in_lean/theorem_proving_in_lean.pdf">Theorem Proving in Lean</a>, Sec. 8.4.</div>
@@ -423,24 +423,24 @@ Coming back to the parameters vs indices discussion.
 
 A parameter is a constant throughout the recursor definition:
 
-```lean
-inductive A (n : Nat) : Type u where
+
+<div class="lean-code" data-start-line="455" data-end-line="459"><pre><code>inductive A (n : Nat) : Type u where
   | a : A n
 
 #check A.rec           -- {n : ℕ} → {motive : A n → Sort u_1} →
-                       -- motive A.a → (t : A n) → motive t
-```
+                       -- motive A.a → (t : A n) → motive t</code></pre></div>
+
  While an index is passed to the motive and thus varies.  
-```lean
-inductive B : Nat → Type u where
+
+<div class="lean-code" data-start-line="463" data-end-line="470"><pre><code>inductive B : Nat → Type u where
   | b : B 0
   | c n : B (n+1)
 
 #check B.rec           -- motive : (a : ℕ) → B a → Sort u_1} →
                        -- motive 0 B.b → ((n : ℕ) →
                        -- motive (n + 1) (B.c n)) → {a : ℕ} → (t : B a) →
-                       -- motive a t
-```
+                       -- motive a t</code></pre></div>
+
 
 Exercise
 ===
@@ -459,15 +459,15 @@ def length {α} (L : List α) : Nat :=
 And fill in the details by examining the definition:
 
 
-```lean
-def length {α} (L : List α) : Nat :=
-  List.recOn L 0 (fun h t mt => 1+ mt)
+
+<div class="lean-code" data-start-line="494" data-end-line="500"><pre><code>def length {α} (L : List α) : Nat :=
+  List.recOn L 0 (fun h t mt =&gt; 1+ mt)
 
 #check List.recOn  -- {α : Type u} →  {motive : List α → Sort u_1} →
                    -- (t : List α) → motive [] → ((head : α) →
                    -- (tail : List α) → motive tail →
-                   -- motive (head :: tail)) → motive t
-```
+                   -- motive (head :: tail)) → motive t</code></pre></div>
+
 
 Various Advanced Types (Not in Lean)
 ===
@@ -498,8 +498,8 @@ type definitions that meet the class's specifications.
 
 For example, Lean's Standard Library defines
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="536" data-end-line="544"><pre><code>--hide
 namespace Temp
 --unhide
 
@@ -507,45 +507,45 @@ class Zero (α : Type) where
   zero : α
 
 class Add (α : Type) where
-  add : α → α → α
-```
+  add : α → α → α</code></pre></div>
+
  Which can be used in functions, as in the following, which
 allows you to sum a list of anything that has a `zero` and an `add` function. 
-```lean
-def sum {α : Type} (f : ℕ → α) (n : ℕ) [hz : Zero α] [ha : Add α] :=
+
+<div class="lean-code" data-start-line="549" data-end-line="552"><pre><code>def sum {α : Type} (f : ℕ → α) (n : ℕ) [hz : Zero α] [ha : Add α] :=
   match n with
-  | .zero => hz.zero
-  | .succ k => ha.add (f n) (sum f k)
-```
+  | .zero =&gt; hz.zero
+  | .succ k =&gt; ha.add (f n) (sum f k)</code></pre></div>
+
 
 Instances
 ===
 You can instantiate a type class for a given type using the `instance` keyword.
 
-```lean
-instance : Zero String where
-  zero := ""
+
+<div class="lean-code" data-start-line="564" data-end-line="571"><pre><code>instance : Zero String where
+  zero := &quot;&quot;
 
 instance : Add String where
   add a b := b ++ a
 
-#eval sum (fun n => String.singleton (Char.ofNat (n+96))) 26
-      -- "abcdefghijklmnopqrstuvwxyz"
-```
+#eval sum (fun n =&gt; String.singleton (Char.ofNat (n+96))) 26
+      -- &quot;abcdefghijklmnopqrstuvwxyz&quot;</code></pre></div>
+
  or 
-```lean
-instance : Zero Nat where
+
+<div class="lean-code" data-start-line="575" data-end-line="585"><pre><code>instance : Zero Nat where
   zero := .zero
 
 instance : Add Nat where
   add := .add
 
-#eval sum (fun n => n^2) 26    -- 6201
+#eval sum (fun n =&gt; n^2) 26    -- 6201
 
 --hide
 end Temp
---unhide
-```
+--unhide</code></pre></div>
+
 
 Lean/Mathlib Classes
 ===
@@ -562,8 +562,8 @@ Naturals Revisited
 ===
 
 For example, suppose we defined our own version of the natural numbers with: 
-```lean
-mutual
+
+<div class="lean-code" data-start-line="605" data-end-line="622"><pre><code>mutual
   inductive Ev
   | zero : Ev
   | succ : Od → Ev
@@ -579,9 +579,9 @@ def Naturals := Ev ⊕ Od
 def Naturals.zero : Naturals := .inl Ev.zero
 
 def Naturals.succ (x : Naturals) : Naturals := match x with
-  | .inl a => .inr (Od.succ a)
-  | .inr a => .inl (Ev.succ a)
-```
+  | .inl a =&gt; .inr (Od.succ a)
+  | .inr a =&gt; .inl (Ev.succ a)</code></pre></div>
+
 
 Using Lean's Natural Number Syntax
 ===
@@ -589,83 +589,83 @@ Using Lean's Natural Number Syntax
 Writing `(succ (succ zero))` for two gets old fast. We would like to
 be able to write
 
-```lean
-#check_failure (0:Naturals)
+
+<div class="lean-code" data-start-line="632" data-end-line="634"><pre><code>#check_failure (0:Naturals)
 #check_failure (1:Naturals)
-#check_failure (2:Naturals)
-```
+#check_failure (2:Naturals)</code></pre></div>
+
  Lean has classes for zero and one. 
-```lean
-instance : Zero Naturals := ⟨ .zero ⟩
+
+<div class="lean-code" data-start-line="638" data-end-line="642"><pre><code>instance : Zero Naturals := ⟨ .zero ⟩
 instance : One Naturals := ⟨ .succ .zero ⟩
 
 #check (0:Naturals)
-#check (1:Naturals)
-```
+#check (1:Naturals)</code></pre></div>
+
  We can also convert Lean's `Nat` to our `Naturals` (obviating the
 need for `Naturals`, but whatever).
-```lean
-def of_nat (n : Nat) : Naturals := match n with
-  | Nat.zero => .zero
-  | Nat.succ k => .succ (of_nat k)
+
+<div class="lean-code" data-start-line="647" data-end-line="653"><pre><code>def of_nat (n : Nat) : Naturals := match n with
+  | Nat.zero =&gt; .zero
+  | Nat.succ k =&gt; .succ (of_nat k)
 
 instance {n : Nat} : OfNat Naturals n := ⟨ of_nat n ⟩
 
-#check (2:Naturals)
-```
+#check (2:Naturals)</code></pre></div>
+
 
 Defining Addition
 ===
 
 First we define addition for `Ev` and `Od`
 
-```lean
-mutual
+
+<div class="lean-code" data-start-line="661" data-end-line="672"><pre><code>mutual
   def add_ev_ev (x y : Ev) := match x with
-    | .zero => y
-    | .succ k => .succ (add_od_ev k y)
+    | .zero =&gt; y
+    | .succ k =&gt; .succ (add_od_ev k y)
   def add_od_ev (x : Od) (y : Ev) := match x with
-    | .succ k => .succ (add_ev_ev k y)
+    | .succ k =&gt; .succ (add_ev_ev k y)
   def add_ev_od (x : Ev) (y : Od) := match x with
-    | .zero => y
-    | .succ k => .succ (add_od_od k y)
+    | .zero =&gt; y
+    | .succ k =&gt; .succ (add_od_od k y)
   def add_od_od (x y : Od) := match x with
-    | .succ k => .succ (add_ev_od k y)
-end
-```
+    | .succ k =&gt; .succ (add_ev_od k y)
+end</code></pre></div>
+
  Then we define addition for `Naturals`. 
-```lean
-def Naturals.add (x y : Naturals) : Naturals := match x,y with
-  | .inl a, .inl b => .inl (add_ev_ev a b)
-  | .inl a, .inr b => .inr (add_ev_od a b)
-  | .inr a, .inl b => .inr (add_od_ev a b)
-  | .inr a, .inr b => .inl (add_od_od a b)
-```
+
+<div class="lean-code" data-start-line="676" data-end-line="680"><pre><code>def Naturals.add (x y : Naturals) : Naturals := match x,y with
+  | .inl a, .inl b =&gt; .inl (add_ev_ev a b)
+  | .inl a, .inr b =&gt; .inr (add_ev_od a b)
+  | .inr a, .inl b =&gt; .inr (add_od_ev a b)
+  | .inr a, .inr b =&gt; .inl (add_od_od a b)</code></pre></div>
+
 
 Instantiating Addition
 ===
 
 Now we can define and instantiate addition.
 
-```lean
-instance : HAdd Naturals Naturals Naturals := ⟨ Naturals.add ⟩
+
+<div class="lean-code" data-start-line="689" data-end-line="694"><pre><code>instance : HAdd Naturals Naturals Naturals := ⟨ Naturals.add ⟩
 instance : Add Naturals := ⟨ Naturals.add ⟩
 
 def f (x y : Naturals) := x + y + 1
 
-#eval f 2 3         -- 5
-```
+#eval f 2 3         -- 5</code></pre></div>
+
  Other classes we might define for our `Naturals` type include 
-```lean
-#check (Add, Sub, Mul, Mod, Div, LT, LE)
+
+<div class="lean-code" data-start-line="698" data-end-line="705"><pre><code>#check (Add, Sub, Mul, Mod, Div, LT, LE)
 #check (HAdd, HSub, HMul, HDiv)
 #check Inhabited
 #check Ord
 #check LinearOrder
 #check Coe
 #check CommSemiring      -- adds theorems that interact with simplifier
-#check Countable         -- adds theorems
-```
+#check Countable         -- adds theorems</code></pre></div>
+
 
 Exercises
 ===
@@ -703,11 +703,11 @@ The Univalent Foundations Program Institute for Advanced Study (https://homotopy
 
 
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="746" data-end-line="748"><pre><code>--hide
 end LeanW26.NonSimpleTypes
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

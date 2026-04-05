@@ -233,11 +233,11 @@ I was a few weeks ahead, and by the end of the course I was a few weeks behind.
  Much of the material here was developed in response to their questions and ideas.
 
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="250" data-end-line="252"><pre><code>--hide
 end LeanW26
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

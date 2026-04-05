@@ -40,15 +40,15 @@ class Subtype {α : Sort u} (p : α → Prop)
 For example:
 
 
-```lean
-def Evens := Subtype (fun n => ∃ k, n = 2*k)
-example : Evens := ⟨ 14, by use 7 ⟩
-```
+
+<div class="lean-code" data-start-line="56" data-end-line="57"><pre><code>def Evens := Subtype (fun n =&gt; ∃ k, n = 2*k)
+example : Evens := ⟨ 14, by use 7 ⟩</code></pre></div>
+
  In fact, Lean defines nice syntax for `Subtype`, which looks like set builder notation.  
-```lean
-def Evens' := { n // ∃ k, n = 2*k }
-example : Evens' := ⟨ 14, by use 7 ⟩
-```
+
+<div class="lean-code" data-start-line="61" data-end-line="62"><pre><code>def Evens&#x27; := { n // ∃ k, n = 2*k }
+example : Evens&#x27; := ⟨ 14, by use 7 ⟩</code></pre></div>
+
 
 Uses of Subtypes
 ===
@@ -56,11 +56,11 @@ Uses of Subtypes
 Many objects in Lean and Mathib are defined as subtypes:
 
 
-```lean
-#print NNRat               -- def NNRat : Type := { q : Rat // 0 ≤ r }
+
+<div class="lean-code" data-start-line="72" data-end-line="74"><pre><code>#print NNRat               -- def NNRat : Type := { q : Rat // 0 ≤ r }
 #print NNReal              -- def NNReal : Type := { r : Real // 0 ≤ r }
-#print SpecialLinearGroup  -- def ... := ... fun R V ... ↦ { u // LinearEquiv.det u = 1 }
-```
+#print SpecialLinearGroup  -- def ... := ... fun R V ... ↦ { u // LinearEquiv.det u = 1 }</code></pre></div>
+
 
 And the basic pattern of including a predicate in a structure is common, as in:
 ```lean
@@ -81,33 +81,33 @@ Issues with Types as Sets
 
 Defining set operations is at best complicated:
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="101" data-end-line="107"><pre><code>--hide
 namespace Temp
 --unhide
 
 def Subtype.Intersection.{u} {α : Type u} {p q : α → Prop}
   (A : Type u) (B : Type u){_hA : A = Subtype p} {_hB : B = Subtype q} :=
-  { x // p x ∧ q x }
-```
+  { x // p x ∧ q x }</code></pre></div>
+
  For example, given 
-```lean
-def A := { n // n > 4 }
-def B := { n // n > 5 }
-```
+
+<div class="lean-code" data-start-line="111" data-end-line="112"><pre><code>def A := { n // n &gt; 4 }
+def B := { n // n &gt; 5 }</code></pre></div>
+
  here is `A ∩ B`: 
-```lean
-def C := Subtype.Intersection (p := (· > 4)) (q := (· > 5))
-  (_hA := by simp[A]) (_hB := by simp[B]) A B
-```
+
+<div class="lean-code" data-start-line="116" data-end-line="117"><pre><code>def C := Subtype.Intersection (p := (· &gt; 4)) (q := (· &gt; 5))
+  (_hA := by simp[A]) (_hB := by simp[B]) A B</code></pre></div>
+
  Now to show that, for exampe `6 ∈ A ∩ B`, we do: 
-```lean
-example : C := ⟨ 6, ⟨ by simp, by simp ⟩ ⟩
+
+<div class="lean-code" data-start-line="121" data-end-line="125"><pre><code>example : C := ⟨ 6, ⟨ by simp, by simp ⟩ ⟩
 
 --hide
 end Temp
---unhide
-```
+--unhide</code></pre></div>
+
 
 Exercise
 ===
@@ -115,14 +115,14 @@ Exercise
 <ex /> Define
 
 
-```lean
-def Evens.add (x y : Evens) : Evens := sorry
-```
+
+<div class="lean-code" data-start-line="135" data-end-line="135"><pre><code>def Evens.add (x y : Evens) : Evens := sorry</code></pre></div>
+
  and prove 
-```lean
-def Evens.add_assoc {x y z : Evens}
-  : add x (add y z) = add (add x y) z := sorry
-```
+
+<div class="lean-code" data-start-line="139" data-end-line="140"><pre><code>def Evens.add_assoc {x y z : Evens}
+  : add x (add y z) = add (add x y) z := sorry</code></pre></div>
+
 
 Predicates as Sets
 ===
@@ -130,14 +130,14 @@ Predicates as Sets
 **Option 2**: In `def A := { n // n > 4 }` the predicate `n>4` is buried in the expression.
 What if we just used use the predicate directly, as in
 
-```lean
-def A (n : ℕ) := n > 4
-def B (n : ℕ) := n > 5
-```
+
+<div class="lean-code" data-start-line="150" data-end-line="151"><pre><code>def A (n : ℕ) := n &gt; 4
+def B (n : ℕ) := n &gt; 5</code></pre></div>
+
  and then put 
-```lean
-def C (n : ℕ) := A n ∧ B n
-```
+
+<div class="lean-code" data-start-line="155" data-end-line="155"><pre><code>def C (n : ℕ) := A n ∧ B n</code></pre></div>
+
  whch looks quite close to `C = A ∩ B`. 
 
 How the Mathlib's Set Library is Defined
@@ -146,8 +146,8 @@ Let's rebuild the set library.
 <div class='fn'>Everything below is in a temporary namespace to avoid conflicts.</div>
 
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="168" data-end-line="180"><pre><code>--hide
 namespace Temp2
 --unhide
 
@@ -157,48 +157,48 @@ def Set.member {α : Type} (x : α) (S : Set α) := S x
 def Set.inter {α : Type} (A B : Set α) (x : α) := A x ∧ B x
 def Set.union {α : Type} (A B : Set α) (x : α) := A x ∨ B x
 
-scoped infix:20 " ∈ " => Set.member
-scoped infixl:60 " ∩ " => Set.inter
-scoped infixl:40 " ∪ " => Set.union
-```
+scoped infix:20 &quot; ∈ &quot; =&gt; Set.member
+scoped infixl:60 &quot; ∩ &quot; =&gt; Set.inter
+scoped infixl:40 &quot; ∪ &quot; =&gt; Set.union</code></pre></div>
+
 
 Example Revisited
 ===
 Using the new definitions, we can write:
 
-```lean
-def A : Set ℕ := (· > 4)
-def B : Set ℕ := (· > 5)
 
-example : 6 ∈ A ∩ B := by   -- This is just the statement A 6 ∧ B 6 <proofstate>['⊢ 6 ∈ A ∩ B']</proofstate>
-  apply And.intro <proofstate>['case left\n⊢ A 6', 'case right\n⊢ B 6']</proofstate>
+<div class="lean-code" data-start-line="188" data-end-line="194"><pre><code>def A : Set ℕ := (· &gt; 4)
+def B : Set ℕ := (· &gt; 5)
+
+example : 6 ∈ A ∩ B := by   -- This is just the statement A 6 ∧ B 6
+  apply And.intro
   · simp[A]
-  · simp[B]
-```
+  · simp[B]</code></pre></div>
+
 
 The Subset Relation
 ===
 
 The subset relation is just implication:
 
-```lean
-def Set.subset {α : Type} (A B : Set α) : Prop := ∀ x, A x → B x
 
-infixl:40 " ⊆ " => Set.subset
-```
+<div class="lean-code" data-start-line="203" data-end-line="205"><pre><code>def Set.subset {α : Type} (A B : Set α) : Prop := ∀ x, A x → B x
+
+infixl:40 &quot; ⊆ &quot; =&gt; Set.subset</code></pre></div>
+
  And proofs look like first order logic 
-```lean
-example {α : Type} (A B : Set α) : A ∩ B ⊆ A := by <proofstate>['α : Type\nA B : Set α\n⊢ A ∩ B ⊆ A']</proofstate>
-  intro x hx <proofstate>['α : Type\nA B : Set α\nx : α\nhx : (A ∩ B) x\n⊢ A x']</proofstate>
-  exact hx.left
-```
+
+<div class="lean-code" data-start-line="209" data-end-line="211"><pre><code>example {α : Type} (A B : Set α) : A ∩ B ⊆ A := by
+  intro x hx
+  exact hx.left</code></pre></div>
+
  In fact, using the `change` tactic, you can make the goal look like FOL: 
-```lean
-example {α : Type} (A B : Set α) : A ∩ B ⊆ A := by <proofstate>['α : Type\nA B : Set α\n⊢ A ∩ B ⊆ A']</proofstate>
-  change ∀ x, A x ∧ B x → A x <proofstate>['α : Type\nA B : Set α\n⊢ ∀ (x : α), A x ∧ B x → A x']</proofstate>
-  intro x hx <proofstate>['α : Type\nA B : Set α\nx : α\nhx : A x ∧ B x\n⊢ A x']</proofstate>
-  exact hx.left
-```
+
+<div class="lean-code" data-start-line="215" data-end-line="218"><pre><code>example {α : Type} (A B : Set α) : A ∩ B ⊆ A := by
+  change ∀ x, A x ∧ B x → A x
+  intro x hx
+  exact hx.left</code></pre></div>
+
 
 Proving Set Equalites
 ===
@@ -208,85 +208,85 @@ To show two sets are equal, it is enough to show each is a subset of the other.
 This theorem uses the axiom `propext` which says `∀ {a b : Prop}, (a ↔ b) → a = b`
 
 
-```lean
-theorem subset_antisymm_iff {α : Type} {A B : Set α}
-  : A = B ↔ A ⊆ B ∧ B ⊆ A := by <proofstate>['α : Type\nA B : Set α\n⊢ A = B ↔ A ⊆ B ∧ B ⊆ A']</proofstate>
-  apply Iff.intro <proofstate>['case mp\nα : Type\nA B : Set α\n⊢ A = B → A ⊆ B ∧ B ⊆ A', 'case mpr\nα : Type\nA B : Set α\n⊢ A ⊆ B ∧ B ⊆ A → A = B']</proofstate>
-  · intro h <proofstate>['case mp\nα : Type\nA B : Set α\nh : A = B\n⊢ A ⊆ B ∧ B ⊆ A']</proofstate>
-    simp only [h, and_self] <proofstate>['case mp\nα : Type\nA B : Set α\nh : A = B\n⊢ B ⊆ B']</proofstate>
-    intro x hx <proofstate>['case mp\nα : Type\nA B : Set α\nh : A = B\nx : α\nhx : B x\n⊢ B x']</proofstate>
+
+<div class="lean-code" data-start-line="230" data-end-line="240"><pre><code>theorem subset_antisymm_iff {α : Type} {A B : Set α}
+  : A = B ↔ A ⊆ B ∧ B ⊆ A := by
+  apply Iff.intro
+  · intro h
+    simp only [h, and_self]
+    intro x hx
     exact hx
-  · intro ⟨ ha, hb ⟩ <proofstate>['case mpr\nα : Type\nA B : Set α\nha : A ⊆ B\nhb : B ⊆ A\n⊢ A = B']</proofstate>
-    funext x <proofstate>['case mpr.h\nα : Type\nA B : Set α\nha : A ⊆ B\nhb : B ⊆ A\nx : α\n⊢ A x = B x']</proofstate>
-    apply propext <proofstate>['case mpr.h.a\nα : Type\nA B : Set α\nha : A ⊆ B\nhb : B ⊆ A\nx : α\n⊢ A x ↔ B x']</proofstate>
-    exact ⟨ ha x, hb x ⟩
-```
+  · intro ⟨ ha, hb ⟩
+    funext x
+    apply propext
+    exact ⟨ ha x, hb x ⟩</code></pre></div>
+
  The name `antisym` comes from the observation that the subset relation is *antisymmetric*. 
 
 An Example Set Equality
 ===
 
-```lean
-example {α : Type} (A B : Set α) : A ∩ B = B ∩ A := by <proofstate>['α : Type\nA B : Set α\n⊢ A ∩ B = B ∩ A']</proofstate>
-  apply subset_antisymm_iff.mpr <proofstate>['α : Type\nA B : Set α\n⊢ A ∩ B ⊆ B ∩ A ∧ B ∩ A ⊆ A ∩ B']</proofstate>
-  apply And.intro <proofstate>['case left\nα : Type\nA B : Set α\n⊢ A ∩ B ⊆ B ∩ A', 'case right\nα : Type\nA B : Set α\n⊢ B ∩ A ⊆ A ∩ B']</proofstate>
-  · intro x hx <proofstate>['case left\nα : Type\nA B : Set α\nx : α\nhx : (A ∩ B) x\n⊢ (B ∩ A) x']</proofstate>
+
+<div class="lean-code" data-start-line="249" data-end-line="255"><pre><code>example {α : Type} (A B : Set α) : A ∩ B = B ∩ A := by
+  apply subset_antisymm_iff.mpr
+  apply And.intro
+  · intro x hx
     exact ⟨ hx.right, hx.left ⟩
-  · intro x hx <proofstate>['case right\nα : Type\nA B : Set α\nx : α\nhx : (B ∩ A) x\n⊢ (A ∩ B) x']</proofstate>
-    exact ⟨ hx.right, hx.left ⟩
-```
+  · intro x hx
+    exact ⟨ hx.right, hx.left ⟩</code></pre></div>
+
 
 Complements and Differences
 ===
 Complements and differences are what you would expect.
 
-```lean
-def Set.uninv {α : Type} : Set α := fun _ => True
-def Set.compl {α : Type} (S : Set α) := fun x => ¬S x
-postfix:95 " ᶜ " => Set.compl
+
+<div class="lean-code" data-start-line="264" data-end-line="268"><pre><code>def Set.uninv {α : Type} : Set α := fun _ =&gt; True
+def Set.compl {α : Type} (S : Set α) := fun x =&gt; ¬S x
+postfix:95 &quot; ᶜ &quot; =&gt; Set.compl
 def Set.diff {α : Type} (A B : Set α) := A ∩ Bᶜ
-infixl: 55 " - " => Set.diff  -- Lean uses `\` but I couldn't get that to work
-```
+infixl: 55 &quot; - &quot; =&gt; Set.diff  -- Lean uses `\` but I couldn&#x27;t get that to work</code></pre></div>
+
  For example, we can show the relationship between compliment and universe. 
-```lean
-example {α : Type} {A : Set α} : Aᶜ = Set.univ - A := by <proofstate>['α : Type\nA : Set α\n⊢ A ᶜ = Set.univ - A']</proofstate>
-  apply subset_antisymm_iff.mpr <proofstate>['α : Type\nA : Set α\n⊢ A ᶜ ⊆ Set.univ - A ∧ Set.univ - A ⊆ A ᶜ']</proofstate>
-  constructor <proofstate>['case left\nα : Type\nA : Set α\n⊢ A ᶜ ⊆ Set.univ - A', 'case right\nα : Type\nA : Set α\n⊢ Set.univ - A ⊆ A ᶜ']</proofstate>
-  · intro x hx <proofstate>['case left\nα : Type\nA : Set α\nx : α\nhx : (A ᶜ ) x\n⊢ (Set.univ - A) x']</proofstate>
-    constructor <proofstate>['case left.left\nα : Type\nA : Set α\nx : α\nhx : (A ᶜ ) x\n⊢ Set.univ x', 'case left.right\nα : Type\nA : Set α\nx : α\nhx : (A ᶜ ) x\n⊢ (A ᶜ ) x']</proofstate>
+
+<div class="lean-code" data-start-line="272" data-end-line="280"><pre><code>example {α : Type} {A : Set α} : Aᶜ = Set.univ - A := by
+  apply subset_antisymm_iff.mpr
+  constructor
+  · intro x hx
+    constructor
     · trivial
     · exact hx
-  · intro x ⟨ _, hc ⟩ <proofstate>['case right\nα : Type\nA : Set α\nx : α\nleft✝ : Set.univ x\nhc : (A ᶜ ) x\n⊢ (A ᶜ ) x']</proofstate>
-    exact hc
-```
+  · intro x ⟨ _, hc ⟩
+    exact hc</code></pre></div>
+
 
 Powersets
 ===
 The set of all subsets of a set can be defined using the subset relation:
 
-```lean
-def Set.power {α : Type} (S : Set α) : Set (Set α) := fun A => A ⊆ S
-```
+
+<div class="lean-code" data-start-line="288" data-end-line="288"><pre><code>def Set.power {α : Type} (S : Set α) : Set (Set α) := fun A =&gt; A ⊆ S</code></pre></div>
+
  Here is a nice example property: 
-```lean
-example {α : Type} (A B : Set α)
-  : A ⊆ B → Set.power A ⊆ Set.power B := by <proofstate>['α : Type\nA B : Set α\n⊢ A ⊆ B → A.power ⊆ B.power']</proofstate>
-  intro hab S hS x Sx <proofstate>['α : Type\nA B : Set α\nhab : A ⊆ B\nS : Set α\nhS : A.power S\nx : α\nSx : S x\n⊢ B x']</proofstate>
-  apply hab <proofstate>['case a\nα : Type\nA B : Set α\nhab : A ⊆ B\nS : Set α\nhS : A.power S\nx : α\nSx : S x\n⊢ A x']</proofstate>
-  apply hS <proofstate>['case a.a\nα : Type\nA B : Set α\nhab : A ⊆ B\nS : Set α\nhS : A.power S\nx : α\nSx : S x\n⊢ S x']</proofstate>
-  exact Sx
-```
+
+<div class="lean-code" data-start-line="292" data-end-line="297"><pre><code>example {α : Type} (A B : Set α)
+  : A ⊆ B → Set.power A ⊆ Set.power B := by
+  intro hab S hS x Sx
+  apply hab
+  apply hS
+  exact Sx</code></pre></div>
+
  This operation and many more are defined in Mathlib's *extensive* `Set` Library:
 - [Definitions](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Set/Defs.html)
 - [Set Operations](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Set/Operations.html)
 - [Basic Properties](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Set/Basic.html)
 
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="306" data-end-line="308"><pre><code>--hide
 end Temp2
---unhide
-```
+--unhide</code></pre></div>
+
 
 Set Builder Notation
 ===
@@ -296,46 +296,46 @@ Mathlib provides a powerful set builder notation.
 For example:
 
 
-```lean
-#check { n : ℕ  | n > 2 }
-#check fun n => n > 2
 
-#check { 2*n | n > 2 }
-#check fun x => ∃ n > 2, 2*n = x
+<div class="lean-code" data-start-line="320" data-end-line="327"><pre><code>#check { n : ℕ  | n &gt; 2 }
+#check fun n =&gt; n &gt; 2
+
+#check { 2*n | n &gt; 2 }
+#check fun x =&gt; ∃ n &gt; 2, 2*n = x
 
 #check { (x,y) | Prime x ∧ Prime y ∧ x + 1 = y }
-#check fun p : ℕ × ℕ => Prime p.1 ∧ Prime p.2 ∧ p.1 + 1 = p.2
-```
+#check fun p : ℕ × ℕ =&gt; Prime p.1 ∧ Prime p.2 ∧ p.1 + 1 = p.2</code></pre></div>
+
 
 Exercises
 ===
 
-```lean
-universe u
-variable (α β : Type u) {A B C : Set α} {D E : Set β}
-```
+
+<div class="lean-code" data-start-line="335" data-end-line="336"><pre><code>universe u
+variable (α β : Type u) {A B C : Set α} {D E : Set β}</code></pre></div>
+
 
 <ex /> Using first order logic (and not Mathlib's set theorems), show:
 
 
-```lean
-example : A ⊆ C → B ⊆ C → A ∪ B ⊆ C := sorry
-example : A ⊆ B → B ⊆ C → A ⊆ C := sorry
-```
+
+<div class="lean-code" data-start-line="343" data-end-line="344"><pre><code>example : A ⊆ C → B ⊆ C → A ∪ B ⊆ C := sorry
+example : A ⊆ B → B ⊆ C → A ⊆ C := sorry</code></pre></div>
+
  <ex /> Lean defines the image of `f` with respect to `A`, denoted `f '' A`,
 to be the set `{f x | x ∈ A}`. Show:
 
 
-```lean
-example {f : α → β} : f '' (A ∪ B) = f '' A ∪ f '' B := sorry
-```
+
+<div class="lean-code" data-start-line="351" data-end-line="351"><pre><code>example {f : α → β} : f &#x27;&#x27; (A ∪ B) = f &#x27;&#x27; A ∪ f &#x27;&#x27; B := sorry</code></pre></div>
+
  <ex /> Lean defines the preimage of `f` with respect to `A`, denoted
 `f⁻¹' A` to be the set `{x | ∃ y, f x = y}`. Show,
 
 
-```lean
-example {f : α → β} : f⁻¹' (D ∩ E) = f⁻¹' D ∩ f⁻¹' E := sorry
-```
+
+<div class="lean-code" data-start-line="358" data-end-line="358"><pre><code>example {f : α → β} : f⁻¹&#x27; (D ∩ E) = f⁻¹&#x27; D ∩ f⁻¹&#x27; E := sorry</code></pre></div>
+
 
 Finite Sets
 ===
@@ -365,34 +365,34 @@ Fin
 The easiest way to make a type that has exactly `n` elements is:
 
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="392" data-end-line="404"><pre><code>--hide
 namespace Temp3
 --unhide
 
 structure Fin (n : ℕ) where
   val : ℕ
-  isLt : val < n
+  isLt : val &lt; n
 
 example : Fin 5 := ⟨ 3, by decide ⟩
 
 --hide
 end Temp3
---unhide
-```
+--unhide</code></pre></div>
+
 
 Lean defines quite a bit of infrastructure around this type. For example,
 
-```lean
-def x : Fin 10 := 1
+
+<div class="lean-code" data-start-line="410" data-end-line="413"><pre><code>def x : Fin 10 := 1
 def y : Fin 10 := 2
 
-#eval 2*x + y               -- 4
-```
+#eval 2*x + y               -- 4</code></pre></div>
+
  Although it doesn't always do what you would expect : 
-```lean
-#eval x + 10*y              -- 1 (modular addition)
-```
+
+<div class="lean-code" data-start-line="417" data-end-line="417"><pre><code>#eval x + 10*y              -- 1 (modular addition)</code></pre></div>
+
  But what if we want a finite type that has any type of element, not just integers?
 
 
@@ -404,23 +404,23 @@ bijection between `Fin n` and `α`. We wrap this into a `Prop`-valued typeclass
 as follows:
 
 
-```lean
-class inductive Finite (α : Type u) : Prop where
-  | intro {n : ℕ} : α ≃ Fin n → Finite α
-```
+
+<div class="lean-code" data-start-line="431" data-end-line="432"><pre><code>class inductive Finite (α : Type u) : Prop where
+  | intro {n : ℕ} : α ≃ Fin n → Finite α</code></pre></div>
+
  For example 
-```lean
-inductive Spin where | up | dn
+
+<div class="lean-code" data-start-line="436" data-end-line="445"><pre><code>inductive Spin where | up | dn
 
 def Spin.equiv_fin2 : Spin ≃ Fin 2 := {
-  toFun x   := match x with | up => 0 | dn => 1,
-  invFun n  := match n with | 0 => up | 1 => dn,
+  toFun x   := match x with | up =&gt; 0 | dn =&gt; 1,
+  invFun n  := match n with | 0 =&gt; up | 1 =&gt; dn,
   right_inv := by grind,
   left_inv  := by grind
 }
 
-instance Spin.is_finite : Finite Spin := ⟨ Spin.equiv_fin2 ⟩
-```
+instance Spin.is_finite : Finite Spin := ⟨ Spin.equiv_fin2 ⟩</code></pre></div>
+
 
 Lean's Finset
 ===
@@ -428,29 +428,29 @@ Lean's Finset
 A `Finset` in Lean is a finite collection of elements all of the same type with
 set-like operations:
 
-```lean
-def R : Finset ℚ := {1/2, 1/4, 1/8, 1/16}
+
+<div class="lean-code" data-start-line="455" data-end-line="461"><pre><code>def R : Finset ℚ := {1/2, 1/4, 1/8, 1/16}
 def S : Finset ℚ := {-3,-2,-1,0,1,2,3}
 
 #eval R ∩ S
 #eval R \ S
 
-#eval insert 4 (insert (-4) R)       --  {-4,-3,-2,-1,0,1,2,3,4}
-```
+#eval insert 4 (insert (-4) R)       --  {-4,-3,-2,-1,0,1,2,3,4}</code></pre></div>
+
  Under the hood, a `Finset` is a structure: 
-```lean
-def X : Finset ℕ := {
+
+<div class="lean-code" data-start-line="466" data-end-line="469"><pre><code>def X : Finset ℕ := {
   val := [1,2,3],                      -- A `Multiset`, which derives from a `List`
   nodup := by simp                     -- A proof the list has no duplicates
-}
-```
+}</code></pre></div>
+
 
 In general you do not have a set defined by a predicate, or operations like
 
-```lean
-#check_failure Rᶜ
-#check_failure ({ n : ℕ | n < 10 } : Finset ℕ)
-```
+
+<div class="lean-code" data-start-line="475" data-end-line="476"><pre><code>#check_failure Rᶜ
+#check_failure ({ n : ℕ | n &lt; 10 } : Finset ℕ)</code></pre></div>
+
 
 Exercises
 ===
@@ -458,51 +458,51 @@ Exercises
 <ex /> Prove the following properties of `Fin`:
 
 
-```lean
-example : Fin 0 → False := sorry
+
+<div class="lean-code" data-start-line="487" data-end-line="489"><pre><code>example : Fin 0 → False := sorry
 example (x : Fin 2) : x = 0 ∨ x = 1 := sorry
-example (n : ℕ) (x y : Fin n) : x = y ↔ x.val = y.val := sorry
-```
+example (n : ℕ) (x y : Fin n) : x = y ↔ x.val = y.val := sorry</code></pre></div>
+
 
 <ex /> Define the equivalence
 
 
-```lean
-def equiv_subtype {n : ℕ} : Fin n ≃ { x : ℕ | x < n } := sorry
-```
+
+<div class="lean-code" data-start-line="496" data-end-line="496"><pre><code>def equiv_subtype {n : ℕ} : Fin n ≃ { x : ℕ | x &lt; n } := sorry</code></pre></div>
+
 
 <ex /> Use the above equivalence to show
 
 
-```lean
-theorem equiv_same_size {n m : ℕ} (eq : Fin n ≃ Fin m) : n = m := sorry
-```
+
+<div class="lean-code" data-start-line="503" data-end-line="503"><pre><code>theorem equiv_same_size {n m : ℕ} (eq : Fin n ≃ Fin m) : n = m := sorry</code></pre></div>
+
 
 <ex /> (Optional) Prove the pigeonhole principal (constructively, whithout the classical axiom).
 
 
-```lean
-theorem pp {m n : ℕ} {f : Fin m → Fin n}
-  : m > n → ∃ a b, a ≠ b ∧ f a = f b := sorry
-```
+
+<div class="lean-code" data-start-line="510" data-end-line="511"><pre><code>theorem pp {m n : ℕ} {f : Fin m → Fin n}
+  : m &gt; n → ∃ a b, a ≠ b ∧ f a = f b := sorry</code></pre></div>
+
 
 Exercise
 ===
 
 <ex /> (Optional) Suppose we define the natural numbers as follows:
 
-```lean
-def zero {α : Type u} : Set α := ∅
+
+<div class="lean-code" data-start-line="520" data-end-line="523"><pre><code>def zero {α : Type u} : Set α := ∅
 def one {α : Type u} : Set (Set α) := {zero}
 def two {α : Type u} : Set (Set (Set α)) := {one}
--- etc.
-```
+-- etc.</code></pre></div>
+
  How do you define the successor function? Addition? Etc? 
-```lean
---hide
+
+<div class="lean-code" data-start-line="527" data-end-line="529"><pre><code>--hide
 end LeanW26
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

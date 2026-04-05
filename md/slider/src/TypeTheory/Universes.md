@@ -52,8 +52,8 @@ Types in Lean
 
 You can use `#check` to check types
 
-```lean
-#check Prop            -- Type
+
+<div class="lean-code" data-start-line="69" data-end-line="77"><pre><code>#check Prop            -- Type
 
 #check Type            -- Type 1
 #check Type 0          -- Type 1
@@ -61,8 +61,8 @@ You can use `#check` to check types
 #check Type 12         -- Type 13
 
 #check_failure Type 100 -- Universe level offset `100`
-                        -- exceeds maximum offset `32`
-```
+                        -- exceeds maximum offset `32`</code></pre></div>
+
  Most math does not require many universe levels,
 but various categorical constructions do.  
 
@@ -71,31 +71,31 @@ Universe Variables
 
 You can declare universes with the universe keyword:
 
-```lean
-universe u v
-def f1 (x : Type u) : Type u := x
-```
+
+<div class="lean-code" data-start-line="89" data-end-line="90"><pre><code>universe u v
+def f1 (x : Type u) : Type u := x</code></pre></div>
+
  Or you can use the dot notation 
-```lean
-def f2.{w} (x : Type w) : Type w := x
-```
+
+<div class="lean-code" data-start-line="94" data-end-line="94"><pre><code>def f2.{w} (x : Type w) : Type w := x</code></pre></div>
+
 
 A function with a universe variable is then *universe polymorphic*
 
-```lean
-#check f2                         -- Type v → Type v
+
+<div class="lean-code" data-start-line="100" data-end-line="103"><pre><code>#check f2                         -- Type v → Type v
 #check f2 Nat                     -- Type (since Nat : Type)
-#check f2 (List (Type 0))         -- Type 1, since Lists of type can't have their
-                                  -- own types as elements
-```
+#check f2 (List (Type 0))         -- Type 1, since Lists of type can&#x27;t have their
+                                  -- own types as elements</code></pre></div>
+
 
 Self Application Does not Work
 ===
 
 You can't apply `f2` to itself: 
-```lean
-#check_failure f2 f2
-```
+
+<div class="lean-code" data-start-line="111" data-end-line="111"><pre><code>#check_failure f2 f2</code></pre></div>
+
  Gives
 
 ```lean
@@ -114,17 +114,17 @@ Function Types
 ===
 Functions have type `Type u → Type v` for some universe levels `u` and `v`.
 
-```lean
-def my_id (x : Type u) := x
+
+<div class="lean-code" data-start-line="133" data-end-line="136"><pre><code>def my_id (x : Type u) := x
 
 #check my_id             -- Type → Type
-#check my_id String      -- Type → Type
-```
+#check my_id String      -- Type → Type</code></pre></div>
+
 
 Since `Type → Type` is a type, it must have a type. 
-```lean
-#check Type → Type       -- Type 1
-```
+
+<div class="lean-code" data-start-line="141" data-end-line="141"><pre><code>#check Type → Type       -- Type 1</code></pre></div>
+
 
 If the type of `Type → Type` were `Type`, then `Type` would contain a function
 whose domain and codomain are both `Type`, meaning it would contain an element
@@ -139,15 +139,15 @@ You can
 - Take the max of two universes
 
 
-```lean
-#check Type (u+1)
-#check Type (max u v)
-```
+
+<div class="lean-code" data-start-line="159" data-end-line="160"><pre><code>#check Type (u+1)
+#check Type (max u v)</code></pre></div>
+
  For example 
-```lean
-#check Prod             -- Type u → Type v → Type (max u v)
-#check Type u × Type v  --  Type (max (u + 1) (v + 1))
-```
+
+<div class="lean-code" data-start-line="164" data-end-line="165"><pre><code>#check Prod             -- Type u → Type v → Type (max u v)
+#check Type u × Type v  --  Type (max (u + 1) (v + 1))</code></pre></div>
+
 
 Prop is Impredicative
 ===
@@ -157,17 +157,17 @@ Generally you cannot have a type built from other types live in the same unviers
 For example, if you change `u+1` to `u` below, you get a type error.
 
 
-```lean
-def MyProd (α β : Type u) : Type (u+1) :=
-  Π X : Type u, (α → β → X) → X
-```
+
+<div class="lean-code" data-start-line="179" data-end-line="180"><pre><code>def MyProd (α β : Type u) : Type (u+1) :=
+  Π X : Type u, (α → β → X) → X</code></pre></div>
+
 
 However, with `Prop` you *ca*n make such definitions.
 
-```lean
-def MyPropProd (α β : Prop) : Prop :=
-  ∀ X : Prop, (α → β → X) → X
-```
+
+<div class="lean-code" data-start-line="186" data-end-line="187"><pre><code>def MyPropProd (α β : Prop) : Prop :=
+  ∀ X : Prop, (α → β → X) → X</code></pre></div>
+
  This is because `Prop` is impredicative in Lean, unlike all other types. 
 
 How `Prop` Avoids Paradoxes
@@ -195,10 +195,10 @@ imax u v := if v = 0 then 0 else max u v
 ```
 
  For example, 
-```lean
-variable (α : Sort u) (β : α → Sort v)
-#check (Π x : α, β x)                   -- Sort (imax u v)
-```
+
+<div class="lean-code" data-start-line="222" data-end-line="223"><pre><code>variable (α : Sort u) (β : α → Sort v)
+#check (Π x : α, β x)                   -- Sort (imax u v)</code></pre></div>
+
 
 If `α := Type 2` and `β x := Type 3`:
 ```
@@ -252,11 +252,11 @@ def f (n : ℕ) := if n = 0 then Type 0 else Type 1
 ```
 How would you fix it?
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="281" data-end-line="283"><pre><code>--hide
 end LeanW26.Universes
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

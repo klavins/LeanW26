@@ -27,9 +27,9 @@ Functions
 
 Here is an example function.
 
-```lean
-def f1 (x : ℕ) : ℕ := x+1
-```
+
+<div class="lean-code" data-start-line="43" data-end-line="43"><pre><code>def f1 (x : ℕ) : ℕ := x+1</code></pre></div>
+
  It is called `f1`. It takes one *argument* x.
 
 The type of `x` is `ℕ` which is Lean's *Natural Number Type* (also written `Nat`).
@@ -38,9 +38,9 @@ It can take on values 0, 1, 2, 3, ...
 The return type of the function is also `ℕ`.
 
 You can (usually) evaluate a function using `#eval`. For example,  
-```lean
-#eval f1 4
-```
+
+<div class="lean-code" data-start-line="54" data-end-line="54"><pre><code>#eval f1 4</code></pre></div>
+
 
 If Expressions
 ===
@@ -48,24 +48,24 @@ If Expressions
 You can define a new expression using `if`, `then`, and `else`.
 
 
-```lean
-def f2 (x : ℕ) : ℕ :=
-  if x < 10
+
+<div class="lean-code" data-start-line="64" data-end-line="67"><pre><code>def f2 (x : ℕ) : ℕ :=
+  if x &lt; 10
   then 0
-  else 1
-```
+  else 1</code></pre></div>
+
  For example: 
-```lean
-#eval f2 4
-```
+
+<div class="lean-code" data-start-line="71" data-end-line="71"><pre><code>#eval f2 4</code></pre></div>
+
  ***Important***: Lean is *not* a procedural language. The above is not interpreted
 as telling the CPU which branch to take in some assembly language.
 
 Rather, an `if` statement is a first class expression. For example, we can write:
 
-```lean
-#eval (if 3 < 4 then 1 else 2)^2 + (if Even 9 then 3 else 4)
-```
+
+<div class="lean-code" data-start-line="79" data-end-line="79"><pre><code>#eval (if 3 &lt; 4 then 1 else 2)^2 + (if Even 9 then 3 else 4)</code></pre></div>
+
 
 Let Expressions
 ===
@@ -73,53 +73,53 @@ Let Expressions
 Let expressions allow you to define a *bound* variable with a specific value in the
 rest of an expression.
 
-```lean
-def f3 (x : ℕ) : ℕ :=
+
+<div class="lean-code" data-start-line="89" data-end-line="93"><pre><code>def f3 (x : ℕ) : ℕ :=
   let y := x*x
   y+1
 
-#eval f3 4
-```
+#eval f3 4</code></pre></div>
+
  Similarly, this is not a control flow situation. For example, you can write: 
-```lean
-#eval (let x := 5; x*2) + (let x := 3; x-1) -- 12
-```
+
+<div class="lean-code" data-start-line="97" data-end-line="97"><pre><code>#eval (let x := 5; x*2) + (let x := 3; x-1) -- 12</code></pre></div>
+
 
 Currying
 ===
 
 When a function is defined with multiple arguments, as in
 
-```lean
-def f4 (x y : ℕ) := 2*x + y
-```
+
+<div class="lean-code" data-start-line="106" data-end-line="106"><pre><code>def f4 (x y : ℕ) := 2*x + y</code></pre></div>
+
 
 it is really being defined as a _a function that takes an argument and returns a function
 that takes an argument that returns an expression_. The above is in fact shorthand for:
 
-```lean
-def f4' := fun (x : ℕ) => fun (y : ℕ) => 2*x + y
-```
+
+<div class="lean-code" data-start-line="113" data-end-line="113"><pre><code>def f4&#x27; := fun (x : ℕ) =&gt; fun (y : ℕ) =&gt; 2*x + y</code></pre></div>
+
 
 Thus, if we just pass one argument to `f4` we a get _partial application_, 
-```lean
-def f5 := f4 10
-```
+
+<div class="lean-code" data-start-line="118" data-end-line="118"><pre><code>def f5 := f4 10</code></pre></div>
+
 
 The function `f5` in this case is equivalent to
 
-```lean
-def f5' (y: ℕ) := 20 + y
-```
+
+<div class="lean-code" data-start-line="124" data-end-line="124"><pre><code>def f5&#x27; (y: ℕ) := 20 + y</code></pre></div>
+
 
 Testing these functions gives:
 
-```lean
-#eval f4 10 1    -- 21
-#eval f4' 10 1   -- 21
+
+<div class="lean-code" data-start-line="130" data-end-line="133"><pre><code>#eval f4 10 1    -- 21
+#eval f4&#x27; 10 1   -- 21
 #eval f5 1       -- 21
-#eval f5' 1      -- 21
-```
+#eval f5&#x27; 1      -- 21</code></pre></div>
+
 
 Functions that Operate on Functions
 ===
@@ -130,8 +130,8 @@ and return them.
 For example:
 
 
-```lean
-def do_twice (f : ℕ → ℕ) (x : ℕ) := f (f x)
+
+<div class="lean-code" data-start-line="146" data-end-line="154"><pre><code>def do_twice (f : ℕ → ℕ) (x : ℕ) := f (f x)
 
 #check do_twice f1                    -- ℕ → ℕ
 #eval do_twice f1 3                   -- 5
@@ -139,19 +139,19 @@ def do_twice (f : ℕ → ℕ) (x : ℕ) := f (f x)
 
 theorem d2 : do_twice (do_twice f1) 3 = 7 := by
   unfold f1 do_twice
-  sorry
-```
+  sorry</code></pre></div>
+
 
 Unnamed Variables
 ===
 
 If a function does not use an argument, the Lean linter complains
 that you have an unused variable. You can get rid of this with `_` 
-```lean
-def h1 (x : ℕ) := 1             -- Linter says: unused variable `x`
+
+<div class="lean-code" data-start-line="163" data-end-line="165"><pre><code>def h1 (x : ℕ) := 1             -- Linter says: unused variable `x`
 def h2 (_ : ℕ) := 1
-def h3 (_x : ℕ) := 1
-```
+def h3 (_x : ℕ) := 1</code></pre></div>
+
 
 Exercises
 ===
@@ -180,26 +180,26 @@ Constructors
 Many types in Lean are defined *inductively* with *constructors*. For example, there are two
 ways to make a `ℕ`.
 
-```lean
-#print Nat -- constructors:
+
+<div class="lean-code" data-start-line="200" data-end-line="202"><pre><code>#print Nat -- constructors:
            -- ℕ.zero : ℕ
-           -- ℕ.succ : ℕ → ℕ
-```
+           -- ℕ.succ : ℕ → ℕ</code></pre></div>
+
  You can use the keyword `match` to respond to how a value was constructed.
 
-```lean
-def nonzero (x : ℕ) : Bool :=
+
+<div class="lean-code" data-start-line="207" data-end-line="213"><pre><code>def nonzero (x : ℕ) : Bool :=
   match x with
-  | Nat.zero => false
-  | Nat.succ k => true
+  | Nat.zero =&gt; false
+  | Nat.succ k =&gt; true
 
 #eval nonzero 0
-#eval nonzero 1234
-```
+#eval nonzero 1234</code></pre></div>
+
  Of course this function could also have been written: 
-```lean
-def nonzero' (x : ℕ) := x ≠ 0
-```
+
+<div class="lean-code" data-start-line="217" data-end-line="217"><pre><code>def nonzero&#x27; (x : ℕ) := x ≠ 0</code></pre></div>
+
 
 Match is a General Pattern Matcher
 ===
@@ -207,20 +207,20 @@ Match is a General Pattern Matcher
  You just have to cover all possibilities.
 
 In this context, `_` matches anything that hasn't been listed yet. 
-```lean
-def is_3_or_12 (x : ℕ) : Bool :=
+
+<div class="lean-code" data-start-line="230" data-end-line="234"><pre><code>def is_3_or_12 (x : ℕ) : Bool :=
   match x with
-  | 3 => true
-  | 12 => true
-  | _ => false
-```
+  | 3 =&gt; true
+  | 12 =&gt; true
+  | _ =&gt; false</code></pre></div>
+
  You can match pairs, triples, etc. 
-```lean
-def is_3_and_12 (x y : ℕ) : Bool :=
+
+<div class="lean-code" data-start-line="238" data-end-line="241"><pre><code>def is_3_and_12 (x y : ℕ) : Bool :=
   match x, y with
-  | 3, 12 => true
-  | _, _ => false
-```
+  | 3, 12 =&gt; true
+  | _, _ =&gt; false</code></pre></div>
+
 
 If you don't match all possibilities, Lean will give you an error: _Missing cases: ..._
 
@@ -232,23 +232,23 @@ Recursion is how you do loops in a functional language like Lean.
 Here is a standard example with `ℕ`:
 
 
-```lean
-def fct (n : ℕ) : ℕ :=
+
+<div class="lean-code" data-start-line="256" data-end-line="259"><pre><code>def fct (n : ℕ) : ℕ :=
   match n with
-  | 0 => 1
-  | k+1 => n * (fct k)
-```
+  | 0 =&gt; 1
+  | k+1 =&gt; n * (fct k)</code></pre></div>
+
  And here's another example the extends the `do_twice` function: 
-```lean
-def do_n (n : ℕ) (f : ℕ → ℕ) (x : ℕ) :=
+
+<div class="lean-code" data-start-line="263" data-end-line="270"><pre><code>def do_n (n : ℕ) (f : ℕ → ℕ) (x : ℕ) :=
   match n with
-  | 0 => x
-  | k+1 => f (do_n k f x)
+  | 0 =&gt; x
+  | k+1 =&gt; f (do_n k f x)
 
 def f10 := do_n 10 f1
 
-#eval f10 0
-```
+#eval f10 0</code></pre></div>
+
 
 When Recursion Doesn't Work
 ===
@@ -256,9 +256,9 @@ When Recursion Doesn't Work
 Recursion has to be well founded, otherwise you may get an infinite loop,
 which Lean does not allow:
 
-```lean
---def not_ok (x : ℕ) : ℕ := not_ok x
-```
+
+<div class="lean-code" data-start-line="280" data-end-line="280"><pre><code>--def not_ok (x : ℕ) : ℕ := not_ok x</code></pre></div>
+
  Which results in the error:
 
 > fail to show termination for
@@ -302,12 +302,12 @@ leading to a large intermediate expression in the kernel that takes up a lot of 
 Tail Recursion
 ===
 
-```lean
-def factAux (n acc : ℕ) : ℕ :=
+
+<div class="lean-code" data-start-line="326" data-end-line="329"><pre><code>def factAux (n acc : ℕ) : ℕ :=
   match n with
-  | 0     => acc
-  | k+1   => factAux k (acc * (k + 1))
-```
+  | 0     =&gt; acc
+  | k+1   =&gt; factAux k (acc * (k + 1))</code></pre></div>
+
 
 Now both arguments to `factAux` must be evaluated before calling `factAux` again.
 
@@ -318,30 +318,30 @@ factAux 4 1 = factAux 3 (acc*4)  = factAux 3 4
             = factAux 0 24       = 24
 ```
 We wrap `factAux` to initialize `acc` and get the desired function. 
-```lean
-def fact (n : ℕ) : ℕ :=
+
+<div class="lean-code" data-start-line="342" data-end-line="345"><pre><code>def fact (n : ℕ) : ℕ :=
   factAux n 1
 
-#eval fact 5         -- 120
-```
+#eval fact 5         -- 120</code></pre></div>
+
 
 Local Functions
 ===
 
 Using `let rec` we can declare a local function `aux`
 to avoid polluting the namespace. 
-```lean
-def fact2 (n : ℕ) : ℕ :=
+
+<div class="lean-code" data-start-line="354" data-end-line="363"><pre><code>def fact2 (n : ℕ) : ℕ :=
   let rec aux (n acc : ℕ) : ℕ :=
     match n with
-    | 0     => acc
-    | k+1   => aux k (acc * (k + 1))
+    | 0     =&gt; acc
+    | k+1   =&gt; aux k (acc * (k + 1))
   aux n 1
 
 #eval fact2 5
 
-#check fact2.aux
-```
+#check fact2.aux</code></pre></div>
+
 
 The resulting code is usually more compact.
 
@@ -351,11 +351,11 @@ A Look Ahead
 
 We can write a proof that these two definitions yield the same function!
 
-```lean
-theorem helper (n acc : ℕ) : factAux n acc = acc * fct n := by
+
+<div class="lean-code" data-start-line="377" data-end-line="388"><pre><code>theorem helper (n acc : ℕ) : factAux n acc = acc * fct n := by
   induction n generalizing acc with
-  | zero => simp [factAux, fct]
-  | succ k ih =>
+  | zero =&gt; simp [factAux, fct]
+  | succ k ih =&gt;
     unfold factAux fct
     rw[ih (acc*(k+1))]
     apply Nat.mul_assoc
@@ -363,8 +363,8 @@ theorem helper (n acc : ℕ) : factAux n acc = acc * fct n := by
 theorem fct_fact : fact = fct := by
   funext n
   unfold fact
-  simp[helper n 1]
-```
+  simp[helper n 1]</code></pre></div>
+
  We'll explain this in a couple of weeks. 
 
 Exercises
@@ -394,43 +394,43 @@ Booelans vs Propositions
 ===
 
 `Bool` has possible values `true` and `false`.
-```lean
-#check true
-#check false
-```
+
+<div class="lean-code" data-start-line="424" data-end-line="425"><pre><code>#check true
+#check false</code></pre></div>
+
  It is used in programming. It gives a computable value that can be used in downstream
 programming logic. For example. 
-```lean
-def is_even (x : ℕ) : Bool := x % 2 = 0
-```
+
+<div class="lean-code" data-start-line="430" data-end-line="430"><pre><code>def is_even (x : ℕ) : Bool := x % 2 = 0</code></pre></div>
+
  `Prop` has values that are *proofs*. 
-```lean
-def my_prop : Prop := ∀ x : ℕ, x ≥ 0
-def my_proof : my_prop := fun x => Nat.zero_le x
+
+<div class="lean-code" data-start-line="434" data-end-line="440"><pre><code>def my_prop : Prop := ∀ x : ℕ, x ≥ 0
+def my_proof : my_prop := fun x =&gt; Nat.zero_le x
 theorem my_theorem : my_prop := my_proof
 
 #check my_prop            -- Prop
 #check my_proof           -- my_prop
-#check my_theorem         -- mp_prop
-```
+#check my_theorem         -- mp_prop</code></pre></div>
+
 
 True and False
 ===
 
 In particular, the `Prop` types `True` and `False` are not atomic objects, but inductively
 defined types of type `Prop`. 
-```lean
-#print True
-```
+
+<div class="lean-code" data-start-line="450" data-end-line="450"><pre><code>#print True</code></pre></div>
+
 
 > inductive True : Prop <br>
 > number of parameters: 0 <br>
 > constructors: <br>
 > True.intro : True
 
-```lean
-#print False
-```
+
+<div class="lean-code" data-start-line="459" data-end-line="459"><pre><code>#print False</code></pre></div>
+
 
 > inductive False : Prop <br>
 > number of parameters: 0 <br>
@@ -448,22 +448,22 @@ Number Types
 
 Lean provides a bunch of different types of numbers.
 
-```lean
-#check ℕ       -- Natural Numbers
+
+<div class="lean-code" data-start-line="479" data-end-line="485"><pre><code>#check ℕ       -- Natural Numbers
 #check ℤ       -- Integers
 #check ℚ       -- Rational Numbers
 #check ℝ       -- Real Numbers
 #check ℂ       -- Complex Numbers
 #check Float
-#check Float32
-```
+#check Float32</code></pre></div>
+
  Each one has a set of operations on it. For example, you can get the
 numerator and denominator of a rational number. 
-```lean
-def invert_rat (x : ℚ) : ℚ := x.den / x.num
 
-#eval invert_rat (2/4)  -- 2
-```
+<div class="lean-code" data-start-line="490" data-end-line="492"><pre><code>def invert_rat (x : ℚ) : ℚ := x.den / x.num
+
+#eval invert_rat (2/4)  -- 2</code></pre></div>
+
  VS Code will give you completion possibilities for you to explore
 if you type a `.` and wait a second.
 
@@ -476,16 +476,16 @@ actual mathematical representations of real numbers (as limits of Cauchy sequenc
 Therefore, we can't run  `#eval` on functions involving reals.
 
 
-```lean
-noncomputable
-def invert_real (x : ℝ) : ℝ := 1/x
-```
+
+<div class="lean-code" data-start-line="507" data-end-line="508"><pre><code>noncomputable
+def invert_real (x : ℝ) : ℝ := 1/x</code></pre></div>
+
  But we can prove theorems about them! 
-```lean
-theorem invert_invert : invert_real ∘ invert_real = id := by
+
+<div class="lean-code" data-start-line="512" data-end-line="514"><pre><code>theorem invert_invert : invert_real ∘ invert_real = id := by
   funext x
-  simp[invert_real]
-```
+  simp[invert_real]</code></pre></div>
+
 
 Coercion
 ===
@@ -497,19 +497,19 @@ number types are easily coerced.
 One way to corece is to use the notation `(value:Type)`.
 
 
-```lean
-#check 1               -- ℕ, the default
-#check (1:ℚ)           -- ℚ, coerced to a Rat
-```
+
+<div class="lean-code" data-start-line="528" data-end-line="529"><pre><code>#check 1               -- ℕ, the default
+#check (1:ℚ)           -- ℚ, coerced to a Rat</code></pre></div>
+
  These conversions are syntactic sugar for calling an explicit convertor. 
-```lean
-#check (Rat.ofInt 1)   -- ℚ
-```
+
+<div class="lean-code" data-start-line="533" data-end-line="533"><pre><code>#check (Rat.ofInt 1)   -- ℚ</code></pre></div>
+
  If the type of a function is specified, then Lean figures out the conversion
 automatically. 
-```lean
-def toRat (x : ℤ) : ℚ := x
-```
+
+<div class="lean-code" data-start-line="538" data-end-line="538"><pre><code>def toRat (x : ℤ) : ℚ := x</code></pre></div>
+
 
 Characters and Strings
 ===
@@ -517,26 +517,26 @@ Characters and Strings
 Characters are unicode values with a way to write them as characters under the hood.
 
 
-```lean
-#check 'u'
-#eval 'u'.toNat
+
+<div class="lean-code" data-start-line="549" data-end-line="553"><pre><code>#check &#x27;u&#x27;
+#eval &#x27;u&#x27;.toNat
 #eval Char.mk 117 (by aesop)
-#eval 'x'.isLower
-#eval 'x'.toUpper
-```
+#eval &#x27;x&#x27;.isLower
+#eval &#x27;x&#x27;.toUpper</code></pre></div>
+
  Strings are lists of characters. 
-```lean
-#eval String.ofList ['u','w']
-#check "u"
-#eval "uw"
-#eval "u" ++ "w"
-#check String.mk
-```
+
+<div class="lean-code" data-start-line="557" data-end-line="561"><pre><code>#eval String.ofList [&#x27;u&#x27;,&#x27;w&#x27;]
+#check &quot;u&quot;
+#eval &quot;uw&quot;
+#eval &quot;u&quot; ++ &quot;w&quot;
+#check String.mk</code></pre></div>
+
  Strings have a variety of operations 
-```lean
-#eval "uw".toUpper
-#eval "uw" ≤ "uwece"
-```
+
+<div class="lean-code" data-start-line="565" data-end-line="566"><pre><code>#eval &quot;uw&quot;.toUpper
+#eval &quot;uw&quot; ≤ &quot;uwece&quot;</code></pre></div>
+
 
 Exercises
 ===
@@ -557,46 +557,46 @@ Another example of an inductively defined type is `List`.
 Lists are either empty or made by pushing a value onto the
 front of some other list.
 
-```lean
-#print List -- constructors:
+
+<div class="lean-code" data-start-line="592" data-end-line="599"><pre><code>#print List -- constructors:
             -- List.nil : {α : Type u} → List α
             -- List.cons : {α : Type u} → α → List α → List α
 
 def f6 (L : List ℕ) : ℕ :=
   match L with
-  | List.nil => 0
-  | List.cons x _M => x
-```
+  | List.nil =&gt; 0
+  | List.cons x _M =&gt; x</code></pre></div>
+
  For example: 
-```lean
-#eval f6 [1,2,3]  -- 1
-#eval f6 []       -- 0
-```
+
+<div class="lean-code" data-start-line="603" data-end-line="604"><pre><code>#eval f6 [1,2,3]  -- 1
+#eval f6 []       -- 0</code></pre></div>
+
 
 List Notation
 ===
 
 Lists come with various convenient notation.
 
-```lean
-#eval [1,2,3]
+
+<div class="lean-code" data-start-line="613" data-end-line="616"><pre><code>#eval [1,2,3]
 #eval List.cons 1 (List.cons 2 (List.cons 3 List.nil))
 #eval (([].cons 3).cons 2).cons 1
-#eval 1 :: 2 :: 3 :: []
-```
+#eval 1 :: 2 :: 3 :: []</code></pre></div>
+
  For example, here are two ways to write the function `map` which
 applies a function to every element in a list.  
-```lean
-def map (f : ℕ → ℕ) (L : List ℕ) :=
-  match L with
-  | List.nil => List.nil
-  | List.cons x M => List.cons (f x) (map f M)
 
-def map' (f : ℕ → ℕ) (L : List ℕ) :=
+<div class="lean-code" data-start-line="621" data-end-line="629"><pre><code>def map (f : ℕ → ℕ) (L : List ℕ) :=
   match L with
-  | [] => []
-  | x :: M => (f x) :: map' f M
-```
+  | List.nil =&gt; List.nil
+  | List.cons x M =&gt; List.cons (f x) (map f M)
+
+def map&#x27; (f : ℕ → ℕ) (L : List ℕ) :=
+  match L with
+  | [] =&gt; []
+  | x :: M =&gt; (f x) :: map&#x27; f M</code></pre></div>
+
 
 Polymorphism
 ===
@@ -604,14 +604,14 @@ Polymorphism
 A `map` function that only works on `ℕ → ℕ` is not very useful. Here's a
 *polymorphic* version.
 
-```lean
-def map_poly {A : Type} {B : Type} (f : A → B) (L : List A) : List B :=
-  match L with
-  | List.nil => []
-  | List.cons x M => (f x) :: map_poly f M
 
-#eval String.ofList (map_poly Char.toUpper ['u','w'])
-```
+<div class="lean-code" data-start-line="639" data-end-line="644"><pre><code>def map_poly {A : Type} {B : Type} (f : A → B) (L : List A) : List B :=
+  match L with
+  | List.nil =&gt; []
+  | List.cons x M =&gt; (f x) :: map_poly f M
+
+#eval String.ofList (map_poly Char.toUpper [&#x27;u&#x27;,&#x27;w&#x27;])</code></pre></div>
+
 
 
 Here, `map_poly` is a **polymorphic** function and `List A` is a **parameterized** type.
@@ -632,40 +632,40 @@ are _implicit_ variables. Lean can infer what they
 are from the type of `f` and `L`. So we put them in curly braces so we don't
 have to write:
 
-```lean
-def map_poly_explicit (A : Type) (B : Type) (f : A → B) (L : List A) : List B :=
+
+<div class="lean-code" data-start-line="669" data-end-line="675"><pre><code>def map_poly_explicit (A : Type) (B : Type) (f : A → B) (L : List A) : List B :=
   match L with
-  | List.nil => []
-  | List.cons x M => (f x) :: map_poly_explicit A B f M
+  | List.nil =&gt; []
+  | List.cons x M =&gt; (f x) :: map_poly_explicit A B f M
 
 #eval String.ofList (map_poly_explicit
-                     Char Char Char.toUpper ['u','w'])
-```
+                     Char Char Char.toUpper [&#x27;u&#x27;,&#x27;w&#x27;])</code></pre></div>
+
 
 Other Data Types
 ===
 
-```lean
-#check List       -- Type → Type
+
+<div class="lean-code" data-start-line="683" data-end-line="687"><pre><code>#check List       -- Type → Type
 #check Vector     -- Type → ℕ → Type
 #check Array      -- Type → Type (faster than List, but hard in proofs)
 #check Set        -- Type → Type
-#check Multiset   -- Type → Type (can contain repeats)
-```
+#check Multiset   -- Type → Type (can contain repeats)</code></pre></div>
+
  For example: 
-```lean
-def S1 : Set (Set Char)  := { {'a','b'} }
-def S2 : Set (List Char) := { ['a','b'] }
-def S3 : List (Set Char) := [ {'a','b'} ]
-def S4 : Array (Set Char) := #[ {'a','b'} ]
-```
+
+<div class="lean-code" data-start-line="691" data-end-line="694"><pre><code>def S1 : Set (Set Char)  := { {&#x27;a&#x27;,&#x27;b&#x27;} }
+def S2 : Set (List Char) := { [&#x27;a&#x27;,&#x27;b&#x27;] }
+def S3 : List (Set Char) := [ {&#x27;a&#x27;,&#x27;b&#x27;} ]
+def S4 : Array (Set Char) := #[ {&#x27;a&#x27;,&#x27;b&#x27;} ]</code></pre></div>
+
  Later, we'll get to various mathematical types, which are almost always
 parameterized in some way: 
-```lean
-#check Group      -- Type → Type
+
+<div class="lean-code" data-start-line="699" data-end-line="701"><pre><code>#check Group      -- Type → Type
 #check add_comm   -- ∀ {G : Type u_1} [inst : AddCommMagma G] (a b : G),
-                  -- a + b = b + a
-```
+                  -- a + b = b + a</code></pre></div>
+
 
 Exercises
 ===
@@ -677,22 +677,22 @@ algorithm that works on any type `α` as long as a comparison function of the fo
 `lt (x y α) : Bool` is provided as an argument.
 
  
-```lean
-def insert (x : ℕ) : List ℕ → List ℕ
-| [] => [x]
-| y :: ys => if  x ≤ y then x :: y :: ys else y :: insert x ys
+
+<div class="lean-code" data-start-line="715" data-end-line="721"><pre><code>def insert (x : ℕ) : List ℕ → List ℕ
+| [] =&gt; [x]
+| y :: ys =&gt; if  x ≤ y then x :: y :: ys else y :: insert x ys
 
 def insertionSort :  List ℕ → List ℕ
-| [] => []
-| x :: xs => insert x (insertionSort xs)
-```
+| [] =&gt; []
+| x :: xs =&gt; insert x (insertionSort xs)</code></pre></div>
+
 
 <ex/> Test your code on the type `String` with the alphabetical ordering defined by
 
 
-```lean
-def str_cmp (a b : String) : Bool := decide (a ≤ b)
-```
+
+<div class="lean-code" data-start-line="728" data-end-line="728"><pre><code>def str_cmp (a b : String) : Bool := decide (a ≤ b)</code></pre></div>
+
 
 Exercise (Optional)
 ===
@@ -705,11 +705,11 @@ Give it a try.
 
 We'll talk about _classes_ and _instances_ next week.
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="746" data-end-line="748"><pre><code>--hide
 end LeanW26
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

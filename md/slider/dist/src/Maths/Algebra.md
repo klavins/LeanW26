@@ -97,15 +97,15 @@ using the same names as Mathlib uses.
 So we'll put everything into a temporary namespace.
 
 
-```lean
-namespace Temp                       -- avoid name conflict with Mathlib
-```
+
+<div class="lean-code" data-start-line="121" data-end-line="121"><pre><code>namespace Temp                       -- avoid name conflict with Mathlib</code></pre></div>
+
 
 And we need a universe
 
-```lean
-universe u
-```
+
+<div class="lean-code" data-start-line="127" data-end-line="127"><pre><code>universe u</code></pre></div>
+
 
 Mathlib defines Groups and other algebraic structures in a considerably more
 sophisticated way than we do here, although it uses similar typeclasses. The goal with
@@ -120,20 +120,20 @@ A Group Class
 
 You can put the properties of a group into a typeclass.
 
-```lean
-class Group (G : Type u) where
+
+<div class="lean-code" data-start-line="146" data-end-line="152"><pre><code>class Group (G : Type u) where
   op : G → G → G                                    -- data
   e : G
   inv : G → G
   assoc {a b c} : op (op a b) c = op a (op b c)     -- properties
   id_left {a} : op e a = a
-  inv_left {a} : op (inv a) a = e
-```
+  inv_left {a} : op (inv a) a = e</code></pre></div>
+
  And extend `Group` to the special case of a commutative (or abelian) group: 
-```lean
-class CommGroup (G : Type u) extends Group G where
-  comm {a b} : op a b = op b a                      -- additional property
-```
+
+<div class="lean-code" data-start-line="156" data-end-line="157"><pre><code>class CommGroup (G : Type u) extends Group G where
+  comm {a b} : op a b = op b a                      -- additional property</code></pre></div>
+
 
 Any theorem we prove about a `Group` is also true about a `CommGroup`.
 
@@ -146,23 +146,23 @@ depending on the application. We'll assume our operation is
 like `+`.
 
 
-```lean
-infixl:60 " + " => Group.op            -- left associating infix syntax
-prefix:95 "-" => Group.inv
-```
+
+<div class="lean-code" data-start-line="173" data-end-line="174"><pre><code>infixl:60 &quot; + &quot; =&gt; Group.op            -- left associating infix syntax
+prefix:95 &quot;-&quot; =&gt; Group.inv</code></pre></div>
+
  Now we have standard notation.  
-```lean
-open Group CommGroup
+
+<div class="lean-code" data-start-line="178" data-end-line="182"><pre><code>open Group CommGroup
 
 variable (G : Type u) [Group G] (a b : G)
 #check -(a + b) + a           -- G
-#check a + b + e              -- G
-```
+#check a + b + e              -- G</code></pre></div>
+
  We open the `Group` so we can write `e` and `op` instead of `Group.e`
 and `Group.op`. 
-```lean
-open Group
-```
+
+<div class="lean-code" data-start-line="188" data-end-line="188"><pre><code>open Group</code></pre></div>
+
 
 Group Theorems and Identites
 ===
@@ -172,24 +172,24 @@ all the various identities from the axioms.
 
 For example, we can show a variant of `id_left` for inverses.
 
-```lean
-theorem Group.id_inv_left {G : Type u} [Group G] {a : G}
+
+<div class="lean-code" data-start-line="200" data-end-line="202"><pre><code>theorem Group.id_inv_left {G : Type u} [Group G] {a : G}
   : e + (-a) = -a
-  := by rw[id_left]
-```
+  := by rw[id_left]</code></pre></div>
+
 
 The variable declarations become
 extremely repetetive and clutter the code, making it harder to read. Therefore,
 we delare variables for all of our subsequent `Group` theorems ahead of time with
 
-```lean
-variable {G : Type u} [Group G] {a b c : G}
-```
+
+<div class="lean-code" data-start-line="210" data-end-line="210"><pre><code>variable {G : Type u} [Group G] {a b c : G}</code></pre></div>
+
  Theorem statements then look simple: 
-```lean
-theorem Group.id_plus_id : (e:G) + e = e
-  := by rw[id_left]
-```
+
+<div class="lean-code" data-start-line="214" data-end-line="215"><pre><code>theorem Group.id_plus_id : (e:G) + e = e
+  := by rw[id_left]</code></pre></div>
+
 
 Cancelation Theorem
 ===
@@ -199,18 +199,18 @@ We prove a few identities to show a sense of the process.
 A super useful property for proving identities is:
 
 
-```lean
-theorem Group.cancel_left : a + b = a + c → b = c := by <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\n⊢ a + b = a + c → b = c']</proofstate>
-  intro h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : a + b = a + c\n⊢ b = c']</proofstate>
-  apply congrArg (fun t => -a + t) at h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : -a + (a + b) = -a + (a + c)\n⊢ b = c']</proofstate>
-  rw[←assoc] at h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : -a + a + b = -a + (a + c)\n⊢ b = c']</proofstate>
-  rw[inv_left] at h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : e + b = -a + (a + c)\n⊢ b = c']</proofstate>
-  rw[id_left] at h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : b = -a + (a + c)\n⊢ b = c']</proofstate>
-  rw[←assoc] at h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : b = -a + a + c\n⊢ b = c']</proofstate>
-  rw[inv_left] at h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : b = e + c\n⊢ b = c']</proofstate>
-  rw[id_left] at h <proofstate>['G : Type u\ninst✝ : Group G\na b c : G\nh : b = c\n⊢ b = c']</proofstate>
-  exact h
-```
+
+<div class="lean-code" data-start-line="228" data-end-line="237"><pre><code>theorem Group.cancel_left : a + b = a + c → b = c := by
+  intro h
+  apply congrArg (fun t =&gt; -a + t) at h
+  rw[←assoc] at h
+  rw[inv_left] at h
+  rw[id_left] at h
+  rw[←assoc] at h
+  rw[inv_left] at h
+  rw[id_left] at h
+  exact h</code></pre></div>
+
  Or you can write `simp_all only [←assoc,inv_left,id_left]`. 
 
 Calculation Style Proofs
@@ -221,35 +221,35 @@ are applying very clearly.
 
 For example, we can show `id_right` is derivable.
 
-```lean
-theorem Group.id_right : a + e = a := by <proofstate>['G : Type u\ninst✝ : Group G\na : G\n⊢ a + e = a']</proofstate>
-  apply cancel_left (a := -a) <proofstate>['G : Type u\ninst✝ : Group G\na : G\n⊢ -a + (a + e) = -a + a']</proofstate>
+
+<div class="lean-code" data-start-line="251" data-end-line="257"><pre><code>theorem Group.id_right : a + e = a := by
+  apply cancel_left (a := -a)
   calc  -a +  (a + e)
   _   = (-a + a) + e   := by rw[assoc]
   _   = (e + e : G)    := by rw[inv_left]
   _   = e              := by rw[id_left]
-  _   = -a + a         := by rw[inv_left]
-```
+  _   = -a + a         := by rw[inv_left]</code></pre></div>
+
  which can be done with `simp` as well. You just have to tell `simp` which way to associate.  
-```lean
-example : a + e = a := by <proofstate>['G✝ : Type u\ninst✝¹ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝ : Group G\na b c : G\n⊢ a + e = a']</proofstate>
-  apply cancel_left (a := -a) <proofstate>['G✝ : Type u\ninst✝¹ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝ : Group G\na b c : G\n⊢ -a + (a + e) = -a + a']</proofstate>
-  simp[←assoc,id_left,inv_left]
-```
+
+<div class="lean-code" data-start-line="261" data-end-line="263"><pre><code>example : a + e = a := by
+  apply cancel_left (a := -a)
+  simp[←assoc,id_left,inv_left]</code></pre></div>
+
 
 Proving inv_right
 ===
 
 We can also show `inv_right` is derivable. 
-```lean
-theorem Group.inv_right : a + (-a) = e := by <proofstate>['G : Type u\ninst✝ : Group G\na : G\n⊢ a + -a = e']</proofstate>
-  apply cancel_left (a := -a) <proofstate>['G : Type u\ninst✝ : Group G\na : G\n⊢ -a + (a + -a) = -a + e']</proofstate>
+
+<div class="lean-code" data-start-line="271" data-end-line="277"><pre><code>theorem Group.inv_right : a + (-a) = e := by
+  apply cancel_left (a := -a)
   calc  -a + (a + (-a))
   _   = (-a + a) + (-a) := by rw[assoc]
   _   = e + (-a)        := by rw[inv_left]
   _   = -a              := by rw[id_left]
-  _   = -a + e          := by rw[id_right (a := -a)]
-```
+  _   = -a + e          := by rw[id_right (a := -a)]</code></pre></div>
+
 
 which can also be done as a `simp` proof.
 
@@ -260,9 +260,9 @@ Exercises
 <ex /> Show the identity of a group is unique
 
 
-```lean
-theorem Group.id_unique {e' : G} : (∀ a, e'+ a = a) → e = e' := by sorry
-```
+
+<div class="lean-code" data-start-line="292" data-end-line="292"><pre><code>theorem Group.id_unique {e&#x27; : G} : (∀ a, e&#x27;+ a = a) → e = e&#x27; := by sorry</code></pre></div>
+
  Hints:
 - Introduce the hypothesis
 - Using a `have`, establish `e' + e = e'` via a group property
@@ -273,9 +273,9 @@ theorem Group.id_unique {e' : G} : (∀ a, e'+ a = a) → e = e' := by sorry
 <ex /> Show that the inverse of every element is unique:
 
 
-```lean
-theorem Group.inv_unique : b + a = e → c + a = e → b = c := sorry
-```
+
+<div class="lean-code" data-start-line="306" data-end-line="306"><pre><code>theorem Group.inv_unique : b + a = e → c + a = e → b = c := sorry</code></pre></div>
+
 
 A `calc` proof goes like this:
 ```lean
@@ -290,19 +290,19 @@ Spin Again
 
 Recall the definition of a `Spin` from the notes on `Equality`.
 
-```lean
-inductive Spin where | up | dn
+
+<div class="lean-code" data-start-line="324" data-end-line="334"><pre><code>inductive Spin where | up | dn
 open Spin
 
 def Spin.toggle : Spin → Spin
-  | up => dn
-  | dn => up
+  | up =&gt; dn
+  | dn =&gt; up
 
 def op (x y : Spin) : Spin := match x, y with
-  | up,dn => dn
-  | dn,up => dn
-  | _,_ => up
-```
+  | up,dn =&gt; dn
+  | dn,up =&gt; dn
+  | _,_ =&gt; up</code></pre></div>
+
 
 
 <div class='fn'>Generally speaking, the spin group Spin(n) is a Lie group
@@ -317,35 +317,35 @@ Instantiating Spin as a Group
 
 `Spin` is a group where `up` is the identity and each element is its own inverse.
 
-```lean
-instance Spin.inst_comm_group : CommGroup Spin := {
+
+<div class="lean-code" data-start-line="352" data-end-line="360"><pre><code>instance Spin.inst_comm_group : CommGroup Spin := {
   op := op,
   e := up,
   inv := id,
-  assoc {a b c} := by cases a <;> cases b <;> cases c <;> aesop,
-  id_left {a}   := by cases a <;> aesop
-  inv_left {a}  := by cases a <;> aesop
-  comm {a b}    := by cases a <;> simp[op] <;> aesop
-}
-```
+  assoc {a b c} := by cases a &lt;;&gt; cases b &lt;;&gt; cases c &lt;;&gt; aesop,
+  id_left {a}   := by cases a &lt;;&gt; aesop
+  inv_left {a}  := by cases a &lt;;&gt; aesop
+  comm {a b}    := by cases a &lt;;&gt; simp[op] &lt;;&gt; aesop
+}</code></pre></div>
+
  You could also instantiate `Monoid`, `Group` and `CommGroup` sequentially,
 only adding new fields each time.
 
 Or do 
-```lean
-instance Spin.inst_group : Group Spin := inferInstance
-```
+
+<div class="lean-code" data-start-line="367" data-end-line="367"><pre><code>instance Spin.inst_group : Group Spin := inferInstance</code></pre></div>
+
 
 Group Theorems apply to the Spin Group
 ===
 
 With the instantiation of `Spin` as a `CommGroup`, we can do
 
-```lean
-example (x : Spin) : x + up = x := by exact id_right
+
+<div class="lean-code" data-start-line="376" data-end-line="378"><pre><code>example (x : Spin) : x + up = x := by exact id_right
 example : up + up = up := by exact id_plus_id
-example : up + dn = dn + up := by exact comm
-```
+example : up + dn = dn + up := by exact comm</code></pre></div>
+
  For example. 
 
 Exercise
@@ -355,8 +355,8 @@ Exercise
 the following instance.
 
 
-```lean
-instance Group.prod {G H : Type u} [Group G] [Group H] : Group (G × H) := {
+
+<div class="lean-code" data-start-line="391" data-end-line="400"><pre><code>instance Group.prod {G H : Type u} [Group G] [Group H] : Group (G × H) := {
   op x y := (x.1 + y.1, x.2 + y.2),
   e := (e,e),
   inv x := (-x.1, -x.2),
@@ -365,17 +365,17 @@ instance Group.prod {G H : Type u} [Group G] [Group H] : Group (G × H) := {
   assoc :=  by simp[assoc]
 }
 
-infix:50 " × " => Group.prod
-```
+infix:50 &quot; × &quot; =&gt; Group.prod</code></pre></div>
+
 
 <ex /> Show
 
 
-```lean
-example : e = (up,up) := sorry
+
+<div class="lean-code" data-start-line="407" data-end-line="409"><pre><code>example : e = (up,up) := sorry
 example : -(up,up) = (up,up):= sorry
-example (x : Spin × Spin) : - x + x = (up,up) := sorry
-```
+example (x : Spin × Spin) : - x + x = (up,up) := sorry</code></pre></div>
+
 
 
 
@@ -407,14 +407,14 @@ However, multiplication is not required to have inverses.
 
 To build a `Ring` type we first define a `Monoid` type for multiplication.
 
-```lean
-class Monoid (M : Type u) where
+
+<div class="lean-code" data-start-line="445" data-end-line="450"><pre><code>class Monoid (M : Type u) where
   mul : M → M → M
   one : M
   mul_assoc {a b c : M} : mul (mul a b) c = mul a (mul b c)
   mul_id_left {a : M}   : mul one a = a
-  mul_id_right {a : M}  : mul a one = a
-```
+  mul_id_right {a : M}  : mul a one = a</code></pre></div>
+
  We cannot derive `mul_id_right` as we did with `Group`,
 because we do not have inverses.  
 
@@ -422,39 +422,39 @@ Rings
 ===
 Now we have what we need do define a `Ring`.
 
-```lean
-class Ring (R : Type u)
+
+<div class="lean-code" data-start-line="461" data-end-line="468"><pre><code>class Ring (R : Type u)
   extends CommGroup R, Monoid R where
   l_distrib {x y z : R} : mul x (op y z) = op (mul x y) (mul x z)
   r_distrib {x y z : R} : mul (op y z) x = op (mul y x) (mul z x)
 
 class CommRing (R : Type u)
    extends Ring R where
-   mulcomm {x y : R} : mul x y = mul y x
-```
+   mulcomm {x y : R} : mul x y = mul y x</code></pre></div>
+
 
 Ring Notation
 ===
 
 As we did for groups, we define notation.
 
-```lean
-variable {R : Type u} [CommRing R]
 
-infixl:80 " * " => Monoid.mul
+<div class="lean-code" data-start-line="477" data-end-line="484"><pre><code>variable {R : Type u} [CommRing R]
+
+infixl:80 &quot; * &quot; =&gt; Monoid.mul
 
 def Group.sub (x y : R):= Group.op x (-y)
-infixl:60 " - " => Group.sub
+infixl:60 &quot; - &quot; =&gt; Group.sub
 
-open Monoid Ring CommRing
-```
+open Monoid Ring CommRing</code></pre></div>
+
  The result looks like the integers, which is nice. 
-```lean
-section
+
+<div class="lean-code" data-start-line="488" data-end-line="491"><pre><code>section
   variable (x y z : R)
   #check x * (y + z) - x    -- R
-end section
-```
+end section</code></pre></div>
+
 
 Operating on Equations
 ===
@@ -477,51 +477,51 @@ h : x + y = z + y
 We can do this with theorems of the form:
 
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="515" data-end-line="522"><pre><code>--hide
 variable {x y z : R}
 --unhide
 
 theorem Ring.add_left  (h : y = z) (x : R) : x + y = x + z := by rw [h]
 theorem Ring.add_right (h : y = z) (x : R) : y + x = z + x := by rw [h]
 theorem Ring.mul_left  (h : y = z) (x : R) : x * y = x * z := by rw [h]
-theorem Ring.mul_right (h : y = z) (x : R) : y * x = z * x := by rw [h]
-```
+theorem Ring.mul_right (h : y = z) (x : R) : y * x = z * x := by rw [h]</code></pre></div>
+
 
 Example Identity
 ===
 
-```lean
-theorem mul_zero : x * e = e := by <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\n⊢ x * e = e']</proofstate>
-  have h0 := l_distrib (x := x) (y := e) (z := e) <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\n⊢ x * e = e']</proofstate>
-  have h := Ring.add_left h0 (-(x*e)) <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\nh : -(x * e) + x * (e + e) = -(x * e) + (x * e + x * e)\n⊢ x * e = e']</proofstate>
-  rw[id_left]  at h <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\nh : -(x * e) + x * e = -(x * e) + (x * e + x * e)\n⊢ x * e = e']</proofstate>
-  rw[inv_left] at h <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\nh : e = -(x * e) + (x * e + x * e)\n⊢ x * e = e']</proofstate>
-  rw[←assoc]   at h <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\nh : e = -(x * e) + x * e + x * e\n⊢ x * e = e']</proofstate>
-  rw[inv_left] at h <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\nh : e = e + x * e\n⊢ x * e = e']</proofstate>
-  rw[id_left]  at h <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : x * (e + e) = x * e + x * e\nh : e = x * e\n⊢ x * e = e']</proofstate>
-  exact h.symm
-```
+
+<div class="lean-code" data-start-line="529" data-end-line="537"><pre><code>theorem mul_zero : x * e = e := by
+  have h0 := l_distrib (x := x) (y := e) (z := e)
+  have h := Ring.add_left h0 (-(x*e))
+  rw[id_left]  at h
+  rw[inv_left] at h
+  rw[←assoc]   at h
+  rw[inv_left] at h
+  rw[id_left]  at h
+  exact h.symm</code></pre></div>
+
  The `rw` part can be replaced with `simp only [id_left,inv_left,←assoc] at h`
 
 Others Examples
 ===
 
-```lean
-theorem neg_one : (-one:R)*x = -x := by <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\n⊢ -one * x = -x']</proofstate>
- <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\n⊢ -one * x = -x']</proofstate>
+
+<div class="lean-code" data-start-line="547" data-end-line="559"><pre><code>theorem neg_one : (-one:R)*x = -x := by
+
   have h0 : (one:R) + -(one:R) = (e:R) := by rw[inv_right]
- <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\n⊢ -one * x = -x']</proofstate>
+
   have h1 : e = (e:R) * x := by rw[mulcomm,mul_zero]
- <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = e * x\n⊢ -one * x = -x']</proofstate>
-  nth_rewrite 2 [←h0] at h1 <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = (one + -one) * x\n⊢ -one * x = -x']</proofstate>
-  rw[r_distrib,mul_id_left] at h1 <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\n⊢ -one * x = -x']</proofstate>
- <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\n⊢ -one * x = -x']</proofstate>
-  have h2 := add_left h1 (-x) <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\nh2 : -x + e = -x + (x + -one * x)\n⊢ -one * x = -x']</proofstate>
-  rw[←assoc,id_right,inv_left,id_left] at h2 <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\nh2 : -x = -one * x\n⊢ -one * x = -x']</proofstate>
- <proofstate>['R : Type u\ninst✝ : CommRing R\nx : R\nh0 : one + -one = e\nh1 : e = x + -one * x\nh2 : -x = -one * x\n⊢ -one * x = -x']</proofstate>
-  exact h2.symm
-```
+
+  nth_rewrite 2 [←h0] at h1
+  rw[r_distrib,mul_id_left] at h1
+
+  have h2 := add_left h1 (-x)
+  rw[←assoc,id_right,inv_left,id_left] at h2
+
+  exact h2.symm</code></pre></div>
+
 
 Exercise
 ===
@@ -529,9 +529,9 @@ Exercise
 <ex /> Show
 
 
-```lean
-theorem factor_mul_inv_right : x*(-y) = -(x*y) := sorry
-```
+
+<div class="lean-code" data-start-line="571" data-end-line="571"><pre><code>theorem factor_mul_inv_right : x*(-y) = -(x*y) := sorry</code></pre></div>
+
 
 
 One way to prove this identity is as follows:
@@ -548,32 +548,32 @@ Spin is a Monoid
 
 First we definition multiplication for `Spin`.
 
-```lean
-def Spin.mul (a b : Spin) : Spin :=
+
+<div class="lean-code" data-start-line="591" data-end-line="594"><pre><code>def Spin.mul (a b : Spin) : Spin :=
   match a, b with
-  | dn, dn => dn
-  | _, _ => up
-```
+  | dn, dn =&gt; dn
+  | _, _ =&gt; up</code></pre></div>
+
  And then we can create the `Monoid` instance. 
-```lean
-instance Spin.inst_monoid : Monoid Spin := {
+
+<div class="lean-code" data-start-line="598" data-end-line="604"><pre><code>instance Spin.inst_monoid : Monoid Spin := {
   one := dn,
   mul := Spin.mul
-  mul_assoc {x y z} := by cases x <;> cases y <;> cases z <;> aesop
-  mul_id_left {x}   := by cases x <;> simp[Spin.mul]
-  mul_id_right {x}  := by cases x <;> simp[Spin.mul]
-}
-```
+  mul_assoc {x y z} := by cases x &lt;;&gt; cases y &lt;;&gt; cases z &lt;;&gt; aesop
+  mul_id_left {x}   := by cases x &lt;;&gt; simp[Spin.mul]
+  mul_id_right {x}  := by cases x &lt;;&gt; simp[Spin.mul]
+}</code></pre></div>
+
 
 Spin is a Ring
 ===
 
-```lean
-instance Spin.inst_ring : Ring Spin := {
-  l_distrib {x y z} := by cases x <;> cases y <;> cases z <;> aesop
-  r_distrib {x y z} := by cases x <;> cases y <;> cases z <;> aesop
-}
-```
+
+<div class="lean-code" data-start-line="611" data-end-line="614"><pre><code>instance Spin.inst_ring : Ring Spin := {
+  l_distrib {x y z} := by cases x &lt;;&gt; cases y &lt;;&gt; cases z &lt;;&gt; aesop
+  r_distrib {x y z} := by cases x &lt;;&gt; cases y &lt;;&gt; cases z &lt;;&gt; aesop
+}</code></pre></div>
+
 
 Exercise
 ===
@@ -581,9 +581,9 @@ Exercise
 <ex /> Show
 
 
-```lean
-example (x y : Spin) : x*y + x = x*(y+dn) := sorry
-```
+
+<div class="lean-code" data-start-line="624" data-end-line="624"><pre><code>example (x y : Spin) : x*y + x = x*(y+dn) := sorry</code></pre></div>
+
 
 Ring-Valued Sequences : Group
 ===
@@ -599,31 +599,31 @@ To show sequences over `R` form a ring, we start by
 showing sequence addition forms a `Group`.
 
 
-```lean
-instance Seq.inst_group {R : Type u} [Ring R] : Group (ℕ → R) := {
+
+<div class="lean-code" data-start-line="643" data-end-line="650"><pre><code>instance Seq.inst_group {R : Type u} [Ring R] : Group (ℕ → R) := {
   op f g n      := f n + g n,
   e n           := e,
   inv f n       := - f n,
   assoc {f g h} := by funext n; exact assoc,
   id_left {f}   := by funext n; exact id_left,
   inv_left {f}  := by funext n; exact inv_left
-}
-```
+}</code></pre></div>
+
 
 Ring-Valued Sequences : Monoid
 ===
 
 Show sequences form a `Monoid` is equally straightforward.
 
-```lean
-instance Seq.inst_monoid {R : Type u} [Ring R] : Monoid (ℕ → R) := {
+
+<div class="lean-code" data-start-line="659" data-end-line="665"><pre><code>instance Seq.inst_monoid {R : Type u} [Ring R] : Monoid (ℕ → R) := {
   mul f g n := (f n) * (g n),
   one n := one,
   mul_assoc {f g h} := by funext n; exact mul_assoc,
   mul_id_left {f}   := by funext n; rw[mul_id_left]
   mul_id_right {f}  := by funext n; rw[mul_id_right]
-}
-```
+}</code></pre></div>
+
 
 Exercise
 ===
@@ -641,23 +641,23 @@ Exercise
 <ex /> (Optional) Define an `Ideal` in `R` be the type:
 
 
-```lean
-structure Ideal (R : Type u) [CommRing R] where
+
+<div class="lean-code" data-start-line="686" data-end-line="690"><pre><code>structure Ideal (R : Type u) [CommRing R] where
   I : R → Prop
   has_zero : I e
   closed {x y : R} : I x → I y → I (-x + y)
-  absorb {r x : R} : I x → I (r * x) ∧ I (x * r)
-```
+  absorb {r x : R} : I x → I (r * x) ∧ I (x * r)</code></pre></div>
+
  Complete the following definition of the *principal ideal*
 of an element `x : R` to be 
-```lean
-def PrincipalIdeal {R : Type u} [CommRing R] (x : R) : Ideal R := {
+
+<div class="lean-code" data-start-line="695" data-end-line="700"><pre><code>def PrincipalIdeal {R : Type u} [CommRing R] (x : R) : Ideal R := {
   I y := ∃ r : R, y = x * r,
   has_zero := sorry,
   closed := sorry,
   absorb := sorry
-}
-```
+}</code></pre></div>
+
 
 Nontrivial Types
 ===
@@ -691,16 +691,16 @@ Fields
 ===
 A **Field** is a commutative ring with inverses for all elements except zero.
 
-```lean
-class Field (F : Type u) extends CommRing F, Nontrivial F where
+
+<div class="lean-code" data-start-line="741" data-end-line="748"><pre><code>class Field (F : Type u) extends CommRing F, Nontrivial F where
   minv : F → F
   minv_zero : minv e = e
   mul_inv_prop {x : F} : x ≠ e → mul x (minv x) = one
 
 open Field
 
-variable {F : Type u} [Field F] {x y z : F}
-```
+variable {F : Type u} [Field F] {x y z : F}</code></pre></div>
+
  The convention 0⁻¹ = 0 is a convention that makes proof automation easier. 
 
 Field Notation
@@ -708,20 +708,20 @@ Field Notation
 
 We reuse the notation from Groups and Rings, adding just
 
-```lean
-postfix:95 "⁻¹" => Field.minv
-```
+
+<div class="lean-code" data-start-line="759" data-end-line="759"><pre><code>postfix:95 &quot;⁻¹&quot; =&gt; Field.minv</code></pre></div>
+
  for the field inverse.
 
 Now we can write
 
 
-```lean
-section
+
+<div class="lean-code" data-start-line="767" data-end-line="770"><pre><code>section
   variable (x y : F)
   #check one * (x - x⁻¹) + e * y
-end section
-```
+end section</code></pre></div>
+
  for example. 
 
 Example Field Identity
@@ -730,90 +730,90 @@ Example Field Identity
 We only required `one * x = x` in our definition because we can prove the symmetric case:
 
 
-```lean
-theorem mul_id_right : x * one = x := by <proofstate>['F : Type u\ninst✝ : Field F\nx : F\n⊢ x * one = x']</proofstate>
-  rw[mulcomm] <proofstate>['F : Type u\ninst✝ : Field F\nx : F\n⊢ one * x = x']</proofstate>
-  rw[mul_id_left]
-```
+
+<div class="lean-code" data-start-line="782" data-end-line="784"><pre><code>theorem mul_id_right : x * one = x := by
+  rw[mulcomm]
+  rw[mul_id_left]</code></pre></div>
+
 
 A Proof that 1 ≠ 0
 ===
 
-```lean
-theorem one_ne_e : (one:F) ≠ e := by <proofstate>['F : Type u\ninst✝ : Field F\n⊢ one ≠ e']</proofstate>
- <proofstate>['F : Type u\ninst✝ : Field F\n⊢ one ≠ e']</proofstate>
-  intro h <proofstate>['F : Type u\ninst✝ : Field F\nh : one = e\n⊢ False']</proofstate>
-  obtain ⟨ x, y, hxy ⟩ := (inferInstance : Nontrivial F).exists_pair_ne <proofstate>['F : Type u\ninst✝ : Field F\nh : one = e\nx y : F\nhxy : x ≠ y\n⊢ False']</proofstate>
- <proofstate>['F : Type u\ninst✝ : Field F\nh : one = e\nx y : F\nhxy : x ≠ y\n⊢ False']</proofstate>
-  have hx : x = e := by <proofstate>['F : Type u\ninst✝ : Field F\nh : one = e\nx y : F\nhxy : x ≠ y\n⊢ x = e']</proofstate>
-    calc <proofstate>['F : Type u\ninst✝ : Field F\nh : one = e\nx y : F\nhxy : x ≠ y\n⊢ x = e']</proofstate>
+
+<div class="lean-code" data-start-line="792" data-end-line="809"><pre><code>theorem one_ne_e : (one:F) ≠ e := by
+
+  intro h
+  obtain ⟨ x, y, hxy ⟩ := (inferInstance : Nontrivial F).exists_pair_ne
+
+  have hx : x = e := by
+    calc
       x = x * one := by rw[mul_id_right]
       _ = x * e   := by rw[h]
       _ = e       := by rw [mul_zero]
- <proofstate>['F : Type u\ninst✝ : Field F\nh : one = e\nx y : F\nhxy : x ≠ y\nhx : x = e\n⊢ False']</proofstate>
-  have hy : y = e := by <proofstate>['F : Type u\ninst✝ : Field F\nh : one = e\nx y : F\nhxy : x ≠ y\nhx : x = e\n⊢ y = e']</proofstate>
-    calc <proofstate>['F : Type u\ninst✝ : Field F\nh : one = e\nx y : F\nhxy : x ≠ y\nhx : x = e\n⊢ y = e']</proofstate>
+
+  have hy : y = e := by
+    calc
       y = y * one := by rw[mul_id_right]
       _ = y * e   := by rw[h]
       _ = e       := by rw[mul_zero]
- <proofstate>['F : Type u\ninst✝ : Field F\nh : one = e\nx y : F\nhxy : x ≠ y\nhx : x = e\nhy : y = e\n⊢ False']</proofstate>
-  exact hxy (hx.trans hy.symm)
-```
+
+  exact hxy (hx.trans hy.symm)</code></pre></div>
+
 
 Spin is a a Nonempty Commutative Ring
 ===
 
-```lean
-instance Spin.inst_nt : Nontrivial Spin := {
-  exists_pair_ne := by <proofstate>['G✝ : Type u\ninst✝³ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝² : Group G\na b c : G\nR : Type u\ninst✝¹ : CommRing R\nx✝ y✝ z✝ : R\nF : Type u\ninst✝ : Field F\nx y z : F\n⊢ ∃ x y, x ≠ y']</proofstate>
-    use up, dn <proofstate>['case h\nG✝ : Type u\ninst✝³ : Group G✝\na✝ b✝ : G✝\nG : Type u\ninst✝² : Group G\na b c : G\nR : Type u\ninst✝¹ : CommRing R\nx✝ y✝ z✝ : R\nF : Type u\ninst✝ : Field F\nx y z : F\n⊢ up ≠ dn']</proofstate>
+
+<div class="lean-code" data-start-line="816" data-end-line="824"><pre><code>instance Spin.inst_nt : Nontrivial Spin := {
+  exists_pair_ne := by
+    use up, dn
     simp
 }
 
 instance Spin.inst_comm_ring : CommRing Spin := {
-  mulcomm {x y} := by cases x <;> cases y <;> aesop
-}
-```
+  mulcomm {x y} := by cases x &lt;;&gt; cases y &lt;;&gt; aesop
+}</code></pre></div>
+
 
 Spin is a Field
 ===
 
-```lean
-instance Spin.inst_field : Field Spin := {
+
+<div class="lean-code" data-start-line="831" data-end-line="835"><pre><code>instance Spin.inst_field : Field Spin := {
   minv x := x
   minv_zero := by simp,
-  mul_inv_prop {x} h := by cases x <;> simp_all[e]; rfl
-}
-```
+  mul_inv_prop {x} h := by cases x &lt;;&gt; simp_all[e]; rfl
+}</code></pre></div>
+
  Field theorems apply: 
-```lean
-example : dn ≠ up := one_ne_e
-```
+
+<div class="lean-code" data-start-line="839" data-end-line="839"><pre><code>example : dn ≠ up := one_ne_e</code></pre></div>
+
 
 Mathlib's Algebra
 ===
 
 The integers `ℤ` with `+` and `*` are the standard example of a commutative ring.
 
-```lean
-#synth AddGroup ℤ              -- Int.instAddGroup
+
+<div class="lean-code" data-start-line="848" data-end-line="850"><pre><code>#synth AddGroup ℤ              -- Int.instAddGroup
 #synth CommMonoid ℤ            -- etc.
-#synth _root_.CommRing ℤ
-```
+#synth _root_.CommRing ℤ</code></pre></div>
+
 
 The rationals `ℚ` with `+`, `*` and `x⁻¹` are the standard example of a field.
 
-```lean
-#synth AddGroup ℚ               -- Rat.addGroup
+
+<div class="lean-code" data-start-line="856" data-end-line="858"><pre><code>#synth AddGroup ℚ               -- Rat.addGroup
 #synth CommMonoid ℚ
-#synth _root_.Field ℚ
-```
+#synth _root_.Field ℚ</code></pre></div>
+
  And there are tactics 
-```lean
-example (x y : ℤ) : x + y = y + x := by group
+
+<div class="lean-code" data-start-line="862" data-end-line="864"><pre><code>example (x y : ℤ) : x + y = y + x := by group
 example (x y : ℤ) : 2*(x + y) = 2*y + 2*x := by ring
-example (x y : ℚ) : 2*(x⁻¹ + y) = 2*y + 2*x⁻¹ := by field
-```
+example (x y : ℚ) : 2*(x⁻¹ + y) = 2*y + 2*x⁻¹ := by field</code></pre></div>
+
 
 Exercises
 ===
@@ -821,9 +821,9 @@ Exercises
 <ex /> Show
 
 
-```lean
-theorem one_inv : (one:F)⁻¹ = one := sorry
-```
+
+<div class="lean-code" data-start-line="874" data-end-line="874"><pre><code>theorem one_inv : (one:F)⁻¹ = one := sorry</code></pre></div>
+
 
 
 <ex /> Instantiate `(ℤ,+)` as a `Field` (using the definition in this file,
@@ -837,14 +837,14 @@ You can do this all at once with `instance : Field ℤ` or by building up
 You should build up several simpler identities about `Ring` before tackling this one.
 
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="890" data-end-line="895"><pre><code>--hide
 end
 end
 end Temp
 end LeanW26
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

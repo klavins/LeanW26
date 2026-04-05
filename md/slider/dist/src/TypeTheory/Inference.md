@@ -96,9 +96,9 @@ Then we use VAR. So the expression has type `A→A` and a proof of this is:
 ```
 
 As we have seen, Lean figures this out automatically. 
-```lean
-#check fun x : _ => x           -- ?m.1 → ?m.1
-```
+
+<div class="lean-code" data-start-line="113" data-end-line="113"><pre><code>#check fun x : _ =&gt; x           -- ?m.1 → ?m.1</code></pre></div>
+
 
 Example
 ===
@@ -146,9 +146,9 @@ Thus, the type of `λ x => λ y => x y` is `(C → A) → C → A`.
 
 Lean can figure this out for us, but we do need to tell it that `x` is a
 function type of some kind. 
-```lean
-#check fun x : _ → _ => fun y : _ => x y      -- (?m.4 → ?m.2) → ?m.4 → ?m.2
-```
+
+<div class="lean-code" data-start-line="163" data-end-line="163"><pre><code>#check fun x : _ → _ =&gt; fun y : _ =&gt; x y      -- (?m.4 → ?m.2) → ?m.4 → ?m.2</code></pre></div>
+
 
 Dependent Types Subsume Simple Types
 ===
@@ -181,9 +181,9 @@ Example
 
 Consider
 
-```lean
-#check (fun n : ℕ => Vector.replicate n 0) 3       -- Vector ℕ 3
-```
+
+<div class="lean-code" data-start-line="200" data-end-line="200"><pre><code>#check (fun n : ℕ =&gt; Vector.replicate n 0) 3       -- Vector ℕ 3</code></pre></div>
+
 
 
 How does Lean infer this type?
@@ -253,27 +253,27 @@ Type Inference and Well Typedness
 The problems `Γ ⊢ M : ?` and `? ⊢ M : ?` can easily be managed
 by Lean's type checker.
 
-```lean
-#check (fun x => x)   -- ?m.1 → ?m.1 Lean makes up a type for x so
-                      -- the whole expression has a type
-```
+
+<div class="lean-code" data-start-line="276" data-end-line="277"><pre><code>#check (fun x =&gt; x)   -- ?m.1 → ?m.1 Lean makes up a type for x so
+                      -- the whole expression has a type</code></pre></div>
+
  This is also happening when you make new definitions without
 providing types. 
-```lean
-def f (L : List ℕ) := L.reverse.cons 0
 
-#check f     -- List ℕ → List ℕ
-```
+<div class="lean-code" data-start-line="282" data-end-line="284"><pre><code>def f (L : List ℕ) := L.reverse.cons 0
+
+#check f     -- List ℕ → List ℕ</code></pre></div>
+
 
 Type Checking
 ===
 The problem `Γ ⊢ M : σ` amounts to making sure you didn't make a
 mistake in writing out the type of an expression.
 
-```lean
-#check ((fun x : Nat => x) : Nat → Nat)  -- Lean checks whether the type
-                                         -- provided is legit.
-```
+
+<div class="lean-code" data-start-line="294" data-end-line="295"><pre><code>#check ((fun x : Nat =&gt; x) : Nat → Nat)  -- Lean checks whether the type
+                                         -- provided is legit.</code></pre></div>
+
  This is essentially what proof assistants do: Check your work. 
 
 Inhabitation
@@ -283,24 +283,24 @@ It requires searching over *all* terms of which there are an infinite number.
 
 But Lean has some search algorithms for simple types.
 
-```lean
-def thm (n : Nat) : n+1 > 0 :=      -- The aesop tactic finds a
+
+<div class="lean-code" data-start-line="308" data-end-line="315"><pre><code>def thm (n : Nat) : n+1 &gt; 0 :=      -- The aesop tactic finds a
   by aesop                          -- term of the desired type
 
 #print thm                          -- fun n ↦ of_eq_true (Eq.trans gt_iff_lt._simp_1
-                                    -- (Eq.trans (lt_mul_iff_one_lt_left'._simp_4 0)
+                                    -- (Eq.trans (lt_mul_iff_one_lt_left&#x27;._simp_4 0)
                                     -- (Eq.trans one_lt_mul_iff._simp_4 (Eq.trans
-                                    -- (congrArg (Or (0 < n)) zero_lt_one._simp_1)
-                                    -- (or_true (0 < n))))))
-```
+                                    -- (congrArg (Or (0 &lt; n)) zero_lt_one._simp_1)
+                                    -- (or_true (0 &lt; n))))))</code></pre></div>
+
  This doesn't always work: 
-```lean
-def goldbach : ∀ n : ℕ, n > 2 ∧ Even n →
+
+<div class="lean-code" data-start-line="319" data-end-line="323"><pre><code>def goldbach : ∀ n : ℕ, n &gt; 2 ∧ Even n →
                ∃ p q : ℕ, Nat.Prime p ∧
                           Nat.Prime q ∧
                           p + q = n :=
-  by aesop                              -- aesop: failed to prove the goal after exhaustive search
-```
+  by aesop                              -- aesop: failed to prove the goal after exhaustive search</code></pre></div>
+
 
 Keeping mathematicians in business (for now).
 
@@ -312,16 +312,16 @@ Exercises
 
 <ex /> Inhabitation: Suppose
 
-```lean
-inductive Vec (α : Type) : Nat → Type where
+
+<div class="lean-code" data-start-line="339" data-end-line="341"><pre><code>inductive Vec (α : Type) : Nat → Type where
   | nil  : Vec α 0
-  | cons {n} :  α → Vec α n → Vec α (n + 1)
-```
+  | cons {n} :  α → Vec α n → Vec α (n + 1)</code></pre></div>
+
  Construct a terms (function definitions) that type check
 to replace the `sorry` in each of the following definitions.
 
-```lean
-def g1 : ℕ → Vec ℕ 0 := sorry
+
+<div class="lean-code" data-start-line="347" data-end-line="355"><pre><code>def g1 : ℕ → Vec ℕ 0 := sorry
 def g2 : Σ n, Vec ℕ n := sorry
 def g3 : Π f : ℕ → ℕ, Σ n, Vec ℕ (f n) := sorry
 def g4 : Σ A, Π B, Vec A B := sorry
@@ -329,8 +329,8 @@ def g4 : Σ A, Π B, Vec A B := sorry
 
 --hide
 end LeanW26.Inference
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===

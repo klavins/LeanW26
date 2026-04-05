@@ -5,9 +5,9 @@ Todo
 Todo
 ===
 
-```lean
-end LeanW26
-```
+
+<div class="lean-code" data-start-line="21" data-end-line="21"><pre><code>end LeanW26</code></pre></div>
+
 
 License
 ===

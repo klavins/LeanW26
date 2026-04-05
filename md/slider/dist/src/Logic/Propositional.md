@@ -40,9 +40,9 @@ the value of these statements. So we might make the assignments:
 - s := Four is greater than five.
 
 In Lean, we declare propositional variables as follows: 
-```lean
-variable (p q r s : Prop)
-```
+
+<div class="lean-code" data-start-line="55" data-end-line="55"><pre><code>variable (p q r s : Prop)</code></pre></div>
+
 
 Atomic vs Compound Propositions
 ===
@@ -55,9 +55,9 @@ Otherwise it is called compound. For example, the proposition
 
 is a compound proposition that uses the _connective_ "or", written as `∨` to
 connect two atomic propositions. Symbolically, we write 
-```lean
-#check p ∨ q
-```
+
+<div class="lean-code" data-start-line="70" data-end-line="70"><pre><code>#check p ∨ q</code></pre></div>
+
  to check that the compound `p ∨ q` is a proposition. 
 
 Notation
@@ -67,15 +67,15 @@ Students used to digital logic will wonder why we are using `∨` instead of the
 The main reason is that `+` will usually mean actual addition when things get more complicated.
 Thus, mathematicians have invented new symbols for logical connectives.
 Here are the most important for our current purposes: 
-```lean
-#check ¬p               -- not p
+
+<div class="lean-code" data-start-line="83" data-end-line="89"><pre><code>#check ¬p               -- not p
 #check p ∨ q            -- p or q
 #check p ∧ q            -- p and q
 #check p → q            -- p implies q
 #check p ↔ q            -- p if and only if q
 #check True
-#check False
-```
+#check False</code></pre></div>
+
 
 Shorthand
 ===
@@ -87,10 +87,10 @@ In _Intuitionistic Logic_, `¬p` is shorthand for
 p → False
 ```
 
-```lean
-#check False
-#check p → False
-```
+
+<div class="lean-code" data-start-line="103" data-end-line="104"><pre><code>#check False
+#check p → False</code></pre></div>
+
 
 If and only if, `↔`, is shorthand for `→` in both directions
 ```
@@ -163,12 +163,12 @@ Classical Logic in Lean
 As an aside, Lean can reason both classically and constructively.
 
 
-```lean
-theorem t (p : Prop) : p ∨ ¬p :=
+
+<div class="lean-code" data-start-line="179" data-end-line="182"><pre><code>theorem t (p : Prop) : p ∨ ¬p :=
   Classical.em p
 
-#print axioms t  -- 'LeanW26.t' depends on axioms: [propext, Classical.choice, Quot.sound]
-```
+#print axioms t  -- &#x27;LeanW26.t&#x27; depends on axioms: [propext, Classical.choice, Quot.sound]</code></pre></div>
+
 
 We'll get to this later.
 
@@ -488,11 +488,11 @@ References
 Elsevier. 1st Edition, Volume 149 - July 4, 2006.
 
 
-```lean
---hide
+
+<div class="lean-code" data-start-line="505" data-end-line="507"><pre><code>--hide
 end LeanW26
---unhide
-```
+--unhide</code></pre></div>
+
 
 License
 ===
