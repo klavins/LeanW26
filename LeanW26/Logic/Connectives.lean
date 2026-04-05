@@ -538,8 +538,8 @@ Define these in Lean. Here is a start:
 inductive Nor (p q : Prop) : Prop where
   | intro : ¬p → ¬q → Nor p q
 
-def Nor.elim_left {p q : Prop} (hnpq : Nor p q) : Prop := sorry
-def Nor.elim_right {p q : Prop} (hnpq : Nor p q) : Prop := sorry
+def Nor.elim_left {p q : Prop} (hnpq : Nor p q) := sorry
+def Nor.elim_right {p q : Prop} (hnpq : Nor p q) := sorry
 
 /-
 Exercise

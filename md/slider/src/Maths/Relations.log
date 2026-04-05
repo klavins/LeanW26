@@ -92,10 +92,10 @@ example : ¬Symm Nat.le := fun h => by simpa using (h 0 1 (by simp))
 
 example :  Symm And    := fun _ _ ⟨ hx, hy ⟩ => ⟨ hy, hx ⟩
 
-example :  Symm (te (α := α)) := by
-  intro σ₁ σ₂ ⟨ m, hm ⟩
-  use m
-  intro n hn
+example :  Symm (te (α := α)) := by <proofstate>['α : Sort u\nβ : Type u\n⊢ Symm te']</proofstate>
+  intro σ₁ σ₂ ⟨ m, hm ⟩ <proofstate>['α : Sort u\nβ : Type u\nσ₁ σ₂ : ℕ → α\nm : ℕ\nhm : ∀ n > m, σ₁ n = σ₂ n\n⊢ te σ₂ σ₁']</proofstate>
+  use m <proofstate>['case h\nα : Sort u\nβ : Type u\nσ₁ σ₂ : ℕ → α\nm : ℕ\nhm : ∀ n > m, σ₁ n = σ₂ n\n⊢ ∀ n > m, σ₂ n = σ₁ n']</proofstate>
+  intro n hn <proofstate>['case h\nα : Sort u\nβ : Type u\nσ₁ σ₂ : ℕ → α\nm : ℕ\nhm : ∀ n > m, σ₁ n = σ₂ n\nn : ℕ\nhn : n > m\n⊢ σ₂ n = σ₁ n']</proofstate>
   exact Eq.symm (hm n hn)
 
 
@@ -109,15 +109,15 @@ def AntiSymm (R : α → α → Prop) := ∀ x y, R x y → R y x → x = y
 
 /- For example: -/
 
-example : AntiSymm (Set.Subset (α := β)) := by
-  intro A B hAB hBA
-  ext x
+example : AntiSymm (Set.Subset (α := β)) := by <proofstate>['α : Sort u\nβ : Type u\n⊢ AntiSymm Set.Subset']</proofstate>
+  intro A B hAB hBA <proofstate>['α : Sort u\nβ : Type u\nA B : Set β\nhAB : A.Subset B\nhBA : B.Subset A\n⊢ A = B']</proofstate>
+  ext x <proofstate>['case h\nα : Sort u\nβ : Type u\nA B : Set β\nhAB : A.Subset B\nhBA : B.Subset A\nx : β\n⊢ x ∈ A ↔ x ∈ B']</proofstate>
   exact ⟨ fun hx => hAB hx, fun hy => hBA hy ⟩
 
-example : ¬AntiSymm (te (α := ℕ)) := by
-  intro h
-  let f n := if n < 2 then 0 else n
-  have heq := h f id ⟨ 2, by grind ⟩ ⟨ 2, by grind ⟩
+example : ¬AntiSymm (te (α := ℕ)) := by <proofstate>['α : Sort u\nβ : Type u\n⊢ ¬AntiSymm te']</proofstate>
+  intro h <proofstate>['α : Sort u\nβ : Type u\nh : AntiSymm te\n⊢ False']</proofstate>
+  let f n := if n < 2 then 0 else n <proofstate>['α : Sort u\nβ : Type u\nh : AntiSymm te\nf : ℕ → ℕ := fun n ↦ if n < 2 then 0 else n\n⊢ False']</proofstate>
+  have heq := h f id ⟨ 2, by grind ⟩ ⟨ 2, by grind ⟩ <proofstate>['α : Sort u\nβ : Type u\nh : AntiSymm te\nf : ℕ → ℕ := fun n ↦ if n < 2 then 0 else n\nheq : f = id\n⊢ False']</proofstate>
   have hne : f 1 ≠ id 1 := by grind
   have heq : f 1 = id 1 := by grind
   grind
@@ -133,20 +133,20 @@ def Trans (R : α → α → Prop) := ∀ x y z, R x y → R y z → R x z
 
 /- For example, -/
 
-example : Trans (Set.Subset (α := β)) := by
-  intro _ _ _ hAB hBC _ hA
+example : Trans (Set.Subset (α := β)) := by <proofstate>['α : Sort u\nβ : Type u\n⊢ Trans Set.Subset']</proofstate>
+  intro _ _ _ hAB hBC _ hA <proofstate>['α : Sort u\nβ : Type u\nx✝ y✝ z✝ : Set β\nhAB : x✝.Subset y✝\nhBC : y✝.Subset z✝\na✝ : β\nhA : a✝ ∈ x✝\n⊢ a✝ ∈ z✝']</proofstate>
   exact hBC (hAB hA)
 
-example : Trans And := by
-  intro p q r ⟨ hp, hq ⟩ ⟨ hq, hr ⟩
+example : Trans And := by <proofstate>['α : Sort u\nβ : Type u\n⊢ Trans And']</proofstate>
+  intro p q r ⟨ hp, hq ⟩ ⟨ hq, hr ⟩ <proofstate>['α : Sort u\nβ : Type u\np q r : Prop\nhp : p\nhq✝ hq : q\nhr : r\n⊢ p ∧ r']</proofstate>
   exact ⟨ hp, hr ⟩
 
 /- Inequality is not transitive, as you would expect. -/
 
-example : ¬Trans (Ne (α := ℕ)) := by
-  intro h
+example : ¬Trans (Ne (α := ℕ)) := by <proofstate>['α : Sort u\nβ : Type u\n⊢ ¬Trans Ne']</proofstate>
+  intro h <proofstate>['α : Sort u\nβ : Type u\nh : Trans Ne\n⊢ False']</proofstate>
   have h12 : 1 ≠ 2 := by decide
-  have := h 1 2 1 h12 h12.symm
+  have := h 1 2 1 h12 h12.symm <proofstate>['α : Sort u\nβ : Type u\nh : Trans Ne\nh12 : 1 ≠ 2\nthis : 1 ≠ 1\n⊢ False']</proofstate>
   simp_all
 
 
@@ -188,17 +188,17 @@ inductive ReflC (R : α → α → Prop) : α → α → Prop where
 
 /- We can show this definition is reflexive, contains `R` and is the smallest such relation: -/
 
-theorem is_refl {R : α → α → Prop} : Refl (ReflC R) := by
-  intro x
+theorem is_refl {R : α → α → Prop} : Refl (ReflC R) := by <proofstate>['α : Sort u\nR : α → α → Prop\n⊢ Refl (ReflC R)']</proofstate>
+  intro x <proofstate>['α : Sort u\nR : α → α → Prop\nx : α\n⊢ ReflC R x x']</proofstate>
   exact ReflC.refl
 
-theorem contains {R : α → α → Prop} {x y : α} : R x y → ReflC R x y := by
+theorem contains {R : α → α → Prop} {x y : α} : R x y → ReflC R x y := by <proofstate>['α : Sort u\nR : α → α → Prop\nx y : α\n⊢ R x y → ReflC R x y']</proofstate>
   exact ReflC.base
 
 theorem is_smallest {R S : α → α → Prop} (hr : ∀ x, S x x) (hi : ∀ {x y}, R x y → S x y)
-  : ∀ {x y}, ReflC R x y → S x y  := by
-  intro x y h
-  cases h with
+  : ∀ {x y}, ReflC R x y → S x y  := by <proofstate>['α : Sort u\nR S : α → α → Prop\nhr : ∀ (x : α), S x x\nhi : ∀ {x y : α}, R x y → S x y\n⊢ ∀ {x y : α}, ReflC R x y → S x y']</proofstate>
+  intro x y h <proofstate>['α : Sort u\nR S : α → α → Prop\nhr : ∀ (x : α), S x x\nhi : ∀ {x y : α}, R x y → S x y\nx y : α\nh : ReflC R x y\n⊢ S x y']</proofstate>
+  cases h with <proofstate>['α : Sort u\nR S : α → α → Prop\nhr : ∀ (x : α), S x x\nhi : ∀ {x y : α}, R x y → S x y\nx y : α\nh : ReflC R x y\n⊢ S x y']</proofstate>
   | base hb => exact hi hb
   | refl => exact hr x
 
@@ -210,19 +210,19 @@ Example Reflexive Closure
 We can show `≤` is the reflexive closure of `<`:
 -/
 
-example {x y : ℕ} : ReflC (Nat.lt) x y ↔ x ≤ y := by
-  constructor
-  · intro h
-    cases h with
-    | base h1 =>
+example {x y : ℕ} : ReflC (Nat.lt) x y ↔ x ≤ y := by <proofstate>['α : Sort u\nβ : Type u\nx y : ℕ\n⊢ ReflC Nat.lt x y ↔ x ≤ y']</proofstate>
+  constructor <proofstate>['case mp\nα : Sort u\nβ : Type u\nx y : ℕ\n⊢ ReflC Nat.lt x y → x ≤ y', 'case mpr\nα : Sort u\nβ : Type u\nx y : ℕ\n⊢ x ≤ y → ReflC Nat.lt x y']</proofstate>
+  · intro h <proofstate>['case mp\nα : Sort u\nβ : Type u\nx y : ℕ\nh : ReflC Nat.lt x y\n⊢ x ≤ y']</proofstate>
+    cases h with <proofstate>['case mp\nα : Sort u\nβ : Type u\nx y : ℕ\nh : ReflC Nat.lt x y\n⊢ x ≤ y']</proofstate>
+    | base h1 => <proofstate>['case mp.base\nα : Sort u\nβ : Type u\nx y : ℕ\nh1 : x.lt y\n⊢ x ≤ y']</proofstate>
       exact Nat.le_of_succ_le h1
-    | refl =>
+    | refl => <proofstate>['case mp.refl\nα : Sort u\nβ : Type u\nx : ℕ\n⊢ x ≤ x']</proofstate>
       aesop
-  · intro h
-    cases h with
-    | refl =>
+  · intro h <proofstate>['case mpr\nα : Sort u\nβ : Type u\nx y : ℕ\nh : x ≤ y\n⊢ ReflC Nat.lt x y']</proofstate>
+    cases h with <proofstate>['case mpr\nα : Sort u\nβ : Type u\nx y : ℕ\nh : x ≤ y\n⊢ ReflC Nat.lt x y']</proofstate>
+    | refl => <proofstate>['case mpr.refl\nα : Sort u\nβ : Type u\nx : ℕ\n⊢ ReflC Nat.lt x x']</proofstate>
       exact ReflC.refl
-    | step h1 =>
+    | step h1 => <proofstate>['case mpr.step\nα : Sort u\nβ : Type u\nx m✝ : ℕ\nh1 : x.le m✝\n⊢ ReflC Nat.lt x m✝.succ']</proofstate>
       exact ReflC.base (by aesop)
 
 /-
@@ -360,9 +360,9 @@ instance nat_total_order : TotalOrder ℕ :=
 
 /- **Example:**  Sets are not a total order, however. -/
 
-example : ∃ x y : Set ℕ, ¬Comparable x y := by
-  apply Exists.intro {1}
-  apply Exists.intro {2}
+example : ∃ x y : Set ℕ, ¬Comparable x y := by <proofstate>['α : Sort u\nβ : Type u\n⊢ ∃ x y, ¬Comparable x y']</proofstate>
+  apply Exists.intro {1} <proofstate>['α : Sort u\nβ : Type u\n⊢ ∃ y, ¬Comparable {1} y']</proofstate>
+  apply Exists.intro {2} <proofstate>['α : Sort u\nβ : Type u\n⊢ ¬Comparable {1} {2}']</proofstate>
   simp[Comparable]
 
 /-
@@ -483,14 +483,14 @@ that test out the definitions and notation.
 They follow from the definitions of greatest lower bound,
 least upper bound, anti-symmetry, and reflexivity. -/
 
-theorem Semilattice.meet_idempotent {L : Type u} [Semilattice L] (x : L) : x ⊓ x = x := by
-  have ⟨ h1, h2 ⟩ := lb x x
-  have h4 := greatest x x x Poset.refl Poset.refl
+theorem Semilattice.meet_idempotent {L : Type u} [Semilattice L] (x : L) : x ⊓ x = x := by <proofstate>['L : Type u\ninst✝ : Semilattice L\nx : L\n⊢ x ⊓ x = x']</proofstate>
+  have ⟨ h1, h2 ⟩ := lb x x <proofstate>['L : Type u\ninst✝ : Semilattice L\nx : L\nh1 h2 : meet x x ≤ x\n⊢ x ⊓ x = x']</proofstate>
+  have h4 := greatest x x x Poset.refl Poset.refl <proofstate>['L : Type u\ninst✝ : Semilattice L\nx : L\nh1 h2 : meet x x ≤ x\nh4 : x ≤ meet x x\n⊢ x ⊓ x = x']</proofstate>
   exact Poset.anti_sym h1 h4
 
-theorem Lattice.join_idempotent {L : Type u} [Lattice L] (x : L) : x ⊔ x = x := by
-  have ⟨ h1, h2 ⟩ := ub x x
-  have h4 := least x x x Poset.refl Poset.refl
+theorem Lattice.join_idempotent {L : Type u} [Lattice L] (x : L) : x ⊔ x = x := by <proofstate>['L : Type u\ninst✝ : Lattice L\nx : L\n⊢ x ⊔ x = x']</proofstate>
+  have ⟨ h1, h2 ⟩ := ub x x <proofstate>['L : Type u\ninst✝ : Lattice L\nx : L\nh1 h2 : x ≤ join x x\n⊢ x ⊔ x = x']</proofstate>
+  have h4 := least x x x Poset.refl Poset.refl <proofstate>['L : Type u\ninst✝ : Lattice L\nx : L\nh1 h2 : x ≤ join x x\nh4 : join x x ≤ x\n⊢ x ⊔ x = x']</proofstate>
   apply Poset.anti_sym h4 h1
 
 
@@ -588,20 +588,20 @@ Equivalences classes are disjoint:
 -/
 
 theorem disjoint_equiv {α : Type u} [s : Setoid α] {x₁ x₂ : α}
-  : ¬ x₁ ≈ x₂ → { y | x₁ ≈ y } ∩ { y | x₂ ≈ y } = ∅ := by
-  intro h
-  ext z
-  constructor
-  · intro ⟨ h1 , h2 ⟩
-    have := s.trans h1 (s.symm h2)
+  : ¬ x₁ ≈ x₂ → { y | x₁ ≈ y } ∩ { y | x₂ ≈ y } = ∅ := by <proofstate>['α : Type u\ns : Setoid α\nx₁ x₂ : α\n⊢ ¬x₁ ≈ x₂ → {y | x₁ ≈ y} ∩ {y | x₂ ≈ y} = ∅']</proofstate>
+  intro h <proofstate>['α : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\n⊢ {y | x₁ ≈ y} ∩ {y | x₂ ≈ y} = ∅']</proofstate>
+  ext z <proofstate>['case h\nα : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\nz : α\n⊢ z ∈ {y | x₁ ≈ y} ∩ {y | x₂ ≈ y} ↔ z ∈ ∅']</proofstate>
+  constructor <proofstate>['case h.mp\nα : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\nz : α\n⊢ z ∈ {y | x₁ ≈ y} ∩ {y | x₂ ≈ y} → z ∈ ∅', 'case h.mpr\nα : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\nz : α\n⊢ z ∈ ∅ → z ∈ {y | x₁ ≈ y} ∩ {y | x₂ ≈ y}']</proofstate>
+  · intro ⟨ h1 , h2 ⟩ <proofstate>['case h.mp\nα : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\nz : α\nh1 : z ∈ {y | x₁ ≈ y}\nh2 : z ∈ {y | x₂ ≈ y}\n⊢ z ∈ ∅']</proofstate>
+    have := s.trans h1 (s.symm h2) <proofstate>['case h.mp\nα : Type u\ns : Setoid α\nx₁ x₂ : α\nh : ¬x₁ ≈ x₂\nz : α\nh1 : z ∈ {y | x₁ ≈ y}\nh2 : z ∈ {y | x₂ ≈ y}\nthis : x₁ ≈ x₂\n⊢ z ∈ ∅']</proofstate>
     exact h this
   · exact False.elim
 
 /- And they partition the entire space -/
 
 theorem univ_equiv {α : Type u} [s : Setoid α]
-  : ⋃ x : α, {y|x≈y} = Set.univ := by
-  ext z
+  : ⋃ x : α, {y|x≈y} = Set.univ := by <proofstate>['α : Type u\ns : Setoid α\n⊢ ⋃ x, {y | x ≈ y} = Set.univ']</proofstate>
+  ext z <proofstate>['case h\nα : Type u\ns : Setoid α\nz : α\n⊢ z ∈ ⋃ x, {y | x ≈ y} ↔ z ∈ Set.univ']</proofstate>
   aesop
 
 
@@ -625,9 +625,9 @@ def respects_op {α : Type u} [Setoid α] (op : α → α → α) := ∀ x₁ x�
 /- A respectful function respects equivalence classes. -/
 
 theorem respects_ec {α : Type u} [Setoid α] {f : α → α} {x y : α}
-  : respects f → f x ≈ y → f '' { z | z ≈ x } ⊆ { z | z ≈ y } := by
-  intro hr hxy z ⟨ w, ⟨ h1, h2 ⟩ ⟩
-  rw[←h2]
+  : respects f → f x ≈ y → f '' { z | z ≈ x } ⊆ { z | z ≈ y } := by <proofstate>["α : Type u\ninst✝ : Setoid α\nf : α → α\nx y : α\n⊢ respects f → f x ≈ y → f '' {z | z ≈ x} ⊆ {z | z ≈ y}"]</proofstate>
+  intro hr hxy z ⟨ w, ⟨ h1, h2 ⟩ ⟩ <proofstate>['α : Type u\ninst✝ : Setoid α\nf : α → α\nx y : α\nhr : respects f\nhxy : f x ≈ y\nz w : α\nh1 : w ∈ {z | z ≈ x}\nh2 : f w = z\n⊢ z ∈ {z | z ≈ y}']</proofstate>
+  rw[←h2] <proofstate>['α : Type u\ninst✝ : Setoid α\nf : α → α\nx y : α\nhr : respects f\nhxy : f x ≈ y\nz w : α\nh1 : w ∈ {z | z ≈ x}\nh2 : f w = z\n⊢ f w ∈ {z | z ≈ y}']</proofstate>
   exact Setoid.trans (hr w x h1) hxy
 
 /- We can show a similar result for respectful operations. -/
@@ -714,10 +714,10 @@ Lifting a one argument function:
 
 def pre_neg (x : ℤ) : Z2 := ⟦-x⟧
 
-theorem pre_neg_respects : ∀ (a b : ℤ), a ≈ b → pre_neg a = pre_neg b := by
-  intro a b ⟨ k, hk ⟩
-  apply Quotient.sound
-  use -k
+theorem pre_neg_respects : ∀ (a b : ℤ), a ≈ b → pre_neg a = pre_neg b := by <proofstate>['⊢ ∀ (a b : ℤ), a ≈ b → pre_neg a = pre_neg b']</proofstate>
+  intro a b ⟨ k, hk ⟩ <proofstate>['a b k : ℤ\nhk : a - b = 2 * k\n⊢ pre_neg a = pre_neg b']</proofstate>
+  apply Quotient.sound <proofstate>['case a\na b k : ℤ\nhk : a - b = 2 * k\n⊢ -a ≈ -b']</proofstate>
+  use -k <proofstate>['case h\na b k : ℤ\nhk : a - b = 2 * k\n⊢ -a - -b = 2 * -k']</proofstate>
   linarith
 
 def Z2.neg (X : Z2) : Z2 := Quotient.lift pre_neg pre_neg_respects X
@@ -734,10 +734,10 @@ Lifting a two argument function:-/
 def pre_add (x y : ℤ) : Z2 := ⟦x+y⟧
 
 theorem pre_add_respects : ∀ (a₁ b₁ a₂ b₂ : ℤ),
-  a₁ ≈ a₂ → b₁ ≈ b₂ → pre_add a₁ b₁ = pre_add a₂ b₂ := by
-  intro a₁ b₁ a₂ b₂ ⟨k, hk⟩ ⟨j, hj⟩
-  apply Quotient.sound
-  use k+j
+  a₁ ≈ a₂ → b₁ ≈ b₂ → pre_add a₁ b₁ = pre_add a₂ b₂ := by <proofstate>['⊢ ∀ (a₁ b₁ a₂ b₂ : ℤ), a₁ ≈ a₂ → b₁ ≈ b₂ → pre_add a₁ b₁ = pre_add a₂ b₂']</proofstate>
+  intro a₁ b₁ a₂ b₂ ⟨k, hk⟩ ⟨j, hj⟩ <proofstate>['a₁ b₁ a₂ b₂ k : ℤ\nhk : a₁ - a₂ = 2 * k\nj : ℤ\nhj : b₁ - b₂ = 2 * j\n⊢ pre_add a₁ b₁ = pre_add a₂ b₂']</proofstate>
+  apply Quotient.sound <proofstate>['case a\na₁ b₁ a₂ b₂ k : ℤ\nhk : a₁ - a₂ = 2 * k\nj : ℤ\nhj : b₁ - b₂ = 2 * j\n⊢ a₁ + b₁ ≈ a₂ + b₂']</proofstate>
+  use k+j <proofstate>['case h\na₁ b₁ a₂ b₂ k : ℤ\nhk : a₁ - a₂ = 2 * k\nj : ℤ\nhj : b₁ - b₂ = 2 * j\n⊢ a₁ + b₁ - (a₂ + b₂) = 2 * (k + j)']</proofstate>
   linarith
 
 def Z2.add (X Y : Z2) : Z2 := Quotient.lift₂ pre_add pre_add_respects X Y
@@ -750,27 +750,27 @@ Z2 : Properties
 ===
 -/
 
-theorem Z2.zero_add (X : Z2) : 0 + X = X := by
-  have ⟨ k, hm ⟩ := Quotient.exists_rep X
-  rw[←hm]
-  apply Quotient.sound
-  use 0
+theorem Z2.zero_add (X : Z2) : 0 + X = X := by <proofstate>['X : Z2\n⊢ 0 + X = X']</proofstate>
+  have ⟨ k, hm ⟩ := Quotient.exists_rep X <proofstate>['X : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ 0 + X = X']</proofstate>
+  rw[←hm] <proofstate>['X : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ 0 + ⟦k⟧ = ⟦k⟧']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nX : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ 0 + k ≈ k']</proofstate>
+  use 0 <proofstate>['case h\nX : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ 0 + k - k = 2 * 0']</proofstate>
   linarith
 
-theorem Z2.neg_add_cancel (X : Z2) : -X + X = ⟦0⟧ := by
-  have ⟨ k, hm ⟩ := Quotient.exists_rep X
-  rw[←hm]
-  apply Quotient.sound
-  use 0
+theorem Z2.neg_add_cancel (X : Z2) : -X + X = ⟦0⟧ := by <proofstate>['X : Z2\n⊢ -X + X = ⟦0⟧']</proofstate>
+  have ⟨ k, hm ⟩ := Quotient.exists_rep X <proofstate>['X : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ -X + X = ⟦0⟧']</proofstate>
+  rw[←hm] <proofstate>['X : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ -⟦k⟧ + ⟦k⟧ = ⟦0⟧']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nX : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ -k + k ≈ 0']</proofstate>
+  use 0 <proofstate>['case h\nX : Z2\nk : ℤ\nhm : ⟦k⟧ = X\n⊢ -k + k - 0 = 2 * 0']</proofstate>
   linarith
 
-theorem Z2.assoc (X Y Z : Z2) : X + Y + Z = X + (Y + Z) := by
-  have ⟨ i, hi ⟩ := Quotient.exists_rep X
-  have ⟨ j, hj ⟩ := Quotient.exists_rep Y
-  have ⟨ k, hk ⟩ := Quotient.exists_rep Z
-  rw[←hi,←hj,←hk]
-  apply Quotient.sound
-  use 0
+theorem Z2.assoc (X Y Z : Z2) : X + Y + Z = X + (Y + Z) := by <proofstate>['X Y Z : Z2\n⊢ X + Y + Z = X + (Y + Z)']</proofstate>
+  have ⟨ i, hi ⟩ := Quotient.exists_rep X <proofstate>['X Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\n⊢ X + Y + Z = X + (Y + Z)']</proofstate>
+  have ⟨ j, hj ⟩ := Quotient.exists_rep Y <proofstate>['X Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\nj : ℤ\nhj : ⟦j⟧ = Y\n⊢ X + Y + Z = X + (Y + Z)']</proofstate>
+  have ⟨ k, hk ⟩ := Quotient.exists_rep Z <proofstate>['X Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\nj : ℤ\nhj : ⟦j⟧ = Y\nk : ℤ\nhk : ⟦k⟧ = Z\n⊢ X + Y + Z = X + (Y + Z)']</proofstate>
+  rw[←hi,←hj,←hk] <proofstate>['X Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\nj : ℤ\nhj : ⟦j⟧ = Y\nk : ℤ\nhk : ⟦k⟧ = Z\n⊢ ⟦i⟧ + ⟦j⟧ + ⟦k⟧ = ⟦i⟧ + (⟦j⟧ + ⟦k⟧)']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nX Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\nj : ℤ\nhj : ⟦j⟧ = Y\nk : ℤ\nhk : ⟦k⟧ = Z\n⊢ i + j + k ≈ i + (j + k)']</proofstate>
+  use 0 <proofstate>['case h\nX Y Z : Z2\ni : ℤ\nhi : ⟦i⟧ = X\nj : ℤ\nhj : ⟦j⟧ = Y\nk : ℤ\nhk : ⟦k⟧ = Z\n⊢ i + j + k - (i + (j + k)) = 2 * 0']</proofstate>
   linarith
 
 
@@ -867,18 +867,18 @@ def pre_add {α : Type u} [Add α] (σ τ : ℕ → α) : Germ α := ⟦fun n =>
 /- We can show `neg` preserves equivalence via: -/
 
 theorem te_neg_respects {α : Type u} [Neg α]
-  : ∀ (a b : ℕ → α), a ≈ b → pre_neg a = pre_neg b := by
-  intro σ τ ⟨ m, h ⟩
-  apply Quotient.sound
-  use m
+  : ∀ (a b : ℕ → α), a ≈ b → pre_neg a = pre_neg b := by <proofstate>['α : Type u\ninst✝ : Neg α\n⊢ ∀ (a b : ℕ → α), a ≈ b → pre_neg a = pre_neg b']</proofstate>
+  intro σ τ ⟨ m, h ⟩ <proofstate>['α : Type u\ninst✝ : Neg α\nσ τ : ℕ → α\nm : ℕ\nh : ∀ n > m, σ n = τ n\n⊢ pre_neg σ = pre_neg τ']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nα : Type u\ninst✝ : Neg α\nσ τ : ℕ → α\nm : ℕ\nh : ∀ n > m, σ n = τ n\n⊢ (fun n ↦ -σ n) ≈ fun n ↦ -τ n']</proofstate>
+  use m <proofstate>['case h\nα : Type u\ninst✝ : Neg α\nσ τ : ℕ → α\nm : ℕ\nh : ∀ n > m, σ n = τ n\n⊢ ∀ n > m, -σ n = -τ n']</proofstate>
   aesop
 
 theorem te_add_respects {α : Type u} [a : Add α] :
-  ∀ (a₁ b₁ a₂ b₂ : ℕ → α), a₁ ≈ a₂ → b₁ ≈ b₂ → pre_add a₁ b₁ = pre_add a₂ b₂ := by
-  intro a b c d ⟨ m1, h1 ⟩ ⟨ m2, h2 ⟩
-  apply Quotient.sound
-  use m1 ⊔ m2
-  intro n hn
+  ∀ (a₁ b₁ a₂ b₂ : ℕ → α), a₁ ≈ a₂ → b₁ ≈ b₂ → pre_add a₁ b₁ = pre_add a₂ b₂ := by <proofstate>['α : Type u\na : Add α\n⊢ ∀ (a₁ b₁ a₂ b₂ : ℕ → α), a₁ ≈ a₂ → b₁ ≈ b₂ → pre_add a₁ b₁ = pre_add a₂ b₂']</proofstate>
+  intro a b c d ⟨ m1, h1 ⟩ ⟨ m2, h2 ⟩ <proofstate>['α : Type u\na✝ : Add α\na b c d : ℕ → α\nm1 : ℕ\nh1 : ∀ n > m1, a n = c n\nm2 : ℕ\nh2 : ∀ n > m2, b n = d n\n⊢ pre_add a b = pre_add c d']</proofstate>
+  apply Quotient.sound <proofstate>['case a\nα : Type u\na✝ : Add α\na b c d : ℕ → α\nm1 : ℕ\nh1 : ∀ n > m1, a n = c n\nm2 : ℕ\nh2 : ∀ n > m2, b n = d n\n⊢ (fun n ↦ a n + b n) ≈ fun n ↦ c n + d n']</proofstate>
+  use m1 ⊔ m2 <proofstate>['case h\nα : Type u\na✝ : Add α\na b c d : ℕ → α\nm1 : ℕ\nh1 : ∀ n > m1, a n = c n\nm2 : ℕ\nh2 : ∀ n > m2, b n = d n\n⊢ ∀ n > max m1 m2, a n + b n = c n + d n']</proofstate>
+  intro n hn <proofstate>['case h\nα : Type u\na✝ : Add α\na b c d : ℕ → α\nm1 : ℕ\nh1 : ∀ n > m1, a n = c n\nm2 : ℕ\nh2 : ∀ n > m2, b n = d n\nn : ℕ\nhn : n > max m1 m2\n⊢ a n + b n = c n + d n']</proofstate>
   aesop
 
 
@@ -996,8 +996,8 @@ instance inst_setoid : Setoid Expr := ⟨ Expr.eq, inst_equiv ⟩
 
 /- Now we can write simple examples: -/
 
-example : (one+zero)+one ≈ one+one := by
-  apply eq.congr
+example : (one+zero)+one ≈ one+one := by <proofstate>['α : Sort u\nβ : Type u\n⊢ one + zero + one ≈ one + one']</proofstate>
+  apply eq.congr <proofstate>['case a\nα : Sort u\nβ : Type u\n⊢ (one + zero).eq one', 'case a\nα : Sort u\nβ : Type u\n⊢ one.eq one']</proofstate>
   · apply eq.add_zero_right
   · apply eq.refl
 
@@ -1007,26 +1007,26 @@ Congruence
 We can build out everything you would expect to see in a rewriting system.
 -/
 
-theorem cong_left {a b c : Expr} : a ≈ b → a + c ≈ b + c := by
-  intro h
+theorem cong_left {a b c : Expr} : a ≈ b → a + c ≈ b + c := by <proofstate>['a b c : Expr\n⊢ a ≈ b → a + c ≈ b + c']</proofstate>
+  intro h <proofstate>['a b c : Expr\nh : a ≈ b\n⊢ a + c ≈ b + c']</proofstate>
   exact eq.congr h eq.refl
 
 theorem cong_right {a b c : Expr} : b ≈ c → a + b ≈ a + c := eq.congr eq.refl
 
 theorem cong_assoc_left {a b c a' b' : Expr}
-  : a ≈ a' → b ≈ b' → (a + b) + c ≈ (a' + b') + c := by
-  intro ha hb
-  apply cong_left
+  : a ≈ a' → b ≈ b' → (a + b) + c ≈ (a' + b') + c := by <proofstate>["a b c a' b' : Expr\n⊢ a ≈ a' → b ≈ b' → a + b + c ≈ a' + b' + c"]</proofstate>
+  intro ha hb <proofstate>["a b c a' b' : Expr\nha : a ≈ a'\nhb : b ≈ b'\n⊢ a + b + c ≈ a' + b' + c"]</proofstate>
+  apply cong_left <proofstate>["case a\na b c a' b' : Expr\nha : a ≈ a'\nhb : b ≈ b'\n⊢ a + b ≈ a' + b'"]</proofstate>
   exact Expr.eq.congr ha hb
 
 theorem cong_assoc_right {a b c b' c' : Expr}
-  : b ≈ b' → c ≈ c' → a + (b + c) ≈ a + (b' + c') := by
-  intro hb hc
-  apply cong_right
+  : b ≈ b' → c ≈ c' → a + (b + c) ≈ a + (b' + c') := by <proofstate>["a b c b' c' : Expr\n⊢ b ≈ b' → c ≈ c' → a + (b + c) ≈ a + (b' + c')"]</proofstate>
+  intro hb hc <proofstate>["a b c b' c' : Expr\nhb : b ≈ b'\nhc : c ≈ c'\n⊢ a + (b + c) ≈ a + (b' + c')"]</proofstate>
+  apply cong_right <proofstate>["case a\na b c b' c' : Expr\nhb : b ≈ b'\nhc : c ≈ c'\n⊢ b + c ≈ b' + c'"]</proofstate>
   apply Expr.eq.congr hb hc
 
-theorem sub {a b c : Expr} : a ≈ c → b ≈ c → a ≈ b := by
-  intro h1 h2
+theorem sub {a b c : Expr} : a ≈ c → b ≈ c → a ≈ b := by <proofstate>['a b c : Expr\n⊢ a ≈ c → b ≈ c → a ≈ b']</proofstate>
+  intro h1 h2 <proofstate>['a b c : Expr\nh1 : a ≈ c\nh2 : b ≈ c\n⊢ a ≈ b']</proofstate>
   exact eq.trans h1 (eq.symm h2)
 
 
@@ -1045,9 +1045,9 @@ def eval : Expr → Nat
 
 /- We can check soundess by induction on the equivalence: -/
 
-theorem sound (e f : Expr) : e ≈ f → eval e = eval f := by
-  intro h
-  induction h with
+theorem sound (e f : Expr) : e ≈ f → eval e = eval f := by <proofstate>['e f : Expr\n⊢ e ≈ f → e.eval = f.eval']</proofstate>
+  intro h <proofstate>['e f : Expr\nh : e ≈ f\n⊢ e.eval = f.eval']</proofstate>
+  induction h with <proofstate>['e f : Expr\nh : e ≈ f\n⊢ e.eval = f.eval']</proofstate>
   | assoc           => simp[eval,Nat.add_assoc]
   | comm            => simp[eval,Nat.add_comm]
   | add_zero_left   => simp[eval]
@@ -1091,3 +1091,4 @@ end Expr
 end Germ
 end LeanW26
 --unhide
+

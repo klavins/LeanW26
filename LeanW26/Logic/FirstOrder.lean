@@ -580,9 +580,6 @@ theorem Exists1.elim {α : Type} {P : α → Prop} {b : Prop}
 -/
 
 example : ∀ x, Exists1 (fun y : Person => x ≠ y ∧ ¬next_to y x ) := sorry
-example (α : Type) (P : α → Prop) : Exists1 ( fun x => P x ) → ¬ ∀ x, ¬ P x  := sorry
-example : Exists1 (fun x => x=0) := sorry
-example : ¬Exists1 (fun x => x ≠ 0) := sorry
 
 --hide
 end LeanW26

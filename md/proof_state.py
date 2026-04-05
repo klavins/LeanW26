@@ -50,7 +50,10 @@ files = [
   "Logic/Tactics",
   "Logic/Equality",
   "Maths/Algebra",
-  "Maths/Sets"
+  "Maths/Sets",
+  "Maths/Relations",
+  "Maths/Numbers",
+  "Examples/FOL"
 
 ]
 

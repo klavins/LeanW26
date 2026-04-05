@@ -45,7 +45,7 @@ Requirements
 - Well-commented code
 - For group work, clear deliniation of who did what. I'll look at Github-blame
 - A lightning presentation (2 min) of your results on the last day of class
-- All work completed on the repo by Wed March 18
+- All work completed on the repo by Thu March 19 at midnight
 
 -/
 
@@ -207,5 +207,26 @@ Exercise
 
 Note you you have a free [NYT account](https://www.nytimes.com/activate-access/edu-access) as a UW student.
 
+Exercise
+===
 
+<ex /> **Definitions**: Formalization starts with definitions. For example, most projects start with a `Defs.lean` file. For example:
+- Mathlib: [Set](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Set/Defs.html), [Group](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Group/Defs.html), [Category](https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/Category/Basic.html)
+- CSLib: [Automata](https://github.com/leanprover/cslib/blob/main/Cslib/Computability/Automata/DA/Basic.lean)
+- Liquid Tensor Experiment: [Radon](https://github.com/leanprover-community/lean-liquid/blob/master/src/Radon/defs.lean)
+
+State the definitions used in your project. If you not defining anything new, state restate the definitions in a temporary namespace of the main objects you will be using.
+
+<ex /> **Examples**: For each definition, construct several object of the corresponding type. For example, if you defined a `Point` type or typeclass, define a point. If you defined an `Automaton` type or class, define a simple automaton.
+
+-/
+
+/-
+Project Requirements
+===
+-/
+
+/-
+Presentation Requirements
+===
 -/
