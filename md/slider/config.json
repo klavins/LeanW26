@@ -38,39 +38,12 @@
                 { "path": "src/Maths/Relations.md", "title": "Relations" },
                 { "path": "src/Maths/Numbers.md", "title": "Numbers" }
             ]
-        },    
-        { 
-            "name": "Metaprogramming", 
-            "decks": [
-                { "path": "src/Meta/Expressions.md", "title": "Expressions" },
-                { "path": "src/Meta/Monads.md", "title": "Monads" },
-                { "path": "src/Meta/MetaMonads.md", "title": "The Meta Monads" },
-                { "path": "src/Meta/Tactics.md", "title": "Custom Tactics" }
-                
-            ]
         },  
         {
             "name": "Examples",
             "decks": [
                 { "path": "src/Examples/FOL.md", "title": "First Order Logic" },
-                { "path": "src/Examples/TemporalLogic.md", "title": "Temporal Logic" },
-                { "path": "src/Examples/ISA.md", "title": "Instruction Sets" }
-                
-            ]
-        },
-        {
-            "name": "Tools",
-            "decks": [
-                { "path": "src/Tools/LeanClient.md", "title": "Lean Client" },
-                { "path": "src/Tools/LeanDojo.md", "title": "Lean Dojo" },
-                { "path": "src/Tools/OpenAIAPI.md", "title": "Open AI API" }
-            ]
-        },        
-        {
-            "name": "Appendix",
-            "decks": [      
-                { "path": "src/Appendix/Projects.md", "title": "Projects" },
-                { "path": "src/Appendix/Latex.md", "title": "Latex" }
+                { "path": "src/Examples/TemporalLogic.md", "title": "Temporal Logic" }
             ]
         }
     ]
